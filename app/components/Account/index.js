@@ -2,18 +2,33 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import wallet from 'ethereumjs-wallet'
 
+import { createQrImage } from '../../utils/qrdisplay'
+
 class Account extends Component {
+
+  handleShowQrCode() {
+    createQrImage(
+      document.getElementById('qr'),
+      this.hdWallet.getChecksumAddressString()
+    )
+  }
+
   componentWillMount() {
     const { password, v3 } = this.props.state
 
-    const hdWallet = wallet.fromV3(v3, password)
-    this.address = hdWallet.getChecksumAddressString()
+    this.hdWallet = wallet.fromV3(v3, password)
   }
 
   render() {
     return (
       <div>
-        Address: {this.address}
+        Address: {this.hdWallet.getChecksumAddressString()}
+        
+        <br /><br />
+        
+        <button onClick={() => this.handleShowQrCode()}>Show QR code</button>
+
+        <div id='qr'></div>
       </div>
     )
   }
