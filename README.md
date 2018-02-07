@@ -3,7 +3,7 @@ Gnosis Safe Chrome Extension
 
 Installation
 -------
-
+Install dependencies
 ```
 npm install
 ```
@@ -11,7 +11,7 @@ npm install
 Build
 -------
 
-Build files to ./build folder.
+Build files to `./build` folder.
 ```
 npm run build
 ```
@@ -19,5 +19,8 @@ npm run build
 Run the extension
 -------
 
-Open Google Chrome Browser and go to Settings > More tools > Extensions
+* Visit `chrome://extensions` in your Google Chrome borwser.
+* Ensure that the **Developer mode** checkbox in the top of the page is checked.
+* Click the button **Load unpacked extensions...** and open the `./build` folder in the file-selection dialog.
+The extension will be loaded up and active.
 
