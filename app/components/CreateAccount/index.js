@@ -4,7 +4,7 @@ import { withRouter } from 'react-router'
 import wallet from 'ethereumjs-wallet'
 import HdKey from 'ethereumjs-wallet/hdkey'
 import Bip39 from 'bip39'
-import { createAccount } from '../../actions/account';
+import { createAccount } from '../../actions/account'
 
 class CreateAccount extends Component {
   constructor(props) {
