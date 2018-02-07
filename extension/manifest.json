@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "Gnosis Authenticator",
+  "short_name": "Gnosis Authenticator",
+  "version": "1.0.0",
+  "description": "",
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_title": "Gnosis Authenticator"
+  },
+  "author": "Gnosis",
+  "permissions": [
+    "storage"
+  ]
+}
