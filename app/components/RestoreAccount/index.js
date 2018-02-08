@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import HdKey from 'ethereumjs-wallet/hdkey'
 import Bip39 from 'bip39'
+import CryptoJs from 'crypto-js'
+
 import { restoreAccount } from '../../actions/account'
 
 class RestoreAccount extends Component {
@@ -20,16 +22,19 @@ class RestoreAccount extends Component {
 
   handleRestoreAccount() {
     const { mnemonic, errorMessage } = this.state
+    const { password } = this.props.account
 
     if (Bip39.validateMnemonic(mnemonic)) {
-      const hdWallet = HdKey.fromMasterSeed(Bip39.mnemonicToSeed(mnemonic))
+      const seed = Bip39.mnemonicToSeed(mnemonic)
+      const hdWallet = HdKey.fromMasterSeed(seed)
 
       // Get the first account using the standard hd path
       const walletHdPath = 'm/44\'/60\'/0\'/0'
-      const v3 = hdWallet.derivePath(walletHdPath + '0').getWallet().toV3(this.props.account.password)
+      const address = hdWallet.derivePath(walletHdPath + '0').getWallet().getChecksumAddressString()
 
-      //chrome.storage.local.set({'gnosisSafeWallet': v3}, function() {})
-      this.props.onRestoreAccount(this.props.account.password, v3)
+      const encryptedSeed = CryptoJs.AES.encrypt(mnemonic, password)
+
+      this.props.onRestoreAccount(address, encryptedSeed.toString())
 
       this.props.history.push('/account')
     }
@@ -56,15 +61,15 @@ class RestoreAccount extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = ({ account }, props) => {
   return {
-    account: state.account
+    account
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onRestoreAccount: (password, v3) => dispatch(restoreAccount(password, v3))
+    onRestoreAccount: (address, seed) => dispatch(restoreAccount(address, seed))
   }
 }
 

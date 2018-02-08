@@ -1,8 +1,8 @@
 import { createStore } from 'redux'
 import rootReducer from './reducers'
-import { loadState, saveState } from './utils/storage'
+import { loadStorage, saveStorage } from './utils/storage'
 
-const persistedState = loadState()
+const persistedState = loadStorage()
 
 const store = createStore(
   rootReducer,
@@ -10,7 +10,7 @@ const store = createStore(
 )
 
 store.subscribe(() => {
-  saveState(
+  saveStorage(
     store.getState()
   )
 })

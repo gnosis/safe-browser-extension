@@ -1,22 +1,34 @@
 import {
   CREATE_ACCOUNT,
+  REQUEST_RESTORE_ACCOUNT,
   RESTORE_ACCOUNT,
+  LOGOUT_ACCOUNT,
 } from '../actions/account'
 
 function account(state = {}, action) {
   switch (action.type) {
 
     case CREATE_ACCOUNT:
-      return Object.assign({}, state, {
-        password: action.password,
-        v3: action.v3
-      })
+      return {
+        address: action.address,
+        seed: action.seed,
+      }
 
-    case RESTORE_ACCOUNT:
-      return Object.assign({}, state, {
+    case REQUEST_RESTORE_ACCOUNT:
+      return {
         password: action.password,
-        v3: action.v3
-      })
+      }
+
+    case RESTORE_ACCOUNT: {
+      return {
+        address: action.address,
+        seed: action.seed,
+      }
+    }
+
+    case LOGOUT_ACCOUNT: {
+      return {}
+    }
 
     default:
       return state

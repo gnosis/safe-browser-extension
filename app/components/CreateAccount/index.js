@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
-import wallet from 'ethereumjs-wallet'
 import HdKey from 'ethereumjs-wallet/hdkey'
 import Bip39 from 'bip39'
-import { createAccount } from '../../actions/account'
+import CryptoJs from 'crypto-js'
+
+import { createAccount, requestRestoreAccount } from '../../actions/account'
 
 class CreateAccount extends Component {
   constructor(props) {
@@ -46,16 +46,15 @@ class CreateAccount extends Component {
     if (this.validatePasswords()) {
       const mnemonic = Bip39.generateMnemonic()
       const seed = Bip39.mnemonicToSeed(mnemonic)
-      //console.log(mnemonic)
-
       const hdWallet = HdKey.fromMasterSeed(seed)
+      //console.log(mnemonic)
 
       // Get the first account using the standard hd path
       const walletHdPath = 'm/44\'/60\'/0\'/0'
-      const v3 = hdWallet.derivePath(walletHdPath + '0').getWallet().toV3(this.state.password)
+      const address = hdWallet.derivePath(walletHdPath + '0').getWallet().getChecksumAddressString()
 
-      //chrome.storage.local.set({'gnosisSafeWallet': v3}, function() {})
-      this.props.onCreateAccount(this.state.password, v3)
+      const encryptedSeed = CryptoJs.AES.encrypt(mnemonic, this.state.password)
+      this.props.onCreateAccount(address, encryptedSeed.toString())
 
       this.props.history.push('/account')
     }
@@ -63,8 +62,8 @@ class CreateAccount extends Component {
 
   handleRestoreAccount() {
     if (this.validatePasswords()) {
-      this.props.onCreateAccount(this.state.password, null)
-      
+      this.props.onRequestRestoreAccount(this.state.password)
+
       this.props.history.push('/restore-account')
     }
   }
@@ -99,11 +98,12 @@ class CreateAccount extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onCreateAccount: (password, v3) => dispatch(createAccount(password, v3))
+    onCreateAccount: (address, seed) => dispatch(createAccount(address, seed)),
+    onRequestRestoreAccount: (password) => dispatch(requestRestoreAccount(password))
   }
 }
 
-export default withRouter(connect(
+export default connect(
   null,
   mapDispatchToProps
-)(CreateAccount))
+)(CreateAccount)
