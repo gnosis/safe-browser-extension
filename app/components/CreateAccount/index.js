@@ -51,7 +51,7 @@ class CreateAccount extends Component {
 
       // Get the first account using the standard hd path
       const walletHdPath = 'm/44\'/60\'/0\'/0'
-      const address = hdWallet.derivePath(walletHdPath + '0').getWallet().getChecksumAddressString()
+      const address = hdWallet.derivePath(walletHdPath + '/0').getWallet().getChecksumAddressString()
 
       const encryptedSeed = CryptoJs.AES.encrypt(mnemonic, this.state.password)
       this.props.onCreateAccount(address, encryptedSeed.toString())
