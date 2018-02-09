@@ -1,0 +1,39 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+}
+
+body {
+  padding: 20px;
+}
+
+p {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 100%;
+}
+
+input[type="text"],
+input[type="password"] {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 100%;
+}
+
+textarea {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 100%;
+}
+
+button {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 100%;
+}

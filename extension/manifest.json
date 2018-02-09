@@ -1,0 +1,14 @@
+{
+  "manifest_version": 2,
+  "name": "Gnosis Safe Extension",
+  "version": "1.0.0",
+  "description": "",
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_title": "Gnosis Safe Extension"
+  },
+  "author": "Gnosis",
+  "permissions": [
+    "storage"
+  ]
+}
