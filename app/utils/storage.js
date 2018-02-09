@@ -1,6 +1,6 @@
-export const loadState = () => {
+export const loadStorage = () => {
   try {
-    var serializedStorage = localStorage.getItem('state')
+    var serializedStorage = localStorage.getItem('safe')
     if (serializedStorage === null) {
       serializedStorage = undefined
     }
@@ -12,9 +12,15 @@ export const loadState = () => {
   }
 }
 
-export const saveState = (state) => {
+export const saveStorage = (state) => {
   try {
-    localStorage.setItem('state', JSON.stringify(state))
+    const savedStorage = {
+      'account': {
+        'address': state.account.address,
+        'seed': state.account.seed
+      }
+    }
+    localStorage.setItem('safe', JSON.stringify(savedStorage))
   }
   catch (err) {
 

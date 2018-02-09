@@ -6,27 +6,21 @@ import { createQrImage } from '../../utils/qrdisplay'
 
 class Account extends Component {
 
-  handleShowQrCode() {
+  handleShowQrCode(data) {
     createQrImage(
       document.getElementById('qr'),
-      this.hdWallet.getChecksumAddressString()
+      data
     )
   }
 
-  componentWillMount() {
-    const { password, v3 } = this.props.state
-
-    this.hdWallet = wallet.fromV3(v3, password)
-  }
-
   render() {
+    const { seed, address } = this.props.account
+
     return (
       <div>
-        Address: {this.hdWallet.getChecksumAddressString()}
-        
-        <br /><br />
-        
-        <button onClick={() => this.handleShowQrCode()}>Show QR code</button>
+        <span>Address: {address}</span>
+
+        <button onClick={() => this.handleShowQrCode(address)}>Show QR code</button>
 
         <div id='qr'></div>
       </div>
@@ -34,9 +28,9 @@ class Account extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = ({ account }, props) => {
   return {
-    state: state.account
+    account
   }
 }
 

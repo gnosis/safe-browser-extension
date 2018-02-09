@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, withRouter } from 'react-router'
 
+import Header from '../Header'
 import CreateAccount from '../CreateAccount'
 import RestoreAccount from '../RestoreAccount'
 import Account from '../Account'
@@ -10,8 +11,9 @@ import './styles.css'
 
 class App extends Component {
   componentWillMount() {
-    const serializedState = localStorage.getItem('state')
-    if (!serializedState) {
+    const { account } = this.props.state
+
+    if (Object.keys(account).length === 0) {
       this.props.history.push('/create-password')
     }
     else {
@@ -22,12 +24,23 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Route exact path='/create-password' component={CreateAccount} />
-        <Route exact path='/restore-account' component={RestoreAccount} />
-        <Route exact path='/account' component={Account} />
+        <Header />
+        <div className='container'>
+          <Route exact path='/create-password' component={CreateAccount} />
+          <Route exact path='/restore-account' component={RestoreAccount} />
+          <Route exact path='/account' component={Account} />
+        </div>
       </div>
     )
   }
 }
 
-export default withRouter(connect()(App))
+const mapStateToProps = (state, props) => {
+  return {
+    state
+  }
+}
+
+export default withRouter(connect(
+  mapStateToProps
+)(App))
