@@ -2,7 +2,6 @@ import {
   CREATE_ACCOUNT,
   REQUEST_RESTORE_ACCOUNT,
   RESTORE_ACCOUNT,
-  LOGOUT_ACCOUNT,
 } from '../actions/account'
 
 function account(state = {}, action) {
@@ -24,10 +23,6 @@ function account(state = {}, action) {
         address: action.address,
         seed: action.seed,
       }
-    }
-
-    case LOGOUT_ACCOUNT: {
-      return {}
     }
 
     default:

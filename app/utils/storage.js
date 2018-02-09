@@ -14,12 +14,9 @@ export const loadStorage = () => {
 
 export const saveStorage = (state) => {
   try {
-    const savedStorage = {
-      'account': {
-        'address': state.account.address,
-        'seed': state.account.seed
-      }
-    }
+    const savedStorage = state
+    delete savedStorage.password
+
     localStorage.setItem('safe', JSON.stringify(savedStorage))
   }
   catch (err) {

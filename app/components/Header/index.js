@@ -1,18 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import { logOutAccount } from '../../actions/account'
 
 class Header extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   handleLogOut() {
     this.props.onLogOut()
 
     this.props.history.push('/create-password')
+  }
+
+  handleManageWhitelistedDApps() {
+    this.props.history.push('/whitelisted-dapps')
   }
 
   render() {
@@ -22,11 +24,26 @@ class Header extends Component {
       <div className='header'>
         Gnosis
         {!(Object.keys(account).length === 0) &&
-          <span
-            onClick={(e) => this.handleLogOut()}
-            className='logout'>
-            Log out
-          </span>
+          <div>
+
+            {this.props.location.pathname === '/whitelisted-dapps' ?
+              <Link to='/account'
+                className='menu-elem'>
+                Account
+              </Link>
+              :
+              <Link to='/whitelisted-dapps'
+                className='menu-elem'>
+                DApps
+              </Link>
+            }
+            <span
+              onClick={(e) => this.handleLogOut()}
+              className='menu-elem'>
+              Log out
+            </span>
+
+          </div>
         }
       </div>
     )

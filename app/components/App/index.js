@@ -6,6 +6,7 @@ import Header from '../Header'
 import CreateAccount from '../CreateAccount'
 import RestoreAccount from '../RestoreAccount'
 import Account from '../Account'
+import WhitelistedDApps from '../WhitelistedDApps'
 
 import './styles.css'
 
@@ -29,6 +30,7 @@ class App extends Component {
           <Route exact path='/create-password' component={CreateAccount} />
           <Route exact path='/restore-account' component={RestoreAccount} />
           <Route exact path='/account' component={Account} />
+          <Route exact path='/whitelisted-dapps' component={WhitelistedDApps} />
         </div>
       </div>
     )

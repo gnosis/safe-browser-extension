@@ -18,8 +18,8 @@ class Account extends Component {
 
     return (
       <div>
-        <span>Address: {address}</span>
-
+        <div>Address: {address}</div>
+        <br /><br />
         <button onClick={() => this.handleShowQrCode(address)}>Show QR code</button>
 
         <div id='qr'></div>
