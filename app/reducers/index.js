@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 
 import account from './account'
 import whitelistedDApps from './whitelistedDApps'
+
 import { LOGOUT_ACCOUNT } from '../actions/account'
 
 const reducers = combineReducers({

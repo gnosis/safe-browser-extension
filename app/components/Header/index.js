@@ -17,6 +17,31 @@ class Header extends Component {
     this.props.history.push('/whitelisted-dapps')
   }
 
+  renderMenuButtons() {
+    let url = this.props.location.pathname
+
+    switch (url) {
+      case '/account':
+        return (
+          <div>
+            <Link to='/whitelisted-dapps'
+              className='menu-elem'>
+              DApps
+            </Link>
+          </div>
+        )
+
+      default:
+        if (url !== '/restore-account')
+          return (
+            <Link to='/account'
+              className='menu-elem'>
+              Account
+            </Link>
+          )
+    }
+  }
+
   render() {
     const { account } = this.props.state
 
@@ -25,24 +50,13 @@ class Header extends Component {
         Gnosis
         {!(Object.keys(account).length === 0) &&
           <div>
+            {this.renderMenuButtons()}
 
-            {this.props.location.pathname === '/whitelisted-dapps' ?
-              <Link to='/account'
-                className='menu-elem'>
-                Account
-              </Link>
-              :
-              <Link to='/whitelisted-dapps'
-                className='menu-elem'>
-                DApps
-              </Link>
-            }
             <span
               onClick={(e) => this.handleLogOut()}
               className='menu-elem'>
               Log out
             </span>
-
           </div>
         }
       </div>

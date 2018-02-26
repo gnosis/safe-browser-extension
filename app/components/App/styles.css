@@ -24,7 +24,11 @@ a {
   float: right;
 }
 
-.header > div > .menu-elem {
+.header > div > div {
+  float: left;
+}
+
+.header .menu-elem {
   cursor: pointer;
   margin-left: 20px;
 }

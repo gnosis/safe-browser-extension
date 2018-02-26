@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import wallet from 'ethereumjs-wallet'
 
 import { createQrImage } from '../../utils/qrdisplay'
+import config from '../../../config'
 
 class Account extends Component {
 
@@ -19,7 +20,15 @@ class Account extends Component {
     return (
       <div>
         <div>Address: {address}</div>
-        <br /><br />
+
+        <br />
+        <br />
+
+        <div>Network: {config.networks[config.currentNetwork].url} </div>
+
+        <br />
+        <br />
+
         <button onClick={() => this.handleShowQrCode(address)}>Show QR code</button>
 
         <div id='qr'></div>

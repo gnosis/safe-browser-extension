@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import { normalizeUrl } from '../../utils/helpers'
+
 import { addWhitelistedDApp, deleteWhitelistedDApp } from '../../actions/whitelistedDApps'
 
 class WhitelistedDApps extends Component {
@@ -9,28 +11,48 @@ class WhitelistedDApps extends Component {
 
     this.state = {
       newDApp: '',
+      errorMessage: '',
     }
   }
 
-  updateNewDapp(value) {
-    this.setState({ newDApp: value })
+  updateNewDApp(dApp) {
+    this.setState({ newDApp: dApp })
+  }
+
+  validateDApp(dApp) {
+    if (!dApp) {
+      this.setState({ errorMessage: 'Invalid DApp' })
+      return false
+    }
+
+    const { whitelistedDApps } = this.props
+
+    if (whitelistedDApps.indexOf(dApp) > -1) {
+      this.setState({ errorMessage: 'DApp already whitelisted' })
+      return false
+    }
+
+    this.setState({ errorMessage: '' })
+    return true
   }
 
   handleAddDApp() {
-    const newDApp = this.state.newDApp
-
-    if (newDApp !== '') {
+    const dApp = this.state.newDApp
+    const newDApp = normalizeUrl(dApp)
+    
+    if (this.validateDApp(newDApp)) {
       this.props.onAddWhitelistedDApp(newDApp)
+      
       this.setState({ newDApp: '' })
     }
   }
 
-  handleDeleteDApp(dapp) {
-    this.props.onDeleteWhitelistedDApp(dapp)
+  handleDeleteDApp(dApp) {
+    this.props.onDeleteWhitelistedDApp(dApp)
   }
 
   render() {
-    const { newDApp } = this.state
+    const { newDApp, errorMessage } = this.state
     const { whitelistedDApps } = this.props
 
     return (
@@ -38,7 +60,9 @@ class WhitelistedDApps extends Component {
         <input
           type='text'
           value={newDApp}
-          onChange={(e) => this.updateNewDapp(e.target.value)} />
+          onChange={(e) => this.updateNewDApp(e.target.value)} />
+
+        <p>{errorMessage}</p>
 
         <button onClick={() => this.handleAddDApp()}>Add DApp</button>
 
@@ -48,7 +72,7 @@ class WhitelistedDApps extends Component {
               <div className='name'>
                 {dapp}
               </div>
-              
+
               <button onClick={() => this.handleDeleteDApp(dapp)}>
                 Delete
               </button>
