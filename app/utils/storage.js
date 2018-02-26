@@ -15,7 +15,6 @@ export const loadStorage = () => {
 export const saveStorage = (state) => {
   try {
     const savedStorage = state
-    delete savedStorage.password
 
     localStorage.setItem('safe', JSON.stringify(savedStorage))
   }

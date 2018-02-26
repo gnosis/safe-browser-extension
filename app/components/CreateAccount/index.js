@@ -4,7 +4,7 @@ import HdKey from 'ethereumjs-wallet/hdkey'
 import Bip39 from 'bip39'
 import CryptoJs from 'crypto-js'
 
-import { createAccount, requestRestoreAccount } from '../../actions/account'
+import { createAccount } from '../../actions/account'
 
 class CreateAccount extends Component {
   constructor(props) {
@@ -62,9 +62,10 @@ class CreateAccount extends Component {
 
   handleRestoreAccount() {
     if (this.validatePasswords()) {
-      this.props.onRequestRestoreAccount(this.state.password)
-
-      this.props.history.push('/restore-account')
+      this.props.history.push({
+        pathname: '/restore-account',
+        password: this.state.password
+      })
     }
   }
 
@@ -98,8 +99,7 @@ class CreateAccount extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onCreateAccount: (address, seed) => dispatch(createAccount(address, seed)),
-    onRequestRestoreAccount: (password) => dispatch(requestRestoreAccount(password))
+    onCreateAccount: (address, seed) => dispatch(createAccount(address, seed))
   }
 }
 

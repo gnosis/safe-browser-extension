@@ -22,7 +22,7 @@ class RestoreAccount extends Component {
 
   handleRestoreAccount() {
     const { mnemonic, errorMessage } = this.state
-    const { password } = this.props.account
+    const { password } = this.props.location
 
     if (Bip39.validateMnemonic(mnemonic)) {
       const seed = Bip39.mnemonicToSeed(mnemonic)
@@ -60,12 +60,6 @@ class RestoreAccount extends Component {
   }
 }
 
-const mapStateToProps = ({ account }, props) => {
-  return {
-    account
-  }
-}
-
 const mapDispatchToProps = (dispatch) => {
   return {
     onRestoreAccount: (address, seed) => dispatch(restoreAccount(address, seed))
@@ -73,6 +67,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(RestoreAccount)

@@ -1,6 +1,5 @@
 import {
   CREATE_ACCOUNT,
-  REQUEST_RESTORE_ACCOUNT,
   RESTORE_ACCOUNT,
 } from '../actions/account'
 
@@ -11,11 +10,6 @@ function account(state = {}, action) {
       return {
         address: action.address,
         seed: action.seed,
-      }
-
-    case REQUEST_RESTORE_ACCOUNT:
-      return {
-        password: action.password,
       }
 
     case RESTORE_ACCOUNT: {
