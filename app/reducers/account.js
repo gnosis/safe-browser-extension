@@ -1,7 +1,7 @@
 import {
   CREATE_ACCOUNT,
   RESTORE_ACCOUNT,
-} from '../actions/account'
+} from 'actions/account'
 
 function account(state = {}, action) {
   switch (action.type) {

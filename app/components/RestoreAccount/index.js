@@ -4,9 +4,9 @@ import HdKey from 'ethereumjs-wallet/hdkey'
 import Bip39 from 'bip39'
 import CryptoJs from 'crypto-js'
 
-import Header from '../Header'
+import Header from 'components/Header'
 
-import { restoreAccount } from '../../actions/account'
+import { restoreAccount } from 'actions/account'
 
 class RestoreAccount extends Component {
   constructor(props) {

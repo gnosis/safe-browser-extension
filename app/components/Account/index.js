@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import wallet from 'ethereumjs-wallet'
 
-import Header from '../Header'
-import { createQrImage } from '../../utils/qrdisplay'
+import Header from 'components/Header'
+import { createQrImage } from 'utils/qrdisplay'
 import config from '../../../config'
 
 class Account extends Component {

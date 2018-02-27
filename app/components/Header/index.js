@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 
-import { logOutAccount } from '../../actions/account'
+import { logOutAccount } from 'actions/account'
 
 class Header extends Component {
 

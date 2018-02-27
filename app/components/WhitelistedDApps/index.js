@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import Header from '../Header'
-import { normalizeUrl } from '../../utils/helpers'
+import Header from 'components/Header'
+import { normalizeUrl } from 'utils/helpers'
 
-import { addWhitelistedDApp, deleteWhitelistedDApp } from '../../actions/whitelistedDApps'
+import { addWhitelistedDApp, deleteWhitelistedDApp } from 'actions/whitelistedDApps'
 
 class WhitelistedDApps extends Component {
   constructor(props) {

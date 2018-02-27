@@ -1,4 +1,5 @@
 import Subprovider from 'web3-provider-engine/subproviders/subprovider'
+
 import config from '../../config'
 
 class GnosisProvider extends Subprovider {

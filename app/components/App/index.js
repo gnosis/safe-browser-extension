@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, withRouter } from 'react-router'
 
-import CreateAccount from '../CreateAccount'
-import RestoreAccount from '../RestoreAccount'
-import Account from '../Account'
-import WhitelistedDApps from '../WhitelistedDApps'
+import CreateAccount from 'components/CreateAccount'
+import RestoreAccount from 'components/RestoreAccount'
+import Account from 'components/Account'
+import WhitelistedDApps from 'components/WhitelistedDApps'
 
 import './styles.css'
 

@@ -4,9 +4,9 @@ import HdKey from 'ethereumjs-wallet/hdkey'
 import Bip39 from 'bip39'
 import CryptoJs from 'crypto-js'
 
-import Header from '../Header'
+import Header from 'components/Header'
 
-import { createAccount } from '../../actions/account'
+import { createAccount } from 'actions/account'
 
 class CreateAccount extends Component {
   constructor(props) {

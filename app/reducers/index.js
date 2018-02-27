@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 
-import account from './account'
-import whitelistedDApps from './whitelistedDApps'
+import account from 'reducers/account'
+import whitelistedDApps from 'reducers/whitelistedDApps'
 
-import { LOGOUT_ACCOUNT } from '../actions/account'
+import { LOGOUT_ACCOUNT } from 'actions/account'
 
 const reducers = combineReducers({
   account,

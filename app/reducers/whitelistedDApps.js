@@ -1,7 +1,7 @@
 import {
   ADD_WHITELISTED_DAPP,
   DELETE_WHITELISTED_DAPP,
-} from '../actions/whitelistedDApps'
+} from 'actions/whitelistedDApps'
 
 function whitelistedDApps(state = [], action) {
   switch (action.type) {
