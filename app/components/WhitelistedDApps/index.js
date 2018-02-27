@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import Header from '../Header'
 import { normalizeUrl } from '../../utils/helpers'
 
 import { addWhitelistedDApp, deleteWhitelistedDApp } from '../../actions/whitelistedDApps'
@@ -39,10 +40,10 @@ class WhitelistedDApps extends Component {
   handleAddDApp() {
     const dApp = this.state.newDApp
     const newDApp = normalizeUrl(dApp)
-    
+
     if (this.validateDApp(newDApp)) {
       this.props.onAddWhitelistedDApp(newDApp)
-      
+
       this.setState({ newDApp: '' })
     }
   }
@@ -57,28 +58,36 @@ class WhitelistedDApps extends Component {
 
     return (
       <div>
-        <input
-          type='text'
-          value={newDApp}
-          onChange={(e) => this.updateNewDApp(e.target.value)} />
+        <Header
+          account={true}
+          logOut={true}
+        />
+        
+        <div className='container'>
+          <input
+            type='text'
+            value={newDApp}
+            onChange={(e) => this.updateNewDApp(e.target.value)} />
 
-        <p>{errorMessage}</p>
+          {errorMessage &&
+            <p>{errorMessage}</p>
+          }
+          <button onClick={() => this.handleAddDApp()}>Add DApp</button>
 
-        <button onClick={() => this.handleAddDApp()}>Add DApp</button>
+          <div>
+            {whitelistedDApps.map((dapp) => (
+              <div key={dapp} className='dapp'>
+                <div className='name'>
+                  {dapp}
+                </div>
 
-        <div>
-          {whitelistedDApps.map((dapp) => (
-            <div key={dapp} className='dapp'>
-              <div className='name'>
-                {dapp}
-              </div>
-
-              <button onClick={() => this.handleDeleteDApp(dapp)}>
-                Delete
+                <button onClick={() => this.handleDeleteDApp(dapp)}>
+                  Delete
               </button>
-              <div className='clean'></div>
-            </div>
-          ))}
+                <div className='clean'></div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     )

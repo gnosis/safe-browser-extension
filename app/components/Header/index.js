@@ -13,60 +13,38 @@ class Header extends Component {
     this.props.history.push('/create-password')
   }
 
-  handleManageWhitelistedDApps() {
-    this.props.history.push('/whitelisted-dapps')
-  }
-
-  renderMenuButtons() {
-    let url = this.props.location.pathname
-
-    switch (url) {
-      case '/account':
-        return (
-          <div>
-            <Link to='/whitelisted-dapps'
-              className='menu-elem'>
-              DApps
-            </Link>
-          </div>
-        )
-
-      default:
-        if (url !== '/restore-account')
-          return (
-            <Link to='/account'
-              className='menu-elem'>
-              Account
-            </Link>
-          )
-    }
-  }
-
   render() {
-    const { account } = this.props.state
+    const { account, whitelist, logOut } = this.props
 
     return (
       <div className='header'>
         Gnosis
-        {!(Object.keys(account).length === 0) &&
-          <div>
-            {this.renderMenuButtons()}
+        
+        <div>
+          {whitelist &&
+            <Link to='/whitelisted-dapps'
+              className='menu-elem'>
+              DApps
+          </Link>
+          }
 
+          {account &&
+            <Link to='/account'
+              className='menu-elem'>
+              Account
+          </Link>
+          }
+
+          {logOut &&
             <span
               onClick={(e) => this.handleLogOut()}
               className='menu-elem'>
               Log out
-            </span>
-          </div>
-        }
+          </span>
+          }
+        </div>
       </div>
     )
-  }
-}
-
-const mapStateToProps = (state, props) => {
-  return {
-    state
   }
 }
 
@@ -77,6 +55,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default withRouter(connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(Header))

@@ -4,6 +4,8 @@ import HdKey from 'ethereumjs-wallet/hdkey'
 import Bip39 from 'bip39'
 import CryptoJs from 'crypto-js'
 
+import Header from '../Header'
+
 import { restoreAccount } from '../../actions/account'
 
 class RestoreAccount extends Component {
@@ -46,15 +48,21 @@ class RestoreAccount extends Component {
 
     return (
       <div>
-        <textarea
-          type="text"
-          placeholder="Secret twelve word phrase"
-          value={mnemonic}
-          onChange={(e) => this.updateMnemonic(e.target.value)} />
+        <Header />
+        
+        <div className='container'>
+          <textarea
+            type="text"
+            placeholder="Secret twelve word phrase"
+            value={mnemonic}
+            onChange={(e) => this.updateMnemonic(e.target.value)} />
 
-        <p>{errorMessage}</p>
+          {errorMessage &&
+            <p>{errorMessage}</p>
+          }
 
-        <button onClick={(e) => this.handleRestoreAccount()}>Restore account</button>
+          <button onClick={(e) => this.handleRestoreAccount()}>Restore account</button>
+        </div>
       </div>
     )
   }
