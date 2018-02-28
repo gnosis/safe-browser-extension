@@ -1,15 +1,8 @@
 export const CREATE_ACCOUNT = 'CREATE_ACCOUNT'
-export const RESTORE_ACCOUNT = 'RESTORE_ACCOUNT'
 export const LOGOUT_ACCOUNT = 'LOGOUT_ACCOUNT'
 
 export const createAccount = (address, seed) => ({
   type: CREATE_ACCOUNT,
-  address,
-  seed,
-})
-
-export const restoreAccount = (address, seed) => ({
-  type: RESTORE_ACCOUNT,
   address,
   seed,
 })
