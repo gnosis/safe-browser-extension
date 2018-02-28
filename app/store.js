@@ -1,6 +1,7 @@
 import { createStore } from 'redux'
-import rootReducer from './reducers'
-import { loadStorage, saveStorage } from './utils/storage'
+
+import rootReducer from 'reducers'
+import { loadStorage, saveStorage } from 'utils/storage'
 
 const persistedState = loadStorage()
 

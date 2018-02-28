@@ -1,41 +1,50 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+import { Link } from 'react-router-dom'
 
-import { logOutAccount } from '../../actions/account'
+import { logOutAccount } from 'actions/account'
 
 class Header extends Component {
-  constructor(props) {
-    super(props)
-  }
 
-  handleLogOut() {
+  handleLogOut = () => {
     this.props.onLogOut()
 
     this.props.history.push('/create-password')
   }
 
   render() {
-    const { account } = this.props.state
+    const { account, whitelist, logOut } = this.props
 
     return (
       <div className='header'>
         Gnosis
-        {!(Object.keys(account).length === 0) &&
-          <span
-            onClick={(e) => this.handleLogOut()}
-            className='logout'>
-            Log out
-          </span>
-        }
+
+        <div>
+          {whitelist &&
+            <Link to='/whitelisted-dapps'
+              className='menu-elem'>
+              DApps
+            </Link>
+          }
+
+          {account &&
+            <Link to='/account'
+              className='menu-elem'>
+              Account
+            </Link>
+          }
+
+          {logOut &&
+            <span
+              onClick={this.handleLogOut}
+              className='menu-elem'>
+              Log out
+            </span>
+          }
+        </div>
       </div>
     )
-  }
-}
-
-const mapStateToProps = (state, props) => {
-  return {
-    state
   }
 }
 
@@ -46,6 +55,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default withRouter(connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(Header))

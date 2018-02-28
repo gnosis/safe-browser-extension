@@ -4,11 +4,35 @@
   "version": "1.0.0",
   "description": "",
   "browser_action": {
-    "default_popup": "index.html",
-    "default_title": "Gnosis Safe Extension"
+    "default_title": "Gnosis Safe Extension",
+    "default_popup": "index.html"
   },
   "author": "Gnosis",
   "permissions": [
-    "storage"
+    "storage",
+    "activeTab",
+    "tabs"
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "contentscript.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    "script.js"
   ]
 }

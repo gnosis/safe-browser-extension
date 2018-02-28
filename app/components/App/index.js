@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, withRouter } from 'react-router'
 
-import Header from '../Header'
-import CreateAccount from '../CreateAccount'
-import RestoreAccount from '../RestoreAccount'
-import Account from '../Account'
+import CreateAccount from 'components/CreateAccount'
+import RestoreAccount from 'components/RestoreAccount'
+import Account from 'components/Account'
+import WhitelistedDApps from 'components/WhitelistedDApps'
 
 import './styles.css'
+
 
 class App extends Component {
   componentWillMount() {
@@ -24,12 +25,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Header />
-        <div className='container'>
-          <Route exact path='/create-password' component={CreateAccount} />
-          <Route exact path='/restore-account' component={RestoreAccount} />
-          <Route exact path='/account' component={Account} />
-        </div>
+        <Route exact path='/create-password' component={CreateAccount} />
+        <Route exact path='/restore-account' component={RestoreAccount} />
+        <Route exact path='/account' component={Account} />
+        <Route exact path='/whitelisted-dapps' component={WhitelistedDApps} />
       </div>
     )
   }

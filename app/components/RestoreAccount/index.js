@@ -4,7 +4,9 @@ import HdKey from 'ethereumjs-wallet/hdkey'
 import Bip39 from 'bip39'
 import CryptoJs from 'crypto-js'
 
-import { restoreAccount } from '../../actions/account'
+import Header from 'components/Header'
+
+import { restoreAccount } from 'actions/account'
 
 class RestoreAccount extends Component {
   constructor(props) {
@@ -16,13 +18,13 @@ class RestoreAccount extends Component {
     }
   }
 
-  updateMnemonic(mnemonic) {
-    this.setState({ mnemonic })
+  updateMnemonic = (e) => {
+    this.setState({ mnemonic: e.target.value })
   }
 
-  handleRestoreAccount() {
+  handleRestoreAccount = () => {
     const { mnemonic, errorMessage } = this.state
-    const { password } = this.props.account
+    const { password } = this.props.location
 
     if (Bip39.validateMnemonic(mnemonic)) {
       const seed = Bip39.mnemonicToSeed(mnemonic)
@@ -46,23 +48,23 @@ class RestoreAccount extends Component {
 
     return (
       <div>
-        <textarea
-          type="text"
-          placeholder="Secret twelve word phrase"
-          value={mnemonic}
-          onChange={(e) => this.updateMnemonic(e.target.value)} />
+        <Header />
+        
+        <div className='container'>
+          <textarea
+            type="text"
+            placeholder="Secret twelve word phrase"
+            value={mnemonic}
+            onChange={this.updateMnemonic} />
 
-        <p>{errorMessage}</p>
+          {errorMessage &&
+            <p>{errorMessage}</p>
+          }
 
-        <button onClick={(e) => this.handleRestoreAccount()}>Restore account</button>
+          <button onClick={this.handleRestoreAccount}>Restore account</button>
+        </div>
       </div>
     )
-  }
-}
-
-const mapStateToProps = ({ account }, props) => {
-  return {
-    account
   }
 }
 
@@ -73,6 +75,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(RestoreAccount)
