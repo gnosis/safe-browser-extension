@@ -18,11 +18,11 @@ class RestoreAccount extends Component {
     }
   }
 
-  updateMnemonic(mnemonic) {
-    this.setState({ mnemonic })
+  updateMnemonic = (e) => {
+    this.setState({ mnemonic: e.target.value })
   }
 
-  handleRestoreAccount() {
+  handleRestoreAccount = () => {
     const { mnemonic, errorMessage } = this.state
     const { password } = this.props.location
 
@@ -55,13 +55,13 @@ class RestoreAccount extends Component {
             type="text"
             placeholder="Secret twelve word phrase"
             value={mnemonic}
-            onChange={(e) => this.updateMnemonic(e.target.value)} />
+            onChange={this.updateMnemonic} />
 
           {errorMessage &&
             <p>{errorMessage}</p>
           }
 
-          <button onClick={(e) => this.handleRestoreAccount()}>Restore account</button>
+          <button onClick={this.handleRestoreAccount}>Restore account</button>
         </div>
       </div>
     )

@@ -16,11 +16,11 @@ class WhitelistedDApps extends Component {
     }
   }
 
-  updateNewDApp(dApp) {
-    this.setState({ newDApp: dApp })
+  updateNewDApp = (e) => {
+    this.setState({ newDApp: e.target.value })
   }
 
-  validateDApp(dApp) {
+  validateDApp = (dApp) => {
     if (!dApp) {
       this.setState({ errorMessage: 'Invalid DApp' })
       return false
@@ -37,8 +37,7 @@ class WhitelistedDApps extends Component {
     return true
   }
 
-  handleAddDApp() {
-    const dApp = this.state.newDApp
+  handleAddDApp = (dApp) => (e) => {
     const newDApp = normalizeUrl(dApp)
 
     if (this.validateDApp(newDApp)) {
@@ -48,7 +47,7 @@ class WhitelistedDApps extends Component {
     }
   }
 
-  handleDeleteDApp(dApp) {
+  handleDeleteDApp = (dApp) => (e) => {
     this.props.onDeleteWhitelistedDApp(dApp)
   }
 
@@ -67,12 +66,12 @@ class WhitelistedDApps extends Component {
           <input
             type='text'
             value={newDApp}
-            onChange={(e) => this.updateNewDApp(e.target.value)} />
+            onChange={this.updateNewDApp} />
 
           {errorMessage &&
             <p>{errorMessage}</p>
           }
-          <button onClick={() => this.handleAddDApp()}>Add DApp</button>
+          <button onClick={this.handleAddDApp(newDApp)}>Add DApp</button>
 
           <div>
             {whitelistedDApps.map((dapp) => (
@@ -81,7 +80,7 @@ class WhitelistedDApps extends Component {
                   {dapp}
                 </div>
 
-                <button onClick={() => this.handleDeleteDApp(dapp)}>
+                <button onClick={this.handleDeleteDApp(dapp)}>
                   Delete
               </button>
                 <div className='clean'></div>

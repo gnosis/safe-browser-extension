@@ -19,15 +19,15 @@ class CreateAccount extends Component {
     }
   }
 
-  updatePassword(password) {
-    this.setState({ password })
+  updatePassword = (e) => {
+    this.setState({ password: e.target.value })
   }
 
-  updateConfirmPassword(confirmPassword) {
-    this.setState({ confirmPassword })
+  updateConfirmPassword = (e) => {
+    this.setState({ confirmPassword: e.target.value })
   }
 
-  validatePasswords() {
+  validatePasswords = () => {
     const { password, confirmPassword } = this.state
 
     if (!password || password.length < 10) {
@@ -44,7 +44,7 @@ class CreateAccount extends Component {
     return true
   }
 
-  handleCreateAccount() {
+  handleCreateAccount = () => {
     if (this.validatePasswords()) {
       const mnemonic = Bip39.generateMnemonic()
       const seed = Bip39.mnemonicToSeed(mnemonic)
@@ -62,7 +62,7 @@ class CreateAccount extends Component {
     }
   }
 
-  handleRestoreAccount() {
+  handleRestoreAccount = () => {
     if (this.validatePasswords()) {
       this.props.history.push({
         pathname: '/restore-account',
@@ -83,21 +83,21 @@ class CreateAccount extends Component {
             type='password'
             placeholder='New password'
             value={password}
-            onChange={(e) => this.updatePassword(e.target.value)} />
+            onChange={this.updatePassword} />
 
           <input
             type='password'
             placeholder='Confirm password'
             value={confirmPassword}
-            onChange={(e) => this.updateConfirmPassword(e.target.value)} />
+            onChange={this.updateConfirmPassword} />
 
           {errorMessage &&
             <p>{errorMessage}</p>
           }
 
-          <button onClick={() => this.handleCreateAccount()}> Create account </button>
+          <button onClick={this.handleCreateAccount}> Create account </button>
 
-          <button onClick={() => this.handleRestoreAccount()}> Restore account </button>
+          <button onClick={this.handleRestoreAccount}> Restore account </button>
         </div>
       </div>
     )

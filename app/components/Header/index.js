@@ -7,7 +7,7 @@ import { logOutAccount } from 'actions/account'
 
 class Header extends Component {
 
-  handleLogOut() {
+  handleLogOut = () => {
     this.props.onLogOut()
 
     this.props.history.push('/create-password')
@@ -19,28 +19,28 @@ class Header extends Component {
     return (
       <div className='header'>
         Gnosis
-        
+
         <div>
           {whitelist &&
             <Link to='/whitelisted-dapps'
               className='menu-elem'>
               DApps
-          </Link>
+            </Link>
           }
 
           {account &&
             <Link to='/account'
               className='menu-elem'>
               Account
-          </Link>
+            </Link>
           }
 
           {logOut &&
             <span
-              onClick={(e) => this.handleLogOut()}
+              onClick={this.handleLogOut}
               className='menu-elem'>
               Log out
-          </span>
+            </span>
           }
         </div>
       </div>
