@@ -62,15 +62,6 @@ class CreateAccount extends Component {
     }
   }
 
-  handleRestoreAccount = () => {
-    if (this.validatePasswords()) {
-      this.props.history.push({
-        pathname: '/restore-account',
-        password: this.state.password
-      })
-    }
-  }
-
   render() {
     const { password, confirmPassword, errorMessage } = this.state
 
@@ -97,7 +88,6 @@ class CreateAccount extends Component {
 
           <button onClick={this.handleCreateAccount}> Create account </button>
 
-          <button onClick={this.handleRestoreAccount}> Restore account </button>
         </div>
       </div>
     )
