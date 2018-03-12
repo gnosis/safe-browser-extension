@@ -1,6 +1,24 @@
-console.log("--background.js--")
+import { createStore } from 'redux'
+import rootReducer from 'reducers'
+import { wrapStore } from 'react-chrome-redux'
 
-import { normalizeUrl } from '../app/utils/helpers'
+import { loadStorage, saveStorage } from 'scripts/store/storage'
+import { normalizeUrl } from 'utils/helpers'
+
+const persistedState = loadStorage()
+
+const store = createStore(
+  rootReducer,
+  persistedState,
+)
+
+store.subscribe(() => {
+  saveStorage(
+    store.getState()
+  )
+})
+
+wrapStore(store, { portName: 'GNOSIS_SAFE_EXTENSION' })
 
 function isWhiteListedDapp(dApp) {
   var safeStorage = localStorage.getItem('safe')
