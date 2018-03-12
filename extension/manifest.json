@@ -34,5 +34,6 @@
   ],
   "web_accessible_resources": [
     "script.js"
-  ]
+  ],
+  "externally_connectable": {}
 }
