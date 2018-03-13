@@ -1,19 +1,7 @@
-import { createStore } from 'redux'
+import { Store } from 'react-chrome-redux'
 
-import rootReducer from 'reducers'
-import { loadStorage, saveStorage } from 'utils/storage'
-
-const persistedState = loadStorage()
-
-const store = createStore(
-  rootReducer,
-  persistedState
-)
-
-store.subscribe(() => {
-  saveStorage(
-    store.getState()
-  )
+const store = new Store({
+  portName: 'GNOSIS_SAFE_EXTENSION'
 })
 
 export default store
