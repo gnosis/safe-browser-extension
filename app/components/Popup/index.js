@@ -1,16 +1,6 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Route, withRouter } from 'react-router'
-
+import React from 'react'
 import ConfirmTransaction from 'components/ConfirmTransaction'
 
-class Popup extends Component {
-
-  render() {
-    return (
-      <ConfirmTransaction />
-    )
-  }
-}
+const Popup = () => <ConfirmTransaction />
 
 export default Popup
