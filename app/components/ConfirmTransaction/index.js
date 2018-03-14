@@ -18,7 +18,7 @@ class ConfirmTransaction extends Component {
     }
   }
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     chrome.windows.getCurrent((window) => {
       this.showTransaction(window.id)
     })
@@ -27,23 +27,28 @@ class ConfirmTransaction extends Component {
   showTransaction = (windowId) => {
     const { transactions } = this.props
 
-    if (transactions && transactions.length > 0) {
-      const ts = transactions.filter(t => t.popupId === windowId)
-
-      if (ts.length === 1 && ts[0].tx) {
-        const tx = ts[0].tx
-
-        this.setState({
-          transaction: {
-            from: tx.from,
-            gas: parseInt(tx.gas, 16).toString(10),
-            gasPrice: parseInt(tx.gasPrice, 16).toString(10) / 1000000000,
-            to: tx.to,
-            data: tx.data
-          }
-        })
-      }
+    if (!transactions || transactions.length === 0) {
+      return
     }
+
+    const windowTransaction = transactions.filter(t => t.popupId === windowId)
+    const hasTransaction = windowTransaction.length === 1 && windowTransaction[0].tx
+
+    if (!hasTransaction) {
+      return
+    }
+
+    const tx = windowTransaction[0].tx
+
+    this.setState({
+      transaction: {
+        from: tx.from,
+        gas: parseInt(tx.gas, 16).toString(10),
+        gasPrice: parseInt(tx.gasPrice, 16).toString(10) / 1000000000,
+        to: tx.to,
+        data: tx.data
+      }
+    })
   }
 
   updatePassword = (e) => {
@@ -65,14 +70,15 @@ class ConfirmTransaction extends Component {
 
   render() {
     const { password, errorMessage, transaction } = this.state
+    const { from, to, gas, gasPrice, data } = transaction
 
     return (
       <div className='container'>
-        <p>From: {transaction.from}</p>
-        <p>To: {transaction.to}</p>
-        <p>Gas: {transaction.gas}</p>
-        <p>Gas price: {transaction.gasPrice} (GWei)</p>
-        <p>Data: {transaction.data}</p>
+        <p>From: {from}</p>
+        <p>To: {to}</p>
+        <p>Gas: {gas}</p>
+        <p>Gas price: {gasPrice} (GWei)</p>
+        <p>Data: {data}</p>
 
         <input
           type='password'
@@ -81,9 +87,7 @@ class ConfirmTransaction extends Component {
           onChange={this.updatePassword}
         />
 
-        {errorMessage &&
-          <p>{errorMessage}</p>
-        }
+        {errorMessage && <p>{errorMessage}</p>}
 
         <button onClick={this.handleConfirmTransaction}>
           Confirm transaction
