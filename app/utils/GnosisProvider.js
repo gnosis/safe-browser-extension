@@ -7,10 +7,17 @@ class GnosisProvider extends Subprovider {
     super()
   }
 
+  sendTransaction = (payload) => {
+    const showPopupEvent = new CustomEvent(
+      'showPopup',
+      { detail: payload.params[0] }
+    )
+
+    document.dispatchEvent(showPopupEvent)
+  }
+
   handleRequest(payload, next, end) {
-    const self = this
     let accounts
-    let result = null
 
     switch (payload.method) {
 
@@ -27,7 +34,7 @@ class GnosisProvider extends Subprovider {
         return
 
       case 'eth_sendTransaction':
-        debugger
+        this.sendTransaction(payload)
 
         return
 

@@ -9,6 +9,7 @@ module.exports = {
   context: path.resolve(__dirname, 'app'),
   entry: {
     'index': 'index.js',
+    'popup': 'popup.js',
     'contentscript': path.resolve(__dirname, './extension/contentscript.js'),
     'script': path.resolve(__dirname, './extension/script.js'),
     'background': path.resolve(__dirname, './extension/background.js')
@@ -57,6 +58,13 @@ module.exports = {
       template: path.resolve(__dirname, './app/html/index.html'),
       chunks: [
         'index'
+      ]
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'popup.html',
+      template: path.resolve(__dirname, './app/html/popup.html'),
+      chunks: [
+        'popup'
       ]
     }),
     new webpack.DefinePlugin({
