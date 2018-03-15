@@ -18,8 +18,7 @@ function transactions(state = [], action) {
       return newState
 
     case REMOVE_TRANSACTION:
-      newState = [...state]
-      return newState.filter(t => t.popupId !== action.popupId)
+      return state.filter(t => t.popupId !== action.popupId)
 
     case REMOVE_ALL_TRANSACTIONS:
       return []

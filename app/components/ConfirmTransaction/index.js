@@ -16,9 +16,7 @@ class ConfirmTransaction extends Component {
       errorMessage: '',
       transaction: {},
     }
-  }
 
-  componentWillMount = () => {
     chrome.windows.getCurrent((window) => {
       this.showTransaction(window.id)
     })
@@ -65,14 +63,15 @@ class ConfirmTransaction extends Component {
 
   render() {
     const { password, errorMessage, transaction } = this.state
+    const { from, to, gas, gasPrice, data } = transaction
 
     return (
       <div className='container'>
-        <p>From: {transaction.from}</p>
-        <p>To: {transaction.to}</p>
-        <p>Gas: {transaction.gas}</p>
-        <p>Gas price: {transaction.gasPrice} (GWei)</p>
-        <p>Data: {transaction.data}</p>
+        <p>From: {from}</p>
+        <p>To: {to}</p>
+        <p>Gas: {gas}</p>
+        <p>Gas price: {gasPrice} (GWei)</p>
+        <p>Data: {data}</p>
 
         <input
           type='password'
@@ -81,9 +80,7 @@ class ConfirmTransaction extends Component {
           onChange={this.updatePassword}
         />
 
-        {errorMessage &&
-          <p>{errorMessage}</p>
-        }
+        {errorMessage && <p>{errorMessage}</p>}
 
         <button onClick={this.handleConfirmTransaction}>
           Confirm transaction
