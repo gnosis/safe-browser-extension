@@ -16,7 +16,9 @@ class ConfirmTransaction extends Component {
       errorMessage: '',
       transaction: {},
     }
+  }
 
+  componentDidMount = () => {
     chrome.windows.getCurrent((window) => {
       this.showTransaction(window.id)
     })
