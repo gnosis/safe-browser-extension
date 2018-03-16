@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, withRouter } from 'react-router'
 
+import Welcome from 'components/Welcome'
 import CreateAccount from 'components/CreateAccount'
 import Account from 'components/Account'
 import WhitelistedDApps from 'components/WhitelistedDApps'
@@ -14,7 +15,7 @@ class App extends Component {
     const { account } = this.props.state
 
     if (Object.keys(account).length === 0) {
-      this.props.history.push('/create-password')
+      this.props.history.push('/welcome')
     }
     else {
       this.props.history.push('/account')
@@ -24,6 +25,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Route exact path='/welcome' component={Welcome} />
         <Route exact path='/create-password' component={CreateAccount} />
         <Route exact path='/account' component={Account} />
         <Route exact path='/whitelisted-dapps' component={WhitelistedDApps} />

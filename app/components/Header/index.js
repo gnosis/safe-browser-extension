@@ -10,7 +10,7 @@ class Header extends Component {
   handleLogOut = () => {
     this.props.onLogOut()
 
-    this.props.history.push('/create-password')
+    this.props.history.push('/welcome')
   }
 
   render() {
