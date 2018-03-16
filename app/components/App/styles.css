@@ -94,6 +94,21 @@ button {
   width: 60px;
 }
 
+.download-apps {
+  text-align: center;
+  padding: 20px 0 20px 0;
+}
+
+.download-app {
+  float: left;
+  width: 50%;
+}
+
+.app-link {
+  cursor: pointer;
+  width: 135px;
+}
+
 .clean {
   clear: both;
 }

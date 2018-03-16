@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Route, withRouter } from 'react-router'
 
 import Welcome from 'components/Welcome'
+import DownloadApps from 'components/DownloadApps'
 import CreateAccount from 'components/CreateAccount'
 import Account from 'components/Account'
 import WhitelistedDApps from 'components/WhitelistedDApps'
@@ -26,6 +27,7 @@ class App extends Component {
     return (
       <div>
         <Route exact path='/welcome' component={Welcome} />
+        <Route exact path='/download-apps' component={DownloadApps} />
         <Route exact path='/create-password' component={CreateAccount} />
         <Route exact path='/account' component={Account} />
         <Route exact path='/whitelisted-dapps' component={WhitelistedDApps} />
