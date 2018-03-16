@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 
+import gnosisOwl from 'assets/gnosis_owl.svg'
+
 import { logOutAccount } from 'actions/account'
 
 class Header extends Component {
@@ -18,9 +20,11 @@ class Header extends Component {
 
     return (
       <div className='header'>
-        Gnosis
+        <div className='left-header'>
+          <img src={gnosisOwl} height={30} />
+        </div>
 
-        <div>
+        <div className='right-header'>
           {whitelist &&
             <Link to='/whitelisted-dapps'
               className='menu-elem'>
@@ -43,6 +47,8 @@ class Header extends Component {
             </span>
           }
         </div>
+
+        <div className='clean'></div>
       </div>
     )
   }

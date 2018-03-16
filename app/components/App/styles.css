@@ -16,16 +16,20 @@ a {
 
 .header {
   border-bottom: 1px solid #aaa;
-  padding: 20px;
+  padding: 15px;
   width: 100%;
 }
 
-.header > div {
-  float: right;
+.left-header,
+.right-header {
+  height: 30px;
+  line-height: 30px;
 }
-
-.header > div > div {
+.left-header {
   float: left;
+}
+.right-header {
+  float: right;
 }
 
 .header .menu-elem {
