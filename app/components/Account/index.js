@@ -11,7 +11,8 @@ class Account extends Component {
   handleShowQrCode = (data) => (e) => {
     createQrImage(
       document.getElementById('qr'),
-      data
+      data,
+      4
     )
   }
 
