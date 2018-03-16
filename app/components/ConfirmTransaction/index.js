@@ -27,23 +27,28 @@ class ConfirmTransaction extends Component {
   showTransaction = (windowId) => {
     const { transactions } = this.props
 
-    if (transactions && transactions.length > 0) {
-      const ts = transactions.filter(t => t.popupId === windowId)
-
-      if (ts.length === 1 && ts[0].tx) {
-        const tx = ts[0].tx
-
-        this.setState({
-          transaction: {
-            from: tx.from,
-            gas: parseInt(tx.gas, 16).toString(10),
-            gasPrice: parseInt(tx.gasPrice, 16).toString(10) / 1000000000,
-            to: tx.to,
-            data: tx.data
-          }
-        })
-      }
+    if (!transactions || transactions.length === 0) {
+      return
     }
+
+    const windowTransaction = transactions.filter(t => t.popupId === windowId)
+    const hasTransaction = windowTransaction.length === 1 && windowTransaction[0].tx
+
+    if (!hasTransaction) {
+      return
+    }
+
+    const tx = windowTransaction[0].tx
+
+    this.setState({
+      transaction: {
+        from: tx.from,
+        gas: parseInt(tx.gas, 16).toString(10),
+        gasPrice: parseInt(tx.gasPrice, 16).toString(10) / 1000000000,
+        to: tx.to,
+        data: tx.data
+      }
+    })
   }
 
   updatePassword = (e) => {
