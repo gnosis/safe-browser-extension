@@ -1,9 +1,10 @@
 import { createStore } from 'redux'
-import rootReducer from 'reducers'
 import { wrapStore } from 'react-chrome-redux'
 
+import rootReducer from 'reducers'
 import { loadStorage, saveStorage } from 'scripts/store/storage'
 import { normalizeUrl } from 'utils/helpers'
+import { addTransaction, removeTransaction, removeAllTransactions } from '../app/actions/transactions'
 
 const persistedState = loadStorage()
 
@@ -20,7 +21,7 @@ store.subscribe(() => {
 
 wrapStore(store, { portName: 'GNOSIS_SAFE_EXTENSION' })
 
-function isWhiteListedDapp(dApp) {
+const isWhiteListedDapp = (dApp) => {
   var safeStorage = localStorage.getItem('safe')
 
   if (safeStorage !== null) {
@@ -35,18 +36,46 @@ function isWhiteListedDapp(dApp) {
 }
 
 chrome.runtime.onMessage.addListener(
-  function (request, sender, sendResponse) {
+  (request, sender, sendResponse) => {
+    switch (request.msg) {
+      case 'ALLOW_INJECTION':
+        allowInjection(request, sendResponse)
+        break
 
-    if (request.msg === 'ASK_ALLOWED_INJECTION') {
-      var allowInjection = isWhiteListedDapp(normalizeUrl(request.url))
+      case 'SHOW_POPUP':
+        showPopup(request)
+        break
 
-      sendResponse({
-        'msg': 'ASNWER_ALLOWED_INJECTION',
-        'answer': allowInjection,
-        'data': request.url
-      })
+      default:
 
     }
 
   }
 )
+
+const allowInjection = (request, sendResponse) => {
+  var allowInjection = isWhiteListedDapp(normalizeUrl(request.url))
+
+  sendResponse({
+    'msg': 'RESP_ALLOW_INJECTION',
+    'answer': allowInjection,
+    'data': request.url
+  })
+}
+
+store.dispatch(removeAllTransactions())
+
+const showPopup = (request) => {
+  chrome.windows.create({
+    url: '/popup.html',
+    type: 'popup',
+    height: 500,
+    width: 400
+  }, (window) => {
+    store.dispatch(addTransaction(request.tx, window.id))
+  })
+}
+
+chrome.windows.onRemoved.addListener((windowId) => {
+  store.dispatch(removeTransaction(windowId))
+})

@@ -1,11 +1,11 @@
 // Checks if the page is whitelisted to inject the web3 provider
 chrome.runtime.sendMessage(
   {
-    'msg': 'ASK_ALLOWED_INJECTION',
-    'url': window.location.host
+    msg: 'ALLOW_INJECTION',
+    url: window.location.host
   },
   function (response) {
-    if (response.msg === 'ASNWER_ALLOWED_INJECTION')
+    if (response.msg === 'RESP_ALLOW_INJECTION')
       if (response.answer === true) {
         injectScript()
         //console.log('This web page is whitelisted.')
@@ -37,3 +37,10 @@ function injectScript() {
     console.error('Gnosis web3 provider injection failed.', err)
   }
 }
+
+document.addEventListener('showPopup', function(data) {
+  chrome.runtime.sendMessage({
+    msg: 'SHOW_POPUP',
+    tx: data.detail
+  })
+})
