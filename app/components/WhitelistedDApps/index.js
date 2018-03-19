@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import Header from 'components/Header'
+import Page from 'components/Page'
 import { normalizeUrl } from 'utils/helpers'
 
 import { addWhitelistedDApp, deleteWhitelistedDApp } from 'actions/whitelistedDApps'
@@ -56,12 +56,10 @@ class WhitelistedDApps extends Component {
     const { whitelistedDApps } = this.props
 
     return (
-      <div>
-        <Header
-          account={true}
-          logOut={true}
-        />
-        
+      <Page
+        account={true}
+        logOut={true}
+      >
         <div className='container'>
           <input
             type='text'
@@ -88,7 +86,7 @@ class WhitelistedDApps extends Component {
             ))}
           </div>
         </div>
-      </div>
+      </Page>
     )
   }
 }

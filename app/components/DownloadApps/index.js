@@ -5,7 +5,7 @@ import HdKey from 'ethereumjs-wallet/hdkey'
 import Bip39 from 'bip39'
 import CryptoJs from 'crypto-js'
 
-import Header from 'components/Header'
+import Page from 'components/Page'
 import config from '../../../config'
 import { createQrImage } from 'utils/qrdisplay'
 import googlePlayBadge from 'assets/google-play-badge.png'
@@ -50,9 +50,7 @@ class DownloadApps extends Component {
 
   render() {
     return (
-      <div>
-        <Header />
-
+      <Page>
         <div className='container'>
           <div className='title'>
             Download the mobile app
@@ -86,7 +84,7 @@ class DownloadApps extends Component {
 
           <button onClick={this.handleCreateAccount}>Continue</button>
         </div>
-      </div>
+      </Page>
     )
   }
 }

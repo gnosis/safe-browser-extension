@@ -4,7 +4,7 @@ import HdKey from 'ethereumjs-wallet/hdkey'
 import Bip39 from 'bip39'
 import CryptoJs from 'crypto-js'
 
-import Header from 'components/Header'
+import Page from 'components/Page'
 
 import { createAccount } from 'actions/account'
 
@@ -66,9 +66,7 @@ class CreateAccount extends Component {
     const { password, confirmPassword, errorMessage } = this.state
 
     return (
-      <div>
-        <Header />
-        
+      <Page>
         <div className='container'>
           <input
             type='password'
@@ -89,7 +87,7 @@ class CreateAccount extends Component {
           <button onClick={this.handleCreateAccount}> Create account </button>
 
         </div>
-      </div>
+      </Page>
     )
   }
 

@@ -1,16 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import Header from 'components/Header'
+import Page from 'components/Page'
 import gnosisOwl from 'assets/gnosis_owl.svg'
 
 const Welcome = () => (
-  <div>
-    <Header />
-
+  <Page>
     <div className='container'>
       <div className='title'>
-      <img src={gnosisOwl} height={70} />
+        <img src={gnosisOwl} height={70} />
       </div>
 
       <p>
@@ -21,7 +19,7 @@ const Welcome = () => (
         <button>Continue</button>
       </Link>
     </div>
-  </div>
+  </Page>
 )
 
 export default Welcome
