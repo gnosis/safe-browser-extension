@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 import Page from 'components/Page'
 import { normalizeUrl } from 'utils/helpers'
+import ClearFix from 'components/ClearFix'
+import styles from './index.css'
 
 import { addWhitelistedDApp, deleteWhitelistedDApp } from 'actions/whitelistedDApps'
 
@@ -60,31 +62,30 @@ class WhitelistedDApps extends Component {
         account={true}
         logOut={true}
       >
-        <div className='container'>
-          <input
-            type='text'
-            value={newDApp}
-            onChange={this.updateNewDApp} />
+        <input
+          type='text'
+          value={newDApp}
+          onChange={this.updateNewDApp} />
 
-          {errorMessage &&
-            <p>{errorMessage}</p>
-          }
-          <button onClick={this.handleAddDApp(newDApp)}>Add DApp</button>
+        {errorMessage &&
+          <p>{errorMessage}</p>
+        }
+        <button onClick={this.handleAddDApp(newDApp)}>Add DApp</button>
 
-          <div>
-            {whitelistedDApps.map((dapp) => (
-              <div key={dapp} className='dapp'>
-                <div className='name'>
-                  {dapp}
-                </div>
-
-                <button onClick={this.handleDeleteDApp(dapp)}>
-                  Delete
-              </button>
-                <div className='clean'></div>
+        <div>
+          {whitelistedDApps.map((dapp) => (
+            <div key={dapp} className={styles.dapp}>
+              <div className={styles.name}>
+                {dapp}
               </div>
-            ))}
-          </div>
+
+              <button onClick={this.handleDeleteDApp(dapp)}>
+                Delete
+              </button>
+              
+              <ClearFix />
+            </div>
+          ))}
         </div>
       </Page>
     )

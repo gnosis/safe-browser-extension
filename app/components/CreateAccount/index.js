@@ -67,26 +67,23 @@ class CreateAccount extends Component {
 
     return (
       <Page>
-        <div className='container'>
-          <input
-            type='password'
-            placeholder='New password'
-            value={password}
-            onChange={this.updatePassword} />
+        <input
+          type='password'
+          placeholder='New password'
+          value={password}
+          onChange={this.updatePassword} />
 
-          <input
-            type='password'
-            placeholder='Confirm password'
-            value={confirmPassword}
-            onChange={this.updateConfirmPassword} />
+        <input
+          type='password'
+          placeholder='Confirm password'
+          value={confirmPassword}
+          onChange={this.updateConfirmPassword} />
 
-          {errorMessage &&
-            <p>{errorMessage}</p>
-          }
+        {errorMessage &&
+          <p>{errorMessage}</p>
+        }
 
-          <button onClick={this.handleCreateAccount}> Create account </button>
-
-        </div>
+        <button onClick={this.handleCreateAccount}> Create account </button>
       </Page>
     )
   }

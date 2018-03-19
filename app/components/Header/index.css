@@ -1,0 +1,22 @@
+.header {
+  border-bottom: 1px solid #aaa;
+  padding: 15px;
+  width: 100%;
+}
+
+.left-header,
+.right-header {
+  height: 30px;
+  line-height: 30px;
+}
+.left-header {
+  float: left;
+}
+.right-header {
+  float: right;
+}
+
+.header .menu-elem {
+  cursor: pointer;
+  margin-left: 20px;
+}

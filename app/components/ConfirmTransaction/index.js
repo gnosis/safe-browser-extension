@@ -4,7 +4,8 @@ import HdKey from 'ethereumjs-wallet/hdkey'
 import Bip39 from 'bip39'
 import CryptoJs from 'crypto-js'
 
-import 'components/App/styles.css'
+import ContentPage from 'components/ContentPage'
+
 import { assignTransaction } from '../../actions/transactions'
 
 class ConfirmTransaction extends Component {
@@ -73,7 +74,7 @@ class ConfirmTransaction extends Component {
     const { from, to, gas, gasPrice, data } = transaction
 
     return (
-      <div className='container'>
+      <ContentPage>
         <p>From: {from}</p>
         <p>To: {to}</p>
         <p>Gas: {gas}</p>
@@ -92,7 +93,7 @@ class ConfirmTransaction extends Component {
         <button onClick={this.handleConfirmTransaction}>
           Confirm transaction
         </button>
-      </div>
+      </ContentPage>
     )
   }
 }

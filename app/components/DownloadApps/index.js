@@ -6,10 +6,12 @@ import Bip39 from 'bip39'
 import CryptoJs from 'crypto-js'
 
 import Page from 'components/Page'
-import config from '../../../config'
+import ClearFix from 'components/ClearFix'
 import { createQrImage } from 'utils/qrdisplay'
 import googlePlayBadge from 'assets/google-play-badge.png'
 import appStoreBadge from 'assets/app-store-badge.png'
+import config from '../../../config'
+import styles from './index.css'
 
 import { createAccount } from 'actions/account'
 
@@ -51,39 +53,37 @@ class DownloadApps extends Component {
   render() {
     return (
       <Page>
-        <div className='container'>
-          <div className='title'>
-            Download the mobile app
-          </div>
-
-          <div className='download-apps'>
-            <div className='download-app'>
-              <div>Android</div>
-              <div id='qr-android'></div>
-
-              <img
-                className='app-link'
-                src={googlePlayBadge}
-                onClick={this.handleOpenApp(config.androidAppLink)}
-              />
-            </div>
-
-            <div className='download-app'>
-              <div>iOS</div>
-              <div id='qr-ios'></div>
-
-              <img
-                className='app-link'
-                src={appStoreBadge}
-                onClick={this.handleOpenApp(config.iOSAppLink)}
-              />
-            </div>
-
-            <div className='clean'></div>
-          </div>
-
-          <button onClick={this.handleCreateAccount}>Continue</button>
+        <div className={styles.title}>
+          Download the mobile app
         </div>
+
+        <div className={styles.downloadApps}>
+          <div className={styles.downloadApp}>
+            <div>Android</div>
+            <div id='qr-android'></div>
+
+            <img
+              className={styles.appLink}
+              src={googlePlayBadge}
+              onClick={this.handleOpenApp(config.androidAppLink)}
+            />
+          </div>
+
+          <div className={styles.downloadApp}>
+            <div>iOS</div>
+            <div id='qr-ios'></div>
+
+            <img
+              className={styles.appLink}
+              src={appStoreBadge}
+              onClick={this.handleOpenApp(config.iOSAppLink)}
+            />
+          </div>
+
+          <ClearFix />
+        </div>
+
+        <button onClick={this.handleCreateAccount}>Continue</button>
       </Page>
     )
   }
@@ -98,4 +98,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   null,
   mapDispatchToProps
-)(DownloadApps) 
+)(DownloadApps)
