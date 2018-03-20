@@ -1,9 +1,9 @@
 import {
   ADD_WHITELISTED_DAPP,
   DELETE_WHITELISTED_DAPP,
-} from 'actions/whitelistedDApps'
+} from '../actions'
 
-function whitelistedDApps(state = [], action) {
+function whitelistedDapps(state = [], action) {
   switch (action.type) {
 
     case ADD_WHITELISTED_DAPP:
@@ -20,4 +20,4 @@ function whitelistedDApps(state = [], action) {
   }
 }
 
-export default whitelistedDApps
+export default whitelistedDapps
