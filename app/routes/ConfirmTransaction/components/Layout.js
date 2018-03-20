@@ -33,7 +33,7 @@ class Layout extends Component {
 
         <button onClick={handleConfirmTransaction}>
           Confirm transaction
-      </button>
+        </button>
       </Page>
     )
   }
