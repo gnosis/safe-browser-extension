@@ -4,9 +4,7 @@ import HdKey from 'ethereumjs-wallet/hdkey'
 import Bip39 from 'bip39'
 import CryptoJs from 'crypto-js'
 
-import ContentPage from 'components/ContentPage'
-
-import { assignTransaction } from '../../actions/transactions'
+import Layout from '../components/Layout'
 
 class ConfirmTransaction extends Component {
   constructor(props) {
@@ -71,29 +69,15 @@ class ConfirmTransaction extends Component {
 
   render() {
     const { password, errorMessage, transaction } = this.state
-    const { from, to, gas, gasPrice, data } = transaction
-
+    
     return (
-      <ContentPage>
-        <p>From: {from}</p>
-        <p>To: {to}</p>
-        <p>Gas: {gas}</p>
-        <p>Gas price: {gasPrice} (GWei)</p>
-        <p>Data: {data}</p>
-
-        <input
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={this.updatePassword}
-        />
-
-        {errorMessage && <p>{errorMessage}</p>}
-
-        <button onClick={this.handleConfirmTransaction}>
-          Confirm transaction
-        </button>
-      </ContentPage>
+      <Layout
+        transaction={transaction}
+        password={password}
+        errorMessage={errorMessage}
+        updatePassword={this.updatePassword}
+        handleConfirmTransaction={this.handleConfirmTransaction}
+      />
     )
   }
 }
@@ -105,13 +89,6 @@ const mapStateToProps = ({ account, transactions }, props) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onAssignTransaction: (tx, popupId) => dispatch(assignTransaction(tx, popupId))
-  }
-}
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
 )(ConfirmTransaction)
