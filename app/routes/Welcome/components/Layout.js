@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import ContentPage from 'components/ContentPage'
+import Page from 'components/Page'
 import gnosisOwl from 'assets/gnosis_owl.svg'
 import styles from './index.css'
 
-const Welcome = () => (
-  <ContentPage>
+const Layout = () => (
+  <Page withoutHeader>
     <div className={styles.title}>
       <img src={gnosisOwl} height={70} />
     </div>
@@ -18,7 +18,7 @@ const Welcome = () => (
     <Link to='/download-apps'>
       <button>Continue</button>
     </Link>
-  </ContentPage>
+  </Page>
 )
 
-export default Welcome
+export default Layout
