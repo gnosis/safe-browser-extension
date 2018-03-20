@@ -4,9 +4,8 @@ import HdKey from 'ethereumjs-wallet/hdkey'
 import Bip39 from 'bip39'
 import CryptoJs from 'crypto-js'
 
-import Page from 'components/Page'
-
-import { createAccount } from 'actions/account'
+import Layout from '../components/Layout'
+import actions from './actions'
 
 class CreateAccount extends Component {
   constructor(props) {
@@ -63,36 +62,28 @@ class CreateAccount extends Component {
   }
 
   render() {
-    const { password, confirmPassword, errorMessage } = this.state
+    const {
+      password,
+      confirmPassword,
+      errorMessage,
+    } = this.state
 
     return (
-      <Page>
-        <input
-          type='password'
-          placeholder='New password'
-          value={password}
-          onChange={this.updatePassword} />
-
-        <input
-          type='password'
-          placeholder='Confirm password'
-          value={confirmPassword}
-          onChange={this.updateConfirmPassword} />
-
-        {errorMessage &&
-          <p>{errorMessage}</p>
-        }
-
-        <button onClick={this.handleCreateAccount}> Create account </button>
-      </Page>
+      <Layout
+        password={password}
+        confirmPassword={confirmPassword}
+        errorMessage={errorMessage}
+        updatePassword={this.updatePassword}
+        updateConfirmPassword={this.updateConfirmPassword}
+        handleCreateAccount={this.handleCreateAccount}
+      />
     )
   }
-
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onCreateAccount: (address, seed) => dispatch(createAccount(address, seed))
+    onCreateAccount: (address, seed) => dispatch(actions.createAccount(address, seed))
   }
 }
 
