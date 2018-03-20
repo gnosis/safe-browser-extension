@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import wallet from 'ethereumjs-wallet'
 
-import Page from 'components/Page'
+import Layout from '../components/Layout'
 import { createQrImage } from 'utils/qrdisplay'
-import config from '../../../config'
+import config from '../../../../config'
 
 class Account extends Component {
 
@@ -17,20 +17,15 @@ class Account extends Component {
   }
 
   render() {
-    const { seed, address } = this.props.account
+    const { address } = this.props.account
+    const network = config.networks[config.currentNetwork].url
 
     return (
-      <Page
-        logOut={true}
-        whitelist={true}
-      >
-        <p>Address: {address}</p>
-        <p>Network: {config.networks[config.currentNetwork].url} </p>
-
-        <button onClick={this.handleShowQrCode(address)}>Show QR code</button>
-
-        <div id='qr'></div>
-      </Page>
+      <Layout
+        address={address}
+        network={network}
+        handleShowQrCode={this.handleShowQrCode}
+      />
     )
   }
 }
