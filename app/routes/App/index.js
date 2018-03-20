@@ -2,14 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, withRouter } from 'react-router'
 
-import Welcome from 'components/Welcome'
-import DownloadApps from 'components/DownloadApps'
-import CreateAccount from 'components/CreateAccount'
-import Account from 'components/Account'
-import WhitelistedDApps from 'components/WhitelistedDApps'
+import Welcome from 'routes/Welcome/containers/Welcome'
+import DownloadApps from 'routes/DownloadApps/containers/DownloadApps'
+import CreateAccount from 'routes/CreateAccount/containers/CreateAccount'
+import Account from 'routes/Account/containers/Account'
+import WhitelistedDapps from 'routes/WhitelistedDapps/containers/WhitelistedDapps'
 
 import './styles.css'
-
 
 class App extends Component {
   componentWillMount() {
@@ -30,7 +29,7 @@ class App extends Component {
         <Route exact path='/download-apps' component={DownloadApps} />
         <Route exact path='/create-password' component={CreateAccount} />
         <Route exact path='/account' component={Account} />
-        <Route exact path='/whitelisted-dapps' component={WhitelistedDApps} />
+        <Route exact path='/whitelisted-dapps' component={WhitelistedDapps} />
       </div>
     )
   }
