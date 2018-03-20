@@ -18,5 +18,7 @@ module.exports = {
       version: 42,
       url: 'https://kovan.infura.io/gnosis'
     }
-  }
+  },
+  androidAppLink: 'https://play.google.com/<android-app-link-here>',
+  iOSAppLink: 'https://itunes.apple.com/<ios-app-link-here>'
 }

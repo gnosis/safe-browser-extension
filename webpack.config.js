@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const nodeEnv = process.env.NODE_ENV || 'development'
 
@@ -37,13 +38,30 @@ module.exports = {
         loader: 'babel-loader'
       },
       {
-        test: /\.(css)$/,
+        test: /\.(scss|css)$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+                modules: true,
+                camelCase: true,
+                minimize: true
+              }
+            }
+          ]
+        })
+      },
+      {
+        test: /\.(png|jpg|svg)$/,
         use: [
           {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader'
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[ext]'
+            }
           }
         ]
       }
@@ -67,6 +85,7 @@ module.exports = {
         'popup'
       ]
     }),
+    new ExtractTextPlugin('css/[name].[contenthash:8].css'),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(nodeEnv)
     }),

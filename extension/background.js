@@ -25,10 +25,10 @@ const isWhiteListedDapp = (dApp) => {
   var safeStorage = localStorage.getItem('safe')
 
   if (safeStorage !== null) {
-    var whitelistedDApps = JSON.parse(safeStorage).whitelistedDApps
+    var whitelistedDapps = JSON.parse(safeStorage).whitelistedDapps
 
-    if (whitelistedDApps !== undefined) {
-      if (whitelistedDApps.indexOf(dApp) > -1)
+    if (whitelistedDapps !== undefined) {
+      if (whitelistedDapps.indexOf(dApp) > -1)
         return true
     }
   }

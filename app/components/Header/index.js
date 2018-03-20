@@ -3,34 +3,40 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 
-import { logOutAccount } from 'actions/account'
+import gnosisOwl from 'assets/gnosis_owl.svg'
+import ClearFix from 'components/ClearFix'
+import styles from './index.css'
+
+import { logOutAccount } from 'routes/DownloadApps/store/actions'
 
 class Header extends Component {
 
   handleLogOut = () => {
     this.props.onLogOut()
 
-    this.props.history.push('/create-password')
+    this.props.history.push('/welcome')
   }
 
   render() {
     const { account, whitelist, logOut } = this.props
 
     return (
-      <div className='header'>
-        Gnosis
+      <div className={styles.header}>
+        <div className={styles.leftHeader}>
+          <img src={gnosisOwl} height={30} />
+        </div>
 
-        <div>
+        <div className={styles.rightHeader}>
           {whitelist &&
             <Link to='/whitelisted-dapps'
-              className='menu-elem'>
+              className={styles.menuElem}>
               DApps
             </Link>
           }
 
           {account &&
             <Link to='/account'
-              className='menu-elem'>
+              className={styles.menuElem}>
               Account
             </Link>
           }
@@ -38,11 +44,13 @@ class Header extends Component {
           {logOut &&
             <span
               onClick={this.handleLogOut}
-              className='menu-elem'>
+              className={styles.menuElem}>
               Log out
             </span>
           }
         </div>
+
+        <ClearFix />
       </div>
     )
   }
