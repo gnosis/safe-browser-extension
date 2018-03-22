@@ -4,6 +4,7 @@ import { Route, withRouter } from 'react-router'
 
 import Welcome from 'routes/Welcome/containers/Welcome'
 import DownloadApps from 'routes/DownloadApps/containers/DownloadApps'
+import ConnectionType from 'routes/ConnectionType/containers/ConnectionType'
 import CreatePassword from 'routes/CreatePassword/containers/CreatePassword'
 import Account from 'routes/Account/containers/Account'
 import WhitelistedDapps from 'routes/WhitelistedDapps/containers/WhitelistedDapps'
@@ -27,6 +28,7 @@ class App extends Component {
       <div>
         <Route exact path='/welcome' component={Welcome} />
         <Route exact path='/download-apps' component={DownloadApps} />
+        <Route exact path='/connection-type' component={ConnectionType} />
         <Route exact path='/create-password' component={CreatePassword} />
         <Route exact path='/account' component={Account} />
         <Route exact path='/whitelisted-dapps' component={WhitelistedDapps} />
