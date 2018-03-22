@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import Page from 'components/Page'
+
 class Layout extends Component {
   render() {
     const {
@@ -17,17 +19,19 @@ class Layout extends Component {
           type='password'
           placeholder='New password'
           value={password}
-          onChange={updatePassword} />
+          onChange={updatePassword}
+        />
 
         <input
           type='password'
           placeholder='Confirm password'
           value={confirmPassword}
-          onChange={updateConfirmPassword} />
+          onChange={updateConfirmPassword}
+        />
 
         {errorMessage && <p>{errorMessage}</p>}
 
-        <button onClick={handleCreateAccount}> Create account </button>
+        <button onClick={handleCreateAccount}>CREATE ACCOUNT</button>
       </Page>
     )
   }
