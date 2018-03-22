@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 
-import account from 'routes/DownloadApps/store/reducers'
+import account from 'routes/PairingProcess/store/reducers'
 import whitelistedDapps from 'routes/WhitelistedDapps/store/reducers'
 import transactions from 'reducers/transactions'
 
-import { LOGOUT_ACCOUNT } from 'routes/DownloadApps/store/actions'
+import { LOGOUT_ACCOUNT } from 'actions/account'
 
 const reducers = combineReducers({
   account,
