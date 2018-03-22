@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import HdKey from 'ethereumjs-wallet/hdkey'
 import Bip39 from 'bip39'
 import CryptoJs from 'crypto-js'
 
 import Layout from '../components/Layout'
-import actions from './actions'
+//import actions from './actions'
 
-class CreateAccount extends Component {
+class CreatePassword extends Component {
   constructor(props) {
     super(props)
 
@@ -44,21 +43,15 @@ class CreateAccount extends Component {
   }
 
   handleCreateAccount = () => {
-    if (this.validatePasswords()) {
-      const mnemonic = Bip39.generateMnemonic()
-      const seed = Bip39.mnemonicToSeed(mnemonic)
-      const hdWallet = HdKey.fromMasterSeed(seed)
-      //console.log(mnemonic)
-
-      // Get the first account using the standard hd path
-      const walletHdPath = 'm/44\'/60\'/0\'/0'
-      const address = hdWallet.derivePath(walletHdPath + '/0').getWallet().getChecksumAddressString()
-
-      const encryptedSeed = CryptoJs.AES.encrypt(mnemonic, this.state.password)
-      this.props.onCreateAccount(address, encryptedSeed.toString())
-
-      this.props.history.push('/account')
-    }
+    /*if (this.validatePasswords()) {
+      this.props.history.push({
+        pathname: '/pairing',
+        state: {
+          connectionType: '2FA',
+          masterPassword: this.state.password
+        }
+      })
+    }*/
   }
 
   render() {
@@ -81,13 +74,4 @@ class CreateAccount extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onCreateAccount: (address, seed) => dispatch(actions.createAccount(address, seed))
-  }
-}
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(CreateAccount)
+export default CreatePassword
