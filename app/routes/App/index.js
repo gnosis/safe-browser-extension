@@ -6,6 +6,7 @@ import Welcome from 'routes/Welcome/containers/Welcome'
 import DownloadApps from 'routes/DownloadApps/containers/DownloadApps'
 import ConnectionType from 'routes/ConnectionType/containers/ConnectionType'
 import CreatePassword from 'routes/CreatePassword/containers/CreatePassword'
+import PairingProcess from 'routes/PairingProcess/containers/PairingProcess'
 import Account from 'routes/Account/containers/Account'
 import WhitelistedDapps from 'routes/WhitelistedDapps/containers/WhitelistedDapps'
 
@@ -30,6 +31,7 @@ class App extends Component {
         <Route exact path='/download-apps' component={DownloadApps} />
         <Route exact path='/connection-type' component={ConnectionType} />
         <Route exact path='/create-password' component={CreatePassword} />
+        <Route exact path='/pairing' component={PairingProcess} />
         <Route exact path='/account' component={Account} />
         <Route exact path='/whitelisted-dapps' component={WhitelistedDapps} />
       </div>

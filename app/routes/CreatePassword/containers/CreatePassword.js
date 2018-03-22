@@ -4,7 +4,6 @@ import Bip39 from 'bip39'
 import CryptoJs from 'crypto-js'
 
 import Layout from '../components/Layout'
-//import actions from './actions'
 
 class CreatePassword extends Component {
   constructor(props) {
@@ -43,7 +42,7 @@ class CreatePassword extends Component {
   }
 
   handleCreateAccount = () => {
-    /*if (this.validatePasswords()) {
+    if (this.validatePasswords()) {
       this.props.history.push({
         pathname: '/pairing',
         state: {
@@ -51,7 +50,7 @@ class CreatePassword extends Component {
           masterPassword: this.state.password
         }
       })
-    }*/
+    }
   }
 
   render() {
