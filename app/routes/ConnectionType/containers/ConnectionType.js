@@ -1,31 +1,33 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import Layout from '../components/Layout'
 
 class ConnectionType extends Component {
+  constructor(props) {
+    super(props)
 
-  handleConnect2FA = (e) => {
-    // TO-DO: When multiple safes management is available
-    // If master password already exists, push history to '/pairing' with connectionType='2FA'
-
-    this.props.history.push('/create-password')
+    this.existsMasterPassword = this.existsAccount()
   }
 
-  handleConnectRelayer = (e) => {
-    this.props.history.push({
-      pathname: '/pairing',
-      state: {connectionType: 'RELAYER'}
-    })
+  existsAccount = () => {
+    const { account } = this.props
+    return (Object.keys(account).length !== 0)
   }
 
   render() {
     return (
-      <Layout
-        handleConnect2FA={this.handleConnect2FA}
-        handleConnectRelayer={this.handleConnectRelayer}
-      />
+      <Layout existsMasterPassword={this.existsMasterPassword} />
     )
   }
 }
 
-export default ConnectionType
+const mapStateToProps = ({ account }, props) => {
+  return {
+    account
+  }
+}
+
+export default connect(
+  mapStateToProps
+)(ConnectionType)

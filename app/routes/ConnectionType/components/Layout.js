@@ -1,19 +1,46 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import Page from 'components/Page'
 import styles from './index.css'
 
 class Layout extends Component {
   render() {
-    const { handleConnect2FA, handleConnectRelayer } = this.props
+    const { existsMasterPassword } = this.props
 
     return (
       <Page>
         <p className={styles.text}>Select connection type</p>
-        <button onClick={handleConnect2FA}>CONNECT FOR 2FA</button>
+        {existsMasterPassword &&
+          <Link to={{
+            pathname: '/pasword',
+            state: {
+              dest: '/pairing',
+              connectionType: '2FA'
+            }
+          }}>
+            <button>CONNECT FOR 2FA</button>
+          </Link>
+        }
+        {!existsMasterPassword &&
+          <Link to={{
+            pathname: '/create-password',
+            state: {
+              dest: '/pairing',
+              connectionType: '2FA'
+            }
+          }}>
+            <button>CONNECT FOR 2FA</button>
+          </Link >
+        }
         <p className={styles.text}>or</p>
-        <button onClick={handleConnectRelayer}>CONNECT AS RELAYER</button>
-      </Page>
+        <Link to={{
+          pathname: '/pairing',
+          state: { connectionType: 'RELAYER' }
+        }}>
+          <button>CONNECT AS RELAYER</button>
+        </Link>
+      </Page >
     )
   }
 }
