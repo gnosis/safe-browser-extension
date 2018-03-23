@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-import HdKey from 'ethereumjs-wallet/hdkey'
-import Bip39 from 'bip39'
-import CryptoJs from 'crypto-js'
 
 import Layout from '../components/Layout'
 
@@ -11,63 +8,65 @@ class CreatePassword extends Component {
 
     this.state = {
       password: '',
-      confirmPassword: '',
-      errorMessage: '',
+      error: {
+        length: false,
+      },
+      continue: false,
     }
+
+    this.properties = props.location.state
+    console.log(this.properties)
   }
 
   updatePassword = (e) => {
     this.setState({ password: e.target.value })
+    this.validatePasswords(e.target.value)
   }
 
-  updateConfirmPassword = (e) => {
-    this.setState({ confirmPassword: e.target.value })
-  }
 
-  validatePasswords = () => {
-    const { password, confirmPassword } = this.state
-
-    if (!password || password.length < 10) {
-      this.setState({ errorMessage: 'Password too short (min 10 chars)' })
-      return false
-    }
-
-    if (password !== confirmPassword) {
-      this.setState({ errorMessage: 'Passwords don\'t match' })
-      return false
-    }
-
-    this.setState({ errorMessage: '' })
-    return true
-  }
-
-  handleCreateAccount = () => {
-    if (this.validatePasswords()) {
-      this.props.history.push({
-        pathname: '/pairing',
-        state: {
-          connectionType: '2FA',
-          masterPassword: this.state.password
+  validateLenght = (password) => {
+    if (!password || password.length < 8) {
+      this.setState({
+        continue: false,
+        error: {
+          ...this.state.error,
+          length: false
         }
       })
+      return false
     }
+    else {
+      this.setState({
+        continue: true,
+        error: {
+          ...this.state.error,
+          length: true
+        }
+      })
+      return true
+    }
+  }
+
+  validatePasswords = (password) => {
+    const length = this.validateLenght(password)
   }
 
   render() {
     const {
       password,
       confirmPassword,
-      errorMessage,
+      error,
     } = this.state
+
+    console.log(this.state)
 
     return (
       <Layout
         password={password}
-        confirmPassword={confirmPassword}
-        errorMessage={errorMessage}
+        error={error}
         updatePassword={this.updatePassword}
-        updateConfirmPassword={this.updateConfirmPassword}
-        handleCreateAccount={this.handleCreateAccount}
+        properties={this.properties}
+        continue={this.state.continue}
       />
     )
   }

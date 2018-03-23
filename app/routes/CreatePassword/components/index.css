@@ -1,0 +1,11 @@
+.text {
+  text-align: center;
+}
+
+.correct {
+  color: #09a862;
+}
+
+.wrong {
+  color: #de2c42;
+}

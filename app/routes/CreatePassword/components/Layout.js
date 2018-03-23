@@ -1,37 +1,47 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import Page from 'components/Page'
+import styles from './index.css'
 
 class Layout extends Component {
   render() {
     const {
       password,
-      confirmPassword,
-      errorMessage,
+      error,
       updatePassword,
-      updateConfirmPassword,
-      handleCreateAccount,
+      properties,
     } = this.props
 
     return (
       <Page>
+        <p className={styles.text}>Create the master password</p>
         <input
           type='password'
-          placeholder='New password'
+          placeholder='Password'
           value={password}
           onChange={updatePassword}
         />
 
-        <input
-          type='password'
-          placeholder='Confirm password'
-          value={confirmPassword}
-          onChange={updateConfirmPassword}
-        />
+        <div>
+          <div className={(error && error.length) ? styles.correct : styles.wrong}>
+            <p>Minimum 8 characters</p>
+          </div>
+        </div>
 
-        {errorMessage && <p>{errorMessage}</p>}
+        {this.props.continue &&
+          <Link to={{
+            pathname: '/confirm-password',
+            state: {
+              ...properties,
+              password,
+            }
+          }}>
+            <button>CONTINUE</button>
+          </Link>
+        }
+        {!this.props.continue && <button>CONTINUE</button>}
 
-        <button onClick={handleCreateAccount}>CREATE ACCOUNT</button>
       </Page>
     )
   }
