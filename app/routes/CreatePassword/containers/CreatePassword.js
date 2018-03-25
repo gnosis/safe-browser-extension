@@ -10,6 +10,9 @@ class CreatePassword extends Component {
       password: '',
       error: {
         length: false,
+        number: false,
+        letter: false,
+        row: false,
       },
       continue: false,
     }
@@ -26,29 +29,102 @@ class CreatePassword extends Component {
 
   validateLenght = (password) => {
     if (!password || password.length < 8) {
-      this.setState({
-        continue: false,
+      this.setState((prevState, props) => ({
         error: {
-          ...this.state.error,
+          ...prevState.error,
           length: false
         }
-      })
+      }))
       return false
     }
-    else {
-      this.setState({
-        continue: true,
+
+    this.setState((prevState, props) => ({
+      error: {
+        ...prevState.error,
+        length: true
+      }
+    }))
+    return true
+  }
+
+  validateNumber = (password) => {
+    console.log(password)
+    const expression = /.*\d+.*/
+    if (!password || !expression.test(password)) {
+      this.setState((prevState, props) => ({
         error: {
-          ...this.state.error,
-          length: true
+          ...prevState.error,
+          number: false
         }
-      })
-      return true
+      }))
+      return false
     }
+
+    this.setState((prevState, props) => ({
+      error: {
+        ...prevState.error,
+        number: true
+      }
+    }))
+    return true
+  }
+
+  validateLetter = (password) => {
+    console.log(password)
+    const expression = /.*[a-zA-Z]+.*/
+    if (!password || !expression.test(password)) {
+      this.setState((prevState, props) => ({
+        error: {
+          ...prevState.error,
+          letter: false
+        }
+      }))
+      return false
+    }
+
+    this.setState((prevState, props) => ({
+      error: {
+        ...prevState.error,
+        letter: true
+      }
+    }))
+    return true
+  }
+
+  validateRow = (password) => {
+    console.log(password)
+    const expression = /.*(.)\1{2}.*/
+    if (!password || expression.test(password)) {
+      this.setState((prevState, props) => ({
+        error: {
+          ...prevState.error,
+          row: false
+        }
+      }))
+      return false
+    }
+
+    this.setState((prevState, props) => ({
+      error: {
+        ...prevState.error,
+        row: true
+      }
+    }))
+    return true
   }
 
   validatePasswords = (password) => {
     const length = this.validateLenght(password)
+    const number = this.validateNumber(password)
+    const letter = this.validateLetter(password)
+    const row = this.validateRow(password)
+
+    if (length && number && letter && row) {
+      this.setState({ continue: true })
+    }
+    else {
+      this.setState({ continue: false })
+    }
   }
 
   render() {

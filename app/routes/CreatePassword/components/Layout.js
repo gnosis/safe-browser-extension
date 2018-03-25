@@ -27,6 +27,15 @@ class Layout extends Component {
           <div className={(error && error.length) ? styles.correct : styles.wrong}>
             <p>Minimum 8 characters</p>
           </div>
+          <div className={(error && error.number) ? styles.correct : styles.wrong}>
+            <p>Minimum 1 number</p>
+          </div>
+          <div className={(error && error.letter) ? styles.correct : styles.wrong}>
+            <p>Minimum 1 letter</p>
+          </div>
+          <div className={(error && error.row) ? styles.correct : styles.wrong}>
+            <p>No more than 2 identical characters in a row</p>
+          </div>
         </div>
 
         {this.props.continue &&
