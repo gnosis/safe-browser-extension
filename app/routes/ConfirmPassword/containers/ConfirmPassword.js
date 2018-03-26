@@ -15,7 +15,6 @@ class ConfirmPassword extends Component {
     }
 
     this.properties = props.location.state
-    console.log(this.properties)
   }
 
   updatePassword = (e) => {
@@ -25,8 +24,6 @@ class ConfirmPassword extends Component {
 
   validatePasswords = (newPassword) => {
     const { password } = this.properties
-
-    console.log(newPassword + " - " + password)
 
     if (newPassword !== password) {
       this.setState({ continue: false, error: { match: false } })
@@ -43,7 +40,6 @@ class ConfirmPassword extends Component {
       error,
     } = this.state
 
-    console.log(this.state.continue)
     return (
       <Layout
         password={password}
