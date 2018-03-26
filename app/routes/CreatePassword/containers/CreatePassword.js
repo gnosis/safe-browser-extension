@@ -18,16 +18,15 @@ class CreatePassword extends Component {
     }
 
     this.properties = props.location.state
-    console.log(this.properties)
   }
 
   updatePassword = (e) => {
     this.setState({ password: e.target.value })
-    this.validatePasswords(e.target.value)
+    this.validatePassword(e.target.value)
   }
 
 
-  validateLenght = (password) => {
+  validateLength = (password) => {
     if (!password || password.length < 8) {
       this.setState((prevState, props) => ({
         error: {
@@ -48,7 +47,6 @@ class CreatePassword extends Component {
   }
 
   validateNumber = (password) => {
-    console.log(password)
     const expression = /.*\d+.*/
     if (!password || !expression.test(password)) {
       this.setState((prevState, props) => ({
@@ -70,7 +68,6 @@ class CreatePassword extends Component {
   }
 
   validateLetter = (password) => {
-    console.log(password)
     const expression = /.*[a-zA-Z]+.*/
     if (!password || !expression.test(password)) {
       this.setState((prevState, props) => ({
@@ -92,7 +89,6 @@ class CreatePassword extends Component {
   }
 
   validateRow = (password) => {
-    console.log(password)
     const expression = /.*(.)\1{2}.*/
     if (!password || expression.test(password)) {
       this.setState((prevState, props) => ({
@@ -113,8 +109,8 @@ class CreatePassword extends Component {
     return true
   }
 
-  validatePasswords = (password) => {
-    const length = this.validateLenght(password)
+  validatePassword = (password) => {
+    const length = this.validateLength(password)
     const number = this.validateNumber(password)
     const letter = this.validateLetter(password)
     const row = this.validateRow(password)
@@ -133,8 +129,6 @@ class CreatePassword extends Component {
       confirmPassword,
       error,
     } = this.state
-
-    console.log(this.state)
 
     return (
       <Layout
