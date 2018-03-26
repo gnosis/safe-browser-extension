@@ -20,7 +20,7 @@ describe('Create Password Form Validation', () => {
     expect(result).toEqual(true)
   })
 
-  test('validateLenght: It should return false if the password has less than 8 characters', () => {
+  test('validateLength: It should return false if the password has less than 8 characters', () => {
     const password = 'qwe'
     const props = {
       location: {

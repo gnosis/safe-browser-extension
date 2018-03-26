@@ -12,7 +12,10 @@ class ConnectionType extends Component {
 
   existsAccount = () => {
     const { account } = this.props
-    return (Object.keys(account).length !== 0)
+    if (account)
+      return (Object.keys(account).length !== 0)
+    else
+      return false
   }
 
   render() {
