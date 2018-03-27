@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
-import HdKey from 'ethereumjs-wallet/hdkey'
-import Bip39 from 'bip39'
-import CryptoJs from 'crypto-js'
 
 import Layout from '../components/Layout'
-//import actions from './actions'
 
 class CreatePassword extends Component {
   constructor(props) {
@@ -12,63 +8,135 @@ class CreatePassword extends Component {
 
     this.state = {
       password: '',
-      confirmPassword: '',
-      errorMessage: '',
+      error: {
+        length: false,
+        number: false,
+        letter: false,
+        row: false,
+      },
+      continue: false,
     }
+
+    this.properties = props.location.state
   }
 
   updatePassword = (e) => {
     this.setState({ password: e.target.value })
+    this.validatePassword(e.target.value)
   }
 
-  updateConfirmPassword = (e) => {
-    this.setState({ confirmPassword: e.target.value })
-  }
 
-  validatePasswords = () => {
-    const { password, confirmPassword } = this.state
-
-    if (!password || password.length < 10) {
-      this.setState({ errorMessage: 'Password too short (min 10 chars)' })
+  validateLength = (password) => {
+    if (!password || password.length < 8) {
+      this.setState((prevState, props) => ({
+        error: {
+          ...prevState.error,
+          length: false
+        }
+      }))
       return false
     }
 
-    if (password !== confirmPassword) {
-      this.setState({ errorMessage: 'Passwords don\'t match' })
-      return false
-    }
-
-    this.setState({ errorMessage: '' })
+    this.setState((prevState, props) => ({
+      error: {
+        ...prevState.error,
+        length: true
+      }
+    }))
     return true
   }
 
-  handleCreateAccount = () => {
-    /*if (this.validatePasswords()) {
-      this.props.history.push({
-        pathname: '/pairing',
-        state: {
-          connectionType: '2FA',
-          masterPassword: this.state.password
+  validateNumber = (password) => {
+    const expression = /.*\d+.*/
+    if (!password || !expression.test(password)) {
+      this.setState((prevState, props) => ({
+        error: {
+          ...prevState.error,
+          number: false
         }
-      })
-    }*/
+      }))
+      return false
+    }
+
+    this.setState((prevState, props) => ({
+      error: {
+        ...prevState.error,
+        number: true
+      }
+    }))
+    return true
+  }
+
+  validateLetter = (password) => {
+    const expression = /.*[a-zA-Z]+.*/
+    if (!password || !expression.test(password)) {
+      this.setState((prevState, props) => ({
+        error: {
+          ...prevState.error,
+          letter: false
+        }
+      }))
+      return false
+    }
+
+    this.setState((prevState, props) => ({
+      error: {
+        ...prevState.error,
+        letter: true
+      }
+    }))
+    return true
+  }
+
+  validateRow = (password) => {
+    const expression = /.*(.)\1{2}.*/
+    if (!password || expression.test(password)) {
+      this.setState((prevState, props) => ({
+        error: {
+          ...prevState.error,
+          row: false
+        }
+      }))
+      return false
+    }
+
+    this.setState((prevState, props) => ({
+      error: {
+        ...prevState.error,
+        row: true
+      }
+    }))
+    return true
+  }
+
+  validatePassword = (password) => {
+    const length = this.validateLength(password)
+    const number = this.validateNumber(password)
+    const letter = this.validateLetter(password)
+    const row = this.validateRow(password)
+
+    if (length && number && letter && row) {
+      this.setState({ continue: true })
+    }
+    else {
+      this.setState({ continue: false })
+    }
   }
 
   render() {
     const {
       password,
       confirmPassword,
-      errorMessage,
+      error,
     } = this.state
 
     return (
       <Layout
         password={password}
-        confirmPassword={confirmPassword}
-        errorMessage={errorMessage}
+        error={error}
         updatePassword={this.updatePassword}
-        updateConfirmPassword={this.updateConfirmPassword}
-        handleCreateAccount={this.handleCreateAccount}
+        properties={this.properties}
+        continue={this.state.continue}
       />
     )
   }

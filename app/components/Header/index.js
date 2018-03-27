@@ -7,7 +7,7 @@ import gnosisOwl from 'assets/gnosis_owl.svg'
 import ClearFix from 'components/ClearFix'
 import styles from './index.css'
 
-import { logOutAccount } from 'routes/DownloadApps/store/actions'
+import { logOutAccount } from 'actions/account'
 
 class Header extends Component {
 

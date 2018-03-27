@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import Page from 'components/Page'
 import ClearFix from 'components/ClearFix'
@@ -11,14 +12,13 @@ class Layout extends Component {
     const {
       androidAppLink,
       iOSAppLink,
-      handleCreateAccount,
       handleOpenApp,
     } = this.props
 
     return (
       <Page>
         <div className={styles.title}>
-          Download the mobile app
+          Download Gnosis Safe mobile app
         </div>
 
         <div className={styles.downloadApps}>
@@ -47,7 +47,9 @@ class Layout extends Component {
           <ClearFix />
         </div>
 
-        <button onClick={handleCreateAccount}>Continue</button>
+        <Link to='/connection-type'>
+          <button>CONTINUE</button>
+        </Link>
       </Page>
     )
   }
