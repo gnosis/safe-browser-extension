@@ -9,6 +9,7 @@ import CreatePassword from 'routes/CreatePassword/containers/CreatePassword'
 import ConfirmPassword from 'routes/ConfirmPassword/containers/ConfirmPassword'
 import PairingProcess from 'routes/PairingProcess/containers/PairingProcess'
 import Account from 'routes/Account/containers/Account'
+import Settings from 'routes/Settings/containers/Settings'
 import WhitelistedDapps from 'routes/WhitelistedDapps/containers/WhitelistedDapps'
 
 import './styles.css'
@@ -35,7 +36,8 @@ class App extends Component {
         <Route exact path='/confirm-password' component={ConfirmPassword} />
         <Route exact path='/pairing' component={PairingProcess} />
         <Route exact path='/account' component={Account} />
-        <Route exact path='/whitelisted-dapps' component={WhitelistedDapps} />
+        <Route exact path='/settings' component={Settings} />
+        <Route exact path='/whitelist' component={WhitelistedDapps} />
       </div>
     )
   }

@@ -11,7 +11,7 @@ class Layout extends Component {
     } = this.props
 
     return (
-      <Page logOut whitelist>
+      <Page logOut settings whitelist>
         <p>Address: {address}</p>
         <p>Network: {network}</p>
 
