@@ -9,10 +9,9 @@ const Page = (props) => (
       <Header
         account={props.account}
         logOut={props.logOut}
-        whitelist={props.whitelist}
+        settings={props.settings}
       />
     }
-
     <div className={styles.container}>
       {props.children}
     </div>

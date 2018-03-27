@@ -18,7 +18,7 @@ class Header extends Component {
   }
 
   render() {
-    const { account, whitelist, logOut } = this.props
+    const { account, settings, logOut } = this.props
 
     return (
       <div className={styles.header}>
@@ -27,10 +27,10 @@ class Header extends Component {
         </div>
 
         <div className={styles.rightHeader}>
-          {whitelist &&
-            <Link to='/whitelisted-dapps'
+          {settings &&
+            <Link to='/settings'
               className={styles.menuElem}>
-              DApps
+              Settings
             </Link>
           }
 
