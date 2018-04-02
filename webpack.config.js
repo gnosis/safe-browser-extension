@@ -3,8 +3,19 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const cssVars = require('postcss-simple-vars')
+const cssVariables = require(path.resolve(__dirname, './app/theme/variables'))
 
 const nodeEnv = process.env.NODE_ENV || 'development'
+
+const postcssPlugins = [
+  cssVars({
+    variables(){
+      return Object.assign({}, cssVariables)
+    },
+    silent: true,
+  }),
+]
 
 module.exports = {
   context: path.resolve(__dirname, 'app'),
@@ -49,6 +60,13 @@ module.exports = {
                 modules: true,
                 camelCase: true,
                 minimize: true
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: true,
+                plugins: postcssPlugins,
               }
             }
           ]
