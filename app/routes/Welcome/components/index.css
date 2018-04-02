@@ -1,4 +1,18 @@
-.title {
+.header {
   padding: 50px 0 20px 0;
+  text-align: center;
+}
+
+.title {
+  color: $blue;
+  margin-top: 20px;
+}
+
+.text-content {
+  background: #f3f3f3;
+  border-radius: 2px;
+  margin: 10px 0 10px 0;
+  line-height: 20px;
+  padding: 20px;
   text-align: center;
 }
