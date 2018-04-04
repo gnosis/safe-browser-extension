@@ -11,8 +11,8 @@ class Layout extends Component {
         <Link to='/whitelist'>
           <div className={styles.option}>Manage whitelist</div>
         </Link>
-        <Link to='#'>
-          <div className={styles.option}>Manage safes</div>
+        <Link to='/connection-type'>
+          <div className={styles.option}>Add safe</div>
         </Link>
         <Link to='#'>
           <div className={styles.option}>Change master password</div>
