@@ -12,31 +12,84 @@ import config from '../../../../config'
 import actions from './actions'
 
 class PairingProcess extends Component {
-  constructor(props) {
-    super(props)
 
-    const { masterPassword, connectionType } = this.props.location.state
+  componentDidMount = () => {
+    const { password, connectionType } = this.props.location.state
+    const { account } = this.props
 
-    const mnemonic = Bip39.generateMnemonic()
+    if (connectionType !== '2FA' && connectionType !== 'RELAYER')
+      return
+
+    const hasAccounts = this.hasAccountsCreated(account)
+
+    const currentAccount = (hasAccounts.length >= 2 || hasAccounts.includes(connectionType))
+      ? this.getExtensionEthAccount(account, connectionType, password)
+      : this.createExtensionEthAccount(connectionType, password)
+
+    createQrImage(
+      document.getElementById('pairing-qr'),
+      this.generatePairingCode(currentAccount.getPrivateKey()),
+      4
+    )
+  }
+
+  hasAccountsCreated = (account) => {
+    const result = []
+
+    if (account.relayer !== undefined)
+      result.push('RELAYER')
+    if (account.secondFA !== undefined)
+      result.push('2FA')
+    return result
+  }
+
+  createAccountFromMnemonic = (mnemonic) => {
     const seed = Bip39.mnemonicToSeed(mnemonic)
     const hdWallet = HdKey.fromMasterSeed(seed)
     const walletHdPath = 'm/44\'/60\'/0\'/0'
-    this.account = hdWallet.derivePath(walletHdPath + '/0').getWallet()
-    const address = this.account.getChecksumAddressString()
-
-    const accountData = (masterPassword)
-      ? CryptoJs.AES.encrypt(mnemonic, masterPassword).toString()
-      : mnemonic
-
-    this.props.onCreateAccount(address, accountData)
+    const newAccount = hdWallet.derivePath(walletHdPath + '/0').getWallet()
+    return newAccount
   }
 
-  componentDidMount = () => {
-    createQrImage(
-      document.getElementById('pairing-qr'),
-      this.generatePairingCode(this.account.getPrivateKey()),
-      4
-    )
+  getExtensionEthAccount = (account, connectionType, password) => {
+    let mnemonic
+
+    switch (connectionType) {
+      case 'RELAYER':
+        mnemonic = account.relayer.seed
+        break
+
+      case '2FA':
+        const encryptedMnemonic = account.secondFA.seed
+        mnemonic = CryptoJs.AES.decrypt(encryptedMnemonic, password).toString(CryptoJs.enc.Utf8)
+        break
+
+      default:
+        return
+    }
+    return this.createAccountFromMnemonic(mnemonic)
+  }
+
+  createExtensionEthAccount = (connectionType, password) => {
+    const mnemonic = Bip39.generateMnemonic()
+    const currentAccount = this.createAccountFromMnemonic(mnemonic)
+
+    switch (connectionType) {
+      case 'RELAYER':
+        this.props.onCreateRelayerAccount(currentAccount.getChecksumAddressString(), mnemonic)
+        break
+
+      case '2FA':
+        const encryptedMnemonic = CryptoJs.AES.encrypt(mnemonic, password).toString()
+        const hmac = CryptoJs.HmacSHA256(encryptedMnemonic, CryptoJs.SHA256(password)).toString()
+        this.props.onCreate2FAAccount(currentAccount.getChecksumAddressString(), encryptedMnemonic, hmac)
+        break
+
+      default:
+        return
+    }
+
+    return currentAccount
   }
 
   generatePairingCode = (privateKey) => {
@@ -70,13 +123,20 @@ class PairingProcess extends Component {
   }
 }
 
+const mapStateToProps = ({ account }, props) => {
+  return {
+    account
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
-    onCreateAccount: (address, seed) => dispatch(actions.createAccount(address, seed))
+    onCreateRelayerAccount: (address, seed) => dispatch(actions.createRelayerAccount(address, seed)),
+    onCreate2FAAccount: (address, seed, hmac) => dispatch(actions.create2FAAccount(address, seed, hmac)),
   }
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(PairingProcess)
