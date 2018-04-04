@@ -1,9 +1,9 @@
 import {
-  createAccount,
-  logOutAccount,
+  createRelayerAccount,
+  create2FAAccount,
 } from '../store/actions'
 
 export default {
-  createAccount,
-  logOutAccount,
+  createRelayerAccount,
+  create2FAAccount,
 }
