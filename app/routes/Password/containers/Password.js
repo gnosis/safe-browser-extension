@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router'
 import CryptoJs from 'crypto-js'
 
 import Layout from '../components/Layout'
@@ -35,7 +36,6 @@ class Password extends Component {
     const decryptedHmac = CryptoJs.HmacSHA256(encryptedSeed, CryptoJs.SHA256(password)).toString()
 
     if (decryptedHmac === account.secondFA.hmac) {
-      this.setState({ errorMessage: 'CORRECT PASSWORD' })
       this.setState({ continue: true })
     }
     this.setState({ errorMessage: 'Wrong password' })
@@ -47,14 +47,22 @@ class Password extends Component {
       errorMessage
     } = this.state
 
+    if (this.state.continue) {
+      return <Redirect to={{
+        pathname: this.properties.dest,
+        state: {
+          ...this.properties,
+          password,
+        }
+      }} />
+    }
+
     return (
       <Layout
         password={password}
         errorMessage={errorMessage}
-        continue={this.state.continue}
         updatePassword={this.updatePassword}
         validatePasswords={this.validatePasswords}
-        properties={this.properties}
       />
     )
   }

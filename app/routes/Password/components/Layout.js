@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { Redirect } from 'react-router'
 
 import Page from 'components/Page'
 import styles from './index.css'
@@ -12,18 +10,7 @@ class Layout extends Component {
       errorMessage,
       updatePassword,
       validatePasswords,
-      properties,
     } = this.props
-
-    if (this.props.continue) {
-      return <Redirect to={{
-        pathname: properties.dest,
-        state: {
-          ...properties,
-          password,
-        }
-      }} />
-    }
 
     return (
       <Page>
