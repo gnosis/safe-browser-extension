@@ -7,16 +7,20 @@ import styles from './index.css'
 
 const Layout = () => (
   <Page withoutHeader>
-    <div className={styles.title}>
+    <div className={styles.header}>
       <img src={gnosisOwl} height={70} />
+      <div className={styles.title}>
+        <h1>Gnosis Safe</h1>
+        <h2>Personal Edition</h2>
+      </div>
     </div>
 
-    <p>
-      TO-DO: Text explaining the purpose of the chrome extension.
-    </p>
+    <div className={styles.textContent}>
+      Wallet to store your Ether and other ERC20 tokens secured by 2-factor authentication.
+    </div>
 
     <Link to='/download-apps'>
-      <button>Continue</button>
+      <button>CONTINUE</button>
     </Link>
   </Page>
 )

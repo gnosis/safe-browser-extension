@@ -5,5 +5,5 @@
 }
 
 .option:hover {
-  color: #00a6c4;
+  color: $blue;
 }

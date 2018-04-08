@@ -3,9 +3,9 @@
 }
 
 .correct {
-  color: #09a862;
+  color: $green;
 }
 
 .wrong {
-  color: #de2c42;
+  color: $red;
 }

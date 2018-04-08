@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Header from 'components/Header'
+import WhitelistedDappState from 'components/WhitelistedDappState'
 import styles from './index.css'
 
 const Page = (props) => (
@@ -12,6 +13,7 @@ const Page = (props) => (
         settings={props.settings}
       />
     }
+    {props.whitelist && <WhitelistedDappState />}
     <div className={styles.container}>
       {props.children}
     </div>

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 
 import account from 'routes/PairingProcess/store/reducers'
-import whitelistedDapps from 'routes/WhitelistedDapps/store/reducers'
-import transactions from 'reducers/transactions'
+import whitelistedDapps from './whitelistedDapps'
+import transactions from './transactions'
 
 import { LOGOUT_ACCOUNT } from 'actions/account'
 
