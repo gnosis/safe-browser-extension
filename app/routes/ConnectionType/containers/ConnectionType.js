@@ -12,9 +12,8 @@ class ConnectionType extends Component {
 
   exists2FAAccount = () => {
     const { account } = this.props
-    if (account)
-      if (account.secondFA)
-        return true
+    if (account.secondFA && Object.keys(account.secondFA).length > 0)
+      return true
 
     return false
   }
