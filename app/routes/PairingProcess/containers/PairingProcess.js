@@ -1,57 +1,64 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import HdKey from 'ethereumjs-wallet/hdkey'
 import Bip39 from 'bip39'
-import EthUtil from 'ethereumjs-util'
 import CryptoJs from 'crypto-js'
 
 import Layout from '../components/Layout'
+import {
+  createAccountFromMnemonic,
+  generatePairingCodeContent,
+} from '../utils/ethOperations'
 import { createQrImage } from 'utils/qrdisplay'
 import config from '../../../../config'
 
 import actions from './actions'
 
 class PairingProcess extends Component {
+  constructor(props) {
+    super(props)
+
+    this.qrPairingRef = React.createRef()
+  }
 
   componentDidMount = () => {
     const { password, connectionType } = this.props.location.state
-    const { account } = this.props
 
     if (connectionType !== '2FA' && connectionType !== 'RELAYER')
       return
 
-    const hasAccounts = this.hasAccountsCreated(account)
-
-    const currentAccount = (hasAccounts.length >= 2 || hasAccounts.includes(connectionType))
-      ? this.getExtensionEthAccount(account, connectionType, password)
-      : this.createExtensionEthAccount(connectionType, password)
-
+    const currentAccount = this.getCurrentEthAccount(connectionType, password)
     createQrImage(
-      document.getElementById('pairing-qr'),
-      this.generatePairingCode(currentAccount.getPrivateKey()),
+      this.qrPairingRef.current,
+      generatePairingCodeContent(currentAccount.getPrivateKey()),
       4
     )
   }
 
-  hasAccountsCreated = (account) => {
-    const result = []
+  getCurrentEthAccount = (connectionType, password) => {
+    const hasAccounts = this.hasAccountsCreated()
 
-    if (account.relayer !== undefined)
+    if (hasAccounts.length >= 2 || hasAccounts.includes(connectionType)) {
+      return this.getExtensionEthAccount(connectionType, password)
+    }
+    else {
+      const mnemonic = Bip39.generateMnemonic()
+      const currentAccount = createAccountFromMnemonic(mnemonic)
+      return this.createExtensionEthAccount(connectionType, password, mnemonic, currentAccount)
+    }
+  }
+
+  hasAccountsCreated = () => {
+    const { account } = this.props
+    const result = []
+    if (account.relayer && Object.keys(account.relayer).length > 0)
       result.push('RELAYER')
-    if (account.secondFA !== undefined)
+    if (account.secondFA && Object.keys(account.secondFA).length > 0)
       result.push('2FA')
     return result
   }
 
-  createAccountFromMnemonic = (mnemonic) => {
-    const seed = Bip39.mnemonicToSeed(mnemonic)
-    const hdWallet = HdKey.fromMasterSeed(seed)
-    const walletHdPath = 'm/44\'/60\'/0\'/0'
-    const newAccount = hdWallet.derivePath(walletHdPath + '/0').getWallet()
-    return newAccount
-  }
-
-  getExtensionEthAccount = (account, connectionType, password) => {
+  getExtensionEthAccount = (connectionType, password) => {
+    const { account } = this.props
     let mnemonic
 
     switch (connectionType) {
@@ -67,13 +74,10 @@ class PairingProcess extends Component {
       default:
         return
     }
-    return this.createAccountFromMnemonic(mnemonic)
+    return createAccountFromMnemonic(mnemonic)
   }
 
-  createExtensionEthAccount = (connectionType, password) => {
-    const mnemonic = Bip39.generateMnemonic()
-    const currentAccount = this.createAccountFromMnemonic(mnemonic)
-
+  createExtensionEthAccount = (connectionType, password, mnemonic, currentAccount) => {
     switch (connectionType) {
       case 'RELAYER':
         this.props.onCreateRelayerAccount(currentAccount.getChecksumAddressString(), mnemonic)
@@ -88,44 +92,38 @@ class PairingProcess extends Component {
       default:
         return
     }
-
     return currentAccount
   }
 
-  generatePairingCode = (privateKey) => {
-    const startDate = new Date()
-    const expiryDate = new Date(startDate.setMinutes(startDate.getMinutes() + 10))
-
-    const data = EthUtil.sha3('ns' + expiryDate.toISOString())
-    const vrs = EthUtil.ecsign(data, privateKey)
-
-    return JSON.stringify({
-      expiryDate: expiryDate.toISOString(),
-      signature: {
-        v: vrs.v,
-        r: EthUtil.bufferToHex(vrs.r),
-        s: EthUtil.bufferToHex(vrs.s)
-      }
-    })
-  }
-
   handlePaired = (e) => {
-    // TO-DO: Manage pairing notifications
-    // Reception of the safe address from the mobile app after the pairing.
+    // MOCK CONNECTION TO SAFE ACCOUNT
 
+    const { safes } = this.props
+    const { connectionType } = this.props.location.state
+    const connectedSafes = (safes.safes !== undefined)
+      ? safes.safes.length
+      : 0
+
+    const newSafeAdress = config.mockSafesAdresses[connectedSafes]
+
+    this.props.onAddSafe(newSafeAdress, connectionType)
     this.props.history.push('/account')
   }
 
   render() {
     return (
-      <Layout handlePaired={this.handlePaired} />
+      <Layout
+        handlePaired={this.handlePaired}
+        qrPairingRef={this.qrPairingRef}
+      />
     )
   }
 }
 
-const mapStateToProps = ({ account }, props) => {
+const mapStateToProps = ({ account, safes }, props) => {
   return {
-    account
+    account,
+    safes,
   }
 }
 
@@ -133,6 +131,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onCreateRelayerAccount: (address, seed) => dispatch(actions.createRelayerAccount(address, seed)),
     onCreate2FAAccount: (address, seed, hmac) => dispatch(actions.create2FAAccount(address, seed, hmac)),
+    onAddSafe: (address, connectionType) => dispatch(actions.addSafe(address, connectionType)),
   }
 }
 

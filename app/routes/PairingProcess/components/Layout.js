@@ -5,14 +5,17 @@ import styles from './index.css'
 
 class Layout extends Component {
   render() {
-    const { handlePaired } = this.props
+    const {
+      handlePaired,
+      qrPairingRef
+    } = this.props
 
     return (
       <Page>
         <div className={styles.textContent}>
           Scan the QR code to pair this extension with your mobile app.
         </div>
-        <div className={styles.qr} id='pairing-qr'></div>
+        <div className={styles.qr} ref={qrPairingRef}></div>
         <button onClick={handlePaired}>CONTINUE</button>
       </Page>
     )
