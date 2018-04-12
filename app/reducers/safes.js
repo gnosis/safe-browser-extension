@@ -32,10 +32,11 @@ function safes(state = initialState, action) {
         safes,
       }
 
-    case SELECT_SAFE: ({
-      ...state,
-      currentSafe: action.address,
-    })
+    case SELECT_SAFE:
+      return {
+        ...state,
+        currentSafe: action.address,
+      }
 
     default:
       return state
