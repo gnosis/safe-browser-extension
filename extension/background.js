@@ -2,9 +2,15 @@ import { createStore } from 'redux'
 import { wrapStore } from 'react-chrome-redux'
 
 import rootReducer from 'reducers'
-import { loadStorage, saveStorage } from 'scripts/store/storage'
+import { loadStorage, saveStorage } from './utils/storage'
+import {
+  MSG_SHOW_POPUP,
+  MSG_UPDATE_CURRENT_SAFE,
+  MSG_ALLOW_INJECTION,
+  MSG_RESP_ALLOW_INJECTION,
+} from './utils/messages'
 import { normalizeUrl } from 'utils/helpers'
-import { addTransaction, removeTransaction, removeAllTransactions } from '../app/actions/transactions'
+import { addTransaction, removeTransaction, removeAllTransactions } from 'actions/transactions'
 
 const persistedState = loadStorage()
 
@@ -13,13 +19,60 @@ const store = createStore(
   persistedState,
 )
 
+let storeCurrentSafeAddress
 store.subscribe(() => {
+  updateCurrentSafe()
   saveStorage(
     store.getState()
   )
 })
 
 wrapStore(store, { portName: 'GNOSIS_SAFE_EXTENSION' })
+
+const updateCurrentSafe = () => {
+  let storePreviousSafeAddress = storeCurrentSafeAddress
+  storeCurrentSafeAddress = store.getState().safes.currentSafe
+
+  if (storeCurrentSafeAddress !== storePreviousSafeAddress) {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, {
+        msg: MSG_UPDATE_CURRENT_SAFE,
+        newSafeAddress: storeCurrentSafeAddress
+      })
+    })
+  }
+}
+
+chrome.runtime.onMessage.addListener(
+  (request, sender, sendResponse) => {
+    switch (request.msg) {
+
+      case MSG_ALLOW_INJECTION:
+        allowInjection(request, sendResponse)
+        break
+
+      case MSG_SHOW_POPUP:
+        showPopup(request)
+        break
+
+      default:
+
+    }
+  }
+)
+
+const allowInjection = (request, sendResponse) => {
+  const allowInjection = isWhiteListedDapp(normalizeUrl(request.url))
+  const currentSafe = allowInjection
+    ? store.getState().safes.currentSafe
+    : undefined
+
+  sendResponse({
+    msg: MSG_RESP_ALLOW_INJECTION,
+    answer: allowInjection,
+    currentSafe,
+  })
+}
 
 const isWhiteListedDapp = (dApp) => {
   var safeStorage = localStorage.getItem('safe')
@@ -33,34 +86,6 @@ const isWhiteListedDapp = (dApp) => {
     }
   }
   return false
-}
-
-chrome.runtime.onMessage.addListener(
-  (request, sender, sendResponse) => {
-    switch (request.msg) {
-      case 'ALLOW_INJECTION':
-        allowInjection(request, sendResponse)
-        break
-
-      case 'SHOW_POPUP':
-        showPopup(request)
-        break
-
-      default:
-
-    }
-
-  }
-)
-
-const allowInjection = (request, sendResponse) => {
-  var allowInjection = isWhiteListedDapp(normalizeUrl(request.url))
-
-  sendResponse({
-    'msg': 'RESP_ALLOW_INJECTION',
-    'answer': allowInjection,
-    'data': request.url
-  })
 }
 
 store.dispatch(removeAllTransactions())
