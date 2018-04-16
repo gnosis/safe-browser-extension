@@ -13,7 +13,7 @@ class Layout extends Component {
         <p className={styles.text}>Select connection type</p>
         {existsMasterPassword &&
           <Link to={{
-            pathname: '/pasword',
+            pathname: '/password',
             state: {
               dest: '/pairing',
               connectionType: '2FA'

@@ -8,13 +8,37 @@ Enzyme.configure({ adapter: new Adapter() })
 
 describe('Connection Type', () => {
 
-  test('It should return true if exists an account', () => {
+  test('It should return true if exists a 2FA account', () => {
     const mockStore = createMockStore({
-      account: { seed: "seed" }
+      account: {
+        secondFA: { connectionType: '2FA' }
+      }
     })
     const component = shallow(<ConnectionType store={mockStore} />).dive()
-    const result = component.instance().existsAccount()
+    const result = component.instance().exists2FAAccount()
     expect(result).toEqual(true)
+  })
+
+  test('It should return false if doesn\'t exist any 2FA account', () => {
+    const mockStore = createMockStore({
+      account: {
+        relayer: { connectionType: 'RELAYER' }
+      }
+    })
+    const component = shallow(<ConnectionType store={mockStore} />).dive()
+    const result = component.instance().exists2FAAccount()
+    expect(result).toEqual(false)
+  })
+
+  test('It should return false if the 2FA account is empty', () => {
+    const mockStore = createMockStore({
+      account: {
+        secondFA: {}
+      }
+    })
+    const component = shallow(<ConnectionType store={mockStore} />).dive()
+    const result = component.instance().exists2FAAccount()
+    expect(result).toEqual(false)
   })
 
   test('It should return false if doesn\'t exist any account', () => {
@@ -22,7 +46,7 @@ describe('Connection Type', () => {
       account: {}
     })
     const component = shallow(<ConnectionType store={mockStore} />).dive()
-    const result = component.instance().existsAccount()
+    const result = component.instance().exists2FAAccount()
     expect(result).toEqual(false)
   })
 })

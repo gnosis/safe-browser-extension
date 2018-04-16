@@ -7,15 +7,15 @@ class ConnectionType extends Component {
   constructor(props) {
     super(props)
 
-    this.existsMasterPassword = this.existsAccount()
+    this.existsMasterPassword = this.exists2FAAccount()
   }
 
-  existsAccount = () => {
+  exists2FAAccount = () => {
     const { account } = this.props
-    if (account)
-      return (Object.keys(account).length !== 0)
-    else
-      return false
+    if (account.secondFA && Object.keys(account.secondFA).length > 0)
+      return true
+
+    return false
   }
 
   render() {

@@ -10,19 +10,19 @@ class Account extends Component {
 
   handleShowQrCode = (data) => (e) => {
     createQrImage(
-      document.getElementById('qr'),
+      document.getElementById('qr-safe-address'),
       data,
       4
     )
   }
 
   render() {
-    const { address } = this.props.account
+    const { currentSafe } = this.props.safes
     const network = config.networks[config.currentNetwork].url
 
     return (
       <Layout
-        address={address}
+        address={currentSafe}
         network={network}
         handleShowQrCode={this.handleShowQrCode}
       />
@@ -30,9 +30,9 @@ class Account extends Component {
   }
 }
 
-const mapStateToProps = ({ account }, props) => {
+const mapStateToProps = ({ safes }, props) => {
   return {
-    account
+    safes,
   }
 }
 

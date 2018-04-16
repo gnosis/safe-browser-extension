@@ -11,7 +11,7 @@ class Layout extends Component {
         <Link to='/whitelist'>
           <div className={styles.option}>Manage whitelist</div>
         </Link>
-        <Link to='#'>
+        <Link to='/safes'>
           <div className={styles.option}>Manage safes</div>
         </Link>
         <Link to='#'>

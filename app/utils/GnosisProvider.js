@@ -1,51 +1,46 @@
 import Subprovider from 'web3-provider-engine/subproviders/subprovider'
-
-import config from '../../config'
+import { EV_SHOW_POPUP } from '../../extension/utils/messages'
 
 class GnosisProvider extends Subprovider {
-  constructor(opts) {
-    super()
+  constructor(props) {
+    super(props)
+    this.currentSafe = undefined
   }
 
-  sendTransaction = (payload) => {
-    const showPopupEvent = new CustomEvent(
-      'showPopup',
-      { detail: payload.params[0] }
-    )
-
-    document.dispatchEvent(showPopupEvent)
+  updateCurrentSafe = (currentSafe) => {
+    this.currentSafe = currentSafe
   }
 
   handleRequest(payload, next, end) {
-    let accounts
+    const accounts = [this.currentSafe]
 
     switch (payload.method) {
 
       case 'eth_accounts':
-        accounts = [config.safeAddress]
-
         end(null, accounts)
         return
 
       case 'eth_coinbase':
-        accounts = [config.safeAddress]
-
         end(null, accounts)
         return
 
       case 'eth_sendTransaction':
         this.sendTransaction(payload)
-
         return
 
       default:
         next()
         return
-
     }
-
   }
 
+  sendTransaction = (payload) => {
+    const showPopupEvent = new CustomEvent(
+      EV_SHOW_POPUP,
+      { detail: payload.params[0] }
+    )
+    document.dispatchEvent(showPopupEvent)
+  }
 }
 
 module.exports = GnosisProvider

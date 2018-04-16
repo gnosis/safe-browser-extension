@@ -6,7 +6,7 @@ export const getQrData = (data, size) => {
 }
 
 export const createQrImage = (elem, data, size) => {
-  if (data && elem.children.length == 0) {
+  if (data && elem && elem.childNodes.length === 0) {
     const image = document.createElement('img')
     image.setAttribute('src', getQrData(data, size))
     elem.appendChild(image)
