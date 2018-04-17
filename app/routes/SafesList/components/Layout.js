@@ -13,7 +13,12 @@ class Layout extends Component {
 
     return (
       <Page account logOut>
-        <Link to='/connection-type'>
+        <Link to={{
+          pathname: '/password',
+          state: {
+            dest: '/pairing'
+          }
+        }}>
           <button>Connect to safe</button>
         </Link>
         {safes.safes && safes.safes.map((safe) => (
@@ -24,7 +29,6 @@ class Layout extends Component {
           >
             <div className={styles.name}>{safe.name}</div>
             <div className={styles.address}>{safe.address}</div>
-            <div className={styles.connectionType}>{safe.connectionType}</div>
           </div>
         ))}
       </Page>

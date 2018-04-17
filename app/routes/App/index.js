@@ -4,7 +4,6 @@ import { Route, withRouter } from 'react-router'
 
 import Welcome from 'routes/Welcome/containers/Welcome'
 import DownloadApps from 'routes/DownloadApps/containers/DownloadApps'
-import ConnectionType from 'routes/ConnectionType/containers/ConnectionType'
 import CreatePassword from 'routes/CreatePassword/containers/CreatePassword'
 import ConfirmPassword from 'routes/ConfirmPassword/containers/ConfirmPassword'
 import Password from 'routes/Password/containers/Password'
@@ -19,13 +18,9 @@ import './styles.css'
 class App extends Component {
   componentWillMount() {
     const { safes } = this.props.state
-
-    if (safes.safes && safes.safes.length > 0) {
-      this.props.history.push('/account')
-    }
-    else {
-      this.props.history.push('/welcome')
-    }
+    const validSafes = safes.safes && safes.safes.length > 0
+    const url = validSafes ? '/account' : '/welcome'
+    this.props.history.push(url)
   }
 
   render() {
@@ -33,7 +28,6 @@ class App extends Component {
       <div>
         <Route exact path='/welcome' component={Welcome} />
         <Route exact path='/download-apps' component={DownloadApps} />
-        <Route exact path='/connection-type' component={ConnectionType} />
         <Route exact path='/create-password' component={CreatePassword} />
         <Route exact path='/confirm-password' component={ConfirmPassword} />
         <Route exact path='/password' component={Password} />
