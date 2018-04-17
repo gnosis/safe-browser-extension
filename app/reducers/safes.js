@@ -14,7 +14,6 @@ function safes(state = initialState, action) {
     case ADD_SAFE:
       const newSafe = {
         address: action.address,
-        connectionType: action.connectionType,
       }
       return {
         ...state,
