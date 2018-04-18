@@ -7,7 +7,7 @@ import styles from './index.css'
 class Layout extends Component {
   render() {
     return (
-      <Page account logOut>
+      <Page account logOut padding='noPadding'>
         <Link to='/whitelist'>
           <div className={styles.option}>Manage whitelist</div>
         </Link>
