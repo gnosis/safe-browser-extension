@@ -9,18 +9,26 @@ class Layout extends Component {
     const {
       safes,
       selectSafe,
+      lockedState,
     } = this.props
 
     return (
-      <Page account logOut>
-        <Link to={{
-          pathname: '/password',
-          state: {
-            dest: '/pairing'
-          }
-        }}>
-          <button>Connect to safe</button>
-        </Link>
+      <Page account logOut padding='noPadding'>
+        {lockedState
+          ?
+          <Link to={{
+            pathname: '/password',
+            state: {
+              dest: '/pairing'
+            }
+          }}>
+            <button>Connect to safe</button>
+          </Link>
+          :
+          <Link to='/pairing'>
+            <button>Connect to safe</button>
+          </Link>
+        }
         {safes.safes && safes.safes.map((safe) => (
           <div
             onClick={selectSafe(safe.address)}

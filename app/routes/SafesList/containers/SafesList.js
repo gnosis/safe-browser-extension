@@ -20,7 +20,7 @@ class SafesList extends Component {
   }
 
   render() {
-    const { safes } = this.props
+    const { safes, account } = this.props
     const { redirectToAccount } = this.state
 
     if (redirectToAccount) {
@@ -28,6 +28,7 @@ class SafesList extends Component {
     }
     return (
       <Layout
+        lockedState={account.lockedState}
         safes={safes}
         selectSafe={this.handleSelectSafe}
       />
@@ -35,8 +36,9 @@ class SafesList extends Component {
   }
 }
 
-const mapStateToProps = ({ safes }, props) => {
+const mapStateToProps = ({ account, safes }, props) => {
   return {
+    account,
     safes,
   }
 }

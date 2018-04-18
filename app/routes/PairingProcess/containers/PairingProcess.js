@@ -21,7 +21,9 @@ class PairingProcess extends Component {
   }
 
   componentDidMount = () => {
-    const { password } = this.props.location.state
+    const { location } = this.props
+    const validPassword = location && location.state && location.state.password
+    const password = (validPassword) ? location.state.password : undefined
     const currentAccount = this.getCurrentEthAccount(password)
 
     createQrImage(
@@ -34,7 +36,9 @@ class PairingProcess extends Component {
   getCurrentEthAccount = (password) => {
     const { account } = this.props
     if (account.secondFA && Object.keys(account.secondFA).length > 0) {
-      return this.getEthAccount(password)
+      return (account.lockedState && password)
+        ? this.getDecryptedEthAccount(password)
+        : this.getUnencryptedEthAccount(account.unlockedSeed)
     }
     else {
       const mnemonic = Bip39.generateMnemonic()
@@ -43,11 +47,15 @@ class PairingProcess extends Component {
     }
   }
 
-  getEthAccount = (password) => {
+  getDecryptedEthAccount = (password) => {
     const { account } = this.props
     const encryptedMnemonic = account.secondFA.seed
     const mnemonic = CryptoJs.AES.decrypt(encryptedMnemonic, password).toString(CryptoJs.enc.Utf8)
 
+    return createAccountFromMnemonic(mnemonic)
+  }
+
+  getUnencryptedEthAccount = (mnemonic) => {
     return createAccountFromMnemonic(mnemonic)
   }
 
