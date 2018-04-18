@@ -55,7 +55,7 @@ class PairingProcess extends Component {
     const encryptedMnemonic = CryptoJs.AES.encrypt(mnemonic, password).toString()
     const hmac = CryptoJs.HmacSHA256(encryptedMnemonic, CryptoJs.SHA256(password)).toString()
 
-    this.props.onCreate2FAAccount(currentAccount.getChecksumAddressString(), encryptedMnemonic, hmac)
+    this.props.onCreateAccount(currentAccount.getChecksumAddressString(), encryptedMnemonic, hmac)
     return currentAccount
   }
 
@@ -90,7 +90,7 @@ const mapStateToProps = ({ account, safes }, props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onCreate2FAAccount: (address, seed, hmac) => dispatch(actions.create2FAAccount(address, seed, hmac)),
+    onCreateAccount: (address, seed, hmac) => dispatch(actions.createAccount(address, seed, hmac)),
     onAddSafe: (address) => dispatch(actions.addSafe(address)),
   }
 }

@@ -9,7 +9,7 @@ import { createAccountFromMnemonic } from './utils/ethOperations'
 
 Enzyme.configure({ adapter: new Adapter() })
 
-const setUpFirst2FA = () => {
+const setUpFirstAccount = () => {
   const account = {
     secondFA: {}
   }
@@ -18,7 +18,7 @@ const setUpFirst2FA = () => {
       password: 'asdfasdf1'
     }
   }
-  const expectedAction = 'CREATE_2FA_ACCOUNT'
+  const expectedAction = 'CREATE_ACCOUNT'
   return {
     account,
     location,
@@ -26,7 +26,7 @@ const setUpFirst2FA = () => {
   }
 }
 
-const setUpSecond2FA = () => {
+const setUpSecondAccount = () => {
   const account = {
     secondFA: {
       address: '0xA062f8F08B3f253316D5CA053D061EDD4D005709',
@@ -47,8 +47,8 @@ const setUpSecond2FA = () => {
 
 describe('Pairing Process', () => {
   describe('Component tests', () => {
-    test('First pairing process for 2FA account', () => {
-      const { account, location, expectedAction } = setUpFirst2FA()
+    test('First pairing process', () => {
+      const { account, location, expectedAction } = setUpFirstAccount()
 
       const mockStore = createMockStore({ account })
 
@@ -60,8 +60,8 @@ describe('Pairing Process', () => {
       expect(mockStore.getActions()[0].type).toEqual(expectedAction)
     })
 
-    test('Second pairing process for 2FA account', () => {
-      const { account, location } = setUpSecond2FA()
+    test('Second pairing process', () => {
+      const { account, location } = setUpSecondAccount()
 
       const mockStore = createMockStore({ account })
 
@@ -74,8 +74,8 @@ describe('Pairing Process', () => {
   })
 
   describe('Unit tests', () => {
-    test('createEthAccount: first 2FA', () => {
-      const { account, location, expectedAction } = setUpFirst2FA()
+    test('createEthAccount: first account', () => {
+      const { account, location, expectedAction } = setUpFirstAccount()
 
       const mockStore = createMockStore({ account })
 
@@ -105,8 +105,8 @@ describe('Pairing Process', () => {
       expect(decryptedHmac).toEqual(action.hmac)
     })
 
-    test('getEthAccount: second 2FA', () => {
-      const { account, location } = setUpSecond2FA()
+    test('getEthAccount: second account', () => {
+      const { account, location } = setUpSecondAccount()
 
       const mockStore = createMockStore({ account })
 

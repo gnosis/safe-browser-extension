@@ -1,2 +1,2 @@
-export * from './create2FAAccount'
+export * from './createAccount'
 export * from './addSafe'
