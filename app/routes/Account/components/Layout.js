@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 import Page from 'components/Page'
+import WhitelistedDappState from './WhitelistedDappState'
 import LockingState from './LockingState'
 import styles from './index.css'
 
@@ -15,6 +16,7 @@ class Layout extends Component {
 
     return (
       <Page logOut settings whitelist padding='noPadding'>
+        <WhitelistedDappState />
         <LockingState properties={properties} />
         <div className={styles.innerPage}>
           <Link to='/safes'>

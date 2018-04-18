@@ -16,8 +16,7 @@
 }
 
 .not-whitelisted-dapp {
-  background: $red;
-  color: #fff;
+  color: $red;
   padding: 10px;
 }
 
