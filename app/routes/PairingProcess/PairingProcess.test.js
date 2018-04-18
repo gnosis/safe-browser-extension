@@ -9,14 +9,23 @@ import { createAccountFromMnemonic } from './utils/ethOperations'
 
 Enzyme.configure({ adapter: new Adapter() })
 
-const setUpFirstAccount = () => {
+const mnemonic = 'myth like bonus scare over problem client lizard pioneer submit female collect'
+const account = {
+  secondFA: {
+    address: '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1',
+    seed: 'U2FsdGVkX1/PzvlOtLnvBa19Yl/wNyn+xeNJ/ZCFaPwFh+svYVUB7LSaocwBtb1tQIXandPp2A2gKj99B0uoWSigdVh4G8J1bEr+Pa6cqgPuN4nNRVhxAw+Sud+x0+8W',
+    hmac: '421e3feb800198552c762254830deaadd24a84eff4600897bbe1f9282dc47563',
+  }
+}
+const location = {
+  state: {
+    password: 'asdfasdf1'
+  }
+}
+
+const setUpFirstSafe = () => {
   const account = {
     secondFA: {}
-  }
-  const location = {
-    state: {
-      password: 'asdfasdf1'
-    }
   }
   const expectedAction = 'CREATE_ACCOUNT'
   return {
@@ -26,19 +35,22 @@ const setUpFirstAccount = () => {
   }
 }
 
-const setUpSecondAccount = () => {
-  const account = {
+const setUpSecondSafeUnlockedState = () => {
+  const newAccount = {
+    ...account,
+    lockedState: false,
     secondFA: {
-      address: '0xA062f8F08B3f253316D5CA053D061EDD4D005709',
-      seed: 'U2FsdGVkX1/AMIIGahCw+aLim03kvkgKujGLLWJx/ndOclNRAq7Oy0bVl8ZUdQNmv9A7aGb5Xtn7ZMVVnVTMzFiXQWlH4YbWmKw9qBRZ7CIMS2zcfP9/H6tUC18BLMPP',
-      hmac: '7cb237d2dbb768da19214ea332a73280250c52a14cc7c0091067e0ff7e2a93b3'
+      ...account.secondFA,
+      unencryptedSeed: mnemonic,
     }
   }
-  const location = {
-    state: {
-      password: 'asdfasdf1'
-    }
+  return {
+    account: newAccount,
+    location,
   }
+}
+
+const setUpSecondSafeLockedState = () => {
   return {
     account,
     location,
@@ -48,8 +60,7 @@ const setUpSecondAccount = () => {
 describe('Pairing Process', () => {
   describe('Component tests', () => {
     test('First pairing process', () => {
-      const { account, location, expectedAction } = setUpFirstAccount()
-
+      const { account, location, expectedAction } = setUpFirstSafe()
       const mockStore = createMockStore({ account })
 
       const component = shallow(
@@ -60,9 +71,19 @@ describe('Pairing Process', () => {
       expect(mockStore.getActions()[0].type).toEqual(expectedAction)
     })
 
-    test('Second pairing process', () => {
-      const { account, location } = setUpSecondAccount()
+    test('Second pairing process with locked state', () => {
+      const { account, location } = setUpSecondSafeLockedState()
+      const mockStore = createMockStore({ account })
 
+      const component = shallow(
+        <PairingProcess location={location} store={mockStore} />
+      ).dive()
+
+      expect(mockStore.getActions().length).toBe(0)
+    })
+
+    test('Second pairing process with unlocked state', () => {
+      const { account, location } = setUpSecondSafeUnlockedState()
       const mockStore = createMockStore({ account })
 
       const component = shallow(
@@ -74,12 +95,9 @@ describe('Pairing Process', () => {
   })
 
   describe('Unit tests', () => {
-    test('createEthAccount: first account', () => {
-      const { account, location, expectedAction } = setUpFirstAccount()
-
+    test('createEthAccount: first Safe', () => {
+      const { account, location, expectedAction } = setUpFirstSafe()
       const mockStore = createMockStore({ account })
-
-      const mnemonic = 'saddle other tent fault company disagree wash wait elbow pitch stove tray'
       const createdAccount = createAccountFromMnemonic(mnemonic)
 
       const component = shallow(
@@ -105,17 +123,32 @@ describe('Pairing Process', () => {
       expect(decryptedHmac).toEqual(action.hmac)
     })
 
-    test('getEthAccount: second account', () => {
-      const { account, location } = setUpSecondAccount()
-
+    test('getDecryptedEthAccount: second Safe', () => {
+      const { account, location } = setUpSecondSafeLockedState()
       const mockStore = createMockStore({ account })
 
       const component = shallow(
         <PairingProcess location={location} store={mockStore} />,
         { disableLifecycleMethods: true }
       ).dive()
-      const currentAccount = component.instance().getEthAccount(
-        location.state.password,
+      const currentAccount = component.instance().getDecryptedEthAccount(
+        location.state.password
+      )
+
+      expect(mockStore.getActions().length).toBe(0)
+      expect(currentAccount.getChecksumAddressString()).toEqual(account.secondFA.address)
+    })
+
+    test('getUnencryptedEthAccount: second Safe', () => {
+      const { account, location } = setUpSecondSafeUnlockedState()
+      const mockStore = createMockStore({ account })
+
+      const component = shallow(
+        <PairingProcess location={location} store={mockStore} />,
+        { disableLifecycleMethods: true }
+      ).dive()
+      const currentAccount = component.instance().getUnencryptedEthAccount(
+        mockStore.getState().account.secondFA.unencryptedSeed
       )
 
       expect(mockStore.getActions().length).toBe(0)
