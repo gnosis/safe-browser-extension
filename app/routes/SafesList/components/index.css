@@ -11,3 +11,12 @@
 .adress {
   color: green;
 }
+
+.inner-page {
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.button {
+  margin-bottom: 0;
+}
