@@ -13,12 +13,13 @@ export const createAccountFromMnemonic = (mnemonic) => {
 
 export const generatePairingCodeContent = (privateKey) => {
   const startDate = new Date()
-  const expiryDate = new Date(startDate.setMinutes(startDate.getMinutes() + 10))
+  const expirationDate = new Date(startDate.setMinutes(startDate.getMinutes() + 10))
+  const formatedExpirationDate = expirationDate.toISOString().split('.')[0] + '+00:00'
 
-  const data = EthUtil.sha3('ns' + expiryDate.toISOString())
+  const data = EthUtil.sha3('GNO' + formatedExpirationDate)
   const vrs = EthUtil.ecsign(data, privateKey)
   const pairingCodeContent = JSON.stringify({
-    expiryDate: expiryDate.toISOString(),
+    expirationDate: formatedExpirationDate,
     signature: {
       v: vrs.v,
       r: EthUtil.bufferToHex(vrs.r),

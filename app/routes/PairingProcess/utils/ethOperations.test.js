@@ -22,7 +22,7 @@ describe('Ethereum operations', () => {
 
     const pairingCode = JSON.parse(generatePairingCodeContent(ethAccount.getPrivateKey()))
 
-    const data = EthUtil.sha3('ns' + pairingCode.expiryDate)
+    const data = EthUtil.sha3('GNO' + pairingCode.expirationDate)
     const publicKeyCode = EthUtil.bufferToHex(
       EthUtil.ecrecover(
         data,
