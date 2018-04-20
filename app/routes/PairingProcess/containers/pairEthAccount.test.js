@@ -39,7 +39,7 @@ const setUpSecondSafeUnlockedState = () => {
     lockedState: false,
     secondFA: {
       ...account.secondFA,
-      unencryptedSeed: mnemonic,
+      unlockedSeed: mnemonic,
     }
   }
 }
@@ -57,7 +57,7 @@ describe('pairEthAccount', () => {
     expect(ethAccount.getChecksumAddressString()).toEqual(address)
   })
 
-  test('Create Ethereum account: first Safe', () => {
+  test('Create Ethereum account before connecting the first Safe', () => {
     const createdAccount = createAccountFromMnemonic(mnemonic)
     const {
       currentAccount,
@@ -73,7 +73,7 @@ describe('pairEthAccount', () => {
     expect(decryptedHmac).toEqual(hmac)
   })
 
-  test('Get decrypted Ethereum account: second Safe', () => {
+  test('Get decrypted Ethereum account before connecting the second Safe', () => {
     const localAccount = setUpSecondSafeLockedState()
 
     const currentAccount = getDecryptedEthAccount(localAccount.secondFA.seed, password)
@@ -81,11 +81,11 @@ describe('pairEthAccount', () => {
     expect(currentAccount.getChecksumAddressString()).toEqual(localAccount.secondFA.address)
   })
 
-  test('Get unencrypted Ethereum account: second Safe', () => {
+  test('Get unencrypted Ethereum account before connecting the second Safe', () => {
     const localAccount = setUpSecondSafeUnlockedState()
 
     const currentAccount = getUnencryptedEthAccount(
-      localAccount.secondFA.unencryptedSeed
+      localAccount.secondFA.unlockedSeed
     )
 
     expect(currentAccount.getChecksumAddressString()).toEqual(localAccount.secondFA.address)

@@ -42,7 +42,7 @@ const setUpSecondSafeUnlockedState = () => {
       lockedState: false,
       secondFA: {
         ...account.secondFA,
-        unencryptedSeed: mnemonic,
+        unlockedSeed: mnemonic,
       }
     }
   }
