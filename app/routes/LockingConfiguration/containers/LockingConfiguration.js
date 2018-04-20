@@ -4,6 +4,7 @@ import { Redirect } from 'react-router'
 
 import Layout from '../components/Layout'
 import actions from './actions'
+import { MSG_CONFIGURE_ACCOUNT_LOCKING } from '../../../../extension/utils/messages'
 
 class LockingConfiguration extends Component {
   constructor(props) {
@@ -19,7 +20,16 @@ class LockingConfiguration extends Component {
   }
 
   handleSaveConfig = () => {
-    this.props.onConfigureLocking(this.state.minutes)
+    const { account } = this.props
+    const { minutes } = this.state
+
+    this.props.onConfigureLocking(minutes)
+
+    if (!account.lockedState) {
+      chrome.runtime.sendMessage({
+        msg: MSG_CONFIGURE_ACCOUNT_LOCKING,
+      })
+    }
   }
 
   render() {
