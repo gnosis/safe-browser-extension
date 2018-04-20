@@ -16,19 +16,21 @@ class Layout extends Component {
     } = this.props
 
     return (
-      <Page
-        account={true}
-        logOut={true}
-      >
-        <input
-          type='text'
-          value={newDapp}
-          onChange={updateNewDapp} />
-
-        {errorMessage && <p>{errorMessage}</p>}
-
-        <button onClick={handleAddDapp(newDapp)}>Add dApp</button>
-
+      <Page account logOut padding='noPadding'>
+        <div className={styles.innerPage}>
+          <input
+            type='text'
+            value={newDapp}
+            onChange={updateNewDapp}
+          />
+          {errorMessage && <p>{errorMessage}</p>}
+          <button
+            className={styles.button}
+            onClick={handleAddDapp(newDapp)}
+          >
+            Add dApp
+          </button>
+        </div>
         <div>
           {whitelistedDapps.map((dapp) => (
             <div key={dapp} className={styles.dapp}>

@@ -1,7 +1,15 @@
+.inner-page {
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.button {
+  margin-bottom: 0;
+}
+
 .dapp {
-  border: 1px solid #aaa;
-  margin-top: 10px;
-  padding: 5px;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 20px;
 }
 
 .dapp > .name {
