@@ -27,7 +27,7 @@ store.subscribe(() => {
   )
 })
 
-wrapStore(store, { portName: 'GNOSIS_SAFE_EXTENSION' })
+wrapStore(store, { portName: 'SAFE_BROWSER_EXTENSION' })
 
 const updateCurrentSafe = () => {
   let storePreviousSafeAddress = storeCurrentSafeAddress

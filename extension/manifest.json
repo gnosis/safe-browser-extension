@@ -1,10 +1,10 @@
 {
   "manifest_version": 2,
-  "name": "Gnosis Safe Extension",
+  "name": "Safe Browser Extension",
   "version": "1.0.0",
   "description": "",
   "browser_action": {
-    "default_title": "Gnosis Safe Extension",
+    "default_title": "Safe Browser Extension",
     "default_popup": "index.html"
   },
   "author": "Gnosis",

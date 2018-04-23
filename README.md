@@ -1,5 +1,4 @@
-# gnosis-safe-extension
-Gnosis Safe Chrome Extension
+# safe-browser-extension
 
 Installation
 -------
