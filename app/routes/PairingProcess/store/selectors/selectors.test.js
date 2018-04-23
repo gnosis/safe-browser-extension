@@ -26,7 +26,7 @@ const unlockedAccountState = {
       address,
       seed,
       hmac,
-      unlockedSeed: mnemonic,
+      unlockedMnemonic: mnemonic,
     }
   }
 }

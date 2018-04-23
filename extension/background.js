@@ -125,7 +125,7 @@ const lockAccountTimer = () => {
     clearTimeout(lockingTimer)
   }
 
-  const waitMinutes = store.getState().account.lockingConfig
+  const waitMinutes = store.getState().account.autoLockInterval
 
   lockingTimer = setTimeout(() => {
     store.dispatch(lockAccount())

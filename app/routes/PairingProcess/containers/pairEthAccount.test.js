@@ -39,7 +39,7 @@ const setUpSecondSafeUnlockedState = () => {
     lockedState: false,
     secondFA: {
       ...account.secondFA,
-      unlockedSeed: mnemonic,
+      unlockedMnemonic: mnemonic,
     }
   }
 }
@@ -85,7 +85,7 @@ describe('pairEthAccount', () => {
     const localAccount = setUpSecondSafeUnlockedState()
 
     const currentAccount = getUnencryptedEthAccount(
-      localAccount.secondFA.unlockedSeed
+      localAccount.secondFA.unlockedMnemonic
     )
 
     expect(currentAccount.getChecksumAddressString()).toEqual(localAccount.secondFA.address)

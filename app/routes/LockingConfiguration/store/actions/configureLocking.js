@@ -1,6 +1,6 @@
 export const CONFIGURE_LOCKING = 'CONFIGURE_LOCKING'
 
-export const configureLocking = (lockingConfig) => ({
+export const configureLocking = (autoLockInterval) => ({
   type: CONFIGURE_LOCKING,
-  lockingConfig,
+  autoLockInterval,
 })

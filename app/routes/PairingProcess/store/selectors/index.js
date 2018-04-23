@@ -34,7 +34,7 @@ export const selectUnencryptedMnemonicSelector = createSelector(
   accountSelector,
   (account) => {
     return (hasAccountSelector)
-      ? account.secondFA.unlockedSeed
+      ? account.secondFA.unlockedMnemonic
       : undefined
   }
 )

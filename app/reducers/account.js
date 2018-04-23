@@ -6,9 +6,9 @@ import { LOCK_ACCOUNT } from 'actions/account'
 const initalState = {
   lockedState: true,
   unlockingTime: undefined,
-  lockingConfig: 5,
+  autoLockInterval: 5,
   secondFA: {
-    unlockedSeed: undefined,
+    unlockedMnemonic: undefined,
   }
 }
 
@@ -35,7 +35,7 @@ function account(state = initalState, action) {
         unlockingTime: undefined,
         secondFA: {
           ...state.secondFA,
-          unlockedSeed: undefined,
+          unlockedMnemonic: undefined,
         }
       }
 
@@ -46,14 +46,14 @@ function account(state = initalState, action) {
         unlockingTime: action.unlockingTime,
         secondFA: {
           ...state.secondFA,
-          unlockedSeed: action.seed
+          unlockedMnemonic: action.seed
         }
       }
 
     case CONFIGURE_LOCKING:
       return {
         ...state,
-        lockingConfig: action.lockingConfig,
+        autoLockInterval: action.autoLockInterval,
       }
 
     default:

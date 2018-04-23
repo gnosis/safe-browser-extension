@@ -11,7 +11,7 @@ class LockingConfiguration extends Component {
     super(props)
 
     this.state = {
-      minutes: props.account.lockingConfig
+      minutes: props.account.autoLockInterval
     }
   }
 
