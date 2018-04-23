@@ -1,1 +1,1 @@
-# gnosis-safe-extension
+# safe-browser-extension
