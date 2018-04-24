@@ -7,6 +7,36 @@ import ClearFix from 'components/ClearFix'
 import styles from './index.css'
 import actions from './actions'
 
+const SafesLocked = () => (
+  <div className={styles.lockedAccounts}>
+    <div className={styles.state}>Safes are locked</div>
+    <Link to={{
+      pathname: '/password',
+      state: {
+        dest: '/account'
+      }
+    }}>
+      <button className={styles.lockingButton}>
+        UNLOCK
+      </button>
+    </Link>
+    <ClearFix />
+  </div>
+)
+
+const SafesUnlocked = ({ handleLockAccount }) => (
+  <div className={styles.unlockedAccounts}>
+    <div className={styles.state}>Safes are unlocked</div>
+    <button
+      className={styles.lockingButton}
+      onClick={handleLockAccount}
+    >
+      LOCK
+    </button>
+    <ClearFix />
+  </div>
+)
+
 class LockingState extends Component {
   constructor(props) {
     super(props)
@@ -39,33 +69,9 @@ class LockingState extends Component {
 
     return (
       <div className={styles.lockedState}>
-        {(account.lockedState)
-          ?
-          <div className={styles.lockedAccounts}>
-            <div className={styles.state}>Safes are locked</div>
-            <Link to={{
-              pathname: '/password',
-              state: {
-                dest: '/account'
-              }
-            }}>
-              <button className={styles.lockingButton}>
-                UNLOCK
-              </button>
-            </Link>
-            <ClearFix />
-          </div>
-          :
-          <div className={styles.unlockedAccounts}>
-            <div className={styles.state}>Safes are unlocked</div>
-            <button
-              className={styles.lockingButton}
-              onClick={this.handleLockAccount}
-            >
-              LOCK
-            </button>
-            <ClearFix />
-          </div>
+        {account.lockedState
+          ? <SafesLocked />
+          : <SafesUnlocked handleLockAccount={this.handleLockAccount} />
         }
       </div>
     )
