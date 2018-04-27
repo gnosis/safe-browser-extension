@@ -1,17 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Bip39 from 'bip39'
-import CryptoJs from 'crypto-js'
 
 import Layout from '../components/Layout'
 import {
   createAccountFromMnemonic,
+  createEthAccount,
+  getDecryptedEthAccount,
+  getUnencryptedEthAccount,
   generatePairingCodeContent,
-} from '../utils/ethOperations'
+} from './pairEthAccount'
 import { createQrImage } from 'utils/qrdisplay'
 import config from '../../../../config'
 
 import actions from './actions'
+import selector from './selector'
 
 class PairingProcess extends Component {
   constructor(props) {
@@ -21,50 +24,44 @@ class PairingProcess extends Component {
   }
 
   componentDidMount = () => {
-    const { location } = this.props
+    const {
+      location,
+      hasAccount,
+      hasLockedAccount,
+      selectEncryptedMnemonic,
+      selectUnencryptedMnemonic,
+    } = this.props
     const validPassword = location && location.state && location.state.password
-    const password = (validPassword) ? location.state.password : undefined
-    const currentAccount = this.getCurrentEthAccount(password)
+    const password = validPassword ? location.state.password : undefined
 
+    if (!hasAccount) {
+      const mnemonic = Bip39.generateMnemonic()
+      const  {
+        currentAccount,
+        encryptedMnemonic,
+        hmac,
+      } = createEthAccount(mnemonic, password)
+      this.props.onCreateAccount(currentAccount.getChecksumAddressString(), encryptedMnemonic, hmac)
+      return this.renderQrImageFrom(currentAccount.getPrivateKey())
+    }
+
+    if (hasLockedAccount && password) {
+      const localAccount = getDecryptedEthAccount(selectEncryptedMnemonic, password)
+      return this.renderQrImageFrom(localAccount.getPrivateKey())
+    }
+
+    if (!hasLockedAccount && !password) {
+      const localAccount = getUnencryptedEthAccount(selectUnencryptedMnemonic)
+      return this.renderQrImageFrom(localAccount.getPrivateKey())
+    }
+  }
+
+  renderQrImageFrom = (privateKey) => {
     createQrImage(
       this.qrPairingRef.current,
-      generatePairingCodeContent(currentAccount.getPrivateKey()),
+      generatePairingCodeContent(privateKey),
       4
     )
-  }
-
-  getCurrentEthAccount = (password) => {
-    const { account } = this.props
-    if (account.secondFA && Object.keys(account.secondFA).length > 0) {
-      return (account.lockedState && password)
-        ? this.getDecryptedEthAccount(password)
-        : this.getUnencryptedEthAccount(account.unlockedSeed)
-    }
-    else {
-      const mnemonic = Bip39.generateMnemonic()
-      const currentAccount = createAccountFromMnemonic(mnemonic)
-      return this.createEthAccount(password, mnemonic, currentAccount)
-    }
-  }
-
-  getDecryptedEthAccount = (password) => {
-    const { account } = this.props
-    const encryptedMnemonic = account.secondFA.seed
-    const mnemonic = CryptoJs.AES.decrypt(encryptedMnemonic, password).toString(CryptoJs.enc.Utf8)
-
-    return createAccountFromMnemonic(mnemonic)
-  }
-
-  getUnencryptedEthAccount = (mnemonic) => {
-    return createAccountFromMnemonic(mnemonic)
-  }
-
-  createEthAccount = (password, mnemonic, currentAccount) => {
-    const encryptedMnemonic = CryptoJs.AES.encrypt(mnemonic, password).toString()
-    const hmac = CryptoJs.HmacSHA256(encryptedMnemonic, CryptoJs.SHA256(password)).toString()
-
-    this.props.onCreateAccount(currentAccount.getChecksumAddressString(), encryptedMnemonic, hmac)
-    return currentAccount
   }
 
   handlePaired = (e) => {
@@ -89,13 +86,6 @@ class PairingProcess extends Component {
   }
 }
 
-const mapStateToProps = ({ account, safes }, props) => {
-  return {
-    account,
-    safes,
-  }
-}
-
 const mapDispatchToProps = (dispatch) => {
   return {
     onCreateAccount: (address, seed, hmac) => dispatch(actions.createAccount(address, seed, hmac)),
@@ -104,6 +94,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(
-  mapStateToProps,
+  selector,
   mapDispatchToProps,
 )(PairingProcess)

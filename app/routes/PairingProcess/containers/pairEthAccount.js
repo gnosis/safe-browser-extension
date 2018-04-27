@@ -1,7 +1,7 @@
-import HdKey from 'ethereumjs-wallet/hdkey'
 import Bip39 from 'bip39'
-import EthUtil from 'ethereumjs-util'
 import CryptoJs from 'crypto-js'
+import HdKey from 'ethereumjs-wallet/hdkey'
+import EthUtil from 'ethereumjs-util'
 
 export const createAccountFromMnemonic = (mnemonic) => {
   const seed = Bip39.mnemonicToSeed(mnemonic)
@@ -9,6 +9,28 @@ export const createAccountFromMnemonic = (mnemonic) => {
   const walletHdPath = 'm/44\'/60\'/0\'/0'
   const newAccount = hdWallet.derivePath(walletHdPath + '/0').getWallet()
   return newAccount
+}
+
+export const createEthAccount = (mnemonic, password) => {
+  const currentAccount = createAccountFromMnemonic(mnemonic)
+  const encryptedMnemonic = CryptoJs.AES.encrypt(mnemonic, password).toString()
+  const hmac = CryptoJs.HmacSHA256(encryptedMnemonic, CryptoJs.SHA256(password)).toString()
+
+  return {
+    currentAccount,
+    encryptedMnemonic,
+    hmac
+  }
+}
+
+export const getDecryptedEthAccount = (encryptedMnemonic, password) => {
+  const mnemonic = CryptoJs.AES.decrypt(encryptedMnemonic, password).toString(CryptoJs.enc.Utf8)
+
+  return createAccountFromMnemonic(mnemonic)
+}
+
+export const getUnencryptedEthAccount = (mnemonic) => {
+  return createAccountFromMnemonic(mnemonic)
 }
 
 export const generatePairingCodeContent = (privateKey) => {
