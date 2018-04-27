@@ -1,9 +1,9 @@
 import {
-  create2FAAccount,
+  createAccount,
   addSafe,
 } from '../store/actions'
 
 export default {
-  create2FAAccount,
+  createAccount,
   addSafe,
 }

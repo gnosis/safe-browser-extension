@@ -1,0 +1,30 @@
+.whitelisted-status {
+  border-bottom: 1px solid #ccc;
+}
+
+.whitelisted-status > div > button {
+  float: right;
+  height: 30px;
+  margin: 0;
+  padding: 5px;
+  width: 75px;
+}
+
+.whitelisted-dapp {
+  color: $green;
+  padding: 10px;
+}
+
+.not-whitelisted-dapp {
+  color: $red;
+  padding: 10px;
+}
+
+.whitelisted-status > div > .status {
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  overflow: hidden;
+  width: 295px;
+  word-break: break-all;
+}

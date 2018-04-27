@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 
-import account from 'routes/PairingProcess/store/reducers'
+import account from './account'
 import whitelistedDapps from './whitelistedDapps'
 import transactions from './transactions'
 import safes from './safes'

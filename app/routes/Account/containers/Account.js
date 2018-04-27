@@ -4,7 +4,6 @@ import wallet from 'ethereumjs-wallet'
 
 import Layout from '../components/Layout'
 import { createQrImage } from 'utils/qrdisplay'
-import config from '../../../../config'
 
 class Account extends Component {
 
@@ -17,21 +16,20 @@ class Account extends Component {
   }
 
   render() {
-    const { currentSafe } = this.props.safes
-    const network = config.networks[config.currentNetwork].url
-
+    const { account, safes } = this.props
     return (
       <Layout
-        address={currentSafe}
-        network={network}
+        currentSafe={safes.currentSafe}
+        properties={this.props.location}
         handleShowQrCode={this.handleShowQrCode}
       />
     )
   }
 }
 
-const mapStateToProps = ({ safes }, props) => {
+const mapStateToProps = ({ account, safes }, props) => {
   return {
+    account,
     safes,
   }
 }

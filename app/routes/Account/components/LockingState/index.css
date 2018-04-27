@@ -1,8 +1,8 @@
-.whitelisted-status {
+.locked-state {
   border-bottom: 1px solid #ccc;
 }
 
-.whitelisted-status > div > button {
+.locking-button {
   float: right;
   height: 30px;
   margin: 0;
@@ -10,18 +10,17 @@
   width: 75px;
 }
 
-.whitelisted-dapp {
+.unlocked-accounts {
   color: $green;
   padding: 10px;
 }
 
-.not-whitelisted-dapp {
-  background: $red;
-  color: #fff;
+.locked-accounts {
+  color: $red;
   padding: 10px;
 }
 
-.whitelisted-status > div > .status {
+.locked-state > div > .state {
   float: left;
   height: 30px;
   line-height: 30px;
