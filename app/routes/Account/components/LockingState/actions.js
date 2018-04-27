@@ -1,9 +1,5 @@
-import {
-  lockAccount,
-  unlockAccount,
-} from '../../store/actions'
+import { unlockAccount } from '../../store/actions'
 
 export default {
-  lockAccount,
-  unlockAccount,
+  unlockAccount
 }

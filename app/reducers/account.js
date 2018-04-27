@@ -1,16 +1,14 @@
-import {
-  CREATE_ACCOUNT,
-} from 'routes/PairingProcess/store/actions'
-import {
-  LOCK_ACCOUNT,
-  UNLOCK_ACCOUNT,
-} from 'routes/Account/store/actions'
+import { CREATE_ACCOUNT } from 'routes/PairingProcess/store/actions'
+import { CONFIGURE_LOCKING } from 'routes/LockingConfiguration/store/actions'
+import { UNLOCK_ACCOUNT } from 'routes/Account/store/actions'
+import { LOCK_ACCOUNT } from 'actions/account'
 
 const initalState = {
   lockedState: true,
   unlockingTime: undefined,
+  autoLockInterval: 5,
   secondFA: {
-    unlockedSeed: undefined,
+    unlockedMnemonic: undefined,
   }
 }
 
@@ -37,7 +35,7 @@ function account(state = initalState, action) {
         unlockingTime: undefined,
         secondFA: {
           ...state.secondFA,
-          unlockedSeed: undefined,
+          unlockedMnemonic: undefined,
         }
       }
 
@@ -48,8 +46,14 @@ function account(state = initalState, action) {
         unlockingTime: action.unlockingTime,
         secondFA: {
           ...state.secondFA,
-          unlockedSeed: action.seed
+          unlockedMnemonic: action.seed
         }
+      }
+
+    case CONFIGURE_LOCKING:
+      return {
+        ...state,
+        autoLockInterval: action.autoLockInterval,
       }
 
     default:

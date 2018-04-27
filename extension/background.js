@@ -3,14 +3,22 @@ import { wrapStore } from 'react-chrome-redux'
 
 import rootReducer from 'reducers'
 import { loadStorage, saveStorage } from './utils/storage'
+import { normalizeUrl } from 'utils/helpers'
+import { lockAccount } from 'actions/account'
+import {
+  addTransaction,
+  removeTransaction,
+  removeAllTransactions,
+} from 'actions/transactions'
 import {
   MSG_SHOW_POPUP,
   MSG_UPDATE_CURRENT_SAFE,
   MSG_ALLOW_INJECTION,
   MSG_RESP_ALLOW_INJECTION,
+  MSG_LOCK_ACCOUNT_TIMER,
+  MSG_LOCK_ACCOUNT,
+  MSG_CONFIGURE_ACCOUNT_LOCKING,
 } from './utils/messages'
-import { normalizeUrl } from 'utils/helpers'
-import { addTransaction, removeTransaction, removeAllTransactions } from 'actions/transactions'
 
 const persistedState = loadStorage()
 
@@ -55,6 +63,18 @@ chrome.runtime.onMessage.addListener(
         showPopup(request)
         break
 
+      case MSG_LOCK_ACCOUNT_TIMER:
+        lockAccountTimer()
+        break
+
+      case MSG_LOCK_ACCOUNT:
+        lockAccountNow()
+        break
+
+      case MSG_CONFIGURE_ACCOUNT_LOCKING:
+        lockAccountTimer()
+        break
+
       default:
 
     }
@@ -88,8 +108,6 @@ const isWhiteListedDapp = (dApp) => {
   return false
 }
 
-store.dispatch(removeAllTransactions())
-
 const showPopup = (request) => {
   chrome.windows.create({
     url: '/popup.html',
@@ -101,6 +119,29 @@ const showPopup = (request) => {
   })
 }
 
+let lockingTimer = null
+const lockAccountTimer = () => {
+  if (lockingTimer !== null) {
+    clearTimeout(lockingTimer)
+  }
+
+  const waitMinutes = store.getState().account.autoLockInterval
+
+  lockingTimer = setTimeout(() => {
+    store.dispatch(lockAccount())
+  }, waitMinutes * 60000)
+}
+
+const lockAccountNow = () => {
+  if (lockingTimer !== null) {
+    clearTimeout(lockingTimer)
+  }
+  store.dispatch(lockAccount())
+}
+
 chrome.windows.onRemoved.addListener((windowId) => {
   store.dispatch(removeTransaction(windowId))
 })
+
+store.dispatch(lockAccount())
+store.dispatch(removeAllTransactions())

@@ -21,9 +21,11 @@ class Layout extends Component {
 
     return (
       <Page account logOut padding='noPadding'>
-        <Link to={lockedState ? passwordRoute : pairingRoute}>
-          <button>Connect to safe</button>
-        </Link>
+        <div className={styles.innerPage}>
+          <Link to={lockedState ? passwordRoute : pairingRoute}>
+            <button className={styles.button}>Connect to safe</button>
+          </Link>
+        </div>
         {safes.safes && safes.safes.map((safe) => (
           <div
             onClick={selectSafe(safe.address)}

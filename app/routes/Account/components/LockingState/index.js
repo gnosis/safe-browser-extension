@@ -6,6 +6,10 @@ import CryptoJs from 'crypto-js'
 import ClearFix from 'components/ClearFix'
 import styles from './index.css'
 import actions from './actions'
+import {
+  MSG_LOCK_ACCOUNT,
+  MSG_LOCK_ACCOUNT_TIMER,
+} from '../../../../../extension/utils/messages'
 
 const SafesLocked = () => (
   <div className={styles.lockedAccounts}>
@@ -45,7 +49,9 @@ class LockingState extends Component {
   }
 
   handleLockAccount = () => {
-    this.props.onLockAccount()
+    chrome.runtime.sendMessage({
+      msg: MSG_LOCK_ACCOUNT,
+    })
   }
 
   handleUnlockAccount = (props) => {
@@ -62,6 +68,10 @@ class LockingState extends Component {
     ).toString(CryptoJs.enc.Utf8)
 
     this.props.onUnlockAccount(mnemonic, unlockingTime.toISOString())
+
+    chrome.runtime.sendMessage({
+      msg: MSG_LOCK_ACCOUNT_TIMER,
+    })
   }
 
   render() {
@@ -86,7 +96,6 @@ const mapStateToProps = ({ account }, props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLockAccount: () => dispatch(actions.lockAccount()),
     onUnlockAccount: (seed, time) => dispatch(actions.unlockAccount(seed, time))
   }
 }
