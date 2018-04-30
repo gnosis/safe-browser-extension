@@ -24,7 +24,8 @@ module.exports = {
     'popup': 'popup.js',
     'contentscript': path.resolve(__dirname, './extension/contentscript.js'),
     'script': path.resolve(__dirname, './extension/script.js'),
-    'background': path.resolve(__dirname, './extension/background.js')
+    'background': path.resolve(__dirname, './extension/background.js'),
+    'firebase-messaging-sw': path.resolve(__dirname, './extension/firebase-messaging-sw.js')
   },
   output: {
     publicPath: '/',
