@@ -11,7 +11,8 @@
   "permissions": [
     "storage",
     "activeTab",
-    "tabs"
+    "tabs",
+    "notifications"
   ],
   "background": {
     "scripts": [
@@ -35,6 +36,7 @@
   "web_accessible_resources": [
     "script.js"
   ],
+  "content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com https://apis.google.com; object-src 'self'",
   "externally_connectable": {
     "ids": [],
     "matches": []
