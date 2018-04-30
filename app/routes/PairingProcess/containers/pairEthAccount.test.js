@@ -4,6 +4,8 @@ import Adapter from 'enzyme-adapter-react-16'
 import { createMockStore } from 'redux-test-utils'
 import CryptoJs from 'crypto-js'
 import EthUtil from 'ethereumjs-util'
+import Web3 from 'web3'
+const web3 = new Web3()
 
 import {
   createEthAccount,
@@ -103,8 +105,8 @@ describe('pairEthAccount', () => {
       EthUtil.ecrecover(
         data,
         EthUtil.bufferToHex(pairingCode.signature.v),
-        pairingCode.signature.r,
-        pairingCode.signature.s
+        web3.toHex(pairingCode.signature.r),
+        web3.toHex(pairingCode.signature.s),
       )
     )
     const addressCode = EthUtil.pubToAddress(publicKeyCode)
