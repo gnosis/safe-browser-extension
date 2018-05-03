@@ -2,11 +2,11 @@ import React from 'react'
 import Enzyme, { shallow, mount, render } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import { createMockStore } from 'redux-test-utils'
-import CryptoJs from 'crypto-js'
-import Bip39 from 'bip39'
 
 import PairingProcess from './PairingProcess'
-import { createAccountFromMnemonic } from './pairEthAccount'
+import CreateAccount from '../components/CreateAccount'
+import LockedAccount from '../components/LockedAccount'
+import UnlockedAccount from '../components/UnlockedAccount'
 
 Enzyme.configure({ adapter: new Adapter() })
 
@@ -48,7 +48,14 @@ const setUpSecondSafeUnlockedState = () => {
   }
 }
 
-const setUpSecondSafeLockedState = () => ({ account })
+const setUpSecondSafeLockedState = () => {
+  return {
+    account: {
+      ...account,
+      lockedState: true,
+    }
+  }
+}
 
 describe('PairingProcess', () => {
   test('First pairing process', () => {
@@ -57,10 +64,9 @@ describe('PairingProcess', () => {
 
     const component = shallow(
       <PairingProcess location={location} store={mockStore} />
-    ).dive()
+    ).dive().dive()
 
-    expect(mockStore.getActions().length).toBe(1)
-    expect(mockStore.getActions()[0].type).toEqual(expectedAction)
+    expect(component.find('Connect(CreateAccount)')).toHaveLength(1)
   })
 
   test('Second pairing process with locked state', () => {
@@ -69,9 +75,9 @@ describe('PairingProcess', () => {
 
     const component = shallow(
       <PairingProcess location={location} store={mockStore} />
-    ).dive()
+    ).dive().dive()
 
-    expect(mockStore.getActions().length).toBe(0)
+    expect(component.find('Connect(LockedAccount)')).toHaveLength(1)
   })
 
   test('Second pairing process with unlocked state', () => {
@@ -79,9 +85,9 @@ describe('PairingProcess', () => {
     const mockStore = createMockStore({ account })
 
     const component = shallow(
-      <PairingProcess location={location} store={mockStore} />
-    ).dive()
+      <PairingProcess store={mockStore} />
+    ).dive().dive()
 
-    expect(mockStore.getActions().length).toBe(0)
+    expect(component.find('Connect(UnlockedAccount)')).toHaveLength(1)
   })
 })
