@@ -1,5 +1,5 @@
 module.exports = {
-  currentNetwork: 'Kovan',
+  currentNetwork: 'Rinkeby',
   networks: {
     'Mainnet': {
       version: 1,
