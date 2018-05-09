@@ -113,6 +113,11 @@ module.exports = {
         from: path.resolve(__dirname, './extension/manifest.json'),
         to: path.resolve(__dirname, './build/manifest.json'),
         force: true
+      },
+      {
+        from: path.resolve(__dirname, './extension/options/'),
+        to: path.resolve(__dirname, './build/options/'),
+        force: true
       }
     ])
   ],
