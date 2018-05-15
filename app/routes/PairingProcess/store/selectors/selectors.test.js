@@ -96,6 +96,14 @@ describe('Pairing process selectors', () => {
     expect(result).toEqual(true)
   })
 
+  test('hasLockedAccountSelector should return false if there is no account', () => {
+    const state = { account: {} }
+    const store = createStore(rootReducer, state)
+
+    const result = hasLockedAccountSelector(store.getState())
+    expect(result).toEqual(false)
+  })
+
   test('hasLockedAccountSelector should return false if account is unlocked', () => {
     const state = unlockedAccountState
     const store = createStore(rootReducer, state)

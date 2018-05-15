@@ -2,6 +2,8 @@ import Bip39 from 'bip39'
 import CryptoJs from 'crypto-js'
 import HdKey from 'ethereumjs-wallet/hdkey'
 import EthUtil from 'ethereumjs-util'
+import Web3 from 'web3'
+const web3 = new Web3()
 
 export const createAccountFromMnemonic = (mnemonic) => {
   const seed = Bip39.mnemonicToSeed(mnemonic)
@@ -44,8 +46,8 @@ export const generatePairingCodeContent = (privateKey) => {
     expirationDate: formatedExpirationDate,
     signature: {
       v: vrs.v,
-      r: EthUtil.bufferToHex(vrs.r),
-      s: EthUtil.bufferToHex(vrs.s)
+      r: web3.toBigNumber(EthUtil.bufferToHex(vrs.r)).toString(10),
+      s: web3.toBigNumber(EthUtil.bufferToHex(vrs.s)).toString(10),
     }
   })
   return pairingCodeContent

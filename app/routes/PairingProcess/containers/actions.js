@@ -1,9 +1,3 @@
-import {
-  createAccount,
-  addSafe,
-} from '../store/actions'
+import { addSafe } from '../store/actions'
 
-export default {
-  createAccount,
-  addSafe,
-}
+export default { addSafe }
