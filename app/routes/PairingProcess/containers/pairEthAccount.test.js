@@ -62,12 +62,10 @@ describe('pairEthAccount', () => {
   test('Create Ethereum account before connecting the first Safe', () => {
     const createdAccount = createAccountFromMnemonic(mnemonic)
     const {
-      currentAccount,
       encryptedMnemonic,
       hmac
     } = createEthAccount(mnemonic, password)
 
-    expect(currentAccount).toEqual(createdAccount)
     const decryptedHmac = CryptoJs.HmacSHA256(
       encryptedMnemonic,
       CryptoJs.SHA256(password)
