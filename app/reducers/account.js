@@ -2,6 +2,7 @@ import { CREATE_ACCOUNT } from 'routes/PairingProcess/store/actions'
 import { CONFIGURE_LOCKING } from 'routes/LockingConfiguration/store/actions'
 import { UNLOCK_ACCOUNT } from 'routes/Account/store/actions'
 import { LOCK_ACCOUNT } from 'actions/account'
+import { UPDATE_MASTER_PASSWORD } from 'routes/ConfirmPassword/store/actions'
 
 const initalState = {
   lockedState: true,
@@ -13,7 +14,6 @@ const initalState = {
 }
 
 function account(state = initalState, action) {
-  let newState
   switch (action.type) {
 
     case CREATE_ACCOUNT:
@@ -54,6 +54,19 @@ function account(state = initalState, action) {
       return {
         ...state,
         autoLockInterval: action.autoLockInterval,
+      }
+
+    case UPDATE_MASTER_PASSWORD:
+      return {
+        ...state,
+        lockedState: true,
+        unlockingTime: undefined,
+        secondFA: {
+          ...state.secondFA,
+          seed: action.seed,
+          hmac: action.hmac,
+          unlockedMnemonic: undefined,
+        }
       }
 
     default:
