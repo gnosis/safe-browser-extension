@@ -1,0 +1,40 @@
+html{
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  color: #333
+}
+
+.container {
+  border: 1px solid #00a6c4;
+  margin: 100px auto;
+  padding: 50px;
+  text-align: center;
+  width: 500px;
+}
+
+.title {
+  color: #00a6c4;
+  font-size: 25px;
+}
+
+#requestNotitications {
+  display: none;
+}
+
+button {
+  background: #00a6c4;
+  border: none;
+  border-radius: 2px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  height: 40px;
+  margin: 0 auto;
+  outline: 0;
+  padding: 10px;
+  width: 200px;
+}
+
+button:active {
+  background: rgba(8, 98, 117, .4);
+}

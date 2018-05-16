@@ -18,6 +18,20 @@ import './styles.css'
 
 class App extends Component {
   componentWillMount() {
+
+    navigator.permissions.query({ name: 'notifications' })
+      .then(function (permission) {
+        if (permission.state === 'granted') {
+          return
+        }
+        if (chrome.runtime.openOptionsPage) {
+          chrome.runtime.openOptionsPage()
+        }
+        else {
+          window.open(chrome.runtime.getURL('options/options.html'))
+        }
+      })
+
     const { safes } = this.props.state
     const validSafes = safes.safes && safes.safes.length > 0
     const url = validSafes ? '/account' : '/welcome'
