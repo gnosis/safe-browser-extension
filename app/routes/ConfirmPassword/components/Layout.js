@@ -9,7 +9,8 @@ class Layout extends Component {
     const {
       password,
       error,
-      updatePassword,
+      updatePasswordField,
+      updateMasterPassword,
       properties,
     } = this.props
 
@@ -20,14 +21,14 @@ class Layout extends Component {
           type='password'
           placeholder='Confirm password'
           value={password}
-          onChange={updatePassword}
+          onChange={updatePasswordField}
         />
         <div>
           <div className={(error && error.match) ? styles.correct : styles.wrong}>
             <p>Passwords must match</p>
           </div>
         </div>
-        {this.props.continue &&
+        {this.props.continue && properties.option === 'createPassword' &&
           <Link to={{
             pathname: properties.dest,
             state: properties
@@ -35,7 +36,12 @@ class Layout extends Component {
             <button>CONTINUE</button>
           </Link>
         }
-        {!this.props.continue && <button>CONTINUE</button>}
+        {this.props.continue && properties.option === 'updatePassword' &&
+          <button onClick={updateMasterPassword}>CONTINUE</button>
+        }
+        {!this.props.continue &&
+          <button>CONTINUE</button>
+        }
       </Page>
     )
   }
