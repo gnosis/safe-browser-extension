@@ -1,7 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/messaging'
 import EthUtil from 'ethereumjs-util'
-import Web3 from 'web3'
+import BigNumber from 'bignumber.js'
 
 import config from '../../../../../config'
 
@@ -50,15 +50,15 @@ export const authPushNotificationService = (pushToken, privateKey) => {
 
 // Data sent to the push notification service to register and pair the device.
 const generateAuthContent = (pushToken, privateKey) => {
-  const web3 = new Web3()
-
   const data = EthUtil.sha3('GNO' + pushToken)
   const vrs = EthUtil.ecsign(data, privateKey)
+  const r = new BigNumber(EthUtil.bufferToHex(vrs.r))
+  const s = new BigNumber(EthUtil.bufferToHex(vrs.s))
   const authContent = JSON.stringify({
     signature: {
+      r: r.toString(10),
+      s: s.toString(10),
       v: vrs.v,
-      r: web3.toBigNumber(EthUtil.bufferToHex(vrs.r)).toString(10),
-      s: web3.toBigNumber(EthUtil.bufferToHex(vrs.s)).toString(10),
     },
     push_token: pushToken,
   })
