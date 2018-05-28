@@ -3,7 +3,31 @@ import BigNumber from 'bignumber.js'
 
 import config from '../../config'
 
-export const sendNotification = (owners, data, privateKey) => {
+export const requestConfirmationResponse = (type, privateKey, hash, prefix) => {
+  const message = (prefix)
+    ? prefix + hash
+    : hash
+
+  const signedTxHash = EthUtil.sha3(message)
+  const vrsTxHash = EthUtil.ecsign(signedTxHash, privateKey)
+  const r = new BigNumber(EthUtil.bufferToHex(vrsTxHash.r))
+  const s = new BigNumber(EthUtil.bufferToHex(vrsTxHash.s))
+  const data = JSON.stringify({
+    type: type,
+    hash: hash,
+    r: r.toString(10),
+    s: s.toString(10),
+    v: vrsTxHash.v.toString(10),
+  })
+
+  const response = sendNotification(data, privateKey)
+  if (response) {
+    console.log(response.status)
+  }
+}
+
+export const sendNotification = (data, privateKey) => {
+  const owners = []
   const signedData = EthUtil.sha3('GNO' + data)
   const vrs = EthUtil.ecsign(signedData, privateKey)
 
@@ -37,5 +61,4 @@ export const sendNotification = (owners, data, privateKey) => {
       console.log(err)
       return
     })
-
 }

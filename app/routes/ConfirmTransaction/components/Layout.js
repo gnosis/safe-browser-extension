@@ -7,6 +7,7 @@ class Layout extends Component {
     const {
       transaction,
       handleConfirmTransaction,
+      handleRejectTransaction,
     } = this.props
 
     const { hash, from, to, gas, gasPrice, data } = transaction
@@ -22,6 +23,9 @@ class Layout extends Component {
 
         <button onClick={handleConfirmTransaction}>
           Confirm
+        </button>
+        <button onClick={handleRejectTransaction}>
+          Reject
         </button>
       </Page>
     )
