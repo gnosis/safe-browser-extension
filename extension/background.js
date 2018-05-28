@@ -1,10 +1,12 @@
 import { createStore } from 'redux'
 import { wrapStore } from 'react-chrome-redux'
+import BigNumber from 'bignumber.js'
 
 import rootReducer from 'reducers'
 import { loadStorage, saveStorage } from './utils/storage'
 import { normalizeUrl } from 'utils/helpers'
 import { lockAccount } from 'actions/account'
+import { sendNotification } from 'utils/sendNotifications'
 import { addSafe } from 'routes/PairingProcess/store/actions'
 import {
   addTransaction,
@@ -61,7 +63,7 @@ chrome.runtime.onMessage.addListener(
         break
 
       case MSG_SHOW_POPUP:
-        showPopup(request)
+        showPopup(request.tx)
         break
 
       case MSG_LOCK_ACCOUNT_TIMER:
@@ -109,14 +111,14 @@ const isWhiteListedDapp = (dApp) => {
   return false
 }
 
-const showPopup = (request) => {
+const showPopup = (transaction) => {
   chrome.windows.create({
     url: '/popup.html',
     type: 'popup',
     height: 500,
     width: 400
   }, (window) => {
-    store.dispatch(addTransaction(request.tx, window.id))
+    store.dispatch(addTransaction(transaction, window.id))
   })
 }
 
@@ -157,6 +159,10 @@ if ('serviceWorker' in navigator) {
         safeCreation(payload)
         break
 
+      case 'requestConfirmation':
+      requestConfirmation(payload)
+        break
+
       default:
 
     }
@@ -172,4 +178,8 @@ const safeCreation = (payload) => {
     return
   }
   store.dispatch(addSafe(payload.safe))
+}
+
+const requestConfirmation = (payload) => {
+  showPopup(payload)
 }
