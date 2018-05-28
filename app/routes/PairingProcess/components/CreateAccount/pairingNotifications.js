@@ -1,4 +1,5 @@
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/messaging'
 import EthUtil from 'ethereumjs-util'
 import Web3 from 'web3'
 
@@ -17,12 +18,14 @@ const setUpFirebase = () => {
     storageBucket: config.firebase.storageBucket,
     messagingSenderId: config.firebase.messagingSenderId
   }
-  firebase.initializeApp(configFirebase)
+  if (!firebase.apps.length) {
+    firebase.initializeApp(configFirebase)
+  }
   return firebase.messaging()
 }
 
 export const authPushNotificationService = (pushToken, privateKey) => {
-  const url = config.pushNotificationServiceUrl
+  const url = config.pushNotificationServiceUrl + 'auth/'
   const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
@@ -45,6 +48,7 @@ export const authPushNotificationService = (pushToken, privateKey) => {
     })
 }
 
+// Data sent to the push notification service to register and pair the device.
 const generateAuthContent = (pushToken, privateKey) => {
   const web3 = new Web3()
 

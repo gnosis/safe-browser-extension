@@ -18,7 +18,6 @@ import './styles.css'
 
 class App extends Component {
   componentWillMount() {
-
     navigator.permissions.query({ name: 'notifications' })
       .then(function (permission) {
         if (permission.state === 'granted') {
@@ -32,9 +31,20 @@ class App extends Component {
         }
       })
 
-    const { safes } = this.props.state
+    const { account, safes } = this.props.state
+    const validAccount = account.secondFA && Object.keys(account.secondFA).length > 0
     const validSafes = safes.safes && safes.safes.length > 0
-    const url = validSafes ? '/account' : '/welcome'
+    const url = (validAccount && validSafes)
+      ? '/account'
+      : ((validAccount)
+        ? {
+          pathname: '/password',
+          state: {
+            dest: '/pairing'
+          }
+        }
+        : '/welcome')
+
     this.props.history.push(url)
   }
 

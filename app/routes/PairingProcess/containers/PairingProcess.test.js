@@ -2,11 +2,13 @@ import React from 'react'
 import Enzyme, { shallow, mount, render } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import { createMockStore } from 'redux-test-utils'
+import 'babel-polyfill'
 
 import PairingProcess from './PairingProcess'
 import CreateAccount from '../components/CreateAccount'
 import LockedAccount from '../components/LockedAccount'
 import UnlockedAccount from '../components/UnlockedAccount'
+import config from '../../../../config'
 
 Enzyme.configure({ adapter: new Adapter() })
 
@@ -90,4 +92,38 @@ describe('PairingProcess', () => {
 
     expect(component.find('Connect(UnlockedAccount)')).toHaveLength(1)
   })
+
+  /*
+  test('Send notification of Safe creation from mobile app', async () => {
+    const url = config.pushNotificationServiceUrl + 'notifications/'
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    }
+    const body = JSON.stringify({
+      devices: ["<BROWSER_EXTENSION_ETH_ACCOUNT_ADDRESS>"],
+      message: JSON.stringify({
+        "safe": "<NEW_SAFE_ADDRESS>",
+        "type": "safeCreation"
+      }),
+      signature: {
+        r: "<MESSAGE_SIGNATURE>",
+        s: "<MESSAGE_SIGNATURE>",
+        v: <MESSAGE_SIGNATURE>
+      }
+    })
+
+    await fetch(url, {
+      method: 'POST',
+      headers,
+      body,
+    })
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  })
+  */
 })

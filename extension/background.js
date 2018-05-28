@@ -5,6 +5,7 @@ import rootReducer from 'reducers'
 import { loadStorage, saveStorage } from './utils/storage'
 import { normalizeUrl } from 'utils/helpers'
 import { lockAccount } from 'actions/account'
+import { addSafe } from 'routes/PairingProcess/store/actions'
 import {
   addTransaction,
   removeTransaction,
@@ -145,3 +146,30 @@ chrome.windows.onRemoved.addListener((windowId) => {
 
 store.dispatch(lockAccount())
 store.dispatch(removeAllTransactions())
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.addEventListener('message', (event) => {
+    const payload = event.data
+
+    switch (payload.type) {
+
+      case 'safeCreation':
+        safeCreation(payload)
+        break
+
+      default:
+
+    }
+  })
+}
+
+const safeCreation = (payload) => {
+  const safes = store.getState().safes.safes
+  const validSafeAddress = safes.filter(safe => safe === payload.safe) > -1
+
+  if (safes.length > 0 && validSafeAddress) {
+    console.error('Safe', payload.safe, 'already exists.')
+    return
+  }
+  store.dispatch(addSafe(payload.safe))
+}

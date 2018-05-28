@@ -27,15 +27,9 @@ class PairingProcess extends Component {
   }
 
   handlePaired = (e) => {
-    // MOCK CONNECTION TO SAFE ACCOUNT
     const { safes } = this.props
-    const connectedSafes = (safes.safes !== undefined)
-      ? safes.safes.length
-      : 0
-
-    const newSafeAdress = config.mockSafesAdresses[connectedSafes]
-    this.props.onAddSafe(newSafeAdress)
-    this.props.history.push('/account')
+    if (safes != null && safes.safes.length > 0)
+      this.props.history.push('/account')
   }
 
   render() {

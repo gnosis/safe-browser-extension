@@ -29,17 +29,16 @@ class CreateAccount extends Component {
 
     setUpNotifications()
       .then((token) => {
-        if (token !== null) {
-          if (authPushNotificationService(token, currentAccount.getPrivateKey())) {
-            this.setState({ loading: false })
-            this.props.onCreateAccount(currentAccount.getChecksumAddressString(), encryptedMnemonic, hmac)
-          }
-        }
-        else {
+        if (token === null) {
           this.setState({
             loading: false,
             message: 'Permission to receive notifications required.'
           })
+          return
+        }
+        if (authPushNotificationService(token, currentAccount.getPrivateKey())) {
+          this.setState({ loading: false })
+          this.props.onCreateAccount(currentAccount.getChecksumAddressString(), encryptedMnemonic, hmac)
         }
       })
       .catch((err) => console.error(err))
