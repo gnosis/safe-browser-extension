@@ -1,18 +1,25 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import HdKey from 'ethereumjs-wallet/hdkey'
-import Bip39 from 'bip39'
-import CryptoJs from 'crypto-js'
+import EthUtil from 'ethereumjs-util'
+import BigNumber from 'bignumber.js'
 
+import { sendNotification } from 'utils/sendNotifications'
+import {
+  getDecryptedEthAccount,
+  createAccountFromMnemonic,
+} from 'routes/PairingProcess/containers/pairEthAccount'
 import Layout from '../components/Layout'
+import config from '../../../../config'
 
 class ConfirmTransaction extends Component {
   constructor(props) {
     super(props)
 
+    const { location } = this.props
+    const validPassword = location && location.state && location.state.password
+    this.password = validPassword ? location.state.password : undefined
+
     this.state = {
-      password: '',
-      errorMessage: '',
       transaction: {},
     }
   }
@@ -41,6 +48,7 @@ class ConfirmTransaction extends Component {
 
     this.setState({
       transaction: {
+        hash: tx.hash,
         from: tx.from,
         gas: parseInt(tx.gas, 16).toString(10),
         gasPrice: parseInt(tx.gasPrice, 16).toString(10) / 1000000000,
@@ -50,32 +58,43 @@ class ConfirmTransaction extends Component {
     })
   }
 
-  updatePassword = (e) => {
-    this.setState({ password: e.target.value })
-  }
-
   handleConfirmTransaction = () => {
-    const { password } = this.state
-    const { seed, address } = this.props.account
+    const { transaction } = this.state
+    const { seed, unlockedMnemonic } = this.props.account.secondFA
 
-    if (!password || password.length < 10) {
-      this.setState({ errorMessage: 'Invalid password' })
-      return false
+    const account = !unlockedMnemonic && this.password
+      ? getDecryptedEthAccount(seed, this.password)
+      : createAccountFromMnemonic(unlockedMnemonic)
+
+    console.log(account.getChecksumAddressString())
+    const privateKey = account.getPrivateKey()
+
+    const owners = []
+
+    const signedTxHash = EthUtil.sha3(transaction.hash)
+    const vrsTxHash = EthUtil.ecsign(signedTxHash, privateKey)
+    const r = new BigNumber(EthUtil.bufferToHex(vrsTxHash.r))
+    const s = new BigNumber(EthUtil.bufferToHex(vrsTxHash.s))
+    const data = JSON.stringify({
+      type: 'confirmTransaction',
+      hash: transaction.hash,
+      r: r.toString(10),
+      s: s.toString(10),
+      v: vrsTxHash.v.toString(10),
+    })
+
+    const response = sendNotification(owners, data, privateKey)
+    if (response) {
+      console.log(response.status)
     }
-
-    //TO-DO: Confirm transaction
-
   }
 
   render() {
-    const { password, errorMessage, transaction } = this.state
-    
+    const { transaction } = this.state
+
     return (
       <Layout
         transaction={transaction}
-        password={password}
-        errorMessage={errorMessage}
-        updatePassword={this.updatePassword}
         handleConfirmTransaction={this.handleConfirmTransaction}
       />
     )
