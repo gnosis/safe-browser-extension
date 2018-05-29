@@ -56,34 +56,36 @@ class ConfirmTransaction extends Component {
   }
 
   handleConfirmTransaction = () => {
-    const { transaction } = this.state
-    const { seed, unlockedMnemonic } = this.props.account.secondFA
-    const account = !unlockedMnemonic && this.password
-      ? getDecryptedEthAccount(seed, this.password)
-      : createAccountFromMnemonic(unlockedMnemonic)
-    const privateKey = account.getPrivateKey()
-
-    requestConfirmationResponse(
-      'confirmTransaction',
-      privateKey,
-      transaction.hash,
-    )
+    this.handleTransaction('confirmTransaction')
   }
 
   handleRejectTransaction = () => {
+    this.handleTransaction('rejectTransaction', 'GNO')
+  }
+
+  handleTransaction = (type, prefix) => {
     const { transaction } = this.state
-    const { seed, unlockedMnemonic } = this.props.account.secondFA
+    const { currentSafe } = this.props.safes
+    const { address, seed, unlockedMnemonic } = this.props.account.secondFA
     const account = !unlockedMnemonic && this.password
       ? getDecryptedEthAccount(seed, this.password)
       : createAccountFromMnemonic(unlockedMnemonic)
-    const privateKey = account.getPrivateKey()
 
     requestConfirmationResponse(
-      'rejectTransaction',
-      privateKey,
+      type,
+      address,
+      account.getPrivateKey(),
       transaction.hash,
-      'GNO'
+      currentSafe,
+      prefix
     )
+      .then((response) => {
+        if (response.status === 204)
+          window.close()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   render() {
@@ -99,9 +101,10 @@ class ConfirmTransaction extends Component {
   }
 }
 
-const mapStateToProps = ({ account, transactions }, props) => {
+const mapStateToProps = ({ account, safes, transactions }, props) => {
   return {
     account,
+    safes,
     transactions,
   }
 }

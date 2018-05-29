@@ -1,9 +1,20 @@
 import EthUtil from 'ethereumjs-util'
 import BigNumber from 'bignumber.js'
+import 'babel-polyfill'
+import TruffleContract from 'truffle-contract'
+import Web3 from 'web3'
 
+import GnosisSafePersonalEdition from '../../contracts/GnosisSafePersonalEdition.json'
 import config from '../../config'
 
-export const requestConfirmationResponse = (type, privateKey, hash, prefix) => {
+export const requestConfirmationResponse = (
+  type,
+  accountAddress,
+  privateKey,
+  hash,
+  safeAddress,
+  prefix
+) => {
   const message = (prefix)
     ? prefix + hash
     : hash
@@ -20,14 +31,24 @@ export const requestConfirmationResponse = (type, privateKey, hash, prefix) => {
     v: vrsTxHash.v.toString(10),
   })
 
-  const response = sendNotification(data, privateKey)
-  if (response) {
-    console.log(response.status)
-  }
+  return sendNotification(data, privateKey, accountAddress, safeAddress)
 }
 
-export const sendNotification = (data, privateKey) => {
-  const owners = []
+export const sendNotification = async (
+  data,
+  privateKey,
+  accountAddress,
+  safeAddress
+) => {
+  let owners
+  try {
+    owners = await getOwners(accountAddress, safeAddress)
+  }
+  catch (err) {
+    console.error(err)
+    return
+  }
+
   const signedData = EthUtil.sha3('GNO' + data)
   const vrs = EthUtil.ecsign(signedData, privateKey)
 
@@ -48,17 +69,26 @@ export const sendNotification = (data, privateKey) => {
     }
   })
 
-  fetch(url, {
+  return fetch(url, {
     method: 'POST',
     headers,
     body,
   })
-    .then((response) => {
-      console.log(response)
-      return response
+
+}
+
+const getOwners = (accountAddress, safeAddress) => {
+  const contract = TruffleContract(GnosisSafePersonalEdition)
+  const provider = new Web3.providers.HttpProvider(
+    config.networks[config.currentNetwork].url
+  )
+  contract.setProvider(provider)
+
+  return contract.at(safeAddress)
+    .then((instance) => {
+      return instance.getOwners()
     })
-    .catch((err) => {
-      console.log(err)
-      return
+    .then((owners) => {
+      return owners.filter(owner => owner !== accountAddress)
     })
 }

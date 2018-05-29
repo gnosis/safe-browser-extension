@@ -112,6 +112,9 @@ const isWhiteListedDapp = (dApp) => {
 }
 
 const showPopup = (transaction) => {
+  if (transaction.safe)
+    transaction.from = transaction.safe
+
   chrome.windows.create({
     url: '/popup.html',
     type: 'popup',
@@ -160,7 +163,7 @@ if ('serviceWorker' in navigator) {
         break
 
       case 'requestConfirmation':
-      requestConfirmation(payload)
+        requestConfirmation(payload)
         break
 
       default:
