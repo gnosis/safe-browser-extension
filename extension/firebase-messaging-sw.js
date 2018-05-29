@@ -16,6 +16,10 @@ self.addEventListener('push', (event) => {
       message = 'The confirmation of a new transaction was requested'
       break
 
+    case 'sendTransactionHash':
+      title = 'Transaction executed'
+      message = payload.txHash
+
     default:
       return
 
