@@ -17,10 +17,16 @@ class Layout extends Component {
         <Link to='/locking'>
           <div className={styles.option}>Locking options </div>
         </Link>
-        <Link to='#'>
-          <div className={styles.option}>Change master password</div>
+        <Link to={{
+          pathname: '/password',
+          state: {
+            dest: '/create-password',
+            option: 'updatePassword'
+          }
+        }}>
+          <div className={styles.option}>Change password</div>
         </Link>
-      </Page>
+      </Page >
     )
   }
 }

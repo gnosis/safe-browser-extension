@@ -15,7 +15,13 @@ class Layout extends Component {
 
     return (
       <Page>
-        <p className={styles.text}>Create the master password</p>
+        <p className={styles.text}>
+          {
+            properties.options === 'createPassword'
+              ? 'Create the master password'
+              : 'Update the master password'
+          }
+        </p>
         <input
           type='password'
           placeholder='Password'

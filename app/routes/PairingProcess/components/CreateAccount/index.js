@@ -3,7 +3,10 @@ import { connect } from 'react-redux'
 import Bip39 from 'bip39'
 
 import { setUpNotifications, authPushNotificationService } from './pairingNotifications'
-import { createEthAccount } from '../../containers/pairEthAccount'
+import {
+  createEthAccount,
+  createAccountFromMnemonic
+} from '../../containers/pairEthAccount'
 import styles from './index.css'
 import actions from './actions'
 
@@ -21,8 +24,8 @@ class CreateAccount extends Component {
     const { password } = this.props
 
     const mnemonic = Bip39.generateMnemonic()
+    const currentAccount = createAccountFromMnemonic(mnemonic)
     const {
-      currentAccount,
       encryptedMnemonic,
       hmac,
     } = createEthAccount(mnemonic, password)

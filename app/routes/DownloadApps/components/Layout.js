@@ -49,7 +49,8 @@ class Layout extends Component {
         <Link to={{
           pathname: '/create-password',
           state: {
-            dest: '/pairing'
+            dest: '/pairing',
+            option: 'createPassword'
           }
         }}>
           <button>CONTINUE</button>

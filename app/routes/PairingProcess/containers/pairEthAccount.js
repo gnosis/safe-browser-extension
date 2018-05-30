@@ -14,12 +14,10 @@ export const createAccountFromMnemonic = (mnemonic) => {
 }
 
 export const createEthAccount = (mnemonic, password) => {
-  const currentAccount = createAccountFromMnemonic(mnemonic)
   const encryptedMnemonic = CryptoJs.AES.encrypt(mnemonic, password).toString()
   const hmac = CryptoJs.HmacSHA256(encryptedMnemonic, CryptoJs.SHA256(password)).toString()
 
   return {
-    currentAccount,
     encryptedMnemonic,
     hmac
   }
