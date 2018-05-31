@@ -15,12 +15,11 @@ export const requestConfirmationResponse = (
   safeAddress,
   prefix
 ) => {
-  const message = (prefix)
-    ? prefix + hash
-    : hash
+  const txHash = (prefix)
+    ? EthUtil.sha3(prefix + hash + type)
+    : EthUtil.toBuffer(hash)
 
-  const signedTxHash = EthUtil.sha3(message)
-  const vrsTxHash = EthUtil.ecsign(signedTxHash, privateKey)
+  const vrsTxHash = EthUtil.ecsign(txHash, privateKey)
   const r = new BigNumber(EthUtil.bufferToHex(vrsTxHash.r))
   const s = new BigNumber(EthUtil.bufferToHex(vrsTxHash.s))
   const data = JSON.stringify({
