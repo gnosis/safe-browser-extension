@@ -1,0 +1,11 @@
+.text {
+  text-align: center;
+}
+
+.correct {
+  color: $green;
+}
+
+.wrong {
+  color: $red;
+}
