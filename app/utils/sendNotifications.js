@@ -89,6 +89,7 @@ const getOwners = (accountAddress, safeAddress) => {
       return instance.getOwners()
     })
     .then((owners) => {
-      return owners.filter(owner => owner !== accountAddress)
+      const destOwners = owners.filter(owner => owner.toLowerCase() !== accountAddress.toLowerCase())
+      return destOwners.map(owner => EthUtil.toChecksumAddress(owner))
     })
 }

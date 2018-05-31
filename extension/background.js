@@ -1,8 +1,9 @@
 import { createStore } from 'redux'
 import { wrapStore } from 'react-chrome-redux'
 import BigNumber from 'bignumber.js'
-
 import rootReducer from 'reducers'
+
+import EthUtil from 'ethereumjs-util'
 import { loadStorage, saveStorage } from './utils/storage'
 import { normalizeUrl } from 'utils/helpers'
 import { lockAccount } from 'actions/account'
@@ -180,7 +181,8 @@ const safeCreation = (payload) => {
     console.error('Safe', payload.safe, 'already exists.')
     return
   }
-  store.dispatch(addSafe(payload.safe))
+  const checksumedAddress = EthUtil.toChecksumAddress(payload.safe)
+  store.dispatch(addSafe(checksumedAddress))
 }
 
 const requestConfirmation = (payload) => {
