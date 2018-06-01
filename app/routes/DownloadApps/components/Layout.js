@@ -46,13 +46,7 @@ class Layout extends Component {
 
           <ClearFix />
         </div>
-        <Link to={{
-          pathname: '/create-password',
-          state: {
-            dest: '/pairing',
-            option: 'createPassword'
-          }
-        }}>
+        <Link to='/create-password'>
           <button>CONTINUE</button>
         </Link>
       </Page>
