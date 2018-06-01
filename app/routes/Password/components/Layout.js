@@ -14,14 +14,18 @@ class Layout extends Component {
 
     return (
       <Page>
-        <p className={styles.text}>Confirm the master password</p>
+        <p className={styles.text}>Enter the password</p>
         <input
           type='password'
           placeholder='Password'
           value={password}
           onChange={updatePassword}
         />
-        {errorMessage && <p>{errorMessage}</p>}
+        {errorMessage &&
+          <div className={styles.wrong}>
+            <p>{errorMessage}</p>
+          </div>
+        }
         <button onClick={validatePasswords}>CONTINUE</button>
       </Page>
     )
