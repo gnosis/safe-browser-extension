@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 import Page from 'components/Page'
-import CreatePasswordForm from 'components/CreatePasswordForm/containers/CreatePasswordForm'
+import CreatePasswordForm from './CreatePasswordForm/containers/CreatePasswordForm'
 import styles from './index.css'
 
 class Layout extends Component {

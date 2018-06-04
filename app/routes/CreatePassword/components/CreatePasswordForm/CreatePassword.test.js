@@ -11,89 +11,89 @@ const manageCreatePassword = jest.fn()
 describe('Create Password Form Validation', () => {
 
   test('validateLength: It should return true if the password has minimum 8 characters', () => {
-    const password = 'qwertyui'
+    const newPassword = 'qwertyui'
     const props = {
-      password
+      newPassword
     }
     const component = shallow(<CreatePasswordForm {...props} />)
-    const result = component.instance().validateLength(password)
+    const result = component.instance().validateLength(newPassword)
     expect(component.state().error.length).toEqual(true)
     expect(result).toEqual(true)
   })
 
   test('validateLength: It should return false if the password has less than 8 characters', () => {
-    const password = 'qwe'
+    const newPassword = 'qwe'
     const props = {
-      password
+      newPassword
     }
     const component = shallow(<CreatePasswordForm {...props} />)
-    const result = component.instance().validateLength(password)
+    const result = component.instance().validateLength(newPassword)
     expect(component.state().error.length).toEqual(false)
     expect(result).toEqual(false)
   })
 
   test('validateNumber: It should return true if the password has minimum 1 number', () => {
-    const password = 'qwe1'
+    const newPassword = 'qwe1'
     const props = {
-      password
+      newPassword
     }
     const component = shallow(<CreatePasswordForm {...props} />)
-    const result = component.instance().validateNumber(password)
+    const result = component.instance().validateNumber(newPassword)
     expect(component.state().error.number).toEqual(true)
     expect(result).toEqual(true)
   })
 
   test('validateNumber: It should return false if the password has no numbers', () => {
-    const password = 'qwe'
+    const newPassword = 'qwe'
     const props = {
-      password
+      newPassword
     }
     const component = shallow(<CreatePasswordForm {...props} />)
-    const result = component.instance().validateNumber(password)
+    const result = component.instance().validateNumber(newPassword)
     expect(component.state().error.number).toEqual(false)
     expect(result).toEqual(false)
   })
 
   test('validateLetter: It should return true if the password has minimum 1 letter', () => {
-    const password = 'q'
+    const newPassword = 'q'
     const props = {
-      password
+      newPassword
     }
     const component = shallow(<CreatePasswordForm {...props} />)
-    const result = component.instance().validateLetter(password)
+    const result = component.instance().validateLetter(newPassword)
     expect(component.state().error.letter).toEqual(true)
     expect(result).toEqual(true)
   })
 
   test('validateLetter: It should return false if the password has no letters', () => {
-    const password = '12345'
+    const newPassword = '12345'
     const props = {
-      password
+      newPassword
     }
     const component = shallow(<CreatePasswordForm {...props} />)
-    const result = component.instance().validateLetter(password)
+    const result = component.instance().validateLetter(newPassword)
     expect(component.state().error.letter).toEqual(false)
     expect(result).toEqual(false)
   })
 
   test('validateRow: It should return true if the password has no more than 2 identical characters', () => {
-    const password = 'qwerrty123'
+    const newPassword = 'qwerrty123'
     const props = {
-      password
+      newPassword
     }
     const component = shallow(<CreatePasswordForm {...props} />)
-    const result = component.instance().validateRow(password)
+    const result = component.instance().validateRow(newPassword)
     expect(component.state().error.row).toEqual(true)
     expect(result).toEqual(true)
   })
 
   test('validateRow: It should return false if the password has more more than 2 identical characters', () => {
-    const password = 'qwerrrty123'
+    const newPassword = 'qwerrrty123'
     const props = {
-      password
+      newPassword
     }
     const component = shallow(<CreatePasswordForm {...props} />)
-    const result = component.instance().validateRow(password)
+    const result = component.instance().validateRow(newPassword)
     expect(component.state().error.row).toEqual(false)
     expect(result).toEqual(false)
   })
@@ -109,7 +109,7 @@ describe('Create Password Form Validation', () => {
 
     const inputPassword = component.dive().find('input')
     inputPassword.simulate('change', { target: { value: newPassword } })
-    
+
     expect(manageCreatePassword).toHaveBeenCalled()
     expect(component.state().error.length).toEqual(true)
     expect(component.state().error.number).toEqual(true)
@@ -128,7 +128,7 @@ describe('Create Password Form Validation', () => {
 
     const inputPassword = component.dive().find('input')
     inputPassword.simulate('change', { target: { value: newPassword } })
-    
+
     expect(manageCreatePassword).toHaveBeenCalled()
     expect(component.state().error.length).toEqual(false)
     expect(component.state().error.number).toEqual(false)
@@ -147,7 +147,7 @@ describe('Create Password Form Validation', () => {
 
     const inputPassword = component.dive().find('input')
     inputPassword.simulate('change', { target: { value: newPassword } })
-    
+
     expect(manageCreatePassword).toHaveBeenCalled()
     expect(component.state().error.length).toEqual(false)
     expect(component.state().error.number).toEqual(false)

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 import Page from 'components/Page'
-import ConfirmPasswordForm from 'components/ConfirmPasswordForm/containers/ConfirmPasswordForm'
+import ConfirmPasswordForm from './ConfirmPasswordForm/containers/ConfirmPasswordForm'
 import styles from './index.css'
 
 class Layout extends Component {

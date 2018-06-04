@@ -21,57 +21,49 @@ class CreatePasswordForm extends Component {
   }
 
   validateLength = (password) => {
-    const validLength = password && password.length >= 8
-    if (validLength) {
-      this.setState((prevState, props) => ({
-        error: {
-          ...prevState.error,
-          length: validLength
-        }
-      }))
-    }
+    const validLength = password !== '' && password.length >= 8
+    this.setState((prevState, props) => ({
+      error: {
+        ...prevState.error,
+        length: validLength
+      }
+    }))
     return validLength
   }
 
   validateNumber = (password) => {
     const expression = /.*\d+.*/
-    const validExpression = password && expression.test(password)
-    if (validExpression) {
-      this.setState((prevState, props) => ({
-        error: {
-          ...prevState.error,
-          number: validExpression
-        }
-      }))
-    }
+    const validExpression = password !== '' && expression.test(password)
+    this.setState((prevState, props) => ({
+      error: {
+        ...prevState.error,
+        number: validExpression
+      }
+    }))
     return validExpression
   }
 
   validateLetter = (password) => {
     const expression = /.*[a-zA-Z]+.*/
-    const validExpression = password && expression.test(password)
-    if (validExpression) {
-      this.setState((prevState, props) => ({
-        error: {
-          ...prevState.error,
-          letter: validExpression
-        }
-      }))
-    }
+    const validExpression = password !== '' && expression.test(password)
+    this.setState((prevState, props) => ({
+      error: {
+        ...prevState.error,
+        letter: validExpression
+      }
+    }))
     return validExpression
   }
 
   validateRow = (password) => {
     const expression = /.*(.)\1{2}.*/
-    const validExpression = password && !expression.test(password)
-    if (validExpression) {
-      this.setState((prevState, props) => ({
-        error: {
-          ...prevState.error,
-          row: validExpression
-        }
-      }))
-    }
+    const validExpression = password !== '' && !expression.test(password)
+    this.setState((prevState, props) => ({
+      error: {
+        ...prevState.error,
+        row: validExpression
+      }
+    }))
     return validExpression
   }
 

@@ -31,7 +31,7 @@ class ChangePassword extends Component {
     this.setState({
       newPassword,
       createPasswordReady,
-      confirmPasswordReady: (newPassword === confirmPassword)
+      confirmPasswordReady: (newPassword !== '' && newPassword === confirmPassword)
     })
   }
 
@@ -39,7 +39,7 @@ class ChangePassword extends Component {
     const { newPassword } = this.state
     this.setState({
       confirmPassword,
-      confirmPasswordReady: (newPassword === confirmPassword)
+      confirmPasswordReady: (newPassword !== '' && newPassword === confirmPassword)
     })
   }
 
