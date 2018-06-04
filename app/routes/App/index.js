@@ -4,6 +4,7 @@ import { Route, withRouter } from 'react-router'
 
 import Welcome from 'routes/Welcome/containers/Welcome'
 import DownloadApps from 'routes/DownloadApps/containers/DownloadApps'
+import ChangePassword from 'routes/ChangePassword/containers/ChangePassword'
 import CreatePassword from 'routes/CreatePassword/containers/CreatePassword'
 import ConfirmPassword from 'routes/ConfirmPassword/containers/ConfirmPassword'
 import Password from 'routes/Password/containers/Password'
@@ -53,6 +54,7 @@ class App extends Component {
       <div>
         <Route exact path='/welcome' component={Welcome} />
         <Route exact path='/download-apps' component={DownloadApps} />
+        <Route exact path='/change-password' component={ChangePassword} />
         <Route exact path='/create-password' component={CreatePassword} />
         <Route exact path='/confirm-password' component={ConfirmPassword} />
         <Route exact path='/password' component={Password} />
