@@ -6,6 +6,16 @@ import styles from './index.css'
 
 class Layout extends Component {
   render() {
+    const { hasLockedAccount } = this.props
+    const changePasswordUrl = (hasLockedAccount)
+      ? {
+        pathname: '/password',
+        state: {
+          dest: '/change-password'
+        }
+      }
+      : '/change-password'
+
     return (
       <Page account logOut padding='noPadding'>
         <Link to='/whitelist'>
@@ -17,13 +27,7 @@ class Layout extends Component {
         <Link to='/locking'>
           <div className={styles.option}>Locking options </div>
         </Link>
-        <Link to={{
-          pathname: '/password',
-          state: {
-            dest: '/create-password',
-            option: 'updatePassword'
-          }
-        }}>
+        <Link to={changePasswordUrl}>
           <div className={styles.option}>Change password</div>
         </Link>
       </Page >
