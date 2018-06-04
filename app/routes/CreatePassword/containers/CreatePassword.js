@@ -13,7 +13,6 @@ class CreatePassword extends Component {
   }
 
   manageCreatePassword = (newPassword, ready) => {
-    console.log('manageCreatePassword', newPassword, ready)
     this.setState({
       newPassword,
       ready,

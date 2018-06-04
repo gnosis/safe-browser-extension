@@ -28,7 +28,6 @@ class ChangePassword extends Component {
 
   manageCreatePassword = (newPassword, createPasswordReady) => {
     const { confirmPassword } = this.state
-    console.log('manageCreatePassword: ', newPassword, continue1)
     this.setState({
       newPassword,
       createPasswordReady,
@@ -38,7 +37,6 @@ class ChangePassword extends Component {
 
   manageConfirmPassword = (confirmPassword) => {
     const { newPassword } = this.state
-    console.log('manageConfirmPassword: ', confirmPassword)
     this.setState({
       confirmPassword,
       confirmPasswordReady: (newPassword === confirmPassword)
@@ -89,7 +87,6 @@ class ChangePassword extends Component {
     if (redirectToAccount) {
       return <Redirect to='/account' />
     }
-    console.log('renderrrrrrrrrrrrrrrr')
     return (
       <Layout
         newPassword={newPassword}

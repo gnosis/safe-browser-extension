@@ -18,8 +18,6 @@ class Layout extends Component {
       ready,
     } = this.props
 
-    console.log('ready', ready, continue2)
-
     return (
       <Page>
         <CreatePasswordForm

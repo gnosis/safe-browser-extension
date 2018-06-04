@@ -15,7 +15,6 @@ class ConfirmPassword extends Component {
   }
 
   manageConfirmPassword = (confirmPassword) => {
-    console.log('manageConfirmPassword', confirmPassword, (confirmPassword === this.properties.password))
     this.setState({
       confirmPassword,
       ready: (confirmPassword === this.properties.password),
