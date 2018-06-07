@@ -13,13 +13,18 @@
 // -------------------------------------
 
   function setView (view = "welcome") {
+    let isExtension = document.querySelectorAll(".extension")[0] // just to check if we are on the extension.html
     let allViews = document.querySelectorAll(".extension")
-    for (let i = 0; i < allViews.length; i++) {
-      allViews[i].classList.remove('show')
-      allViews[i].classList.add('hide')
+
+    // Set active view
+    if (isExtension) {
+      for (let i = 0; i < allViews.length; i++) {
+        allViews[i].classList.remove('show')
+        allViews[i].classList.add('hide')
+      }
+      console.log(`Current active view = ${view}`)
+      document.querySelectorAll(`.extension.${view}`)[0].classList.remove('hide')
     }
-    console.log(`Current active view = ${view}`)
-    let activeView = document.querySelectorAll(`.extension.${view}`)[0].classList.remove('hide')
   }
 
   function toggleDisclaimer () {
