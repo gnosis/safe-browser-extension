@@ -1,0 +1,42 @@
+@import "../../core/_variables";
+
+.start {
+
+  .content {
+    max-width: 51em;
+    width: 100%;
+    margin: 5em auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .safeLogo {
+    margin: 0 auto 7em;
+  }
+
+  h1 {
+    font-weight: $lighter;
+    font-size: 3em;
+    letter-spacing: 0;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  p {
+    margin: 1.5em auto 3em;
+    font-size: 1.5em;
+    line-height: 1.8;
+  }
+
+  img {
+    flex: 1 100%;
+  }
+
+  button {
+    max-width: 30em;
+    margin: 2.5em auto 0;
+  }
+
+}
+
