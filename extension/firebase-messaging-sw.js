@@ -11,6 +11,15 @@ self.addEventListener('push', (event) => {
       message = 'A new Safe was created'
       break;
 
+    case 'requestConfirmation':
+      title = 'Confirm transaction'
+      message = 'The confirmation of a new transaction was requested'
+      break
+
+    case 'sendTransactionHash':
+      title = 'Transaction executed'
+      message = payload.txHash
+
     default:
       return
 

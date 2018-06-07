@@ -3,11 +3,14 @@ import Enzyme, { shallow, mount, render } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import { createMockStore } from 'redux-test-utils'
 import 'babel-polyfill'
+import EthUtil from 'ethereumjs-util'
+import BigNumber from 'bignumber.js'
 
 import PairingProcess from './PairingProcess'
 import CreateAccount from '../components/CreateAccount'
 import LockedAccount from '../components/LockedAccount'
 import UnlockedAccount from '../components/UnlockedAccount'
+import { createAccountFromMnemonic } from './pairEthAccount'
 import config from '../../../../config'
 
 Enzyme.configure({ adapter: new Adapter() })
@@ -94,36 +97,100 @@ describe('PairingProcess', () => {
   })
 
   /*
-  test('Send notification of Safe creation from mobile app', async () => {
-    const url = config.pushNotificationServiceUrl + 'notifications/'
-    const headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    }
-    const body = JSON.stringify({
-      devices: ["<BROWSER_EXTENSION_ETH_ACCOUNT_ADDRESS>"],
-      message: JSON.stringify({
-        "safe": "<NEW_SAFE_ADDRESS>",
-        "type": "safeCreation"
-      }),
-      signature: {
-        r: "<MESSAGE_SIGNATURE>",
-        s: "<MESSAGE_SIGNATURE>",
-        v: <MESSAGE_SIGNATURE>
+    test('Send safeCreation', async () => {
+      const account = createAccountFromMnemonic('<MOBILE_APP_ETH_ACCOUNT_MNEMONIC>')
+      console.log(account.getChecksumAddressString())
+      const privateKey = account.getPrivateKey()
+      const data = JSON.stringify({
+        type: 'safeCreation',
+        safe: '<NEW_SAFE_ADDRESS>'
+      })
+      const signedData = EthUtil.sha3('GNO' + data)
+      const vrs = EthUtil.ecsign(signedData, privateKey)
+  
+      const url = config.pushNotificationServiceUrl + 'notifications/'
+      const headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
       }
-    })
-
-    await fetch(url, {
-      method: 'POST',
-      headers,
-      body,
-    })
-      .then((response) => {
-        console.log(response)
+      const r = new BigNumber(EthUtil.bufferToHex(vrs.r))
+      const s = new BigNumber(EthUtil.bufferToHex(vrs.s))
+      const body = JSON.stringify({
+        devices: ['<BROWSER_EXTENSION_ETH_ACCOUNT_ADDRESS>'],
+        message: data,
+        signature: {
+          r: r.toString(10),
+          s: s.toString(10),
+          v: vrs.v,
+        }
       })
-      .catch((err) => {
-        console.log(err)
+  
+      await fetch(url, {
+        method: 'POST',
+        headers,
+        body,
       })
-  })
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    })
   */
+
+  /*
+    test('Send requestConfirmation', async () => {
+      const account = createAccountFromMnemonic('<MOBILE_APP_ETH_ACCOUNT_MNEMONIC>')
+      const privateKey = account.getPrivateKey()
+      const data = JSON.stringify({
+        type: 'requestConfirmation',
+        hash: '<TRANSACTION_HASH>',
+        safe: '<SAFE_ADDRESS>',
+        to: '<TO>',
+        value: '<VALUE>',
+        data: '<DATA>',
+        operation: '<OPERATION>',
+        txGas: '<TX_GAS>',
+        dataGas: '<DATA_GAS>',
+        gasPrice: '<GAS_PRICE>',
+        gasToken: '<GAS_TOKEN>',
+        nonce: '<NONCE>'
+      })
+      const signedData = EthUtil.sha3('GNO' + data)
+      const vrs = EthUtil.ecsign(signedData, privateKey)
+  
+      const url = config.pushNotificationServiceUrl + 'notifications/'
+      const headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+      const r = new BigNumber(EthUtil.bufferToHex(vrs.r))
+      const s = new BigNumber(EthUtil.bufferToHex(vrs.s))
+      const body = JSON.stringify({
+        devices: ['<BROWSER_EXTENSION_ETH_ACCOUNT_ADDRESS>'],
+        message: data,
+        signature: {
+          r: r.toString(10),
+          s: s.toString(10),
+          v: vrs.v,
+        }
+      })
+  
+      console.log(body)
+  
+      await fetch(url, {
+        method: 'POST',
+        headers,
+        body,
+      })
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    })
+  */
+
 })

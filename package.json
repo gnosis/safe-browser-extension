@@ -15,6 +15,7 @@
   "author": "Gnosis",
   "license": "ISC",
   "dependencies": {
+    "bignumber.js": "^7.2.1",
     "bip39": "^2.5.0",
     "crypto-js": "^3.1.9-1",
     "ethereumjs-util": "^5.1.5",
@@ -29,6 +30,7 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "truffle-contract": "^3.0.5",
     "web3": "^0.20.6",
     "web3-provider-engine": "^14.0.4"
   },

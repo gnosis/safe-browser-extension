@@ -1,10 +1,13 @@
 import { createStore } from 'redux'
 import { wrapStore } from 'react-chrome-redux'
-
+import BigNumber from 'bignumber.js'
 import rootReducer from 'reducers'
+
+import EthUtil from 'ethereumjs-util'
 import { loadStorage, saveStorage } from './utils/storage'
 import { normalizeUrl } from 'utils/helpers'
 import { lockAccount } from 'actions/account'
+import { sendNotification } from 'utils/sendNotifications'
 import { addSafe } from 'routes/PairingProcess/store/actions'
 import {
   addTransaction,
@@ -61,7 +64,7 @@ chrome.runtime.onMessage.addListener(
         break
 
       case MSG_SHOW_POPUP:
-        showPopup(request)
+        showPopup(request.tx)
         break
 
       case MSG_LOCK_ACCOUNT_TIMER:
@@ -109,14 +112,17 @@ const isWhiteListedDapp = (dApp) => {
   return false
 }
 
-const showPopup = (request) => {
+const showPopup = (transaction) => {
+  if (transaction.safe)
+    transaction.from = transaction.safe
+
   chrome.windows.create({
     url: '/popup.html',
     type: 'popup',
     height: 500,
     width: 400
   }, (window) => {
-    store.dispatch(addTransaction(request.tx, window.id))
+    store.dispatch(addTransaction(transaction, window.id))
   })
 }
 
@@ -157,6 +163,10 @@ if ('serviceWorker' in navigator) {
         safeCreation(payload)
         break
 
+      case 'requestConfirmation':
+        requestConfirmation(payload)
+        break
+
       default:
 
     }
@@ -165,11 +175,16 @@ if ('serviceWorker' in navigator) {
 
 const safeCreation = (payload) => {
   const safes = store.getState().safes.safes
-  const validSafeAddress = safes.filter(safe => safe === payload.safe) > -1
+  const validSafeAddress = safes.filter(safe => safe.address === payload.safe).length < 1
 
-  if (safes.length > 0 && validSafeAddress) {
+  if (safes.length > 0 && !validSafeAddress) {
     console.error('Safe', payload.safe, 'already exists.')
     return
   }
-  store.dispatch(addSafe(payload.safe))
+  const checksumedAddress = EthUtil.toChecksumAddress(payload.safe)
+  store.dispatch(addSafe(checksumedAddress))
+}
+
+const requestConfirmation = (payload) => {
+  showPopup(payload)
 }
