@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="114px" height="114px" viewBox="0 0 114 114" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>browser-extension-door-hole-unlock</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="50%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#F1F3F7" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="-7.46539947e-14%" id="linearGradient-2">
+            <stop stop-color="#F4F4F4" offset="0%"></stop>
+            <stop stop-color="#F1F1F1" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="4.48626894%" id="linearGradient-3">
+            <stop stop-color="#34AAFD" offset="0%"></stop>
+            <stop stop-color="#00CFEE" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Browser-extension" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="10.-Password-unlock-screen" transform="translate(-287.000000, -253.000000)">
+            <g id="#container" transform="translate(159.000000, 82.000000)">
+                <g id="browser-extension-door-hole-unlock" transform="translate(120.000000, 163.000000)">
+                    <g id="circle">
+                        <g>
+                            <circle id="Oval" stroke="url(#linearGradient-2)" stroke-width="2" fill="url(#linearGradient-1)" cx="64.9819928" cy="64.9819928" r="55.9819928"></circle>
+                            <circle id="Oval" stroke="#28B2FA" stroke-width="7" cx="64.9819928" cy="64.9819928" r="51.4819928"></circle>
+                            <circle id="Oval" stroke="url(#linearGradient-3)" stroke-width="3" cx="64.9819928" cy="64.9819928" r="53.4819928"></circle>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
