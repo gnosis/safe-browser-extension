@@ -53,9 +53,9 @@
   position: relative;
   flex: 1 1 100%;
 
-    // path, svg {
-    //   fill: #A2A8BA;
-    // }
+    &[data-state] {
+
+    }
 
     &[data-validation="ERROR"] {
       animation: shake .5s linear;

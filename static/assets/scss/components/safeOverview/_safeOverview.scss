@@ -1,0 +1,23 @@
+.safeOverview {
+  background: #F4F5F9;
+
+    .safeContent {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 35px 25px 0;
+      box-sizing: border-box;
+      align-content: center;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+
+        a {
+          font-size: 1.3em;
+          font-weight: $normal;
+          line-height: 1;
+        }
+    }
+}
+

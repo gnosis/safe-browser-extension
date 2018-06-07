@@ -1,0 +1,104 @@
+.appConnect {
+  background: #F4F5F9;
+
+  .safeIcon {
+    width: 32px;
+  }
+
+  .extension-inner {
+    h1 {
+      background: $white;
+      box-shadow: 0 2px 2px 0 rgba(0,0,0,.12);
+      padding: 1.4em 0;
+      font-size: 1.7em;
+      margin: 0 auto 1em;
+    }
+
+     ol {
+       list-style: none;
+       position: relative;
+     }
+
+     ol > li {
+      counter-increment: item;
+      position: relative;
+      padding: 0 2em 0 5em;
+      margin: 0 0 3em;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: flex-start;
+     }
+
+     ol > li::before {
+      margin-right: 10px;
+      content: counter(item);
+      color: #65707e;
+      background: 0 0;
+      width: 2.3em;
+      text-align: center;
+      display: block;
+      border-radius: 100%;
+      height: 2.3em;
+      border: 1px solid #a2a8ba;
+      line-height: 2.2em;
+      font-size: 1.5em;
+      box-sizing: border-box;
+      padding: 0;
+      font-weight: $bold;
+      position: absolute;
+      top: 1em;
+      left: 0;
+     }
+
+     ol > li p {
+      font-size: 1.4em;
+     }
+
+     ol > li > button {
+      flex: 0 1 auto;
+      margin: 0;
+      outline: 0;
+
+        &[data-os] {
+          background: none;
+          border: 0;
+          font-size: 1.3em;
+          font-weight: $bold;
+          color: $black;
+          cursor: pointer;
+          will-change: transform;
+          transition: transform .3s ease-in-out;
+
+            &:first-of-type {
+              margin: 0 2em 0 0;
+            }
+
+            &:hover {
+              transform: scale3D(1.05,1.05,1.05)
+            }
+        }
+
+        &[data-os]::before {
+          width: 30px;
+          height: 30px;
+          display: block;
+          margin: 0 auto .5em;
+        }
+
+        &[data-os="ios"]::before {
+          content: "";
+          background: url('/assets/images/ios.svg') no-repeat center/contain;
+        }
+
+        &[data-os="android"]::before {
+          content: "";
+          background: url('/assets/images/android.svg') no-repeat center/contain;
+        }
+     }
+
+    ol p {
+      text-align: left;
+    }
+  }
+}
