@@ -15,7 +15,7 @@ import WhitelistedDapps from 'routes/WhitelistedDapps/containers/WhitelistedDapp
 import SafesList from 'routes/SafesList/containers/SafesList'
 import LockingConfiguration from 'routes/LockingConfiguration/containers/LockingConfiguration'
 
-import './styles.css'
+import 'assets/css/global.css'
 
 class App extends Component {
   componentWillMount() {
