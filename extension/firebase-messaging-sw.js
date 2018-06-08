@@ -1,4 +1,4 @@
-import notificationImage from 'assets/notification_image.jpg'
+import notificationImage from 'assets/images/notification_image.jpg'
 
 self.addEventListener('push', (event) => {
   const payload = event.data.json().data
