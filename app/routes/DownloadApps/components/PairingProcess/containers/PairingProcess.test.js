@@ -11,7 +11,7 @@ import CreateAccount from '../components/CreateAccount'
 import LockedAccount from '../components/LockedAccount'
 import UnlockedAccount from '../components/UnlockedAccount'
 import { createAccountFromMnemonic } from './pairEthAccount'
-import config from '../../../../config'
+import config from '../../../../../../config'
 
 Enzyme.configure({ adapter: new Adapter() })
 
@@ -23,11 +23,7 @@ const account = {
     hmac: '421e3feb800198552c762254830deaadd24a84eff4600897bbe1f9282dc47563',
   }
 }
-const location = {
-  state: {
-    password: 'asdfasdf1'
-  }
-}
+const password = 'asdfasdf1'
 
 const setUpFirstSafe = () => {
   const account = {
@@ -68,7 +64,7 @@ describe('PairingProcess', () => {
     const mockStore = createMockStore({ account })
 
     const component = shallow(
-      <PairingProcess location={location} store={mockStore} />
+      <PairingProcess password={password} store={mockStore} />
     ).dive().dive()
 
     expect(component.find('Connect(CreateAccount)')).toHaveLength(1)
@@ -79,7 +75,7 @@ describe('PairingProcess', () => {
     const mockStore = createMockStore({ account })
 
     const component = shallow(
-      <PairingProcess location={location} store={mockStore} />
+      <PairingProcess password={password} store={mockStore} />
     ).dive().dive()
 
     expect(component.find('Connect(LockedAccount)')).toHaveLength(1)

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Layout from '../components/Layout'
 import { generatePairingCodeContent } from './pairEthAccount'
 import { createQrImage } from 'utils/qrdisplay'
-import config from '../../../../config'
+import config from '../../../../../../config'
 import actions from './actions'
 import selector from './selector'
 
@@ -13,16 +13,13 @@ class PairingProcess extends Component {
     super(props)
 
     this.qrPairingRef = React.createRef()
-    const { location } = this.props
-    const validPassword = location && location.state && location.state.password
-    this.password = validPassword ? location.state.password : undefined
   }
 
   renderQrImageFrom = (privateKey) => {
     createQrImage(
       this.qrPairingRef.current,
       generatePairingCodeContent(privateKey),
-      4
+      3
     )
   }
 
@@ -33,15 +30,21 @@ class PairingProcess extends Component {
   }
 
   render() {
-    const { hasAccount, hasLockedAccount } = this.props
+    const {
+      hasAccount,
+      hasLockedAccount,
+      toggleQr,
+      password,
+    } = this.props
+
     return (
       <Layout
         qrPairingRef={this.qrPairingRef}
         hasAccount={hasAccount}
         hasLockedAccount={hasLockedAccount}
-        password={this.password}
+        password={password}
         renderQrImageFrom={this.renderQrImageFrom}
-        handlePaired={this.handlePaired}
+        toggleQr={toggleQr}
       />
     )
   }
@@ -57,3 +60,4 @@ export default connect(
   selector,
   mapDispatchToProps,
 )(PairingProcess)
+PairingProcess

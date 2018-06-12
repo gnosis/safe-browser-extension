@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 import Layout from '../components/Layout'
-import { createQrImage } from 'utils/qrdisplay'
 import config from '../../../../config'
 
 class DownloadApps extends Component {
@@ -9,32 +8,53 @@ class DownloadApps extends Component {
     super(props)
 
     this.androidAppLink = config.androidAppLink
-    this.iOSAppLink = config.iOSAppLink
+    this.iosAppLink = config.iOSAppLink
+
+    this.state = {
+      showQrAndroid: false,
+      showQrIos: false,
+      showQrPairing: false,
+    }
+
+    this.qrPairingRef = React.createRef()
+    const { location } = this.props
+    const validPassword = location && location.state && location.state.password
+    this.password = validPassword ? location.state.password : undefined
   }
 
-  componentDidMount = () => {
-    createQrImage(
-      document.getElementById('qr-android'),
-      this.androidAppLink,
-      4
-    )
-    createQrImage(
-      document.getElementById('qr-ios'),
-      this.iOSAppLink,
-      4
-    )
+  toggleQrAndroid = () => {
+    const { showQrAndroid } = this.state
+    this.setState({ showQrAndroid: !showQrAndroid })
   }
 
-  handleOpenApp = (url) => (e) => {
-    chrome.tabs.create({ url })
+  toggleQrIos = () => {
+    const { showQrIos } = this.state
+    this.setState({ showQrIos: !showQrIos })
+  }
+
+  toggleQrPairing = () => {
+    const { showQrPairing } = this.state
+    this.setState({ showQrPairing: !showQrPairing })
   }
 
   render() {
+    const {
+      showQrAndroid,
+      showQrIos,
+      showQrPairing,
+    } = this.state
+
     return (
       <Layout
+        toggleQrAndroid={this.toggleQrAndroid}
+        toggleQrIos={this.toggleQrIos}
+        toggleQrPairing={this.toggleQrPairing}
+        showQrAndroid={showQrAndroid}
+        showQrIos={showQrIos}
+        showQrPairing={showQrPairing}
         androidAppLink={this.androidAppLink}
-        iOSAppLink={this.iOSAppLink}
-        handleOpenApp={this.handleOpenApp}
+        iosAppLink={this.iosAppLink}
+        password={this.password}
       />
     )
   }

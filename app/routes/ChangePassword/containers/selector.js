@@ -3,7 +3,7 @@ import {
   selectEncryptedMnemonicSelector,
   selectUnencryptedMnemonicSelector,
   accountSelector,
-} from 'routes/PairingProcess/store/selectors'
+} from 'routes/DownloadApps/components/PairingProcess/store/selectors'
 
 export default createStructuredSelector({
   selectEncryptedMnemonic: selectEncryptedMnemonicSelector,
