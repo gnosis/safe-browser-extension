@@ -2,7 +2,7 @@ import { CREATE_ACCOUNT } from 'routes/PairingProcess/store/actions'
 import { CONFIGURE_LOCKING } from 'routes/LockingConfiguration/store/actions'
 import { UNLOCK_ACCOUNT } from 'routes/Account/store/actions'
 import { LOCK_ACCOUNT } from 'actions/account'
-import { UPDATE_MASTER_PASSWORD } from 'routes/ConfirmPassword/store/actions'
+import { UPDATE_MASTER_PASSWORD } from 'routes/ChangePassword/store/actions'
 
 const initalState = {
   lockedState: true,

@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import Layout from '../components/Layout'
+import selector from './selector'
 
-const Settings = () => <Layout />
+class Settings extends Component {
+  render() {
+    const { hasLockedAccount } = this.props
+    return (
+      <Layout hasLockedAccount={hasLockedAccount} />
+    )
+  }
+}
 
-export default Settings
+export default connect(
+  selector
+)(Settings)

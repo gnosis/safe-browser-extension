@@ -42,26 +42,18 @@ class Password extends Component {
   }
 
   render() {
-    const { password, errorMessage } = this.state
-    const { dest, option } = this.properties
+    const {
+      password,
+      errorMessage
+    } = this.state
 
-    let state
     if (this.state.continue) {
-      if (option === 'updatePassword') {
-        state = {
-          option,
-          oldPassword: password,
-        }
-      }
-      else {
-        state = {
-          option,
+      return <Redirect to={{
+        pathname: this.properties.dest,
+        state: {
+          ...this.properties,
           password,
         }
-      }
-      return <Redirect to={{
-        pathname: dest,
-        state,
       }} />
     }
 
