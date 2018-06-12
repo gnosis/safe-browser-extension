@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 
 import SafeItem from './SafeItem'
@@ -62,9 +63,15 @@ class Header extends Component {
           <span className={styles.lockedState} data-locked='true' data-timeout='1m 50s'></span>
         </header>
         <ul className={cx(styles.safeDrawerMenu, showMenu ? styles.active : null)}>
-          <li data-menu='whitelist'>Manage sites whitelist</li>
-          <li data-menu='timeout'>Set lock timeout</li>
-          <li data-menu='password'>Change password</li>
+          <li data-menu='whitelist'>
+            <Link to='whitelist'>Manage sites whitelist</Link>
+          </li>
+          <li data-menu='timeout'>
+            <Link to='/locking'>Set lock timeout</Link>
+          </li>
+          <li data-menu='password'>
+            <Link to='/change-password'>Change password</Link>
+          </li>
         </ul>
       </React.Fragment>
     )
