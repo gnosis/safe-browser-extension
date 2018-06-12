@@ -1,10 +1,18 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import classNames from 'classnames/bind'
 
 import Page from 'components/Page'
 import ClearFix from 'components/ClearFix'
-import styles from './index.css'
+import styles from 'assets/css/global.css'
+
+const cx = classNames.bind(styles)
 
 class Layout extends Component {
+  prevent = (e) => {
+    e.preventDefault()
+  }
+
   render() {
     const {
       newDapp,
@@ -16,35 +24,47 @@ class Layout extends Component {
     } = this.props
 
     return (
-      <Page account logOut padding='noPadding'>
-        <div className={styles.innerPage}>
-          <input
-            type='text'
-            value={newDapp}
-            onChange={updateNewDapp}
-          />
-          {errorMessage && <p>{errorMessage}</p>}
-          <button
-            className={styles.button}
-            onClick={handleAddDapp(newDapp)}
-          >
-            Add dApp
-          </button>
-        </div>
-        <div>
-          {whitelistedDapps.map((dapp) => (
-            <div key={dapp} className={styles.dapp}>
-              <div className={styles.name}>
-                {dapp}
-              </div>
-
-              <button onClick={handleDeleteDapp(dapp)}>
-                Delete
-              </button>
-
-              <ClearFix />
-            </div>
-          ))}
+      <Page>
+        <div className={cx(styles.overlayPage, styles.active)}>
+          <span className={styles.overlayPageHeader}>
+            <Link to='/account' className={cx(styles.btnBack, styles.active)}>
+              <p>Back</p>
+            </Link>
+            <h2>Manage Whitelist</h2>
+            <p className={styles.action_DeleteAll}>Delete All</p>
+          </span>
+          <span className={styles.overlayPageContent}>
+            <span className={styles.whitelist_add}>
+              <form data-validation='ERROR' onSubmit={this.prevent}>
+                <input
+                  type='text'
+                  placeholder='Add website'
+                  name='whitelist-add'
+                  className={styles.noborder}
+                  value={newDapp}
+                  onChange={updateNewDapp}
+                />
+                <button
+                  className={styles.button}
+                  onClick={handleAddDapp(newDapp)}
+                >ADD</button>
+                {errorMessage &&
+                  <p className={styles.textRed}>Incorrect URL</p>
+                }
+              </form>
+            </span>
+            <ul className={styles.whitelist_items}>
+              {whitelistedDapps.map((dapp) => (
+                <li key={dapp}>
+                  {dapp}
+                  <button
+                    className={styles.whitelist_itemDelete}
+                    onClick={handleDeleteDapp(dapp)}
+                  ></button>
+                </li>
+              ))}
+            </ul>
+          </span>
         </div>
       </Page>
     )
