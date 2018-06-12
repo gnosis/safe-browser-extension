@@ -20,7 +20,8 @@ class Layout extends Component {
       whitelistedDapps,
       updateNewDapp,
       handleAddDapp,
-      handleDeleteDapp
+      handleDeleteDapp,
+      handleDeleteAllDapps,
     } = this.props
 
     return (
@@ -31,7 +32,10 @@ class Layout extends Component {
               <p>Back</p>
             </Link>
             <h2>Manage Whitelist</h2>
-            <p className={styles.action_DeleteAll}>Delete All</p>
+            <p
+              className={styles.action_DeleteAll}
+              onClick={handleDeleteAllDapps()}
+            >Delete All</p>
           </span>
           <span className={styles.overlayPageContent}>
             <span className={styles.whitelist_add}>
@@ -49,7 +53,7 @@ class Layout extends Component {
                   onClick={handleAddDapp(newDapp)}
                 >ADD</button>
                 {errorMessage &&
-                  <p className={styles.textRed}>Incorrect URL</p>
+                  <p className={styles.textRed}>{errorMessage}</p>
                 }
               </form>
             </span>

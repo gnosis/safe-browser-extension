@@ -22,14 +22,14 @@ class WhitelistedDapps extends Component {
 
   validateDapp = (dapp) => {
     if (!dapp) {
-      this.setState({ errorMessage: 'Invalid dApp' })
+      this.setState({ errorMessage: 'Invalid URL' })
       return false
     }
 
     const { whitelistedDapps } = this.props
 
     if (whitelistedDapps.indexOf(dapp) > -1) {
-      this.setState({ errorMessage: 'dApp already whitelisted' })
+      this.setState({ errorMessage: 'URL already whitelisted' })
       return false
     }
 
@@ -51,6 +51,11 @@ class WhitelistedDapps extends Component {
     this.props.onDeleteWhitelistedDapp(dapp)
   }
 
+  handleDeleteAllDapps = () => (e) => {
+    console.log("haaa")
+    this.props.ondeleteAllWhitelistedDapps()
+  }
+
   render() {
     const { newDapp, errorMessage } = this.state
     const { whitelistedDapps } = this.props
@@ -63,6 +68,7 @@ class WhitelistedDapps extends Component {
         updateNewDapp={this.updateNewDapp}
         handleAddDapp={this.handleAddDapp}
         handleDeleteDapp={this.handleDeleteDapp}
+        handleDeleteAllDapps={this.handleDeleteAllDapps}
       />
     )
   }
@@ -77,7 +83,8 @@ const mapStateToProps = ({ whitelistedDapps }, props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onAddWhitelistedDapp: (dapp) => dispatch(actions.addWhitelistedDapp(dapp)),
-    onDeleteWhitelistedDapp: (dapp) => dispatch(actions.deleteWhitelistedDapp(dapp))
+    onDeleteWhitelistedDapp: (dapp) => dispatch(actions.deleteWhitelistedDapp(dapp)),
+    ondeleteAllWhitelistedDapps: () => dispatch(actions.deleteAllWhitelistedDapps()),
   }
 }
 

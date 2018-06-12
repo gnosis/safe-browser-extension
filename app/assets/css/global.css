@@ -1358,7 +1358,8 @@ form input.noborder{
   color:#fb4f62;
   text-align:right;
   line-height:1;
-  text-decoration:none
+  text-decoration:none;
+  cursor: pointer
 }
 .whitelist_add{
   display:-ms-flexbox;
