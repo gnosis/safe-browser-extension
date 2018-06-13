@@ -13,16 +13,17 @@
 <div id="demoinfo">
   <h2>DEMO</h2>
   <p><code><strong>Gnosis Safe Chrome Extension</strong></code></p>
-  <p><code>Version: v1.0</code></p>
+  <p><code>Version: v1.1 - June 2018</code></p>
   <p><code>Password to unlock is <strong>'gnosis'</strong>.</code></p>
 </div>
 <button id="pairExtension" class="button white hide"><img src="/assets/images/mobile.svg" height="60" width="30"><p><strong>DEMO ONLY:</strong><br> Pair extension with mobile</p></button>
+<button id="triggerTX-dapp" class="button white"><img src="/assets/images/mobile.svg" height="60" width="30"><p><strong>dAPP</strong> Tx.</p></button>
+<button id="triggerTX-confirm" class="button white"><img src="/assets/images/mobile.svg" height="60" width="30"><p><strong>Mobile Confirm</strong> Tx.</p></button>
 <!-- END DEMO -->
 
 
 <!-- 1 - Welcome screen -->
 <div class="extension welcome hide">
-
   <div class="extension-inner">
     <div class="content">
       <span class="safeLogo animated fadeInUp"></span>
@@ -30,7 +31,6 @@
       <button class="button round">GET STARTED</button>
     </div>
   </div>
-
   <div class="disclaimer">
     <span>
       <h2>Terms</h2>
@@ -41,28 +41,22 @@
       </div>
     </span>
   </div>
-
 </div>
 <!-- END 1 - welcome screen -->
 
 
-
-
-
 <!-- 2 - Password #1 -->
 <div class="extension password1 hide">
-
   <div class="extension-inner">
     <header>
       <span class="safeIcon"></span>
     </header>
-
     <div class="content">
       <h1>Secure and encrypt your browser extension with a password</h1>
       <span class="warning-password">
         <img src="/assets/images/warning.svg">
         <p>Password is used to unlock the extension and confirm transactions. <strong>Don't share this password with others!</strong></p>
-        </span>
+      </span>
       <form onsubmit="event.preventDefault()">
         <span data-validation=""><input type="password" placeholder="New password" name="password1"></span>
         <p class="text-green">No more than 2 identical characters in a row</p>
@@ -70,7 +64,6 @@
         <p>Use a minimum of 8 characters</p>
       </form>
     </div>
-
     <footer>
       <a href="#" title="Back" class="btn-back active"></a>
       <ul class="stepper-dots">
@@ -80,30 +73,27 @@
       <a href="#" class="btn-next active"><p>Next</p></a>
     </footer>
   </div>
-
 </div>
 <!-- END 2 - Password #1 -->
 
+
 <!-- 3 - Password #2 -->
 <div class="extension password2 hide">
-
   <div class="extension-inner">
     <header>
       <span class="safeIcon"></span>
     </header>
-
     <div class="content">
       <h1>Almost done! <br>Confirm your password.</h1>
       <span class="warning-password">
         <img src="/assets/images/warning.svg">
         <p>Password is used to unlock the extension and confirm transactions. <strong>Don't share this password with others!</strong></p>
-        </span>
+      </span>
       <form onsubmit="event.preventDefault()">
         <span data-validation="ERROR"><input type="password" placeholder="Confirm password" name="password2"></span>
         <p class="text-red">Password doesn't match</p>
       </form>
     </div>
-
     <footer>
       <a href="#" title="Back" class="btn-back active"></a>
       <ul class="stepper-dots">
@@ -113,16 +103,12 @@
       <a href="#" class="btn-next active"><p>Next</p></a>
     </footer>
   </div>
-
 </div>
 <!-- END 3 - Password #2 -->
 
 
-
-
 <!-- 4 - appConnect -->
 <div class="extension appConnect hide">
-
   <div class="extension-inner">
     <header class="no-border">
       <div class="menuTrigger">
@@ -132,7 +118,6 @@
       </div>
       <span class="safeIcon"></span>
     </header>
-
     <div class="content">
       <h1>Extension setup succesfully!  <br><strong>Connect with the mobile app.</strong></h1></h1>
       <ol>
@@ -146,11 +131,8 @@
           <button class="button" data-qr="mobilepair">SHOW QR CODE</button>
         </li>
       </ol>
-
     </div>
-
   </div>
-
   <div class="innerOverlay qr_ios hide">
     <button class="buttonExit"></button>
     <div class="innerOverlayContent">
@@ -161,7 +143,6 @@
       <a href="#" target="_blank"><img src="/assets/images/appstore.svg" height="40" width="135"></a>
     </div>
   </div>
-
   <div class="innerOverlay qr_android hide">
     <button class="buttonExit"></button>
     <div class="innerOverlayContent">
@@ -172,7 +153,6 @@
       <a href="#" target="_blank"><img src="/assets/images/playstore.svg" height="41" width="137"></a>
     </div>
   </div>
-
   <div class="innerOverlay qr_mobile hide">
     <button class="buttonExit"></button>
     <div class="innerOverlayContent">
@@ -183,19 +163,12 @@
       </span>
     </div>
   </div>
-
 </div>
 <!-- END 4 - appConnect -->
 
 
-
-
-
-
-
 <!-- 5 - Safe overview -->
 <div class="extension safeOverview hide">
-
   <div class="extension-inner">
     <header class="no-border">
       <div class="menuTrigger">
@@ -204,7 +177,6 @@
         <span class="line"></span>
       </div>
       <span class="safeIcon hasMenu"><i>Tobias Funds</i></span>
-
 
       <!-- // Safe drawer menu partial -->
       <span class="safeMenu">
@@ -242,7 +214,6 @@
 
       <span class="lockedState" data-locked="true" data-timeout="1m 50s"></span>
     </header>
-
     <ul class="safeDrawerMenu">
       <li data-menu="whitelist">Manage sites whitelist</li>
       <li data-menu="timeout">Set lock timeout</li>
@@ -250,13 +221,13 @@
     </ul>
 
     <!-- Each Settings page view -->
-    <div class="settingsPage" data-page="whitelist">
-      <span class="settingsPageHeader">
+    <div class="overlayPage" data-page="whitelist">
+      <span class="overlayPageHeader">
         <a href="#" title="Back" class="btn-back active"><p>Back</p></a>
         <h2>Manage Whitelist</h2>
         <a href="#" class="action_DeleteAll">Delete All</a>
       </span>
-      <span class="settingsPageContent">
+      <span class="overlayPageContent">
         <span class="whitelist_add">
           <form data-validation="ERROR" onsubmit="event.preventDefault()">
             <input type="text" placeholder="Add website" name="whitelist-add" class="noborder">
@@ -281,13 +252,12 @@
       </span>
     </div>
 
-    <div class="settingsPage" data-page="timeout">
-      <span class="settingsPageHeader">
+    <div class="overlayPage" data-page="timeout">
+      <span class="overlayPageHeader">
         <a href="#" title="Back" class="btn-back active"><p>Back</p></a>
         <h2>Set Lock Timeout</h2>
       </span>
-      <span class="settingsPageContent">
-
+      <span class="overlayPageContent">
         <form class="timeout_items">
           <div class="radio">
             <input id="1" type="radio" name="timeout" value="5" checked>
@@ -309,9 +279,8 @@
       </span>
     </div>
 
-
-    <div class="settingsPage" data-page="password">
-      <span class="settingsPageHeader">
+    <div class="overlayPage" data-page="password">
+      <span class="overlayPageHeader">
         <a href="#" title="Back" class="btn-back active"><p>Back</p></a>
         <h2>Change Password</h2>
       </span>
@@ -319,17 +288,16 @@
         <img src="/assets/images/warning.svg">
         <p>Password is used to unlock the extension and confirm transactions. <strong>Don't share this password with others!</strong></p>
       </span>
-      <span class="settingsPageContent">
+      <span class="overlayPageContent">
         <form onsubmit="event.preventDefault()">
-        <span data-validation=""><input type="password" placeholder="New password" name="password1"></span>
-        <p class="text-green">No more than 2 identical characters in a row</p>
-        <p class="text-red">Password with at least 1 number and 1 letter</p>
-        <p>Use a minimum of 8 characters</p>
-        <span data-validation="ERROR"><input type="password" placeholder="Confirm password" name="password2"></span>
-        <p class="text-red">Password doesn't match</p>
-        <button class="button">SAVE NEW PASSWORD</button>
-      </form>
-
+          <span data-validation=""><input type="password" placeholder="New password" name="password1"></span>
+          <p class="text-green">No more than 2 identical characters in a row</p>
+          <p class="text-red">Password with at least 1 number and 1 letter</p>
+          <p>Use a minimum of 8 characters</p>
+          <span data-validation="ERROR"><input type="password" placeholder="Confirm password" name="password2"></span>
+          <p class="text-red">Password doesn't match</p>
+          <button class="button">SAVE NEW PASSWORD</button>
+        </form>
       </span>
     </div>
     <!-- END settings page views -->
@@ -340,43 +308,34 @@
         <span class="whitelistSwitch">
           <label for="whitelistSwitch">
             <input type="checkbox" id="whitelistSwitch"/>
-              <span class="switch"></span>
-              <span class="toggle"></span>
+            <span class="switch"></span>
+            <span class="toggle"></span>
           </label>
         </span>
-        </div>
-
-        <div class="safeContent">
-          <span class="QR">
-            <div>
-              <img src="/assets/images/identicon.png" class="identicon">
-              <p>0xf1511FAB6b7347899f51f9db027A32b39caE3910</p>
-            </div>
-            <img src="/assets/images/qr.svg" height="166" width="170">
-          </span>
-          <a href="http://etherscan.io/" target="_blank" class="external-link">View on Etherscan.io</a>
-        </div>
+      </div>
+      <div class="safeContent">
+        <span class="QR">
+          <div>
+            <img src="/assets/images/identicon.png" class="identicon">
+            <p>0xf1511FAB6b7347899f51f9db027A32b39caE3910</p>
+          </div>
+          <img src="/assets/images/qr.svg" height="166" width="170">
+        </span>
+        <a href="http://etherscan.io/" target="_blank" class="external-link">View on Etherscan.io</a>
+      </div>
     </div>
-
   </div>
-
-
 </div>
 <!-- END 5 - safeOverview -->
 
 
-
-
-
-
 <!-- 6 - Unlock Safe -->
 <div class="extension unlockSafe hide">
-
   <div class="extension-inner">
     <div class="content">
       <span class="safeLogo"></span>
       <span class="lockshape" data-validation="">
-      <svg id="keyhole" width="18" height="34" viewBox="0 0 18 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M61.071447,65.1415942 L58.3839642,82 L71.5550411,82 L68.8675583,65.1415942 C71.8636105,63.680578 73.9444444,60.5979764 73.9444444,57.0229805 C73.9444444,52.0405372 69.9266393,48 64.9722273,48 C60.0178153,48 56.0000102,52.0405372 56.0000102,57.0229805 C55.9946889,60.6033195 58.0700817,63.680578 61.0715832,65.1415942 L61.071447,65.1415942 Z" id="path-1"/><filter x="-8.4%" y="-4.4%" width="116.7%" height="108.8%" filterUnits="objectBoundingBox" id="filter-2"><feGaussianBlur stdDeviation="1.5" in="SourceAlpha" result="shadowBlurInner1"/><feOffset dx="0" dy="0" in="shadowBlurInner1" result="shadowOffsetInner1"/><feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.398097826 0" type="matrix" in="shadowInnerInner1"/></filter></defs><g id="Browser-extension" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="10.-Password-unlock-screen" transform="translate(-335.000000, -293.000000)" fill-rule="nonzero"><g id="#container" transform="translate(159.000000, 82.000000)"><g id="browser-extension-door-hole-unlock" transform="translate(120.000000, 163.000000)"><g id="Shape"><g><use fill="#A2A8BA" fill-rule="evenodd" xlink:href="#path-1"/><use fill="#000" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"/></g></g></g></g></g></g></svg>
+        <svg id="keyhole" width="18" height="34" viewBox="0 0 18 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M61.071447,65.1415942 L58.3839642,82 L71.5550411,82 L68.8675583,65.1415942 C71.8636105,63.680578 73.9444444,60.5979764 73.9444444,57.0229805 C73.9444444,52.0405372 69.9266393,48 64.9722273,48 C60.0178153,48 56.0000102,52.0405372 56.0000102,57.0229805 C55.9946889,60.6033195 58.0700817,63.680578 61.0715832,65.1415942 L61.071447,65.1415942 Z" id="path-1"/><filter x="-8.4%" y="-4.4%" width="116.7%" height="108.8%" filterUnits="objectBoundingBox" id="filter-2"><feGaussianBlur stdDeviation="1.5" in="SourceAlpha" result="shadowBlurInner1"/><feOffset dx="0" dy="0" in="shadowBlurInner1" result="shadowOffsetInner1"/><feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.398097826 0" type="matrix" in="shadowInnerInner1"/></filter></defs><g id="Browser-extension" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="10.-Password-unlock-screen" transform="translate(-335.000000, -293.000000)" fill-rule="nonzero"><g id="#container" transform="translate(159.000000, 82.000000)"><g id="browser-extension-door-hole-unlock" transform="translate(120.000000, 163.000000)"><g id="Shape"><g><use fill="#A2A8BA" fill-rule="evenodd" xlink:href="#path-1"/><use fill="#000" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"/></g></g></g></g></g></g></svg>
         <span class="lockshape_dots"></span>
       </span>
       <form data-validation="">
@@ -387,13 +346,196 @@
       <a href="#">Forgot password?</a>
     </div>
   </div>
-
 </div>
 <!-- END 6 - Unlock Safe -->
 
 
+<!-- 7 - TRANSACTION MODAL: Dapp initiated -->
+<div class="extensionTX hide" data-demo="1">
+
+  <!-- DEMO ONLY -->
+  <span class="topbar"><i></i></span>
+  <!-- DEMO ONLY -->
+
+  <div class="extension-inner">
+    <header class="no-border">
+      <span class="safeIcon"><i>Tobias Funds</i></span>
+      <span class="lockedState" data-locked="false" data-timeout="1m 50s"></span>
+    </header>
+    <div class="Page">
+      <span class="PageHeader">
+        <h2>Review Transaction</h2>
+
+        <!-- // Only output 'pagination' if >1 transactions -->
+        <span class="pagination">
+          <a href="#" class="btn-back hide"></a> <p><strong>1</strong> of <strong>2</strong></p> <a href="#" class="btn-next active"></a>
+        </span>
+        <!-- END -->
+
+      </span>
+      <form onsubmit="event.preventDefault()" class="PageContent">
+        <div class="transactionFrom">
+          <span>
+            <img src="/assets/images/identicon.png" height="32" width="32" alt="Tobias Funds - 0xf151...aE3910">
+            <p>
+              <i>Tobias Funds</i>
+              <small>0xf151...aE3910</small>
+            </p>
+          </span>
+          <span>
+            <strong>94.34934 <small>ETH</small></strong>
+          </span>
+        </div>
+        <div class="transactionValue">
+          <strong>-3.49358 <small>ETH</small></strong>
+          <small>≈ 1,345.34 USD</small>
+        </div>
+        <div class="transactionRecipient">
+          <span>
+            <img src="/assets/images/identicon2.png" height="32" width="32" alt="Tobias Funds - 0xf151...aE3910">
+            <p>
+              <i>Unkown smart contract</i>
+              <small>0xcd2a...8dd826</small>
+            </p>
+          </span>
+        </div>
+        <div class="transactionSummary">
+
+          <!-- ONLY DISPLAY SAFE BALANCE HERE, IF THE TRANSACTION IS SENDING ERC20 tokens (not ETH transfer) -->
+          <span>
+            <p>Safe balance</p>
+            <strong>94.34934 <small>ETH</small></strong>
+          </span>
+          <!-- END ONLY DISPLAY SAFE BALANCE HERE, IF THE TRANSACTION IS SENDING NON-ETH tokens -->
+
+          <span>
+            <p>Max. transaction fee</p>
+            <span>
+              <strong class="text-red">-0.00001 <small>ETH</small></strong>
+              <small>≈ 0.22 USD</small>
+            </span>
+          </span>
+
+          <!-- 'Max total' only shown for ETH transfers. For ERC20 transfers we don't display this. -->
+          <span class="subtotal">
+            <p>Max. total</p>
+            <span>
+              <strong class="text-red">-3.49359 <small>ETH</small></strong>
+              <small>≈ 1,345.56 USD</small>
+            </span>
+          </span>
+          <!-- END max total -->
+
+        </div>
+        <div class="transactionState hide">
+          <span class="await">
+            <p>AWAITING CONFIRMATION</p>
+            <div class="progress">
+              <div class="indeterminate"></div>
+            </div>
+          </span>
+          <span class="message">
+            <img src="/assets/images/mobile.svg" height="55" width="30">
+            <p>Confirm this transaction  with the Gnosis Safe mobile app.</p>
+          </span>
+          <span class="resend">
+            <p>wait 0:30s before re-sending request</p>
+            <button class="button white" disabled>Re-send confirmation request</button>
+          </span>
+        </div>
+        <span class="button-group">
+          <button class="button reject">REJECT</button>
+          <button class="button confirm">CONFIRM</button>
+        </span>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- END 7 -->
 
 
-  <script src='/assets/js/main.js'></script>
+<!-- 8 - Transaction Modal: Mobile initiated -->
+<div class="extensionTX hide" data-demo="2">
+
+  <!-- DEMO ONLY -->
+  <span class="topbar"><i></i></span>
+  <!-- DEMO ONLY -->
+
+  <div class="extension-inner">
+    <header class="no-border">
+      <span class="safeIcon"><i>Tobias Funds</i></span>
+      <span class="lockedState" data-locked="false" data-timeout="1m 50s"></span>
+    </header>
+    <div class="Page">
+      <span class="PageHeader">
+        <h2>Review and confirm Transaction</h2>
+      </span>
+      <form onsubmit="event.preventDefault()" class="PageContent">
+        <div class="transactionFrom">
+          <span>
+            <img src="/assets/images/identicon.png" height="32" width="32" alt="Tobias Funds - 0xf151...aE3910">
+            <p>
+              <i>Tobias Funds</i>
+              <small>0xf151...aE3910</small>
+            </p>
+          </span>
+          <span>
+            <strong>94.34934 <small>ETH</small></strong>
+          </span>
+        </div>
+        <div class="transactionValue">
+          <strong>-3.49358 <small>ETH</small></strong>
+          <small>≈ 1,345.34 USD</small>
+        </div>
+        <div class="transactionRecipient">
+          <span>
+            <img src="/assets/images/identicon2.png" height="32" width="32" alt="Tobias Funds - 0xf151...aE3910">
+            <p>
+              <i>Unkown smart contract</i>
+              <small>0xcd2a...8dd826</small>
+            </p>
+          </span>
+        </div>
+        <div class="transactionSummary">
+
+          <!-- ONLY DISPLAY SAFE BALANCE HERE, IF THE TRANSACTION IS SENDING NON-ETH tokens -->
+          <span>
+            <p>Safe balance</p>
+            <strong>94.34934 <small>ETH</small></strong>
+          </span>
+          <!-- END ONLY DISPLAY SAFE BALANCE HERE, IF THE TRANSACTION IS SENDING NON-ETH tokens -->
+
+          <span>
+            <p>Max. transaction fee</p>
+            <span>
+              <strong class="text-red">-0.00001 <small>ETH</small></strong>
+              <small>≈ 0.22 USD</small>
+            </span>
+          </span>
+          <span class="subtotal">
+            <p>Max. total</p>
+            <span>
+              <strong class="text-red">-3.49359 <small>ETH</small></strong>
+              <small>≈ 1,345.56 USD</small>
+            </span>
+          </span>
+        </div>
+        <div class="transactionState">
+          <span class="message">
+            <img src="/assets/images/mobile.svg" height="55" width="30">
+            <p>This transaction has been initiated by the Gnosis Safe mobile app. When you confirm, the mobile app will submit the transaction.</p>
+          </span>
+        </div>
+        <span class="button-group">
+          <button class="button reject">REJECT</button>
+          <button class="button confirm">CONFIRM</button>
+        </span>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- END 8 -->
+
+<script src='/assets/js/main.js'></script>
 </body>
 </html>
