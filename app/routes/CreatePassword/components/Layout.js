@@ -5,10 +5,15 @@ import classNames from 'classnames/bind'
 import Page from 'components/Page'
 import CreatePasswordForm from './CreatePasswordForm/containers/CreatePasswordForm'
 import styles from 'assets/css/global.css'
+import warningImage from 'assets/images/warning.svg'
 
 const cx = classNames.bind(styles)
 
 class Layout extends Component {
+  prevent = (e) => {
+    e.preventDefault()
+  }
+
   render() {
     const {
       newPassword,
@@ -28,11 +33,18 @@ class Layout extends Component {
     return (
       <Page page={styles.password1} simpleHeader>
         <div className={styles.content}>
-          <CreatePasswordForm
-            newPassword={newPassword}
-            manageCreatePassword={manageCreatePassword}
-            ready={ready}
-          />
+          <h1>Secure and encrypt your browser extension with a password</h1>
+          <span className={styles.warningPassword}>
+            <img src={warningImage} />
+            <p>Password is used to unlock the extension and confirm transactions. <strong>Don't share this password with others!</strong></p>
+          </span>
+          <form onSubmit={this.prevent}>
+            <CreatePasswordForm
+              newPassword={newPassword}
+              manageCreatePassword={manageCreatePassword}
+              ready={ready}
+            />
+          </form>
         </div>
         <footer>
           <Link to='/welcome' className={cx(styles.btnBack, styles.active)}></Link>
