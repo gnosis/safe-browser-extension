@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 
 import SafeItem from './SafeItem'
+import LockingState from './LockingState/containers'
 import styles from 'assets/css/global.css'
 
 const cx = classNames.bind(styles)
@@ -18,13 +19,15 @@ class Header extends Component {
   }
 
   toggleMenu = () => {
-    const { showMenu } = this.state
-    this.setState({ showMenu: !showMenu })
+    this.setState((prevState) => ({
+      showMenu: !prevState.showMenu
+    }))
   }
 
   toggleSafes = () => {
-    const { showSafes } = this.state
-    this.setState({ showSafes: !showSafes })
+    this.setState((prevState) => ({
+      showSafes: !prevState.showSafes
+    }))
   }
 
   render() {
@@ -41,12 +44,16 @@ class Header extends Component {
             <span className={styles.line}></span>
             <span className={styles.line}></span>
           </div>
+
+
           <span
             className={cx(styles.safeIcon, styles.hasMenu)}
             onClick={this.toggleSafes}
           >
             <i>Tobias Funds</i>
           </span>
+
+
           <span className={cx(styles.safeMenu, showSafes ? styles.active : null)}>
             <ul>
               <li className={cx(styles.safeMenuSafeItem, styles.active)}>
@@ -60,7 +67,11 @@ class Header extends Component {
               </li>
             </ul>
           </span>
-          <span className={styles.lockedState} data-locked='true' data-timeout='1m 50s'></span>
+
+          <LockingState properties={this.props.properties} />
+
+
+
         </header>
         <ul className={cx(styles.safeDrawerMenu, showMenu ? styles.active : null)}>
           <li data-menu='whitelist'>
