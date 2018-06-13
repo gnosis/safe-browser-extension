@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 
 import SafeItem from './SafeItem'
 import LockingState from './LockingState/containers'
+import NavigationDrawer from './NavigationDrawer'
 import styles from 'assets/css/global.css'
 
 const cx = classNames.bind(styles)
@@ -44,16 +44,12 @@ class Header extends Component {
             <span className={styles.line}></span>
             <span className={styles.line}></span>
           </div>
-
-
           <span
             className={cx(styles.safeIcon, styles.hasMenu)}
             onClick={this.toggleSafes}
           >
             <i>Tobias Funds</i>
           </span>
-
-
           <span className={cx(styles.safeMenu, showSafes ? styles.active : null)}>
             <ul>
               <li className={cx(styles.safeMenuSafeItem, styles.active)}>
@@ -67,23 +63,9 @@ class Header extends Component {
               </li>
             </ul>
           </span>
-
           <LockingState properties={this.props.properties} />
-
-
-
         </header>
-        <ul className={cx(styles.safeDrawerMenu, showMenu ? styles.active : null)}>
-          <li data-menu='whitelist'>
-            <Link to='whitelist'>Manage sites whitelist</Link>
-          </li>
-          <li data-menu='timeout'>
-            <Link to='/locking'>Set lock timeout</Link>
-          </li>
-          <li data-menu='password'>
-            <Link to='/change-password'>Change password</Link>
-          </li>
-        </ul>
+        <NavigationDrawer showMenu={showMenu} />
       </React.Fragment>
     )
   }

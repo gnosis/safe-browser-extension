@@ -26,13 +26,13 @@ class Layout extends Component {
             onChange={updateNewPassword}
           />
         </span>
-        <p className={newPassword === '' ? null : rowStyle}>
+        <p className={newPassword && rowStyle}>
           No more than 2 identical characters in a row
         </p>
-        <p className={newPassword === '' ? null : numberLetterStyle}>
+        <p className={newPassword && numberLetterStyle}>
           Password with at least 1 number and 1 letter
         </p>
-        <p className={newPassword === '' ? null : lengthStyle}>
+        <p className={newPassword && lengthStyle}>
           Use a minimum of 8 characters
         </p>
       </React.Fragment>

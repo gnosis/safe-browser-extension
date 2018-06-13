@@ -35,16 +35,14 @@ class WhitelistedDappState extends Component {
 
   handleWhitelistDapp = (dapp) => (e) => {
     const { whitelisted } = this.state
-    if (whitelisted) {
-      this.props.onDeleteWhitelistedDapp(dapp)
-    }
-    else {
-      this.props.onAddWhitelistedDapp(dapp)
-    }
 
-    this.setState((prevState) => {
-      return { whitelisted: !prevState.whitelisted }
-    })
+    whitelisted
+      ? this.props.onDeleteWhitelistedDapp(dapp)
+      : this.props.onAddWhitelistedDapp(dapp)
+
+    this.setState((prevState) => ({
+      whitelisted: !prevState.whitelisted
+    }))
     e.preventDefault()
   }
 
