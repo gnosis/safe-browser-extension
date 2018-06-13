@@ -52,7 +52,6 @@ class WhitelistedDapps extends Component {
   }
 
   handleDeleteAllDapps = () => (e) => {
-    console.log("haaa")
     this.props.ondeleteAllWhitelistedDapps()
   }
 
