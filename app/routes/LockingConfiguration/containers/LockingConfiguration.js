@@ -17,12 +17,16 @@ class LockingConfiguration extends Component {
 
   handleOptionChange = (minutes) => (e) => {
     const { account } = this.props
-    this.props.onConfigureLocking(minutes)
+
+    let unlockingTime
     if (!account.lockedState) {
+      unlockingTime = new Date().toISOString()
+      
       chrome.runtime.sendMessage({
         msg: MSG_CONFIGURE_ACCOUNT_LOCKING,
       })
     }
+    this.props.onConfigureLocking(minutes, unlockingTime)
     this.setState({ minutes })
   }
 
@@ -48,7 +52,7 @@ const mapStateToProps = ({ account }, props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onConfigureLocking: (minutes) => dispatch(actions.configureLocking(minutes)),
+    onConfigureLocking: (minutes, unlockingTime) => dispatch(actions.configureLocking(minutes, unlockingTime)),
   }
 }
 
