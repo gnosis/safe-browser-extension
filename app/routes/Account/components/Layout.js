@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 
 import Page from 'components/Page'
 import WhitelistedDappState from './WhitelistedDappState/containers'
-import LockingState from './LockingState'
 import styles from 'assets/css/global.css'
 
 class Layout extends Component {
@@ -15,7 +14,7 @@ class Layout extends Component {
     } = this.props
 
     return (
-      <Page page={styles.safeOverview}>
+      <Page page={styles.safeOverview} properties={properties}>
         <div className={styles.content}>
           <WhitelistedDappState />
           <div className={styles.safeContent}>

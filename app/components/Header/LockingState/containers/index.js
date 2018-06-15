@@ -1,51 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router'
 import CryptoJs from 'crypto-js'
 
-import ClearFix from 'components/ClearFix'
-import styles from './index.css'
+import SafesLocked from '../components/SafesLocked'
+import SafesUnlocked from '../components/SafesUnlocked'
+
+import styles from 'assets/css/global.css'
 import actions from './actions'
 import {
   MSG_LOCK_ACCOUNT,
   MSG_LOCK_ACCOUNT_TIMER,
 } from '../../../../../extension/utils/messages'
 
-const SafesLocked = () => (
-  <div className={styles.lockedAccounts}>
-    <div className={styles.state}>Safes are locked</div>
-    <Link to={{
-      pathname: '/password',
-      state: {
-        dest: '/account'
-      }
-    }}>
-      <button className={styles.lockingButton}>
-        UNLOCK
-      </button>
-    </Link>
-    <ClearFix />
-  </div>
-)
-
-const SafesUnlocked = ({ handleLockAccount }) => (
-  <div className={styles.unlockedAccounts}>
-    <div className={styles.state}>Safes are unlocked</div>
-    <button
-      className={styles.lockingButton}
-      onClick={handleLockAccount}
-    >
-      LOCK
-    </button>
-    <ClearFix />
-  </div>
-)
-
 class LockingState extends Component {
   constructor(props) {
     super(props)
 
-    this.handleUnlockAccount(props)
+    this.unlockedAccount(props)
+
+    this.state = {
+      lockedAccount: false,
+    }
   }
 
   handleLockAccount = () => {
@@ -54,7 +30,7 @@ class LockingState extends Component {
     })
   }
 
-  handleUnlockAccount = (props) => {
+  unlockedAccount = (props) => {
     const hasPassword = props && props.properties && props.properties.state
     if (!hasPassword)
       return
@@ -74,16 +50,26 @@ class LockingState extends Component {
     })
   }
 
+  handleUnlockAccount = (e) => {
+    this.setState({ lockedAccount: true })
+  }
+
   render() {
     const { account } = this.props
+    const { lockedAccount } = this.state
 
-    return (
-      <div className={styles.lockedState}>
-        {account.lockedState
-          ? <SafesLocked />
-          : <SafesUnlocked handleLockAccount={this.handleLockAccount} />
+    if (lockedAccount) {
+      return <Redirect to={{
+        pathname: '/password',
+        state: {
+          dest: '/account'
         }
-      </div>
+      }} />
+    }
+    return (
+      account.lockedState
+        ? <SafesLocked handleUnlockAccount={this.handleUnlockAccount} />
+        : <SafesUnlocked handleLockAccount={this.handleLockAccount} />
     )
   }
 }
