@@ -6,7 +6,7 @@ import styles from './index.css'
 
 class Layout extends Component {
   render() {
-    const { hasLockedAccount } = this.props
+    const { hasLockedAccount, handleResync } = this.props
     const changePasswordUrl = (hasLockedAccount)
       ? {
         pathname: '/password',
@@ -15,6 +15,12 @@ class Layout extends Component {
         }
       }
       : '/change-password'
+      const resyncRoute =  {
+        pathname: '/password',
+        state: {
+          dest: '/resync-token'
+        }
+      }
 
     return (
       <Page account logOut padding='noPadding'>
@@ -29,6 +35,9 @@ class Layout extends Component {
         </Link>
         <Link to={changePasswordUrl}>
           <div className={styles.option}>Change password</div>
+        </Link>
+        <Link to={resyncRoute}>
+          <div className={styles.option}>Resync push token</div>
         </Link>
       </Page >
     )
