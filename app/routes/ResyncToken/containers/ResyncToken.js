@@ -42,4 +42,4 @@ class ResyncToken extends Component {
 
 export default connect(
   selector
-)(Settings)
+)(ResyncToken)
