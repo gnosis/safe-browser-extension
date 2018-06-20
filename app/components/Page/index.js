@@ -7,14 +7,14 @@ import styles from 'assets/css/global.css'
 
 const cx = classNames.bind(styles)
 
-const header = (withoutHeader, simpleHeader, noBorder) => {
+const header = (withoutHeader, simpleHeader, noBorder, properties) => {
   if (withoutHeader) {
     return
   }
   if (simpleHeader) {
     return <SimpleHeader noBorder={noBorder} />
   }
-  return <Header />
+  return <Header properties={properties} />
 }
 
 const Page = ({
@@ -23,10 +23,11 @@ const Page = ({
   simpleHeader,
   noBorder,
   children,
+  properties,
 }) => (
     <div className={cx(styles.extension, page)}>
       <div className={styles.extensionInner}>
-        {header(withoutHeader, simpleHeader, noBorder)}
+        {header(withoutHeader, simpleHeader, noBorder, properties)}
         {children}
       </div>
     </div>

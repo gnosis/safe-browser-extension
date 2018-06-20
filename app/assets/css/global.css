@@ -926,7 +926,7 @@ form input.noborder{
 .lockedState:not([data-locked=true])[data-timeout]::before{
   content:attr(data-timeout);
   position:absolute;
-  left:-37px;
+  left:-45px;
   top:7px;
   font-size:1em;
   color:#A2A8BA;

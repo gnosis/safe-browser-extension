@@ -23,9 +23,11 @@ class Account extends Component {
 
   render() {
     const { account, safes } = this.props
+
     return (
       <Layout
         currentSafe={safes.currentSafe}
+        properties={this.props.location}
         openEtherScan={this.openEtherScan}
       />
     )
