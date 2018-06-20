@@ -23,18 +23,21 @@ class DownloadApps extends Component {
   }
 
   toggleQrAndroid = () => {
-    const { showQrAndroid } = this.state
-    this.setState({ showQrAndroid: !showQrAndroid })
+    this.setState((prevState) => ({
+      showQrAndroid: !prevState.showQrAndroid
+    }))
   }
 
   toggleQrIos = () => {
-    const { showQrIos } = this.state
-    this.setState({ showQrIos: !showQrIos })
+    this.setState((prevState) => ({
+      showQrIos: !prevState.showQrIos
+    }))
   }
 
   toggleQrPairing = () => {
-    const { showQrPairing } = this.state
-    this.setState({ showQrPairing: !showQrPairing })
+    this.setState((prevState) => ({
+      showQrPairing: !prevState.showQrPairing
+    }))
   }
 
   render() {

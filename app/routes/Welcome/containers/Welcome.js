@@ -12,8 +12,9 @@ class Welcome extends Component {
   }
 
   toggleDisclaimer = () => {
-    const { showDisclaimer } = this.state
-    this.setState({ showDisclaimer: !showDisclaimer })
+    this.setState((prevState) => ({
+      showDisclaimer: !prevState.showDisclaimer
+    }))
   }
 
   render() {
