@@ -1,4 +1,4 @@
-import { CREATE_ACCOUNT } from 'routes/PairingProcess/store/actions'
+import { CREATE_ACCOUNT } from 'routes/DownloadApps/components/PairingProcess/store/actions'
 import { CONFIGURE_LOCKING } from 'routes/LockingConfiguration/store/actions'
 import { UNLOCK_ACCOUNT } from 'routes/Account/store/actions'
 import { LOCK_ACCOUNT } from 'actions/account'

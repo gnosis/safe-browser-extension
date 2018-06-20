@@ -8,7 +8,6 @@ import ChangePassword from 'routes/ChangePassword/containers/ChangePassword'
 import CreatePassword from 'routes/CreatePassword/containers/CreatePassword'
 import ConfirmPassword from 'routes/ConfirmPassword/containers/ConfirmPassword'
 import Password from 'routes/Password/containers/Password'
-import PairingProcess from 'routes/PairingProcess/containers/PairingProcess'
 import Account from 'routes/Account/containers/Account'
 import Settings from 'routes/Settings/containers/Settings'
 import WhitelistedDapps from 'routes/WhitelistedDapps/containers/WhitelistedDapps'
@@ -41,7 +40,7 @@ class App extends Component {
         ? {
           pathname: '/password',
           state: {
-            dest: '/pairing'
+            dest: '/download-apps'
           }
         }
         : '/welcome')
@@ -58,7 +57,6 @@ class App extends Component {
         <Route exact path='/create-password' component={CreatePassword} />
         <Route exact path='/confirm-password' component={ConfirmPassword} />
         <Route exact path='/password' component={Password} />
-        <Route exact path='/pairing' component={PairingProcess} />
         <Route exact path='/account' component={Account} />
         <Route exact path='/settings' component={Settings} />
         <Route exact path='/whitelist' component={WhitelistedDapps} />

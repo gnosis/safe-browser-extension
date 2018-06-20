@@ -8,7 +8,7 @@ import { loadStorage, saveStorage } from './utils/storage'
 import { normalizeUrl } from 'utils/helpers'
 import { lockAccount } from 'actions/account'
 import { sendNotification } from 'utils/sendNotifications'
-import { addSafe } from 'routes/PairingProcess/store/actions'
+import { addSafe } from 'routes/DownloadApps/components/PairingProcess/store/actions'
 import {
   addTransaction,
   removeTransaction,

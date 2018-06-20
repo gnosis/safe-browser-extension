@@ -79,13 +79,14 @@ class CreatePasswordForm extends Component {
 
   render() {
     const { error } = this.state
-    const { newPassword } = this.props
+    const { newPassword, ready } = this.props
 
     return (
       <Layout
         newPassword={newPassword}
         error={error}
         updateNewPassword={this.updateNewPassword}
+        ready={ready}
       />
     )
   }

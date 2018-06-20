@@ -15,7 +15,6 @@ class CreateAccount extends Component {
     super(props)
 
     this.state = {
-      loading: true,
       message: '',
     }
   }
@@ -34,13 +33,11 @@ class CreateAccount extends Component {
       .then((token) => {
         if (token === null) {
           this.setState({
-            loading: false,
             message: 'Permission to receive notifications required.'
           })
           return
         }
         if (authPushNotificationService(token, currentAccount.getPrivateKey())) {
-          this.setState({ loading: false })
           this.props.onCreateAccount(currentAccount.getChecksumAddressString(), encryptedMnemonic, hmac)
         }
       })
@@ -48,11 +45,10 @@ class CreateAccount extends Component {
   }
 
   render() {
-    const { loading, message } = this.state
+    const { message } = this.state
 
     return (
       <div className={styles.message}>
-        {loading && <div>Loading...</div>}
         {message && <div>{message}</div>}
       </div>
     )

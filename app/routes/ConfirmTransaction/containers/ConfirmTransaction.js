@@ -7,7 +7,7 @@ import { sendNotification, requestConfirmationResponse } from 'utils/sendNotific
 import {
   getDecryptedEthAccount,
   createAccountFromMnemonic,
-} from 'routes/PairingProcess/containers/pairEthAccount'
+} from 'routes/DownloadApps/components/PairingProcess/containers/pairEthAccount'
 import Layout from '../components/Layout'
 import config from '../../../../config'
 
