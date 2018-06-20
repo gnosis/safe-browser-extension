@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 
 import Page from 'components/Page'
+import Footer from 'components/Footer'
 import CreatePasswordForm from './CreatePasswordForm/containers/CreatePasswordForm'
 import styles from 'assets/css/global.css'
 import warningImage from 'assets/images/warning.svg'
@@ -46,16 +47,11 @@ class Layout extends Component {
             />
           </form>
         </div>
-        <footer>
-          <Link to='/welcome' className={cx(styles.btnBack, styles.active)}></Link>
-          <ul className={styles.stepperDots}>
-            <li className={styles.active}></li>
-            <li></li>
-          </ul>
-          <Link to={nextLink} className={cx(styles.btnNext, ready ? styles.active : null)}>
-            <p>Next</p>
-          </Link>
-        </footer>
+        <Footer
+          link={'/welcome'}
+          ready={ready}
+          nextLink={nextLink}
+        />
       </Page>
     )
   }
