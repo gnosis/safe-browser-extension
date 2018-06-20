@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 
 import Page from 'components/Page'
-import ClearFix from 'components/ClearFix'
 import styles from 'assets/css/global.css'
 
 const cx = classNames.bind(styles)
