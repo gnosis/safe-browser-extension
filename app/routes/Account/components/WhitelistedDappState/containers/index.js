@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import ClearFix from 'components/ClearFix'
 import { normalizeUrl } from 'utils/helpers'
-import styles from './index.css'
 
 import actions from './actions'
+import Layout from '../components/Layout'
 
 class WhitelistedDappState extends Component {
   constructor(props) {
@@ -13,6 +12,7 @@ class WhitelistedDappState extends Component {
 
     this.state = {
       url: '',
+      whitelisted: undefined,
     }
   }
 
@@ -24,40 +24,39 @@ class WhitelistedDappState extends Component {
   }
 
   isWhitelistedDapp = (url) => {
+    const { whitelistedDapps } = this.props
+    const normalizedUrl = normalizeUrl(url)
+
     this.setState({
-      url: normalizeUrl(url)
+      url: normalizedUrl,
+      whitelisted: (whitelistedDapps.indexOf(normalizedUrl) > -1)
     })
   }
 
-  handleAddDapp = (dapp) => (e) => {
-    this.props.onAddWhitelistedDapp(dapp)
-  }
+  handleWhitelistDapp = (dapp) => (e) => {
+    const { whitelisted } = this.state
 
-  handleDeleteDapp = (dapp) => (e) => {
-    this.props.onDeleteWhitelistedDapp(dapp)
+    whitelisted
+      ? this.props.onDeleteWhitelistedDapp(dapp)
+      : this.props.onAddWhitelistedDapp(dapp)
+
+    this.setState((prevState) => ({
+      whitelisted: !prevState.whitelisted
+    }))
+    e.preventDefault()
   }
 
   render() {
-    const { url } = this.state
+    const { url, whitelisted } = this.state
     const { whitelistedDapps } = this.props
 
     return (
-      <div className={styles.whitelistedStatus}>
-        {(whitelistedDapps.indexOf(normalizeUrl(url)) > -1)
-          ?
-          <div className={styles.whitelistedDapp}>
-            <div className={styles.status}>{url} is whitelisted</div>
-            <button onClick={this.handleDeleteDapp(url)}>REMOVE</button>
-            <ClearFix />
-          </div>
-          :
-          <div className={styles.notWhitelistedDapp}>
-            <div className={styles.status}>{url} is not whitelisted</div>
-            <button onClick={this.handleAddDapp(url)}>WHITELIST</button>
-            <ClearFix />
-          </div>
-        }
-      </div>
+      <Layout
+        url={url}
+        whitelisted={whitelisted}
+        whitelistedDapps={whitelistedDapps}
+        handleWhitelistDapp={this.handleWhitelistDapp}
+      />
     )
   }
 }

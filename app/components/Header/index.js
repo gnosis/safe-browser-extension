@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import classNames from 'classnames/bind'
 
 import SafeItem from './SafeItem'
+import LockingState from './LockingState/containers'
+import NavigationDrawer from './NavigationDrawer'
 import styles from 'assets/css/global.css'
 
 const cx = classNames.bind(styles)
@@ -17,13 +19,15 @@ class Header extends Component {
   }
 
   toggleMenu = () => {
-    const { showMenu } = this.state
-    this.setState({ showMenu: !showMenu })
+    this.setState((prevState) => ({
+      showMenu: !prevState.showMenu
+    }))
   }
 
   toggleSafes = () => {
-    const { showSafes } = this.state
-    this.setState({ showSafes: !showSafes })
+    this.setState((prevState) => ({
+      showSafes: !prevState.showSafes
+    }))
   }
 
   render() {
@@ -59,13 +63,9 @@ class Header extends Component {
               </li>
             </ul>
           </span>
-          <span className={styles.lockedState} data-locked='true' data-timeout='1m 50s'></span>
+          <LockingState properties={this.props.properties} />
         </header>
-        <ul className={cx(styles.safeDrawerMenu, showMenu ? styles.active : null)}>
-          <li data-menu='whitelist'>Manage sites whitelist</li>
-          <li data-menu='timeout'>Set lock timeout</li>
-          <li data-menu='password'>Change password</li>
-        </ul>
+        <NavigationDrawer showMenu={showMenu} />
       </React.Fragment>
     )
   }

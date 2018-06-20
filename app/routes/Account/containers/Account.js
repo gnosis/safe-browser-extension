@@ -6,13 +6,19 @@ import Layout from '../components/Layout'
 import { createQrImage } from 'utils/qrdisplay'
 
 class Account extends Component {
+  componentDidMount = () => {
+    const { safes } = this.props
 
-  handleShowQrCode = (data) => (e) => {
     createQrImage(
       document.getElementById('qr-safe-address'),
-      data,
+      safes.currentSafe,
       4
     )
+  }
+
+  openEtherScan = () => {
+    const { safes } = this.props
+    window.open('http://rinkeby.etherscan.io/address/' + safes.currentSafe)
   }
 
   render() {
@@ -20,8 +26,7 @@ class Account extends Component {
     return (
       <Layout
         currentSafe={safes.currentSafe}
-        properties={this.props.location}
-        handleShowQrCode={this.handleShowQrCode}
+        openEtherScan={this.openEtherScan}
       />
     )
   }

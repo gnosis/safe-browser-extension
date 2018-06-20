@@ -95,7 +95,7 @@ class ChangePassword extends Component {
         manageConfirmPassword={this.manageConfirmPassword}
         updateMasterPassword={this.updateMasterPassword}
         confirmPasswordReady={confirmPasswordReady}
-        ready={createPasswordReady && confirmPasswordReady}
+        createPasswordReady={createPasswordReady}
       />
     )
   }

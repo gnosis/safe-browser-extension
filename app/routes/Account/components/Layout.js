@@ -2,29 +2,40 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 import Page from 'components/Page'
-import WhitelistedDappState from './WhitelistedDappState'
+import WhitelistedDappState from './WhitelistedDappState/containers'
 import LockingState from './LockingState'
-import styles from './index.css'
+import styles from 'assets/css/global.css'
 
 class Layout extends Component {
   render() {
     const {
       currentSafe,
       properties,
-      handleShowQrCode
+      openEtherScan,
     } = this.props
 
     return (
-      <Page logOut settings whitelist padding='noPadding'>
-        <WhitelistedDappState />
-        <LockingState properties={properties} />
-        <div className={styles.innerPage}>
-          <Link to='/safes'>
-            <button>Switch safe</button>
-          </Link>
-          <p>Address: {currentSafe}</p>
-          <button onClick={handleShowQrCode(currentSafe)}>Show QR code</button>
-          <div id='qr-safe-address'></div>
+      <Page page={styles.safeOverview}>
+        <div className={styles.content}>
+          <WhitelistedDappState />
+          <div className={styles.safeContent}>
+            <span className={styles.QR}>
+              <div>
+                <img
+                  src='/assets/images/identicon.png'
+                  className={styles.identicon}
+                />
+                <p>{currentSafe}</p>
+              </div>
+              <div id='qr-safe-address'></div>
+            </span>
+            <Link
+              to='#'
+              className={styles.externalLink}
+              onClick={openEtherScan}>
+              View on Etherscan.io
+              </Link>
+          </div>
         </div>
       </Page>
     )

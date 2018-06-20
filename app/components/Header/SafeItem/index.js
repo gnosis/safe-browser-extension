@@ -15,8 +15,9 @@ class SafeItem extends Component {
   }
 
   toggleEditSafeAlias = () => {
-    const { editSafeAlias } = this.state
-    this.setState({ editSafeAlias: !editSafeAlias })
+    this.setState((prevState) => ({
+      editSafeAlias: !prevState.editSafeAlias
+    }))
   }
 
   render() {
