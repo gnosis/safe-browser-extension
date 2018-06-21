@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classNames from 'classnames/bind'
 
-import SafeItem from './SafeItem'
+import SafesMenu from './SafesMenu/containers'
 import LockingState from './LockingState/containers'
 import NavigationDrawer from './NavigationDrawer'
 import styles from 'assets/css/global.css'
@@ -44,25 +44,10 @@ class Header extends Component {
             <span className={styles.line}></span>
             <span className={styles.line}></span>
           </div>
-          <span
-            className={cx(styles.safeIcon, styles.hasMenu)}
-            onClick={this.toggleSafes}
-          >
-            <i>Tobias Funds</i>
-          </span>
-          <span className={cx(styles.safeMenu, showSafes ? styles.active : null)}>
-            <ul>
-              <li className={cx(styles.safeMenuSafeItem, styles.active)}>
-                <SafeItem />
-              </li>
-              <li className={styles.safeMenuSafeItem}>
-                <SafeItem />
-              </li>
-              <li className={styles.safeMenuNewSafe}>
-                <p>Connect to new Safe</p>
-              </li>
-            </ul>
-          </span>
+          <SafesMenu
+            toggleSafes={this.toggleSafes}
+            showSafes={showSafes}
+          />
           <LockingState properties={this.props.properties} />
         </header>
         <NavigationDrawer showMenu={showMenu} />

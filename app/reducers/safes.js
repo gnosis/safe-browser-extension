@@ -2,7 +2,7 @@ import { ADD_SAFE } from 'routes/DownloadApps/components/PairingProcess/store/ac
 import {
   DELETE_SAFE,
   SELECT_SAFE,
-} from 'routes/SafesList/store/actions'
+} from 'components/Header/SafesMenu/store/actions'
 
 const initialState = {
   currentSafe: undefined,
