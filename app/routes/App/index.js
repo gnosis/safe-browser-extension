@@ -11,7 +11,6 @@ import Password from 'routes/Password/containers/Password'
 import Account from 'routes/Account/containers/Account'
 import Settings from 'routes/Settings/containers/Settings'
 import WhitelistedDapps from 'routes/WhitelistedDapps/containers/WhitelistedDapps'
-import SafesList from 'routes/SafesList/containers/SafesList'
 import LockingConfiguration from 'routes/LockingConfiguration/containers/LockingConfiguration'
 
 import 'assets/css/global.css'
@@ -60,7 +59,6 @@ class App extends Component {
         <Route exact path='/account' component={Account} />
         <Route exact path='/settings' component={Settings} />
         <Route exact path='/whitelist' component={WhitelistedDapps} />
-        <Route exact path='/safes' component={SafesList} />
         <Route exact path='/locking' component={LockingConfiguration} />
       </div>
     )
