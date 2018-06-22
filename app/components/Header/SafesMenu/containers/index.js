@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import classNames from 'classnames/bind'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router'
 
 import SafeItem from '../components/SafeItem'
 import actions from './actions'
+import { MSG_LOCK_ACCOUNT } from '../../../../../extension/utils/messages'
 import styles from 'assets/css/global.css'
 
 const cx = classNames.bind(styles)
@@ -15,6 +17,32 @@ class SafesMenu extends Component {
     onSelectSafe(safeAddress)
   }
 
+  handleRemoveSafe = (safeAddress) => (e) => {
+    e.stopPropagation()
+    const { safes, onRemoveSafe } = this.props
+    const safeList = safes.safes
+
+    let newCurrentSafe = undefined
+    if (safeList.length > 1) {
+      const deletedIndex = safeList.map(safe => safe.address).indexOf(safeAddress)
+
+      newCurrentSafe = (safes.currentSafe === safeAddress)
+        ? ((deletedIndex === 0)
+          ? safeList[1].address
+          : safeList[deletedIndex - 1].address)
+        : safes.currentSafe
+    }
+    onRemoveSafe(safeAddress, newCurrentSafe)
+
+    if (safeList.length === 1) {
+      chrome.runtime.sendMessage({
+        msg: MSG_LOCK_ACCOUNT,
+      })
+    }
+
+    // TO-DO: Delete pairing
+  }
+
   render() {
     const {
       toggleSafes,
@@ -23,7 +51,17 @@ class SafesMenu extends Component {
       selectSafe,
       onSelectSafe,
     } = this.props
-
+    
+    if (safes.safes.length === 0) {
+      return(
+        <Redirect to={{
+          pathname: '/password',
+          state: {
+            dest: '/download-apps'
+          }
+        }} /> 
+      )
+    }
     return (
       <React.Fragment>
         <span
@@ -40,7 +78,11 @@ class SafesMenu extends Component {
                 onClick={this.handleSelectSafe(safe.address)}
                 key={safe.address}
               >
-                <SafeItem address={safe.address} />
+                <SafeItem
+                  address={safe.address}
+                  alias={safe.alias}
+                  removeSafe={this.handleRemoveSafe}
+                />
               </li>
             ))}
             <li className={styles.safeMenuNewSafe}>
@@ -61,7 +103,8 @@ const mapStateToProps = ({ safes }, props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSelectSafe: (address) => dispatch(actions.selectSafe(address))
+    onSelectSafe: (address) => dispatch(actions.selectSafe(address)),
+    onRemoveSafe: (address, currentSafe) => dispatch(actions.removeSafe(address, currentSafe)),
   }
 }
 

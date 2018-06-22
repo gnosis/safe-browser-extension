@@ -1,2 +1,2 @@
-export * from './deleteSafe'
+export * from './removeSafe'
 export * from './selectSafe'

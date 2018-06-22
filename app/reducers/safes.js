@@ -1,6 +1,6 @@
 import { ADD_SAFE } from 'routes/DownloadApps/components/PairingProcess/store/actions'
 import {
-  DELETE_SAFE,
+  REMOVE_SAFE,
   SELECT_SAFE,
 } from 'components/Header/SafesMenu/store/actions'
 
@@ -14,6 +14,7 @@ function safes(state = initialState, action) {
     case ADD_SAFE:
       const newSafe = {
         address: action.address,
+        alias: 'Account ' + state.safes.length,
       }
       return {
         ...state,
@@ -24,10 +25,10 @@ function safes(state = initialState, action) {
         ],
       }
 
-    case DELETE_SAFE:
-      let safes = state.safes.filter(address => (address !== action.address))
+    case REMOVE_SAFE:
+      const safes = state.safes.filter(safe => (safe.address !== action.address))
       return {
-        ...state,
+        currentSafe: action.newCurrentSafe,
         safes,
       }
 
