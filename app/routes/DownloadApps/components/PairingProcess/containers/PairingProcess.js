@@ -23,12 +23,6 @@ class PairingProcess extends Component {
     )
   }
 
-  handlePaired = (e) => {
-    const { safes } = this.props
-    if (safes != null && safes.safes.length > 0)
-      this.props.history.push('/account')
-  }
-
   render() {
     const {
       hasAccount,
@@ -60,4 +54,3 @@ export default connect(
   selector,
   mapDispatchToProps,
 )(PairingProcess)
-PairingProcess
