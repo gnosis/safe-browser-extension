@@ -48,8 +48,6 @@ class SafesMenu extends Component {
       toggleSafes,
       showSafes,
       safes,
-      selectSafe,
-      onSelectSafe,
     } = this.props
     
     if (safes.safes.length === 0) {
@@ -62,13 +60,18 @@ class SafesMenu extends Component {
         }} /> 
       )
     }
+
+    const currentAlias = safes.safes.filter(
+      (safe) => (safe.address === safes.currentSafe)
+    )[0].alias
+
     return (
       <React.Fragment>
         <span
           className={cx(styles.safeIcon, styles.hasMenu)}
           onClick={toggleSafes}
         >
-          <i>currentSafe</i>
+          <i>{currentAlias && currentAlias}</i>
         </span>
         <span className={cx(styles.safeMenu, showSafes ? styles.active : null)}>
           <ul>
