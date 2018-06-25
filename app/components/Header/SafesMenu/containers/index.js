@@ -35,8 +35,6 @@ class SafesMenu extends Component {
         msg: MSG_LOCK_ACCOUNT,
       })
     }
-
-    // TO-DO: Delete pairing
   }
 
   render() {

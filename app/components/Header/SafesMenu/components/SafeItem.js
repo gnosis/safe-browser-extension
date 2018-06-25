@@ -1,21 +1,24 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Blockies from 'react-blockies'
 
 import styles from 'assets/css/global.css'
 import edit from 'assets/images/edit.svg'
 import trashWhite from 'assets/images/trash_white.svg'
-import identicon from 'assets/images/identicon.png'
 import actions from './actions'
 
 class SafeItem extends Component {
   constructor(props) {
     super(props)
 
-    this.aliasRef = React.createRef()
-
     this.state = {
       editSafeAlias: false,
     }
+
+    this.aliasRef = React.createRef()
+    this.addressDisplayed = props.address.substring(0, 8)
+      + '...'
+      + props.address.substring(props.address.length - 6, props.address.length)
   }
 
   showEditSafeAlias = () => {
@@ -42,13 +45,18 @@ class SafeItem extends Component {
       alias,
     } = this.props
 
-    const addressDisplayed = address.substring(0, 8) + '...' + address.substring(address.length - 6, address.length)
     return (
       <React.Fragment>
-        <img src={identicon} height='24' width='24' />
+        <div className={styles.identicon}>
+          <Blockies
+            seed={address}
+            size={8}
+            scale={3}
+          />
+        </div>
         <span>
           <p contentEditable={editSafeAlias} ref={this.aliasRef}>{alias}</p>
-          <small>{addressDisplayed}</small>
+          <small>{this.addressDisplayed}</small>
           <span className={styles.safeTools}>
             <button
               className={styles.safeToolsSave}

@@ -870,12 +870,11 @@ form input.noborder{
   -ms-flex-align:center;
   align-items:center
 }
-.QR .identicon{
-  width:32px;
-  height:32px;
-  border:0;
-  display:inline-block;
-  pointer-events:none
+.identicon{
+  height: 24px;
+  width: 24px;
+  pointer-events:none;
+  margin-right: 6px;
 }
 .QR>div{
   display:-ms-flexbox;
@@ -888,9 +887,6 @@ form input.noborder{
   align-items:center;
   -ms-flex-line-pack:center;
   align-content:center;
-}
-.QR>div>img{
-  padding:0 6px 0 0
 }
 .QR>div>p{
   margin:0;
