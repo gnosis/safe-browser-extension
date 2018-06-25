@@ -175,7 +175,9 @@ if ('serviceWorker' in navigator) {
 
 const safeCreation = (payload) => {
   const safes = store.getState().safes.safes
-  const validSafeAddress = safes.filter(safe => safe.address === payload.safe).length < 1
+  const validSafeAddress = safes.filter(
+    safe => safe.address.toLowerCase() === payload.safe.toLowerCase()
+  ).length === 0
 
   if (safes.length > 0 && !validSafeAddress) {
     console.error('Safe', payload.safe, 'already exists.')
