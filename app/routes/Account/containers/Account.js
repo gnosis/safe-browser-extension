@@ -8,7 +8,15 @@ import { createQrImage } from 'utils/qrdisplay'
 class Account extends Component {
   componentDidMount = () => {
     const { safes } = this.props
+    createQrImage(
+      document.getElementById('qr-safe-address'),
+      safes.currentSafe,
+      4
+    )
+  }
 
+  componentDidUpdate = (prevProps, prevState) => {
+    const { safes } = this.props
     createQrImage(
       document.getElementById('qr-safe-address'),
       safes.currentSafe,
