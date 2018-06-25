@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
-import classNames from 'classnames/bind'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 
-import SafeItem from '../components/SafeItem'
 import actions from './actions'
 import { MSG_LOCK_ACCOUNT } from '../../../../../extension/utils/messages'
-import styles from 'assets/css/global.css'
-
-const cx = classNames.bind(styles)
+import Layout from '../components/Layout'
 
 class SafesMenu extends Component {
 
@@ -49,15 +45,15 @@ class SafesMenu extends Component {
       showSafes,
       safes,
     } = this.props
-    
+
     if (safes.safes.length === 0) {
-      return(
+      return (
         <Redirect to={{
           pathname: '/password',
           state: {
             dest: '/download-apps'
           }
-        }} /> 
+        }} />
       )
     }
 
@@ -66,34 +62,14 @@ class SafesMenu extends Component {
     )[0].alias
 
     return (
-      <React.Fragment>
-        <span
-          className={cx(styles.safeIcon, styles.hasMenu)}
-          onClick={toggleSafes}
-        >
-          <i>{currentAlias && currentAlias}</i>
-        </span>
-        <span className={cx(styles.safeMenu, showSafes ? styles.active : null)}>
-          <ul>
-            {safes.safes && safes.safes.map((safe) => (
-              <li
-                className={cx(styles.safeMenuSafeItem, safe.address === safes.currentSafe ? styles.active : null)}
-                onClick={this.handleSelectSafe(safe.address)}
-                key={safe.address}
-              >
-                <SafeItem
-                  address={safe.address}
-                  alias={safe.alias}
-                  removeSafe={this.handleRemoveSafe}
-                />
-              </li>
-            ))}
-            <li className={styles.safeMenuNewSafe}>
-              <p>Connect to new Safe</p>
-            </li>
-          </ul>
-        </span>
-      </React.Fragment>
+      <Layout
+        safes={safes}
+        currentAlias={currentAlias}
+        showSafes={showSafes}
+        toggleSafes={toggleSafes}
+        handleSelectSafe={this.handleSelectSafe}
+        handleRemoveSafe={this.handleRemoveSafe}
+      />
     )
   }
 }
