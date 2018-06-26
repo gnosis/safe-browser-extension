@@ -35,22 +35,34 @@ class Header extends Component {
       showMenu,
       showSafes,
     } = this.state
+    const { txReview } = this.props
 
     return (
       <React.Fragment>
         <header>
-          <div className={cx(styles.menuTrigger, showMenu ? styles.active : null)} onClick={this.toggleMenu}>
-            <span className={styles.line}></span>
-            <span className={styles.line}></span>
-            <span className={styles.line}></span>
-          </div>
+          {!txReview &&
+            <div
+              className={cx(styles.menuTrigger, showMenu ? styles.active : null)}
+              onClick={this.toggleMenu}
+            >
+              <span className={styles.line}></span>
+              <span className={styles.line}></span>
+              <span className={styles.line}></span>
+            </div>
+          }
           <SafesMenu
             toggleSafes={this.toggleSafes}
             showSafes={showSafes}
+            noSafeMenu={txReview}
           />
-          <LockingState properties={this.props.properties} />
+          <LockingState
+            txReview={txReview}
+            properties={this.props.properties}
+          />
         </header>
-        <NavigationDrawer showMenu={showMenu} />
+        {!txReview &&
+          <NavigationDrawer showMenu={showMenu} />
+        }
       </React.Fragment>
     )
   }

@@ -119,8 +119,8 @@ const showPopup = (transaction) => {
   chrome.windows.create({
     url: '/popup.html',
     type: 'popup',
-    height: 500,
-    width: 400
+    height: 610,
+    width: 370,
   }, (window) => {
     store.dispatch(addTransaction(transaction, window.id))
   })

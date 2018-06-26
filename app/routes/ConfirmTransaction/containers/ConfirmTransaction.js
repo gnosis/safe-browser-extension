@@ -21,6 +21,8 @@ class ConfirmTransaction extends Component {
 
     this.state = {
       transaction: {},
+      unlockRequest: false,
+      reviewedTx: false,
     }
   }
 
@@ -56,11 +58,25 @@ class ConfirmTransaction extends Component {
   }
 
   handleConfirmTransaction = () => {
+    const { account } = this.props
+    if (account.lockedState) {
+      this.setState({ unlockRequest: true })
+      return
+    }
+
     this.handleTransaction('confirmTransaction')
+    this.setState({ reviewedTx: true })
   }
 
   handleRejectTransaction = () => {
+    const { account } = this.props
+    if (account.lockedState) {
+      this.setState({ unlockRequest: true })
+      return
+    }
+
     this.handleTransaction('rejectTransaction', 'GNO')
+    this.setState({ reviewedTx: true })
   }
 
   handleTransaction = (type, prefix) => {
@@ -84,18 +100,25 @@ class ConfirmTransaction extends Component {
           window.close()
       })
       .catch((err) => {
-        console.log(err)
+        console.error(err)
       })
   }
 
   render() {
-    const { transaction } = this.state
+    const {
+      transaction,
+      unlockRequest,
+      reviewedTx,
+    } = this.state
 
     return (
       <Layout
         transaction={transaction}
         handleConfirmTransaction={this.handleConfirmTransaction}
         handleRejectTransaction={this.handleRejectTransaction}
+        unlockRequest={unlockRequest}
+        reviewedTx={reviewedTx}
+        properties={this.props.location}
       />
     )
   }

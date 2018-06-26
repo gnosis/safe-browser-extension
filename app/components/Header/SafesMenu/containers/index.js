@@ -42,6 +42,7 @@ class SafesMenu extends Component {
       toggleSafes,
       showSafes,
       safes,
+      noSafeMenu,
     } = this.props
 
     if (safes.safes.length === 0) {
