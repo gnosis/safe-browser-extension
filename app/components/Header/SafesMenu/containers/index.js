@@ -68,6 +68,7 @@ class SafesMenu extends Component {
         toggleSafes={toggleSafes}
         handleSelectSafe={this.handleSelectSafe}
         handleRemoveSafe={this.handleRemoveSafe}
+        noSafeMenu={noSafeMenu}
       />
     )
   }
