@@ -113,17 +113,26 @@ const isWhiteListedDapp = (dApp) => {
 }
 
 const showPopup = (transaction) => {
+  const transactions = store.getState().transactions.txs
+  if (transactions.filter(tx => tx.hash === transaction.hash).length > 0)
+    return
+
   if (transaction.safe)
     transaction.from = transaction.safe
 
-  chrome.windows.create({
-    url: '/popup.html',
-    type: 'popup',
-    height: 610,
-    width: 370,
-  }, (window) => {
-    store.dispatch(addTransaction(transaction, window.id))
-  })
+  if (transactions.length === 0) {
+    chrome.windows.create({
+      url: '/popup.html',
+      type: 'popup',
+      height: 610,
+      width: 370,
+    }, (window) => {
+      store.dispatch(addTransaction(transaction, window.id))
+    })
+    return
+  }
+
+  store.dispatch(addTransaction(transaction))
 }
 
 let lockingTimer = null
@@ -147,7 +156,9 @@ const lockAccountNow = () => {
 }
 
 chrome.windows.onRemoved.addListener((windowId) => {
-  store.dispatch(removeTransaction(windowId))
+  if (windowId == store.getState().transactions.windowId) {
+    store.dispatch(removeAllTransactions())
+  }
 })
 
 store.dispatch(lockAccount())
