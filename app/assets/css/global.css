@@ -2180,6 +2180,12 @@ footer .stepper-dots>li.active{
   letter-spacing:0;
   line-height:1.5
 }
+.extensionTX .extension-inner .transactionState .errorMessage>p{
+  font-size:1.3em;
+  color:#fb4f62;
+  letter-spacing:0;
+  line-height:1.5
+}
 .extensionTX .extension-inner .transactionState .resend{
   display:-ms-flexbox;
   display:flex;
