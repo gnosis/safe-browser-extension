@@ -293,6 +293,9 @@ section.auction,section.home{
   font-family:inherit;
   font-size:inherit
 }
+.buttonResync {
+  margin-top: 50px;
+}
 .button-group{
   display:-ms-flexbox;
   display:flex;
@@ -648,7 +651,7 @@ form input.noborder{
   height:100%
 }
 .extension-inner>header{
-  height:58px;
+  height:60px;
   width:100%;
   border-bottom:1px solid #E4E8F1;
   display:-ms-flexbox;
@@ -1087,7 +1090,7 @@ form input.noborder{
   width:80%;
   left:0;
   top:59px;
-  z-index:999;
+  z-index:98;
   -ms-flex-wrap:wrap;
   flex-wrap:wrap;
   display:-ms-flexbox;
@@ -1134,6 +1137,10 @@ form input.noborder{
 .safeDrawerMenu>li:hover{
   background:#E4E8F1
 }
+.safeDrawerMenu>li>a {
+  color: inherit;
+  text-decoration: none
+}
 .safeDrawerMenu>li[data-menu]::before{
   content:"";
   display:inline-block;
@@ -1155,6 +1162,9 @@ form input.noborder{
 .safeDrawerMenu>li[data-menu=password]::before{
   background:url(../images/menu_password.svg) center/contain no-repeat
 }
+.safeDrawerMenu>li[data-menu=resync]::before{
+  background:url(../images/resync.svg) center/contain no-repeat
+}
 .overlayPage{
   background:#F4F5F9;
   height:calc(100% - 58px);
@@ -1169,6 +1179,9 @@ form input.noborder{
   visibility:visible;
   opacity:1;
   transform:translateX(0)
+}
+.overlayPage[data-page=password] form>button{
+  margin-top:25px
 }
 .overlayPage[data-page=password] form>button{
   margin-top:25px

@@ -29,9 +29,9 @@ class NavigationDrawer extends Component {
       : '/resync-token'
 
     return (
-      <ul className={cx(styles.safeDrawerMenu, showMenu ? styles.active : null)}>
+      <ul className={cx(styles.safeDrawerMenu, showMenu && styles.active)}>
         <li data-menu='whitelist'>
-          <Link to='whitelist'>Manage sites whitelist</Link>
+          <Link to='/whitelist'>Manage sites whitelist</Link>
         </li>
         <li data-menu='timeout'>
           <Link to='/locking'>Set lock timeout</Link>
