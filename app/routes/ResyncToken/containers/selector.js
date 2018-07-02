@@ -1,6 +1,12 @@
 import { createStructuredSelector } from 'reselect'
-import { selectEncryptedMnemonicSelector } from '../../PairingProcess/store/selectors'
+import {
+  accountSelector,
+  selectEncryptedMnemonicSelector,
+  selectUnencryptedMnemonicSelector,
+} from 'routes/DownloadApps/components/PairingProcess/store/selectors'
 
 export default createStructuredSelector({
+  account: accountSelector,
   selectEncryptedMnemonic: selectEncryptedMnemonicSelector,
+  selectUnencryptedMnemonic: selectUnencryptedMnemonicSelector,
 })

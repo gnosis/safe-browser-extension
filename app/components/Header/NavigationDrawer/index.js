@@ -19,6 +19,14 @@ class NavigationDrawer extends Component {
         }
       }
       : '/change-password'
+    const resyncRoute = account.lockedState
+      ? {
+        pathname: '/password',
+        state: {
+          dest: '/resync-token'
+        }
+      }
+      : '/resync-token'
 
     return (
       <ul className={cx(styles.safeDrawerMenu, showMenu ? styles.active : null)}>
@@ -30,6 +38,9 @@ class NavigationDrawer extends Component {
         </li>
         <li data-menu='password'>
           <Link to={changePasswordUrl}>Change password</Link>
+        </li>
+        <li data-menu='resync'>
+          <Link to={resyncRoute}>Resync push token</Link>
         </li>
       </ul>
     )
