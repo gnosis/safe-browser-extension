@@ -1,6 +1,50 @@
 {
-  "contract_name": "GnosisSafePersonalEdition",
+  "contractName": "GnosisSafePersonalEdition",
   "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "name": "_threshold",
+          "type": "uint256"
+        }
+      ],
+      "name": "addOwnerWithThreshold",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_owners",
+          "type": "address[]"
+        },
+        {
+          "name": "_threshold",
+          "type": "uint256"
+        },
+        {
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "setup",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
     {
       "constant": true,
       "inputs": [
@@ -69,6 +113,20 @@
       "constant": false,
       "inputs": [
         {
+          "name": "_threshold",
+          "type": "uint256"
+        }
+      ],
+      "name": "changeThreshold",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
           "name": "_masterCopy",
           "type": "address"
         }
@@ -94,28 +152,6 @@
       "type": "function"
     },
     {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "prevOwner",
-          "type": "address"
-        },
-        {
-          "name": "owner",
-          "type": "address"
-        },
-        {
-          "name": "_threshold",
-          "type": "uint8"
-        }
-      ],
-      "name": "removeOwner",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
       "constant": true,
       "inputs": [],
       "name": "SENTINEL_OWNERS",
@@ -127,32 +163,6 @@
       ],
       "payable": false,
       "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "_owners",
-          "type": "address[]"
-        },
-        {
-          "name": "_threshold",
-          "type": "uint8"
-        },
-        {
-          "name": "to",
-          "type": "address"
-        },
-        {
-          "name": "data",
-          "type": "bytes"
-        }
-      ],
-      "name": "setup",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -215,38 +225,6 @@
       "constant": false,
       "inputs": [
         {
-          "name": "_threshold",
-          "type": "uint8"
-        }
-      ],
-      "name": "changeThreshold",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "owner",
-          "type": "address"
-        },
-        {
-          "name": "_threshold",
-          "type": "uint8"
-        }
-      ],
-      "name": "addOwnerWithThreshold",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
           "name": "prevModule",
           "type": "address"
         },
@@ -290,11 +268,33 @@
       "outputs": [
         {
           "name": "",
-          "type": "uint8"
+          "type": "uint256"
         }
       ],
       "payable": false,
       "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "prevOwner",
+          "type": "address"
+        },
+        {
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "name": "_threshold",
+          "type": "uint256"
+        }
+      ],
+      "name": "removeOwner",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -318,7 +318,13 @@
     },
     {
       "anonymous": false,
-      "inputs": [],
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "txHash",
+          "type": "bytes32"
+        }
+      ],
       "name": "ExecutionFailed",
       "type": "event"
     },
@@ -370,45 +376,19 @@
           "type": "address"
         },
         {
-          "name": "v",
-          "type": "uint8[]"
-        },
-        {
-          "name": "r",
-          "type": "bytes32[]"
-        },
-        {
-          "name": "s",
-          "type": "bytes32[]"
+          "name": "signatures",
+          "type": "bytes"
         }
       ],
-      "name": "execAndPayTransaction",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [
-        {
-          "name": "executionGas",
-          "type": "uint256"
-        },
-        {
-          "name": "dataGas",
-          "type": "uint256"
-        }
-      ],
-      "name": "totalGasCosts",
+      "name": "execTransactionAndPaySubmitter",
       "outputs": [
         {
-          "name": "",
-          "type": "uint256"
+          "name": "success",
+          "type": "bool"
         }
       ],
       "payable": false,
-      "stateMutability": "pure",
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
