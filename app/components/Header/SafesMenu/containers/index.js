@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 
+import selector from './selector'
 import actions from './actions'
 import { MSG_LOCK_ACCOUNT } from '../../../../../extension/utils/messages'
 import Layout from '../components/Layout'
@@ -43,6 +44,7 @@ class SafesMenu extends Component {
       showSafes,
       safes,
       noSafeMenu,
+      currentSafeAlias,
     } = this.props
 
     if (safes.safes.length === 0) {
@@ -56,14 +58,10 @@ class SafesMenu extends Component {
       )
     }
 
-    const currentAlias = safes.safes.filter(
-      (safe) => (safe.address === safes.currentSafe)
-    )[0].alias
-
     return (
       <Layout
         safes={safes}
-        currentAlias={currentAlias}
+        currentAlias={currentSafeAlias}
         showSafes={showSafes}
         toggleSafes={toggleSafes}
         handleSelectSafe={this.handleSelectSafe}
@@ -71,12 +69,6 @@ class SafesMenu extends Component {
         noSafeMenu={noSafeMenu}
       />
     )
-  }
-}
-
-const mapStateToProps = ({ safes }, props) => {
-  return {
-    safes,
   }
 }
 
@@ -88,6 +80,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(
-  mapStateToProps,
+  selector,
   mapDispatchToProps,
 )(SafesMenu)
