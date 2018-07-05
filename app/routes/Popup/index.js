@@ -3,19 +3,19 @@ import { connect } from 'react-redux'
 import { Route, withRouter } from 'react-router'
 
 import Password from 'routes/Password/containers/Password'
-import ConfirmTransaction from 'routes/ConfirmTransaction/containers/ConfirmTransaction'
+import Transaction from 'routes/Transaction/containers/Transaction'
 import 'assets/css/global.css'
 
 class Popup extends Component {
   componentWillMount() {
-    this.props.history.push('/confirm-transaction')
+    this.props.history.push('/transaction')
   }
 
   render() {
     return (
       <div>
         <Route exact path='/password' component={Password} />
-        <Route exact path='/confirm-transaction' component={ConfirmTransaction} />
+        <Route exact path='/transaction' component={Transaction} />
       </div>
     )
   }
