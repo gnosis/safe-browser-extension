@@ -125,3 +125,22 @@ export const getOwners = (accountAddress, safeAddress) => {
       console.error(err)
     })
 }
+
+export const getNonce = (safeAddress) => {
+  const contract = TruffleContract(GnosisSafePersonalEdition)
+  const provider = new Web3.providers.HttpProvider(
+    config.networks[config.currentNetwork].url
+  )
+  contract.setProvider(provider)
+
+  return contract.at(safeAddress)
+    .then((instance) => {
+      return instance.nonce.call()
+    })
+    .then((nonce) => {
+      return nonce.toString(10)
+    })
+    .catch((err) => {
+      console.error(err)
+    })
+}
