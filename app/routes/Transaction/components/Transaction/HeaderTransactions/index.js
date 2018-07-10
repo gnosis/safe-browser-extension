@@ -6,7 +6,7 @@ import styles from 'assets/css/global.css'
 const cx = classNames.bind(styles)
 
 const HeaderTransactions = ({
-  switchActive,
+  reviewedTx,
   transactionsLength,
   previousTransaction,
   transactionNumber,
@@ -20,12 +20,12 @@ const HeaderTransactions = ({
           <span className={styles.pagination}>
             <span onClick={previousTransaction} className={cx(
               styles.btnBack,
-              (switchActive && transactionNumber === 0) ? styles.hide : styles.active)
+              (reviewedTx || transactionNumber === 0) ? styles.hide : styles.active)
             }></span>
             <p><strong>{transactionNumber + 1}</strong> of <strong>{transactionsLength}</strong></p>
             <span to='#' onClick={nextTransaction} className={cx(
               styles.btnNext,
-              (switchActive && transactionNumber === (transactionsLength - 1)) ? styles.hide : styles.active)
+              (reviewedTx || transactionNumber === (transactionsLength - 1)) ? styles.hide : styles.active)
             }></span>
           </span>
         }

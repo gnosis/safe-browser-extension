@@ -8,10 +8,10 @@ const cx = classNames.bind(styles)
 
 const FooterTransactions = ({
   reviewedTx,
-  type,
   unlockRequest,
-  handleRejectTransaction,
   handleConfirmTransaction,
+  handleRejectTransaction,
+  type,
 }) => (
     <React.Fragment>
       {reviewedTx && type === 'sendTransaction' &&
@@ -32,7 +32,7 @@ const FooterTransactions = ({
           </span>
         </div>
       }
-      {type='confirmTransaction' &&
+      {type === 'confirmTransaction' &&
         <div className={styles.transactionState}>
           <span className={styles.message}>
             <img src={mobileImage} height='55' width='30' />
