@@ -5,6 +5,8 @@ import {
   EV_SHOW_POPUP,
   EV_SCRIPT_READY,
   EV_UPDATE_WEB3,
+  MSG_RESOLVED_TRANSACTION,
+  EV_RESOLVED_TRANSACTION,
 } from './utils/messages'
 
 // Checks if the page is whitelisted to inject the web3 provider
@@ -73,3 +75,15 @@ document.addEventListener(EV_SHOW_POPUP, function (data) {
     tx: data.detail
   })
 })
+
+chrome.runtime.onMessage.addListener(
+  function (request, sender, sendResponse) {
+    if (request.msg === MSG_RESOLVED_TRANSACTION) {
+      const resolvedTransactionEvent = new CustomEvent(
+        EV_RESOLVED_TRANSACTION,
+        { detail: request.hash }
+      )
+      document.dispatchEvent(resolvedTransactionEvent)
+    }
+  }
+)

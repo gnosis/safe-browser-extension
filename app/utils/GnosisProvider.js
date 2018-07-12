@@ -1,5 +1,8 @@
 import Subprovider from 'web3-provider-engine/subproviders/subprovider'
-import { EV_SHOW_POPUP } from '../../extension/utils/messages'
+import {
+  EV_SHOW_POPUP,
+  EV_RESOLVED_TRANSACTION,
+} from '../../extension/utils/messages'
 
 class GnosisProvider extends Subprovider {
   constructor(props) {
@@ -11,7 +14,7 @@ class GnosisProvider extends Subprovider {
     this.currentSafe = currentSafe
   }
 
-  handleRequest(payload, next, end) {
+  handleRequest = (payload, next, end) => {
     const accounts = [this.currentSafe]
 
     switch (payload.method) {
@@ -25,7 +28,7 @@ class GnosisProvider extends Subprovider {
         return
 
       case 'eth_sendTransaction':
-        this.sendTransaction(payload)
+        this.sendTransaction(payload, end)
         return
 
       default:
@@ -34,12 +37,23 @@ class GnosisProvider extends Subprovider {
     }
   }
 
-  sendTransaction = (payload) => {
+  sendTransaction = (payload, end) => {
     const showPopupEvent = new CustomEvent(
       EV_SHOW_POPUP,
       { detail: payload.params[0] }
     )
     document.dispatchEvent(showPopupEvent)
+
+    const resolveTransactionHandler = (data) => {
+      document.removeEventListener(EV_RESOLVED_TRANSACTION, resolveTransactionHandler)
+      if (data.detail) {
+        end(null, data.detail)
+      }
+      else {
+        end(new Error('The transaction was rejected by the Gnosis Safe Phone App.'))
+      }
+    }
+    document.addEventListener(EV_RESOLVED_TRANSACTION, resolveTransactionHandler)
   }
 }
 
