@@ -9,13 +9,15 @@ const cx = classNames.bind(styles)
 const Footer = ({
   link,
   ready,
-  nextLink
+  firstStep,
+  secondStep,
+  nextLink,
 }) => (
     <footer>
       <Link to={link} className={cx(styles.btnBack, styles.active)}></Link>
       <ul className={styles.stepperDots}>
-        <li></li>
-        <li className={styles.active}></li>
+        <li className={firstStep && styles.active}></li>
+        <li className={secondStep && styles.active}></li>
       </ul>
       <Link to={nextLink} className={cx(styles.btnNext, ready ? styles.active : null)}>
         <p>Next</p>

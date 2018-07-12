@@ -50,6 +50,7 @@ class Layout extends Component {
         <Footer
           link={'/welcome'}
           ready={ready}
+          firstStep
           nextLink={nextLink}
         />
       </Page>
