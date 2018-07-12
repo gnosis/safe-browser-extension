@@ -48,10 +48,10 @@ class DownloadApps extends Component {
       showQrIos,
       showQrPairing,
     } = this.state
-    const { safes } = this.props
+    //const { safes } = this.props
 
-    if (safes != null && safes.safes.length > 0)
-      return <Redirect to='/account' />
+    //if (safes != null && safes.safes.length > 0)
+    //  return <Redirect to='/account' />
     return (
       <Layout
         toggleQrAndroid={this.toggleQrAndroid}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import wallet from 'ethereumjs-wallet'
+import { Redirect } from 'react-router'
 
 import Layout from '../components/Layout'
 import { createQrImage } from 'utils/qrdisplay'
@@ -31,7 +31,16 @@ class Account extends Component {
 
   render() {
     const { account, safes } = this.props
+    const url = {
+      pathname: '/password',
+      state: {
+        dest: '/download-apps'
+      }
+    }
 
+    if (safes.currentSafe === undefined) {
+      return <Redirect to={url} />
+    }
     return (
       <Layout
         currentSafe={safes.currentSafe}
