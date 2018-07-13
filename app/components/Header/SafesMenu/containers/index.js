@@ -42,6 +42,7 @@ class SafesMenu extends Component {
       toggleSafes,
       showSafes,
       safes,
+      noSafeMenu,
     } = this.props
 
     if (safes.safes.length === 0) {
@@ -67,6 +68,7 @@ class SafesMenu extends Component {
         toggleSafes={toggleSafes}
         handleSelectSafe={this.handleSelectSafe}
         handleRemoveSafe={this.handleRemoveSafe}
+        noSafeMenu={noSafeMenu}
       />
     )
   }

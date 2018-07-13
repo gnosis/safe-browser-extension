@@ -13,35 +13,38 @@ const Layout = ({
   toggleSafes,
   handleSelectSafe,
   handleRemoveSafe,
+  noSafeMenu,
 }) => (
-  <React.Fragment>
-    <span
-      className={cx(styles.safeIcon, styles.hasMenu)}
-      onClick={toggleSafes}
-    >
-      <i>{currentAlias}</i>
-    </span>
-    <span className={cx(styles.safeMenu, showSafes && styles.active)}>
-      <ul>
-        {safes.safes && safes.safes.map((safe) => (
-          <li
-            className={cx(styles.safeMenuSafeItem, (safe.address === safes.currentSafe) && styles.active)}
-            onClick={handleSelectSafe(safe.address)}
-            key={safe.address}
-          >
-            <SafeItem
-              address={safe.address}
-              alias={safe.alias}
-              removeSafe={handleRemoveSafe}
-            />
-          </li>
-        ))}
-        <li className={styles.safeMenuNewSafe}>
-          <p>Connect to new Safe</p>
-        </li>
-      </ul>
-    </span>
-  </React.Fragment>
-)
+    <React.Fragment>
+      <span
+        className={cx(styles.safeIcon, !noSafeMenu && styles.hasMenu)}
+        onClick={!noSafeMenu ? toggleSafes : null}
+      >
+        <i>{currentAlias}</i>
+      </span>
+      {!noSafeMenu &&
+        <span className={cx(styles.safeMenu, showSafes && styles.active)}>
+          <ul>
+            {safes.safes && safes.safes.map((safe) => (
+              <li
+                className={cx(styles.safeMenuSafeItem, (safe.address === safes.currentSafe) && styles.active)}
+                onClick={handleSelectSafe(safe.address)}
+                key={safe.address}
+              >
+                <SafeItem
+                  address={safe.address}
+                  alias={safe.alias}
+                  removeSafe={handleRemoveSafe}
+                />
+              </li>
+            ))}
+            <li className={styles.safeMenuNewSafe}>
+              <p>Connect to new Safe</p>
+            </li>
+          </ul>
+        </span>
+      }
+    </React.Fragment>
+  )
 
 export default Layout
