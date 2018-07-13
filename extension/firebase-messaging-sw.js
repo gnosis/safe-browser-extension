@@ -17,8 +17,9 @@ self.addEventListener('push', (event) => {
       break
 
     case 'sendTransactionHash':
-      title = 'Transaction executed'
-      message = payload.txHash
+      title = 'Transaction submitted'
+      message = payload.chainHash
+      break
 
     default:
       return

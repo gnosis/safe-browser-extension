@@ -55,14 +55,17 @@ class LockingState extends Component {
   }
 
   render() {
-    const { account } = this.props
+    const {
+      account,
+      txReview,
+    } = this.props
     const { lockedAccount } = this.state
 
     if (lockedAccount) {
       return <Redirect to={{
         pathname: '/password',
         state: {
-          dest: '/account'
+          dest: (txReview) ? '/confirm-transaction' : '/account'
         }
       }} />
     }

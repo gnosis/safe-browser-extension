@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classNames from 'classnames/bind'
 
-import SafeItem from './SafeItem'
+import SafesMenu from './SafesMenu/containers'
 import LockingState from './LockingState/containers'
 import NavigationDrawer from './NavigationDrawer'
 import styles from 'assets/css/global.css'
@@ -35,37 +35,34 @@ class Header extends Component {
       showMenu,
       showSafes,
     } = this.state
+    const { txReview } = this.props
 
     return (
       <React.Fragment>
         <header>
-          <div className={cx(styles.menuTrigger, showMenu ? styles.active : null)} onClick={this.toggleMenu}>
-            <span className={styles.line}></span>
-            <span className={styles.line}></span>
-            <span className={styles.line}></span>
-          </div>
-          <span
-            className={cx(styles.safeIcon, styles.hasMenu)}
-            onClick={this.toggleSafes}
-          >
-            <i>Tobias Funds</i>
-          </span>
-          <span className={cx(styles.safeMenu, showSafes ? styles.active : null)}>
-            <ul>
-              <li className={cx(styles.safeMenuSafeItem, styles.active)}>
-                <SafeItem />
-              </li>
-              <li className={styles.safeMenuSafeItem}>
-                <SafeItem />
-              </li>
-              <li className={styles.safeMenuNewSafe}>
-                <p>Connect to new Safe</p>
-              </li>
-            </ul>
-          </span>
-          <LockingState properties={this.props.properties} />
+          {!txReview &&
+            <div
+              className={cx(styles.menuTrigger, showMenu ? styles.active : null)}
+              onClick={this.toggleMenu}
+            >
+              <span className={styles.line}></span>
+              <span className={styles.line}></span>
+              <span className={styles.line}></span>
+            </div>
+          }
+          <SafesMenu
+            toggleSafes={this.toggleSafes}
+            showSafes={showSafes}
+            noSafeMenu={txReview}
+          />
+          <LockingState
+            txReview={txReview}
+            properties={this.props.properties}
+          />
         </header>
-        <NavigationDrawer showMenu={showMenu} />
+        {!txReview &&
+          <NavigationDrawer showMenu={showMenu} />
+        }
       </React.Fragment>
     )
   }

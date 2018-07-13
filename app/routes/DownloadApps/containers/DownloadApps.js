@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router'
+import { connect } from 'react-redux'
 
 import Layout from '../components/Layout'
 import config from '../../../../config'
@@ -46,7 +48,10 @@ class DownloadApps extends Component {
       showQrIos,
       showQrPairing,
     } = this.state
+    const { safes } = this.props
 
+    if (safes != null && safes.safes.length > 0)
+      return <Redirect to='/account' />
     return (
       <Layout
         toggleQrAndroid={this.toggleQrAndroid}
@@ -63,4 +68,12 @@ class DownloadApps extends Component {
   }
 }
 
-export default DownloadApps
+const mapStateToProps = ({ safes }, props) => {
+  return {
+    safes,
+  }
+}
+
+export default connect(
+  mapStateToProps,
+)(DownloadApps)

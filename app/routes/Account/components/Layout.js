@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import Blockies from 'react-blockies'
 
 import Page from 'components/Page'
 import WhitelistedDappState from './WhitelistedDappState/containers'
@@ -20,10 +21,13 @@ class Layout extends Component {
           <div className={styles.safeContent}>
             <span className={styles.QR}>
               <div>
-                <img
-                  src='/assets/images/identicon.png'
-                  className={styles.identicon}
-                />
+                <div className={styles.identicon}>
+                  <Blockies
+                    seed={currentSafe}
+                    size={8}
+                    scale={3}
+                  />
+                </div>
                 <p>{currentSafe}</p>
               </div>
               <div id='qr-safe-address'></div>
