@@ -9,9 +9,9 @@ import CreatePassword from 'routes/CreatePassword/containers/CreatePassword'
 import ConfirmPassword from 'routes/ConfirmPassword/containers/ConfirmPassword'
 import Password from 'routes/Password/containers/Password'
 import Account from 'routes/Account/containers/Account'
-import Settings from 'routes/Settings/containers/Settings'
 import WhitelistedDapps from 'routes/WhitelistedDapps/containers/WhitelistedDapps'
 import LockingConfiguration from 'routes/LockingConfiguration/containers/LockingConfiguration'
+import ResyncToken from '../ResyncToken/containers/ResyncToken';
 
 import 'assets/css/global.css'
 
@@ -57,9 +57,9 @@ class App extends Component {
         <Route exact path='/confirm-password' component={ConfirmPassword} />
         <Route exact path='/password' component={Password} />
         <Route exact path='/account' component={Account} />
-        <Route exact path='/settings' component={Settings} />
         <Route exact path='/whitelist' component={WhitelistedDapps} />
         <Route exact path='/locking' component={LockingConfiguration} />
+        <Route exact path='/resync-token' component={ResyncToken} />
       </div>
     )
   }

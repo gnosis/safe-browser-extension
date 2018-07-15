@@ -19,17 +19,28 @@ class NavigationDrawer extends Component {
         }
       }
       : '/change-password'
+    const resyncRoute = account.lockedState
+      ? {
+        pathname: '/password',
+        state: {
+          dest: '/resync-token'
+        }
+      }
+      : '/resync-token'
 
     return (
-      <ul className={cx(styles.safeDrawerMenu, showMenu ? styles.active : null)}>
+      <ul className={cx(styles.safeDrawerMenu, showMenu && styles.active)}>
         <li data-menu='whitelist'>
-          <Link to='whitelist'>Manage sites whitelist</Link>
+          <Link to='/whitelist'>Manage sites whitelist</Link>
         </li>
         <li data-menu='timeout'>
           <Link to='/locking'>Set lock timeout</Link>
         </li>
         <li data-menu='password'>
           <Link to={changePasswordUrl}>Change password</Link>
+        </li>
+        <li data-menu='resync'>
+          <Link to={resyncRoute}>Resync push token</Link>
         </li>
       </ul>
     )
