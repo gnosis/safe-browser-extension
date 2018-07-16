@@ -22,8 +22,13 @@ body{
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale
 }
-body.start{
-  background:fixed,url(../images/mountain.svg) center/cover no-repeat,linear-gradient(-180deg,#fff 50%,#E4E8F1 100%)
+body>div>.start{
+  background:fixed,url(../images/mountain.svg) center/cover no-repeat,linear-gradient(-180deg,#fff 50%,#E4E8F1 100%);
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 ::-moz-selection{
   color:#fff;
