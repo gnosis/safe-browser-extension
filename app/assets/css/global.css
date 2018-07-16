@@ -99,7 +99,7 @@ section.auction,section.home{
   -ms-flex-wrap:wrap
 }
 .safeLogo{
-  background:url(../images/gnosis_safe_logo.svg) center/contain no-repeat;
+  background:url(../images/favicon_rinkeby.png) center/contain no-repeat;
   height:110px;
   width:110px;
   display:block;
@@ -601,7 +601,7 @@ form input.noborder{
   margin:2.5em auto 0
 }
 .safeIcon{
-  background:url(../images/gnosis_safe_icon.svg) 0/contain no-repeat;
+  background:url(../images/favicon_rinkeby.png) 0/contain no-repeat;
   height:32px;
   width:auto;
   position:relative;
@@ -766,8 +766,6 @@ form input.noborder{
   align-items:center
 }
 .identicon{
-  height: 24px;
-  width: 24px;
   pointer-events:none;
   margin-right: 6px;
 }

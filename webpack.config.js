@@ -122,6 +122,13 @@ module.exports = {
         to: path.resolve(__dirname, './build/manifest.json'),
         force: true
       }
+    ]),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, './app/assets/images/favicon_rinkeby.png'),
+        to: path.resolve(__dirname, './build/assets/images/favicon_rinkeby.png'),
+        force: true
+      }
     ])
   ],
   node: {
