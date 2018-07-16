@@ -18,7 +18,7 @@ module.exports = {
       url: 'https://kovan.infura.io/gnosis'
     }
   },
-  androidAppLink: 'https://play.google.com/<android-app-link-here>',
+  androidAppLink: 'https://play.google.com/apps/testing/pm.gnosis.heimdall.dev',
   iOSAppLink: 'https://itunes.apple.com/<ios-app-link-here>',
   pushNotificationServiceUrl: 'https://safe-notification.dev.gnosisdev.com/api/v1/',
   transactionRelayServiceUrl: 'https://safe-relay.dev.gnosisdev.com/api/v1/',

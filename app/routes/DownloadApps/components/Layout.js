@@ -30,7 +30,7 @@ const Layout = ({
           <ol>
             <li>
               <p>Download &amp; install the mobile app</p>
-              <button onClick={toggleQrIos} data-os='ios'>iPhone &amp; iPad</button>
+              {/*<button onClick={toggleQrIos} data-os='ios'>iPhone &amp; iPad</button>*/}
               <button onClick={toggleQrAndroid} data-os='android'>Android</button>
             </li>
             <li>
