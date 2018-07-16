@@ -54,14 +54,14 @@ const Layout = ({
           storeImage={playStore}
         />
       }
-      {showQrIos &&
+      {/*showQrIos &&
         <AppQr
           toggleQr={toggleQrIos}
           os='IOS'
           link={iosAppLink}
           storeImage={appStore}
         /> 
-      }
+      */}
       {showQrPairing &&
         <PairingProcess
           toggleQr={toggleQrPairing}

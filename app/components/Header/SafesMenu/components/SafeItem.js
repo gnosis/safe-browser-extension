@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Blockies from 'react-blockies'
+import Blockie from 'components/Blockie'
 
 import styles from 'assets/css/global.css'
 import edit from 'assets/images/edit.svg'
@@ -48,11 +48,7 @@ class SafeItem extends Component {
     return (
       <React.Fragment>
         <div className={styles.identicon}>
-          <Blockies
-            seed={address}
-            size={8}
-            scale={3}
-          />
+          <Blockie address={address} diameter={24} />
         </div>
         <span>
           <p contentEditable={editSafeAlias} ref={this.aliasRef}>{alias}</p>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Blockies from 'react-blockies'
+import Blockie from 'components/Blockie'
 
 import { shortenAddress } from 'utils/helpers'
 import styles from 'assets/css/global.css'
@@ -14,11 +14,7 @@ const TransactionAddressData = ({
     <div className={style}>
       <span>
         <div className={styles.identicon}>
-          <Blockies
-            seed={address}
-            size={8}
-            scale={3}
-          />
+          <Blockie address={address} diameter={32} />
         </div>
         <p>
           <i>{alias}</i>
