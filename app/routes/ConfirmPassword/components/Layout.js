@@ -49,6 +49,7 @@ class Layout extends Component {
         <Footer
           link={'/create-password'}
           ready={ready}
+          secondStep
           nextLink={nextLink}
         />
       </Page>

@@ -7,6 +7,37 @@ import Web3 from 'web3'
 import GnosisSafePersonalEdition from '../../contracts/GnosisSafePersonalEdition.json'
 import config from '../../config'
 
+export const sendTransaction = async (
+  accountAddress,
+  privateKey,
+  tx,
+  safeAddress,
+) => {
+  const hash = EthUtil.toBuffer(tx.hash)
+  const vrsTx = EthUtil.ecsign(hash, privateKey)
+  const r = new BigNumber(EthUtil.bufferToHex(vrsTx.r))
+  const s = new BigNumber(EthUtil.bufferToHex(vrsTx.s))
+  const data = JSON.stringify({
+    type: 'sendTransaction',
+    hash: tx.hash,
+    safe: tx.safe,
+    to: tx.to,
+    value: (tx.value) ? new BigNumber(tx.value).toString(10) : undefined,
+    data: tx.data,
+    operation: tx.operation,
+    txGas: tx.txGas,
+    dataGas: tx.dataGas,
+    gasPrice: tx.gasPrice,
+    gasToken: tx.gasToken,
+    nonce: tx.nonce,
+    r: r.toString(10),
+    s: s.toString(10),
+    v: vrsTx.v.toString(10),
+  })
+
+  return sendNotification(data, privateKey, accountAddress, safeAddress)
+}
+
 export const requestConfirmationResponse = (
   type,
   accountAddress,
@@ -73,10 +104,9 @@ export const sendNotification = async (
     headers,
     body,
   })
-
 }
 
-const getOwners = (accountAddress, safeAddress) => {
+export const getOwners = (accountAddress, safeAddress) => {
   const contract = TruffleContract(GnosisSafePersonalEdition)
   const provider = new Web3.providers.HttpProvider(
     config.networks[config.currentNetwork].url
@@ -85,10 +115,32 @@ const getOwners = (accountAddress, safeAddress) => {
 
   return contract.at(safeAddress)
     .then((instance) => {
-      return instance.getOwners()
+      return instance.getOwners.call()
     })
     .then((owners) => {
       const destOwners = owners.filter(owner => owner.toLowerCase() !== accountAddress.toLowerCase())
       return destOwners.map(owner => EthUtil.toChecksumAddress(owner))
+    })
+    .catch((err) => {
+      console.error(err)
+    })
+}
+
+export const getNonce = (safeAddress) => {
+  const contract = TruffleContract(GnosisSafePersonalEdition)
+  const provider = new Web3.providers.HttpProvider(
+    config.networks[config.currentNetwork].url
+  )
+  contract.setProvider(provider)
+
+  return contract.at(safeAddress)
+    .then((instance) => {
+      return instance.nonce.call()
+    })
+    .then((nonce) => {
+      return nonce.toString(10)
+    })
+    .catch((err) => {
+      console.error(err)
     })
 }

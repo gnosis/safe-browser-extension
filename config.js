@@ -21,6 +21,7 @@ module.exports = {
   androidAppLink: 'https://play.google.com/<android-app-link-here>',
   iOSAppLink: 'https://itunes.apple.com/<ios-app-link-here>',
   pushNotificationServiceUrl: 'https://safe-notification.dev.gnosisdev.com/api/v1/',
+  transactionRelayServiceUrl: 'https://safe-relay.dev.gnosisdev.com/api/v1/',
   firebase: {
     authDomain: "test-safe-notifications.firebaseapp.com",
     databaseURL: "https://test-safe-notifications.firebaseio.com",

@@ -4,6 +4,7 @@ import styles from 'assets/css/global.css'
 
 const TransactionSummary = ({
   balance,
+  transactionFee,
   totalCost,
 }) => (
     <div className={styles.transactionSummary}>
@@ -12,9 +13,9 @@ const TransactionSummary = ({
         <strong>{balance ? balance.round(5).toString(10) : '-'} <small>ETH</small></strong>
       </span>
       <span>
-        <p>Max. transaction fee</p>
+        <p>Estimated transaction fee</p>
         <span>
-          <strong className={styles.textRed}>&nbsp; <small>ETH</small></strong>
+          <strong className={styles.textRed}>{transactionFee ? transactionFee.round(5).toString(10) : '-'} <small>ETH</small></strong>
           <small>&nbsp;</small>
         </span>
       </span>

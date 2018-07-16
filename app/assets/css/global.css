@@ -518,7 +518,8 @@ form input.noborder{
   background-color:#28B2FA;
   border-radius:10px;
   background-clip:padding-box;
-  margin:.5rem 0 1rem
+  margin:.5rem 0 1rem;
+  overflow: hidden
 }
 .progress .determinate{
   position:absolute;
@@ -983,6 +984,10 @@ form input.noborder{
 }
 .safeMenu>ul>li.safeMenu_newSafe>p{
   font-size:1.5em
+}
+.safeMenu>ul>li.safeMenu_newSafe>p>a{
+  color: inherit;
+  text-decoration: none
 }
 .safeMenu>ul>li.safeMenu_newSafe::before{
   background:url(../images/plus_round_white.svg) center/16px no-repeat;
@@ -1822,7 +1827,6 @@ footer .stepper-dots>li.active{
   position:absolute
 }
 .extensionTX{
-  min-width: 370px;
   height:610px;
   overflow:hidden;
   border-radius:2px;

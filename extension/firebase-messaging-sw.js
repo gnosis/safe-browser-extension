@@ -21,6 +21,11 @@ self.addEventListener('push', (event) => {
       message = payload.chainHash
       break
 
+    case 'rejectTransaction':
+      title = 'Transaction rejected'
+      message = payload.hash
+      break
+
     default:
       return
 

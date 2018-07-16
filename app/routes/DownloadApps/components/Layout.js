@@ -9,7 +9,6 @@ import playStore from 'assets/images/playstore.svg'
 import appStore from 'assets/images/appstore.svg'
 
 const Layout = ({
-  handleOpenApp,
   toggleQrAndroid,
   toggleQrIos,
   toggleQrPairing,

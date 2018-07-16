@@ -1,14 +1,10 @@
 import { createStructuredSelector } from 'reselect'
 import {
   safesSelector,
-  accountSelector,
   transactionsSelector,
-  selectCurrentSafeAlias,
-} from '../store/selectors'
+} from 'routes/Transaction/store/selectors'
 
 export default createStructuredSelector({
   safes: safesSelector,
-  account: accountSelector,
   transactions: transactionsSelector,
-  currentSafeAlias: selectCurrentSafeAlias,
 })

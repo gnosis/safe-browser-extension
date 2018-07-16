@@ -1,16 +1,8 @@
 import React from 'react'
 import Blockies from 'react-blockies'
-import EthUtil from 'ethereumjs-util'
 
+import { shortenAddress } from 'utils/helpers'
 import styles from 'assets/css/global.css'
-
-const shortenAddress = (address) => {
-  const checksumedAddress = address && EthUtil.toChecksumAddress(address)
-  return checksumedAddress &&
-    checksumedAddress.substring(0, 8) +
-    '...' +
-    checksumedAddress.substring(checksumedAddress.length - 6, checksumedAddress.length)
-}
 
 const TransactionAddressData = ({
   style,

@@ -15,11 +15,18 @@ function transactions(state = initialState, action) {
   switch (action.type) {
 
     case ADD_TRANSACTION:
+      const transaction = {
+        tx: action.tx
+      }
+      if (action.dappWindowId && action.dappTabId) {
+        transaction.dappWindowId = action.dappWindowId
+        transaction.dappTabId = action.dappTabId
+      }
       transactions = {
         ...state,
         txs: [
           ...state.txs,
-          action.tx,
+          transaction,
         ],
       }
       if (action.windowId)

@@ -62,12 +62,13 @@ class LockingState extends Component {
     const { lockedAccount } = this.state
 
     if (lockedAccount) {
-      return <Redirect to={{
+      const url = {
         pathname: '/password',
         state: {
-          dest: (txReview) ? '/confirm-transaction' : '/account'
+          dest: (txReview) ? '/transaction' : '/account'
         }
-      }} />
+      }
+      return <Redirect to={url} />
     }
     return (
       account.lockedState

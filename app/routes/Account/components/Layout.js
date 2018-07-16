@@ -37,7 +37,7 @@ class Layout extends Component {
               className={styles.externalLink}
               onClick={openEtherScan}>
               View on Etherscan.io
-              </Link>
+            </Link>
           </div>
         </div>
       </Page>
