@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 import CryptoJs from 'crypto-js'
 
-import { createEthAccount } from 'routes/PairingProcess/containers/pairEthAccount'
+import { createEthAccount } from 'routes/DownloadApps/components/PairingProcess/containers/pairEthAccount'
 import Layout from '../components/Layout'
 import actions from './actions'
 import selector from './selector'
@@ -95,7 +95,7 @@ class ChangePassword extends Component {
         manageConfirmPassword={this.manageConfirmPassword}
         updateMasterPassword={this.updateMasterPassword}
         confirmPasswordReady={confirmPasswordReady}
-        ready={createPasswordReady && confirmPasswordReady}
+        createPasswordReady={createPasswordReady}
       />
     )
   }

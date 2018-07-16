@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 
-import Page from 'components/Page'
-import styles from './index.css'
+import styles from 'assets/css/global.css'
 
 class Layout extends Component {
   render() {
@@ -12,20 +10,22 @@ class Layout extends Component {
       ready,
     } = this.props
 
+    const matchStyle = ready ? styles.textGreen : styles.textRed
+    const dataValidation = !ready && confirmPassword !== '' ? 'ERROR' : ''
+
     return (
       <React.Fragment>
-        <p className={styles.text}>Confirm the password</p>
-        <input
-          type='password'
-          placeholder='Confirm password'
-          value={confirmPassword}
-          onChange={updateConfirmPassword}
-        />
-        <div>
-          <div className={ready ? styles.correct : styles.wrong}>
-            <p>Passwords must match</p>
-          </div>
-        </div>
+        <span data-validation={dataValidation}>
+          <input
+            type="password"
+            placeholder="Confirm password"
+            value={confirmPassword}
+            onChange={updateConfirmPassword}
+          />
+        </span>
+        <p className={confirmPassword === '' ? null : matchStyle}>
+          Password doesn't match
+          </p>
       </React.Fragment>
     )
   }

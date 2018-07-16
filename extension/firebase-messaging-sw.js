@@ -1,4 +1,4 @@
-import notificationImage from 'assets/notification_image.jpg'
+import notificationImage from 'assets/images/notification_image.jpg'
 
 self.addEventListener('push', (event) => {
   const payload = event.data.json().data
@@ -17,8 +17,14 @@ self.addEventListener('push', (event) => {
       break
 
     case 'sendTransactionHash':
-      title = 'Transaction executed'
-      message = payload.txHash
+      title = 'Transaction submitted'
+      message = payload.chainHash
+      break
+
+    case 'rejectTransaction':
+      title = 'Transaction rejected'
+      message = payload.hash
+      break
 
     default:
       return

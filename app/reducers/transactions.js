@@ -4,24 +4,48 @@ import {
   REMOVE_ALL_TRANSACTIONS,
 } from 'actions/transactions'
 
-function transactions(state = [], action) {
-  let newState
+const initialState = {
+  windowId: undefined,
+  txs: [],
+}
+
+function transactions(state = initialState, action) {
+  let transactions
 
   switch (action.type) {
 
     case ADD_TRANSACTION:
-      newState = [...state]
-      newState.push({
-        tx: action.tx,
-        popupId: action.popupId,
-      })
-      return newState
+      const transaction = {
+        tx: action.tx
+      }
+      if (action.dappWindowId && action.dappTabId) {
+        transaction.dappWindowId = action.dappWindowId
+        transaction.dappTabId = action.dappTabId
+      }
+      transactions = {
+        ...state,
+        txs: [
+          ...state.txs,
+          transaction,
+        ],
+      }
+      if (action.windowId)
+        transactions.windowId = action.windowId
+      return transactions
 
     case REMOVE_TRANSACTION:
-      return state.filter(t => t.popupId !== action.popupId)
+      transactions = state.txs
+      transactions.splice(action.position, 1)
+      return {
+        ...state,
+        txs: transactions,
+      }
 
     case REMOVE_ALL_TRANSACTIONS:
-      return []
+      return {
+        windowId: undefined,
+        txs: [],
+      }
 
     default:
       return state

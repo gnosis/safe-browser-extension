@@ -1,77 +1,71 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
-import { Link } from 'react-router-dom'
+import classNames from 'classnames/bind'
 
-import gnosisOwl from 'assets/gnosis_owl.svg'
-import ClearFix from 'components/ClearFix'
-import styles from './index.css'
+import SafesMenu from './SafesMenu/containers'
+import LockingState from './LockingState/containers'
+import NavigationDrawer from './NavigationDrawer'
+import styles from 'assets/css/global.css'
 
-import { logOutAccount } from 'actions/account'
+const cx = classNames.bind(styles)
 
 class Header extends Component {
+  constructor(props) {
+    super(props)
 
-  handleLogOut = () => {
-    this.props.onLogOut()
-
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations()
-        .then(registrations => {
-          for (let registration of registrations) {
-            registration.unregister()
-          }
-        })
+    this.state = {
+      showSafes: false,
+      showMenu: false,
     }
+  }
 
-    this.props.history.push('/welcome')
+  toggleMenu = () => {
+    this.setState((prevState) => ({
+      showMenu: !prevState.showMenu
+    }))
+  }
+
+  toggleSafes = () => {
+    this.setState((prevState) => ({
+      showSafes: !prevState.showSafes
+    }))
   }
 
   render() {
-    const { account, settings, logOut } = this.props
+    const {
+      showMenu,
+      showSafes,
+    } = this.state
+    const { txReview } = this.props
 
     return (
-      <div className={styles.header}>
-        <div className={styles.leftHeader}>
-          <img src={gnosisOwl} height={30} />
-        </div>
-
-        <div className={styles.rightHeader}>
-          {settings &&
-            <Link to='/settings'
-              className={styles.menuElem}>
-              Settings
-            </Link>
+      <React.Fragment>
+        <header>
+          {!txReview &&
+            <div
+              className={cx(styles.menuTrigger, showMenu ? styles.active : null)}
+              onClick={this.toggleMenu}
+            >
+              <span className={styles.line}></span>
+              <span className={styles.line}></span>
+              <span className={styles.line}></span>
+            </div>
           }
-
-          {account &&
-            <Link to='/account'
-              className={styles.menuElem}>
-              Account
-            </Link>
-          }
-
-          {logOut &&
-            <span
-              onClick={this.handleLogOut}
-              className={styles.menuElem}>
-              Log out
-            </span>
-          }
-        </div>
-
-        <ClearFix />
-      </div>
+          <SafesMenu
+            toggleSafes={this.toggleSafes}
+            showSafes={showSafes}
+            noSafeMenu={txReview}
+          />
+          <LockingState
+            txReview={txReview}
+            properties={this.props.properties}
+          />
+        </header>
+        {!txReview &&
+          <NavigationDrawer showMenu={showMenu} />
+        }
+      </React.Fragment>
     )
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onLogOut: () => dispatch(logOutAccount())
-  }
-}
-
-export default withRouter(connect(
-  null,
-  mapDispatchToProps
-)(Header))
+export default Header

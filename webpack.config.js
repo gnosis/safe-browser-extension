@@ -22,6 +22,7 @@ module.exports = {
   entry: {
     'index': 'index.js',
     'popup': 'popup.js',
+    'options': 'options/options.js',
     'contentscript': path.resolve(__dirname, './extension/contentscript.js'),
     'script': path.resolve(__dirname, './extension/script.js'),
     'background': path.resolve(__dirname, './extension/background.js'),
@@ -74,7 +75,7 @@ module.exports = {
         })
       },
       {
-        test: /\.(png|jpg|svg)$/,
+        test: /\.(png|jpg|svg|woff|woff2)$/,
         use: [
           {
             loader: 'file-loader',
@@ -104,6 +105,13 @@ module.exports = {
         'popup'
       ]
     }),
+    new HtmlWebpackPlugin({
+      filename: 'options.html',
+      template: path.resolve(__dirname, './extension/options/options.html'),
+      chunks: [
+        'options'
+      ]
+    }),
     new ExtractTextPlugin('css/[name].[contenthash:8].css'),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(nodeEnv)
@@ -113,10 +121,12 @@ module.exports = {
         from: path.resolve(__dirname, './extension/manifest.json'),
         to: path.resolve(__dirname, './build/manifest.json'),
         force: true
-      },
+      }
+    ]),
+    new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, './extension/options/'),
-        to: path.resolve(__dirname, './build/options/'),
+        from: path.resolve(__dirname, './app/assets/images/favicon_rinkeby.png'),
+        to: path.resolve(__dirname, './build/assets/images/favicon_rinkeby.png'),
         force: true
       }
     ])

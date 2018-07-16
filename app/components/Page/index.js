@@ -2,34 +2,38 @@ import React from 'react'
 import classNames from 'classnames/bind'
 
 import Header from 'components/Header'
-import styles from './index.css'
+import SimpleHeader from 'components/SimpleHeader'
+import styles from 'assets/css/global.css'
 
 const cx = classNames.bind(styles)
 
-const Page = ({
-  children,
-  padding,
-  ...props,
-}) => {
-  const classes = cx(
-    styles.container,
-    padding
-  )
+const header = (withoutHeader, simpleHeader, noBorder, properties) => {
+  if (withoutHeader) {
+    return
+  }
+  if (simpleHeader) {
+    return <SimpleHeader noBorder={noBorder} />
+  }
+  return <Header properties={properties} />
+}
 
-  return (
-    <div>
-      {!props.withoutHeader &&
-        <Header
-          account={props.account}
-          logOut={props.logOut}
-          settings={props.settings}
-        />
-      }
-      <div className={classes}>
+const Page = ({
+  page,
+  withoutHeader,
+  simpleHeader,
+  noBorder,
+  children,
+  properties,
+}) => (
+    <div className={cx(
+      styles.extension,
+      page
+    )}>
+      <div className={styles.extensionInner}>
+        {header(withoutHeader, simpleHeader, noBorder, properties)}
         {children}
       </div>
     </div>
   )
-}
 
 export default Page

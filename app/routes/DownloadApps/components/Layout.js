@@ -2,56 +2,73 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 import Page from 'components/Page'
-import ClearFix from 'components/ClearFix'
-import googlePlayBadge from '../assets/google-play-badge.png'
-import appStoreBadge from '../assets/app-store-badge.png'
-import styles from './index.css'
+import AppQr from './AppQr/AppQr'
+import PairingProcess from './PairingProcess/containers/PairingProcess'
+import styles from 'assets/css/global.css'
+import playStore from 'assets/images/playstore.svg'
+import appStore from 'assets/images/appstore.svg'
 
-class Layout extends Component {
-  render() {
-    const {
-      androidAppLink,
-      iOSAppLink,
-      handleOpenApp,
-    } = this.props
-
-    return (
-      <Page>
-        <div className={styles.title}>
-          Download Gnosis Safe mobile app
+const Layout = ({
+  toggleQrAndroid,
+  toggleQrIos,
+  toggleQrPairing,
+  showQrAndroid,
+  showQrIos,
+  showQrPairing,
+  androidAppLink,
+  iosAppLink,
+  password,
+}) => (
+    <React.Fragment>
+      <Page
+        page={styles.appConnect}
+        simpleHeader
+        noBorder
+      >
+        <div className={styles.content}>
+          <h1>Extension setup succesfully!<br /><strong>Connect with the mobile app.</strong></h1>
+          <ol>
+            <li>
+              <p>Download &amp; install the mobile app</p>
+              {/*<button onClick={toggleQrIos} data-os='ios'>iPhone &amp; iPad</button>*/}
+              <button onClick={toggleQrAndroid} data-os='android'>Android</button>
+            </li>
+            <li>
+              <p>Connect extension with mobile app by scanning the QR code</p>
+              <button
+                onClick={toggleQrPairing}
+                className={styles.button}
+                data-qr='mobilepair'
+              >
+                SHOW QR CODE
+              </button>
+            </li>
+          </ol>
         </div>
-
-        <div className={styles.downloadApps}>
-          <div className={styles.downloadApp}>
-            <div>Android</div>
-            <div id='qr-android'></div>
-
-            <img
-              className={styles.appLink}
-              src={googlePlayBadge}
-              onClick={handleOpenApp(androidAppLink)}
-            />
-          </div>
-
-          <div className={styles.downloadApp}>
-            <div>iOS</div>
-            <div id='qr-ios'></div>
-
-            <img
-              className={styles.appLink}
-              src={appStoreBadge}
-              onClick={handleOpenApp(iOSAppLink)}
-            />
-          </div>
-
-          <ClearFix />
-        </div>
-        <Link to='/create-password'>
-          <button>CONTINUE</button>
-        </Link>
       </Page>
-    )
-  }
-}
+      {showQrAndroid &&
+        <AppQr
+          toggleQr={toggleQrAndroid}
+          os='ANDROID'
+          link={androidAppLink}
+          storeImage={playStore}
+        />
+      }
+      {/*showQrIos &&
+        <AppQr
+          toggleQr={toggleQrIos}
+          os='IOS'
+          link={iosAppLink}
+          storeImage={appStore}
+        /> 
+      */}
+      {showQrPairing &&
+        <PairingProcess
+          toggleQr={toggleQrPairing}
+          password={password}
+        /> 
+      }
+    </React.Fragment>
+  )        
 
 export default Layout

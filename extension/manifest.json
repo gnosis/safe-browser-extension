@@ -1,16 +1,20 @@
 {
   "manifest_version": 2,
-  "name": "Safe Browser Extension",
+  "name": "Gnosis Safe - Rinkeby",
   "version": "1.0.0",
   "description": "",
   "browser_action": {
-    "default_title": "Safe Browser Extension",
+    "default_title": "Gnosis Safe - Rinkeby",
     "default_popup": "index.html"
   },
   "author": "Gnosis",
   "options_ui": {
-    "page": "options/options.html",
+    "page": "options.html",
     "open_in_tab": true
+  },
+  "icons": {
+    "16": "assets/images/favicon_rinkeby.png",
+    "48": "assets/images/favicon_rinkeby.png"
   },
   "permissions": [
     "storage",

@@ -6,9 +6,12 @@ export const getQrData = (data, size) => {
 }
 
 export const createQrImage = (elem, data, size) => {
-  if (data && elem && elem.childNodes.length === 0) {
+  if (data && elem) {
     const image = document.createElement('img')
     image.setAttribute('src', getQrData(data, size))
+    const oldChild = elem.firstElementChild
+    if (oldChild)
+      oldChild.remove()
     elem.appendChild(image)
   }
 }

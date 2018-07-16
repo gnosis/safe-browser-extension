@@ -1,28 +1,39 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import classNames from 'classnames/bind'
 
 import Page from 'components/Page'
-import gnosisOwl from 'assets/gnosis_owl.svg'
-import styles from './index.css'
+import styles from 'assets/css/global.css'
 
-const Layout = () => (
-  <Page withoutHeader>
-    <div className={styles.header}>
-      <img src={gnosisOwl} height={70} />
-      <div className={styles.title}>
-        <h1>Gnosis Safe</h1>
-        <h2>Personal Edition</h2>
+const cx = classNames.bind(styles)
+
+const Layout = ({
+  showDisclaimer,
+  toggleDisclaimer,
+}) => (
+  <div className={cx(styles.extension, styles.welcome)}>
+    <div className={styles.extensionInner}>
+      <div className={styles.content}>
+        <span className={cx(styles.safeLogo, styles.animated, styles.fadeInUp)}></span>
+        <h1>Safely store Ether and ERC20 tokens with 2-factor authentication.</h1>
+        <button onClick={toggleDisclaimer} className={cx(styles.button, styles.round)}>
+          GET STARTED
+        </button>
       </div>
     </div>
-
-    <div className={styles.textContent}>
-      Wallet to store your Ether and other ERC20 tokens secured by 2-factor authentication.
+    <div className={cx(styles.disclaimer, showDisclaimer ? styles.show : null)}>
+      <span>
+        <h2>Terms</h2>
+        <p>By continuing you accept and agree with the <a href='https://safe.gnosis.io/terms' target='_blank'>Terms of Use</a> and and <a href='https://safe.gnosis.io/privacy' target='_blank'>Privacy Policy</a>.</p>
+        <div>
+          <button onClick={toggleDisclaimer} className={cx(styles.button, styles.naked)}>NO THANKS</button>
+          <Link to='/create-password'>
+            <button className={styles.button}>AGREE</button>
+          </Link>
+        </div>
+      </span>
     </div>
-
-    <Link to='/download-apps'>
-      <button>CONTINUE</button>
-    </Link>
-  </Page>
+  </div>
 )
 
 export default Layout
