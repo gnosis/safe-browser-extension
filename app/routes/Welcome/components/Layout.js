@@ -24,7 +24,7 @@ const Layout = ({
     <div className={cx(styles.disclaimer, showDisclaimer ? styles.show : null)}>
       <span>
         <h2>Terms</h2>
-        <p>By continuing you accept and agree with the <a href='https://gnosis.pm/' target='_blank'>Terms</a> of Use and and <a href='https://gnosis.pm/' target='_blank'>Privacy Policy</a>.</p>
+        <p>By continuing you accept and agree with the <a href='https://safe.gnosis.io/terms' target='_blank'>Terms of Use</a> and and <a href='https://safe.gnosis.io/privacy' target='_blank'>Privacy Policy</a>.</p>
         <div>
           <button onClick={toggleDisclaimer} className={cx(styles.button, styles.naked)}>NO THANKS</button>
           <Link to='/create-password'>
