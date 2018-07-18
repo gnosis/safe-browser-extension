@@ -307,7 +307,7 @@ section.auction,section.home{
   -ms-flex-wrap:nowrap;
   flex-wrap:nowrap;
   width:100%;
-  position:absolute;
+  position:fixed;
   bottom:0;
   margin:0
 }
@@ -1825,10 +1825,10 @@ footer .stepper-dots>li.active{
   position:absolute
 }
 .extensionTX{
-  height:610px;
+  height:670px;
   overflow:hidden;
   border-radius:2px;
-  background:#fff
+  background:#fff;
 }
 .extensionTX .extension-inner .Page{
   background:#F4F5F9;
