@@ -7,7 +7,7 @@ import EthUtil from 'ethereumjs-util'
 import { loadStorage, saveStorage } from './utils/storage'
 import { normalizeUrl } from 'utils/helpers'
 import { lockAccount } from 'actions/account'
-import { addSafe } from 'routes/DownloadApps/components/PairingProcess/store/actions'
+import { addSafe } from 'actions/safes'
 import {
   addTransaction,
   removeAllTransactions,

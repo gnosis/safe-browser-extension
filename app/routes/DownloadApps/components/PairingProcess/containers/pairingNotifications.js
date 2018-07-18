@@ -1,9 +1,9 @@
-import firebase from 'firebase/app'
+import firebase from 'firebase'
 import 'firebase/messaging'
 import EthUtil from 'ethereumjs-util'
 import BigNumber from 'bignumber.js'
 
-import config from '../../../../../../../config'
+import config from '../../../../../../config'
 
 export const setUpNotifications = () => {
   const messaging = setUpFirebase()

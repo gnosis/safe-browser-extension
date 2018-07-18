@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
+import Bip39 from 'bip39'
 
+import {
+  createEthAccount,
+  createAccountFromMnemonic
+} from '../components/PairingProcess/containers/pairEthAccount'
 import Layout from '../components/Layout'
 import config from '../../../../config'
+import actions from './actions'
+
 
 class DownloadApps extends Component {
   constructor(props) {
@@ -18,10 +25,24 @@ class DownloadApps extends Component {
       showQrPairing: false,
     }
 
-    this.qrPairingRef = React.createRef()
     const { location } = this.props
     const validPassword = location && location.state && location.state.password
     this.password = validPassword ? location.state.password : undefined
+  }
+
+  componentDidMount = () => {
+    const { account } = this.props
+    const hasAccount = account.secondFA && Object.keys(account.secondFA).length > 0
+
+    if (hasAccount || !this.password) {
+      return
+    }
+
+    const mnemonic = Bip39.generateMnemonic()
+    const currentAccount = createAccountFromMnemonic(mnemonic)
+    const { encryptedMnemonic, hmac } = createEthAccount(mnemonic, this.password)
+
+    this.props.onCreateAccount(currentAccount.getChecksumAddressString(), encryptedMnemonic, hmac)
   }
 
   toggleQrAndroid = () => {
@@ -68,12 +89,21 @@ class DownloadApps extends Component {
   }
 }
 
-const mapStateToProps = ({ safes }, props) => {
+const mapStateToProps = ({ account, safes }, props) => {
   return {
+    account,
     safes,
+  }
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onCreateAccount: (address, seed, hmac) => dispatch(actions.createAccount(address, seed, hmac)),
   }
 }
 
 export default connect(
   mapStateToProps,
+  mapDispatchToProps,
 )(DownloadApps)

@@ -1,6 +1,6 @@
 {
   "name": "safe-browser-extension",
-  "version": "1.0.0",
+  "version": "0.2.1",
   "main": "app/index.js",
   "scripts": {
     "build": "./node_modules/.bin/webpack --watch --progress",

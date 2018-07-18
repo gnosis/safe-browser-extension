@@ -1,12 +1,10 @@
 import { createStructuredSelector } from 'reselect'
 import {
   safesSelector,
-  hasAccountSelector,
-  hasLockedAccountSelector,
+  selectEncryptedMnemonicSelector,
 } from '../store/selectors'
 
 export default createStructuredSelector({
   safes: safesSelector,
-  hasAccount: hasAccountSelector,
-  hasLockedAccount: hasLockedAccountSelector,
+  selectEncryptedMnemonic: selectEncryptedMnemonicSelector,
 })

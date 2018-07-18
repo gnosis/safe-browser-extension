@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { setUpNotifications, authPushNotificationService } from 'routes/DownloadApps/components/PairingProcess/components/CreateAccount/pairingNotifications'
+import {
+  setUpNotifications,
+  authPushNotificationService
+} from 'routes/DownloadApps/components/PairingProcess/containers/pairingNotifications'
 import {
   getDecryptedEthAccount,
   createAccountFromMnemonic,
@@ -34,7 +37,6 @@ class ResyncToken extends Component {
           console.log('No token available')
           return
         }
-        console.log(token)
         authPushNotificationService(token, currentAccount.getPrivateKey())
       })
       .catch((err) => console.error(err))
