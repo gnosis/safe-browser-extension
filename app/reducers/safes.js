@@ -1,4 +1,4 @@
-import { ADD_SAFE } from 'routes/DownloadApps/components/PairingProcess/store/actions'
+import { ADD_SAFE } from 'actions/safes'
 import {
   REMOVE_SAFE,
   SELECT_SAFE,

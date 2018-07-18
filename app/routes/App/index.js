@@ -33,16 +33,21 @@ class App extends Component {
     const { account, safes } = this.props.state
     const validAccount = account.secondFA && Object.keys(account.secondFA).length > 0
     const validSafes = safes.safes && safes.safes.length > 0
-    const url = (validAccount && validSafes)
-      ? '/account'
-      : ((validAccount)
-        ? {
-          pathname: '/password',
-          state: {
-            dest: '/download-apps'
-          }
+
+    let url = ''
+    if (validAccount && validSafes)
+      url = '/account'
+
+    if (validAccount && !validSafes)
+      url = {
+        pathname: '/password',
+        state: {
+          dest: '/download-apps'
         }
-        : '/welcome')
+      }
+
+    if (!validAccount && !validSafes)
+      url = '/welcome'
 
     this.props.history.push(url)
   }
