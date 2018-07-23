@@ -27,7 +27,9 @@ class GnosisProvider extends Subprovider {
         return
 
       case 'eth_sendTransaction':
-        this.sendTransaction(payload, end)
+        (navigator.onLine)
+          ? this.sendTransaction(payload, end)
+          : end(new Error('Unable to connect with internet.'))
         return
 
       default:
