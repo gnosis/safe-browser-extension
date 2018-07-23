@@ -28,7 +28,7 @@ class Layout extends Component {
 
     return (
       <Page>
-        <div className={cx(styles.overlayPage, styles.active)} data-page='password'>
+        <div className={styles.overlayPage} data-page='password'>
           <span className={styles.overlayPageHeader}>
             <Link to='/account' className={cx(styles.btnBack, styles.active)}>
               <p>Back</p>

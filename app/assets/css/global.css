@@ -1084,7 +1084,7 @@ form input.noborder{
   -moz-appearance:none;
   appearance:none
 }
-.overlayPage,.safeDrawerMenu{
+.safeDrawerMenu{
   border-top:1px solid #E4E8F1;
   position:absolute
 }
@@ -1094,7 +1094,7 @@ form input.noborder{
   will-change:transform,opacity;
   transition:all .2s ease-in-out;
   background:#fff;
-  height:490px;
+  height:510px;
   width:80%;
   left:0;
   top:59px;
@@ -1177,17 +1177,9 @@ form input.noborder{
   background:#F4F5F9;
   height:calc(100% - 58px);
   top:58px;
-  z-index:9;
-  visibility:hidden;
-  opacity:0;
-  transition:all .3s ease-in-out;
-  transform:translateX(-370px)
+  display:block;
 }
-.overlayPage.active{
-  visibility:visible;
-  opacity:1;
-  transform:translateX(0)
-}
+
 .overlayPage[data-page=password] form>button{
   margin-top:25px
 }
@@ -2232,4 +2224,36 @@ footer .stepper-dots>li.active{
 }
 .extensionTX .extension-inner .button-group>button{
   font-size:1.5em
+}
+.network-notification{
+  background:#EA3F52;
+  height:55px;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  width:100%;
+  position:absolute;
+  bottom:0;
+  z-index:1000
+}
+.network-notification::before {
+  content: "";
+  background:url(../images/no-connection.svg) 10px 0/contain no-repeat;
+  height:20px;
+  width:24px;
+  display:block;
+  padding-right:20px
+}
+.network-notification>div>p{
+  font-size: 13px;
+  color: white;
+  letter-spacing: 0;
+  line-height: 0.3;
+  text-align:left
 }
