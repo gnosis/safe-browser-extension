@@ -20,7 +20,8 @@ const {
 //})
 
 if (typeof window.web3 !== 'undefined') {
-  throw new Error('web3 already exists.')
+  //throw new Error('web3 already exists.')
+  console.error("Gnosis Safe overrode an existing web3, please disable the whitelisting or uninstall one to prevent this.")
 }
 
 var engine = new ProviderEngine()
@@ -63,7 +64,7 @@ engine.send = function(payload){
   var r = undefined
   switch (payload.method) {
     case 'net_version':
-      r = "4"
+      r = config.networks[config.currentNetwork].version.toString()
       break;
 
     default:
