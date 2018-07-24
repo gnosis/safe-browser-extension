@@ -20,8 +20,8 @@ module.exports = {
   },
   androidAppLink: 'https://play.google.com/apps/testing/pm.gnosis.heimdall.dev',
   iOSAppLink: 'https://itunes.apple.com/<ios-app-link-here>',
-  pushNotificationServiceUrl: 'https://safe-notification.staging.gnosisdev.com/api/v1/',
-  transactionRelayServiceUrl: 'https://safe-relay.staging.gnosisdev.com/api/v1/',
+  pushNotificationServiceUrl: 'https://safe-notification.dev.gnosisdev.com/api/v1/',
+  transactionRelayServiceUrl: 'https://safe-relay.dev.gnosisdev.com/api/v1/',
   firebase: {
     authDomain: "test-safe-notifications.firebaseapp.com",
     databaseURL: "https://test-safe-notifications.firebaseio.com",
