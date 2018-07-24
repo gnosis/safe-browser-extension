@@ -1,14 +1,9 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 
 import { createQrImage } from 'utils/qrdisplay'
 import styles from 'assets/css/global.css'
 
 class AppQr extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   componentDidMount = () => {
     const { link } = this.props
 
@@ -23,12 +18,12 @@ class AppQr extends Component {
     chrome.tabs.create({ url })
   }
 
-  render() {
+  render () {
     const {
       toggleQr,
       os,
       link,
-      storeImage,
+      storeImage
     } = this.props
 
     return (
@@ -36,11 +31,11 @@ class AppQr extends Component {
         <button
           className={styles.buttonExit}
           onClick={toggleQr}
-        ></button>
+        />
         <div className={styles.innerOverlayContent}>
           <span className={styles.QR}>
             <p>GNOSIS SAFE<br />FOR {os}</p>
-            <div id='qr-app'></div>
+            <div id='qr-app' />
           </span>
           <img
             src={storeImage}

@@ -2,6 +2,7 @@ import firebase from 'firebase'
 import 'firebase/messaging'
 import EthUtil from 'ethereumjs-util'
 import BigNumber from 'bignumber.js'
+import fetch from 'node-fetch'
 
 import config from '../../../../../../config'
 
@@ -28,19 +29,17 @@ export const authPushNotificationService = (pushToken, privateKey) => {
   const url = config.pushNotificationServiceUrl + 'auth/'
   const headers = {
     'Accept': 'application/json',
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json'
   }
   const body = generateAuthContent(pushToken, privateKey)
 
   return fetch(url, {
     method: 'POST',
     headers,
-    body,
+    body
   })
     .then((response) => {
       return (response.status === 201)
-        ? true
-        : false
     })
     .catch((err) => {
       console.error(err)
@@ -58,9 +57,9 @@ const generateAuthContent = (pushToken, privateKey) => {
     signature: {
       r: r.toString(10),
       s: s.toString(10),
-      v: vrs.v,
+      v: vrs.v
     },
-    push_token: pushToken,
+    push_token: pushToken
   })
   return authContent
 }

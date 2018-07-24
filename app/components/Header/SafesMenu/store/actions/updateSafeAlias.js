@@ -4,6 +4,6 @@ export const updateSafeAlias = (address, alias) => {
   return {
     type: UPDATE_SAFE_ALIAS,
     address,
-    alias,
+    alias
   }
 }

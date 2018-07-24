@@ -2,24 +2,19 @@ import React, { Component } from 'react'
 
 import Page from 'components/Page'
 import styles from 'assets/css/global.css'
-import keyHole from 'assets/images/keyhole.svg'
 
 class Layout extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   prevent = (e) => {
     e.preventDefault()
   }
 
-  render() {
+  render () {
     const {
       password,
       updatePassword,
       validatePasswords,
       rotation,
-      dataValidation,
+      dataValidation
     } = this.props
 
     return (
@@ -28,7 +23,7 @@ class Layout extends Component {
         withoutHeader
       >
         <div className={styles.content}>
-          <span className={styles.safeLogo}></span>
+          <span className={styles.safeLogo} />
           <span className={styles.lockshape} data-validation={dataValidation}>
 
             <svg id={styles.keyhole} width='18' height='34' viewBox='0 0 18 34' xmlns='http://www.w3.org/2000/svg'
@@ -61,7 +56,7 @@ class Layout extends Component {
               </g>
             </svg>
 
-            <span className={styles.lockshape_dots} style={rotation}></span>
+            <span className={styles.lockshape_dots} style={rotation} />
           </span>
           <form onSubmit={this.prevent} data-validation={dataValidation}>
             <input

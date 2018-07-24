@@ -10,8 +10,7 @@ export const createQrImage = (elem, data, size) => {
     const image = document.createElement('img')
     image.setAttribute('src', getQrData(data, size))
     const oldChild = elem.firstElementChild
-    if (oldChild)
-      oldChild.remove()
+    if (oldChild) { oldChild.remove() }
     elem.appendChild(image)
   }
 }

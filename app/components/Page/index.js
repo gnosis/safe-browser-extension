@@ -23,17 +23,17 @@ const Page = ({
   simpleHeader,
   noBorder,
   children,
-  properties,
+  properties
 }) => (
-    <div className={cx(
-      styles.extension,
-      page
-    )}>
-      <div className={styles.extensionInner}>
-        {header(withoutHeader, simpleHeader, noBorder, properties)}
-        {children}
-      </div>
+  <div className={cx(
+    styles.extension,
+    page
+  )}>
+    <div className={styles.extensionInner}>
+      {header(withoutHeader, simpleHeader, noBorder, properties)}
+      {children}
     </div>
-  )
+  </div>
+)
 
 export default Page

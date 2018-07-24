@@ -6,7 +6,7 @@ import CryptoJs from 'crypto-js'
 import Layout from '../components/Layout'
 
 class Password extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -53,11 +53,11 @@ class Password extends Component {
     }, 500)
   }
 
-  render() {
+  render () {
     const {
       password,
       rotation,
-      dataValidation,
+      dataValidation
     } = this.state
 
     if (this.state.continue) {
@@ -65,7 +65,7 @@ class Password extends Component {
         pathname: this.properties.dest,
         state: {
           ...this.properties,
-          password,
+          password
         }
       }} />
     }
@@ -89,5 +89,5 @@ const mapStateToProps = ({ account }, props) => {
 }
 
 export default connect(
-  mapStateToProps,
+  mapStateToProps
 )(Password)

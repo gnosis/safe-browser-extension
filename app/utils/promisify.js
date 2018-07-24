@@ -3,8 +3,7 @@ export const promisify = (inner: Function): Promise<any> => (
     inner((err, res) => {
       if (err) {
         reject(err)
-      }
-      else {
+      } else {
         resolve(res)
       }
     }))

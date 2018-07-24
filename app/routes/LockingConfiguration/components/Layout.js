@@ -10,10 +10,10 @@ import styles from 'assets/css/global.css'
 const cx = classNames.bind(styles)
 
 class Layout extends Component {
-  render() {
+  render () {
     const {
       minutes,
-      handleOptionChange,
+      handleOptionChange
     } = this.props
 
     return (

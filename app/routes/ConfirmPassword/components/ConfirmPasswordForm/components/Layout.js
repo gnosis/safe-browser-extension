@@ -3,11 +3,11 @@ import React, { Component } from 'react'
 import styles from 'assets/css/global.css'
 
 class Layout extends Component {
-  render() {
+  render () {
     const {
       confirmPassword,
       updateConfirmPassword,
-      ready,
+      ready
     } = this.props
 
     const matchStyle = ready ? styles.textGreen : styles.textRed
@@ -17,15 +17,15 @@ class Layout extends Component {
       <React.Fragment>
         <span data-validation={dataValidation}>
           <input
-            type="password"
-            placeholder="Confirm password"
+            type='password'
+            placeholder='Confirm password'
             value={confirmPassword}
             onChange={updateConfirmPassword}
           />
         </span>
         <p className={confirmPassword === '' ? null : matchStyle}>
           Password doesn't match
-          </p>
+        </p>
       </React.Fragment>
     )
   }

@@ -2,19 +2,18 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 
-import Page from 'components/Page'
 import styles from 'assets/css/global.css'
 
 const cx = classNames.bind(styles)
 
 const Layout = ({
   showDisclaimer,
-  toggleDisclaimer,
+  toggleDisclaimer
 }) => (
   <div className={cx(styles.extension, styles.welcome)}>
     <div className={styles.extensionInner}>
       <div className={styles.content}>
-        <span className={cx(styles.safeLogo, styles.animated, styles.fadeInUp)}></span>
+        <span className={cx(styles.safeLogo, styles.animated, styles.fadeInUp)} />
         <h1>Safely store Ether and ERC20 tokens with 2-factor authentication.</h1>
         <button onClick={toggleDisclaimer} className={cx(styles.button, styles.round)}>
           GET STARTED

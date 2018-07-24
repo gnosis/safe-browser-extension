@@ -3,11 +3,11 @@ import React from 'react'
 import styles from 'assets/css/global.css'
 
 const SimpleHeader = ({
-  noBorder,
+  noBorder
 }) => (
-    <header className={noBorder ? styles.noBorder : null}>
-      <span className={styles.safeIcon}></span>
-    </header>
-  )
+  <header className={noBorder ? styles.noBorder : null}>
+    <span className={styles.safeIcon} />
+  </header>
+)
 
 export default SimpleHeader

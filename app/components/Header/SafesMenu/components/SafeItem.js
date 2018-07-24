@@ -8,17 +8,17 @@ import trashWhite from 'assets/images/trash_white.svg'
 import actions from './actions'
 
 class SafeItem extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
-      editSafeAlias: false,
+      editSafeAlias: false
     }
 
     this.aliasRef = React.createRef()
-    this.addressDisplayed = props.address.substring(0, 8)
-      + '...'
-      + props.address.substring(props.address.length - 6, props.address.length)
+    this.addressDisplayed = props.address.substring(0, 8) +
+      '...' +
+      props.address.substring(props.address.length - 6, props.address.length)
   }
 
   showEditSafeAlias = () => {
@@ -37,12 +37,12 @@ class SafeItem extends Component {
     onUpdateSafeAlias(address, alias)
   }
 
-  render() {
+  render () {
     const { editSafeAlias } = this.state
     const {
       removeSafe,
       address,
-      alias,
+      alias
     } = this.props
 
     return (
@@ -87,5 +87,5 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(
   null,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(SafeItem)

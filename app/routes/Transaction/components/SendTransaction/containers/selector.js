@@ -1,10 +1,10 @@
 import { createStructuredSelector } from 'reselect'
 import {
   safesSelector,
-  transactionsSelector,
+  transactionsSelector
 } from 'routes/Transaction/store/selectors'
 
 export default createStructuredSelector({
   safes: safesSelector,
-  transactions: transactionsSelector,
+  transactions: transactionsSelector
 })

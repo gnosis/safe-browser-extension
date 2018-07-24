@@ -7,18 +7,18 @@ const TimeBlock = ({
   minutes,
   minTime
 }) => (
-    <div className={styles.radio}>
-      <input
-        type='radio'
-        name='timeout'
-        value={`${minTime}`}
-        checked={minutes === minTime}
-        readOnly
-      />
-      <label onClick={handleOptionChange(minTime)}>
-        {minTime}min {minTime === 5 && ' (default)'}
-      </label>
-    </div>
-  )
+  <div className={styles.radio}>
+    <input
+      type='radio'
+      name='timeout'
+      value={`${minTime}`}
+      checked={minutes === minTime}
+      readOnly
+    />
+    <label onClick={handleOptionChange(minTime)}>
+      {minTime}min {minTime === 5 && ' (default)'}
+    </label>
+  </div>
+)
 
 export default TimeBlock

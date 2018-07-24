@@ -1,19 +1,17 @@
-import React from 'react'
-import Enzyme, { shallow, mount, render } from 'enzyme'
+import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import { createMockStore } from 'redux-test-utils'
 import CryptoJs from 'crypto-js'
 import EthUtil from 'ethereumjs-util'
 import Web3 from 'web3'
-const web3 = new Web3()
 
 import {
   createEthAccount,
   getDecryptedEthAccount,
   getUnencryptedEthAccount,
   createAccountFromMnemonic,
-  generatePairingCodeContent,
+  generatePairingCodeContent
 } from './pairEthAccount'
+const web3 = new Web3()
 
 Enzyme.configure({ adapter: new Adapter() })
 
@@ -27,21 +25,13 @@ const account = {
   secondFA: { address, seed, hmac }
 }
 
-const setUpFirstSafe = () => {
-  return {
-    ...account,
-    lockedState: true,
-    secondFA: {}
-  }
-}
-
 const setUpSecondSafeUnlockedState = () => {
   return {
     ...account,
     lockedState: false,
     secondFA: {
       ...account.secondFA,
-      unlockedMnemonic: mnemonic,
+      unlockedMnemonic: mnemonic
     }
   }
 }
@@ -49,7 +39,7 @@ const setUpSecondSafeUnlockedState = () => {
 const setUpSecondSafeLockedState = () => {
   return {
     ...account,
-    lockedState: true,
+    lockedState: true
   }
 }
 
@@ -60,7 +50,6 @@ describe('pairEthAccount', () => {
   })
 
   test('Create Ethereum account before connecting the first Safe', () => {
-    const createdAccount = createAccountFromMnemonic(mnemonic)
     const {
       encryptedMnemonic,
       hmac
@@ -104,7 +93,7 @@ describe('pairEthAccount', () => {
         data,
         EthUtil.bufferToHex(pairingCode.signature.v),
         web3.toHex(pairingCode.signature.r),
-        web3.toHex(pairingCode.signature.s),
+        web3.toHex(pairingCode.signature.s)
       )
     )
     const addressCode = EthUtil.pubToAddress(publicKeyCode)

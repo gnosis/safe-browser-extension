@@ -7,15 +7,14 @@ import { sendTransaction, getNonce } from 'utils/sendNotifications'
 import Layout from '../components/Layout'
 import {
   MSG_PENDING_SENDTRANSACTION,
-  MSG_RESOLVED_TRANSACTION,
+  MSG_RESOLVED_TRANSACTION
 } from '../../../../../../extension/utils/messages'
 
 class SendTransaction extends Component {
-
   handleConfirmTransaction = () => {
     const {
       handleTransaction,
-      transactionNumber,
+      transactionNumber
     } = this.props
 
     if (handleTransaction()) {
@@ -23,7 +22,7 @@ class SendTransaction extends Component {
 
       chrome.runtime.sendMessage({
         msg: MSG_PENDING_SENDTRANSACTION,
-        position: transactionNumber,
+        position: transactionNumber
       })
     }
   }
@@ -46,7 +45,7 @@ class SendTransaction extends Component {
     const {
       transaction,
       safes,
-      ethAccount,
+      ethAccount
     } = this.props
 
     transaction.nonce = await getNonce(safes.currentSafe)
@@ -56,7 +55,7 @@ class SendTransaction extends Component {
       ethAccount.getChecksumAddressString(),
       ethAccount.getPrivateKey(),
       transaction,
-      safes.currentSafe,
+      safes.currentSafe
     )
       .then((response) => {
         if (response.status === 204) {
@@ -73,7 +72,7 @@ class SendTransaction extends Component {
       transactionNumber,
       showTransaction,
       transactions,
-      removeTransaction,
+      removeTransaction
     } = this.props
 
     if (transactions.txs.length === 1) {
@@ -87,10 +86,10 @@ class SendTransaction extends Component {
     showTransaction(position)
   }
 
-  render() {
+  render () {
     const {
       unlockRequest,
-      reviewedTx,
+      reviewedTx
     } = this.props
 
     return (
@@ -106,5 +105,5 @@ class SendTransaction extends Component {
 }
 
 export default connect(
-  selector,
+  selector
 )(SendTransaction)

@@ -11,12 +11,12 @@ import Password from 'routes/Password/containers/Password'
 import Account from 'routes/Account/containers/Account'
 import WhitelistedDapps from 'routes/WhitelistedDapps/containers/WhitelistedDapps'
 import LockingConfiguration from 'routes/LockingConfiguration/containers/LockingConfiguration'
-import ResyncToken from '../ResyncToken/containers/ResyncToken';
+import ResyncToken from '../ResyncToken/containers/ResyncToken'
 
 import 'assets/css/global.css'
 
 class App extends Component {
-  componentWillMount() {
+  componentWillMount () {
     navigator.permissions.query({ name: 'notifications' })
       .then(function (permission) {
         if (permission.state === 'granted') {
@@ -24,8 +24,7 @@ class App extends Component {
         }
         if (chrome.runtime.openOptionsPage) {
           chrome.runtime.openOptionsPage()
-        }
-        else {
+        } else {
           window.open(chrome.runtime.getURL('options/options.html'))
         }
       })
@@ -35,24 +34,23 @@ class App extends Component {
     const validSafes = safes.safes && safes.safes.length > 0
 
     let url = ''
-    if (validAccount && validSafes)
-      url = '/account'
+    if (validAccount && validSafes) { url = '/account' }
 
-    if (validAccount && !validSafes)
+    if (validAccount && !validSafes) {
       url = {
         pathname: '/password',
         state: {
           dest: '/download-apps'
         }
       }
+    }
 
-    if (!validAccount && !validSafes)
-      url = '/welcome'
+    if (!validAccount && !validSafes) { url = '/welcome' }
 
     this.props.history.push(url)
   }
 
-  render() {
+  render () {
     return (
       <div>
         <Route exact path='/welcome' component={Welcome} />

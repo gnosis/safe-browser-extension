@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router'
 
 import Layout from '../components/Layout'
 import actions from './actions'
 import { MSG_CONFIGURE_ACCOUNT_LOCKING } from '../../../../extension/utils/messages'
 
 class LockingConfiguration extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
-      minutes: props.account.autoLockInterval,
+      minutes: props.account.autoLockInterval
     }
   }
 
@@ -21,18 +20,18 @@ class LockingConfiguration extends Component {
     let unlockingTime
     if (!account.lockedState) {
       unlockingTime = new Date().toISOString()
-      
+
       chrome.runtime.sendMessage({
-        msg: MSG_CONFIGURE_ACCOUNT_LOCKING,
+        msg: MSG_CONFIGURE_ACCOUNT_LOCKING
       })
     }
     this.props.onConfigureLocking(minutes, unlockingTime)
     this.setState({ minutes })
   }
 
-  render() {
+  render () {
     const {
-      minutes,
+      minutes
     } = this.state
 
     return (
@@ -46,17 +45,17 @@ class LockingConfiguration extends Component {
 
 const mapStateToProps = ({ account }, props) => {
   return {
-    account,
+    account
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onConfigureLocking: (minutes, unlockingTime) => dispatch(actions.configureLocking(minutes, unlockingTime)),
+    onConfigureLocking: (minutes, unlockingTime) => dispatch(actions.configureLocking(minutes, unlockingTime))
   }
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(LockingConfiguration)

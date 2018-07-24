@@ -6,47 +6,45 @@ import CryptoJs from 'crypto-js'
 import SafesLocked from '../components/SafesLocked'
 import SafesUnlocked from '../components/SafesUnlocked'
 
-import styles from 'assets/css/global.css'
 import actions from './actions'
 import {
   MSG_LOCK_ACCOUNT,
-  MSG_LOCK_ACCOUNT_TIMER,
+  MSG_LOCK_ACCOUNT_TIMER
 } from '../../../../../extension/utils/messages'
 
 class LockingState extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.unlockedAccount(props)
 
     this.state = {
-      lockedAccount: false,
+      lockedAccount: false
     }
   }
 
   handleLockAccount = () => {
     chrome.runtime.sendMessage({
-      msg: MSG_LOCK_ACCOUNT,
+      msg: MSG_LOCK_ACCOUNT
     })
   }
 
   unlockedAccount = (props) => {
     const hasPassword = props && props.properties && props.properties.state
-    if (!hasPassword)
-      return
+    if (!hasPassword) { return }
 
     const { password } = props.properties.state
     const unlockingTime = new Date()
     const encryptedMnemonic = props.account.secondFA.seed
     const mnemonic = CryptoJs.AES.decrypt(
       encryptedMnemonic,
-      password,
+      password
     ).toString(CryptoJs.enc.Utf8)
 
     this.props.onUnlockAccount(mnemonic, unlockingTime.toISOString())
 
     chrome.runtime.sendMessage({
-      msg: MSG_LOCK_ACCOUNT_TIMER,
+      msg: MSG_LOCK_ACCOUNT_TIMER
     })
   }
 
@@ -54,10 +52,10 @@ class LockingState extends Component {
     this.setState({ lockedAccount: true })
   }
 
-  render() {
+  render () {
     const {
       account,
-      txReview,
+      txReview
     } = this.props
     const { lockedAccount } = this.state
 
@@ -80,7 +78,7 @@ class LockingState extends Component {
 
 const mapStateToProps = ({ account }, props) => {
   return {
-    account,
+    account
   }
 }
 

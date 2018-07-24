@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import classNames from 'classnames/bind'
 
 import Page from 'components/Page'
 import Footer from 'components/Footer'
@@ -8,19 +6,17 @@ import ConfirmPasswordForm from './ConfirmPasswordForm/containers/ConfirmPasswor
 import styles from 'assets/css/global.css'
 import warningImage from 'assets/images/warning.svg'
 
-const cx = classNames.bind(styles)
-
 class Layout extends Component {
   prevent = (e) => {
     e.preventDefault()
   }
 
-  render() {
+  render () {
     const {
       confirmPassword,
       properties,
       manageConfirmPassword,
-      ready,
+      ready
     } = this.props
 
     const nextLink = ready

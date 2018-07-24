@@ -1,4 +1,6 @@
 import Web3 from 'web3'
+import fetch from 'node-fetch'
+import TruffleContract from 'truffle-contract'
 
 import config from '../../../../../../config'
 import GnosisSafePersonalEdition from '../../../../../../contracts/GnosisSafePersonalEdition.json'
@@ -13,19 +15,19 @@ export const getGasEstimation = (
   const url = config.transactionRelayServiceUrl + 'safes/' + address + '/transactions/estimate/'
   const headers = {
     'Accept': 'application/json',
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json'
   }
   const body = JSON.stringify({
     to,
     value,
     data,
-    operation,
+    operation
   })
 
   return fetch(url, {
     method: 'POST',
     headers,
-    body,
+    body
   })
     .then(response => {
       return response.json()
@@ -56,7 +58,7 @@ export const getTxHash = (tx, safeAddress) => {
         tx.dataGas,
         tx.gasPrice,
         tx.gasToken,
-        tx.nonce,
+        tx.nonce
       )
     })
     .then((hash) => {

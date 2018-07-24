@@ -7,24 +7,24 @@ import {
 } from 'routes/DownloadApps/components/PairingProcess/containers/pairingNotifications'
 import {
   getDecryptedEthAccount,
-  createAccountFromMnemonic,
+  createAccountFromMnemonic
 } from 'routes/DownloadApps/components/PairingProcess/containers/pairEthAccount'
 import Layout from '../components/Layout'
 import selector from './selector'
 
 class ResyncToken extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     const { location } = this.props
     const validPassword = location && location.state && location.state.password
     this.password = validPassword ? location.state.password : undefined
   }
-  
+
   handleResync = () => (e) => {
     const {
       selectEncryptedMnemonic,
-      selectUnencryptedMnemonicSelector,
+      selectUnencryptedMnemonicSelector
     } = this.props
 
     const currentAccount = !selectUnencryptedMnemonicSelector && this.password
@@ -42,9 +42,9 @@ class ResyncToken extends Component {
       .catch((err) => console.error(err))
   }
 
-  render() {
+  render () {
     return (
-      <Layout 
+      <Layout
         handleResync={this.handleResync}
       />
     )

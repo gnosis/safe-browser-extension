@@ -3,18 +3,14 @@ import React, { Component } from 'react'
 import Layout from '../components/Layout'
 
 class ConfirmPasswordForm extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   updateConfirmPassword = (e) => {
     this.props.manageConfirmPassword(e.target.value)
   }
 
-  render() {
+  render () {
     const {
       confirmPassword,
-      ready,
+      ready
     } = this.props
 
     return (

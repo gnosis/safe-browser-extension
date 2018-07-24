@@ -3,12 +3,12 @@ import React, { Component } from 'react'
 import styles from 'assets/css/global.css'
 
 class Layout extends Component {
-  render() {
+  render () {
     const {
       newPassword,
       error,
       updateNewPassword,
-      ready,
+      ready
     } = this.props
 
     const rowStyle = (error && error.row) ? styles.textGreen : styles.textRed

@@ -3,19 +3,18 @@ import { connect } from 'react-redux'
 
 import {
   getDecryptedEthAccount,
-  generatePairingCodeContent,
+  generatePairingCodeContent
 } from './pairEthAccount'
 import {
   setUpNotifications,
   authPushNotificationService
 } from './pairingNotifications'
 import { createQrImage } from 'utils/qrdisplay'
-import config from '../../../../../../config'
 import Layout from '../components/Layout'
 import selector from './selector'
 
 class PairingProcess extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.qrPairingRef = React.createRef()
@@ -27,7 +26,7 @@ class PairingProcess extends Component {
   componentDidMount = () => {
     const {
       password,
-      selectEncryptedMnemonic,
+      selectEncryptedMnemonic
     } = this.props
 
     const currentAccount = password && getDecryptedEthAccount(selectEncryptedMnemonic, password)
@@ -55,10 +54,10 @@ class PairingProcess extends Component {
     )
   }
 
-  render() {
+  render () {
     const {
       toggleQr,
-      password,
+      password
     } = this.props
     const { message } = this.state
 
@@ -74,5 +73,5 @@ class PairingProcess extends Component {
 }
 
 export default connect(
-  selector,
+  selector
 )(PairingProcess)

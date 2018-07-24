@@ -3,23 +3,23 @@ import React, { Component } from 'react'
 import Layout from '../components/Layout'
 
 class CreatePassword extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
       newPassword: '',
-      ready: false,
+      ready: false
     }
   }
 
   manageCreatePassword = (newPassword, ready) => {
     this.setState({
       newPassword,
-      ready,
+      ready
     })
   }
 
-  render() {
+  render () {
     const { newPassword } = this.state
 
     return (

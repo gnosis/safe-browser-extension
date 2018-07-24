@@ -1,11 +1,11 @@
 import {
   addWhitelistedDapp,
   deleteWhitelistedDapp,
-  deleteAllWhitelistedDapps,
+  deleteAllWhitelistedDapps
 } from 'actions/whitelistedDapps'
 
 export default {
   addWhitelistedDapp,
   deleteWhitelistedDapp,
-  deleteAllWhitelistedDapps,
+  deleteAllWhitelistedDapps
 }

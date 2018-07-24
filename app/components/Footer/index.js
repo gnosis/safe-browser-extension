@@ -11,18 +11,18 @@ const Footer = ({
   ready,
   firstStep,
   secondStep,
-  nextLink,
+  nextLink
 }) => (
-    <footer>
-      <Link to={link} className={cx(styles.btnBack, styles.active)}></Link>
-      <ul className={styles.stepperDots}>
-        <li className={firstStep && styles.active}></li>
-        <li className={secondStep && styles.active}></li>
-      </ul>
-      <Link to={nextLink} className={cx(styles.btnNext, ready ? styles.active : null)}>
-        <p>Next</p>
-      </Link>
-    </footer>
-  )
+  <footer>
+    <Link to={link} className={cx(styles.btnBack, styles.active)} />
+    <ul className={styles.stepperDots}>
+      <li className={firstStep && styles.active} />
+      <li className={secondStep && styles.active} />
+    </ul>
+    <Link to={nextLink} className={cx(styles.btnNext, ready ? styles.active : null)}>
+      <p>Next</p>
+    </Link>
+  </footer>
+)
 
 export default Footer

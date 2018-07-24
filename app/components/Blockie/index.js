@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { toDataUrl } from 'utils/blockies'
 
 class Blockie extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.identicon = React.createRef()
@@ -27,7 +27,7 @@ class Blockie extends Component {
   }
 
   generateBlockieIdenticon = (address, diameter) => {
-    const image = new Image()
+    const image = new window.Image()
     image.src = toDataUrl(address)
     image.height = diameter
     image.width = diameter
@@ -36,9 +36,9 @@ class Blockie extends Component {
     return image
   }
 
-  render() {
+  render () {
     return (
-      <div ref={this.identicon}></div>
+      <div ref={this.identicon} />
     )
   }
 }

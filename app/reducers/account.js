@@ -9,18 +9,17 @@ const initalState = {
   unlockingTime: undefined,
   autoLockInterval: 5,
   secondFA: {
-    unlockedMnemonic: undefined,
+    unlockedMnemonic: undefined
   }
 }
 
-function account(state = initalState, action) {
+function account (state = initalState, action) {
   switch (action.type) {
-
     case CREATE_ACCOUNT:
       const secondFA = {
         address: action.address,
         seed: action.seed,
-        hmac: action.hmac,
+        hmac: action.hmac
       }
       return {
         ...state,
@@ -35,7 +34,7 @@ function account(state = initalState, action) {
         unlockingTime: undefined,
         secondFA: {
           ...state.secondFA,
-          unlockedMnemonic: undefined,
+          unlockedMnemonic: undefined
         }
       }
 
@@ -54,7 +53,7 @@ function account(state = initalState, action) {
       return {
         ...state,
         autoLockInterval: action.autoLockInterval,
-        unlockingTime: action.unlockingTime,
+        unlockingTime: action.unlockingTime
       }
 
     case UPDATE_MASTER_PASSWORD:
@@ -66,13 +65,12 @@ function account(state = initalState, action) {
           ...state.secondFA,
           seed: action.seed,
           hmac: action.hmac,
-          unlockedMnemonic: undefined,
+          unlockedMnemonic: undefined
         }
       }
 
     default:
       return state
-
   }
 }
 
