@@ -135,10 +135,10 @@ export const getNonce = (safeAddress) => {
 
   return contract.at(safeAddress)
     .then((instance) => {
-      return instance.nonce.call()
+      return contract.web3.eth.call({to: safeAddress, data: '0xaffed0e0'}, 'pending')
     })
     .then((nonce) => {
-      return nonce.toString(10)
+      return contract.web3.toDecimal(nonce).toString()
     })
     .catch((err) => {
       console.error(err)
