@@ -76,7 +76,6 @@ class ConfirmTransaction extends Component {
         reviewedTx={reviewedTx}
         handleConfirmTransaction={this.handleConfirmTransaction}
         handleRejectTransaction={this.handleRejectTransaction}
-        type='confirmTransaction'
       />
     )
   }

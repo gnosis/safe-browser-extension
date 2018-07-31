@@ -9,17 +9,23 @@ class Layout extends Component {
       reviewedTx,
       handleConfirmTransaction,
       handleRejectTransaction,
-      type
     } = this.props
 
     return (
-      <FooterTransactions
-        reviewedTx={reviewedTx}
-        unlockRequest={unlockRequest}
-        handleRejectTransaction={handleRejectTransaction}
-        handleConfirmTransaction={handleConfirmTransaction}
-        type={type}
-      />
+      <React.Fragment>
+        <div className={styles.transactionState}>
+          <span className={styles.message}>
+            <img src={mobileImage} height='55' width='30' />
+            <p>This transaction has been initiated by the Gnosis Safe mobile app. When you confirm, the mobile app will submit the transaction.</p>
+          </span>
+        </div>
+        <FooterTransactions
+          reviewedTx={reviewedTx}
+          unlockRequest={unlockRequest}
+          handleRejectTransaction={handleRejectTransaction}
+          handleConfirmTransaction={handleConfirmTransaction}
+        />
+      </React.Fragment>
     )
   }
 }
