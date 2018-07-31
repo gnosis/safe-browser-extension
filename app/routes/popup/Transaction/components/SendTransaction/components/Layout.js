@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
+import classNames from 'classnames/bind'
 
 import FooterTransactions from 'routes/popup/Transaction/components/Transaction/FooterTransactions'
+import mobileImage from 'assets/images/mobile.svg'
+import styles from 'assets/css/global.css'
+
+const cx = classNames.bind(styles)
 
 class Layout extends Component {
   render () {
     const {
       unlockRequest,
+      loadedData,
       reviewedTx,
       handleConfirmTransaction,
       handleRejectTransaction,
@@ -13,6 +19,13 @@ class Layout extends Component {
 
     return (
       <React.Fragment>
+        {unlockRequest &&
+          <div className={cx(styles.transactionState)}>
+            <span className={styles.errorMessage}>
+              <p>Unlock the extension before reviewing the transaction</p>
+            </span>
+          </div>
+        }
         {reviewedTx &&
           <div className={cx(styles.transactionState)}>
             <span className={styles.await}>
@@ -31,12 +44,12 @@ class Layout extends Component {
             </span>
           </div>
         }
-        <FooterTransactions
-          reviewedTx={reviewedTx}
-          unlockRequest={unlockRequest}
-          handleRejectTransaction={handleRejectTransaction}
-          handleConfirmTransaction={handleConfirmTransaction}
-        />
+        {loadedData && !reviewedTx &&
+          <FooterTransactions
+            handleRejectTransaction={handleRejectTransaction}
+            handleConfirmTransaction={handleConfirmTransaction}
+          />
+        }
       </React.Fragment>
     )
   }

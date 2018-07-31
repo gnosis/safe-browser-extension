@@ -24,7 +24,8 @@ class Transaction extends Component {
       transactionNumber: 0,
       balance: undefined,
       unlockRequest: false,
-      reviewedTx: false
+      loadedData: false,
+      reviewedTx: false,
     }
 
     const { location } = this.props
@@ -59,6 +60,7 @@ class Transaction extends Component {
 
     this.setState({
       reviewedTx: false,
+      loadedData: false,
       transactionNumber,
       balance: undefined,
       estimations: undefined
@@ -66,15 +68,12 @@ class Transaction extends Component {
 
     try {
       const balance = await this.getBalance(tx.from)
-      const estimations = await getGasEstimation(
-        tx.from,
-        tx.to,
-        (tx.value) ? new BigNumber(tx.value).toString(10) : '0',
-        tx.data,
-        0
-      )
-      this.setState({ balance, estimations })
-    } catch (err) {
+      const value = (tx.value) ? new BigNumber(tx.value).toString(10) : '0'
+      const estimations = await getGasEstimation(tx.from, tx.to, value, tx.data, 0)
+      const loadedData = (balance !== null) && (estimations !== null)
+      this.setState({ balance, estimations, loadedData })
+    }
+    catch (err) {
       console.error(err)
     }
   }
@@ -130,7 +129,8 @@ class Transaction extends Component {
       balance,
       estimations,
       unlockRequest,
-      reviewedTx
+      loadedData,
+      reviewedTx,
     } = this.state
     const { transactions } = this.props
 
@@ -148,6 +148,7 @@ class Transaction extends Component {
               balance={balance}
               transactionNumber={transactionNumber}
               unlockRequest={unlockRequest}
+              loadedData={loadedData}
               reviewedTx={reviewedTx}
               estimations={estimations}
               safeAlias={this.getSafeAlias(transaction.safe)}

@@ -23,6 +23,7 @@ class Layout extends Component {
       balance,
       transactionNumber,
       unlockRequest,
+      loadedData,
       reviewedTx,
       estimations,
       safeAlias,
@@ -79,6 +80,7 @@ class Layout extends Component {
               handleTransaction={handleTransaction}
               removeTransaction={removeTransaction}
               unlockRequest={unlockRequest}
+              loadedData={loadedData}
               reviewedTx={reviewedTx}
             />
           }
@@ -91,6 +93,7 @@ class Layout extends Component {
               removeTransaction={removeTransaction}
               transaction={transaction}
               unlockRequest={unlockRequest}
+              loadedData={loadedData}
               reviewedTx={reviewedTx}
             />
           }

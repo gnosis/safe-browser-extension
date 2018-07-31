@@ -23,7 +23,7 @@ class ConfirmTransaction extends Component {
       transactionNumber,
       safes,
       transactions,
-      ethAccount
+      ethAccount,
     } = this.props
 
     const hash = transactions.txs[transactionNumber].tx.hash
@@ -67,12 +67,14 @@ class ConfirmTransaction extends Component {
   render () {
     const {
       unlockRequest,
-      reviewedTx
+      loadedData,
+      reviewedTx,
     } = this.props
 
     return (
       <Layout
         unlockRequest={unlockRequest}
+        loadedData={loadedData}
         reviewedTx={reviewedTx}
         handleConfirmTransaction={this.handleConfirmTransaction}
         handleRejectTransaction={this.handleRejectTransaction}

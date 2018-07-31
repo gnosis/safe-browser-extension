@@ -89,12 +89,14 @@ class SendTransaction extends Component {
   render () {
     const {
       unlockRequest,
-      reviewedTx
+      loadedData,
+      reviewedTx,
     } = this.props
 
     return (
       <Layout
         unlockRequest={unlockRequest}
+        loadedData={loadedData}
         reviewedTx={reviewedTx}
         handleConfirmTransaction={this.handleConfirmTransaction}
         handleRejectTransaction={this.handleRejectTransaction}

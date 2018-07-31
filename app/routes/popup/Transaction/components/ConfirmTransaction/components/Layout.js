@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
+import classNames from 'classnames/bind'
 
 import FooterTransactions from 'routes/popup/Transaction/components/Transaction/FooterTransactions'
+import mobileImage from 'assets/images/mobile.svg'
+import styles from 'assets/css/global.css'
+
+const cx = classNames.bind(styles)
 
 class Layout extends Component {
   render () {
     const {
       unlockRequest,
+      loadedData,
       reviewedTx,
       handleConfirmTransaction,
       handleRejectTransaction,
@@ -19,12 +25,19 @@ class Layout extends Component {
             <p>This transaction has been initiated by the Gnosis Safe mobile app. When you confirm, the mobile app will submit the transaction.</p>
           </span>
         </div>
-        <FooterTransactions
-          reviewedTx={reviewedTx}
-          unlockRequest={unlockRequest}
-          handleRejectTransaction={handleRejectTransaction}
-          handleConfirmTransaction={handleConfirmTransaction}
-        />
+        {unlockRequest &&
+          <div className={cx(styles.transactionState)}>
+            <span className={styles.errorMessage}>
+              <p>Unlock the extension before reviewing the transaction</p>
+            </span>
+          </div>
+        }
+        {loadedData && !reviewedTx &&
+          <FooterTransactions
+            handleRejectTransaction={handleRejectTransaction}
+            handleConfirmTransaction={handleConfirmTransaction}
+          />
+        }
       </React.Fragment>
     )
   }
