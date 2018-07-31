@@ -10,7 +10,7 @@ const cx = classNames.bind(styles)
 class Layout extends Component {
   render () {
     const {
-      unlockRequest,
+      lockedAccount,
       loadedData,
       reviewedTx,
       handleConfirmTransaction,
@@ -19,13 +19,6 @@ class Layout extends Component {
 
     return (
       <React.Fragment>
-        {unlockRequest &&
-          <div className={cx(styles.transactionState)}>
-            <span className={styles.errorMessage}>
-              <p>Unlock the extension before reviewing the transaction</p>
-            </span>
-          </div>
-        }
         {reviewedTx &&
           <div className={cx(styles.transactionState)}>
             <span className={styles.await}>
@@ -46,6 +39,7 @@ class Layout extends Component {
         }
         {loadedData && !reviewedTx &&
           <FooterTransactions
+            lockedAccount={lockedAccount}
             handleRejectTransaction={handleRejectTransaction}
             handleConfirmTransaction={handleConfirmTransaction}
           />

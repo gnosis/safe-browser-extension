@@ -23,7 +23,6 @@ class Transaction extends Component {
     this.state = {
       transactionNumber: 0,
       balance: undefined,
-      unlockRequest: false,
       loadedData: false,
       reviewedTx: false,
     }
@@ -93,11 +92,7 @@ class Transaction extends Component {
 
   handleTransaction = () => {
     const { account } = this.props
-    if (account.lockedState) {
-      this.setState({ unlockRequest: true })
-      return false
-    }
-
+    if (account.lockedState) return false
     this.setState({ reviewedTx: true })
     return true
   }
@@ -128,11 +123,10 @@ class Transaction extends Component {
       transactionNumber,
       balance,
       estimations,
-      unlockRequest,
       loadedData,
       reviewedTx,
     } = this.state
-    const { transactions } = this.props
+    const { account, transactions } = this.props
 
     const transaction = transactions.txs[transactionNumber].tx
     this.setUpTransaction(transaction, estimations)
@@ -147,7 +141,7 @@ class Transaction extends Component {
               transactions={transactions}
               balance={balance}
               transactionNumber={transactionNumber}
-              unlockRequest={unlockRequest}
+              lockedAccount={account.lockedState}
               loadedData={loadedData}
               reviewedTx={reviewedTx}
               estimations={estimations}

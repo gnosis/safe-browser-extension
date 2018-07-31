@@ -22,7 +22,7 @@ class Layout extends Component {
       transactions,
       balance,
       transactionNumber,
-      unlockRequest,
+      lockedAccount,
       loadedData,
       reviewedTx,
       estimations,
@@ -79,7 +79,7 @@ class Layout extends Component {
               showTransaction={showTransaction}
               handleTransaction={handleTransaction}
               removeTransaction={removeTransaction}
-              unlockRequest={unlockRequest}
+              lockedAccount={lockedAccount}
               loadedData={loadedData}
               reviewedTx={reviewedTx}
             />
@@ -92,7 +92,7 @@ class Layout extends Component {
               handleTransaction={handleTransaction}
               removeTransaction={removeTransaction}
               transaction={transaction}
-              unlockRequest={unlockRequest}
+              lockedAccount={lockedAccount}
               loadedData={loadedData}
               reviewedTx={reviewedTx}
             />

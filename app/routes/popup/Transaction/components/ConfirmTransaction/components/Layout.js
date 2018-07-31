@@ -10,7 +10,7 @@ const cx = classNames.bind(styles)
 class Layout extends Component {
   render () {
     const {
-      unlockRequest,
+      lockedAccount,
       loadedData,
       reviewedTx,
       handleConfirmTransaction,
@@ -25,15 +25,9 @@ class Layout extends Component {
             <p>This transaction has been initiated by the Gnosis Safe mobile app. When you confirm, the mobile app will submit the transaction.</p>
           </span>
         </div>
-        {unlockRequest &&
-          <div className={cx(styles.transactionState)}>
-            <span className={styles.errorMessage}>
-              <p>Unlock the extension before reviewing the transaction</p>
-            </span>
-          </div>
-        }
         {loadedData && !reviewedTx &&
           <FooterTransactions
+            lockedAccount={lockedAccount}
             handleRejectTransaction={handleRejectTransaction}
             handleConfirmTransaction={handleConfirmTransaction}
           />
