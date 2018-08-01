@@ -1,8 +1,8 @@
-import { CREATE_ACCOUNT } from 'routes/DownloadApps/store/actions'
-import { CONFIGURE_LOCKING } from 'routes/LockingConfiguration/store/actions'
+import { CREATE_ACCOUNT } from 'routes/extension/DownloadApps/store/actions'
+import { CONFIGURE_LOCKING } from 'routes/extension/LockingConfiguration/store/actions'
 import { UNLOCK_ACCOUNT } from 'components/Header/LockingState/store/actions'
 import { LOCK_ACCOUNT } from 'actions/account'
-import { UPDATE_MASTER_PASSWORD } from 'routes/ChangePassword/store/actions'
+import { UPDATE_MASTER_PASSWORD } from 'routes/extension/ChangePassword/store/actions'
 
 const initalState = {
   lockedState: true,

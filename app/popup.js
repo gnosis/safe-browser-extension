@@ -2,8 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
+import { ConnectedRouter } from 'react-router-redux'
 
-import Popup from 'routes/Popup'
+import { PopupRoutes } from 'routes'
 import store from 'store'
 
 store
@@ -11,9 +12,9 @@ store
   .then(() => {
     ReactDOM.render(
       <Provider store={store}>
-        <BrowserRouter>
-          <Popup />
-        </BrowserRouter>
+        <ConnectedRouter history={history}>
+          <PopupRoutes />
+        </ConnectedRouter>
       </Provider>,
       document.getElementById('root')
     )
