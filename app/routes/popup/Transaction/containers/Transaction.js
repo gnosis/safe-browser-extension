@@ -102,7 +102,10 @@ class Transaction extends Component {
   }
 
   setUpTransaction = (transaction, estimations) => {
-    if (!transaction.value) { transaction.value = '0' }
+    if (!transaction.value)
+      transaction.value = '0'
+    if (!transaction.data)
+      transaction.data = '0x'
     transaction.safe = transaction.from
     transaction.operation = '0'
 
