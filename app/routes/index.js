@@ -16,30 +16,31 @@ import ResyncToken from 'routes/extension/ResyncToken/containers/ResyncToken'
 
 import 'assets/css/global.css'
 
+export const TRANSACTION_URL = '/transaction'
+
+export const ACCOUNT_URL = '/account'
+export const PASSWORD_URL = '/password'
+export const DOWNLOAD_APPS_URL = '/download-apps'
+export const WELCOME_URL = '/welcome'
+
 export const PopupRoutes = () => (
   <Switch>
-    <Redirect exact from="/" to={Transaction} />
-    <Route exact path='/password' component={Password} />
-    <Route exact path='/transaction' component={Transaction} />
+    <Route exact path={PASSWORD_URL} component={Password} />
+    <Route exact path={TRANSACTION_URL} component={Transaction} />
   </Switch>
 )
 
-export const ExtensionRoutes = () => {
-  
-  
-  return (
-    <Switch>
-      <Redirect exact from="/" to={WELCOME_ADDRESS} />
-      <Route exact path='/welcome' component={Welcome} />
-      <Route exact path='/download-apps' component={DownloadApps} />
-      <Route exact path='/change-password' component={ChangePassword} />
-      <Route exact path='/create-password' component={CreatePassword} />
-      <Route exact path='/confirm-password' component={ConfirmPassword} />
-      <Route exact path='/password' component={Password} />
-      <Route exact path='/account' component={Account} />
-      <Route exact path='/whitelist' component={WhitelistedDapps} />
-      <Route exact path='/locking' component={LockingConfiguration} />
-      <Route exact path='/resync-token' component={ResyncToken} />
-    </Switch>       
-  )
-}
+export const ExtensionRoutes = () => (
+  <Switch>
+    <Route exact path={WELCOME_URL} component={Welcome} />
+    <Route exact path={DOWNLOAD_APPS_URL} component={DownloadApps} />
+    <Route exact path='/change-password' component={ChangePassword} />
+    <Route exact path='/create-password' component={CreatePassword} />
+    <Route exact path='/confirm-password' component={ConfirmPassword} />
+    <Route exact path={PASSWORD_URL} component={Password} />
+    <Route exact path={ACCOUNT_URL} component={Account} />
+    <Route exact path='/whitelist' component={WhitelistedDapps} />
+    <Route exact path='/locking' component={LockingConfiguration} />
+    <Route exact path='/resync-token' component={ResyncToken} />
+  </Switch>       
+)
