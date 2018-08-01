@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import classNames from 'classnames/bind'
+import { Redirect } from 'react-router'
 
 import FooterTransactions from 'routes/popup/Transaction/components/Transaction/FooterTransactions'
 import mobileImage from 'assets/images/mobile.svg'
@@ -8,14 +9,43 @@ import styles from 'assets/css/global.css'
 const cx = classNames.bind(styles)
 
 class Layout extends Component {
-  render () {
+  constructor(props) {
+    super(props)
+    this.state = {
+      resolvedTransaction: false,
+    }
+  }
+
+  handleConfirmTransaction = () => {
+    const { handleConfirmTransaction, lockedAccount } = this.props
+
+    if (lockedAccount) {
+      this.setState({ resolvedTransaction: true })
+    } else {
+      handleConfirmTransaction()
+    }
+  }
+
+  render() {
     const {
       lockedAccount,
       loadedData,
       reviewedTx,
+      seconds,
       handleConfirmTransaction,
       handleRejectTransaction,
     } = this.props
+    const { resolvedTransaction } = this.state
+
+    if (resolvedTransaction && lockedAccount) {
+      const passwordUrl = {
+        pathname: '/password',
+        state: {
+          dest: '/transaction',
+        }
+      }
+      return <Redirect to={passwordUrl} />
+    }
 
     return (
       <React.Fragment>
@@ -32,8 +62,12 @@ class Layout extends Component {
               <p>Confirm this transaction with the Gnosis Safe mobile app.</p>
             </span>
             <span className={styles.resend}>
-              <p>wait before re-sending request</p>
-              <button className={cx(styles.button, styles.white)} disabled>Re-send confirmation request</button>
+              <p>wait {seconds < 10 ? '00:0' + seconds.toString() : '00:' + seconds.toString()}s before re-sending request</p>
+              <button
+                className={cx(styles.button, styles.white)}
+                disabled={seconds > 0}
+                onClick={this.handleConfirmTransaction}
+              >Re-send confirmation request</button>
             </span>
           </div>
         }

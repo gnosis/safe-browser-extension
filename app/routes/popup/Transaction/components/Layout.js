@@ -9,8 +9,6 @@ import TransactionAddressData from 'routes/popup/Transaction/components/Transact
 import TransactionSummary from 'routes/popup/Transaction/components/Transaction/TransactionSummary'
 import styles from 'assets/css/global.css'
 
-BigNumber.config({ ROUNDING_MODE: BigNumber.ROUND_UP })
-
 class Layout extends Component {
   prevent = (e) => {
     e.preventDefault()
@@ -35,6 +33,7 @@ class Layout extends Component {
       handleTransaction
     } = this.props
 
+    BigNumber.config({ ROUNDING_MODE: BigNumber.ROUND_UP })
     const transactionValue = transaction.value ? toGWei(new BigNumber(-transaction.value)) : new BigNumber(0)
     const totalGas = estimations && new BigNumber(estimations.dataGas).plus(new BigNumber(estimations.safeTxGas))
     const transactionFee = totalGas && toGWei(totalGas.times(new BigNumber(-estimations.gasPrice)))

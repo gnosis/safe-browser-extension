@@ -11,6 +11,14 @@ import {
 } from '../../../../../../../extension/utils/messages'
 
 class SendTransaction extends Component {
+  constructor(props) {
+    super(props)
+    this.maxSeconds = 30
+    this.state = {
+      seconds: this.maxSeconds,
+    }
+  }
+
   handleConfirmTransaction = () => {
     const {
       handleTransaction,
@@ -35,6 +43,7 @@ class SendTransaction extends Component {
     chrome.runtime.onMessage.addListener(
       (request, sender, sendResponse) => {
         if (request.msg === MSG_RESOLVED_TRANSACTION) {
+          clearInterval(this.timer)
           this.handleRemoveTransaction()
         }
       }
@@ -48,6 +57,8 @@ class SendTransaction extends Component {
       ethAccount
     } = this.props
 
+    this.setState({ seconds: this.maxSeconds })
+    this.startCountdown()
     transaction.nonce = await getNonce(safes.currentSafe)
     transaction.hash = await getTxHash(transaction, safes.currentSafe)
 
@@ -86,18 +97,42 @@ class SendTransaction extends Component {
     showTransaction(position)
   }
 
-  render () {
+  startCountdown = () => {
+    this.timer = setInterval(
+      this.countDown,
+      1000
+    )
+  }
+
+  countDown = () => {
+    const { seconds } = this.state
+    if (seconds === 0) {
+      clearInterval(this.timer)
+      return
+    }
+    this.setState((prevState) => ({
+      seconds: (prevState.seconds - 1)
+    }))
+  }
+
+  componentWillUnmount = () => {
+    clearInterval(this.timer)
+  }
+
+  render() {
     const {
       lockedAccount,
       loadedData,
       reviewedTx,
     } = this.props
+    const { seconds } = this.state
 
     return (
       <Layout
         lockedAccount={lockedAccount}
         loadedData={loadedData}
         reviewedTx={reviewedTx}
+        seconds={seconds}
         handleConfirmTransaction={this.handleConfirmTransaction}
         handleRejectTransaction={this.handleRejectTransaction}
       />
