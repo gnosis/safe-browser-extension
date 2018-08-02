@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, withRouter } from 'react-router'
 
-import Password from 'routes/Password/containers/Password'
-import Transaction from 'routes/Transaction/containers/Transaction'
+import Password from 'routes/extension/Password/containers/Password'
+import Transaction from 'routes/popup/Transaction/containers/Transaction'
 import 'assets/css/global.css'
 
 class Popup extends Component {

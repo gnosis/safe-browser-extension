@@ -1,19 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { BrowserRouter } from 'react-router-dom'
+import { ConnectedRouter } from 'react-router-redux'
 
-import Popup from 'routes/Popup'
-import store from 'store'
+import { PopupRoutes, TRANSACTION_URL } from 'routes'
+import { history, store } from './store'
 
 store
   .ready()
   .then(() => {
+    history.push(TRANSACTION_URL)
+
     ReactDOM.render(
       <Provider store={store}>
-        <BrowserRouter>
-          <Popup />
-        </BrowserRouter>
+        <ConnectedRouter history={history}>
+          <PopupRoutes />
+        </ConnectedRouter>
       </Provider>,
       document.getElementById('root')
     )
