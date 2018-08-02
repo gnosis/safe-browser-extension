@@ -1,3 +1,4 @@
+/* eslint-env serviceworker */
 import notificationImage from 'assets/images/notification_image.jpg'
 
 self.addEventListener('push', (event) => {
@@ -5,11 +6,10 @@ self.addEventListener('push', (event) => {
 
   let title, message
   switch (payload.type) {
-
     case 'safeCreation':
       title = 'Safe Creation'
       message = 'A new Safe was created'
-      break;
+      break
 
     case 'requestConfirmation':
       title = 'Confirm transaction'
@@ -28,7 +28,6 @@ self.addEventListener('push', (event) => {
 
     default:
       return
-
   }
 
   self.clients.matchAll({ includeUncontrolled: true })

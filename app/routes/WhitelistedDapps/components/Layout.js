@@ -12,7 +12,7 @@ class Layout extends Component {
     e.preventDefault()
   }
 
-  render() {
+  render () {
     const {
       newDapp,
       errorMessage,
@@ -20,7 +20,7 @@ class Layout extends Component {
       updateNewDapp,
       handleAddDapp,
       handleDeleteDapp,
-      handleDeleteAllDapps,
+      handleDeleteAllDapps
     } = this.props
 
     return (
@@ -63,7 +63,7 @@ class Layout extends Component {
                   <button
                     className={styles.whitelist_itemDelete}
                     onClick={handleDeleteDapp(dapp)}
-                  ></button>
+                  />
                 </li>
               ))}
             </ul>

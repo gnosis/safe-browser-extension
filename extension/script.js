@@ -15,18 +15,18 @@ const {
   EV_UPDATE_WEB3
 } = require('./utils/messages')
 
-//window.addEventListener('load', function () {
+// window.addEventListener('load', function () {
 //  console.log("Web page loaded")
-//})
+// })
 
 if (typeof window.web3 !== 'undefined') {
-  //throw new Error('web3 already exists.')
-  console.error("Gnosis Safe overrode an existing web3, please disable the whitelisting or uninstall one to prevent this.")
+  // throw new Error('web3 already exists.')
+  console.error('Gnosis Safe overrode an existing web3, please disable the whitelisting or uninstall one to prevent this.')
 }
 
 var engine = new ProviderEngine()
 engine.isMetaMask = !0
-engine.isConnected = function() { return true; }
+engine.isConnected = function () { return true }
 const gnosisProvider = new GnosisProvider()
 engine.addProvider(gnosisProvider)
 
@@ -57,15 +57,16 @@ const inflightCache = new InflightCacheSubprovider()
 engine.addProvider(inflightCache)
 
 engine.addProvider(new FetchSubprovider({
-  rpcUrl: config.networks[config.currentNetwork].url,
+  rpcUrl: config.networks[config.currentNetwork].url
 }))
 
-engine.send = function(payload){
+engine.send = function (payload) {
+  // eslint-disable-next-line
   var r = undefined
   switch (payload.method) {
     case 'net_version':
       r = config.networks[config.currentNetwork].version.toString()
-      break;
+      break
 
     default:
       throw new Error('Web3ProviderEngine does not support synchronous requests.')
@@ -87,5 +88,5 @@ document.addEventListener(EV_UPDATE_WEB3, function (data) {
   gnosisProvider.updateCurrentSafe(data.detail)
 })
 
-const scriptReadyEvent = new CustomEvent(EV_SCRIPT_READY)
+const scriptReadyEvent = new window.CustomEvent(EV_SCRIPT_READY)
 document.dispatchEvent(scriptReadyEvent)

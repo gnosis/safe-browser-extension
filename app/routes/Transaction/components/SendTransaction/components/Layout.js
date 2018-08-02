@@ -3,13 +3,13 @@ import React, { Component } from 'react'
 import FooterTransactions from 'routes/Transaction/components/Transaction/FooterTransactions'
 
 class Layout extends Component {
-  render() {
+  render () {
     const {
       unlockRequest,
       reviewedTx,
       handleConfirmTransaction,
       handleRejectTransaction,
-      type,
+      type
     } = this.props
 
     return (

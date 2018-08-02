@@ -3,12 +3,12 @@ import React, { Component } from 'react'
 import Layout from '../components/Layout'
 
 class ConfirmPassword extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
       confirmPassword: '',
-      ready: false,
+      ready: false
     }
 
     this.properties = props.location.state
@@ -17,11 +17,11 @@ class ConfirmPassword extends Component {
   manageConfirmPassword = (confirmPassword) => {
     this.setState({
       confirmPassword,
-      ready: (confirmPassword === this.properties.password),
+      ready: (confirmPassword === this.properties.password)
     })
   }
 
-  render() {
+  render () {
     const { confirmPassword, ready } = this.state
 
     return (

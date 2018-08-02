@@ -46,7 +46,7 @@ export const generatePairingCodeContent = (privateKey) => {
     signature: {
       r: r.toString(10),
       s: s.toString(10),
-      v: vrs.v,
+      v: vrs.v
     }
   })
   return pairingCodeContent

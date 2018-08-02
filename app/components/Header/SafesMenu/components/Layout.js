@@ -14,7 +14,7 @@ const Layout = ({
   toggleSafes,
   handleSelectSafe,
   handleRemoveSafe,
-  noSafeMenu,
+  noSafeMenu
 }) => {
   const addNewSafeUrl = {
     pathname: '/password',

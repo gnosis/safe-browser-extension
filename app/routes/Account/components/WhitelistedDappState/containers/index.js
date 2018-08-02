@@ -7,12 +7,12 @@ import actions from './actions'
 import Layout from '../components/Layout'
 
 class WhitelistedDappState extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
       url: '',
-      whitelisted: undefined,
+      whitelisted: undefined
     }
   }
 
@@ -46,7 +46,7 @@ class WhitelistedDappState extends Component {
     e.preventDefault()
   }
 
-  render() {
+  render () {
     const { url, whitelisted } = this.state
     const { whitelistedDapps } = this.props
 

@@ -1,9 +1,9 @@
 import {
   selectSafe,
-  removeSafe,
+  removeSafe
 } from '../store/actions'
 
 export default {
   selectSafe,
-  removeSafe,
+  removeSafe
 }

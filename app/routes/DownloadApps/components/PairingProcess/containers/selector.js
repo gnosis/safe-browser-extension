@@ -1,10 +1,10 @@
 import { createStructuredSelector } from 'reselect'
 import {
   safesSelector,
-  selectEncryptedMnemonicSelector,
+  selectEncryptedMnemonicSelector
 } from '../store/selectors'
 
 export default createStructuredSelector({
   safes: safesSelector,
-  selectEncryptedMnemonic: selectEncryptedMnemonicSelector,
+  selectEncryptedMnemonic: selectEncryptedMnemonicSelector
 })

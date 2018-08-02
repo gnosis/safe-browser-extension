@@ -7,11 +7,11 @@ import Transaction from 'routes/Transaction/containers/Transaction'
 import 'assets/css/global.css'
 
 class Popup extends Component {
-  componentWillMount() {
+  componentWillMount () {
     this.props.history.push('/transaction')
   }
 
-  render() {
+  render () {
     return (
       <div>
         <Route exact path='/password' component={Password} />

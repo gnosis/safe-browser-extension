@@ -8,7 +8,6 @@ import { MSG_LOCK_ACCOUNT } from '../../../../../extension/utils/messages'
 import Layout from '../components/Layout'
 
 class SafesMenu extends Component {
-
   handleSelectSafe = (safeAddress) => (e) => {
     const { onSelectSafe } = this.props
     onSelectSafe(safeAddress)
@@ -19,7 +18,7 @@ class SafesMenu extends Component {
     const { safes, onRemoveSafe } = this.props
     const safeList = safes.safes
 
-    let newCurrentSafe = undefined
+    let newCurrentSafe
     if (safeList.length > 1) {
       const deletedIndex = safeList.map(safe => safe.address).indexOf(safeAddress)
 
@@ -33,18 +32,18 @@ class SafesMenu extends Component {
 
     if (safeList.length === 1) {
       chrome.runtime.sendMessage({
-        msg: MSG_LOCK_ACCOUNT,
+        msg: MSG_LOCK_ACCOUNT
       })
     }
   }
 
-  render() {
+  render () {
     const {
       toggleSafes,
       showSafes,
       safes,
       noSafeMenu,
-      currentSafeAlias,
+      currentSafeAlias
     } = this.props
 
     if (safes.safes.length === 0) {
@@ -75,11 +74,11 @@ class SafesMenu extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     onSelectSafe: (address) => dispatch(actions.selectSafe(address)),
-    onRemoveSafe: (address, currentSafe) => dispatch(actions.removeSafe(address, currentSafe)),
+    onRemoveSafe: (address, currentSafe) => dispatch(actions.removeSafe(address, currentSafe))
   }
 }
 
 export default connect(
   selector,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(SafesMenu)

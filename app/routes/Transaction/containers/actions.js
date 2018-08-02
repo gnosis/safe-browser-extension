@@ -1,7 +1,7 @@
 import {
-  removeTransaction,
+  removeTransaction
 } from 'actions/transactions'
 
 export default {
-  removeTransaction,
+  removeTransaction
 }

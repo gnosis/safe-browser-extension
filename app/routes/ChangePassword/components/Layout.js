@@ -15,7 +15,7 @@ class Layout extends Component {
     e.preventDefault()
   }
 
-  render() {
+  render () {
     const {
       newPassword,
       confirmPassword,
@@ -23,7 +23,7 @@ class Layout extends Component {
       manageConfirmPassword,
       updateMasterPassword,
       confirmPasswordReady,
-      createPasswordReady,
+      createPasswordReady
     } = this.props
 
     return (

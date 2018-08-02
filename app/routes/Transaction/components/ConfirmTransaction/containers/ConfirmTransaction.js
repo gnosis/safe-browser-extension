@@ -6,29 +6,24 @@ import { requestConfirmationResponse } from 'utils/sendNotifications'
 import Layout from '../components/Layout'
 
 class ConfirmTransaction extends Component {
-
   handleConfirmTransaction = () => {
     const { handleTransaction } = this.props
 
-    if (handleTransaction())
-      this.handleTransaction('confirmTransaction')
+    if (handleTransaction()) { this.handleTransaction('confirmTransaction') }
   }
 
   handleRejectTransaction = () => {
     const { handleTransaction } = this.props
 
-    if (handleTransaction())
-      this.handleTransaction('rejectTransaction', 'GNO')
+    if (handleTransaction()) { this.handleTransaction('rejectTransaction', 'GNO') }
   }
 
   handleTransaction = (type, prefix) => {
     const {
       transactionNumber,
-      showTransaction,
       safes,
       transactions,
-      ethAccount,
-      removeTransaction,
+      ethAccount
     } = this.props
 
     const hash = transactions.txs[transactionNumber].tx.hash
@@ -55,9 +50,9 @@ class ConfirmTransaction extends Component {
       transactionNumber,
       showTransaction,
       transactions,
-      removeTransaction,
+      removeTransaction
     } = this.props
-    
+
     if (transactions.txs.length === 1) {
       removeTransaction(transactionNumber)
       window.close()
@@ -69,10 +64,10 @@ class ConfirmTransaction extends Component {
     showTransaction(position)
   }
 
-  render() {
+  render () {
     const {
       unlockRequest,
-      reviewedTx,
+      reviewedTx
     } = this.props
 
     return (

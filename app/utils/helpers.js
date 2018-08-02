@@ -10,8 +10,7 @@ export const normalizeUrl = (url) => {
   domain = domain.split(':')[0]
   domain = domain.split('?')[0]
 
-  if (domain.substr(0, 4) === 'www.')
-    domain = domain.slice(4)
+  if (domain.substr(0, 4) === 'www.') { domain = domain.slice(4) }
 
   return domain
 }

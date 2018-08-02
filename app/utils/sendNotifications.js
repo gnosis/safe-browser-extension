@@ -3,6 +3,7 @@ import BigNumber from 'bignumber.js'
 import 'babel-polyfill'
 import TruffleContract from 'truffle-contract'
 import Web3 from 'web3'
+import fetch from 'node-fetch'
 
 import GnosisSafePersonalEdition from '../../contracts/GnosisSafePersonalEdition.json'
 import config from '../../config'
@@ -11,7 +12,7 @@ export const sendTransaction = async (
   accountAddress,
   privateKey,
   tx,
-  safeAddress,
+  safeAddress
 ) => {
   const hash = EthUtil.toBuffer(tx.hash)
   const vrsTx = EthUtil.ecsign(hash, privateKey)
@@ -32,7 +33,7 @@ export const sendTransaction = async (
     nonce: tx.nonce,
     r: r.toString(10),
     s: s.toString(10),
-    v: vrsTx.v.toString(10),
+    v: vrsTx.v.toString(10)
   })
 
   return sendNotification(data, privateKey, accountAddress, safeAddress)
@@ -58,7 +59,7 @@ export const requestConfirmationResponse = (
     hash: hash,
     r: r.toString(10),
     s: s.toString(10),
-    v: vrsTxHash.v.toString(10),
+    v: vrsTxHash.v.toString(10)
   })
 
   return sendNotification(data, privateKey, accountAddress, safeAddress)
@@ -73,8 +74,7 @@ export const sendNotification = async (
   let owners
   try {
     owners = await getOwners(accountAddress, safeAddress)
-  }
-  catch (err) {
+  } catch (err) {
     console.error(err)
     return
   }
@@ -85,7 +85,7 @@ export const sendNotification = async (
   const url = config.pushNotificationServiceUrl + 'notifications/'
   const headers = {
     'Accept': 'application/json',
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json'
   }
   const r = new BigNumber(EthUtil.bufferToHex(vrs.r))
   const s = new BigNumber(EthUtil.bufferToHex(vrs.s))
@@ -95,14 +95,14 @@ export const sendNotification = async (
     signature: {
       r: r.toString(10),
       s: s.toString(10),
-      v: vrs.v,
+      v: vrs.v
     }
   })
 
   return fetch(url, {
     method: 'POST',
     headers,
-    body,
+    body
   })
 }
 

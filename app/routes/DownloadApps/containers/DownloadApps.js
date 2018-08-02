@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import Bip39 from 'bip39'
 
@@ -11,9 +10,8 @@ import Layout from '../components/Layout'
 import config from '../../../../config'
 import actions from './actions'
 
-
 class DownloadApps extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.androidAppLink = config.androidAppLink
@@ -22,7 +20,7 @@ class DownloadApps extends Component {
     this.state = {
       showQrAndroid: false,
       showQrIos: false,
-      showQrPairing: false,
+      showQrPairing: false
     }
 
     const { location } = this.props
@@ -63,15 +61,15 @@ class DownloadApps extends Component {
     }))
   }
 
-  render() {
+  render () {
     const {
       showQrAndroid,
       showQrIos,
-      showQrPairing,
+      showQrPairing
     } = this.state
-    //const { safes } = this.props
+    // const { safes } = this.props
 
-    //if (safes != null && safes.safes.length > 0)
+    // if (safes != null && safes.safes.length > 0)
     //  return <Redirect to='/account' />
     return (
       <Layout
@@ -92,18 +90,17 @@ class DownloadApps extends Component {
 const mapStateToProps = ({ account, safes }, props) => {
   return {
     account,
-    safes,
+    safes
   }
 }
 
-
 const mapDispatchToProps = (dispatch) => {
   return {
-    onCreateAccount: (address, seed, hmac) => dispatch(actions.createAccount(address, seed, hmac)),
+    onCreateAccount: (address, seed, hmac) => dispatch(actions.createAccount(address, seed, hmac))
   }
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(DownloadApps)

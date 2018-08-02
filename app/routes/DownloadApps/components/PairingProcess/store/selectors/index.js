@@ -1,11 +1,9 @@
 import { createSelector } from 'reselect'
 
 const existsAccount = (account) => {
-  if (!account)
-    return false
+  if (!account) { return false }
 
-  if (!account.secondFA)
-    return false
+  if (!account.secondFA) { return false }
 
   return Object.keys(account.secondFA).length > 0
 }

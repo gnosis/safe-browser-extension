@@ -11,7 +11,7 @@ const reducers = combineReducers({
   account,
   safes,
   whitelistedDapps,
-  transactions,
+  transactions
 })
 
 const rootReducer = (state, action) => {

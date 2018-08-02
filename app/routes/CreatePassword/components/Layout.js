@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import classNames from 'classnames/bind'
 
 import Page from 'components/Page'
 import Footer from 'components/Footer'
@@ -8,25 +6,23 @@ import CreatePasswordForm from './CreatePasswordForm/containers/CreatePasswordFo
 import styles from 'assets/css/global.css'
 import warningImage from 'assets/images/warning.svg'
 
-const cx = classNames.bind(styles)
-
 class Layout extends Component {
   prevent = (e) => {
     e.preventDefault()
   }
 
-  render() {
+  render () {
     const {
       newPassword,
       manageCreatePassword,
-      ready,
+      ready
     } = this.props
 
     const nextLink = ready
       ? {
         pathname: '/confirm-password',
         state: {
-          password: newPassword,
+          password: newPassword
         }
       }
       : ''

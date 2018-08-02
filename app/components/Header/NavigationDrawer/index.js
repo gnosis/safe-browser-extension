@@ -8,7 +8,7 @@ import styles from 'assets/css/global.css'
 const cx = classNames.bind(styles)
 
 class NavigationDrawer extends Component {
-  render() {
+  render () {
     const { account, showMenu } = this.props
 
     const changePasswordUrl = account.lockedState
@@ -49,10 +49,10 @@ class NavigationDrawer extends Component {
 
 const mapStateToProps = ({ account }, props) => {
   return {
-    account,
+    account
   }
 }
 
 export default connect(
-  mapStateToProps,
+  mapStateToProps
 )(NavigationDrawer)

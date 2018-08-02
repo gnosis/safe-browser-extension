@@ -7,11 +7,11 @@ import WhitelistedDappState from './WhitelistedDappState/containers'
 import styles from 'assets/css/global.css'
 
 class Layout extends Component {
-  render() {
+  render () {
     const {
       currentSafe,
       properties,
-      openEtherScan,
+      openEtherScan
     } = this.props
 
     return (
@@ -26,7 +26,7 @@ class Layout extends Component {
                 </div>
                 <p>{currentSafe}</p>
               </div>
-              <div id='qr-safe-address'></div>
+              <div id='qr-safe-address' />
             </span>
             <Link
               to='#'

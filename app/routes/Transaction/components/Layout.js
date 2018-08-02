@@ -16,7 +16,7 @@ class Layout extends Component {
     e.preventDefault()
   }
 
-  render() {
+  render () {
     const {
       transaction,
       transactions,
@@ -31,7 +31,7 @@ class Layout extends Component {
       nextTransaction,
       removeTransaction,
       showTransaction,
-      handleTransaction,
+      handleTransaction
     } = this.props
 
     const transactionValue = transaction.value ? toGWei(new BigNumber(-transaction.value)) : new BigNumber(0)

@@ -7,12 +7,12 @@ import Layout from '../components/Layout'
 import actions from './actions'
 
 class WhitelistedDapps extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
       newDapp: '',
-      errorMessage: '',
+      errorMessage: ''
     }
   }
 
@@ -55,7 +55,7 @@ class WhitelistedDapps extends Component {
     this.props.ondeleteAllWhitelistedDapps()
   }
 
-  render() {
+  render () {
     const { newDapp, errorMessage } = this.state
     const { whitelistedDapps } = this.props
 
@@ -83,7 +83,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onAddWhitelistedDapp: (dapp) => dispatch(actions.addWhitelistedDapp(dapp)),
     onDeleteWhitelistedDapp: (dapp) => dispatch(actions.deleteWhitelistedDapp(dapp)),
-    ondeleteAllWhitelistedDapps: () => dispatch(actions.deleteAllWhitelistedDapps()),
+    ondeleteAllWhitelistedDapps: () => dispatch(actions.deleteAllWhitelistedDapps())
   }
 }
 

@@ -10,11 +10,11 @@ const nodeEnv = process.env.NODE_ENV || 'development'
 
 const postcssPlugins = [
   cssVars({
-    variables(){
+    variables () {
       return Object.assign({}, cssVariables)
     },
-    silent: true,
-  }),
+    silent: true
+  })
 ]
 
 module.exports = {
@@ -68,7 +68,7 @@ module.exports = {
               loader: 'postcss-loader',
               options: {
                 sourceMap: true,
-                plugins: postcssPlugins,
+                plugins: postcssPlugins
               }
             }
           ]

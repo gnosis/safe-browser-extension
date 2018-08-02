@@ -7,7 +7,7 @@ const SafesLocked = ({ handleUnlockAccount }) => (
     className={styles.lockedState}
     data-locked='true'
     onClick={handleUnlockAccount}
-  ></span>
+  />
 )
 
 export default SafesLocked

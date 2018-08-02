@@ -23,10 +23,10 @@ module.exports = {
   pushNotificationServiceUrl: 'https://safe-notification.staging.gnosisdev.com/api/v1/',
   transactionRelayServiceUrl: 'https://safe-relay.staging.gnosisdev.com/api/v1/',
   firebase: {
-    authDomain: "test-safe-notifications.firebaseapp.com",
-    databaseURL: "https://test-safe-notifications.firebaseio.com",
-    projectId: "test-safe-notifications",
-    storageBucket: "test-safe-notifications.appspot.com",
-    messagingSenderId: "64389160972",
+    authDomain: 'test-safe-notifications.firebaseapp.com',
+    databaseURL: 'https://test-safe-notifications.firebaseio.com',
+    projectId: 'test-safe-notifications',
+    storageBucket: 'test-safe-notifications.appspot.com',
+    messagingSenderId: '64389160972'
   }
 }

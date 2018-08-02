@@ -10,7 +10,7 @@ import selector from './selector'
 import { MSG_LOCK_ACCOUNT } from '../../../../extension/utils/messages'
 
 class ChangePassword extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -18,7 +18,7 @@ class ChangePassword extends Component {
       confirmPassword: '',
       createPasswordReady: false,
       confirmPasswordReady: false,
-      redirectToAccount: false,
+      redirectToAccount: false
     }
 
     const { location } = this.props
@@ -46,9 +46,9 @@ class ChangePassword extends Component {
   updateMasterPassword = () => {
     const {
       selectUnencryptedMnemonic,
-      selectEncryptedMnemonic,
+      selectEncryptedMnemonic
     } = this.props
-    const { newPassword, confirmPassword, createPasswordReady, confirmPasswordReady } = this.state
+    const { newPassword, createPasswordReady, confirmPasswordReady } = this.state
 
     if (!createPasswordReady || !confirmPasswordReady) {
       return
@@ -58,31 +58,29 @@ class ChangePassword extends Component {
     if (this.oldPassword && selectEncryptedMnemonic) {
       mnemonic = CryptoJs.AES.decrypt(
         selectEncryptedMnemonic,
-        this.oldPassword,
+        this.oldPassword
       ).toString(CryptoJs.enc.Utf8)
-    }
-    else if (selectUnencryptedMnemonic) {
+    } else if (selectUnencryptedMnemonic) {
       mnemonic = selectUnencryptedMnemonic
-    }
-    else return
+    } else return
 
     const { encryptedMnemonic, hmac } = createEthAccount(mnemonic, newPassword)
 
     chrome.runtime.sendMessage({
-      msg: MSG_LOCK_ACCOUNT,
+      msg: MSG_LOCK_ACCOUNT
     })
 
     this.props.onUpdateMasterPassword(encryptedMnemonic, hmac)
     this.setState({ redirectToAccount: true })
   }
 
-  render() {
+  render () {
     const {
       newPassword,
       confirmPassword,
       redirectToAccount,
       createPasswordReady,
-      confirmPasswordReady,
+      confirmPasswordReady
     } = this.state
     if (redirectToAccount) {
       return <Redirect to='/account' />
@@ -101,12 +99,6 @@ class ChangePassword extends Component {
   }
 }
 
-const mapStateToProps = ({ account }, props) => {
-  return {
-    account
-  }
-}
-
 const mapDispatchToProps = (dispatch) => {
   return {
     onUpdateMasterPassword: (encryptedMnemonic, hmac) => dispatch(actions.updateMasterPassword(encryptedMnemonic, hmac))
@@ -115,5 +107,5 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(
   selector,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(ChangePassword)

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import BigNumber from 'bignumber.js'
+import Web3 from 'web3'
 
 import {
   getDecryptedEthAccount,
-  createAccountFromMnemonic,
+  createAccountFromMnemonic
 } from 'routes/DownloadApps/components/PairingProcess/containers/pairEthAccount'
 import selector from './selector'
 import { getGasEstimation } from 'routes/Transaction/components/SendTransaction/containers/gasData'
@@ -15,16 +16,15 @@ import Header from 'components/Header'
 import Layout from '../components/Layout'
 import styles from 'assets/css/global.css'
 
-
 class Transaction extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
       transactionNumber: 0,
       balance: undefined,
       unlockRequest: false,
-      reviewedTx: false,
+      reviewedTx: false
     }
 
     const { location } = this.props
@@ -53,7 +53,7 @@ class Transaction extends Component {
     if (!transactions || transactions.txs.length === 0) {
       return
     }
-    
+
     const tx = transactions.txs[transactionNumber].tx
     if (!tx) return
 
@@ -61,9 +61,9 @@ class Transaction extends Component {
       reviewedTx: false,
       transactionNumber,
       balance: undefined,
-      estimations: undefined,
+      estimations: undefined
     })
-    
+
     try {
       const balance = await this.getBalance(tx.from)
       const estimations = await getGasEstimation(
@@ -74,10 +74,8 @@ class Transaction extends Component {
         0
       )
       this.setState({ balance, estimations })
-    }
-    catch (err) {
+    } catch (err) {
       console.error(err)
-      return
     }
   }
 
@@ -85,15 +83,13 @@ class Transaction extends Component {
     const { transactionNumber } = this.state
     const { transactions } = this.props
 
-    if (transactionNumber < (transactions.txs.length - 1))
-      this.showTransaction(transactionNumber + 1)
+    if (transactionNumber < (transactions.txs.length - 1)) { this.showTransaction(transactionNumber + 1) }
   }
 
   previousTransaction = () => {
     const { transactionNumber } = this.state
 
-    if (transactionNumber > 0)
-      this.showTransaction(transactionNumber - 1)
+    if (transactionNumber > 0) { this.showTransaction(transactionNumber - 1) }
   }
 
   handleTransaction = () => {
@@ -112,11 +108,10 @@ class Transaction extends Component {
   }
 
   setUpTransaction = (transaction, estimations) => {
-    if (!transaction.value)
-      transaction.value = '0'
+    if (!transaction.value) { transaction.value = '0' }
     transaction.safe = transaction.from
     transaction.operation = '0'
-    
+
     if (!estimations) return
     transaction.txGas = new BigNumber(estimations.safeTxGas).toString(10)
     transaction.dataGas = new BigNumber(estimations.dataGas).toString(10)
@@ -129,13 +124,13 @@ class Transaction extends Component {
     return safes.safes.filter(s => s.address === address)[0].alias
   }
 
-  render() {
+  render () {
     const {
       transactionNumber,
       balance,
       estimations,
       unlockRequest,
-      reviewedTx,
+      reviewedTx
     } = this.state
     const { transactions } = this.props
 
@@ -178,5 +173,5 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(
   selector,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Transaction)

@@ -17,4 +17,4 @@ store
       </Provider>,
       document.getElementById('root')
     )
-  }) 
+  })

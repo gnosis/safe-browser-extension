@@ -6,17 +6,13 @@ import {
   hasAccountSelector,
   hasLockedAccountSelector,
   selectEncryptedMnemonicSelector,
-  selectUnencryptedMnemonicSelector,
+  selectUnencryptedMnemonicSelector
 } from './index'
 
 const address = '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'
 const mnemonic = 'myth like bonus scare over problem client lizard pioneer submit female collect'
 const seed = 'U2FsdGVkX1/PzvlOtLnvBa19Yl/wNyn+xeNJ/ZCFaPwFh+svYVUB7LSaocwBtb1tQIXandPp2A2gKj99B0uoWSigdVh4G8J1bEr+Pa6cqgPuN4nNRVhxAw+Sud+x0+8W'
 const hmac = '421e3feb800198552c762254830deaadd24a84eff4600897bbe1f9282dc47563'
-
-const emptyAccountState = {
-  account: {}
-}
 
 const unlockedAccountState = {
   account: {
@@ -26,7 +22,7 @@ const unlockedAccountState = {
       address,
       seed,
       hmac,
-      unlockedMnemonic: mnemonic,
+      unlockedMnemonic: mnemonic
     }
   }
 }
@@ -37,7 +33,7 @@ const lockedAccountState = {
     secondFA: {
       address,
       seed,
-      hmac,
+      hmac
     }
   }
 }
@@ -55,7 +51,7 @@ describe('Pairing process selectors', () => {
     const state = {
       safes: [
         '0x90f8bf6a479f320ead074411a4b0e7944ea8c9c1',
-        '0xffcf8fdee72ac11b5c542428b35eef5769c409f0',
+        '0xffcf8fdee72ac11b5c542428b35eef5769c409f0'
       ]
     }
     const store = createStore(rootReducer, state)

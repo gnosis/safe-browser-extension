@@ -5,5 +5,5 @@ export const addTransaction = (tx, windowId, dappWindowId, dappTabId) => ({
   tx,
   windowId,
   dappWindowId,
-  dappTabId,
+  dappTabId
 })

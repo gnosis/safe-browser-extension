@@ -1,5 +1,5 @@
 import React from 'react'
-import Enzyme, { shallow, mount, render } from 'enzyme'
+import Enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
 import CreatePasswordForm from './containers/CreatePasswordForm'
@@ -9,7 +9,6 @@ Enzyme.configure({ adapter: new Adapter() })
 const manageCreatePassword = jest.fn()
 
 describe('Create Password Form Validation', () => {
-
   test('validateLength: It should return true if the password has minimum 8 characters', () => {
     const newPassword = 'qwertyui'
     const props = {
@@ -102,7 +101,7 @@ describe('Create Password Form Validation', () => {
     const newPassword = 'qwerty123'
     const props = {
       newPassword: '',
-      manageCreatePassword,
+      manageCreatePassword
     }
 
     const component = shallow(<CreatePasswordForm {...props} />)
@@ -121,7 +120,7 @@ describe('Create Password Form Validation', () => {
     const newPassword = ''
     const props = {
       newPassword: '',
-      manageCreatePassword,
+      manageCreatePassword
     }
 
     const component = shallow(<CreatePasswordForm {...props} />)
@@ -140,7 +139,7 @@ describe('Create Password Form Validation', () => {
     const newPassword = 'aa'
     const props = {
       newPassword: '',
-      manageCreatePassword,
+      manageCreatePassword
     }
 
     const component = shallow(<CreatePasswordForm {...props} />)

@@ -4,14 +4,14 @@ import { connect } from 'react-redux'
 import styles from 'assets/css/global.css'
 
 class SafesUnlocked extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.autoLockInterval = this.props.account.autoLockInterval
     const diffSeconds = this.setTime(this.autoLockInterval)
     this.state = {
       time: this.secondsToTime(diffSeconds),
-      seconds: diffSeconds,
+      seconds: diffSeconds
     }
   }
 
@@ -42,7 +42,7 @@ class SafesUnlocked extends Component {
 
     return {
       minutes,
-      seconds,
+      seconds
     }
   }
 
@@ -54,7 +54,7 @@ class SafesUnlocked extends Component {
       const seconds = this.setTime(newAutoLockInterval)
       this.setState({
         time: this.secondsToTime(seconds),
-        seconds: seconds,
+        seconds: seconds
       })
       return
     }
@@ -64,7 +64,7 @@ class SafesUnlocked extends Component {
     }))
   }
 
-  render() {
+  render () {
     const { handleLockAccount } = this.props
     const { minutes, seconds } = this.state.time
 
@@ -78,8 +78,7 @@ class SafesUnlocked extends Component {
         onClick={handleLockAccount}
         data-locked='false'
         data-timeout={timeoutString}
-      >
-      </span>
+      />
     )
   }
 }
@@ -91,5 +90,5 @@ const mapStateToProps = ({ account }, props) => {
 }
 
 export default connect(
-  mapStateToProps,
+  mapStateToProps
 )(SafesUnlocked)

@@ -9,12 +9,12 @@ import styles from 'assets/css/global.css'
 const cx = classNames.bind(styles)
 
 class Header extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
       showSafes: false,
-      showMenu: false,
+      showMenu: false
     }
   }
 
@@ -30,10 +30,10 @@ class Header extends Component {
     }))
   }
 
-  render() {
+  render () {
     const {
       showMenu,
-      showSafes,
+      showSafes
     } = this.state
     const { txReview } = this.props
 
@@ -45,9 +45,9 @@ class Header extends Component {
               className={cx(styles.menuTrigger, showMenu ? styles.active : null)}
               onClick={this.toggleMenu}
             >
-              <span className={styles.line}></span>
-              <span className={styles.line}></span>
-              <span className={styles.line}></span>
+              <span className={styles.line} />
+              <span className={styles.line} />
+              <span className={styles.line} />
             </div>
           }
           <SafesMenu

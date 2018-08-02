@@ -1,19 +1,18 @@
 import {
   ADD_TRANSACTION,
   REMOVE_TRANSACTION,
-  REMOVE_ALL_TRANSACTIONS,
+  REMOVE_ALL_TRANSACTIONS
 } from 'actions/transactions'
 
 const initialState = {
   windowId: undefined,
-  txs: [],
+  txs: []
 }
 
-function transactions(state = initialState, action) {
+function transactions (state = initialState, action) {
   let transactions
 
   switch (action.type) {
-
     case ADD_TRANSACTION:
       const transaction = {
         tx: action.tx
@@ -26,11 +25,10 @@ function transactions(state = initialState, action) {
         ...state,
         txs: [
           ...state.txs,
-          transaction,
-        ],
+          transaction
+        ]
       }
-      if (action.windowId)
-        transactions.windowId = action.windowId
+      if (action.windowId) { transactions.windowId = action.windowId }
       return transactions
 
     case REMOVE_TRANSACTION:
@@ -38,18 +36,17 @@ function transactions(state = initialState, action) {
       transactions.splice(action.position, 1)
       return {
         ...state,
-        txs: transactions,
+        txs: transactions
       }
 
     case REMOVE_ALL_TRANSACTIONS:
       return {
         windowId: undefined,
-        txs: [],
+        txs: []
       }
 
     default:
       return state
-
   }
 }
 

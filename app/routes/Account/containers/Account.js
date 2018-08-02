@@ -29,8 +29,8 @@ class Account extends Component {
     window.open('http://rinkeby.etherscan.io/address/' + safes.currentSafe)
   }
 
-  render() {
-    const { account, safes } = this.props
+  render () {
+    const { safes } = this.props
     const url = {
       pathname: '/password',
       state: {
@@ -54,7 +54,7 @@ class Account extends Component {
 const mapStateToProps = ({ account, safes }, props) => {
   return {
     account,
-    safes,
+    safes
   }
 }
 

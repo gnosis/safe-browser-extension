@@ -5,28 +5,28 @@ import styles from 'assets/css/global.css'
 const TransactionSummary = ({
   balance,
   transactionFee,
-  totalCost,
+  totalCost
 }) => (
-    <div className={styles.transactionSummary}>
+  <div className={styles.transactionSummary}>
+    <span>
+      <p>Safe balance</p>
+      <strong>{balance ? balance.round(5).toString(10) : '-'} <small>ETH</small></strong>
+    </span>
+    <span>
+      <p>Estimated transaction fee</p>
       <span>
-        <p>Safe balance</p>
-        <strong>{balance ? balance.round(5).toString(10) : '-'} <small>ETH</small></strong>
+        <strong className={styles.textRed}>{transactionFee ? transactionFee.round(5).toString(10) : '-'} <small>ETH</small></strong>
+        <small>&nbsp;</small>
       </span>
+    </span>
+    <span className={styles.subtotal}>
+      <p>Max. total</p>
       <span>
-        <p>Estimated transaction fee</p>
-        <span>
-          <strong className={styles.textRed}>{transactionFee ? transactionFee.round(5).toString(10) : '-'} <small>ETH</small></strong>
-          <small>&nbsp;</small>
-        </span>
+        <strong className={styles.textRed}>{totalCost ? totalCost.round(5).toString(10) : '-'} <small>ETH</small></strong>
+        <small />
       </span>
-      <span className={styles.subtotal}>
-        <p>Max. total</p>
-        <span>
-          <strong className={styles.textRed}>{totalCost ? totalCost.round(5).toString(10) : '-'} <small>ETH</small></strong>
-          <small></small>
-        </span>
-      </span>
-    </div>
-  )
+    </span>
+  </div>
+)
 
 export default TransactionSummary
