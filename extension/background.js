@@ -112,6 +112,11 @@ const isWhiteListedDapp = (dApp) => {
   return false
 }
 
+const focusTransactionWindow = () => {
+  const windowId = store.getState().transactions.windowId
+  chrome.windows.update(windowId, { 'focused': true })
+}
+
 const showPopup = (transaction, dappWindowId, dappTabId) => {
   const safes = store.getState().safes.safes
   const transactions = store.getState().transactions.txs
@@ -139,6 +144,7 @@ const showPopup = (transaction, dappWindowId, dappTabId) => {
   }
 
   store.dispatch(addTransaction(transaction, null, dappWindowId, dappTabId))
+  focusTransactionWindow()
 }
 
 const showConfirmTransactionPopup = (transaction) => {
