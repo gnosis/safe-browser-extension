@@ -69,7 +69,7 @@ class Transaction extends Component {
       const balance = await this.getBalance(tx.from)
       const value = (tx.value) ? new BigNumber(tx.value).toString(10) : '0'
       const estimations = await getGasEstimation(tx.from, tx.to, value, tx.data, 0)
-      const loadedData = (balance !== null) && (estimations !== null)
+      const loadedData = (balance instanceof BigNumber && estimations)
       this.setState({ balance, estimations, loadedData })
     } catch (err) {
       console.error(err)
@@ -102,6 +102,7 @@ class Transaction extends Component {
 
   setUpTransaction = (transaction, estimations) => {
     if (!transaction.value) { transaction.value = '0' }
+    if (!transaction.data) { transaction.data = '0x' }
     transaction.safe = transaction.from
     transaction.operation = '0'
 

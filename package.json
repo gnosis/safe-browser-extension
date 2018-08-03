@@ -23,6 +23,7 @@
     "ethereumjs-wallet": "^0.6.0",
     "firebase": "^4.13.1",
     "history": "^4.7.2",
+    "node-fetch": "^2.2.0",
     "qr-image": "^3.2.0",
     "react": "^16.3.0",
     "react-chrome-redux": "^1.5.1",
