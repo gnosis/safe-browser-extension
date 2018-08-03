@@ -99,11 +99,26 @@ section.auction,section.home{
   -ms-flex-wrap:wrap
 }
 .safeLogo{
-  background:url(../images/favicon_rinkeby.png) center/contain no-repeat;
+  background:url(../images/gnosis_safe_logo.svg) center/contain no-repeat;
   height:110px;
   width:110px;
   display:block;
   position:relative
+}
+.safeLogo[data-network="rinkeby"]::before{
+  bottom: -3.5em;
+  text-align: center;
+  font-size: 1.4em;
+  width: auto;
+  padding: .4em 1em;
+  border-radius: 3px;
+  letter-spacing: 5px;
+  left: 0;
+  right: 0;
+  content: "RINKEBY";
+  color: #fff;
+  background: #a2a8ba;
+  position: absolute;
 }
 .safeLogo::after{
   content:"Personal Edition";
