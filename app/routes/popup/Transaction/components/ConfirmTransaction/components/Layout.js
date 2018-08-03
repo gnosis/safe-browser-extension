@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
-import classNames from 'classnames/bind'
 
 import FooterTransactions from 'routes/popup/Transaction/components/Transaction/FooterTransactions'
 import mobileImage from 'assets/images/mobile.svg'
 import styles from 'assets/css/global.css'
-
-const cx = classNames.bind(styles)
 
 class Layout extends Component {
   render () {
@@ -14,7 +11,7 @@ class Layout extends Component {
       loadedData,
       reviewedTx,
       handleConfirmTransaction,
-      handleRejectTransaction,
+      handleRejectTransaction
     } = this.props
 
     return (
@@ -25,7 +22,7 @@ class Layout extends Component {
             <p>This transaction has been initiated by the Gnosis Safe mobile app. When you confirm, the mobile app will submit the transaction.</p>
           </span>
         </div>
-        {loadedData && !reviewedTx &&
+        {(loadedData && !reviewedTx) &&
           <FooterTransactions
             lockedAccount={lockedAccount}
             handleRejectTransaction={handleRejectTransaction}

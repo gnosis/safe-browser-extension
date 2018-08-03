@@ -23,7 +23,7 @@ class ConfirmTransaction extends Component {
       transactionNumber,
       safes,
       transactions,
-      ethAccount,
+      ethAccount
     } = this.props
 
     const hash = transactions.txs[transactionNumber].tx.hash
@@ -68,7 +68,7 @@ class ConfirmTransaction extends Component {
     const {
       lockedAccount,
       loadedData,
-      reviewedTx,
+      reviewedTx
     } = this.props
 
     return (

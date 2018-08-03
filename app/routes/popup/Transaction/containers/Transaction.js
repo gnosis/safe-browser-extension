@@ -24,7 +24,7 @@ class Transaction extends Component {
       transactionNumber: 0,
       balance: undefined,
       loadedData: false,
-      reviewedTx: false,
+      reviewedTx: false
     }
 
     const { location } = this.props
@@ -71,8 +71,7 @@ class Transaction extends Component {
       const estimations = await getGasEstimation(tx.from, tx.to, value, tx.data, 0)
       const loadedData = (balance !== null) && (estimations !== null)
       this.setState({ balance, estimations, loadedData })
-    }
-    catch (err) {
+    } catch (err) {
       console.error(err)
     }
   }
@@ -102,10 +101,7 @@ class Transaction extends Component {
   }
 
   setUpTransaction = (transaction, estimations) => {
-    if (!transaction.value)
-      transaction.value = '0'
-    if (!transaction.data)
-      transaction.data = '0x'
+    if (!transaction.value) { transaction.value = '0' }
     transaction.safe = transaction.from
     transaction.operation = '0'
 
@@ -127,7 +123,7 @@ class Transaction extends Component {
       balance,
       estimations,
       loadedData,
-      reviewedTx,
+      reviewedTx
     } = this.state
     const { account, transactions } = this.props
 

@@ -131,7 +131,7 @@ const showPopup = (transaction, dappWindowId, dappTabId) => {
       url: '/popup.html',
       type: 'popup',
       height: 630,
-      width: 370,
+      width: 370
     }, (window) => {
       store.dispatch(addTransaction(transaction, window.id, dappWindowId, dappTabId))
     })

@@ -37,7 +37,6 @@ export const getGasEstimation = (
     })
     .catch((err) => {
       console.error(err)
-      return
     })
 }
 

@@ -9,10 +9,10 @@ import styles from 'assets/css/global.css'
 const cx = classNames.bind(styles)
 
 class Layout extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
-      resolvedTransaction: false,
+      resolvedTransaction: false
     }
   }
 
@@ -26,14 +26,14 @@ class Layout extends Component {
     }
   }
 
-  render() {
+  render () {
     const {
       lockedAccount,
       loadedData,
       reviewedTx,
       seconds,
       handleConfirmTransaction,
-      handleRejectTransaction,
+      handleRejectTransaction
     } = this.props
     const { resolvedTransaction } = this.state
 
@@ -41,7 +41,7 @@ class Layout extends Component {
       const passwordUrl = {
         pathname: '/password',
         state: {
-          dest: '/transaction',
+          dest: '/transaction'
         }
       }
       return <Redirect to={passwordUrl} />
@@ -54,7 +54,7 @@ class Layout extends Component {
             <span className={styles.await}>
               <p>AWAITING CONFIRMATION</p>
               <div className={styles.progress}>
-                <div className={styles.indeterminate}></div>
+                <div className={styles.indeterminate} />
               </div>
             </span>
             <span className={styles.message}>

@@ -11,11 +11,11 @@ import {
 } from '../../../../../../../extension/utils/messages'
 
 class SendTransaction extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.maxSeconds = 30
     this.state = {
-      seconds: this.maxSeconds,
+      seconds: this.maxSeconds
     }
   }
 
@@ -119,11 +119,11 @@ class SendTransaction extends Component {
     clearInterval(this.timer)
   }
 
-  render() {
+  render () {
     const {
       lockedAccount,
       loadedData,
-      reviewedTx,
+      reviewedTx
     } = this.props
     const { seconds } = this.state
 
