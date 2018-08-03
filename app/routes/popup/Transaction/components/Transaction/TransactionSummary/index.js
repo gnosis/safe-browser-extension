@@ -22,7 +22,7 @@ const TransactionSummary = ({
         <p>Estimated transaction fee</p>
         <span>
           <strong className={styles.textRed}>{txFee} <small>ETH</small></strong>
-          <small>&nbsp;</small>
+          {/* <small>&nbsp;</small> */}
         </span>
       </span>
       {!isTokenTransaction &&

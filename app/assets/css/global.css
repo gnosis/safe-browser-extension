@@ -408,13 +408,21 @@ form input::placeholder{
   transition:all .2s ease-in-out
 }
 form input:focus{
-  border:2px solid #28B2FA
+  border:2px solid #28B2FA;
+  background-color: #fff;
 }
 form input:focus:-ms-input-placeholder{
   color:#fff
 }
 form input:focus::placeholder{
   color:#fff
+}
+form input:-webkit-autofill, 
+form textarea:-webkit-autofill, 
+form select:-webkit-autofill {
+  background-color: #fff;
+  background-image: none !important;
+  color:#65707E;
 }
 form input.noborder{
   border:0;
@@ -642,20 +650,19 @@ form input.noborder{
   position: absolute;
   letter-spacing: 0;
   font-weight: bold;
-  bottom: -8px;
+  bottom: -5px;
 }
 .safeIcon>i{
-  margin:0 0 0 35px;
+  margin:0 0 0 37px;
   -ms-flex:1;
   flex:1;
-  font-size:1.8em;
+  font-size:1.7em;
   color:#21435A;
   letter-spacing:-.5px;
   font-style:normal;
   font-weight:400;
   outline:0;
   min-width:25px;
-  max-width: 200px;
   line-height: 1;
   /* CHROME/SAFARI only */
   display: -webkit-box;
@@ -664,6 +671,9 @@ form input.noborder{
   /* END */
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 128px;
+  min-height: 19px;
+  width: auto;
 }
 .safeIcon.hasMenu::after{
   content:"";
@@ -1291,7 +1301,7 @@ form input.noborder{
 }
 .overlayPageHeader .action_DeleteAll{
   font-weight:400;
-  font-size:1em;
+  font-size:1.2em;
   color:#fb4f62;
   text-align:right;
   line-height:1;
@@ -2107,7 +2117,7 @@ footer .stepper-dots>li.active{
   line-height:1;
   font-weight:700;
   width:auto;
-  margin:0 0 0 auto;
+  margin:9px 0 0 auto;
   background:#F4F5F9;
   padding:6px 0 6px 15px;
   box-sizing:border-box;
@@ -2242,11 +2252,28 @@ footer .stepper-dots>li.active{
   letter-spacing:0;
   line-height:1.5
 }
+.extensionTX .extension-inner .transactionState .errorMessage {
+  font-size: 1.3em;
+  color: white;
+  letter-spacing: 0;
+  line-height: 1.5;
+  background: #fb4f62;
+  position: fixed;
+  bottom: 54px;
+  left: 0;
+  text-align: center;
+  padding: 1em;
+  width: 100%;
+  right: 0;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
 .extensionTX .extension-inner .transactionState .errorMessage>p{
-  font-size:1.3em;
-  color:#fb4f62;
-  letter-spacing:0;
-  line-height:1.5
+  font-size:inherit;
+  color:inherit;
+  letter-spacing:inherit;
+  line-height:inherit;
+  text-align: center;
 }
 .extensionTX .extension-inner .transactionState .resend{
   display:-ms-flexbox;
