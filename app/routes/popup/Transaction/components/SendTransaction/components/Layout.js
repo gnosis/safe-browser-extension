@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import classNames from 'classnames/bind'
 import { Redirect } from 'react-router'
+import Network from 'react-network'
 
 import FooterTransactions from 'routes/popup/Transaction/components/Transaction/FooterTransactions'
 import mobileImage from 'assets/images/mobile.svg'
@@ -61,23 +62,29 @@ class Layout extends Component {
               <img src={mobileImage} height='55' width='30' />
               <p>Confirm this transaction with the Gnosis Safe mobile app.</p>
             </span>
-            <span className={styles.resend}>
-              <p>wait {seconds < 10 ? '00:0' + seconds.toString() : '00:' + seconds.toString()}s before re-sending request</p>
-              <button
-                className={cx(styles.button, styles.white)}
-                disabled={seconds > 0}
-                onClick={this.handleConfirmTransaction}
-              >Re-send confirmation request</button>
-            </span>
+            <Network
+              render={({ online }) =>
+                online && (
+                  <span className={styles.resend}>
+                    <p>wait {seconds < 10 ? '00:0' + seconds.toString() : '00:' + seconds.toString()}s before re-sending request</p>
+                    <button
+                      className={cx(styles.button, styles.white)}
+                      disabled={seconds > 0}
+                      onClick={this.handleConfirmTransaction}
+                    >Re-send confirmation request</button>
+                  </span>
+                )
+              }
+            />
           </div>
         }
-        {loadedData && !reviewedTx &&
-          <FooterTransactions
-            lockedAccount={lockedAccount}
-            handleRejectTransaction={handleRejectTransaction}
-            handleConfirmTransaction={handleConfirmTransaction}
-          />
-        }
+        <FooterTransactions
+          loadedData={loadedData}
+          reviewedTx={reviewedTx}
+          lockedAccount={lockedAccount}
+          handleRejectTransaction={handleRejectTransaction}
+          handleConfirmTransaction={handleConfirmTransaction}
+        />
       </React.Fragment>
     )
   }

@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import Network from 'react-network'
-import classNames from 'classnames/bind'
 
 import styles from 'assets/css/global.css'
 
 class NetworkNotification extends Component {
-  render() {
+  render () {
     return (
       <Network
         render={({ online }) => (

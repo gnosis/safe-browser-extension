@@ -24,7 +24,7 @@ class Layout extends Component {
             onClick={handleResync()}
           >
             Resync push token
-        </button>
+          </button>
         </div>
       </Page>
     )
