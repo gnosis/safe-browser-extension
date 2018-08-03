@@ -18,6 +18,7 @@ class Layout extends Component {
           onClick={toggleQr}
         />
         <div className={styles.innerOverlayContent}>
+          <p>Scan the QR code below when requested in the mobile app</p>
           <span className={styles.QR}>
             <p>BROWSER EXTENSION</p>
             <div ref={qrPairingRef} />
