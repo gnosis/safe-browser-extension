@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 
 import Page from 'components/Page'
@@ -12,12 +13,19 @@ class Layout extends Component {
 
     return (
       <Page>
-        <button
-          className={cx(styles.button, styles.buttonResync)}
-          onClick={handleResync()}
-        >
-          Resync push token
-        </button>
+        <div className={styles.overlayPage}>
+          <span className={styles.overlayPageHeader}>
+            <Link to='/account' className={cx(styles.btnBack, styles.active)}>
+              <p>Back</p>
+            </Link>
+          </span>
+          <button
+            className={cx(styles.button, styles.buttonResync)}
+            onClick={handleResync()}
+          >
+            Resync push token
+          </button>
+        </div>
       </Page>
     )
   }

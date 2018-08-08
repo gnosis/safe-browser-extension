@@ -66,17 +66,18 @@ class ConfirmTransaction extends Component {
 
   render () {
     const {
-      unlockRequest,
+      lockedAccount,
+      loadedData,
       reviewedTx
     } = this.props
 
     return (
       <Layout
-        unlockRequest={unlockRequest}
+        lockedAccount={lockedAccount}
+        loadedData={loadedData}
         reviewedTx={reviewedTx}
         handleConfirmTransaction={this.handleConfirmTransaction}
         handleRejectTransaction={this.handleRejectTransaction}
-        type='confirmTransaction'
       />
     )
   }

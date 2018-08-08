@@ -23,7 +23,7 @@ class Transaction extends Component {
     this.state = {
       transactionNumber: 0,
       balance: undefined,
-      unlockRequest: false,
+      loadedData: false,
       reviewedTx: false
     }
 
@@ -59,6 +59,7 @@ class Transaction extends Component {
 
     this.setState({
       reviewedTx: false,
+      loadedData: false,
       transactionNumber,
       balance: undefined,
       estimations: undefined
@@ -66,14 +67,10 @@ class Transaction extends Component {
 
     try {
       const balance = await this.getBalance(tx.from)
-      const estimations = await getGasEstimation(
-        tx.from,
-        tx.to,
-        (tx.value) ? new BigNumber(tx.value).toString(10) : '0',
-        tx.data,
-        0
-      )
-      this.setState({ balance, estimations })
+      const value = (tx.value) ? new BigNumber(tx.value).toString(10) : '0'
+      const estimations = await getGasEstimation(tx.from, tx.to, value, tx.data, 0)
+      const loadedData = (balance instanceof BigNumber && estimations)
+      this.setState({ balance, estimations, loadedData })
     } catch (err) {
       console.error(err)
     }
@@ -94,11 +91,7 @@ class Transaction extends Component {
 
   handleTransaction = () => {
     const { account } = this.props
-    if (account.lockedState) {
-      this.setState({ unlockRequest: true })
-      return false
-    }
-
+    if (account.lockedState) return false
     this.setState({ reviewedTx: true })
     return true
   }
@@ -109,6 +102,7 @@ class Transaction extends Component {
 
   setUpTransaction = (transaction, estimations) => {
     if (!transaction.value) { transaction.value = '0' }
+    if (!transaction.data) { transaction.data = '0x' }
     transaction.safe = transaction.from
     transaction.operation = '0'
 
@@ -129,10 +123,10 @@ class Transaction extends Component {
       transactionNumber,
       balance,
       estimations,
-      unlockRequest,
+      loadedData,
       reviewedTx
     } = this.state
-    const { transactions } = this.props
+    const { account, transactions } = this.props
 
     const transaction = transactions.txs[transactionNumber].tx
     this.setUpTransaction(transaction, estimations)
@@ -147,7 +141,8 @@ class Transaction extends Component {
               transactions={transactions}
               balance={balance}
               transactionNumber={transactionNumber}
-              unlockRequest={unlockRequest}
+              lockedAccount={account.lockedState}
+              loadedData={loadedData}
               reviewedTx={reviewedTx}
               estimations={estimations}
               safeAlias={this.getSafeAlias(transaction.safe)}

@@ -6,18 +6,19 @@ import config from '../../../../../../../config'
 import GnosisSafePersonalEdition from '../../../../../../../contracts/GnosisSafePersonalEdition.json'
 
 export const getGasEstimation = (
-  address,
+  safe,
   to,
   value,
   data,
   operation
 ) => {
-  const url = config.transactionRelayServiceUrl + 'safes/' + address + '/transactions/estimate/'
+  const url = config.transactionRelayServiceUrl + 'safes/' + safe + '/transactions/estimate/'
   const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   }
   const body = JSON.stringify({
+    safe,
     to,
     value,
     data,
@@ -30,7 +31,7 @@ export const getGasEstimation = (
     body
   })
     .then(response => {
-      return response.json()
+      if (response.status === 200) return response.json()
     })
     .then(data => {
       return data

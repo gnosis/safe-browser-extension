@@ -1,68 +1,88 @@
-import React from 'react'
+import React, { Component } from 'react'
 import classNames from 'classnames'
+import { Redirect } from 'react-router'
+import Network from 'react-network'
 
 import styles from 'assets/css/global.css'
-import mobileImage from 'assets/images/mobile.svg'
 
 const cx = classNames.bind(styles)
 
-const FooterTransactions = ({
-  reviewedTx,
-  unlockRequest,
-  handleConfirmTransaction,
-  handleRejectTransaction,
-  type
-}) => (
-  <React.Fragment>
-    {reviewedTx && type === 'sendTransaction' &&
-    <div className={cx(styles.transactionState)}>
-      <span className={styles.await}>
-        <p>AWAITING CONFIRMATION</p>
-        <div className={styles.progress}>
-          <div className={styles.indeterminate} />
-        </div>
-      </span>
-      <span className={styles.message}>
-        <img src={mobileImage} height='55' width='30' />
-        <p>Confirm this transaction with the Gnosis Safe mobile app.</p>
-      </span>
-      <span className={styles.resend}>
-        <p>wait before re-sending request</p>
-        <button className={cx(styles.button, styles.white)} disabled>Re-send confirmation request</button>
-      </span>
-    </div>
+class FooterTransactions extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      resolvedTransaction: false
     }
-    {type === 'confirmTransaction' &&
-    <div className={styles.transactionState}>
-      <span className={styles.message}>
-        <img src={mobileImage} height='55' width='30' />
-        <p>This transaction has been initiated by the Gnosis Safe mobile app. When you confirm, the mobile app will submit the transaction.</p>
-      </span>
-    </div>
+  }
+
+  handleRejectTransaction = () => {
+    const { handleRejectTransaction, lockedAccount } = this.props
+
+    if (lockedAccount) {
+      this.setState({ resolvedTransaction: true })
+    } else {
+      handleRejectTransaction()
     }
-    {unlockRequest &&
-    <div className={cx(styles.transactionState)}>
-      <span className={styles.errorMessage}>
-        <p>Unlock the extension before reviewing the transaction</p>
-      </span>
-    </div>
+  }
+
+  handleConfirmTransaction = () => {
+    const { handleConfirmTransaction, lockedAccount } = this.props
+
+    if (lockedAccount) {
+      this.setState({ resolvedTransaction: true })
+    } else {
+      handleConfirmTransaction()
     }
-    {!reviewedTx &&
-    <span className={styles.buttonGroup}>
-      <button onClick={handleRejectTransaction}
-        className={cx(styles.button, styles.reject)}
-      >
-            REJECT
-      </button>
-      <button
-        onClick={handleConfirmTransaction}
-        className={cx(styles.button, styles.confirm)}
-      >
-            CONFIRM
-      </button>
-    </span>
+  }
+
+  render () {
+    const {
+      loadedData,
+      reviewedTx,
+      lockedAccount
+    } = this.props
+    const { resolvedTransaction } = this.state
+
+    if (resolvedTransaction && lockedAccount) {
+      const passwordUrl = {
+        pathname: '/password',
+        state: {
+          dest: '/transaction'
+        }
+      }
+      return <Redirect to={passwordUrl} />
     }
-  </React.Fragment>
-)
+
+    return (
+      <Network
+        render={({ online }) =>
+          online
+            ? (loadedData && !reviewedTx &&
+              <span className={styles.buttonGroup}>
+                <button
+                  onClick={this.handleRejectTransaction}
+                  className={cx(styles.button, styles.reject)}
+                >
+                  REJECT
+                </button>
+                <button
+                  onClick={this.handleConfirmTransaction}
+                  className={cx(styles.button, styles.confirm)}
+                >
+                  CONFIRM
+                </button>
+              </span>
+            )
+            : <div className={styles.networkNotification}>
+              <div>
+                <p>Unable to connect with internet.</p>
+                <p>Please check your connection!</p>
+              </div>
+            </div>
+        }
+      />
+    )
+  }
+}
 
 export default FooterTransactions

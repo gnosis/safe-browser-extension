@@ -9,8 +9,6 @@ import TransactionAddressData from 'routes/popup/Transaction/components/Transact
 import TransactionSummary from 'routes/popup/Transaction/components/Transaction/TransactionSummary'
 import styles from 'assets/css/global.css'
 
-BigNumber.config({ ROUNDING_MODE: BigNumber.ROUND_UP })
-
 class Layout extends Component {
   prevent = (e) => {
     e.preventDefault()
@@ -22,7 +20,8 @@ class Layout extends Component {
       transactions,
       balance,
       transactionNumber,
-      unlockRequest,
+      lockedAccount,
+      loadedData,
       reviewedTx,
       estimations,
       safeAlias,
@@ -34,6 +33,7 @@ class Layout extends Component {
       handleTransaction
     } = this.props
 
+    BigNumber.config({ ROUNDING_MODE: BigNumber.ROUND_UP })
     const transactionValue = transaction.value ? toGWei(new BigNumber(-transaction.value)) : new BigNumber(0)
     const totalGas = estimations && new BigNumber(estimations.dataGas).plus(new BigNumber(estimations.safeTxGas))
     const transactionFee = totalGas && toGWei(totalGas.times(new BigNumber(-estimations.gasPrice)))
@@ -78,7 +78,8 @@ class Layout extends Component {
               showTransaction={showTransaction}
               handleTransaction={handleTransaction}
               removeTransaction={removeTransaction}
-              unlockRequest={unlockRequest}
+              lockedAccount={lockedAccount}
+              loadedData={loadedData}
               reviewedTx={reviewedTx}
             />
           }
@@ -90,7 +91,8 @@ class Layout extends Component {
               handleTransaction={handleTransaction}
               removeTransaction={removeTransaction}
               transaction={transaction}
-              unlockRequest={unlockRequest}
+              lockedAccount={lockedAccount}
+              loadedData={loadedData}
               reviewedTx={reviewedTx}
             />
           }
