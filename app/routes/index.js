@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Switch, Redirect, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 import Transaction from 'routes/popup/Transaction/containers/Transaction'
 
@@ -42,5 +42,5 @@ export const ExtensionRoutes = () => (
     <Route exact path='/whitelist' component={WhitelistedDapps} />
     <Route exact path='/locking' component={LockingConfiguration} />
     <Route exact path='/resync-token' component={ResyncToken} />
-  </Switch>       
+  </Switch>
 )
