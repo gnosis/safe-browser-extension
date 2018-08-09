@@ -19,12 +19,26 @@ const loadGoogleAnalytics = () => {
 
   script.onload = () => {
     ga(['_setAccount', config.gaTrackingId])
+    ga(['_trackPageview'])
   }
 }
 loadGoogleAnalytics()
 
 const withTracker = (WrappedComponent, options = {}) => {
   const HOC = class extends Component {
+    componentDidMount () {
+      ga(['_trackPageview'])
+    }
+
+    componentWillReceiveProps (nextProps) {
+      const nextPage = nextProps.location.pathname
+      const currentPage = (this.props.location && this.props.location.pathname) || window.location.pathname
+
+      if (currentPage !== nextPage) {
+        ga(['_trackPageview'])
+      }
+    }
+
     render () {
       return <WrappedComponent {...this.props} />
     }
