@@ -22,6 +22,7 @@ module.exports = {
   iOSAppLink: 'https://itunes.apple.com/<ios-app-link-here>',
   pushNotificationServiceUrl: 'https://safe-notification.staging.gnosisdev.com/api/v1/',
   transactionRelayServiceUrl: 'https://safe-relay.staging.gnosisdev.com/api/v1/',
+  gaTrackingId: 'UA-83220550-7',
   firebase: {
     authDomain: 'test-safe-notifications.firebaseapp.com',
     databaseURL: 'https://test-safe-notifications.firebaseio.com',
