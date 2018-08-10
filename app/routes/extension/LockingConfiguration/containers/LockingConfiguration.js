@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import { ga } from 'utils/analytics'
+import { EXTENSION_SETTINGS } from 'utils/analytics/events'
 import Layout from '../components/Layout'
 import actions from './actions'
 import { MSG_CONFIGURE_ACCOUNT_LOCKING } from '../../../../../extension/utils/messages'
@@ -26,6 +28,7 @@ class LockingConfiguration extends Component {
       })
     }
     this.props.onConfigureLocking(minutes, unlockingTime)
+    ga(['_trackEvent', EXTENSION_SETTINGS, 'click-set-lock-timeout', 'Set lock timeout: ' + minutes + 'min'])
     this.setState({ minutes })
   }
 

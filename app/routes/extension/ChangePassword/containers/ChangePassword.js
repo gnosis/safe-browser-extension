@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 import CryptoJs from 'crypto-js'
 
+import { ga } from 'utils/analytics'
+import { EXTENSION_SETTINGS } from 'utils/analytics/events'
 import { createEthAccount } from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'
 import Layout from '../components/Layout'
 import actions from './actions'
@@ -69,6 +71,8 @@ class ChangePassword extends Component {
     chrome.runtime.sendMessage({
       msg: MSG_LOCK_ACCOUNT
     })
+
+    ga(['_trackEvent', EXTENSION_SETTINGS, 'click-change-password', 'Change password'])
 
     this.props.onUpdateMasterPassword(encryptedMnemonic, hmac)
     this.setState({ redirectToAccount: true })

@@ -39,33 +39,33 @@ const Layout = ({
               className={styles.button}
               data-qr='mobilepair'
             >
-                SHOW QR CODE
+              SHOW QR CODE
             </button>
           </li>
         </ol>
       </div>
     </Page>
     {showQrAndroid &&
-    <AppQr
-      toggleQr={toggleQrAndroid}
-      os='ANDROID'
-      link={androidAppLink}
-      storeImage={playStore}
-    />
+      <AppQr
+        toggleQr={toggleQrAndroid}
+        os='ANDROID'
+        link={androidAppLink}
+        storeImage={playStore}
+      />
     }
     {/* showQrIos &&
-        <AppQr
-          toggleQr={toggleQrIos}
-          os='IOS'
-          link={iosAppLink}
-          storeImage={appStore}
-        />
-      */}
+      <AppQr
+        toggleQr={toggleQrIos}
+        os='IOS'
+        link={iosAppLink}
+        storeImage={appStore}
+      />
+    */}
     {showQrPairing &&
-    <PairingProcess
-      toggleQr={toggleQrPairing}
-      password={password}
-    />
+      <PairingProcess
+        toggleQr={toggleQrPairing}
+        password={password}
+      />
     }
   </React.Fragment>
 )

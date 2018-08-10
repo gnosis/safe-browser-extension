@@ -1,6 +1,5 @@
 import React from 'react'
 import classNames from 'classnames/bind'
-import { Link } from 'react-router-dom'
 
 import SafeItem from './SafeItem'
 import styles from 'assets/css/global.css'
@@ -12,17 +11,11 @@ const Layout = ({
   currentAlias,
   showSafes,
   toggleSafes,
+  handleAddNewSafe,
   handleSelectSafe,
   handleRemoveSafe,
   noSafeMenu
 }) => {
-  const addNewSafeUrl = {
-    pathname: '/password',
-    state: {
-      dest: '/download-apps'
-    }
-  }
-
   return (
     <React.Fragment>
       <span
@@ -47,12 +40,8 @@ const Layout = ({
                 />
               </li>
             ))}
-            <li className={styles.safeMenuNewSafe}>
-              <p>
-                <Link to={addNewSafeUrl}>
-                  Connect to new Safe
-                </Link>
-              </p>
+            <li className={styles.safeMenuNewSafe} onClick={handleAddNewSafe}>
+              <p>Connect to new Safe</p>
             </li>
           </ul>
         </span>

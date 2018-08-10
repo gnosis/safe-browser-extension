@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Bip39 from 'bip39'
 
+import { ga } from 'utils/analytics'
+import { ONBOARDING } from 'utils/analytics/events'
 import {
   createEthAccount,
   createAccountFromMnemonic
@@ -44,21 +46,30 @@ class DownloadApps extends Component {
   }
 
   toggleQrAndroid = () => {
-    this.setState((prevState) => ({
-      showQrAndroid: !prevState.showQrAndroid
-    }))
+    this.setState(prevState => {
+      if (!prevState.showQrAndroid) {
+        ga(['_trackEvent', ONBOARDING, 'click-download-android-app', 'Download Android app'])
+      }
+      return { showQrAndroid: !prevState.showQrAndroid }
+    })
   }
 
   toggleQrIos = () => {
-    this.setState((prevState) => ({
-      showQrIos: !prevState.showQrIos
-    }))
+    this.setState(prevState => {
+      if (!prevState.showQrIos) {
+        ga(['_trackEvent', ONBOARDING, 'click-download-iphone-app', 'Download iPhone app'])
+      }
+      return { showQrIos: !prevState.showQrIos }
+    })
   }
 
   toggleQrPairing = () => {
-    this.setState((prevState) => ({
-      showQrPairing: !prevState.showQrPairing
-    }))
+    this.setState(prevState => {
+      if (!prevState.showQrPairing) {
+        ga(['_trackEvent', ONBOARDING, 'click-show-pairing-qr-code', 'Show pairing QR-code'])
+      }
+      return { showQrPairing: !prevState.showQrPairing }
+    })
   }
 
   render () {

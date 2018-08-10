@@ -3,9 +3,10 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 import CryptoJs from 'crypto-js'
 
+import { ga } from 'utils/analytics'
+import { EXTENSION_SETTINGS } from 'utils/analytics/events'
 import SafesLocked from '../components/SafesLocked'
 import SafesUnlocked from '../components/SafesUnlocked'
-
 import actions from './actions'
 import {
   MSG_LOCK_ACCOUNT,
@@ -27,6 +28,7 @@ class LockingState extends Component {
     chrome.runtime.sendMessage({
       msg: MSG_LOCK_ACCOUNT
     })
+    ga(['_trackEvent', EXTENSION_SETTINGS, 'click-lock-extension', 'Lock extension'])
   }
 
   unlockedAccount = (props) => {
@@ -50,6 +52,7 @@ class LockingState extends Component {
 
   handleUnlockAccount = (e) => {
     this.setState({ lockedAccount: true })
+    ga(['_trackEvent', EXTENSION_SETTINGS, 'click-unlock-extension', 'Unlock extension'])
   }
 
   render () {
