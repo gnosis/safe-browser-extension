@@ -48,6 +48,7 @@ class Layout extends Component {
       return <Redirect to={passwordUrl} />
     }
 
+    const time = seconds < 10 ? '00:0' + seconds.toString() : '00:' + seconds.toString()
     return (
       <React.Fragment>
         {reviewedTx &&
@@ -66,7 +67,7 @@ class Layout extends Component {
               render={({ online }) =>
                 online && (
                   <span className={styles.resend}>
-                    <p>wait {seconds < 10 ? '00:0' + seconds.toString() : '00:' + seconds.toString()}s before re-sending request</p>
+                    <p>wait {time}s before re-sending request</p>
                     <button
                       className={cx(styles.button, styles.white)}
                       disabled={seconds > 0}
