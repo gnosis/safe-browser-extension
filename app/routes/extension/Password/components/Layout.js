@@ -23,7 +23,7 @@ class Layout extends Component {
         withoutHeader
       >
         <div className={styles.content}>
-          <span className={styles.safeLogo} />
+          <span className={styles.safeLogo} data-network='rinkeby' />
           <span className={styles.lockshape} data-validation={dataValidation}>
 
             <svg id={styles.keyhole} width='18' height='34' viewBox='0 0 18 34' xmlns='http://www.w3.org/2000/svg'

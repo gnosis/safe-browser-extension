@@ -51,7 +51,7 @@ class OptionsPage extends Component {
     return (
       <div className={styles.start}>
         <div className={styles.content}>
-          <span className={styles.safeLogo} />
+          <span className={styles.safeLogo} data-network='rinkeby' />
           <h1>Thank you for installing<br />the Gnosis Safe browser extension!</h1>
           <p>To use the Safe extension you first need to allow notifications. They are used to notify you about transactions sent from the Gnosis Safe mobile app.</p>
           <img src={notificationsImage} height='134' width='170' />
