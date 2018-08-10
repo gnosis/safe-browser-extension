@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+import NetworkNotification from 'components/Notification/NetworkNotification'
 import styles from 'assets/css/global.css'
 
 class Layout extends Component {
@@ -25,6 +26,7 @@ class Layout extends Component {
             </div>
           </span>
         </div>
+        <NetworkNotification />
       </div>
     )
   }

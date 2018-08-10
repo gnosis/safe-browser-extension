@@ -24,6 +24,8 @@ class Layout extends Component {
         </div>
         {(loadedData && !reviewedTx) &&
           <FooterTransactions
+            loadedData={loadedData}
+            reviewedTx={reviewedTx}
             lockedAccount={lockedAccount}
             handleRejectTransaction={handleRejectTransaction}
             handleConfirmTransaction={handleConfirmTransaction}

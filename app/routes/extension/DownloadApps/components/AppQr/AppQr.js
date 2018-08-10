@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import { createQrImage } from 'utils/qrdisplay'
+import NetworkNotification from 'components/Notification/NetworkNotification'
 import styles from 'assets/css/global.css'
 
 class AppQr extends Component {
@@ -44,6 +45,7 @@ class AppQr extends Component {
             width='135'
           />
         </div>
+        <NetworkNotification />
       </div>
     )
   }

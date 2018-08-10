@@ -2,9 +2,31 @@ import React, { Component } from 'react'
 import classNames from 'classnames'
 import { Redirect } from 'react-router'
 
+import NetworkNotification from 'components/Notification/NetworkNotification'
 import styles from 'assets/css/global.css'
 
 const cx = classNames.bind(styles)
+
+const FooterButtons = ({
+  loadedData,
+  reviewedTx,
+  handleRejectTransaction,
+  handleConfirmTransaction
+}) => (loadedData && !reviewedTx &&
+  <span className={styles.buttonGroup}>
+    <button
+      onClick={handleRejectTransaction}
+      className={cx(styles.button, styles.reject)}
+    >
+      REJECT
+    </button>
+    <button
+      onClick={handleConfirmTransaction}
+      className={cx(styles.button, styles.confirm)}
+    >
+      CONFIRM
+    </button>
+  </span>)
 
 class FooterTransactions extends Component {
   constructor (props) {
@@ -35,7 +57,11 @@ class FooterTransactions extends Component {
   }
 
   render () {
-    const { lockedAccount } = this.props
+    const {
+      loadedData,
+      reviewedTx,
+      lockedAccount
+    } = this.props
     const { resolvedTransaction } = this.state
 
     if (resolvedTransaction && lockedAccount) {
@@ -49,20 +75,14 @@ class FooterTransactions extends Component {
     }
 
     return (
-      <span className={styles.buttonGroup}>
-        <button
-          onClick={this.handleRejectTransaction}
-          className={cx(styles.button, styles.reject)}
-        >
-          REJECT
-        </button>
-        <button
-          onClick={this.handleConfirmTransaction}
-          className={cx(styles.button, styles.confirm)}
-        >
-          CONFIRM
-        </button>
-      </span>
+      <NetworkNotification>
+        <FooterButtons
+          loadedData={loadedData}
+          reviewedTx={reviewedTx}
+          handleRejectTransaction={this.handleRejectTransaction}
+          handleConfirmTransaction={this.handleConfirmTransaction}
+        />
+      </NetworkNotification>
     )
   }
 }
