@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-import config from '../../config'
+import config from '../../../config'
 
 const GOOGLE_ANALYTICS_URL = 'https://ssl.google-analytics.com/ga.js'
 
-const ga = (...args) => {
+export const ga = (...args) => {
   var _gaq = window._gaq || []
   _gaq.push(...args)
 }
@@ -24,7 +24,7 @@ const loadGoogleAnalytics = () => {
 }
 loadGoogleAnalytics()
 
-const withTracker = (WrappedComponent, options = {}) => {
+export const withAnalytics = (WrappedComponent, options = {}) => {
   const HOC = class extends Component {
     componentDidMount () {
       ga(['_trackPageview'])
@@ -46,5 +46,3 @@ const withTracker = (WrappedComponent, options = {}) => {
 
   return HOC
 }
-
-export default withTracker

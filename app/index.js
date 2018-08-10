@@ -6,7 +6,7 @@ import { ConnectedRouter } from 'react-router-redux'
 import { ExtensionRoutes, ACCOUNT_URL, PASSWORD_URL, DOWNLOAD_APPS_URL, WELCOME_URL } from 'routes'
 import { history, store } from './store'
 
-import withAnalytics from 'utils/analytics'
+import { withAnalytics } from 'utils/analytics'
 
 const calculateInitialUrl = (account, safes) => {
   const validAccount = store.state.account.secondFA && Object.keys(account.secondFA).length > 0
