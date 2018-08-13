@@ -56,29 +56,27 @@ class SendTransaction extends Component {
   handleTransaction = async () => {
     const {
       transaction,
-      safes,
       ethAccount
     } = this.props
 
     this.setState({ seconds: this.maxSeconds })
     this.startCountdown()
-    transaction.nonce = await getNonce(safes.currentSafe)
-    transaction.hash = await getTxHash(transaction, safes.currentSafe)
+    try {
+      transaction.nonce = await getNonce(transaction.from)
+      transaction.hash = await getTxHash(transaction, transaction.from)
 
-    sendTransaction(
-      ethAccount.getChecksumAddressString(),
-      ethAccount.getPrivateKey(),
-      transaction,
-      safes.currentSafe
-    )
-      .then((response) => {
-        if (response.status === 204) {
-          this.handleMobileAppResponse()
-        }
-      })
-      .catch((err) => {
-        console.error(err)
-      })
+      const response = await sendTransaction(
+        ethAccount.getChecksumAddressString(),
+        ethAccount.getPrivateKey(),
+        transaction,
+        transaction.from
+      )
+      if (response && response.status === 204) {
+        this.handleMobileAppResponse()
+      }
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   handleRemoveTransaction = () => {

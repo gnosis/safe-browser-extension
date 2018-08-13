@@ -16,18 +16,20 @@ import ResyncToken from 'routes/extension/ResyncToken/containers/ResyncToken'
 import 'assets/css/global.css'
 
 class App extends Component {
-  componentWillMount () {
-    navigator.permissions.query({ name: 'notifications' })
-      .then(function (permission) {
-        if (permission.state === 'granted') {
-          return
-        }
-        if (chrome.runtime.openOptionsPage) {
-          chrome.runtime.openOptionsPage()
-        } else {
-          window.open(chrome.runtime.getURL('options/options.html'))
-        }
-      })
+  componentWillMount = async () => {
+    try {
+      const permission = await navigator.permissions.query({ name: 'notifications' })
+      if (permission.state === 'granted') {
+        return
+      }
+      if (chrome.runtime.openOptionsPage) {
+        chrome.runtime.openOptionsPage()
+      } else {
+        window.open(chrome.runtime.getURL('options/options.html'))
+      }
+    } catch (err) {
+      console.error(err)
+    }
 
     const { account, safes } = this.props.state
     const validAccount = account.secondFA && Object.keys(account.secondFA).length > 0

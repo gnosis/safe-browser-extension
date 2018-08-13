@@ -5,7 +5,7 @@ import TruffleContract from 'truffle-contract'
 import config from '../../../../../../../config'
 import GnosisSafePersonalEdition from '../../../../../../../contracts/GnosisSafePersonalEdition.json'
 
-export const getGasEstimation = (
+export const getGasEstimation = async (
   safe,
   to,
   value,
@@ -25,47 +25,42 @@ export const getGasEstimation = (
     operation
   })
 
-  return fetch(url, {
-    method: 'POST',
-    headers,
-    body
-  })
-    .then(response => {
-      if (response.status === 200) return response.json()
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers,
+      body
     })
-    .then(data => {
-      return data
-    })
-    .catch((err) => {
-      console.error(err)
-    })
+    return (response && response.status === 200)
+      ? response.json()
+      : null
+  } catch (err) {
+    console.error(err)
+  }
 }
 
-export const getTxHash = (tx, safeAddress) => {
+export const getTxHash = async (tx, safeAddress) => {
   const contract = TruffleContract(GnosisSafePersonalEdition)
   const provider = new Web3.providers.HttpProvider(
     config.networks[config.currentNetwork].url
   )
   contract.setProvider(provider)
 
-  return contract.at(safeAddress)
-    .then((instance) => {
-      return instance.getTransactionHash.call(
-        tx.to,
-        tx.value,
-        tx.data,
-        tx.operation,
-        tx.txGas,
-        tx.dataGas,
-        tx.gasPrice,
-        tx.gasToken,
-        tx.nonce
-      )
-    })
-    .then((hash) => {
-      return hash
-    })
-    .catch((err) => {
-      console.error(err)
-    })
+  try {
+    const instance = await contract.at(safeAddress)
+    const hash = await instance.getTransactionHash.call(
+      tx.to,
+      tx.value,
+      tx.data,
+      tx.operation,
+      tx.txGas,
+      tx.dataGas,
+      tx.gasPrice,
+      tx.gasToken,
+      tx.nonce
+    )
+    return hash
+  } catch (err) {
+    console.error(err)
+  }
 }

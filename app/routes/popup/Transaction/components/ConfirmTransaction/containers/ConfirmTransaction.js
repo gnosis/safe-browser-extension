@@ -24,31 +24,28 @@ class ConfirmTransaction extends Component {
     ga(['_trackEvent', TRANSACTIONS, 'click-reject-transaction-from-mobile-app', 'Reject transaction from mobile app'])
   }
 
-  handleTransaction = (type, prefix) => {
+  handleTransaction = async (type, prefix) => {
     const {
-      transactionNumber,
-      safes,
-      transactions,
+      transaction,
       ethAccount
     } = this.props
 
-    const hash = transactions.txs[transactionNumber].tx.hash
-    requestConfirmationResponse(
-      type,
-      ethAccount.getChecksumAddressString(),
-      ethAccount.getPrivateKey(),
-      hash,
-      safes.currentSafe,
-      prefix
-    )
-      .then((response) => {
-        if (response.status === 204) {
-          this.handleRemoveTransaction()
-        }
-      })
-      .catch((err) => {
-        console.error(err)
-      })
+    const hash = transaction.hash
+    try {
+      const response = await requestConfirmationResponse(
+        type,
+        ethAccount.getChecksumAddressString(),
+        ethAccount.getPrivateKey(),
+        hash,
+        transaction.from,
+        prefix
+      )
+      if (response.status === 204) {
+        this.handleRemoveTransaction()
+      }
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   handleRemoveTransaction = () => {

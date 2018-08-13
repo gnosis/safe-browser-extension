@@ -23,7 +23,7 @@ class ResyncToken extends Component {
     this.password = validPassword ? location.state.password : undefined
   }
 
-  handleResync = () => (e) => {
+  handleResync = () => async (e) => {
     const {
       selectEncryptedMnemonic,
       selectUnencryptedMnemonicSelector
@@ -33,16 +33,13 @@ class ResyncToken extends Component {
       ? getDecryptedEthAccount(selectEncryptedMnemonic, this.password)
       : createAccountFromMnemonic(selectUnencryptedMnemonicSelector)
 
-    setUpNotifications()
-      .then((token) => {
-        if (token === null) {
-          console.log('No token available')
-          return
-        }
-        authPushNotificationService(token, currentAccount.getPrivateKey())
-      })
-      .catch((err) => console.error(err))
-
+    try {
+      const token = await setUpNotifications()
+      if (token === null) return
+      authPushNotificationService(token, currentAccount.getPrivateKey())
+    } catch (err) {
+      console.error(err)
+    }
     ga(['_trackEvent', EXTENSION_SETTINGS, 'click-resync-push-token', 'Resync push token'])
   }
 

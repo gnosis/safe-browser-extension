@@ -8,7 +8,7 @@ import { history, store } from './store'
 
 store
   .ready()
-  .then(() => {
+  .then(async () => {
     history.push(TRANSACTION_URL)
 
     ReactDOM.render(
