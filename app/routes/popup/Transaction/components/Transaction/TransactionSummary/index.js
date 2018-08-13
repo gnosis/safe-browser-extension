@@ -3,30 +3,39 @@ import React from 'react'
 import styles from 'assets/css/global.css'
 
 const TransactionSummary = ({
-  balance,
+  ethBalance,
   transactionFee,
+  isTokenTransaction,
   totalCost
-}) => (
-  <div className={styles.transactionSummary}>
-    <span>
-      <p>Safe balance</p>
-      <strong>{balance ? balance.round(5).toString(10) : '-'} <small>ETH</small></strong>
-    </span>
-    <span>
-      <p>Estimated transaction fee</p>
+}) => {
+  const txEthBalance = ethBalance ? ethBalance.toString(10) : '-'
+  const txFee = transactionFee ? transactionFee.toString(10) : '-'
+  const txCost = totalCost ? totalCost.toString(10) : '-'
+
+  return (
+    <div className={styles.transactionSummary}>
       <span>
-        <strong className={styles.textRed}>{transactionFee ? transactionFee.round(5).toString(10) : '-'} <small>ETH</small></strong>
-        <small>&nbsp;</small>
+        <p>Safe balance</p>
+        <strong>{txEthBalance} <small>ETH</small></strong>
       </span>
-    </span>
-    <span className={styles.subtotal}>
-      <p>Max. total</p>
       <span>
-        <strong className={styles.textRed}>{totalCost ? totalCost.round(5).toString(10) : '-'} <small>ETH</small></strong>
-        <small />
+        <p>Estimated transaction fee</p>
+        <span>
+          <strong className={styles.textRed}>{txFee} <small>ETH</small></strong>
+          <small>&nbsp;</small>
+        </span>
       </span>
-    </span>
-  </div>
-)
+      {!isTokenTransaction &&
+        <span className={styles.subtotal}>
+          <p>Max. total</p>
+          <span>
+            <strong className={styles.textRed}>{txCost} <small>ETH</small></strong>
+            <small />
+          </span>
+        </span>
+      }
+    </div>
+  )
+}
 
 export default TransactionSummary

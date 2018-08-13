@@ -9,24 +9,29 @@ const TransactionAddressData = ({
   address,
   alias,
   balance,
-  noBalance
-}) => (
-  <div className={style}>
-    <span>
-      <div className={styles.identicon}>
-        <Blockie address={address} diameter={32} />
-      </div>
-      <p>
-        <i>{alias}</i>
-        <small>{shortenAddress(address)}</small>
-      </p>
-    </span>
-    {!noBalance &&
-    <span>
-      <strong>{balance ? balance.round(5).toString(10) : '-'} <small>ETH</small></strong>
-    </span>
-    }
-  </div>
-)
+  noBalance,
+  symbol
+}) => {
+  const addressBalance = balance ? balance.toString(10) : '-'
+
+  return (
+    <div className={style}>
+      <span>
+        <div className={styles.identicon}>
+          <Blockie address={address} diameter={32} />
+        </div>
+        <p>
+          <i>{alias}</i>
+          <small>{shortenAddress(address)}</small>
+        </p>
+      </span>
+      {!noBalance &&
+      <span>
+        <strong>{addressBalance} <small>{symbol}</small></strong>
+      </span>
+      }
+    </div>
+  )
+}
 
 export default TransactionAddressData
