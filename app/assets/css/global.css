@@ -2015,7 +2015,6 @@ footer .stepper-dots>li.active{
   text-align:right;
   -ms-flex-pack:end;
   justify-content:flex-end;
-  padding:0 0 0 10px
 }
 .extensionTX .extension-inner .transactionValue{
   display:-ms-flexbox;
@@ -2255,5 +2254,6 @@ footer .stepper-dots>li.active{
   color: white;
   letter-spacing: 0;
   line-height: 1.1;
-  text-align:left
+  text-align:left;
+  margin:0
 }
