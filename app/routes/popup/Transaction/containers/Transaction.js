@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import BigNumber from 'bignumber.js'
-import Web3 from 'web3'
 
 import {
   getDecryptedEthAccount,
   createAccountFromMnemonic
 } from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'
-import selector from './selector'
+import {
+  getTransactionAddressData,
+  getEthBalance,
+  setUpTransaction
+} from './transactions'
+import { isTokenTransfer } from './tokens'
 import { getGasEstimation } from 'routes/popup/Transaction/components/SendTransaction/containers/gasData'
-import actions from './actions'
-import { promisify } from 'utils/promisify'
-import config from '../../../../../config'
 import Header from 'components/Header'
 import Layout from '../components/Layout'
+import actions from './actions'
+import selector from './selector'
 import styles from 'assets/css/global.css'
 
 class Transaction extends Component {
@@ -22,9 +25,11 @@ class Transaction extends Component {
 
     this.state = {
       transactionNumber: 0,
+      ethBalance: undefined,
       balance: undefined,
       loadedData: false,
-      reviewedTx: false
+      reviewedTx: false,
+      isTokenTransaction: undefined
     }
 
     const { location } = this.props
@@ -42,12 +47,6 @@ class Transaction extends Component {
     this.showTransaction(transactionNumber)
   }
 
-  getBalance = async (address) => {
-    const web3 = new Web3(new Web3.providers.HttpProvider(config.networks[config.currentNetwork].url))
-    const balance = await promisify(cb => web3.eth.getBalance(address, cb))
-    return web3.fromWei(balance, 'ether')
-  }
-
   showTransaction = async (transactionNumber) => {
     const { transactions } = this.props
     if (!transactions || transactions.txs.length === 0) {
@@ -57,21 +56,33 @@ class Transaction extends Component {
     const tx = transactions.txs[transactionNumber].tx
     if (!tx) return
 
+    const isTokenTransaction = isTokenTransfer(tx.data)
+
     this.setState({
       reviewedTx: false,
       loadedData: false,
       transactionNumber,
+      ethBalance: undefined,
       balance: undefined,
-      estimations: undefined
+      symbol: undefined,
+      value: undefined,
+      estimations: undefined,
+      isTokenTransaction
     })
 
     try {
-      const balance = await this.getBalance(tx.from)
-      const value = (tx.value) ? new BigNumber(tx.value).toString(10) : '0'
-      const estimations = await getGasEstimation(tx.from, tx.to, value, tx.data, 0)
-      const loadedData = (balance instanceof BigNumber && estimations)
-      this.setState({ balance, estimations, loadedData })
+      const ethBalance = await getEthBalance(tx.from)
+      const { balance, symbol, value } = await getTransactionAddressData(tx.to, tx.from, tx.data, tx.value, ethBalance)
+      const estimationValue = isTokenTransaction ? 0 : value
+      const estimations = await getGasEstimation(tx.from, tx.to, estimationValue, tx.data, 0)
+      const loadedData = ethBalance instanceof BigNumber &&
+        balance instanceof BigNumber &&
+        estimations &&
+        symbol
+
+      this.setState({ ethBalance, balance, symbol, value, estimations, loadedData })
     } catch (err) {
+      this.setState({ loadedData: false })
       console.error(err)
     }
   }
@@ -100,19 +111,6 @@ class Transaction extends Component {
     this.props.onRemoveTransaction(position)
   }
 
-  setUpTransaction = (transaction, estimations) => {
-    if (!transaction.value) { transaction.value = '0' }
-    if (!transaction.data) { transaction.data = '0x' }
-    transaction.safe = transaction.from
-    transaction.operation = '0'
-
-    if (!estimations) return
-    transaction.txGas = new BigNumber(estimations.safeTxGas).toString(10)
-    transaction.dataGas = new BigNumber(estimations.dataGas).toString(10)
-    transaction.gasPrice = new BigNumber(estimations.gasPrice).toString(10)
-    transaction.gasToken = estimations.gasToken
-  }
-
   getSafeAlias = (address) => {
     const { safes } = this.props
     return safes.safes.filter(s => s.address === address)[0].alias
@@ -121,15 +119,19 @@ class Transaction extends Component {
   render () {
     const {
       transactionNumber,
+      ethBalance,
       balance,
+      symbol,
+      value,
       estimations,
       loadedData,
-      reviewedTx
+      reviewedTx,
+      isTokenTransaction
     } = this.state
     const { account, transactions } = this.props
 
     const transaction = transactions.txs[transactionNumber].tx
-    this.setUpTransaction(transaction, estimations)
+    setUpTransaction(transaction, estimations)
 
     return (
       <div className={styles.extensionTx}>
@@ -139,7 +141,10 @@ class Transaction extends Component {
             <Layout
               transaction={transaction}
               transactions={transactions}
+              ethBalance={ethBalance}
               balance={balance}
+              symbol={symbol}
+              value={value}
               transactionNumber={transactionNumber}
               lockedAccount={account.lockedState}
               loadedData={loadedData}
@@ -152,6 +157,7 @@ class Transaction extends Component {
               removeTransaction={this.removeTransaction}
               showTransaction={this.showTransaction}
               handleTransaction={this.handleTransaction}
+              isTokenTransaction={isTokenTransaction}
             />
           </div>
         </div>

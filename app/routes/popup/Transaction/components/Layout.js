@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import BigNumber from 'bignumber.js'
 
 import { toGWei } from 'utils/helpers'
+import { isTokenTransfer, getTokenTransferAddress } from '../containers/tokens'
 import HeaderTransactions from 'routes/popup/Transaction/components/Transaction/HeaderTransactions'
 import ConfirmTransaction from 'routes/popup/Transaction/components/ConfirmTransaction/containers/ConfirmTransaction'
 import SendTransaction from 'routes/popup/Transaction/components/SendTransaction/containers/SendTransaction'
@@ -18,7 +19,10 @@ class Layout extends Component {
     const {
       transaction,
       transactions,
+      ethBalance,
       balance,
+      symbol,
+      value,
       transactionNumber,
       lockedAccount,
       loadedData,
@@ -30,16 +34,19 @@ class Layout extends Component {
       nextTransaction,
       removeTransaction,
       showTransaction,
-      handleTransaction
+      handleTransaction,
+      isTokenTransaction
     } = this.props
 
     BigNumber.config({ ROUNDING_MODE: BigNumber.ROUND_UP })
-    const transactionValue = transaction.value ? toGWei(new BigNumber(-transaction.value)) : new BigNumber(0)
+    const transactionValue = value ? toGWei(new BigNumber(value)) : new BigNumber(0)
     const totalGas = estimations && new BigNumber(estimations.dataGas).plus(new BigNumber(estimations.safeTxGas))
     const transactionFee = totalGas && toGWei(totalGas.times(new BigNumber(-estimations.gasPrice)))
     const totalCost = (transactionValue && transactionFee)
       ? transactionValue.plus(transactionFee)
       : null
+    const val = transactionValue ? transactionValue.toString(10) : '-'
+    const toAddress = isTokenTransfer(transaction.data) ? getTokenTransferAddress(transaction.data) : transaction.to
 
     return (
       <React.Fragment>
@@ -56,18 +63,20 @@ class Layout extends Component {
             address={transaction.safe}
             alias={safeAlias}
             balance={balance}
+            symbol={symbol}
           />
           <div className={styles.transactionValue}>
-            <strong>{transactionValue ? transactionValue.round(5).toString(10) : '-'} <small>ETH</small></strong>
+            <strong>{val} <small>{symbol}</small></strong>
             <small>&nbsp;</small>
           </div>
           <TransactionAddressData
             style={styles.transactionRecipient}
-            address={transaction.to}
+            address={toAddress}
             noBalance
           />
           <TransactionSummary
-            balance={balance}
+            isTokenTransaction={isTokenTransaction}
+            ethBalance={ethBalance}
             transactionFee={transactionFee}
             totalCost={totalCost}
           />
@@ -78,6 +87,7 @@ class Layout extends Component {
               showTransaction={showTransaction}
               handleTransaction={handleTransaction}
               removeTransaction={removeTransaction}
+              transaction={transaction}
               lockedAccount={lockedAccount}
               loadedData={loadedData}
               reviewedTx={reviewedTx}
