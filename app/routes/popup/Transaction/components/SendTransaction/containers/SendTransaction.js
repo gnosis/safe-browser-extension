@@ -21,7 +21,7 @@ class SendTransaction extends Component {
     }
   }
 
-  handleConfirmTransaction = () => {
+  handleConfirmTransaction = (resend) => {
     const {
       handleTransaction,
       transactionNumber
@@ -34,7 +34,10 @@ class SendTransaction extends Component {
       msg: MSG_PENDING_SENDTRANSACTION,
       position: transactionNumber
     })
-    ga(['_trackEvent', TRANSACTIONS, 'click-confirm-transaction-from-dapp', 'Confirm transaction from Dapp'])
+
+    !(resend)
+      ? ga(['_trackEvent', TRANSACTIONS, 'click-confirm-transaction-from-dapp', 'Confirm transaction from Dapp'])
+      : ga(['_trackEvent', TRANSACTIONS, 'click-re-send-transaction-from-dapp', 'Re-send transaction from Dapp'])
   }
 
   handleRejectTransaction = () => {

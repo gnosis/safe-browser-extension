@@ -23,7 +23,7 @@ class Layout extends Component {
     if (lockedAccount) {
       this.setState({ resolvedTransaction: true })
     } else {
-      handleConfirmTransaction()
+      handleConfirmTransaction(true)
     }
   }
 
