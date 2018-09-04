@@ -338,9 +338,6 @@ section.auction,section.home{
   color:#fb4f62
 }
 
-form > .whitelist-form {
-  display:flex;
-}
 form > .whitelist-form input {
   margin-right:15px
 }
@@ -357,7 +354,7 @@ form .password-form {
 .md-checkbox.md-checkbox-inline,.radio.md-radio-inline{
   display:inline-block
 }
-form .password-form p{
+form p{
   margin:0;
   width:100%;
   text-align:left;
@@ -1328,6 +1325,11 @@ form input.noborder{
   flex-wrap:wrap;
   padding:20px 0
 }
+
+form > .whitelist-form {
+  display:flex;
+}
+
 .whitelist_add>form{
   -ms-flex:1;
   flex:1;
@@ -2157,7 +2159,7 @@ footer .stepper-dots>li.active{
   width:auto;
   margin:9px 0 0 auto;
   background:#F4F5F9;
-  padding:6px 0 6px 15px;
+  padding:0 0 0 15px;
   box-sizing:border-box;
   max-width:90%;
   word-wrap:break-word
