@@ -1,4 +1,5 @@
 import React from 'react'
+import classNames from 'classnames/bind'
 
 import Page from 'components/Page'
 import AppQr from './AppQr/AppQr'
@@ -6,6 +7,8 @@ import PairingProcess from './PairingProcess/containers/PairingProcess'
 import styles from 'assets/css/global.css'
 import playStore from 'assets/images/playstore.svg'
 // import appStore from 'assets/images/appstore.svg'
+
+const cx = classNames.bind(styles)
 
 const Layout = ({
   toggleQrAndroid,
@@ -24,7 +27,7 @@ const Layout = ({
       simpleHeader
       noBorder
     >
-      <div className={styles.content}>
+      <div className={cx(styles.content, (showQrAndroid || /* showQrIos || */ showQrPairing) && styles.blur)}>
         <h1>Extension setup succesfully!<br /><strong>Connect with the mobile app.</strong></h1>
         <ol>
           <li>

@@ -12,7 +12,7 @@ const Layout = ({
 }) => (
   <div className={cx(styles.extension, styles.welcome)}>
     <div className={styles.extensionInner}>
-      <div className={styles.content}>
+      <div className={cx(styles.content, showDisclaimer && styles.blur)}>
         <span className={cx(styles.safeLogo, styles.animated, styles.fadeInUp)} data-network='rinkeby' />
         <h1>Safely store Ether and ERC20 tokens with 2-factor authentication.</h1>
         <button onClick={toggleDisclaimer} className={cx(styles.button, styles.round)}>
