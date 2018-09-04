@@ -102,7 +102,9 @@ export const sendNotification = async (
   return fetch(url, {
     method: 'POST',
     headers,
-    body
+    body,
+    credentials: 'omit',
+    referrerPolicy: 'no-referrer'
   })
 }
 

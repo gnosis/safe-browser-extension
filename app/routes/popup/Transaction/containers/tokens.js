@@ -61,7 +61,11 @@ const getListedTokens = async (address) => {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }
-    const result = await fetch(config.tokenListUrl, { headers })
+    const result = await fetch(config.tokenListUrl, {
+      headers,
+      credentials: 'omit',
+      referrerPolicy: 'no-referrer'
+    })
     return result.json()
   } catch (err) {
     console.error(err)
