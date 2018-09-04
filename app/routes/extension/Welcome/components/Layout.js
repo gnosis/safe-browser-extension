@@ -23,7 +23,14 @@ const Layout = ({
     <div className={cx(styles.disclaimer, showDisclaimer ? styles.show : null)}>
       <span>
         <h2>Terms</h2>
-        <p>By continuing you accept and agree with the <a href='https://safe.gnosis.io/terms' target='_blank'>Terms of Use</a> and and <a href='https://safe.gnosis.io/privacy' target='_blank'>Privacy Policy</a>.</p>
+        <p>
+          Please review our <a href='https://safe.gnosis.io/terms' target='_blank'>Terms of Use</a> and <a href='https://safe.gnosis.io/privacy' target='_blank'>Privacy Policy</a>.
+          <ul>
+            <li>We do not collect demographic data like age and gender.</li>
+            <li>We collect anonymized app usage data and crash reports to ensure the quality of our app.</li>
+          </ul>
+        </p>
+
         <div>
           <button onClick={toggleDisclaimer} className={cx(styles.button, styles.naked)}>NO THANKS</button>
           <Link to='/create-password' className={styles.button}>AGREE</Link>

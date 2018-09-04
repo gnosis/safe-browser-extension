@@ -1607,7 +1607,7 @@ footer .stepper-dots>li.active{
 }
 .welcome .disclaimer>span{
   background:#fff;
-  height:16em;
+  height:24em;
   width:100%;
   position:absolute;
   bottom:0;
@@ -1617,7 +1617,7 @@ footer .stepper-dots>li.active{
   flex-wrap:wrap;
   -ms-flex-pack:center;
   justify-content:center;
-  align-items: center;
+  align-items:center;
   box-sizing:border-box;
   padding:2em 0 1em;
   will-change:transform opacity;
@@ -1630,7 +1630,27 @@ footer .stepper-dots>li.active{
 .welcome .disclaimer>span>p{
   -ms-flex:1 auto;
   flex:1 auto;
-  padding:0 4em
+  padding:0 27px;
+  text-align: left
+}
+.welcome .disclaimer ul{
+  list-style: none;
+  margin: 0;
+  padding: 0 15px;
+}
+.welcome .disclaimer ul li::before{
+  background: #28B2FA;
+  border-radius: 50%;
+  content: "";
+  display: inline-block;
+  margin-left: -15px;
+  margin-bottom: 2px;
+  height: 5px;
+  width: 5px;
+  margin-right: 10px;
+}
+.welcome .disclaimer ul li{
+  margin-top: 10px;
 }
 .welcome .disclaimer>span>div{
   -ms-flex:1 100%;
