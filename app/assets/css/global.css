@@ -354,7 +354,7 @@ form .password-form {
 .md-checkbox.md-checkbox-inline,.radio.md-radio-inline{
   display:inline-block
 }
-form p{
+form .password-form p{
   margin:0;
   width:100%;
   text-align:left;

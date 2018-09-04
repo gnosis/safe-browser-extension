@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Bip39 from 'bip39'
+import { Redirect } from 'react-router'
 
 import { ga } from 'utils/analytics'
 import { ONBOARDING } from 'utils/analytics/events'
@@ -15,7 +16,9 @@ import actions from './actions'
 class DownloadApps extends Component {
   constructor (props) {
     super(props)
+    const { safes } = this.props
 
+    this.pairedSafes = safes.safes.length
     this.androidAppLink = config.androidAppLink
     this.iosAppLink = config.iOSAppLink
 
@@ -34,9 +37,7 @@ class DownloadApps extends Component {
     const { account } = this.props
     const hasAccount = account.secondFA && Object.keys(account.secondFA).length > 0
 
-    if (hasAccount || !this.password) {
-      return
-    }
+    if (hasAccount || !this.password) return
 
     const mnemonic = Bip39.generateMnemonic()
     const currentAccount = createAccountFromMnemonic(mnemonic)
@@ -78,10 +79,11 @@ class DownloadApps extends Component {
       showQrIos,
       showQrPairing
     } = this.state
-    // const { safes } = this.props
+    const { safes } = this.props
 
-    // if (safes != null && safes.safes.length > 0)
-    //  return <Redirect to='/account' />
+    if (safes !== null && safes.safes.length > this.pairedSafes) {
+      return <Redirect to='/account' />
+    }
     return (
       <Layout
         toggleQrAndroid={this.toggleQrAndroid}
