@@ -34,11 +34,10 @@ export const getTokenBalance = async (tokenAddress, address, decimals) => {
     const erc20Token = await getStandardTokenContract()
     const instance = await erc20Token.at(tokenAddress)
     const funds = await instance.balanceOf(address)
-    const balance = (!decimals) ? funds : funds.div(10 ** decimals)
+    const balance = (!decimals) ? new BigNumber(funds) : funds.div(10 ** decimals)
     return balance
   } catch (err) {
     console.error(err)
-    return 0
   }
 }
 
@@ -104,11 +103,11 @@ const getNotListedTokenData = async (address) => {
 
   const dataSymbol = await instance.contract.symbol.getData()
   const symbolResult = await promisify(cb => web3.eth.call({ to: address, data: dataSymbol }, cb))
-  let symbol = symbolResult !== '0x' ? await instance.symbol() : undefined
+  const symbol = symbolResult !== '0x' ? await instance.symbol() : undefined
 
   const dataDecimals = await instance.contract.decimals.getData()
   const decimalsResult = await promisify(cb => web3.eth.call({ to: address, data: dataDecimals }, cb))
-  let decimals = decimalsResult !== '0x' ? `${await instance.decimals()}` : undefined
+  const decimals = decimalsResult !== '0x' ? `${await instance.decimals()}` : undefined
 
   const erc20token = {
     address,

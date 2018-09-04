@@ -31,7 +31,7 @@ export const getTransactionAddressData = async (to, from, data, value, ethBalanc
     return { balance, value: val, symbol }
   } catch (err) {
     console.error(err)
-    return { balance: 0, value: 0, symbol: 'UNKNOWN TOKEN' }
+    return { balance: new BigNumber(0), value: 0, symbol: 'UNKNOWN TOKEN' }
   }
 }
 
