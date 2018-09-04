@@ -15,16 +15,16 @@ class Layout extends Component {
 
     return (
       <React.Fragment>
-        <span data-validation={dataValidation}>
+        <div data-validation={dataValidation}>
           <input
             type='password'
             placeholder='Confirm password'
             value={confirmPassword}
             onChange={updateConfirmPassword}
           />
-        </span>
-        <p className={confirmPassword === '' ? null : matchStyle}>
-          Password doesn't match
+        </div>
+        <p className={(confirmPassword !== '') ? matchStyle : null}>
+          {!ready && 'Password doesn\'t match'}
         </p>
       </React.Fragment>
     )

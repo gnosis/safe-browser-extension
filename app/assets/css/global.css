@@ -96,7 +96,8 @@ section.auction,section.home{
   }
 }
 .content,form{
-  -ms-flex-wrap:wrap
+  display: flex;
+  flex-wrap: wrap
 }
 .safeLogo{
   background:url(../images/gnosis_safe_logo.svg) center/contain no-repeat;
@@ -336,28 +337,38 @@ section.auction,section.home{
   background:#fff;
   color:#fb4f62
 }
-form{
+
+form > .whitelist-form {
+  display:flex;
+}
+form > .whitelist-form input {
+  margin-right:15px
+}
+
+form .password-form {
   font-family:Roboto,Helvetica,sans-serif;
   display:-ms-flexbox;
   display:flex;
   flex-wrap:wrap;
-  padding:0 2em
+  padding:0 2em;
+  width: 100%
 }
+
 .md-checkbox.md-checkbox-inline,.radio.md-radio-inline{
   display:inline-block
 }
-form p{
+form .password-form p{
   margin:0;
   width:100%;
   text-align:left;
   font-size:1.2em
 }
-form>span{
+form .password-form div{
   width:100%;
   position:relative;
   margin:2em 0 1em
 }
-form>span::after{
+form .password-form div::after{
   bottom:0;
   margin:auto;
   position:absolute;
@@ -366,19 +377,19 @@ form>span::after{
   height:16px;
   width:16px
 }
-form>span[data-validation=OK]::after{
+form div[data-validation=OK]::after{
   content:"";
   background:url(../images/check_ok.svg) center/contain no-repeat
 }
-form>span[data-validation=OK] input{
+form div[data-validation=OK] input{
   color:#02ae60;
   border:2px solid #02ae60
 }
-form>span[data-validation=ERROR]::after{
+form div[data-validation=ERROR]::after{
   content:"";
   background:url(../images/check_error.svg) center/contain no-repeat
 }
-form>span[data-validation=ERROR] input{
+form div[data-validation=ERROR] input{
   color:#fb4f62;
   border:2px solid #fb4f62
 }
@@ -720,7 +731,7 @@ form input.noborder{
 .extension-inner>header.noBorder{
   border-bottom:1px solid transparent
 }
-.extension-inner>.content>h1{
+.extension-inner .content h1{
   letter-spacing:0;
   text-align:center;
   font-size:2em;
@@ -1235,10 +1246,7 @@ form input.noborder{
   display:block;
 }
 
-.overlayPage[data-page=password] form>button{
-  margin-top:25px
-}
-.overlayPage[data-page=password] form>button{
+.overlayPage[data-page=password] form button{
   margin-top:25px
 }
 .overlayPage .warning-password{
@@ -1487,6 +1495,15 @@ footer{
   padding:0 1.5em;
   box-sizing:border-box
 }
+footer button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit
+}
 footer .btn-back,footer .btn-next{
   display:-ms-flexbox;
   display:flex;
@@ -1515,10 +1532,10 @@ footer .btn-back{
 footer .btn-back.active{
   background:url(../images/arrow-left-blue.svg) center/contain no-repeat
 }
-footer .btn-next,footer a.btn-next{
+footer .btn-next,footer button.btn-next{
   text-decoration:none
 }
-footer .btn-next::after,footer a.btn-next::after{
+footer .btn-next::after,footer button.btn-next::after{
   content:"";
   display:inline-block;
   background:url(../images/arrow-right-grey.svg) center/contain no-repeat;
@@ -1527,7 +1544,7 @@ footer .btn-next::after,footer a.btn-next::after{
   margin:0 0 0 1em;
   pointer-events:none
 }
-footer .btn-next.active::after,footer a.btn-next.active::after{
+footer .btn-next.active::after,footer button.btn-next.active::after{
   content:"";
   background:url(../images/arrow-right-blue.svg) center/contain no-repeat;
   pointer-events:auto
@@ -1810,28 +1827,28 @@ footer .stepper-dots>li.active{
 .unlockSafe form{
   width:100%
 }
-.unlockSafe form>input{
+.unlockSafe form input{
   text-align:center
 }
-.unlockSafe form>input:-ms-input-placeholder{
+.unlockSafe form input:-ms-input-placeholder{
   color:#A2A8BA
 }
-.unlockSafe form>input::placeholder{
+.unlockSafe form input::placeholder{
   color:#A2A8BA
 }
-.unlockSafe form>input:focus:-ms-input-placeholder{
+.unlockSafe form input:focus:-ms-input-placeholder{
   color:#fff
 }
-.unlockSafe form>input:focus::placeholder{
+.unlockSafe form input:focus::placeholder{
   color:#fff
 }
-.unlockSafe form>button{
+.unlockSafe form button{
   width:100%;
   -ms-flex:1 1 auto;
   flex:1 1 auto;
   margin:15px 0 0
 }
-.unlockSafe .content>a{
+.unlockSafe .content a{
   width:100%;
   text-align:center;
   margin:15px auto 0;

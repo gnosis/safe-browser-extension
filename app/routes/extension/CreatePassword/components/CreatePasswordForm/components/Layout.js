@@ -18,14 +18,14 @@ class Layout extends Component {
 
     return (
       <React.Fragment>
-        <span data-validation={dataValidation}>
+        <div data-validation={dataValidation}>
           <input
             type='password'
             placeholder='New password'
             value={newPassword}
             onChange={updateNewPassword}
           />
-        </span>
+        </div>
         <p className={newPassword && rowStyle}>
           No more than 2 identical characters in a row
         </p>

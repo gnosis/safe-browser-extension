@@ -39,21 +39,23 @@ class Layout extends Component {
           <span className={styles.overlayPageContent}>
             <span className={styles.whitelist_add}>
               <form data-validation='ERROR' onSubmit={this.prevent}>
-                <input
-                  type='text'
-                  placeholder='Add website'
-                  name='whitelist-add'
-                  className={styles.noborder}
-                  value={newDapp}
-                  onChange={updateNewDapp}
-                />
-                <button
-                  className={styles.button}
-                  onClick={handleAddDapp(newDapp)}
-                >ADD</button>
-                {errorMessage &&
-                  <p className={styles.textRed}>{errorMessage}</p>
-                }
+                <div className={styles.whitelistForm}>
+                  <input
+                    type='text'
+                    placeholder='Add website'
+                    name='whitelist-add'
+                    className={styles.noborder}
+                    value={newDapp}
+                    onChange={updateNewDapp}
+                  />
+                  <button
+                    className={styles.button}
+                    onClick={handleAddDapp(newDapp)}
+                  >ADD</button>
+                  {errorMessage &&
+                    <p className={styles.textRed}>{errorMessage}</p>
+                  }
+                </div>
               </form>
             </span>
             <ul className={styles.whitelist_items}>

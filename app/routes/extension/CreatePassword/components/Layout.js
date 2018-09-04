@@ -29,26 +29,28 @@ class Layout extends Component {
 
     return (
       <Page page={styles.password1} simpleHeader>
-        <div className={styles.content}>
-          <h1>Secure and encrypt your browser extension with a password</h1>
-          <span className={styles.warningPassword}>
-            <img src={warningImage} />
-            <p>Password is used to unlock the extension and confirm transactions. <strong>Don't share this password with others!</strong></p>
-          </span>
-          <form onSubmit={this.prevent}>
-            <CreatePasswordForm
-              newPassword={newPassword}
-              manageCreatePassword={manageCreatePassword}
-              ready={ready}
-            />
-          </form>
-        </div>
-        <Footer
-          link={'/welcome'}
-          ready={ready}
-          firstStep
-          nextLink={nextLink}
-        />
+        <form onSubmit={this.prevent}>
+          <div className={styles.content}>
+            <h1>Secure and encrypt your browser extension with a password</h1>
+            <span className={styles.warningPassword}>
+              <img src={warningImage} />
+              <p>Password is used to unlock the extension and confirm transactions. <strong>Don't share this password with others!</strong></p>
+            </span>
+            <div className={styles.passwordForm}>
+              <CreatePasswordForm
+                newPassword={newPassword}
+                manageCreatePassword={manageCreatePassword}
+                ready={ready}
+              />
+            </div>
+          </div>
+          <Footer
+            link={'/welcome'}
+            ready={ready}
+            firstStep
+            nextLink={nextLink}
+          />
+        </form>
       </Page>
     )
   }

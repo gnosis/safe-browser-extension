@@ -40,8 +40,8 @@ class Layout extends Component {
             <p>Password is used to unlock the extension and confirm transactions. <strong>Don't share this password with others!</strong></p>
           </span>
           <span className={styles.overlayPageContent}>
-            <span className={styles.overlayPageContent}>
-              <form onSubmit={this.prevent}>
+            <form onSubmit={this.prevent}>
+              <div className={styles.passwordForm}>
                 <CreatePasswordForm
                   newPassword={newPassword}
                   manageCreatePassword={manageCreatePassword}
@@ -56,8 +56,8 @@ class Layout extends Component {
                   ? <button className={styles.button} onClick={updateMasterPassword}>SAVE NEW PASSWORD</button>
                   : <button className={styles.button}>SAVE NEW PASSWORD</button>
                 }
-              </form>
-            </span>
+              </div>
+            </form>
           </span>
         </div>
       </Page>
