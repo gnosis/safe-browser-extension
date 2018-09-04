@@ -66,6 +66,7 @@ class Layout extends Component {
               name='unlock'
               onChange={updatePassword}
               className={styles.noborder}
+              autoFocus
             />
             <button
               onClick={validatePasswords}
