@@ -138,7 +138,12 @@ class Transaction extends Component {
     return (
       <div className={styles.extensionTx}>
         <div className={styles.extensionInner}>
-          <Header noBorder txReview properties={this.props.location} />
+          <Header
+            noBorder
+            txReview
+            transactionNumber={transactionNumber}
+            properties={this.props.location}
+          />
           <div className={styles.Page}>
             <Layout
               transaction={transaction}
