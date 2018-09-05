@@ -50,9 +50,9 @@ export const getTokenTransferAddress = (data) => {
   return address
 }
 
-export const getTokenTransferValue = (data) => {
+export const getTokenTransferValue = (data, decimals) => {
   const value = new BigNumber('0x' + data.substring(74))
-  return (value) ? value.toString(10) : '0'
+  return (!value) ? new BigNumber(0) : value
 }
 
 const getListedTokens = async (address) => {

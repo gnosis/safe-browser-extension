@@ -72,15 +72,17 @@ class Transaction extends Component {
 
     try {
       const ethBalance = await getEthBalance(tx.from)
-      const { balance, symbol, value } = await getTransactionAddressData(tx.to, tx.from, tx.data, tx.value, ethBalance)
-      const estimationValue = isTokenTransaction ? 0 : value
+      const { balance, symbol, value, decimals } = await getTransactionAddressData(tx.to, tx.from, tx.data, tx.value, ethBalance)
+      const estimationValue = isTokenTransaction ? '0' : value.toString(10)
       const estimations = await getGasEstimation(tx.from, tx.to, estimationValue, tx.data, 0)
+      const decimalValue = (decimals) ? value.div(10 ** decimals) : value
+
       const loadedData = ethBalance instanceof BigNumber &&
         balance instanceof BigNumber &&
         estimations &&
         symbol
 
-      this.setState({ ethBalance, balance, symbol, value, estimations, loadedData })
+      this.setState({ ethBalance, balance, symbol, value: decimalValue, estimations, loadedData })
     } catch (err) {
       this.setState({ loadedData: false })
       console.error(err)

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
- 
+
 import Page from 'components/Page'
 import styles from 'assets/css/global.css'
 
@@ -81,7 +81,6 @@ class Layout extends Component {
       </Page>
     )
   }
- }
- 
- export default Layout
- 
+}
+
+export default Layout
