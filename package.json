@@ -3,9 +3,9 @@
   "version": "0.2.1",
   "main": "app/index.js",
   "scripts": {
-    "build": "./node_modules/.bin/webpack --watch --progress",
+    "build": "./node_modules/.bin/webpack --progress",
+    "watch": "./node_modules/.bin/webpack --watch --progress",
     "clean": "rm -rf build",
-    "start": "./node_modules/.bin/webpack-dev-server --hot --host 0.0.0.0 --client-log-level info --progress",
     "test": "jest",
     "standard": "standard --fix"
   },
@@ -66,8 +66,7 @@
     "reselect": "^3.0.1",
     "standard": "^11.0.1",
     "style-loader": "^0.20.1",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.11.1"
+    "webpack": "^3.10.0"
   },
   "jest": {
     "modulePaths": [
