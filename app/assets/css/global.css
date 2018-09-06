@@ -2052,7 +2052,7 @@ footer .stepper-dots>li.active{
   margin:0 auto;
   padding:0 20px
 }
-.extensionTX .extension-inner .transactionFrom>span,.extensionTX .extension-inner .transactionRecipient>span{
+.extensionTX .extension-inner .transactionFrom span,.extensionTX .extension-inner .transactionRecipient span{
   display:-ms-flexbox;
   display:flex;
   -ms-flex-wrap:nowrap;
@@ -2064,10 +2064,10 @@ footer .stepper-dots>li.active{
   word-break:break-all;
   box-sizing:border-box
 }
-.extensionTX .extension-inner .transactionFrom>span>img,.extensionTX .extension-inner .transactionRecipient>span>img{
+.extensionTX .extension-inner .transactionFrom .identicon,.extensionTX .extension-inner .transactionRecipient .identicon{
   margin:0 10px 0 0
 }
-.extensionTX .extension-inner .transactionFrom>span>p,.extensionTX .extension-inner .transactionRecipient>span>p{
+.extensionTX .extension-inner .transactionFrom span p,.extensionTX .extension-inner .transactionRecipient span p{
   display:-ms-flexbox;
   display:flex;
   -ms-flex-wrap:wrap;
@@ -2076,7 +2076,11 @@ footer .stepper-dots>li.active{
   line-height:1.3;
   word-break:inherit
 }
-.extensionTX .extension-inner .transactionFrom>span>p>i,.extensionTX .extension-inner .transactionRecipient>span>p>i{
+.extensionTX .extension-inner .transactionFrom span p,.extensionTX .extension-inner .transactionRecipient span p{
+  margin: 0;
+  text-align: left
+}
+.extensionTX .extension-inner .transactionFrom span p i,.extensionTX .extension-inner .transactionRecipient span p i{
   width:100%;
   -ms-flex:1 1 auto;
   flex:1 1 auto;
@@ -2221,7 +2225,8 @@ footer .stepper-dots>li.active{
 .extensionTX .extension-inner .transactionSummary>span p{
   font-size:inherit;
   font-weight:inherit;
-  color:inherit
+  color:inherit;
+  margin: 0;
 }
 .extensionTX .extension-inner .transactionSummary>span strong{
   display:-ms-flexbox;
@@ -2269,7 +2274,9 @@ footer .stepper-dots>li.active{
   font-size:1.2em;
   color:#65707E;
   letter-spacing:3px;
-  text-align:center
+  text-align:center;
+  width: 100%;
+  margin:0
 }
 .extensionTX .extension-inner .transactionState .message{
   display:-ms-flexbox;
@@ -2283,14 +2290,17 @@ footer .stepper-dots>li.active{
   -ms-flex-align:center;
   align-items:center
 }
-.extensionTX .extension-inner .transactionState .message>img{
-  margin:0 15px 0 0
+.extensionTX .extension-inner .transactionState .message img{
+  margin:0 15px 0 0;
+  display: block
 }
-.extensionTX .extension-inner .transactionState .message>p{
+.extensionTX .extension-inner .transactionState .message p{
   font-size:1.3em;
   color:#21435A;
   letter-spacing:0;
-  line-height:1.5
+  line-height:1.5;
+  margin: 0;
+  text-align: left
 }
 .extensionTX .extension-inner .transactionState .errorMessage {
   font-size: 1.3em;

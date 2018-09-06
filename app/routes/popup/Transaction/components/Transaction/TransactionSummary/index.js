@@ -16,7 +16,9 @@ const TransactionSummary = ({
     <div className={styles.transactionSummary}>
       <span>
         <p>Safe balance</p>
-        <strong>{txEthBalance} <small>ETH</small></strong>
+        <span>
+          <strong>{txEthBalance} <small>ETH</small></strong>
+        </span>
       </span>
       <span>
         <p>Estimated transaction fee</p>
