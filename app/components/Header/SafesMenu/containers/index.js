@@ -8,6 +8,10 @@ import selector from './selector'
 import actions from './actions'
 import { MSG_LOCK_ACCOUNT } from '../../../../../extension/utils/messages'
 import Layout from '../components/Layout'
+import {
+  PASSWORD_URL,
+  DOWNLOAD_APPS_URL
+} from 'routes/routes'
 
 class SafesMenu extends Component {
   constructor (props) {
@@ -68,9 +72,9 @@ class SafesMenu extends Component {
     if (addNewSafe || safes.safes.length === 0) {
       return (
         <Redirect to={{
-          pathname: '/password',
+          pathname: PASSWORD_URL,
           state: {
-            dest: '/download-apps'
+            dest: DOWNLOAD_APPS_URL
           }
         }} />
       )

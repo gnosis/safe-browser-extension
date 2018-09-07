@@ -6,6 +6,10 @@ import { ga } from 'utils/analytics'
 import { SAFES } from 'utils/analytics/events'
 import Layout from '../components/Layout'
 import { createQrImage } from 'utils/qrdisplay'
+import {
+  PASSWORD_URL,
+  DOWNLOAD_APPS_URL
+} from 'routes/routes'
 
 class Account extends Component {
   componentDidMount = () => {
@@ -35,9 +39,9 @@ class Account extends Component {
   render () {
     const { safes } = this.props
     const url = {
-      pathname: '/password',
+      pathname: PASSWORD_URL,
       state: {
-        dest: '/download-apps'
+        dest: DOWNLOAD_APPS_URL
       }
     }
 

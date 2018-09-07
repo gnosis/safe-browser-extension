@@ -10,6 +10,7 @@ import Layout from '../components/Layout'
 import actions from './actions'
 import selector from './selector'
 import { MSG_LOCK_ACCOUNT } from '../../../../../extension/utils/messages'
+import { ACCOUNT_URL } from 'routes/routes'
 
 class ChangePassword extends Component {
   constructor (props) {
@@ -87,7 +88,7 @@ class ChangePassword extends Component {
       confirmPasswordReady
     } = this.state
     if (redirectToAccount) {
-      return <Redirect to='/account' />
+      return <Redirect to={ACCOUNT_URL} />
     }
     return (
       <Layout

@@ -12,6 +12,11 @@ import {
   MSG_LOCK_ACCOUNT,
   MSG_LOCK_ACCOUNT_TIMER
 } from '../../../../../extension/utils/messages'
+import {
+  PASSWORD_URL,
+  TRANSACTION_URL,
+  ACCOUNT_URL
+} from 'routes/routes'
 
 class LockingState extends Component {
   constructor (props) {
@@ -64,9 +69,9 @@ class LockingState extends Component {
 
     if (lockedAccount) {
       const url = {
-        pathname: '/password',
+        pathname: PASSWORD_URL,
         state: {
-          dest: (txReview) ? '/transaction' : '/account'
+          dest: (txReview) ? TRANSACTION_URL : ACCOUNT_URL
         }
       }
       return <Redirect to={url} />

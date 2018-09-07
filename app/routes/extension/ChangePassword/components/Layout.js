@@ -7,6 +7,7 @@ import CreatePasswordForm from 'routes/extension/CreatePassword/components/Creat
 import ConfirmPasswordForm from 'routes/extension/ConfirmPassword/components/ConfirmPasswordForm/containers/ConfirmPasswordForm'
 import styles from 'assets/css/global.css'
 import warningImage from 'assets/images/warning.svg'
+import { ACCOUNT_URL } from 'routes/routes'
 
 const cx = classNames.bind(styles)
 
@@ -30,7 +31,7 @@ class Layout extends Component {
       <Page>
         <div className={styles.overlayPage} data-page='password'>
           <span className={styles.overlayPageHeader}>
-            <Link to='/account' className={cx(styles.btnBack, styles.active)}>
+            <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)}>
               <p>Back</p>
             </Link>
             <h2>Change password</h2>

@@ -5,6 +5,10 @@ import Footer from 'components/Footer'
 import CreatePasswordForm from './CreatePasswordForm/containers/CreatePasswordForm'
 import styles from 'assets/css/global.css'
 import warningImage from 'assets/images/warning.svg'
+import {
+  CONFIRM_PASSWORD_URL,
+  WELCOME_URL
+} from 'routes/routes'
 
 class Layout extends Component {
   prevent = (e) => {
@@ -20,7 +24,7 @@ class Layout extends Component {
 
     const nextLink = ready
       ? {
-        pathname: '/confirm-password',
+        pathname: CONFIRM_PASSWORD_URL,
         state: {
           password: newPassword
         }
@@ -45,7 +49,7 @@ class Layout extends Component {
             </div>
           </div>
           <Footer
-            link={'/welcome'}
+            link={WELCOME_URL}
             ready={ready}
             firstStep
             nextLink={nextLink}

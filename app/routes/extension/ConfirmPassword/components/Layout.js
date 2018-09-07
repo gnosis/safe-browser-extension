@@ -5,6 +5,10 @@ import Footer from 'components/Footer'
 import ConfirmPasswordForm from './ConfirmPasswordForm/containers/ConfirmPasswordForm'
 import styles from 'assets/css/global.css'
 import warningImage from 'assets/images/warning.svg'
+import {
+  DOWNLOAD_APPS_URL,
+  CREATE_PASSWORD_URL
+} from 'routes/routes'
 
 class Layout extends Component {
   prevent = (e) => {
@@ -21,7 +25,7 @@ class Layout extends Component {
 
     const nextLink = ready
       ? {
-        pathname: '/download-apps',
+        pathname: DOWNLOAD_APPS_URL,
         state: properties
       }
       : ''
@@ -44,7 +48,7 @@ class Layout extends Component {
             </div>
           </div>
           <Footer
-            link={'/create-password'}
+            link={CREATE_PASSWORD_URL}
             ready={ready}
             secondStep
             nextLink={nextLink}

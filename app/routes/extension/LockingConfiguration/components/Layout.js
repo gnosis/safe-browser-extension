@@ -6,6 +6,7 @@ import Page from 'components/Page'
 import TimeBlock from './TimeBlock'
 
 import styles from 'assets/css/global.css'
+import { ACCOUNT_URL } from 'routes/routes'
 
 const cx = classNames.bind(styles)
 
@@ -20,7 +21,7 @@ class Layout extends Component {
       <Page>
         <div className={styles.overlayPage}>
           <span className={styles.overlayPageHeader}>
-            <Link to='/account' className={cx(styles.btnBack, styles.active)}>
+            <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)}>
               <p>Back</p>
             </Link>
             <h2>Set Lock Timeout</h2>

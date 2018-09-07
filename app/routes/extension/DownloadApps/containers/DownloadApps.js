@@ -12,6 +12,7 @@ import {
 import Layout from '../components/Layout'
 import config from '../../../../../config'
 import actions from './actions'
+import { ACCOUNT_URL } from 'routes/routes'
 
 class DownloadApps extends Component {
   constructor (props) {
@@ -82,7 +83,7 @@ class DownloadApps extends Component {
     const { safes } = this.props
 
     if (safes !== null && safes.safes.length > this.pairedSafes) {
-      return <Redirect to='/account' />
+      return <Redirect to={ACCOUNT_URL} />
     }
     return (
       <Layout

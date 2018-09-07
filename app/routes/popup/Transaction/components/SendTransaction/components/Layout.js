@@ -6,6 +6,10 @@ import Network from 'react-network'
 import FooterTransactions from 'routes/popup/Transaction/components/Transaction/FooterTransactions'
 import mobileImage from 'assets/images/mobile.svg'
 import styles from 'assets/css/global.css'
+import {
+  TRANSACTION_URL,
+  PASSWORD_URL
+} from 'routes/routes'
 
 const cx = classNames.bind(styles)
 
@@ -40,9 +44,9 @@ class Layout extends Component {
 
     if (resolvedTransaction && lockedAccount) {
       const passwordUrl = {
-        pathname: '/password',
+        pathname: PASSWORD_URL,
         state: {
-          dest: '/transaction'
+          dest: TRANSACTION_URL
         }
       }
       return <Redirect to={passwordUrl} />

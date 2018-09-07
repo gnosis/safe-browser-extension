@@ -4,6 +4,10 @@ import { Redirect } from 'react-router'
 
 import NetworkNotification from 'components/Notification/NetworkNotification'
 import styles from 'assets/css/global.css'
+import {
+  TRANSACTION_URL,
+  PASSWORD_URL
+} from 'routes/routes'
 
 const cx = classNames.bind(styles)
 
@@ -68,9 +72,9 @@ class FooterTransactions extends Component {
 
     if (resolvedTransaction && lockedAccount) {
       const passwordUrl = {
-        pathname: '/password',
+        pathname: PASSWORD_URL,
         state: {
-          dest: '/transaction'
+          dest: TRANSACTION_URL
         }
       }
       return <Redirect to={passwordUrl} />

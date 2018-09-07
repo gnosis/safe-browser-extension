@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 
 import styles from 'assets/css/global.css'
+import { CREATE_PASSWORD_URL } from 'routes/routes'
 
 const cx = classNames.bind(styles)
 
@@ -33,7 +34,7 @@ const Layout = ({
 
         <div>
           <button onClick={toggleDisclaimer} className={cx(styles.button, styles.naked)}>NO THANKS</button>
-          <Link to='/create-password' className={styles.button}>AGREE</Link>
+          <Link to={CREATE_PASSWORD_URL} className={styles.button}>AGREE</Link>
         </div>
       </span>
     </div>
