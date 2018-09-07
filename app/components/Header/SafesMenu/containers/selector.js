@@ -7,6 +7,6 @@ import {
 
 export default (state, props) => createStructuredSelector({
   safes: safesSelector,
-  currentSafeAlias: selectCurrentSafeAlias,
-  currentTransactionSafeAlias: selectCurrentTransactionSafeAlias()
+  extensionTitle: selectCurrentSafeAlias,
+  popupTitle: selectCurrentTransactionSafeAlias()
 })

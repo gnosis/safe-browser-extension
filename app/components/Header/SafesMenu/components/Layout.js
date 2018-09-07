@@ -8,23 +8,23 @@ const cx = classNames.bind(styles)
 
 const Layout = ({
   safes,
-  currentAlias,
+  safeAlias,
   showSafes,
   toggleSafes,
   handleAddNewSafe,
   handleSelectSafe,
   handleRemoveSafe,
-  noSafeMenu
+  showingTransaction
 }) => {
   return (
     <React.Fragment>
       <span
-        className={cx(styles.safeIcon, !noSafeMenu && styles.hasMenu)}
-        onClick={!noSafeMenu ? toggleSafes : null}
+        className={cx(styles.safeIcon, !showingTransaction && styles.hasMenu)}
+        onClick={!showingTransaction ? toggleSafes : null}
       >
-        <i>{currentAlias}</i>
+        <i>{safeAlias}</i>
       </span>
-      {!noSafeMenu &&
+      {!showingTransaction &&
         <span className={cx(styles.safeMenu, showSafes && styles.active)}>
           <ul>
             {safes.safes && safes.safes.map((safe) => (

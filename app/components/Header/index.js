@@ -56,7 +56,7 @@ class Header extends Component {
           <SafesMenu
             toggleSafes={this.toggleSafes}
             showSafes={showSafes}
-            noSafeMenu={txReview}
+            showingTransaction={txReview}
             transactionNumber={transactionNumber}
           />
           <LockingState

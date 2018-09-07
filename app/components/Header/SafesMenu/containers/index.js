@@ -58,9 +58,10 @@ class SafesMenu extends Component {
     const {
       toggleSafes,
       showSafes,
-      noSafeMenu,
+      showingTransaction,
       safes,
-      currentSafeAlias
+      extensionTitle,
+      popupTitle
     } = this.props
     const { addNewSafe } = this.state
 
@@ -75,19 +76,19 @@ class SafesMenu extends Component {
       )
     }
 
-    const safeAlias = (noSafeMenu)
-      ? this.props.currentTransactionSafeAlias
-      : currentSafeAlias
+    const safeAlias = (showingTransaction)
+      ? popupTitle
+      : extensionTitle
     return (
       <Layout
         safes={safes}
-        currentAlias={safeAlias}
+        safeAlias={safeAlias}
         showSafes={showSafes}
         toggleSafes={toggleSafes}
         handleSelectSafe={this.handleSelectSafe}
         handleRemoveSafe={this.handleRemoveSafe}
         handleAddNewSafe={this.handleAddNewSafe}
-        noSafeMenu={noSafeMenu}
+        showingTransaction={showingTransaction}
       />
     )
   }
