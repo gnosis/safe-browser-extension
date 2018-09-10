@@ -5,8 +5,22 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const cssVars = require('postcss-simple-vars')
 const cssVariables = require(path.resolve(__dirname, './app/theme/variables'))
+const dotenv = require('dotenv')
+const env = dotenv.config().parsed
 
-const nodeEnv = process.env.NODE_ENV || 'development'
+const envKeys = Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next])
+  return prev
+}, {})
+envKeys['process.env.NODE_ENV'] = `"${process.env.NODE_ENV}"` || 'development'
+
+const faviconBuild = 'favicon_rinkeby.png'
+const faviconDev = 'favicon_rinkeby_red.png'
+const getFavicon = () => {
+  return (process.env.NODE_ENV === 'production')
+    ? faviconBuild
+    : faviconDev
+}
 
 const postcssPlugins = [
   cssVars({
@@ -113,9 +127,7 @@ module.exports = {
       ]
     }),
     new ExtractTextPlugin('css/[name].[contenthash:8].css'),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(nodeEnv)
-    }),
+    new webpack.DefinePlugin(envKeys),
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, './extension/manifest.json'),
@@ -125,8 +137,8 @@ module.exports = {
     ]),
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, './app/assets/images/favicon_rinkeby.png'),
-        to: path.resolve(__dirname, './build/assets/images/favicon_rinkeby.png'),
+        from: path.resolve(__dirname, './app/assets/images/', getFavicon()),
+        to: path.resolve(__dirname, './build/assets/images/' + faviconBuild),
         force: true
       }
     ])
