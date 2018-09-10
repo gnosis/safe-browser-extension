@@ -4,7 +4,14 @@ import EthUtil from 'ethereumjs-util'
 import BigNumber from 'bignumber.js'
 import fetch from 'node-fetch'
 
-import config from '../../../../../../../config'
+import {
+  getFirebaseAuthDomain,
+  getFirebaseDatabaseUrl,
+  getFirebaseProjectId,
+  getFirebaseStorageBucket,
+  getFirebaseMessagingSenderId,
+  getPushNotificationServiceUrl
+} from '../../../../../../../config'
 
 export const setUpNotifications = () => {
   const messaging = setUpFirebase()
@@ -13,11 +20,11 @@ export const setUpNotifications = () => {
 
 const setUpFirebase = () => {
   const configFirebase = {
-    authDomain: config.firebase.authDomain,
-    databaseURL: config.firebase.databaseURL,
-    projectId: config.firebase.projectId,
-    storageBucket: config.firebase.storageBucket,
-    messagingSenderId: config.firebase.messagingSenderId
+    authDomain: getFirebaseAuthDomain(),
+    databaseURL: getFirebaseDatabaseUrl(),
+    projectId: getFirebaseProjectId(),
+    storageBucket: getFirebaseStorageBucket(),
+    messagingSenderId: getFirebaseMessagingSenderId()
   }
   if (!firebase.apps.length) {
     firebase.initializeApp(configFirebase)
@@ -27,7 +34,7 @@ const setUpFirebase = () => {
 
 export const authPushNotificationService = async (pushToken, privateKey) => {
   try {
-    const url = config.pushNotificationServiceUrl + 'auth/'
+    const url = getPushNotificationServiceUrl() + 'auth/'
     const headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'

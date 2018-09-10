@@ -9,7 +9,7 @@ const FetchSubprovider = require('web3-provider-engine/subproviders/fetch.js')
 const Web3 = require('web3')
 
 const GnosisProvider = require('../app/utils/GnosisProvider')
-const config = require('../config.js')
+const { getNetworkUrl, getNetworkVersion } = require('../config')
 const {
   EV_SCRIPT_READY,
   EV_UPDATE_WEB3
@@ -56,16 +56,14 @@ engine.addProvider(filterAndSubsSubprovider)
 const inflightCache = new InflightCacheSubprovider()
 engine.addProvider(inflightCache)
 
-engine.addProvider(new FetchSubprovider({
-  rpcUrl: config.networks[config.currentNetwork].url
-}))
+engine.addProvider(new FetchSubprovider({ rpcUrl: getNetworkUrl() }))
 
 engine.send = function (payload) {
   // eslint-disable-next-line
   var r = undefined
   switch (payload.method) {
     case 'net_version':
-      r = config.networks[config.currentNetwork].version.toString()
+      r = getNetworkVersion().toString()
       break
 
     default:
