@@ -20,10 +20,10 @@ class Layout extends Component {
       confirmPassword,
       properties,
       manageConfirmPassword,
-      ready
+      passwordsMatch
     } = this.props
 
-    const nextLink = ready
+    const nextLink = passwordsMatch
       ? {
         pathname: DOWNLOAD_APPS_URL,
         state: properties
@@ -43,13 +43,13 @@ class Layout extends Component {
               <ConfirmPasswordForm
                 confirmPassword={confirmPassword}
                 manageConfirmPassword={manageConfirmPassword}
-                ready={ready}
+                passwordsMatch={passwordsMatch}
               />
             </div>
           </div>
           <Footer
             link={CREATE_PASSWORD_URL}
-            ready={ready}
+            ready={passwordsMatch}
             secondStep
             nextLink={nextLink}
           />

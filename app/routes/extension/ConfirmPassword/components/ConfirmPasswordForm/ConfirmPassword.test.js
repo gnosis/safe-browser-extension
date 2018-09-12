@@ -15,7 +15,7 @@ describe('Confirm Password Form Validation', () => {
     const props = {
       confirmPassword,
       manageConfirmPassword,
-      ready: false
+      passwordsMatch: false
     }
 
     const component = shallow(<ConfirmPasswordForm {...props} />)
@@ -31,7 +31,7 @@ describe('Confirm Password Form Validation', () => {
     const props = {
       confirmPassword,
       manageConfirmPassword,
-      ready: false
+      passwordsMatch: false
     }
 
     const component = shallow(<ConfirmPasswordForm {...props} />)

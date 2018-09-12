@@ -51,10 +51,10 @@ class Layout extends Component {
                 <ConfirmPasswordForm
                   confirmPassword={confirmPassword}
                   manageConfirmPassword={manageConfirmPassword}
-                  ready={this.props.confirmPasswordReady}
+                  passwordsMatch={this.props.confirmPasswordReady}
                 />
                 {createPasswordReady && confirmPasswordReady
-                  ? <button className={styles.button} onClick={updateMasterPassword}>SAVE NEW PASSWORD</button>
+                  ? <button type='button' className={styles.button} onClick={updateMasterPassword}>SAVE NEW PASSWORD</button>
                   : <button className={styles.button}>SAVE NEW PASSWORD</button>
                 }
               </div>
