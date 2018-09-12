@@ -7,12 +7,12 @@ import {
 
 const initialState = {
   currentSafe: undefined,
-  safes: []
+  listSafes: []
 }
 function safes (state = initialState, action) {
   switch (action.type) {
     case ADD_SAFE:
-      const count = state.safes.length + 1
+      const count = state.listSafes.length + 1
       const newSafe = {
         address: action.address,
         alias: 'Account ' + count
@@ -20,17 +20,17 @@ function safes (state = initialState, action) {
       return {
         ...state,
         currentSafe: action.address,
-        safes: [
-          ...state.safes,
+        listSafes: [
+          ...state.listSafes,
           newSafe
         ]
       }
 
     case REMOVE_SAFE:
-      const safes = state.safes.filter(safe => (safe.address !== action.address))
+      const listSafes = state.listSafes.filter(safe => (safe.address !== action.address))
       return {
         currentSafe: action.currentSafe,
-        safes
+        listSafes
       }
 
     case SELECT_SAFE:
@@ -40,7 +40,7 @@ function safes (state = initialState, action) {
       }
 
     case UPDATE_SAFE_ALIAS:
-      const updatedSafes = state.safes.map(safe => {
+      const updatedSafes = state.listSafes.map(safe => {
         if (safe.address === action.address) {
           safe.alias = action.alias
         }
@@ -48,7 +48,7 @@ function safes (state = initialState, action) {
       })
       return {
         ...state,
-        safes: updatedSafes
+        listSafes: updatedSafes
       }
 
     default:

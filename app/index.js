@@ -16,7 +16,7 @@ import { withAnalytics } from 'utils/analytics'
 
 const calculateInitialUrl = (account, safes) => {
   const validAccount = store.state.account.secondFA && Object.keys(account.secondFA).length > 0
-  const validSafes = safes.safes && safes.safes.length > 0
+  const validSafes = safes.listSafes && safes.listSafes.length > 0
 
   if (validAccount && validSafes) return ACCOUNT_URL
 

@@ -115,7 +115,7 @@ class Transaction extends Component {
 
   getSafeAlias = (address) => {
     const { safes } = this.props
-    return safes.safes.filter(s => s.address === address)[0].alias
+    return safes.listSafes.filter(s => s.address === address)[0].alias
   }
 
   render () {

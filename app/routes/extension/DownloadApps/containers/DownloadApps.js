@@ -18,7 +18,7 @@ class DownloadApps extends Component {
     super(props)
     const { safes } = this.props
 
-    this.pairedSafes = safes.safes.length
+    this.pairedSafes = safes.listSafes.length
 
     this.state = {
       showQrAndroid: false,
@@ -79,7 +79,7 @@ class DownloadApps extends Component {
     } = this.state
     const { safes } = this.props
 
-    if (safes !== null && safes.safes.length > this.pairedSafes) {
+    if (safes !== null && safes.listSafes.length > this.pairedSafes) {
       return <Redirect to={ACCOUNT_URL} />
     }
     return (

@@ -36,7 +36,7 @@ class SafesMenu extends Component {
   handleRemoveSafe = (safeAddress) => (e) => {
     e.stopPropagation()
     const { safes, onRemoveSafe } = this.props
-    const safeList = safes.safes
+    const safeList = safes.listSafes
 
     let newCurrentSafe
     if (safeList.length > 1) {
@@ -69,7 +69,7 @@ class SafesMenu extends Component {
     } = this.props
     const { addNewSafe } = this.state
 
-    if (addNewSafe || safes.safes.length === 0) {
+    if (addNewSafe || safes.listSafes.length === 0) {
       return (
         <Redirect to={{
           pathname: PASSWORD_URL,
