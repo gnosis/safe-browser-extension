@@ -10,7 +10,6 @@ import {
   createAccountFromMnemonic
 } from '../components/PairingProcess/containers/pairEthAccount'
 import Layout from '../components/Layout'
-import config from '../../../../../config'
 import actions from './actions'
 import { ACCOUNT_URL } from 'routes/routes'
 
@@ -20,8 +19,6 @@ class DownloadApps extends Component {
     const { safes } = this.props
 
     this.pairedSafes = safes.safes.length
-    this.androidAppLink = config.androidAppLink
-    this.iosAppLink = config.iOSAppLink
 
     this.state = {
       showQrAndroid: false,
@@ -93,8 +90,6 @@ class DownloadApps extends Component {
         showQrAndroid={showQrAndroid}
         showQrIos={showQrIos}
         showQrPairing={showQrPairing}
-        androidAppLink={this.androidAppLink}
-        iosAppLink={this.iosAppLink}
         password={this.password}
       />
     )
