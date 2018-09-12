@@ -1236,6 +1236,10 @@ form input.noborder{
 .safeDrawerMenu>li[data-menu=resync]::before{
   background:url(../images/resync.svg) center/contain no-repeat
 }
+.safeDrawerMenu>li[data-menu=about]::before{
+  background:url(../images/about.svg) center/contain no-repeat
+}
+
 .overlayPage{
   background:#F4F5F9;
   height:calc(100% - 58px);
@@ -2384,4 +2388,7 @@ footer .stepper-dots>li.active{
   line-height: 1.1;
   text-align:left;
   margin:0
+}
+.about{
+  padding-top:130px
 }
