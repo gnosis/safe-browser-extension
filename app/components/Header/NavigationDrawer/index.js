@@ -49,6 +49,9 @@ class NavigationDrawer extends Component {
         <li data-menu='resync'>
           <Link to={resyncRoute}>Resync push token</Link>
         </li>
+        <li data-menu='about'>
+          <Link to='/about'>About</Link>
+        </li>
       </ul>
     )
   }
