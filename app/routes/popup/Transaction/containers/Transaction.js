@@ -7,7 +7,7 @@ import {
   createAccountFromMnemonic
 } from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'
 import {
-  getTransactionAddressData,
+  getTransactionData,
   getEthBalance,
   setUpTransaction
 } from './transactions'
@@ -72,7 +72,7 @@ class Transaction extends Component {
 
     try {
       const ethBalance = await getEthBalance(tx.from)
-      const { balance, symbol, value, decimals } = await getTransactionAddressData(tx.to, tx.from, tx.data, tx.value, ethBalance)
+      const { balance, symbol, value, decimals } = await getTransactionData(tx.to, tx.from, tx.data, tx.value, ethBalance)
       const estimationValue = isTokenTransaction ? '0' : value.toString(10)
       const estimations = await getGasEstimation(tx.from, tx.to, estimationValue, tx.data, 0)
       const decimalValue = (decimals) ? value.div(10 ** decimals) : value

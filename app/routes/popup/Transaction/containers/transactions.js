@@ -17,7 +17,7 @@ export const getEthBalance = async (address) => {
   return web3.fromWei(ethBalance, 'ether')
 }
 
-export const getTransactionAddressData = async (to, from, data, value, ethBalance) => {
+export const getTransactionData = async (to, from, data, value, ethBalance) => {
   if (!isTokenTransfer(data)) {
     const val = (value) ? new BigNumber(value) : new BigNumber(0)
     return { balance: ethBalance, value: val, symbol: 'ETH', decimals: 18 }
