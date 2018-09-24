@@ -128,10 +128,19 @@ const showPopup = (transaction, dappWindowId, dappTabId) => {
   transaction.safe = transaction.safe && EthUtil.toChecksumAddress(transaction.safe)
   transaction.from = transaction.from && EthUtil.toChecksumAddress(transaction.from)
   transaction.to = transaction.to && EthUtil.toChecksumAddress(transaction.to)
-  if (transaction.safe) { transaction.from = transaction.safe }
+  if (transaction.safe) {
+    transaction.from = transaction.safe
+  }
 
   const validTransaction = safes.filter(safe => safe.address.toLowerCase() === transaction.from.toLowerCase()).length > 0
-  if (!validTransaction) { return }
+  if (!validTransaction) {
+    return
+  }
+
+  console.log(transactions)
+  const transactionsLength = transactions.length + 1
+  chrome.browserAction.setBadgeBackgroundColor({ color: '#888' })
+  chrome.browserAction.setBadgeText({ text: transactionsLength.toString() })
 
   if (transactions.length === 0) {
     chrome.windows.create({
@@ -186,6 +195,8 @@ const setPendingTransaction = (position) => {
 
 chrome.windows.onRemoved.addListener((windowId) => {
   if (windowId === store.getState().transactions.windowId) {
+    chrome.browserAction.setBadgeText({text: ''})
+
     store.dispatch(removeAllTransactions())
   }
 })
@@ -234,10 +245,16 @@ const safeCreation = (payload) => {
 }
 
 const sendTransactionHash = (payload, accepted) => {
-  if (pendingTransactionPosition === null) { return }
+  if (pendingTransactionPosition === null) {
+    return
+  }
 
   const popUpWindowId = store.getState().transactions.windowId
   const pendingTx = store.getState().transactions.txs[pendingTransactionPosition]
+
+  const transactionsLength = store.getState().transactions.txs.length - 1
+  chrome.browserAction.setBadgeBackgroundColor({ color: '#888' })
+  chrome.browserAction.setBadgeText({ text: transactionsLength.toString() })
 
   chrome.tabs.query({ active: true, windowId: popUpWindowId }, function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {

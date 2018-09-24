@@ -109,6 +109,12 @@ class Transaction extends Component {
   }
 
   removeTransaction = (position) => {
+    const { transactions } = this.props
+
+    const transactionsLength = transactions.txs.length - 1
+    chrome.browserAction.setBadgeBackgroundColor({ color: '#888' })
+    chrome.browserAction.setBadgeText({ text: transactionsLength.toString() })
+
     this.props.onRemoveTransaction(position)
   }
 
@@ -129,6 +135,8 @@ class Transaction extends Component {
     } = this.state
     const { account, transactions } = this.props
 
+    console.log('transactionNumber', transactionNumber)
+    console.log(transactions)
     const transaction = transactions.txs[transactionNumber].tx
     setUpTransaction(transaction, estimations)
 
