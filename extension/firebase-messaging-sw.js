@@ -4,7 +4,7 @@ import notificationImage from 'assets/images/notification_image.jpg'
 self.addEventListener('push', (event) => {
   const payload = event.data.json().data
 
-  let title, message
+  let title, message, url
   switch (payload.type) {
     case 'safeCreation':
       title = 'Safe Creation'
@@ -19,6 +19,7 @@ self.addEventListener('push', (event) => {
     case 'sendTransactionHash':
       title = 'Transaction submitted'
       message = payload.chainHash
+      url = 'https://rinkeby.etherscan.io/tx/' + payload.chainHash
       break
 
     case 'rejectTransaction':
@@ -50,4 +51,12 @@ self.addEventListener('push', (event) => {
       }
     )
   )
+
+  self.addEventListener('notificationclick', (event) => {
+    if (url) {
+      self.clients.openWindow(url)
+    } else {
+      event.notification.close()
+    }
+  })
 })
