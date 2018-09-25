@@ -5,7 +5,7 @@ import TruffleContract from 'truffle-contract'
 import Web3 from 'web3'
 import fetch from 'node-fetch'
 
-import GnosisSafePersonalEdition from '../../contracts/GnosisSafePersonalEdition.json'
+import GnosisSafe from '../../contracts/GnosisSafe.json'
 import {
   getPushNotificationServiceUrl,
   getNetworkUrl
@@ -112,7 +112,7 @@ export const sendNotification = async (
 }
 
 export const getOwners = async (accountAddress, safeAddress) => {
-  const contract = TruffleContract(GnosisSafePersonalEdition)
+  const contract = TruffleContract(GnosisSafe)
   const provider = new Web3.providers.HttpProvider(getNetworkUrl())
   contract.setProvider(provider)
 
@@ -127,7 +127,7 @@ export const getOwners = async (accountAddress, safeAddress) => {
 }
 
 export const getNonce = async (safeAddress) => {
-  const contract = TruffleContract(GnosisSafePersonalEdition)
+  const contract = TruffleContract(GnosisSafe)
   const provider = new Web3.providers.HttpProvider(getNetworkUrl())
   contract.setProvider(provider)
 
