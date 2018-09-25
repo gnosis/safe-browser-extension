@@ -59,8 +59,8 @@ export const getTxHash = async (tx, safeAddress) => {
       tx.txGas,
       tx.dataGas,
       tx.gasPrice,
-      tx.gasToken,
-      tx.refundReceiver,
+      tx.gasToken || '0x0',
+      tx.refundReceiver || '0x0',
       tx.nonce
     )
     return hash
