@@ -1236,6 +1236,9 @@ form input.noborder{
 .safeDrawerMenu>li[data-menu=resync]::before{
   background:url(../images/resync.svg) center/contain no-repeat
 }
+.safeDrawerMenu>li[data-menu=signer-account]::before{
+  background:url(../images/signer-account.svg) center/contain no-repeat
+}
 .safeDrawerMenu>li[data-menu=about]::before{
   background:url(../images/about.svg) center/contain no-repeat
 }
