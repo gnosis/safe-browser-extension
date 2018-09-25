@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import Blockie from 'components/Blockie'
 import classNames from 'classnames'
 
 import Page from 'components/Page'
@@ -11,7 +12,8 @@ const cx = classNames.bind(styles)
 class Layout extends Component {
   render () {
     const {
-      versionNumber
+      signerAccount,
+      openEtherScan
     } = this.props
 
     return (
@@ -21,13 +23,25 @@ class Layout extends Component {
             <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)}>
               <p>Back</p>
             </Link>
-            <h2>About</h2>
+            <h2>Signer account</h2>
           </span>
           <div className={styles.overlayPageContent}>
-            <div className={styles.about}>
-              <p>Version: {versionNumber}</p>
-              <p><a href='https://safe.gnosis.io/terms' target='_blank'>Terms of Use</a></p>
-              <p><a href='https://safe.gnosis.io/privacy' target='_blank'>Privacy Policy</a></p>
+            <div className={styles.safeContent}>
+              <span className={styles.QR}>
+                <div>
+                  <div className={styles.identicon}>
+                    <Blockie address={signerAccount} diameter={32} />
+                  </div>
+                  <p>{signerAccount}</p>
+                </div>
+                <div id='qr-signer-address' />
+              </span>
+              <Link
+                to='#'
+                className={styles.externalLink}
+                onClick={openEtherScan}>
+                View on Etherscan.io
+              </Link>
             </div>
           </div>
         </div>

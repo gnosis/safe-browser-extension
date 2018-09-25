@@ -1815,7 +1815,7 @@ footer .stepper-dots>li.active{
 .safeOverview{
   background:#F4F5F9
 }
-.safeOverview .safeContent{
+.safeOverview .safeContent, .overlayPageContent .safeContent{
   height:100%;
   display:-ms-flexbox;
   display:flex;
@@ -1833,7 +1833,7 @@ footer .stepper-dots>li.active{
   -ms-flex-align:center;
   align-items:center
 }
-.safeOverview .safeContent > a{
+.safeOverview .safeContent > a, .overlayPageContent .safeContent > a{
   font-size:1.3em;
   font-weight:400;
   line-height:1;
