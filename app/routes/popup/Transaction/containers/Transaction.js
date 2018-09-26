@@ -8,11 +8,10 @@ import {
 } from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'
 import {
   getTransactionData,
+  setUpTransaction,
   getEthBalance,
-  setUpTransaction
+  calculateGasEstimation
 } from './transactions'
-import { isTokenTransfer } from './tokens'
-import { getGasEstimation } from 'routes/popup/Transaction/components/SendTransaction/containers/gasData'
 import Header from 'components/Header'
 import Layout from '../components/Layout'
 import actions from './actions'
@@ -25,11 +24,9 @@ class Transaction extends Component {
 
     this.state = {
       transactionNumber: 0,
-      ethBalance: undefined,
       balance: undefined,
       loadedData: false,
-      reviewedTx: false,
-      isTokenTransaction: undefined
+      reviewedTx: false
     }
 
     const { location } = this.props
@@ -56,33 +53,29 @@ class Transaction extends Component {
     const tx = transactions.txs[transactionNumber].tx
     if (!tx) return
 
-    const isTokenTransaction = isTokenTransfer(tx.data)
-
     this.setState({
       reviewedTx: false,
       loadedData: false,
       transactionNumber,
-      ethBalance: undefined,
       balance: undefined,
       symbol: undefined,
       value: undefined,
-      estimations: undefined,
-      isTokenTransaction
+      estimations: undefined
     })
 
     try {
       const ethBalance = await getEthBalance(tx.from)
       const { balance, symbol, value, decimals } = await getTransactionData(tx.to, tx.from, tx.data, tx.value, ethBalance)
-      const estimationValue = isTokenTransaction ? '0' : value.toString(10)
-      const estimations = await getGasEstimation(tx.from, tx.to, estimationValue, tx.data, 0)
       const decimalValue = (decimals) ? value.div(10 ** decimals) : value
+
+      const estimations = await calculateGasEstimation(tx, value)
 
       const loadedData = ethBalance instanceof BigNumber &&
         balance instanceof BigNumber &&
         estimations &&
         symbol
 
-      this.setState({ ethBalance, balance, symbol, value: decimalValue, estimations, loadedData })
+      this.setState({ balance, symbol, value: decimalValue, estimations, loadedData })
     } catch (err) {
       this.setState({ loadedData: false })
       console.error(err)
@@ -93,18 +86,24 @@ class Transaction extends Component {
     const { transactionNumber } = this.state
     const { transactions } = this.props
 
-    if (transactionNumber < (transactions.txs.length - 1)) { this.showTransaction(transactionNumber + 1) }
+    if (transactionNumber < (transactions.txs.length - 1)) {
+      this.showTransaction(transactionNumber + 1)
+    }
   }
 
   previousTransaction = () => {
     const { transactionNumber } = this.state
 
-    if (transactionNumber > 0) { this.showTransaction(transactionNumber - 1) }
+    if (transactionNumber > 0) {
+      this.showTransaction(transactionNumber - 1)
+    }
   }
 
   handleTransaction = () => {
     const { account } = this.props
-    if (account.lockedState) return false
+    if (account.lockedState) {
+      return false
+    }
     this.setState({ reviewedTx: true })
     return true
   }
@@ -121,14 +120,12 @@ class Transaction extends Component {
   render () {
     const {
       transactionNumber,
-      ethBalance,
       balance,
       symbol,
       value,
       estimations,
       loadedData,
-      reviewedTx,
-      isTokenTransaction
+      reviewedTx
     } = this.state
     const { account, transactions } = this.props
 
@@ -148,7 +145,6 @@ class Transaction extends Component {
             <Layout
               transaction={transaction}
               transactions={transactions}
-              ethBalance={ethBalance}
               balance={balance}
               symbol={symbol}
               value={value}
@@ -164,7 +160,6 @@ class Transaction extends Component {
               removeTransaction={this.removeTransaction}
               showTransaction={this.showTransaction}
               handleTransaction={this.handleTransaction}
-              isTokenTransaction={isTokenTransaction}
             />
           </div>
         </div>

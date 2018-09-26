@@ -50,7 +50,10 @@ class Layout extends Component {
     return (
       <React.Fragment>
         {reviewedTx &&
-          <SendTransactionState seconds={seconds} />
+          <SendTransactionState
+            seconds={seconds}
+            handleConfirmTransaction={handleConfirmTransaction}
+          />
         }
         <FooterTransactions
           loadedData={loadedData}

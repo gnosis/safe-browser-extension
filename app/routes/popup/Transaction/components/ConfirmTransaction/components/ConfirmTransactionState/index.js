@@ -1,3 +1,5 @@
+import React from 'react'
+
 import mobileImage from 'assets/images/mobile.svg'
 import styles from 'assets/css/global.css'
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import FooterTransactions from 'routes/popup/Transaction/components/Transaction/FooterTransactions'
+import FooterTransactions from '../../components/FooterTransactions'
 import ConfirmTransactionState from './ConfirmTransactionState'
 
 class Layout extends Component {

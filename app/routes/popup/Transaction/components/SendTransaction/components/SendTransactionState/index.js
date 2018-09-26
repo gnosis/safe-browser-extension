@@ -1,3 +1,4 @@
+import React from 'react'
 import classNames from 'classnames/bind'
 import Network from 'react-network'
 
@@ -7,7 +8,8 @@ import styles from 'assets/css/global.css'
 const cx = classNames.bind(styles)
 
 const SendTransactionState = ({
-  seconds
+  seconds,
+  handleConfirmTransaction
 }) => {
   const time = seconds < 10 ? '00:0' + seconds.toString() : '00:' + seconds.toString()
 
@@ -31,7 +33,7 @@ const SendTransactionState = ({
               <button
                 className={cx(styles.button, styles.white)}
                 disabled={seconds > 0}
-                onClick={this.handleConfirmTransaction}
+                onClick={handleConfirmTransaction}
               >Re-send confirmation request</button>
             </span>
           )
