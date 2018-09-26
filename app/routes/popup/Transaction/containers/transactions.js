@@ -8,6 +8,7 @@ import {
   getTokenBalance,
   getTokenTransferValue
 } from './tokens'
+import { getGasEstimation } from '../components/SendTransaction/containers/gasData'
 import { getNetworkUrl } from '../../../../../config'
 
 export const getEthBalance = async (address) => {
@@ -35,15 +36,41 @@ export const getTransactionData = async (to, from, data, value, ethBalance) => {
   }
 }
 
-export const setUpTransaction = (transaction, estimations) => {
-  if (!transaction.value) { transaction.value = '0' }
-  if (!transaction.data) { transaction.data = '0x' }
-  transaction.safe = transaction.from
-  transaction.operation = '0'
+export const setUpTransaction = (tx, estimations) => {
+  if (!tx.value) {
+    tx.value = '0'
+  }
+  if (!tx.data) {
+    tx.data = '0x'
+  }
+  tx.safe = tx.from
+  tx.operation = '0'
 
-  if (!estimations) return
-  transaction.txGas = new BigNumber(estimations.safeTxGas).toString(10)
-  transaction.dataGas = new BigNumber(estimations.dataGas).toString(10)
-  transaction.gasPrice = new BigNumber(estimations.gasPrice).toString(10)
-  transaction.gasToken = estimations.gasToken
+  if (tx.type === 'confirmTransaction' || !estimations) {
+    return
+  }
+
+  tx.txGas = new BigNumber(estimations.safeTxGas).toString(10)
+  tx.dataGas = new BigNumber(estimations.dataGas).toString(10)
+  tx.gasPrice = new BigNumber(estimations.gasPrice).toString(10)
+  tx.gasToken = estimations.gasToken
+}
+
+export const calculateGasEstimation = async (
+  tx,
+  value
+) => {
+  let estimations
+  if (tx.type === 'sendTransaction') {
+    const estimationValue = isTokenTransfer(tx.data) ? '0' : value.toString(10)
+    estimations = await getGasEstimation(tx.from, tx.to, estimationValue, tx.data, 0)
+  } else {
+    estimations = {
+      safeTxGas: tx.txGas,
+      dataGas: tx.dataGas,
+      gasPrice: tx.gasPrice,
+      gasToken: tx.gasToken
+    }
+  }
+  return estimations
 }
