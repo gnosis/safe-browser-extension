@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 
-import FooterTransactions from 'routes/popup/Transaction/components/Transaction/FooterTransactions'
+import FooterTransactions from 'routes/popup/Transaction/components/components/FooterTransactions'
 import SendTransactionState from './SendTransactionState'
 import {
   TRANSACTION_URL,
