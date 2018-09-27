@@ -28,8 +28,12 @@ if (typeof window.web3 !== 'undefined') {
 }
 
 var engine = new ProviderEngine()
+// isMetamask is something temporary. Must be deleted.
 engine.isMetaMask = !0
-engine.isConnected = function () { return true }
+engine.isSafe = true
+engine.isConnected = function () {
+  return true
+}
 const gnosisProvider = new GnosisProvider()
 engine.addProvider(gnosisProvider)
 
