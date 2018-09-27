@@ -42,16 +42,6 @@ self.addEventListener('push', (event) => {
       console.error(err)
     })
 
-  event.waitUntil(
-    self.registration.showNotification(
-      title,
-      {
-        body: message,
-        icon: notificationImage
-      }
-    )
-  )
-
   self.addEventListener('notificationclick', (event) => {
     if (url) {
       self.clients.openWindow(url)
@@ -59,4 +49,18 @@ self.addEventListener('push', (event) => {
       event.notification.close()
     }
   })
+
+  event.waitUntil(
+    self.registration.showNotification(
+      title,
+      {
+        body: message,
+        icon: notificationImage
+      }
+    ).then(() =>
+      self.registration.getNotifications()
+    ).then(notifications => {
+      setTimeout(() => notifications.forEach(notification => notification.close()), 6000)
+    })
+  )
 })
