@@ -9,11 +9,13 @@ self.addEventListener('push', (event) => {
     case 'safeCreation':
       title = 'Safe Creation'
       message = 'A new Safe was created'
+      url = null
       break
 
     case 'requestConfirmation':
       title = 'Confirm transaction'
       message = 'The confirmation of a new transaction was requested'
+      url = null
       break
 
     case 'sendTransactionHash':
@@ -25,6 +27,7 @@ self.addEventListener('push', (event) => {
     case 'rejectTransaction':
       title = 'Transaction rejected'
       message = payload.hash
+      url = null
       break
 
     default:
@@ -42,25 +45,27 @@ self.addEventListener('push', (event) => {
       console.error(err)
     })
 
-  self.addEventListener('notificationclick', (event) => {
-    if (url) {
-      self.clients.openWindow(url)
-    } else {
-      event.notification.close()
-    }
-  })
-
   event.waitUntil(
     self.registration.showNotification(
       title,
       {
         body: message,
-        icon: notificationImage
+        icon: notificationImage,
+        data: {
+          url
+        }
       }
     ).then(() =>
       self.registration.getNotifications()
     ).then(notifications => {
       setTimeout(() => notifications.forEach(notification => notification.close()), 6000)
     })
+  )
+})
+
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close()
+  event.waitUntil(
+    (event.notification.data.url) ? self.clients.openWindow(event.notification.data.url) : null
   )
 })
