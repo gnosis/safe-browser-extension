@@ -84,7 +84,7 @@ class SendTransaction extends Component {
     }
   }
 
-  handleRemoveTransaction = () => {
+  handleRemoveTransaction = async () => {
     const {
       transactionNumber,
       showTransaction,
@@ -93,13 +93,13 @@ class SendTransaction extends Component {
     } = this.props
 
     if (transactions.txs.length === 1) {
-      removeTransaction(transactionNumber)
+      await removeTransaction(transactionNumber)
       window.close()
       return
     }
 
     const position = (transactionNumber >= 1) ? transactionNumber - 1 : 0
-    removeTransaction(transactionNumber)
+    await removeTransaction(transactionNumber)
     showTransaction(position)
   }
 

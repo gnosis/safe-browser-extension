@@ -78,8 +78,13 @@ chrome.runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
     if (request.msg === MSG_RESOLVED_TRANSACTION) {
       const resolvedTransactionEvent = new window.CustomEvent(
-        EV_RESOLVED_TRANSACTION,
-        { detail: request.hash }
+        EV_RESOLVED_TRANSACTION + request.id,
+        {
+          detail: {
+            hash: request.hash,
+            id: request.id
+          }
+        }
       )
       document.dispatchEvent(resolvedTransactionEvent)
     }

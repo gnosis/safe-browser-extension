@@ -16,6 +16,7 @@ import Header from 'components/Header'
 import Layout from '../components/Layout'
 import actions from './actions'
 import selector from './selector'
+import { MSG_RESOLVED_TRANSACTION } from '../../../../../extension/utils/messages'
 import styles from 'assets/css/global.css'
 
 class Transaction extends Component {
@@ -108,19 +109,28 @@ class Transaction extends Component {
     return true
   }
 
-  removeTransaction = (position) => {
+  removeTransaction = async (position) => {
     const { transactions } = this.props
+    var removeTx = this.props.onRemoveTransaction
 
     const transactionsLength = transactions.txs.length - 1
     chrome.browserAction.setBadgeBackgroundColor({ color: '#888' })
     chrome.browserAction.setBadgeText({ text: transactionsLength.toString() })
 
-    this.props.onRemoveTransaction(position)
+    const transaction = transactions.txs[position]
+
+    await chrome.tabs.query({ windowId: transaction.dappWindowId }, (tabs) => {
+      chrome.tabs.sendMessage(transaction.dappTabId, {
+        msg: MSG_RESOLVED_TRANSACTION,
+        hash: null,
+        id: transaction.tx.id
+      }, () => removeTx(position))
+    })
   }
 
   getSafeAlias = (address) => {
     const { safes } = this.props
-    return safes.listSafes.filter(s => s.address === address)[0].alias
+    return safes.safes.filter(s => s.address === address)[0].alias
   }
 
   render () {
@@ -135,8 +145,6 @@ class Transaction extends Component {
     } = this.state
     const { account, transactions } = this.props
 
-    console.log('transactionNumber', transactionNumber)
-    console.log(transactions)
     const transaction = transactions.txs[transactionNumber].tx
     setUpTransaction(transaction, estimations)
 

@@ -46,7 +46,7 @@ class ConfirmTransaction extends Component {
         transaction.from,
         prefix
       )
-      if (response.status === 204) {
+      if (response && response.status === 204) {
         this.handleRemoveTransaction()
       }
     } catch (err) {
@@ -54,7 +54,7 @@ class ConfirmTransaction extends Component {
     }
   }
 
-  handleRemoveTransaction = () => {
+  handleRemoveTransaction = async () => {
     const {
       transactionNumber,
       showTransaction,
@@ -63,13 +63,13 @@ class ConfirmTransaction extends Component {
     } = this.props
 
     if (transactions.txs.length === 1) {
-      removeTransaction(transactionNumber)
+      await removeTransaction(transactionNumber)
       window.close()
       return
     }
 
     const position = (transactionNumber >= 1) ? transactionNumber - 1 : 0
-    removeTransaction(transactionNumber)
+    await removeTransaction(transactionNumber)
     showTransaction(position)
   }
 
