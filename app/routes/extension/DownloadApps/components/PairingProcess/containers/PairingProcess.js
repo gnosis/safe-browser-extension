@@ -23,7 +23,7 @@ class PairingProcess extends Component {
     }
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     const {
       password,
       selectEncryptedMnemonic
@@ -31,19 +31,18 @@ class PairingProcess extends Component {
 
     const currentAccount = password && getDecryptedEthAccount(selectEncryptedMnemonic, password)
 
-    setUpNotifications()
-      .then((token) => {
-        if (token === null) {
-          this.setState({
-            message: 'Permission to receive notifications required.'
-          })
-          return
-        }
-        if (authPushNotificationService(token, currentAccount.getPrivateKey())) {
-          this.renderQrImageFrom(currentAccount.getPrivateKey())
-        }
-      })
-      .catch((err) => console.error(err))
+    try {
+      const token = await setUpNotifications()
+      if (token === null) {
+        this.setState({ message: 'Permission to receive notifications required.' })
+        return
+      }
+      if (authPushNotificationService(token, currentAccount.getPrivateKey())) {
+        this.renderQrImageFrom(currentAccount.getPrivateKey())
+      }
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   renderQrImageFrom = (privateKey) => {

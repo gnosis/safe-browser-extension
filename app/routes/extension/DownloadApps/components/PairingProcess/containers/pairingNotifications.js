@@ -25,26 +25,24 @@ const setUpFirebase = () => {
   return firebase.messaging()
 }
 
-export const authPushNotificationService = (pushToken, privateKey) => {
-  const url = config.pushNotificationServiceUrl + 'auth/'
-  const headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
+export const authPushNotificationService = async (pushToken, privateKey) => {
+  try {
+    const url = config.pushNotificationServiceUrl + 'auth/'
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+    const body = generateAuthContent(pushToken, privateKey)
+    const response = await fetch(url, {
+      method: 'POST',
+      headers,
+      body
+    })
+    return response && response.status === 201
+  } catch (err) {
+    console.error(err)
+    return false
   }
-  const body = generateAuthContent(pushToken, privateKey)
-
-  return fetch(url, {
-    method: 'POST',
-    headers,
-    body
-  })
-    .then((response) => {
-      return (response.status === 201)
-    })
-    .catch((err) => {
-      console.error(err)
-      return false
-    })
 }
 
 // Data sent to the push notification service to register and pair the device.

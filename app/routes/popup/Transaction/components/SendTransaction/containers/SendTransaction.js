@@ -21,7 +21,7 @@ class SendTransaction extends Component {
     }
   }
 
-  handleConfirmTransaction = () => {
+  handleConfirmTransaction = (resend) => {
     const {
       handleTransaction,
       transactionNumber
@@ -34,7 +34,10 @@ class SendTransaction extends Component {
       msg: MSG_PENDING_SENDTRANSACTION,
       position: transactionNumber
     })
-    ga(['_trackEvent', TRANSACTIONS, 'click-confirm-transaction-from-dapp', 'Confirm transaction from Dapp'])
+
+    !(resend)
+      ? ga(['_trackEvent', TRANSACTIONS, 'click-confirm-transaction-from-dapp', 'Confirm transaction from Dapp'])
+      : ga(['_trackEvent', TRANSACTIONS, 'click-re-send-transaction-from-dapp', 'Re-send transaction from Dapp'])
   }
 
   handleRejectTransaction = () => {
@@ -56,29 +59,27 @@ class SendTransaction extends Component {
   handleTransaction = async () => {
     const {
       transaction,
-      safes,
       ethAccount
     } = this.props
 
     this.setState({ seconds: this.maxSeconds })
     this.startCountdown()
-    transaction.nonce = await getNonce(safes.currentSafe)
-    transaction.hash = await getTxHash(transaction, safes.currentSafe)
+    try {
+      transaction.nonce = await getNonce(transaction.from)
+      transaction.hash = await getTxHash(transaction, transaction.from)
 
-    sendTransaction(
-      ethAccount.getChecksumAddressString(),
-      ethAccount.getPrivateKey(),
-      transaction,
-      safes.currentSafe
-    )
-      .then((response) => {
-        if (response.status === 204) {
-          this.handleMobileAppResponse()
-        }
-      })
-      .catch((err) => {
-        console.error(err)
-      })
+      const response = await sendTransaction(
+        ethAccount.getChecksumAddressString(),
+        ethAccount.getPrivateKey(),
+        transaction,
+        transaction.from
+      )
+      if (response && response.status === 204) {
+        this.handleMobileAppResponse()
+      }
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   handleRemoveTransaction = () => {

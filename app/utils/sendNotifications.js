@@ -106,41 +106,36 @@ export const sendNotification = async (
   })
 }
 
-export const getOwners = (accountAddress, safeAddress) => {
+export const getOwners = async (accountAddress, safeAddress) => {
   const contract = TruffleContract(GnosisSafePersonalEdition)
   const provider = new Web3.providers.HttpProvider(
     config.networks[config.currentNetwork].url
   )
   contract.setProvider(provider)
 
-  return contract.at(safeAddress)
-    .then((instance) => {
-      return instance.getOwners.call()
-    })
-    .then((owners) => {
-      const destOwners = owners.filter(owner => owner.toLowerCase() !== accountAddress.toLowerCase())
-      return destOwners.map(owner => EthUtil.toChecksumAddress(owner))
-    })
-    .catch((err) => {
-      console.error(err)
-    })
+  try {
+    const instance = await contract.at(safeAddress)
+    const owners = await instance.getOwners.call()
+    const destOwners = owners.filter(owner => owner.toLowerCase() !== accountAddress.toLowerCase())
+    return destOwners.map(owner => EthUtil.toChecksumAddress(owner))
+  } catch (err) {
+    console.error(err)
+  }
 }
 
-export const getNonce = (safeAddress) => {
+export const getNonce = async (safeAddress) => {
   const contract = TruffleContract(GnosisSafePersonalEdition)
   const provider = new Web3.providers.HttpProvider(
     config.networks[config.currentNetwork].url
   )
   contract.setProvider(provider)
 
-  return contract.at(safeAddress)
-    .then((instance) => {
-      return contract.web3.eth.call({to: safeAddress, data: '0xaffed0e0'}, 'pending')
-    })
-    .then((nonce) => {
-      return contract.web3.toDecimal(nonce).toString()
-    })
-    .catch((err) => {
-      console.error(err)
-    })
+  try {
+    const instance = await contract.at(safeAddress)
+    if (!instance) return
+    const nonce = await contract.web3.eth.call({ to: safeAddress, data: '0xaffed0e0' }, 'pending')
+    return contract.web3.toDecimal(nonce).toString()
+  } catch (err) {
+    console.error(err)
+  }
 }
