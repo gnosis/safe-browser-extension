@@ -29,7 +29,9 @@ export const getGasEstimation = async (
     const response = await fetch(url, {
       method: 'POST',
       headers,
-      body
+      body,
+      credentials: 'omit',
+      referrerPolicy: 'no-referrer'
     })
     return (response && response.status === 200)
       ? response.json()

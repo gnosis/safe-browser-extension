@@ -7,25 +7,27 @@ class Layout extends Component {
     const {
       confirmPassword,
       updateConfirmPassword,
-      ready
+      passwordsMatch
     } = this.props
 
-    const matchStyle = ready ? styles.textGreen : styles.textRed
-    const dataValidation = !ready && confirmPassword !== '' ? 'ERROR' : ''
+    const filling = (confirmPassword !== '')
+    const dataValidation = !passwordsMatch && filling ? 'ERROR' : ''
 
     return (
       <React.Fragment>
-        <span data-validation={dataValidation}>
+        <div data-validation={dataValidation}>
           <input
             type='password'
             placeholder='Confirm password'
             value={confirmPassword}
             onChange={updateConfirmPassword}
           />
-        </span>
-        <p className={confirmPassword === '' ? null : matchStyle}>
-          Password doesn't match
-        </p>
+        </div>
+        {!passwordsMatch &&
+          <p className={filling ? styles.textRed : null}>
+            Password does not match
+          </p>
+        }
       </React.Fragment>
     )
   }

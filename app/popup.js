@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
 
-import { PopupRoutes, TRANSACTION_URL } from 'routes'
+import { PopupRoutes } from 'routes'
+import { TRANSACTION_URL } from 'routes/routes'
 import { history, store } from './store'
 
 store

@@ -35,7 +35,10 @@ class Header extends Component {
       showMenu,
       showSafes
     } = this.state
-    const { txReview } = this.props
+    const {
+      txReview,
+      transactionNumber
+    } = this.props
 
     return (
       <React.Fragment>
@@ -53,7 +56,8 @@ class Header extends Component {
           <SafesMenu
             toggleSafes={this.toggleSafes}
             showSafes={showSafes}
-            noSafeMenu={txReview}
+            showingTransaction={txReview}
+            transactionNumber={transactionNumber}
           />
           <LockingState
             txReview={txReview}

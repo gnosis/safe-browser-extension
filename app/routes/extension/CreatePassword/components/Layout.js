@@ -5,6 +5,10 @@ import Footer from 'components/Footer'
 import CreatePasswordForm from './CreatePasswordForm/containers/CreatePasswordForm'
 import styles from 'assets/css/global.css'
 import warningImage from 'assets/images/warning.svg'
+import {
+  CONFIRM_PASSWORD_URL,
+  WELCOME_URL
+} from 'routes/routes'
 
 class Layout extends Component {
   prevent = (e) => {
@@ -20,7 +24,7 @@ class Layout extends Component {
 
     const nextLink = ready
       ? {
-        pathname: '/confirm-password',
+        pathname: CONFIRM_PASSWORD_URL,
         state: {
           password: newPassword
         }
@@ -29,26 +33,28 @@ class Layout extends Component {
 
     return (
       <Page page={styles.password1} simpleHeader>
-        <div className={styles.content}>
-          <h1>Secure and encrypt your browser extension with a password</h1>
-          <span className={styles.warningPassword}>
-            <img src={warningImage} />
-            <p>Password is used to unlock the extension and confirm transactions. <strong>Don't share this password with others!</strong></p>
-          </span>
-          <form onSubmit={this.prevent}>
-            <CreatePasswordForm
-              newPassword={newPassword}
-              manageCreatePassword={manageCreatePassword}
-              ready={ready}
-            />
-          </form>
-        </div>
-        <Footer
-          link={'/welcome'}
-          ready={ready}
-          firstStep
-          nextLink={nextLink}
-        />
+        <form onSubmit={this.prevent}>
+          <div className={styles.content}>
+            <h1>Secure and encrypt your browser extension with a password</h1>
+            <span className={styles.warningPassword}>
+              <img src={warningImage} />
+              <p>Password is used to unlock the extension and confirm transactions. <strong>Don't share this password with others!</strong></p>
+            </span>
+            <div className={styles.passwordForm}>
+              <CreatePasswordForm
+                newPassword={newPassword}
+                manageCreatePassword={manageCreatePassword}
+                ready={ready}
+              />
+            </div>
+          </div>
+          <Footer
+            link={WELCOME_URL}
+            ready={ready}
+            firstStep
+            nextLink={nextLink}
+          />
+        </form>
       </Page>
     )
   }

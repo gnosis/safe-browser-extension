@@ -50,9 +50,9 @@ export const getTokenTransferAddress = (data) => {
   return address
 }
 
-export const getTokenTransferValue = (data) => {
+export const getTokenTransferValue = (data, decimals) => {
   const value = new BigNumber('0x' + data.substring(74))
-  return (value) ? value.toString(10) : '0'
+  return (!value) ? new BigNumber(0) : value
 }
 
 const getListedTokens = async (address) => {
@@ -61,7 +61,11 @@ const getListedTokens = async (address) => {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }
-    const result = await fetch(config.tokenListUrl, { headers })
+    const result = await fetch(config.tokenListUrl, {
+      headers,
+      credentials: 'omit',
+      referrerPolicy: 'no-referrer'
+    })
     return result.json()
   } catch (err) {
     console.error(err)

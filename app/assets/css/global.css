@@ -96,14 +96,30 @@ section.auction,section.home{
   }
 }
 .content,form{
-  -ms-flex-wrap:wrap
+  display: flex;
+  flex-wrap: wrap
 }
 .safeLogo{
-  background:url(../images/favicon_rinkeby.png) center/contain no-repeat;
+  background:url(../images/gnosis_safe_logo.svg) center/contain no-repeat;
   height:110px;
   width:110px;
   display:block;
   position:relative
+}
+.safeLogo[data-network="rinkeby"]::before{
+  bottom: -3.5em;
+  text-align: center;
+  font-size: 1.4em;
+  width: auto;
+  padding: .4em 1em;
+  border-radius: 3px;
+  letter-spacing: 5px;
+  left: 0;
+  right: 0;
+  content: "RINKEBY";
+  color: #fff;
+  background: #a2a8ba;
+  position: absolute;
 }
 .safeLogo::after{
   content:"Personal Edition";
@@ -321,28 +337,35 @@ section.auction,section.home{
   background:#fff;
   color:#fb4f62
 }
-form{
+
+form > .whitelist-form input {
+  margin-right:15px
+}
+
+form .password-form {
   font-family:Roboto,Helvetica,sans-serif;
   display:-ms-flexbox;
   display:flex;
   flex-wrap:wrap;
-  padding:0 2em
+  padding:0 2em;
+  width: 100%
 }
+
 .md-checkbox.md-checkbox-inline,.radio.md-radio-inline{
   display:inline-block
 }
-form p{
+form .password-form p{
   margin:0;
   width:100%;
   text-align:left;
   font-size:1.2em
 }
-form>span{
+form .password-form div{
   width:100%;
   position:relative;
   margin:2em 0 1em
 }
-form>span::after{
+form .password-form div::after{
   bottom:0;
   margin:auto;
   position:absolute;
@@ -351,19 +374,19 @@ form>span::after{
   height:16px;
   width:16px
 }
-form>span[data-validation=OK]::after{
+form div[data-validation=OK]::after{
   content:"";
   background:url(../images/check_ok.svg) center/contain no-repeat
 }
-form>span[data-validation=OK] input{
+form div[data-validation=OK] input{
   color:#02ae60;
   border:2px solid #02ae60
 }
-form>span[data-validation=ERROR]::after{
+form div[data-validation=ERROR]::after{
   content:"";
   background:url(../images/check_error.svg) center/contain no-repeat
 }
-form>span[data-validation=ERROR] input{
+form div[data-validation=ERROR] input{
   color:#fb4f62;
   border:2px solid #fb4f62
 }
@@ -393,13 +416,21 @@ form input::placeholder{
   transition:all .2s ease-in-out
 }
 form input:focus{
-  border:2px solid #28B2FA
+  border:2px solid #28B2FA;
+  background-color: #fff;
 }
 form input:focus:-ms-input-placeholder{
   color:#fff
 }
 form input:focus::placeholder{
   color:#fff
+}
+form input:-webkit-autofill, 
+form textarea:-webkit-autofill, 
+form select:-webkit-autofill {
+  background-color: #fff;
+  background-image: none !important;
+  color:#65707E;
 }
 form input.noborder{
   border:0;
@@ -601,7 +632,7 @@ form input.noborder{
   margin:2.5em auto 0
 }
 .safeIcon{
-  background:url(../images/favicon_rinkeby.png) 0/contain no-repeat;
+  background:url(../images/gnosis_safe_icon.svg) 0/contain no-repeat;
   height:32px;
   width:auto;
   position:relative;
@@ -615,17 +646,42 @@ form input.noborder{
   flex-wrap:nowrap;
   cursor:pointer
 }
+.safeIcon[data-network="rinkeby"]::before {
+  text-align: center;
+  font-size: .9em;
+  padding: .1em .3em;
+  border-radius: 3px;
+  left: -6px;
+  content: "RINKEBY";
+  color: #fff;
+  background: #28b2fa;
+  position: absolute;
+  letter-spacing: 0;
+  font-weight: bold;
+  bottom: -5px;
+}
 .safeIcon>i{
-  margin:0 0 0 35px;
+  margin:0 0 0 37px;
   -ms-flex:1;
   flex:1;
-  font-size:1.8em;
+  font-size:1.7em;
   color:#21435A;
   letter-spacing:-.5px;
   font-style:normal;
   font-weight:400;
   outline:0;
-  min-width:25px
+  min-width:25px;
+  line-height: 1;
+  /* CHROME/SAFARI only */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  /* END */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 128px;
+  min-height: 19px;
+  width: auto;
 }
 .safeIcon.hasMenu::after{
   content:"";
@@ -669,10 +725,10 @@ form input.noborder{
   background:#fff;
   position:relative
 }
-.extension-inner>header.no-border{
+.extension-inner>header.noBorder{
   border-bottom:1px solid transparent
 }
-.extension-inner>.content>h1{
+.extension-inner .content h1{
   letter-spacing:0;
   text-align:center;
   font-size:2em;
@@ -727,7 +783,7 @@ form input.noborder{
   height:100%
 }
 .innerOverlayContent{
-  height:100%;
+  height:auto;
   display:flex;
   -ms-flex-pack:center;
   justify-content:center;
@@ -744,11 +800,14 @@ form input.noborder{
   color:#21435A;
   font-weight:400
 }
+.innerOverlayContent>img{
+  margin-top: 30px
+}
 .QR{
   box-shadow:0 2px 10px 0 rgba(33,67,90,.15);
   border-radius:6px;
-  padding:3.5em 2em;
-  margin:0 auto 2em;
+  padding: 2.5em 2em;
+  margin:0 auto;
   display:-ms-flexbox;
   display:flex;
   -ms-flex-direction:column;
@@ -780,21 +839,24 @@ form input.noborder{
   align-items:center;
   -ms-flex-line-pack:center;
   align-content:center;
+  margin:0 auto 1em;
 }
 .QR>div>p{
   margin:0;
   word-break:break-all;
   text-align:left;
-  font-size:1.3em
+  font-size:1.3em;
+
 }
 .QR p{
   display:block;
-  margin:-.5em auto 1.4em;
+  margin: 0 auto .5em;
   letter-spacing:1px;
   font-family:"Roboto Mono",Courier,monospace;
   font-size:1.4em;
   line-height:1.2;
-  text-align:center
+  text-align:center;
+  padding: 0;
 }
 .lockedState{
   position:absolute;
@@ -1020,7 +1082,8 @@ form input.noborder{
   line-height:1.2;
   color:inherit;
   margin:0;
-  position:relative
+  position:relative;
+  word-break: break-all;
 }
 .safeMenu>ul>li>span>p[contenteditable=true]{
   border:1px dashed #28B2FA;
@@ -1180,10 +1243,7 @@ form input.noborder{
   display:block;
 }
 
-.overlayPage[data-page=password] form>button{
-  margin-top:25px
-}
-.overlayPage[data-page=password] form>button{
+.overlayPage[data-page=password] form button{
   margin-top:25px
 }
 .overlayPage .warning-password{
@@ -1249,7 +1309,7 @@ form input.noborder{
 }
 .overlayPageHeader .action_DeleteAll{
   font-weight:400;
-  font-size:1em;
+  font-size:1.2em;
   color:#fb4f62;
   text-align:right;
   line-height:1;
@@ -1265,6 +1325,11 @@ form input.noborder{
   flex-wrap:wrap;
   padding:20px 0
 }
+
+form > .whitelist-form {
+  display:flex;
+}
+
 .whitelist_add>form{
   -ms-flex:1;
   flex:1;
@@ -1432,6 +1497,15 @@ footer{
   padding:0 1.5em;
   box-sizing:border-box
 }
+footer button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit
+}
 footer .btn-back,footer .btn-next{
   display:-ms-flexbox;
   display:flex;
@@ -1460,10 +1534,10 @@ footer .btn-back{
 footer .btn-back.active{
   background:url(../images/arrow-left-blue.svg) center/contain no-repeat
 }
-footer .btn-next,footer a.btn-next{
+footer .btn-next,footer button.btn-next{
   text-decoration:none
 }
-footer .btn-next::after,footer a.btn-next::after{
+footer .btn-next::after,footer button.btn-next::after{
   content:"";
   display:inline-block;
   background:url(../images/arrow-right-grey.svg) center/contain no-repeat;
@@ -1472,7 +1546,7 @@ footer .btn-next::after,footer a.btn-next::after{
   margin:0 0 0 1em;
   pointer-events:none
 }
-footer .btn-next.active::after,footer a.btn-next.active::after{
+footer .btn-next.active::after,footer button.btn-next.active::after{
   content:"";
   background:url(../images/arrow-right-blue.svg) center/contain no-repeat;
   pointer-events:auto
@@ -1535,7 +1609,7 @@ footer .stepper-dots>li.active{
 }
 .welcome .disclaimer>span{
   background:#fff;
-  height:16em;
+  height:24em;
   width:100%;
   position:absolute;
   bottom:0;
@@ -1545,6 +1619,7 @@ footer .stepper-dots>li.active{
   flex-wrap:wrap;
   -ms-flex-pack:center;
   justify-content:center;
+  align-items:center;
   box-sizing:border-box;
   padding:2em 0 1em;
   will-change:transform opacity;
@@ -1557,7 +1632,27 @@ footer .stepper-dots>li.active{
 .welcome .disclaimer>span>p{
   -ms-flex:1 auto;
   flex:1 auto;
-  padding:0 4em
+  padding:0 27px;
+  text-align: left
+}
+.welcome .disclaimer ul{
+  list-style: none;
+  margin: 0;
+  padding: 0 15px;
+}
+.welcome .disclaimer ul li::before{
+  background: #28B2FA;
+  border-radius: 50%;
+  content: "";
+  display: inline-block;
+  margin-left: -15px;
+  margin-bottom: 2px;
+  height: 5px;
+  width: 5px;
+  margin-right: 10px;
+}
+.welcome .disclaimer ul li{
+  margin-top: 10px;
 }
 .welcome .disclaimer>span>div{
   -ms-flex:1 100%;
@@ -1567,16 +1662,23 @@ footer .stepper-dots>li.active{
   display:-ms-flexbox;
   display:flex;
   -ms-flex-pack:center;
-  justify-content:center
+  justify-content:center;
+  align-items: center;
 }
-.welcome .disclaimer>span>div>button{
+.welcome .disclaimer>span>div>button,
+.welcome .disclaimer>span>div>a{
   max-width:115px;
   margin:0;
   padding:0;
   height:35px;
-  font-size:1.3em
+  font-size:1.3em;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  display: flex;
 }
-.welcome .disclaimer>span>div>button:first-of-type{
+.welcome .disclaimer>span>div>button{
   margin-right:15px
 }
 .welcome .disclaimer.show{
@@ -1727,17 +1829,16 @@ footer .stepper-dots>li.active{
   -ms-flex-align:center;
   align-items:center
 }
-.safeOverview .safeContent a{
+.safeOverview .safeContent > a{
   font-size:1.3em;
   font-weight:400;
-  line-height:1
+  line-height:1;
+  margin: 1.5em auto 0;
 }
 .unlockSafe .safeLogo{
-  width:72px;
+  width:110px;
   height:72px;
-  -ms-flex:1 1 100%;
-  flex:1 1 100%;
-  margin:40px auto 0
+  margin:40px auto
 }
 .unlockSafe .safeLogo::after{
   left:0;
@@ -1748,28 +1849,28 @@ footer .stepper-dots>li.active{
 .unlockSafe form{
   width:100%
 }
-.unlockSafe form>input{
+.unlockSafe form input{
   text-align:center
 }
-.unlockSafe form>input:-ms-input-placeholder{
+.unlockSafe form input:-ms-input-placeholder{
   color:#A2A8BA
 }
-.unlockSafe form>input::placeholder{
+.unlockSafe form input::placeholder{
   color:#A2A8BA
 }
-.unlockSafe form>input:focus:-ms-input-placeholder{
+.unlockSafe form input:focus:-ms-input-placeholder{
   color:#fff
 }
-.unlockSafe form>input:focus::placeholder{
+.unlockSafe form input:focus::placeholder{
   color:#fff
 }
-.unlockSafe form>button{
+.unlockSafe form button{
   width:100%;
   -ms-flex:1 1 auto;
   flex:1 1 auto;
   margin:15px 0 0
 }
-.unlockSafe .content>a{
+.unlockSafe .content a{
   width:100%;
   text-align:center;
   margin:15px auto 0;
@@ -1951,7 +2052,7 @@ footer .stepper-dots>li.active{
   margin:0 auto;
   padding:0 20px
 }
-.extensionTX .extension-inner .transactionFrom>span,.extensionTX .extension-inner .transactionRecipient>span{
+.extensionTX .extension-inner .transactionFrom span,.extensionTX .extension-inner .transactionRecipient span{
   display:-ms-flexbox;
   display:flex;
   -ms-flex-wrap:nowrap;
@@ -1963,10 +2064,10 @@ footer .stepper-dots>li.active{
   word-break:break-all;
   box-sizing:border-box
 }
-.extensionTX .extension-inner .transactionFrom>span>img,.extensionTX .extension-inner .transactionRecipient>span>img{
+.extensionTX .extension-inner .transactionFrom .identicon,.extensionTX .extension-inner .transactionRecipient .identicon{
   margin:0 10px 0 0
 }
-.extensionTX .extension-inner .transactionFrom>span>p,.extensionTX .extension-inner .transactionRecipient>span>p{
+.extensionTX .extension-inner .transactionFrom span p,.extensionTX .extension-inner .transactionRecipient span p{
   display:-ms-flexbox;
   display:flex;
   -ms-flex-wrap:wrap;
@@ -1975,7 +2076,11 @@ footer .stepper-dots>li.active{
   line-height:1.3;
   word-break:inherit
 }
-.extensionTX .extension-inner .transactionFrom>span>p>i,.extensionTX .extension-inner .transactionRecipient>span>p>i{
+.extensionTX .extension-inner .transactionFrom span p,.extensionTX .extension-inner .transactionRecipient span p{
+  margin: 0;
+  text-align: left
+}
+.extensionTX .extension-inner .transactionFrom span p i,.extensionTX .extension-inner .transactionRecipient span p i{
   width:100%;
   -ms-flex:1 1 auto;
   flex:1 1 auto;
@@ -2056,9 +2161,9 @@ footer .stepper-dots>li.active{
   line-height:1;
   font-weight:700;
   width:auto;
-  margin:0 0 0 auto;
+  margin:9px 0 0 auto;
   background:#F4F5F9;
-  padding:6px 0 6px 15px;
+  padding:0 0 0 15px;
   box-sizing:border-box;
   max-width:90%;
   word-wrap:break-word
@@ -2120,7 +2225,8 @@ footer .stepper-dots>li.active{
 .extensionTX .extension-inner .transactionSummary>span p{
   font-size:inherit;
   font-weight:inherit;
-  color:inherit
+  color:inherit;
+  margin: 0;
 }
 .extensionTX .extension-inner .transactionSummary>span strong{
   display:-ms-flexbox;
@@ -2168,7 +2274,9 @@ footer .stepper-dots>li.active{
   font-size:1.2em;
   color:#65707E;
   letter-spacing:3px;
-  text-align:center
+  text-align:center;
+  width: 100%;
+  margin:0
 }
 .extensionTX .extension-inner .transactionState .message{
   display:-ms-flexbox;
@@ -2182,20 +2290,40 @@ footer .stepper-dots>li.active{
   -ms-flex-align:center;
   align-items:center
 }
-.extensionTX .extension-inner .transactionState .message>img{
-  margin:0 15px 0 0
+.extensionTX .extension-inner .transactionState .message img{
+  margin:0 15px 0 0;
+  display: block
 }
-.extensionTX .extension-inner .transactionState .message>p{
+.extensionTX .extension-inner .transactionState .message p{
   font-size:1.3em;
   color:#21435A;
   letter-spacing:0;
-  line-height:1.5
+  line-height:1.5;
+  margin: 0;
+  text-align: left
+}
+.extensionTX .extension-inner .transactionState .errorMessage {
+  font-size: 1.3em;
+  color: white;
+  letter-spacing: 0;
+  line-height: 1.5;
+  background: #fb4f62;
+  position: fixed;
+  bottom: 54px;
+  left: 0;
+  text-align: center;
+  padding: 1em;
+  width: 100%;
+  right: 0;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 .extensionTX .extension-inner .transactionState .errorMessage>p{
-  font-size:1.3em;
-  color:#fb4f62;
-  letter-spacing:0;
-  line-height:1.5
+  font-size:inherit;
+  color:inherit;
+  letter-spacing:inherit;
+  line-height:inherit;
+  text-align: center;
 }
 .extensionTX .extension-inner .transactionState .resend{
   display:-ms-flexbox;

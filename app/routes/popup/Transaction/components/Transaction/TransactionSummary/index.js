@@ -16,13 +16,15 @@ const TransactionSummary = ({
     <div className={styles.transactionSummary}>
       <span>
         <p>Safe balance</p>
-        <strong>{txEthBalance} <small>ETH</small></strong>
+        <span>
+          <strong>{txEthBalance} <small>ETH</small></strong>
+        </span>
       </span>
       <span>
         <p>Estimated transaction fee</p>
         <span>
           <strong className={styles.textRed}>{txFee} <small>ETH</small></strong>
-          <small>&nbsp;</small>
+          {/* <small>&nbsp;</small> */}
         </span>
       </span>
       {!isTokenTransaction &&

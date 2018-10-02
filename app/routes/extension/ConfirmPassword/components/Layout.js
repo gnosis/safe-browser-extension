@@ -5,6 +5,10 @@ import Footer from 'components/Footer'
 import ConfirmPasswordForm from './ConfirmPasswordForm/containers/ConfirmPasswordForm'
 import styles from 'assets/css/global.css'
 import warningImage from 'assets/images/warning.svg'
+import {
+  DOWNLOAD_APPS_URL,
+  CREATE_PASSWORD_URL
+} from 'routes/routes'
 
 class Layout extends Component {
   prevent = (e) => {
@@ -16,38 +20,40 @@ class Layout extends Component {
       confirmPassword,
       properties,
       manageConfirmPassword,
-      ready
+      passwordsMatch
     } = this.props
 
-    const nextLink = ready
+    const nextLink = passwordsMatch
       ? {
-        pathname: '/download-apps',
+        pathname: DOWNLOAD_APPS_URL,
         state: properties
       }
       : ''
 
     return (
       <Page page={styles.password2} simpleHeader>
-        <div className={styles.content}>
-          <h1>Almost done!<br />Confirm your password.</h1>
-          <span className={styles.warningPassword}>
-            <img src={warningImage} />
-            <p>Password is used to unlock the extension and confirm transactions. <strong>Don't share this password with others!</strong></p>
-          </span>
-          <form onSubmit={this.prevent}>
-            <ConfirmPasswordForm
-              confirmPassword={confirmPassword}
-              manageConfirmPassword={manageConfirmPassword}
-              ready={ready}
-            />
-          </form>
-        </div>
-        <Footer
-          link={'/create-password'}
-          ready={ready}
-          secondStep
-          nextLink={nextLink}
-        />
+        <form onSubmit={this.prevent}>
+          <div className={styles.content}>
+            <h1>Almost done!<br />Confirm your password.</h1>
+            <span className={styles.warningPassword}>
+              <img src={warningImage} />
+              <p>Password is used to unlock the extension and confirm transactions. <strong>Don't share this password with others!</strong></p>
+            </span>
+            <div className={styles.passwordForm}>
+              <ConfirmPasswordForm
+                confirmPassword={confirmPassword}
+                manageConfirmPassword={manageConfirmPassword}
+                passwordsMatch={passwordsMatch}
+              />
+            </div>
+          </div>
+          <Footer
+            link={CREATE_PASSWORD_URL}
+            ready={passwordsMatch}
+            secondStep
+            nextLink={nextLink}
+          />
+        </form>
       </Page>
     )
   }

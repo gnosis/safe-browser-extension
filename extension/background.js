@@ -118,7 +118,7 @@ const focusTransactionWindow = () => {
 }
 
 const showPopup = (transaction, dappWindowId, dappTabId) => {
-  const safes = store.getState().safes.safes
+  const safes = store.getState().safes.listSafes
   const transactions = store.getState().transactions.txs
 
   if (transaction.hash && transactions.filter(t => t.tx.hash === transaction.hash).length > 0) { return }
@@ -218,7 +218,7 @@ if ('serviceWorker' in navigator) {
 }
 
 const safeCreation = (payload) => {
-  const safes = store.getState().safes.safes
+  const safes = store.getState().safes.listSafes
   const validSafeAddress = safes.filter(
     safe => safe.address.toLowerCase() === payload.safe.toLowerCase()
   ).length === 0

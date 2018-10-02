@@ -8,6 +8,10 @@ import selector from './selector'
 import actions from './actions'
 import { MSG_LOCK_ACCOUNT } from '../../../../../extension/utils/messages'
 import Layout from '../components/Layout'
+import {
+  PASSWORD_URL,
+  DOWNLOAD_APPS_URL
+} from 'routes/routes'
 
 class SafesMenu extends Component {
   constructor (props) {
@@ -32,7 +36,7 @@ class SafesMenu extends Component {
   handleRemoveSafe = (safeAddress) => (e) => {
     e.stopPropagation()
     const { safes, onRemoveSafe } = this.props
-    const safeList = safes.safes
+    const safeList = safes.listSafes
 
     let newCurrentSafe
     if (safeList.length > 1) {
@@ -58,33 +62,37 @@ class SafesMenu extends Component {
     const {
       toggleSafes,
       showSafes,
+      showingTransaction,
       safes,
-      noSafeMenu,
-      currentSafeAlias
+      extensionTitle,
+      popupTitle
     } = this.props
     const { addNewSafe } = this.state
 
-    if (addNewSafe || safes.safes.length === 0) {
+    if (addNewSafe || safes.listSafes.length === 0) {
       return (
         <Redirect to={{
-          pathname: '/password',
+          pathname: PASSWORD_URL,
           state: {
-            dest: '/download-apps'
+            dest: DOWNLOAD_APPS_URL
           }
         }} />
       )
     }
 
+    const safeAlias = (showingTransaction)
+      ? popupTitle
+      : extensionTitle
     return (
       <Layout
         safes={safes}
-        currentAlias={currentSafeAlias}
+        safeAlias={safeAlias}
         showSafes={showSafes}
         toggleSafes={toggleSafes}
         handleSelectSafe={this.handleSelectSafe}
         handleRemoveSafe={this.handleRemoveSafe}
         handleAddNewSafe={this.handleAddNewSafe}
-        noSafeMenu={noSafeMenu}
+        showingTransaction={showingTransaction}
       />
     )
   }

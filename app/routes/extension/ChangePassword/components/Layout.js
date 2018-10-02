@@ -7,6 +7,7 @@ import CreatePasswordForm from 'routes/extension/CreatePassword/components/Creat
 import ConfirmPasswordForm from 'routes/extension/ConfirmPassword/components/ConfirmPasswordForm/containers/ConfirmPasswordForm'
 import styles from 'assets/css/global.css'
 import warningImage from 'assets/images/warning.svg'
+import { ACCOUNT_URL } from 'routes/routes'
 
 const cx = classNames.bind(styles)
 
@@ -30,7 +31,7 @@ class Layout extends Component {
       <Page>
         <div className={styles.overlayPage} data-page='password'>
           <span className={styles.overlayPageHeader}>
-            <Link to='/account' className={cx(styles.btnBack, styles.active)}>
+            <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)}>
               <p>Back</p>
             </Link>
             <h2>Change password</h2>
@@ -40,8 +41,8 @@ class Layout extends Component {
             <p>Password is used to unlock the extension and confirm transactions. <strong>Don't share this password with others!</strong></p>
           </span>
           <span className={styles.overlayPageContent}>
-            <span className={styles.overlayPageContent}>
-              <form onSubmit={this.prevent}>
+            <form onSubmit={this.prevent}>
+              <div className={styles.passwordForm}>
                 <CreatePasswordForm
                   newPassword={newPassword}
                   manageCreatePassword={manageCreatePassword}
@@ -50,14 +51,14 @@ class Layout extends Component {
                 <ConfirmPasswordForm
                   confirmPassword={confirmPassword}
                   manageConfirmPassword={manageConfirmPassword}
-                  ready={this.props.confirmPasswordReady}
+                  passwordsMatch={this.props.confirmPasswordReady}
                 />
                 {createPasswordReady && confirmPasswordReady
-                  ? <button className={styles.button} onClick={updateMasterPassword}>SAVE NEW PASSWORD</button>
+                  ? <button type='button' className={styles.button} onClick={updateMasterPassword}>SAVE NEW PASSWORD</button>
                   : <button className={styles.button}>SAVE NEW PASSWORD</button>
                 }
-              </form>
-            </span>
+              </div>
+            </form>
           </span>
         </div>
       </Page>

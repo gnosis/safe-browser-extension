@@ -33,7 +33,7 @@ class App extends Component {
 
     const { account, safes } = this.props.state
     const validAccount = account.secondFA && Object.keys(account.secondFA).length > 0
-    const validSafes = safes.safes && safes.safes.length > 0
+    const validSafes = safes.listSafes && safes.listSafes.length > 0
 
     let url = ''
     if (validAccount && validSafes) { url = '/account' }

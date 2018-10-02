@@ -7,7 +7,7 @@ import {
   createAccountFromMnemonic
 } from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'
 import {
-  getTransactionAddressData,
+  getTransactionData,
   getEthBalance,
   setUpTransaction
 } from './transactions'
@@ -72,15 +72,17 @@ class Transaction extends Component {
 
     try {
       const ethBalance = await getEthBalance(tx.from)
-      const { balance, symbol, value } = await getTransactionAddressData(tx.to, tx.from, tx.data, tx.value, ethBalance)
-      const estimationValue = isTokenTransaction ? 0 : value
+      const { balance, symbol, value, decimals } = await getTransactionData(tx.to, tx.from, tx.data, tx.value, ethBalance)
+      const estimationValue = isTokenTransaction ? '0' : value.toString(10)
       const estimations = await getGasEstimation(tx.from, tx.to, estimationValue, tx.data, 0)
+      const decimalValue = (decimals) ? value.div(10 ** decimals) : value
+
       const loadedData = ethBalance instanceof BigNumber &&
         balance instanceof BigNumber &&
         estimations &&
         symbol
 
-      this.setState({ ethBalance, balance, symbol, value, estimations, loadedData })
+      this.setState({ ethBalance, balance, symbol, value: decimalValue, estimations, loadedData })
     } catch (err) {
       this.setState({ loadedData: false })
       console.error(err)
@@ -113,7 +115,7 @@ class Transaction extends Component {
 
   getSafeAlias = (address) => {
     const { safes } = this.props
-    return safes.safes.filter(s => s.address === address)[0].alias
+    return safes.listSafes.filter(s => s.address === address)[0].alias
   }
 
   render () {
@@ -136,7 +138,12 @@ class Transaction extends Component {
     return (
       <div className={styles.extensionTx}>
         <div className={styles.extensionInner}>
-          <Header noBorder txReview properties={this.props.location} />
+          <Header
+            noBorder
+            txReview
+            transactionNumber={transactionNumber}
+            properties={this.props.location}
+          />
           <div className={styles.Page}>
             <Layout
               transaction={transaction}

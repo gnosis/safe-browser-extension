@@ -17,21 +17,21 @@ export const getEthBalance = async (address) => {
   return web3.fromWei(ethBalance, 'ether')
 }
 
-export const getTransactionAddressData = async (to, from, data, value, ethBalance) => {
+export const getTransactionData = async (to, from, data, value, ethBalance) => {
   if (!isTokenTransfer(data)) {
-    const val = (value) ? new BigNumber(value).toString(10) : '0'
-    return { balance: ethBalance, value: val, symbol: 'ETH' }
+    const val = (value) ? new BigNumber(value) : new BigNumber(0)
+    return { balance: ethBalance, value: val, symbol: 'ETH', decimals: 18 }
   }
 
   try {
     const token = await getTokenData(to)
     const balance = await getTokenBalance(token.address, from, token.decimals)
-    const val = getTokenTransferValue(data)
+    const val = getTokenTransferValue(data, token.decimals)
     const symbol = token.symbol ? token.symbol : 'UNKNOWN TOKEN'
-    return { balance, value: val, symbol }
+    return { balance, value: val, symbol, decimals: token.decimals }
   } catch (err) {
     console.error(err)
-    return { balance: new BigNumber(0), value: 0, symbol: 'UNKNOWN TOKEN' }
+    return { balance: new BigNumber(0), value: new BigNumber(0), symbol: 'UNKNOWN TOKEN', decimals: 0 }
   }
 }
 

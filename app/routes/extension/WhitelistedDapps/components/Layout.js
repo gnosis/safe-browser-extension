@@ -4,6 +4,7 @@ import classNames from 'classnames/bind'
 
 import Page from 'components/Page'
 import styles from 'assets/css/global.css'
+import { ACCOUNT_URL } from 'routes/routes'
 
 const cx = classNames.bind(styles)
 
@@ -27,7 +28,7 @@ class Layout extends Component {
       <Page>
         <div className={styles.overlayPage}>
           <span className={styles.overlayPageHeader}>
-            <Link to='/account' className={cx(styles.btnBack, styles.active)}>
+            <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)}>
               <p>Back</p>
             </Link>
             <h2>Manage Whitelist</h2>
@@ -39,21 +40,23 @@ class Layout extends Component {
           <span className={styles.overlayPageContent}>
             <span className={styles.whitelist_add}>
               <form data-validation='ERROR' onSubmit={this.prevent}>
-                <input
-                  type='text'
-                  placeholder='Add website'
-                  name='whitelist-add'
-                  className={styles.noborder}
-                  value={newDapp}
-                  onChange={updateNewDapp}
-                />
-                <button
-                  className={styles.button}
-                  onClick={handleAddDapp(newDapp)}
-                >ADD</button>
-                {errorMessage &&
-                  <p className={styles.textRed}>{errorMessage}</p>
-                }
+                <div className={styles.whitelistForm}>
+                  <input
+                    type='text'
+                    placeholder='Add website'
+                    name='whitelist-add'
+                    className={styles.noborder}
+                    value={newDapp}
+                    onChange={updateNewDapp}
+                  />
+                  <button
+                    className={styles.button}
+                    onClick={handleAddDapp(newDapp)}
+                  >ADD</button>
+                  {errorMessage &&
+                    <p className={styles.textRed}>{errorMessage}</p>
+                  }
+                </div>
               </form>
             </span>
             <ul className={styles.whitelist_items}>

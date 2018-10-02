@@ -10,14 +10,14 @@ class ConfirmPasswordForm extends Component {
   render () {
     const {
       confirmPassword,
-      ready
+      passwordsMatch
     } = this.props
 
     return (
       <Layout
         confirmPassword={confirmPassword}
         updateConfirmPassword={this.updateConfirmPassword}
-        ready={ready}
+        passwordsMatch={passwordsMatch}
       />
     )
   }

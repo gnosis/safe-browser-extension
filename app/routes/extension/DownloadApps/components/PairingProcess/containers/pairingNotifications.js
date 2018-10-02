@@ -36,7 +36,9 @@ export const authPushNotificationService = async (pushToken, privateKey) => {
     const response = await fetch(url, {
       method: 'POST',
       headers,
-      body
+      body,
+      credentials: 'omit',
+      referrerPolicy: 'no-referrer'
     })
     return response && response.status === 201
   } catch (err) {

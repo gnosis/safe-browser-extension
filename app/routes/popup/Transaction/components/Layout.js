@@ -39,13 +39,12 @@ class Layout extends Component {
     } = this.props
 
     BigNumber.config({ ROUNDING_MODE: BigNumber.ROUND_UP })
-    const transactionValue = value ? toGWei(new BigNumber(value)) : new BigNumber(0)
     const totalGas = estimations && new BigNumber(estimations.dataGas).plus(new BigNumber(estimations.safeTxGas))
     const transactionFee = totalGas && toGWei(totalGas.times(new BigNumber(-estimations.gasPrice)))
-    const totalCost = (transactionValue && transactionFee)
-      ? transactionValue.plus(transactionFee)
+    const totalCost = (value && transactionFee)
+      ? value.plus(transactionFee)
       : null
-    const val = transactionValue ? transactionValue.toString(10) : '-'
+    const val = value ? value.toString(10) : '-'
     const toAddress = isTokenTransfer(transaction.data) ? getTokenTransferAddress(transaction.data) : transaction.to
 
     return (
