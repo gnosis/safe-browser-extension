@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import { ga } from 'utils/analytics'
+import { EXTENSION_SETTINGS } from 'utils/analytics/events'
 import { normalizeUrl } from 'utils/helpers'
-
 import actions from './actions'
 import Layout from '../components/Layout'
 
@@ -34,15 +35,16 @@ class WhitelistedDappState extends Component {
   }
 
   handleWhitelistDapp = (dapp) => (e) => {
-    const { whitelisted } = this.state
-
-    whitelisted
-      ? this.props.onDeleteWhitelistedDapp(dapp)
-      : this.props.onAddWhitelistedDapp(dapp)
-
-    this.setState((prevState) => ({
-      whitelisted: !prevState.whitelisted
-    }))
+    this.setState(prevState => {
+      if (!prevState.whitelisted) {
+        this.props.onAddWhitelistedDapp(dapp)
+        ga(['_trackEvent', EXTENSION_SETTINGS, 'click-add-to-whitelist-via-toggle', 'Add to whitelist via toggle: ' + dapp])
+      } else {
+        this.props.onDeleteWhitelistedDapp(dapp)
+        ga(['_trackEvent', EXTENSION_SETTINGS, 'click-remove-from-whitelist-via-toggle', 'Remove from whitelist via toggle: ' + dapp])
+      }
+      return { whitelisted: !prevState.whitelisted }
+    })
     e.preventDefault()
   }
 

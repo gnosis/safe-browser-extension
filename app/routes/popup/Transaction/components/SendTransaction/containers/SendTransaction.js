@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import { ga } from 'utils/analytics'
+import { TRANSACTIONS } from 'utils/analytics/events'
 import selector from './selector'
 import { getTxHash } from './gasData'
 import { sendTransaction, getNonce } from 'utils/sendNotifications'
@@ -25,18 +27,19 @@ class SendTransaction extends Component {
       transactionNumber
     } = this.props
 
-    if (handleTransaction()) {
-      this.handleTransaction()
+    if (!handleTransaction()) return
+    this.handleTransaction()
 
-      chrome.runtime.sendMessage({
-        msg: MSG_PENDING_SENDTRANSACTION,
-        position: transactionNumber
-      })
-    }
+    chrome.runtime.sendMessage({
+      msg: MSG_PENDING_SENDTRANSACTION,
+      position: transactionNumber
+    })
+    ga(['_trackEvent', TRANSACTIONS, 'click-confirm-transaction-from-dapp', 'Confirm transaction from Dapp'])
   }
 
   handleRejectTransaction = () => {
     this.handleRemoveTransaction()
+    ga(['_trackEvent', TRANSACTIONS, 'click-reject-transaction-from-dapp', 'Reject transaction from Dapp'])
   }
 
   handleMobileAppResponse = () => {

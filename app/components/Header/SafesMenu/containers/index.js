@@ -2,15 +2,31 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 
+import { ga } from 'utils/analytics'
+import { SAFES } from 'utils/analytics/events'
 import selector from './selector'
 import actions from './actions'
 import { MSG_LOCK_ACCOUNT } from '../../../../../extension/utils/messages'
 import Layout from '../components/Layout'
 
 class SafesMenu extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      addNewSafe: false
+    }
+  }
+
   handleSelectSafe = (safeAddress) => (e) => {
     const { onSelectSafe } = this.props
     onSelectSafe(safeAddress)
+    ga(['_trackEvent', SAFES, 'click-switch-safe', 'Switch Safe'])
+  }
+
+  handleAddNewSafe = () => {
+    ga(['_trackEvent', SAFES, 'click-connect-to-new-safe', 'Connect to new Safe'])
+    this.setState({ addNewSafe: true })
   }
 
   handleRemoveSafe = (safeAddress) => (e) => {
@@ -35,6 +51,7 @@ class SafesMenu extends Component {
         msg: MSG_LOCK_ACCOUNT
       })
     }
+    ga(['_trackEvent', SAFES, 'click-remove-safe', 'Remove Safe'])
   }
 
   render () {
@@ -45,8 +62,9 @@ class SafesMenu extends Component {
       noSafeMenu,
       currentSafeAlias
     } = this.props
+    const { addNewSafe } = this.state
 
-    if (safes.safes.length === 0) {
+    if (addNewSafe || safes.safes.length === 0) {
       return (
         <Redirect to={{
           pathname: '/password',
@@ -65,6 +83,7 @@ class SafesMenu extends Component {
         toggleSafes={toggleSafes}
         handleSelectSafe={this.handleSelectSafe}
         handleRemoveSafe={this.handleRemoveSafe}
+        handleAddNewSafe={this.handleAddNewSafe}
         noSafeMenu={noSafeMenu}
       />
     )

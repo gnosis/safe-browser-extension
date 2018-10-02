@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import { ga } from 'utils/analytics'
+import { EXTENSION_SETTINGS } from 'utils/analytics/events'
 import {
   setUpNotifications,
   authPushNotificationService
@@ -40,6 +42,8 @@ class ResyncToken extends Component {
         authPushNotificationService(token, currentAccount.getPrivateKey())
       })
       .catch((err) => console.error(err))
+
+    ga(['_trackEvent', EXTENSION_SETTINGS, 'click-resync-push-token', 'Resync push token'])
   }
 
   render () {

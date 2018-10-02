@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 
+import { ga } from 'utils/analytics'
+import { SAFES } from 'utils/analytics/events'
 import Layout from '../components/Layout'
 import { createQrImage } from 'utils/qrdisplay'
 
@@ -24,8 +26,9 @@ class Account extends Component {
     )
   }
 
-  openEtherScan = () => {
+  openEtherScan = async () => {
     const { safes } = this.props
+    await ga(['_trackEvent', SAFES, 'click-view-safe-on-etherscan', 'View Safe on Etherscan'])
     window.open('http://rinkeby.etherscan.io/address/' + safes.currentSafe)
   }
 

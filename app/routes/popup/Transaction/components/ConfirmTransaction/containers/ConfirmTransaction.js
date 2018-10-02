@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import { ga } from 'utils/analytics'
+import { TRANSACTIONS } from 'utils/analytics/events'
 import selector from './selector'
 import { requestConfirmationResponse } from 'utils/sendNotifications'
 import Layout from '../components/Layout'
@@ -9,13 +11,17 @@ class ConfirmTransaction extends Component {
   handleConfirmTransaction = () => {
     const { handleTransaction } = this.props
 
-    if (handleTransaction()) { this.handleTransaction('confirmTransaction') }
+    if (!handleTransaction()) return
+    this.handleTransaction('confirmTransaction')
+    ga(['_trackEvent', TRANSACTIONS, 'click-confirm-transaction-from-mobile-app', 'Confirm transaction from mobile app'])
   }
 
   handleRejectTransaction = () => {
     const { handleTransaction } = this.props
 
-    if (handleTransaction()) { this.handleTransaction('rejectTransaction', 'GNO') }
+    if (!handleTransaction()) return
+    this.handleTransaction('rejectTransaction', 'GNO')
+    ga(['_trackEvent', TRANSACTIONS, 'click-reject-transaction-from-mobile-app', 'Reject transaction from mobile app'])
   }
 
   handleTransaction = (type, prefix) => {
