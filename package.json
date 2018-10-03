@@ -1,0 +1,114 @@
+{
+  "name": "safe-browser-extension",
+  "version": "0.3.0",
+  "main": "app/index.js",
+  "scripts": {
+    "build:dev": "cross-env NODE_ENV=development ./node_modules/.bin/webpack --progress",
+    "build:prod": "cross-env NODE_ENV=production ./node_modules/.bin/webpack --progress",
+    "build": "npm run build:dev",
+    "watch:dev": "cross-env NODE_ENV=development ./node_modules/.bin/webpack --progress --watch",
+    "watch:prod": "cross-env NODE_ENV=production ./node_modules/.bin/webpack --progress --watch",
+    "watch": "npm run watch:dev",
+    "clean": "rm -rf build",
+    "test": "jest",
+    "standard": "standard --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Gnosis",
+  "license": "ISC",
+  "dependencies": {
+    "@gnosis.pm/util-contracts": "^0.2.14",
+    "bignumber.js": "^4.1.0",
+    "bip39": "^2.5.0",
+    "crypto-js": "^3.1.9-1",
+    "ethereumjs-util": "^5.1.5",
+    "ethereumjs-wallet": "^0.6.0",
+    "firebase": "^4.13.1",
+    "history": "^4.7.2",
+    "node-fetch": "^2.2.0",
+    "qr-image": "^3.2.0",
+    "react": "^16.3.0",
+    "react-chrome-redux": "^1.5.1",
+    "react-dom": "^16.3.0",
+    "react-network": "^1.0.1",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^5.0.0-alpha.9",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "truffle-contract": "^3.0.5",
+    "web3": "^0.20.6",
+    "web3-provider-engine": "^14.0.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.6",
+    "babel-jest": "^22.4.3",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "classnames": "^2.2.5",
+    "copy-webpack-plugin": "^4.4.1",
+    "cross-env": "^5.2.0",
+    "css-loader": "^0.28.9",
+    "dotenv": "^6.0.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
+    "html-webpack-plugin": "^2.30.1",
+    "jest": "^22.4.3",
+    "jest-enzyme": "^6.0.0",
+    "postcss-loader": "^2.1.3",
+    "postcss-simple-vars": "^4.1.0",
+    "redux-test-utils": "^0.2.2",
+    "reselect": "^3.0.1",
+    "standard": "^11.0.1",
+    "style-loader": "^0.20.1",
+    "webpack": "^3.10.0"
+  },
+  "jest": {
+    "modulePaths": [
+      "app"
+    ],
+    "verbose": true,
+    "testMatch": [
+      "<rootDir>/app/**/__tests__/**/*.js?(x)",
+      "<rootDir>/app/**/?(*.)(spec|test).js?(x)"
+    ],
+    "transform": {
+      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.(css|scss)$": "<rootDir>/config/jest/cssTransform.js",
+      "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
+    "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
+    "unmockedModulePathPatterns": [
+      "react",
+      "enzyme",
+      "jest-enzyme"
+    ],
+    "testURL": "http://localhost/"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "env": [
+      "jest"
+    ],
+    "globals": [
+      "chrome"
+    ],
+    "ignore": [
+      "/app/utils/blockies.js"
+    ]
+  }
+}

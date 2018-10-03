@@ -1,0 +1,106 @@
+html{
+  width:100%;
+  height:100%;
+  padding:0;
+  margin:0;
+  font-family:Roboto,Helvetica,sans-serif;
+}
+body{
+  background:#fff;
+  color:#333;
+  font-family:Roboto,Helvetica,sans-serif;
+  font-size:10px;
+  line-height:10px;
+  margin:0;
+  text-rendering:geometricPrecision;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale
+}
+body.start{
+  background:fixed,url(/assets/images/mountain.svg) center/cover no-repeat,linear-gradient(-180deg,#fff 50%,#E4E8F1 100%)
+}
+.start .content {
+	max-width: 51em;
+	width: 100%;
+	margin: 5em auto 0;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-ms-flex-pack: center;
+	justify-content: center
+}
+.start .safeLogo {
+	margin: 0 auto 7em
+}
+.start h1 {
+  text-align: center;
+	font-weight: 100;
+	font-size: 3em;
+	letter-spacing: 0;
+	line-height: 1.3
+}
+.start p {
+	margin: 1.5em auto 3em;
+	font-size: 1.5em;
+	line-height: 1.8
+}
+.start img {
+	-ms-flex: 1 100%;
+	flex: 1 100%
+}
+.start button {
+	max-width: 30em;
+	margin: 2.5em auto 0
+}
+button {
+  outline:0
+}
+.button.round,a.button.round{
+  border-radius:100px
+}
+.button,a.button {
+  background:#28B2FA;
+  -ms-flex:1;
+  flex:1;
+  padding:0 2em;
+  box-sizing:border-box;
+  font-weight:500;
+  letter-spacing:.1em;
+  font-size:1.4em;
+  color:#fff;
+  vertical-align:middle;
+  will-change:box-shadow;
+  transition:box-shadow .25s ease-in-out;
+  cursor:pointer;
+  outline:0;
+  margin:auto;
+  border:0;
+  height:3em;
+  box-shadow:0 2px 4px 0 rgba(40,178,250,.25);
+  border-radius:4px
+}
+.safeLogo::after {
+	line-height: 1;
+	text-align: center;
+	display: block;
+	text-transform: uppercase
+}
+.safeLogo {
+	background: url(/assets/images/gnosis_safe_logo.svg) center/contain no-repeat;
+	height: 110px;
+	width: 110px;
+	display: block;
+	position: relative
+}
+.safeLogo::after {
+	content: "Personal Edition";
+	font-weight: 400;
+	font-size: 1em;
+	color: #A2A8BA;
+	letter-spacing: .2em;
+	position: absolute;
+	bottom: -2em;
+	width: 13em;
+	left: -.8em
+}
