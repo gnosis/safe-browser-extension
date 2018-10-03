@@ -9,7 +9,6 @@ npm install
 
 Build
 -------
-
 Build files to `./build` folder.
 ```
 npm run build
@@ -17,8 +16,7 @@ npm run build
 
 Run the extension
 -------
-
-* Visit `chrome://extensions` in your Google Chrome borwser.
+* Visit `chrome://extensions` in your Google Chrome browser.
 * Ensure that the **Developer mode** checkbox in the top of the page is checked.
 * Click the button **Load unpacked extensions...** and open the `./build` folder in the file-selection dialog.
 
