@@ -62,7 +62,9 @@ chrome.runtime.onMessage.addListener(
         break
 
       case MSG_SHOW_POPUP:
-        showSendTransactionPopup(request.tx, sender.tab.windowId, sender.tab.id)
+        if (isWhiteListedDapp(normalizeUrl(sender.tab.url))) {
+          showSendTransactionPopup(request.tx, sender.tab.windowId, sender.tab.id)
+        }
         break
 
       case MSG_LOCK_ACCOUNT_TIMER:
