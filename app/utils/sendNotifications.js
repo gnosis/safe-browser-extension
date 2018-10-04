@@ -6,7 +6,10 @@ import Web3 from 'web3'
 import fetch from 'node-fetch'
 
 import GnosisSafePersonalEdition from '../../contracts/GnosisSafePersonalEdition.json'
-import config from '../../config'
+import {
+  getPushNotificationServiceUrl,
+  getNetworkUrl
+} from '../../config'
 
 export const sendTransaction = async (
   accountAddress,
@@ -82,7 +85,7 @@ export const sendNotification = async (
   const signedData = EthUtil.sha3('GNO' + data)
   const vrs = EthUtil.ecsign(signedData, privateKey)
 
-  const url = config.pushNotificationServiceUrl + 'notifications/'
+  const url = getPushNotificationServiceUrl() + 'notifications/'
   const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
@@ -110,9 +113,7 @@ export const sendNotification = async (
 
 export const getOwners = async (accountAddress, safeAddress) => {
   const contract = TruffleContract(GnosisSafePersonalEdition)
-  const provider = new Web3.providers.HttpProvider(
-    config.networks[config.currentNetwork].url
-  )
+  const provider = new Web3.providers.HttpProvider(getNetworkUrl())
   contract.setProvider(provider)
 
   try {
@@ -127,9 +128,7 @@ export const getOwners = async (accountAddress, safeAddress) => {
 
 export const getNonce = async (safeAddress) => {
   const contract = TruffleContract(GnosisSafePersonalEdition)
-  const provider = new Web3.providers.HttpProvider(
-    config.networks[config.currentNetwork].url
-  )
+  const provider = new Web3.providers.HttpProvider(getNetworkUrl())
   contract.setProvider(provider)
 
   try {
