@@ -15,7 +15,9 @@ function safes (state = initialState, action) {
       const count = state.listSafes.length + 1
       const newSafe = {
         address: action.address,
-        alias: 'Account ' + count
+        alias: (count === 1)
+          ? 'Safe'
+          : 'Safe ' + action.address.substring(action.address.length - 4)
       }
       return {
         ...state,

@@ -2,7 +2,10 @@ import Web3 from 'web3'
 import fetch from 'node-fetch'
 import TruffleContract from 'truffle-contract'
 
-import config from '../../../../../../../config'
+import {
+  getTransactionRelayServiceUrl,
+  getNetworkUrl
+} from '../../../../../../../config'
 import GnosisSafePersonalEdition from '../../../../../../../contracts/GnosisSafePersonalEdition.json'
 
 export const getGasEstimation = async (
@@ -12,7 +15,7 @@ export const getGasEstimation = async (
   data,
   operation
 ) => {
-  const url = config.transactionRelayServiceUrl + 'safes/' + safe + '/transactions/estimate/'
+  const url = getTransactionRelayServiceUrl() + 'safes/' + safe + '/transactions/estimate/'
   const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
@@ -43,9 +46,7 @@ export const getGasEstimation = async (
 
 export const getTxHash = async (tx, safeAddress) => {
   const contract = TruffleContract(GnosisSafePersonalEdition)
-  const provider = new Web3.providers.HttpProvider(
-    config.networks[config.currentNetwork].url
-  )
+  const provider = new Web3.providers.HttpProvider(getNetworkUrl())
   contract.setProvider(provider)
 
   try {

@@ -8,10 +8,10 @@ import {
   getTokenBalance,
   getTokenTransferValue
 } from './tokens'
-import config from '../../../../../config'
+import { getNetworkUrl } from '../../../../../config'
 
 export const getEthBalance = async (address) => {
-  const web3 = new Web3(new Web3.providers.HttpProvider(config.networks[config.currentNetwork].url))
+  const web3 = new Web3(new Web3.providers.HttpProvider(getNetworkUrl()))
   let ethBalance
   ethBalance = await promisify(cb => web3.eth.getBalance(address, cb))
   return web3.fromWei(ethBalance, 'ether')
