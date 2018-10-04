@@ -9,7 +9,10 @@ const FetchSubprovider = require('web3-provider-engine/subproviders/fetch.js')
 const Web3 = require('web3')
 
 const GnosisProvider = require('../app/utils/GnosisProvider')
-const { getNetworkUrl, getNetworkVersion } = require('../config')
+const {
+  getNetworkUrl,
+  getNetworkVersion
+} = require('../config')
 const {
   EV_SCRIPT_READY,
   EV_UPDATE_WEB3

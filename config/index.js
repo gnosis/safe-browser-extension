@@ -3,8 +3,8 @@ import {
   NETWORK_NAME,
   NETWORK_VERSION,
   NETWORK_URL,
-  ANDROID_APP_LINK,
-  IOS_APP_LINK,
+  ANDROID_APP_URL,
+  IOS_APP_URL,
   PUSH_NOTIFICATION_SERVICE_URL,
   TRANSACTION_RELAY_SERVICE_URL,
   TOKEN_LIST_URL,
@@ -15,12 +15,17 @@ import {
   FIREBASE_MESSAGING_SENDER_ID
 } from './names'
 import mainConfig from './main'
+import manifest from '../extension/manifest.json'
 
 const configuration = () => {
   return mainConfig
 }
 
 const getConfig = ensureOnce(configuration)
+
+export const getVersion = () => {
+  return manifest.version
+}
 
 export const getNetworkName = () => {
   const config = getConfig()
@@ -37,14 +42,14 @@ export const getNetworkUrl = () => {
   return config[NETWORK_URL]
 }
 
-export const getAndroidAppLink = () => {
+export const getAndroidAppUrl = () => {
   const config = getConfig()
-  return config[ANDROID_APP_LINK]
+  return config[ANDROID_APP_URL]
 }
 
-export const getIosAppLink = () => {
+export const getIosAppUrl = () => {
   const config = getConfig()
-  return config[IOS_APP_LINK]
+  return config[IOS_APP_URL]
 }
 
 export const getPushNotificationServiceUrl = () => {
