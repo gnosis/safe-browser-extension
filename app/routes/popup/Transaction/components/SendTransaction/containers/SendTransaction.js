@@ -27,7 +27,9 @@ class SendTransaction extends Component {
       transactionNumber
     } = this.props
 
-    if (!handleTransaction()) return
+    if (!handleTransaction()) {
+      return
+    }
     this.handleTransaction()
 
     chrome.runtime.sendMessage({

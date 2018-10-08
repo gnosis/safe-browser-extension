@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
-import BigNumber from 'bignumber.js'
 
-import { toGWei } from 'utils/helpers'
 import { isTokenTransfer, getTokenTransferAddress } from '../containers/tokens'
-import HeaderTransactions from 'routes/popup/Transaction/components/Transaction/HeaderTransactions'
+import HeaderTransactions from 'routes/popup/Transaction/components/components/HeaderTransactions'
+import TransactionAddressData from 'routes/popup/Transaction/components/components/TransactionAddressData'
+import TransactionSummary from 'routes/popup/Transaction/components/components/TransactionSummary'
 import ConfirmTransaction from 'routes/popup/Transaction/components/ConfirmTransaction/containers/ConfirmTransaction'
 import SendTransaction from 'routes/popup/Transaction/components/SendTransaction/containers/SendTransaction'
-import TransactionAddressData from 'routes/popup/Transaction/components/Transaction/TransactionAddressData'
-import TransactionSummary from 'routes/popup/Transaction/components/Transaction/TransactionSummary'
 import styles from 'assets/css/global.css'
 
 class Layout extends Component {
@@ -19,7 +17,6 @@ class Layout extends Component {
     const {
       transaction,
       transactions,
-      ethBalance,
       balance,
       symbol,
       value,
@@ -34,16 +31,9 @@ class Layout extends Component {
       nextTransaction,
       removeTransaction,
       showTransaction,
-      handleTransaction,
-      isTokenTransaction
+      handleTransaction
     } = this.props
 
-    BigNumber.config({ ROUNDING_MODE: BigNumber.ROUND_UP })
-    const totalGas = estimations && new BigNumber(estimations.dataGas).plus(new BigNumber(estimations.safeTxGas))
-    const transactionFee = totalGas && toGWei(totalGas.times(new BigNumber(-estimations.gasPrice)))
-    const totalCost = (value && transactionFee)
-      ? value.plus(transactionFee)
-      : null
     const val = value ? value.toString(10) : '-'
     const toAddress = isTokenTransfer(transaction.data) ? getTokenTransferAddress(transaction.data) : transaction.to
 
@@ -74,10 +64,9 @@ class Layout extends Component {
             noBalance
           />
           <TransactionSummary
-            isTokenTransaction={isTokenTransaction}
-            ethBalance={ethBalance}
-            transactionFee={transactionFee}
-            totalCost={totalCost}
+            transaction={transaction}
+            estimations={estimations}
+            value={value}
           />
           {transaction && (transaction.type === 'confirmTransaction') &&
             <ConfirmTransaction

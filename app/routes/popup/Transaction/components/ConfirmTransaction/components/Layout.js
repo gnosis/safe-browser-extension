@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 
-import FooterTransactions from 'routes/popup/Transaction/components/Transaction/FooterTransactions'
-import mobileImage from 'assets/images/mobile.svg'
-import styles from 'assets/css/global.css'
+import FooterTransactions from '../../components/FooterTransactions'
+import ConfirmTransactionState from './ConfirmTransactionState'
 
 class Layout extends Component {
   render () {
@@ -16,12 +15,7 @@ class Layout extends Component {
 
     return (
       <React.Fragment>
-        <div className={styles.transactionState}>
-          <span className={styles.message}>
-            <img src={mobileImage} height='55' width='30' />
-            <p>This transaction has been initiated by the Gnosis Safe mobile app. When you confirm, the mobile app will submit the transaction.</p>
-          </span>
-        </div>
+        <ConfirmTransactionState />
         {(loadedData && !reviewedTx) &&
           <FooterTransactions
             loadedData={loadedData}
