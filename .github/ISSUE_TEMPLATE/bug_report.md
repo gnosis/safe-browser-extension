@@ -18,6 +18,7 @@ Please describe concisely the bug you have found, and what you expect instead.
 
 ## Environment
 
+- Safe browser extension version: 
 - Browser version: 
 - Operating system:
 
