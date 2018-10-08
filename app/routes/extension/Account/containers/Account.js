@@ -10,6 +10,7 @@ import {
   PASSWORD_URL,
   DOWNLOAD_APPS_URL
 } from 'routes/routes'
+import selector from './selector'
 
 class Account extends Component {
   componentDidMount = () => {
@@ -18,6 +19,11 @@ class Account extends Component {
       document.getElementById('qr-safe-address'),
       safes.currentSafe,
       4
+    )
+
+    setTimeout(
+      () => this.focusTransactionWindow(),
+      100
     )
   }
 
@@ -34,6 +40,14 @@ class Account extends Component {
     const { safes } = this.props
     await ga(['_trackEvent', SAFES, 'click-view-safe-on-etherscan', 'View Safe on Etherscan'])
     window.open('http://rinkeby.etherscan.io/address/' + safes.currentSafe)
+  }
+
+  focusTransactionWindow = () => {
+    const { transactions } = this.props
+    const windowId = transactions.windowId
+    if (windowId) {
+      chrome.windows.update(windowId, { 'focused': true })
+    }
   }
 
   render () {
@@ -58,13 +72,6 @@ class Account extends Component {
   }
 }
 
-const mapStateToProps = ({ account, safes }, props) => {
-  return {
-    account,
-    safes
-  }
-}
-
 export default connect(
-  mapStateToProps
+  selector
 )(Account)

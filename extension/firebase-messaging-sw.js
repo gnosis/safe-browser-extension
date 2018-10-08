@@ -4,26 +4,30 @@ import notificationImage from 'assets/images/notification_image.jpg'
 self.addEventListener('push', (event) => {
   const payload = event.data.json().data
 
-  let title, message
+  let title, message, url
   switch (payload.type) {
     case 'safeCreation':
       title = 'Safe Creation'
       message = 'A new Safe was created'
+      url = null
       break
 
     case 'requestConfirmation':
       title = 'Confirm transaction'
       message = 'The confirmation of a new transaction was requested'
+      url = null
       break
 
     case 'sendTransactionHash':
       title = 'Transaction submitted'
       message = payload.chainHash
+      url = 'https://rinkeby.etherscan.io/tx/' + payload.chainHash
       break
 
     case 'rejectTransaction':
       title = 'Transaction rejected'
       message = payload.hash
+      url = null
       break
 
     default:
@@ -46,8 +50,22 @@ self.addEventListener('push', (event) => {
       title,
       {
         body: message,
-        icon: notificationImage
+        icon: notificationImage,
+        data: {
+          url
+        }
       }
-    )
+    ).then(() =>
+      self.registration.getNotifications()
+    ).then(notifications => {
+      setTimeout(() => notifications.forEach(notification => notification.close()), 6000)
+    })
+  )
+})
+
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close()
+  event.waitUntil(
+    (event.notification.data.url) ? self.clients.openWindow(event.notification.data.url) : null
   )
 })
