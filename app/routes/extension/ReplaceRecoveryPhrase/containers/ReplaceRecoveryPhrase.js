@@ -61,14 +61,13 @@ class ReplaceRecoveryPhrase extends Component {
     const s = new BigNumber(EthUtil.bufferToHex(vrs.s))
 
     const qrCodeContent = JSON.stringify({
-      safe: safeAddress,
+      address: safeAddress,
       signature: {
         r: r.toString(10),
         s: s.toString(10),
         v: vrs.v
       }
     })
-    console.log(qrCodeContent)
     return qrCodeContent
   }
 
