@@ -11,32 +11,31 @@ import {
   WHITELIST_URL,
   LOCKING_URL,
   ABOUT_URL,
-  SIGNER_ACCOUNT_URL
+  REPLACE_RECOVERY_PHRASE_URL
 } from 'routes/routes'
 
 const cx = classNames.bind(styles)
 
 class NavigationDrawer extends Component {
+  passwordProtection = (url) => {
+    const { account } = this.props
+    const protectedUrl = account.lockedState
+      ? {
+        pathname: PASSWORD_URL,
+        state: {
+          dest: url
+        }
+      }
+      : url
+    return protectedUrl
+  }
+
   render () {
-    const { account, showMenu } = this.props
+    const { showMenu } = this.props
 
-    const changePasswordUrl = account.lockedState
-      ? {
-        pathname: PASSWORD_URL,
-        state: {
-          dest: CHANGE_PASSWORD_URL
-        }
-      }
-      : CHANGE_PASSWORD_URL
-    const resyncRoute = account.lockedState
-      ? {
-        pathname: PASSWORD_URL,
-        state: {
-          dest: RESYNC_TOKEN_URL
-        }
-      }
-      : RESYNC_TOKEN_URL
-
+    const changePasswordUrl = this.passwordProtection(CHANGE_PASSWORD_URL)
+    const resyncTokenUrl = this.passwordProtection(RESYNC_TOKEN_URL)
+    const replaceRecoveryPhraseUrl = this.passwordProtection(REPLACE_RECOVERY_PHRASE_URL)
     return (
       <ul className={cx(styles.safeDrawerMenu, showMenu && styles.active)}>
         <li data-menu='whitelist'>
@@ -49,10 +48,10 @@ class NavigationDrawer extends Component {
           <Link to={changePasswordUrl}>Change password</Link>
         </li>
         <li data-menu='resync'>
-          <Link to={resyncRoute}>Resync push token</Link>
+          <Link to={resyncTokenUrl}>Resync push token</Link>
         </li>
-        <li data-menu='signer-account'>
-          <Link to={SIGNER_ACCOUNT_URL}>Signer account</Link>
+        <li data-menu='replace-recovery-phrase'>
+          <Link to={replaceRecoveryPhraseUrl}>Replace recovery phrase</Link>
         </li>
         <li data-menu='about'>
           <Link to={ABOUT_URL}>About</Link>
