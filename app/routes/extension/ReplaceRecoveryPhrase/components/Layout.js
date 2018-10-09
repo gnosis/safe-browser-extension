@@ -19,12 +19,11 @@ class Layout extends Component {
             </Link>
             <h2>Replace recovery phrase</h2>
           </span>
-          <div className={styles.overlayPageContent}>
-            <div className={styles.safeContent}>
-              <span className={styles.QR}>
-                <div id='qr-replace-recovery-phrase' />
-              </span>
-            </div>
+          <div className={cx(styles.overlayPageContent, styles.replaceRecoveryPhraseContent)}>
+            <p>Scan the QR code below when requested in the mobile app</p>
+            <span className={styles.QR}>
+              <div id='qr-replace-recovery-phrase' />
+            </span>
           </div>
         </div>
       </Page>

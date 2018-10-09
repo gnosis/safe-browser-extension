@@ -782,7 +782,7 @@ form input.noborder{
   width:100%;
   height:100%
 }
-.innerOverlayContent{
+.innerOverlayContent, .replace-recovery-phrase-content{
   height:auto;
   display:flex;
   -ms-flex-pack:center;
@@ -794,7 +794,10 @@ form input.noborder{
   -ms-flex-line-pack:center;
   align-content:center
 }
-.innerOverlayContent>p{
+.replace-recovery-phrase-content{
+  padding:2em 5em
+}
+.innerOverlayContent>p, .replace-recovery-phrase-content>p{
   font-size:1.6em;
   line-height:1.3;
   color:#21435A;
