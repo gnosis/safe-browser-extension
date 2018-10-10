@@ -10,10 +10,6 @@ const cx = classNames.bind(styles)
 
 class Layout extends Component {
   render () {
-    const {
-      versionNumber
-    } = this.props
-
     return (
       <Page>
         <div className={styles.overlayPage}>
@@ -21,14 +17,13 @@ class Layout extends Component {
             <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)}>
               <p>Back</p>
             </Link>
-            <h2>About</h2>
+            <h2>Replace recovery phrase</h2>
           </span>
-          <div className={styles.overlayPageContent}>
-            <div className={styles.about}>
-              <p>Version: {versionNumber}</p>
-              <p><a href='https://safe.gnosis.io/terms' target='_blank'>Terms of Use</a></p>
-              <p><a href='https://safe.gnosis.io/privacy' target='_blank'>Privacy Policy</a></p>
-            </div>
+          <div className={cx(styles.overlayPageContent, styles.replaceRecoveryPhraseContent)}>
+            <p>Scan the QR code below when requested in the mobile app</p>
+            <span className={styles.QR}>
+              <div id='qr-replace-recovery-phrase' />
+            </span>
           </div>
         </div>
       </Page>
