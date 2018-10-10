@@ -7,13 +7,14 @@ import StandardToken from '@gnosis.pm/util-contracts/build/contracts/StandardTok
 import BigNumber from 'bignumber.js'
 
 import { promisify } from 'utils/promisify'
-import config from '../../../../../config'
+import {
+  getNetworkUrl,
+  getTokenListUrl
+} from '../../../../../config'
 
 const getStandardTokenContract = async () => {
   const contract = await TruffleContract(StandardToken)
-  const provider = new Web3.providers.HttpProvider(
-    config.networks[config.currentNetwork].url
-  )
+  const provider = new Web3.providers.HttpProvider(getNetworkUrl())
   contract.setProvider(provider)
 
   return contract
@@ -21,9 +22,7 @@ const getStandardTokenContract = async () => {
 
 const getHumanFriendlyToken = async () => {
   const contract = await TruffleContract(HumanFriendlyToken)
-  const provider = new Web3.providers.HttpProvider(
-    config.networks[config.currentNetwork].url
-  )
+  const provider = new Web3.providers.HttpProvider(getNetworkUrl())
   contract.setProvider(provider)
 
   return contract
@@ -61,7 +60,7 @@ const getListedTokens = async (address) => {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }
-    const result = await fetch(config.tokenListUrl, {
+    const result = await fetch(getTokenListUrl(), {
       headers,
       credentials: 'omit',
       referrerPolicy: 'no-referrer'
@@ -101,7 +100,7 @@ const getListedTokenData = (filteredTokens) => {
 }
 
 const getNotListedTokenData = async (address) => {
-  const web3 = new Web3(new Web3.providers.HttpProvider(config.networks[config.currentNetwork].url))
+  const web3 = new Web3(new Web3.providers.HttpProvider(getNetworkUrl()))
   const humanErc20token = await getHumanFriendlyToken()
   const instance = await humanErc20token.at(address)
 

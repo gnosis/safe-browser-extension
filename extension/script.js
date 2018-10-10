@@ -9,7 +9,10 @@ const FetchSubprovider = require('web3-provider-engine/subproviders/fetch.js')
 const Web3 = require('web3')
 
 const GnosisProvider = require('../app/utils/GnosisProvider')
-const config = require('../config.js')
+const {
+  getNetworkUrl,
+  getNetworkVersion
+} = require('../config')
 const {
   EV_SCRIPT_READY,
   EV_UPDATE_WEB3
@@ -25,8 +28,12 @@ if (typeof window.web3 !== 'undefined') {
 }
 
 var engine = new ProviderEngine()
+// isMetamask is something temporary. Must be deleted.
 engine.isMetaMask = !0
-engine.isConnected = function () { return true }
+engine.isSafe = true
+engine.isConnected = function () {
+  return true
+}
 const gnosisProvider = new GnosisProvider()
 engine.addProvider(gnosisProvider)
 
@@ -56,16 +63,14 @@ engine.addProvider(filterAndSubsSubprovider)
 const inflightCache = new InflightCacheSubprovider()
 engine.addProvider(inflightCache)
 
-engine.addProvider(new FetchSubprovider({
-  rpcUrl: config.networks[config.currentNetwork].url
-}))
+engine.addProvider(new FetchSubprovider({ rpcUrl: getNetworkUrl() }))
 
 engine.send = function (payload) {
   // eslint-disable-next-line
   var r = undefined
   switch (payload.method) {
     case 'net_version':
-      r = config.networks[config.currentNetwork].version.toString()
+      r = getNetworkVersion().toString()
       break
 
     default:

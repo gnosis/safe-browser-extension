@@ -1,9 +1,13 @@
 import { createStore } from 'redux'
 import { wrapStore } from 'react-chrome-redux'
 import rootReducer from 'reducers'
+import uuid from 'uuid/v4'
 
 import EthUtil from 'ethereumjs-util'
-import { loadStorage, saveStorage } from './utils/storage'
+import {
+  loadStorage,
+  saveStorage
+} from './utils/storage'
 import { normalizeUrl } from 'utils/helpers'
 import { lockAccount } from 'actions/account'
 import { addSafe } from 'actions/safes'
@@ -40,6 +44,15 @@ store.subscribe(() => {
 
 wrapStore(store, { portName: 'SAFE_BROWSER_EXTENSION' })
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations()
+    .then((registrations) => {
+      for (let registration of registrations) {
+        registration.update()
+      }
+    })
+}
+
 const updateCurrentSafe = () => {
   let storePreviousSafeAddress = storeCurrentSafeAddress
   storeCurrentSafeAddress = store.getState().safes.currentSafe
@@ -62,7 +75,9 @@ chrome.runtime.onMessage.addListener(
         break
 
       case MSG_SHOW_POPUP:
-        showSendTransactionPopup(request.tx, sender.tab.windowId, sender.tab.id)
+        if (isWhiteListedDapp(normalizeUrl(sender.tab.url))) {
+          showSendTransactionPopup(request.tx, sender.tab.windowId, sender.tab.id)
+        }
         break
 
       case MSG_LOCK_ACCOUNT_TIMER:
@@ -118,7 +133,7 @@ const focusTransactionWindow = () => {
 }
 
 const showPopup = (transaction, dappWindowId, dappTabId) => {
-  const safes = store.getState().safes.listSafes
+  const safes = store.getState().safes.safes
   const transactions = store.getState().transactions.txs
 
   if (transaction.hash && transactions.filter(t => t.tx.hash === transaction.hash).length > 0) { return }
@@ -126,10 +141,18 @@ const showPopup = (transaction, dappWindowId, dappTabId) => {
   transaction.safe = transaction.safe && EthUtil.toChecksumAddress(transaction.safe)
   transaction.from = transaction.from && EthUtil.toChecksumAddress(transaction.from)
   transaction.to = transaction.to && EthUtil.toChecksumAddress(transaction.to)
-  if (transaction.safe) { transaction.from = transaction.safe }
+  if (transaction.safe) {
+    transaction.from = transaction.safe
+  }
 
   const validTransaction = safes.filter(safe => safe.address.toLowerCase() === transaction.from.toLowerCase()).length > 0
-  if (!validTransaction) { return }
+  if (!validTransaction) {
+    return
+  }
+
+  const transactionsLength = transactions.length + 1
+  chrome.browserAction.setBadgeBackgroundColor({ color: '#888' })
+  chrome.browserAction.setBadgeText({ text: transactionsLength.toString() })
 
   if (transactions.length === 0) {
     chrome.windows.create({
@@ -149,6 +172,7 @@ const showPopup = (transaction, dappWindowId, dappTabId) => {
 
 const showConfirmTransactionPopup = (transaction) => {
   transaction.type = 'confirmTransaction'
+  transaction.id = uuid()
   showPopup(transaction)
 }
 
@@ -184,6 +208,23 @@ const setPendingTransaction = (position) => {
 
 chrome.windows.onRemoved.addListener((windowId) => {
   if (windowId === store.getState().transactions.windowId) {
+    chrome.browserAction.setBadgeText({text: ''})
+
+    const transactions = store.getState().transactions.txs
+
+    for (const i in transactions) {
+      const transaction = transactions[i]
+      if (transaction.dappWindowId && transaction.dappTabId) {
+        chrome.tabs.query({ windowId: transaction.dappWindowId }, function (tabs) {
+          chrome.tabs.sendMessage(transaction.dappTabId, {
+            msg: MSG_RESOLVED_TRANSACTION,
+            hash: null,
+            id: transaction.tx.id
+          })
+        })
+      }
+    }
+
     store.dispatch(removeAllTransactions())
   }
 })
@@ -218,7 +259,7 @@ if ('serviceWorker' in navigator) {
 }
 
 const safeCreation = (payload) => {
-  const safes = store.getState().safes.listSafes
+  const safes = store.getState().safes.safes
   const validSafeAddress = safes.filter(
     safe => safe.address.toLowerCase() === payload.safe.toLowerCase()
   ).length === 0
@@ -232,21 +273,29 @@ const safeCreation = (payload) => {
 }
 
 const sendTransactionHash = (payload, accepted) => {
-  if (pendingTransactionPosition === null) { return }
+  if (pendingTransactionPosition === null) {
+    return
+  }
 
   const popUpWindowId = store.getState().transactions.windowId
   const pendingTx = store.getState().transactions.txs[pendingTransactionPosition]
 
+  const transactionsLength = store.getState().transactions.txs.length - 1
+  chrome.browserAction.setBadgeBackgroundColor({ color: '#888' })
+  chrome.browserAction.setBadgeText({ text: transactionsLength.toString() })
+
   chrome.tabs.query({ active: true, windowId: popUpWindowId }, function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {
       msg: MSG_RESOLVED_TRANSACTION,
-      hash: (accepted) ? payload.chainHash : null
+      hash: (accepted) ? payload.chainHash : null,
+      id: pendingTx.tx.id
     })
   })
   chrome.tabs.query({ windowId: pendingTx.dappWindowId }, function (tabs) {
     chrome.tabs.sendMessage(pendingTx.dappTabId, {
       msg: MSG_RESOLVED_TRANSACTION,
-      hash: (accepted) ? payload.chainHash : null
+      hash: (accepted) ? payload.chainHash : null,
+      id: pendingTx.tx.id
     })
   })
 

@@ -9,7 +9,8 @@ import {
   CHANGE_PASSWORD_URL,
   RESYNC_TOKEN_URL,
   WHITELIST_URL,
-  LOCKING_URL
+  LOCKING_URL,
+  ABOUT_URL
 } from 'routes/routes'
 
 const cx = classNames.bind(styles)
@@ -48,6 +49,9 @@ class NavigationDrawer extends Component {
         </li>
         <li data-menu='resync'>
           <Link to={resyncRoute}>Resync push token</Link>
+        </li>
+        <li data-menu='about'>
+          <Link to={ABOUT_URL}>About</Link>
         </li>
       </ul>
     )

@@ -1,6 +1,6 @@
 {
   "name": "safe-browser-extension",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "main": "app/index.js",
   "scripts": {
     "build:dev": "cross-env NODE_ENV=development ./node_modules/.bin/webpack --progress",
@@ -41,6 +41,7 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "truffle-contract": "^3.0.5",
+    "uuid": "^3.3.2",
     "web3": "^0.20.6",
     "web3-provider-engine": "^14.0.4"
   },

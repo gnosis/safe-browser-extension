@@ -12,7 +12,8 @@ import {
   CONFIRM_PASSWORD_URL,
   WHITELIST_URL,
   LOCKING_URL,
-  RESYNC_TOKEN_URL
+  RESYNC_TOKEN_URL,
+  ABOUT_URL
 } from './routes'
 
 import Transaction from 'routes/popup/Transaction/containers/Transaction'
@@ -26,6 +27,7 @@ import Account from 'routes/extension/Account/containers/Account'
 import WhitelistedDapps from 'routes/extension/WhitelistedDapps/containers/WhitelistedDapps'
 import LockingConfiguration from 'routes/extension/LockingConfiguration/containers/LockingConfiguration'
 import ResyncToken from 'routes/extension/ResyncToken/containers/ResyncToken'
+import About from 'routes/extension/About/containers/About'
 
 import 'assets/css/global.css'
 
@@ -48,5 +50,6 @@ export const ExtensionRoutes = () => (
     <Route exact path={WHITELIST_URL} component={WhitelistedDapps} />
     <Route exact path={LOCKING_URL} component={LockingConfiguration} />
     <Route exact path={RESYNC_TOKEN_URL} component={ResyncToken} />
+    <Route exact path={ABOUT_URL} component={About} />
   </Switch>
 )

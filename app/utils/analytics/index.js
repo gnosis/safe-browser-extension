@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-import config from '../../../config'
-
 const GOOGLE_ANALYTICS_URL = 'https://ssl.google-analytics.com/ga.js'
 
 export const ga = (...args) => {
@@ -18,7 +16,11 @@ const loadGoogleAnalytics = () => {
   s.parentNode.insertBefore(script, s)
 
   script.onload = () => {
-    ga(['_setAccount', config.gaTrackingId])
+    const gaTrackingId = (process.env.NODE_ENV === 'production')
+      ? process.env.PRODUCTION_GA_TRACKING_ID
+      : process.env.DEVELOPMENT_GA_TRACKING_ID
+
+    ga(['_setAccount', gaTrackingId])
     ga(['_trackPageview'])
   }
 }

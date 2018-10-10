@@ -27,7 +27,7 @@ const Layout = ({
       {!showingTransaction &&
         <span className={cx(styles.safeMenu, showSafes && styles.active)}>
           <ul>
-            {safes.listSafes && safes.listSafes.map((safe) => (
+            {safes.safes && safes.safes.map((safe) => (
               <li
                 className={cx(styles.safeMenuSafeItem, (safe.address === safes.currentSafe) && styles.active)}
                 onClick={handleSelectSafe(safe.address)}

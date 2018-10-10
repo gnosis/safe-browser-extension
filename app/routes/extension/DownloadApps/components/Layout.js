@@ -7,11 +7,21 @@ import PairingProcess from './PairingProcess/containers/PairingProcess'
 import styles from 'assets/css/global.css'
 import playStore from 'assets/images/playstore.svg'
 // import appStore from 'assets/images/appstore.svg'
-import config from '../../../../../config'
+import {
+  getAndroidAppUrl,
+  getIosAppUrl
+} from '../../../../../config'
 
 const cx = classNames.bind(styles)
 
 class Layout extends Component {
+  constructor (props) {
+    super(props)
+
+    this.androidAppUrl = getAndroidAppUrl()
+    this.iosAppUrl = getIosAppUrl()
+  }
+
   render () {
     const {
       toggleQrAndroid,
@@ -22,9 +32,6 @@ class Layout extends Component {
       showQrPairing,
       password
     } = this.props
-
-    const androidAppLink = config.androidAppLink
-    // const iosAppLink = config.iOSAppLink
 
     return (
       <React.Fragment>
@@ -58,7 +65,7 @@ class Layout extends Component {
           <AppQr
             toggleQr={toggleQrAndroid}
             os='ANDROID'
-            link={androidAppLink}
+            link={this.androidAppUrl}
             storeImage={playStore}
           />
         }
@@ -66,7 +73,7 @@ class Layout extends Component {
           <AppQr
             toggleQr={toggleQrIos}
             os='IOS'
-            link={iosAppLink}
+            link={this.iosAppUrl}
             storeImage={appStore}
           />
         */}

@@ -11,16 +11,22 @@ class ConfirmTransaction extends Component {
   handleConfirmTransaction = () => {
     const { handleTransaction } = this.props
 
-    if (!handleTransaction()) return
+    if (!handleTransaction()) {
+      return
+    }
     this.handleTransaction('confirmTransaction')
+
     ga(['_trackEvent', TRANSACTIONS, 'click-confirm-transaction-from-mobile-app', 'Confirm transaction from mobile app'])
   }
 
   handleRejectTransaction = () => {
     const { handleTransaction } = this.props
 
-    if (!handleTransaction()) return
+    if (!handleTransaction()) {
+      return
+    }
     this.handleTransaction('rejectTransaction', 'GNO')
+
     ga(['_trackEvent', TRANSACTIONS, 'click-reject-transaction-from-mobile-app', 'Reject transaction from mobile app'])
   }
 
@@ -40,7 +46,7 @@ class ConfirmTransaction extends Component {
         transaction.from,
         prefix
       )
-      if (response.status === 204) {
+      if (response && response.status === 204) {
         this.handleRemoveTransaction()
       }
     } catch (err) {
@@ -48,7 +54,7 @@ class ConfirmTransaction extends Component {
     }
   }
 
-  handleRemoveTransaction = () => {
+  handleRemoveTransaction = async () => {
     const {
       transactionNumber,
       showTransaction,
@@ -57,13 +63,13 @@ class ConfirmTransaction extends Component {
     } = this.props
 
     if (transactions.txs.length === 1) {
-      removeTransaction(transactionNumber)
+      await removeTransaction(transactionNumber)
       window.close()
       return
     }
 
     const position = (transactionNumber >= 1) ? transactionNumber - 1 : 0
-    removeTransaction(transactionNumber)
+    await removeTransaction(transactionNumber)
     showTransaction(position)
   }
 

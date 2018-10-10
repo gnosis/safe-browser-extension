@@ -1,6 +1,10 @@
 # safe-browser-extension
 
-Installation
+Install through Chrome Store (rinkeby version)
+--------------------------------------------
+https://chrome.google.com/webstore/detail/gnosis-safe-rinkeby/gkiklnclpcbphbiaickiepnnnahefkoc
+
+Manual Installation
 -------
 Install dependencies
 ```
