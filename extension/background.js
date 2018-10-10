@@ -44,6 +44,15 @@ store.subscribe(() => {
 
 wrapStore(store, { portName: 'SAFE_BROWSER_EXTENSION' })
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations()
+    .then((registrations) => {
+      for (let registration of registrations) {
+        registration.update()
+      }
+    })
+}
+
 const updateCurrentSafe = () => {
   let storePreviousSafeAddress = storeCurrentSafeAddress
   storeCurrentSafeAddress = store.getState().safes.currentSafe
