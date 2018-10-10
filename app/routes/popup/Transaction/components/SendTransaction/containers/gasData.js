@@ -6,7 +6,7 @@ import {
   getTransactionRelayServiceUrl,
   getNetworkUrl
 } from '../../../../../../../config'
-import GnosisSafePersonalEdition from '../../../../../../../contracts/GnosisSafePersonalEdition.json'
+import GnosisSafe from '../../../../../../../contracts/GnosisSafe.json'
 
 export const getGasEstimation = async (
   safe,
@@ -45,7 +45,7 @@ export const getGasEstimation = async (
 }
 
 export const getTxHash = async (tx, safeAddress) => {
-  const contract = TruffleContract(GnosisSafePersonalEdition)
+  const contract = TruffleContract(GnosisSafe)
   const provider = new Web3.providers.HttpProvider(getNetworkUrl())
   contract.setProvider(provider)
 
@@ -59,7 +59,8 @@ export const getTxHash = async (tx, safeAddress) => {
       tx.txGas,
       tx.dataGas,
       tx.gasPrice,
-      tx.gasToken,
+      tx.gasToken || '0x0',
+      tx.refundReceiver || '0x0',
       tx.nonce
     )
     return hash
