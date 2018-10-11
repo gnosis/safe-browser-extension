@@ -15,6 +15,7 @@ Build
 -------
 Build files to `./build` folder.
 ```
+touch .env
 npm run build
 ```
 
