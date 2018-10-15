@@ -28,13 +28,39 @@ class SafeItem extends Component {
   saveEditSafeAlias = (address) => (e) => {
     e.stopPropagation()
     const { onUpdateSafeAlias } = this.props
-    const alias = this.aliasRef.current.textContent
+    const trimAlias = this.aliasRef.current.textContent.trim()
+    this.aliasRef.current.textContent = trimAlias
+    const alias = trimAlias
 
     if (!alias) {
       return
     }
     this.setState({ editSafeAlias: false })
     onUpdateSafeAlias(address, alias)
+  }
+
+  placeCursorAtEnd = (element) => {
+    if (typeof window.getSelection !== 'undefined' && typeof document.createRange !== 'undefined') {
+      const range = document.createRange()
+      range.selectNodeContents(element)
+      range.collapse(false)
+      const sElement = window.getSelection()
+      sElement.removeAllRanges()
+      sElement.addRange(range)
+    } else if (typeof document.body.createTextRange !== 'undefined') {
+      const textRange = document.body.createTextRange()
+      textRange.moveToElementText(element)
+      textRange.collapse(false)
+      textRange.select()
+    }
+  }
+
+  handleSafeAliasLength = () => {
+    const alias = this.aliasRef.current.textContent
+    if (alias.length > 30) {
+      this.aliasRef.current.textContent = alias.substring(0, 30)
+      this.placeCursorAtEnd(this.aliasRef.current)
+    }
   }
 
   render () {
@@ -51,7 +77,13 @@ class SafeItem extends Component {
           <Blockie address={address} diameter={24} />
         </div>
         <span>
-          <p contentEditable={editSafeAlias} ref={this.aliasRef}>{alias}</p>
+          <p
+            contentEditable={editSafeAlias}
+            ref={this.aliasRef}
+            onInput={this.handleSafeAliasLength}
+          >
+            {alias}
+          </p>
           <small>{this.addressDisplayed}</small>
           <span className={styles.safeTools}>
             <button
