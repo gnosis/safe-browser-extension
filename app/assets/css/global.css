@@ -334,10 +334,6 @@ section.auction,section.home{
   color:#fb4f62
 }
 
-form > .whitelist-form input {
-  margin-right:15px
-}
-
 form .password-form {
   font-family:Roboto,Helvetica,sans-serif;
   display:-ms-flexbox;
@@ -1359,10 +1355,6 @@ form input.noborder{
   padding:20px 0
 }
 
-form>.whitelist-form {
-  display:flex;
-}
-
 .whitelist_add>form{
   -ms-flex:1;
   flex:1;
@@ -1381,7 +1373,8 @@ form>.whitelist-form {
 }
 .whitelist_add>form>p{
   width:100%;
-  margin:5px auto 0;
+  margin:5px auto;
+  margin-left: 25px;
   text-align:left
 }
 .whitelist_add>form>button{
@@ -1390,6 +1383,12 @@ form>.whitelist-form {
   padding:0 1em;
   margin:0 0 0 10px;
   font-size:1.3em
+}
+form>.whitelist-form {
+  display:flex;
+}
+form>.whitelist-form input {
+  margin-right:15px
 }
 .whitelist_items{
   width:100%;
