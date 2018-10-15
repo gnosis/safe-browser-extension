@@ -38,23 +38,35 @@ class NavigationDrawer extends Component {
     const replaceRecoveryPhraseUrl = this.passwordProtection(REPLACE_RECOVERY_PHRASE_URL)
     return (
       <ul className={cx(styles.safeDrawerMenu, showMenu && styles.active)}>
-        <li data-menu='whitelist'>
-          <Link to={WHITELIST_URL}>Manage sites whitelist</Link>
+        <li>
+          <Link to={WHITELIST_URL}>
+            <div data-menu='whitelist'>Manage sites whitelist</div>
+          </Link>
         </li>
-        <li data-menu='timeout'>
-          <Link to={LOCKING_URL}>Set lock timeout</Link>
+        <li>
+          <Link to={LOCKING_URL}>
+            <div data-menu='timeout'>Set lock timeout</div>
+          </Link>
         </li>
-        <li data-menu='password'>
-          <Link to={changePasswordUrl}>Change password</Link>
+        <li>
+          <Link to={changePasswordUrl}>
+            <div data-menu='password'>Change password</div>
+          </Link>
         </li>
-        <li data-menu='resync'>
-          <Link to={resyncTokenUrl}>Resync push token</Link>
+        <li>
+          <Link to={resyncTokenUrl}>
+            <div data-menu='resync'>Resync push token</div>
+          </Link>
         </li>
-        <li data-menu='replace-recovery-phrase'>
-          <Link to={replaceRecoveryPhraseUrl}>Replace recovery phrase</Link>
+        <li>
+          <Link to={replaceRecoveryPhraseUrl}>
+            <div data-menu='replace-recovery-phrase'>Replace recovery phrase</div>
+          </Link>
         </li>
-        <li data-menu='about'>
-          <Link to={ABOUT_URL}>About</Link>
+        <li>
+          <Link to={ABOUT_URL}>
+            <div data-menu='about'>About</div>
+          </Link>
         </li>
       </ul>
     )
