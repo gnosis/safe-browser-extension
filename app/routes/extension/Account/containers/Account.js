@@ -42,6 +42,11 @@ class Account extends Component {
     window.open('http://rinkeby.etherscan.io/address/' + safes.currentSafe)
   }
 
+  openSlowTrade = async () => {
+    await ga(['_trackEvent', SAFES, 'click-slow-trade-banner', 'Click Slow Trade banner'])
+    window.open('https://slow.trade')
+  }
+
   focusTransactionWindow = () => {
     const { transactions } = this.props
     const windowId = transactions.windowId
@@ -67,6 +72,7 @@ class Account extends Component {
         currentSafe={safes.currentSafe}
         properties={this.props.location}
         openEtherScan={this.openEtherScan}
+        openSlowTrade={this.openSlowTrade}
       />
     )
   }

@@ -1870,6 +1870,15 @@ footer .stepper-dots>li.active{
   line-height:1;
   margin: 1.5em auto 0;
 }
+
+.slowTradeBanner{
+  bottom:0;
+  box-shadow: 0 -1px 4px 0 rgba(0,0,0,0.12);
+  cursor:pointer;
+  position: absolute;
+  width:100%;
+}
+
 .unlockSafe .safeLogo{
   width:110px;
   height:72px;
