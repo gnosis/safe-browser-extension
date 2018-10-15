@@ -1152,6 +1152,15 @@ form input.noborder{
   -moz-appearance:none;
   appearance:none
 }
+
+.safeDrawerMenuBackground.active{
+  position:absolute;
+  height:100%;
+  width:100%;
+  background:rgba(26,73,119,.6);
+  z-index:97
+}
+
 .safeDrawerMenu{
   border-top:1px solid #E4E8F1;
   position:absolute
@@ -1183,20 +1192,11 @@ form input.noborder{
   content:"";
   transform:translateX(600px);
   transition:all .2s ease-in-out;
-  z-index:-1
+  z-index:1
 }
 .safeDrawerMenu.active{
   transform:translateX(0);
   visibility:visible
-}
-.safeDrawerMenu.active::before{
-  content:"";
-  transform:translateX(0);
-  position:absolute;
-  left:0;
-  height:100%;
-  width:100%;
-  box-shadow:100px 0 0 0 rgba(26,73,119,.6)
 }
 .safeDrawerMenu>li{
   width:100%;
