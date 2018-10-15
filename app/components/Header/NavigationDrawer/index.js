@@ -33,7 +33,7 @@ class NavigationDrawer extends Component {
   render () {
     const {
       showMenu,
-      handleCloseMenu
+      toggleMenu
     } = this.props
 
     const changePasswordUrl = this.passwordProtection(CHANGE_PASSWORD_URL)
@@ -43,7 +43,7 @@ class NavigationDrawer extends Component {
       <React.Fragment>
         <div
           className={cx(styles.safeDrawerMenuBackground, showMenu && styles.active)}
-          onClick={handleCloseMenu}
+          onClick={toggleMenu}
         />
         <ul className={cx(styles.safeDrawerMenu, showMenu && styles.active)}>
           <li>
@@ -63,7 +63,7 @@ class NavigationDrawer extends Component {
           </li>
           <li>
             <Link to={resyncTokenUrl}>
-              <div data-menu='resync'>Resync push token</div>
+              <div data-menu='resync'>Resync with mobile app</div>
             </Link>
           </li>
           <li>

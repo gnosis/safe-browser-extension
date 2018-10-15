@@ -23,8 +23,13 @@ class SafesMenu extends Component {
   }
 
   handleSelectSafe = (safeAddress) => (e) => {
-    const { onSelectSafe } = this.props
+    const {
+      onSelectSafe,
+      toggleSafes
+    } = this.props
+
     onSelectSafe(safeAddress)
+    toggleSafes()
     ga(['_trackEvent', SAFES, 'click-switch-safe', 'Switch Safe'])
   }
 
@@ -35,7 +40,10 @@ class SafesMenu extends Component {
 
   handleRemoveSafe = (safeAddress) => (e) => {
     e.stopPropagation()
-    const { safes, onRemoveSafe } = this.props
+    const {
+      safes,
+      onRemoveSafe
+    } = this.props
     const safeList = safes.safes
 
     let newCurrentSafe

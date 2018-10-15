@@ -21,7 +21,15 @@ class SafeItem extends Component {
       props.address.substring(props.address.length - 6, props.address.length)
   }
 
-  showEditSafeAlias = () => {
+  handleSafeAliasClick = (e) => {
+    const { editSafeAlias } = this.state
+    if (editSafeAlias) {
+      e.stopPropagation()
+    }
+  }
+
+  showEditSafeAlias = (e) => {
+    e.stopPropagation()
     this.setState({ editSafeAlias: true })
   }
 
@@ -81,6 +89,7 @@ class SafeItem extends Component {
             contentEditable={editSafeAlias}
             ref={this.aliasRef}
             onInput={this.handleSafeAliasLength}
+            onClick={this.handleSafeAliasClick}
           >
             {alias}
           </p>

@@ -24,7 +24,7 @@ class Layout extends Component {
             className={cx(styles.button, styles.buttonResync)}
             onClick={handleResync()}
           >
-            Resync push token
+            Resync with mobile app
           </button>
         </div>
       </Page>
