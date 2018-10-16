@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 
 import FooterTransactions from 'routes/popup/Transaction/components/components/FooterTransactions'
-import SendTransactionState from './SendTransactionState'
+import SendTransactionState from '../../components/TransactionState/SendTransactionState'
+import RetryLoadDataTransactionState from '../../components/TransactionState/RetryLoadDataTransactionState'
 import {
   TRANSACTION_URL,
   PASSWORD_URL
@@ -33,7 +34,8 @@ class Layout extends Component {
       reviewedTx,
       seconds,
       handleConfirmTransaction,
-      handleRejectTransaction
+      handleRejectTransaction,
+      retryShowTransaction
     } = this.props
     const { resolvedTransaction } = this.state
 
@@ -49,19 +51,29 @@ class Layout extends Component {
 
     return (
       <React.Fragment>
-        {reviewedTx &&
-          <SendTransactionState
-            seconds={seconds}
-            handleConfirmTransaction={handleConfirmTransaction}
+        {(loadedData === false) &&
+          <RetryLoadDataTransactionState
+            retryShowTransaction={retryShowTransaction}
           />
         }
-        <FooterTransactions
-          loadedData={loadedData}
-          reviewedTx={reviewedTx}
-          lockedAccount={lockedAccount}
-          handleRejectTransaction={handleRejectTransaction}
-          handleConfirmTransaction={handleConfirmTransaction}
-        />
+        {loadedData && (
+          <React.Fragment>
+            {reviewedTx ? (
+              <SendTransactionState
+                seconds={seconds}
+                handleConfirmTransaction={handleConfirmTransaction}
+              />
+            ) : (
+              <FooterTransactions
+                loadedData={loadedData}
+                reviewedTx={reviewedTx}
+                lockedAccount={lockedAccount}
+                handleRejectTransaction={handleRejectTransaction}
+                handleConfirmTransaction={handleConfirmTransaction}
+              />
+            )}
+          </React.Fragment>
+        )}
       </React.Fragment>
     )
   }

@@ -26,7 +26,7 @@ class Transaction extends Component {
     this.state = {
       transactionNumber: 0,
       balance: undefined,
-      loadedData: false,
+      loadedData: undefined,
       reviewedTx: false
     }
 
@@ -56,7 +56,7 @@ class Transaction extends Component {
 
     this.setState({
       reviewedTx: false,
-      loadedData: false,
+      loadedData: undefined,
       transactionNumber,
       balance: undefined,
       symbol: undefined,
@@ -68,15 +68,23 @@ class Transaction extends Component {
     try {
       const ethBalance = await getEthBalance(tx.from)
       const { balance, symbol, value, decimals } = await getTransactionData(tx.to, tx.from, tx.data, tx.value, ethBalance)
-
       const estimations = await calculateGasEstimation(tx, value)
 
-      const loadedData = ethBalance instanceof BigNumber &&
-        balance instanceof BigNumber &&
-        estimations &&
-        symbol
+      let loadedData
+      if (ethBalance instanceof BigNumber && balance instanceof BigNumber && estimations && symbol) {
+        loadedData = true
+      } else {
+        loadedData = false
+      }
 
-      this.setState({ balance, symbol, displayedValue: value, decimals, estimations, loadedData })
+      this.setState({
+        balance,
+        symbol,
+        displayedValue: value,
+        decimals,
+        estimations,
+        loadedData
+      })
     } catch (err) {
       this.setState({ loadedData: false })
       console.error(err)

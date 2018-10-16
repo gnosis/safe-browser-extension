@@ -103,6 +103,15 @@ class SendTransaction extends Component {
     showTransaction(position)
   }
 
+  retryShowTransaction = () => {
+    const {
+      transactionNumber,
+      showTransaction
+    } = this.props
+
+    showTransaction(transactionNumber)
+  }
+
   startCountdown = () => {
     this.timer = setInterval(
       this.countDown,
@@ -141,6 +150,7 @@ class SendTransaction extends Component {
         seconds={seconds}
         handleConfirmTransaction={this.handleConfirmTransaction}
         handleRejectTransaction={this.handleRejectTransaction}
+        retryShowTransaction={this.retryShowTransaction}
       />
     )
   }
