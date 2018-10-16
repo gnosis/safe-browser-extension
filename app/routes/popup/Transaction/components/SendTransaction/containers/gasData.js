@@ -44,11 +44,12 @@ export const getGasEstimation = async (
   }
 }
 
-export const getTxHash = async (tx, safeAddress) => {
+export const getTxHash = async (tx) => {
   const contract = TruffleContract(GnosisSafe)
   const provider = new Web3.providers.HttpProvider(getNetworkUrl())
   contract.setProvider(provider)
 
+  const safeAddress = tx.from
   try {
     const instance = await contract.at(safeAddress)
     const hash = await instance.getTransactionHash.call(

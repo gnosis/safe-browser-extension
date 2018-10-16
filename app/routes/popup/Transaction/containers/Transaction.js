@@ -60,14 +60,14 @@ class Transaction extends Component {
       transactionNumber,
       balance: undefined,
       symbol: undefined,
-      value: undefined,
+      displayedValue: undefined,
+      decimals: undefined,
       estimations: undefined
     })
 
     try {
       const ethBalance = await getEthBalance(tx.from)
       const { balance, symbol, value, decimals } = await getTransactionData(tx.to, tx.from, tx.data, tx.value, ethBalance)
-      const decimalValue = (decimals) ? value.div(10 ** decimals) : value
 
       const estimations = await calculateGasEstimation(tx, value)
 
@@ -76,7 +76,7 @@ class Transaction extends Component {
         estimations &&
         symbol
 
-      this.setState({ balance, symbol, value: decimalValue, estimations, loadedData })
+      this.setState({ balance, symbol, displayedValue: value, decimals, estimations, loadedData })
     } catch (err) {
       this.setState({ loadedData: false })
       console.error(err)
@@ -138,7 +138,8 @@ class Transaction extends Component {
       transactionNumber,
       balance,
       symbol,
-      value,
+      displayedValue,
+      decimals,
       estimations,
       loadedData,
       reviewedTx
@@ -146,7 +147,7 @@ class Transaction extends Component {
     const { account, transactions } = this.props
 
     const transaction = transactions.txs[transactionNumber].tx
-    setUpTransaction(transaction, estimations)
+    setUpTransaction(transaction, estimations, displayedValue, decimals)
 
     return (
       <div className={styles.extensionTx}>
@@ -163,7 +164,6 @@ class Transaction extends Component {
               transactions={transactions}
               balance={balance}
               symbol={symbol}
-              value={value}
               transactionNumber={transactionNumber}
               lockedAccount={account.lockedState}
               loadedData={loadedData}

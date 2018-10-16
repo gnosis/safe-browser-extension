@@ -36,10 +36,12 @@ export const getTransactionData = async (to, from, data, value, ethBalance) => {
   }
 }
 
-export const setUpTransaction = (tx, estimations) => {
+export const setUpTransaction = (tx, estimations, displayedValue, decimals) => {
   if (!tx.value) {
     tx.value = '0'
   }
+  tx.displayedValue = displayedValue
+  tx.decimals = decimals
   if (!tx.data) {
     tx.data = '0x'
   }

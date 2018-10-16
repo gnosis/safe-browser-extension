@@ -67,8 +67,8 @@ class SendTransaction extends Component {
     this.setState({ seconds: this.maxSeconds })
     this.startCountdown()
     try {
-      transaction.nonce = await getNonce(transaction.from)
-      transaction.hash = await getTxHash(transaction, transaction.from)
+      transaction.nonce = await getNonce(transaction)
+      transaction.hash = await getTxHash(transaction)
 
       const response = await sendTransaction(
         ethAccount.getChecksumAddressString(),
