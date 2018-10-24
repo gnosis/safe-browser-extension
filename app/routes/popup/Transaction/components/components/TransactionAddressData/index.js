@@ -15,7 +15,7 @@ const TransactionAddressData = ({
   const addressBalance = balance ? balance.toString(10) : '-'
 
   return (
-    <div className={style}>
+    <div className={noBalance ? styles.transactionRecipient : styles.transactionFrom}>
       <span>
         <div className={styles.identicon}>
           <Blockie address={address} diameter={32} />
@@ -26,9 +26,7 @@ const TransactionAddressData = ({
         </p>
       </span>
       {!noBalance &&
-      <span>
-        <strong>{addressBalance} <small>{symbol}</small></strong>
-      </span>
+      <span><small>{addressBalance} {symbol}</small></span>
       }
     </div>
   )

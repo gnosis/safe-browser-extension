@@ -67,8 +67,8 @@ class SendTransaction extends Component {
     this.setState({ seconds: this.maxSeconds })
     this.startCountdown()
     try {
-      transaction.nonce = await getNonce(transaction.from)
-      transaction.hash = await getTxHash(transaction, transaction.from)
+      transaction.nonce = await getNonce(transaction)
+      transaction.hash = await getTxHash(transaction)
 
       const response = await sendTransaction(
         ethAccount.getChecksumAddressString(),
@@ -101,6 +101,15 @@ class SendTransaction extends Component {
     const position = (transactionNumber >= 1) ? transactionNumber - 1 : 0
     await removeTransaction(transactionNumber)
     showTransaction(position)
+  }
+
+  retryShowTransaction = () => {
+    const {
+      transactionNumber,
+      showTransaction
+    } = this.props
+
+    showTransaction(transactionNumber)
   }
 
   startCountdown = () => {
@@ -141,6 +150,7 @@ class SendTransaction extends Component {
         seconds={seconds}
         handleConfirmTransaction={this.handleConfirmTransaction}
         handleRejectTransaction={this.handleRejectTransaction}
+        retryShowTransaction={this.retryShowTransaction}
       />
     )
   }

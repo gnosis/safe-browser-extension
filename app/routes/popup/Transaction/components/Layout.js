@@ -19,7 +19,6 @@ class Layout extends Component {
       transactions,
       balance,
       symbol,
-      value,
       transactionNumber,
       lockedAccount,
       loadedData,
@@ -34,7 +33,8 @@ class Layout extends Component {
       handleTransaction
     } = this.props
 
-    const val = value ? value.toString(10) : '-'
+    const decimalValue = transaction.decimals ? transaction.displayedValue.div(10 ** transaction.decimals) : transaction.displayedValue
+    const displayedValue = decimalValue ? decimalValue.toString(10) : '-'
     const toAddress = isTokenTransfer(transaction.data) ? getTokenTransferAddress(transaction.data) : transaction.to
 
     return (
@@ -48,25 +48,23 @@ class Layout extends Component {
         />
         <form onSubmit={this.prevent} className={styles.PageContent}>
           <TransactionAddressData
-            style={styles.transactionFrom}
             address={transaction.safe}
             alias={safeAlias}
             balance={balance}
             symbol={symbol}
           />
           <div className={styles.transactionValue}>
-            <strong>{val} <small>{symbol}</small></strong>
+            <strong>{displayedValue} {symbol}</strong>
             <small>&nbsp;</small>
           </div>
           <TransactionAddressData
-            style={styles.transactionRecipient}
             address={toAddress}
             noBalance
           />
           <TransactionSummary
             transaction={transaction}
             estimations={estimations}
-            value={value}
+            displayedValue={decimalValue}
           />
           {transaction && (transaction.type === 'confirmTransaction') &&
             <ConfirmTransaction

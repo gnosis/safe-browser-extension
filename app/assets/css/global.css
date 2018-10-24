@@ -2143,17 +2143,13 @@ footer .stepper-dots>li.active{
   word-break:inherit;
   letter-spacing:-1px
 }
-.extensionTX .extension-inner .transactionFrom>span>strong,.extensionTX .extension-inner .transactionRecipient>span>strong{
+.extensionTX .extension-inner .transactionFrom>span>small,.extensionTX .extension-inner .transactionRecipient>span>small{
   font-family:"Roboto Mono",Courier,monospace;
   font-size:1.3em;
-  font-weight:700;
   color:#21435A;
   word-break:inherit;
-  line-height:1.1
-}
-.extensionTX .extension-inner .transactionFrom>span>strong>small,.extensionTX .extension-inner .transactionRecipient>span>strong>small{
-  font-weight:400;
-  font-size:inherit
+  line-height:1.1;
+  letter-spacing:-1px
 }
 .extensionTX .extension-inner .transactionFrom>span:first-of-type{
   width:50%
@@ -2213,7 +2209,7 @@ footer .stepper-dots>li.active{
 }
 .extensionTX .extension-inner .transactionValue>strong>small{
   font-size:inherit;
-  font-weight:400
+  font-weight:inherit
 }
 .extensionTX .extension-inner .transactionValue>small{
   font-family:"Roboto Mono",Courier,monospace;
@@ -2280,7 +2276,8 @@ footer .stepper-dots>li.active{
   font-weight:inherit;
   font-family:"Roboto Mono",Courier,monospace;
   text-align:right;
-  margin:0 0 2px
+  margin:0 0 2px;
+  letter-spacing: -0.7px
 }
 .extensionTX .extension-inner .transactionSummary>span small{
   font-size:inherit;

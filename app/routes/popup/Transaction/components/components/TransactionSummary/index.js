@@ -28,13 +28,13 @@ class TransactionSummary extends Component {
   render () {
     const {
       estimations,
-      value
+      displayedValue
     } = this.props
     const { ethBalance } = this.state
 
     const totalGas = estimations && new BigNumber(estimations.dataGas).plus(new BigNumber(estimations.safeTxGas))
     const transactionFee = totalGas && toGWei(totalGas.times(new BigNumber(estimations.gasPrice)))
-    const totalCost = (value && transactionFee) ? value.plus(transactionFee) : null
+    const totalCost = (displayedValue && transactionFee) ? displayedValue.plus(transactionFee) : null
 
     const txFeeString = transactionFee ? -transactionFee.toString(10) : '-'
     const txCostString = totalCost ? -totalCost.toString(10) : '-'

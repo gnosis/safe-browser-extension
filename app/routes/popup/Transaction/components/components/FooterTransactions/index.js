@@ -16,8 +16,8 @@ const FooterButtons = ({
   reviewedTx,
   handleRejectTransaction,
   handleConfirmTransaction
-}) => ((loadedData && !reviewedTx)
-  ? (<span className={styles.buttonGroup}>
+}) => (
+  <span className={styles.buttonGroup}>
     <button
       onClick={handleRejectTransaction}
       className={cx(styles.button, styles.reject)}
@@ -30,8 +30,7 @@ const FooterButtons = ({
     >
       CONFIRM
     </button>
-  </span>)
-  : null
+  </span>
 )
 
 class FooterTransactions extends Component {
