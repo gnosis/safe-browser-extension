@@ -8,7 +8,7 @@ import {
   getTokenBalance,
   getTokenTransferValue
 } from './tokens'
-import { getGasEstimation } from '../components/SendTransaction/containers/gasData'
+import { getTransactionEstimations } from '../components/SendTransaction/containers/gasData'
 import { getNetworkUrl } from '../../../../../config'
 
 export const getEthBalance = async (address) => {
@@ -65,7 +65,7 @@ export const calculateGasEstimation = async (
   let estimations
   if (tx.type === 'sendTransaction') {
     const estimationValue = isTokenTransfer(tx.data) ? '0' : value.toString(10)
-    estimations = await getGasEstimation(tx.from, tx.to, estimationValue, tx.data, 0)
+    estimations = await getTransactionEstimations(tx.from, tx.to, estimationValue, tx.data, 0)
   } else {
     estimations = {
       safeTxGas: tx.txGas,

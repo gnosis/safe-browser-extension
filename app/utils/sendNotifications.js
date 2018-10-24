@@ -5,7 +5,7 @@ import TruffleContract from 'truffle-contract'
 import Web3 from 'web3'
 import fetch from 'node-fetch'
 
-import { getGasEstimation } from 'routes/popup/Transaction/components/SendTransaction/containers/gasData'
+import { getTransactionEstimations } from 'routes/popup/Transaction/components/SendTransaction/containers/gasData'
 import { isTokenTransfer } from 'routes/popup/Transaction/containers/tokens'
 import GnosisSafe from '../../contracts/GnosisSafe.json'
 import {
@@ -131,7 +131,7 @@ export const getOwners = async (accountAddress, safeAddress) => {
 export const getNonce = async (tx) => {
   if (tx.type === 'sendTransaction') {
     const estimationValue = isTokenTransfer(tx.data) ? '0' : tx.displayedValue.toString(10)
-    const estimations = await getGasEstimation(tx.from, tx.to, estimationValue, tx.data, 0)
+    const estimations = await getTransactionEstimations(tx.from, tx.to, estimationValue, tx.data, 0)
 
     return estimations && (estimations.nonce + 1).toString()
   }

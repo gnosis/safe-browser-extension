@@ -8,7 +8,7 @@ import {
 } from '../../../../../../../config'
 import GnosisSafe from '../../../../../../../contracts/GnosisSafe.json'
 
-export const getGasEstimation = async (
+export const getTransactionEstimations = async (
   safe,
   to,
   value,
