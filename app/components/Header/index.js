@@ -24,7 +24,7 @@ class Header extends Component {
     }))
   }
 
-  toggleSafes = () => {
+  toggleSafes = (e) => {
     this.setState((prevState) => ({
       showSafes: !prevState.showSafes
     }))
@@ -65,7 +65,10 @@ class Header extends Component {
           />
         </header>
         {!txReview &&
-          <NavigationDrawer showMenu={showMenu} />
+          <NavigationDrawer
+            showMenu={showMenu}
+            toggleMenu={this.toggleMenu}
+          />
         }
       </React.Fragment>
     )

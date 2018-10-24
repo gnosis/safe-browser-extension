@@ -31,32 +31,53 @@ class NavigationDrawer extends Component {
   }
 
   render () {
-    const { showMenu } = this.props
+    const {
+      showMenu,
+      toggleMenu
+    } = this.props
 
     const changePasswordUrl = this.passwordProtection(CHANGE_PASSWORD_URL)
     const resyncTokenUrl = this.passwordProtection(RESYNC_TOKEN_URL)
     const replaceRecoveryPhraseUrl = this.passwordProtection(REPLACE_RECOVERY_PHRASE_URL)
     return (
-      <ul className={cx(styles.safeDrawerMenu, showMenu && styles.active)}>
-        <li data-menu='whitelist'>
-          <Link to={WHITELIST_URL}>Manage sites whitelist</Link>
-        </li>
-        <li data-menu='timeout'>
-          <Link to={LOCKING_URL}>Set lock timeout</Link>
-        </li>
-        <li data-menu='password'>
-          <Link to={changePasswordUrl}>Change password</Link>
-        </li>
-        <li data-menu='resync'>
-          <Link to={resyncTokenUrl}>Resync push token</Link>
-        </li>
-        <li data-menu='replace-recovery-phrase'>
-          <Link to={replaceRecoveryPhraseUrl}>Replace recovery phrase</Link>
-        </li>
-        <li data-menu='about'>
-          <Link to={ABOUT_URL}>About</Link>
-        </li>
-      </ul>
+      <React.Fragment>
+        <div
+          className={cx(styles.safeDrawerMenuBackground, showMenu && styles.active)}
+          onClick={toggleMenu}
+        />
+        <ul className={cx(styles.safeDrawerMenu, showMenu && styles.active)}>
+          <li>
+            <Link to={WHITELIST_URL}>
+              <div data-menu='whitelist'>Manage sites whitelist</div>
+            </Link>
+          </li>
+          <li>
+            <Link to={LOCKING_URL}>
+              <div data-menu='timeout'>Set lock timeout</div>
+            </Link>
+          </li>
+          <li>
+            <Link to={changePasswordUrl}>
+              <div data-menu='password'>Change password</div>
+            </Link>
+          </li>
+          <li>
+            <Link to={resyncTokenUrl}>
+              <div data-menu='resync'>Resync with mobile app</div>
+            </Link>
+          </li>
+          <li>
+            <Link to={replaceRecoveryPhraseUrl}>
+              <div data-menu='replace-recovery-phrase'>Replace recovery phrase</div>
+            </Link>
+          </li>
+          <li>
+            <Link to={ABOUT_URL}>
+              <div data-menu='about'>About</div>
+            </Link>
+          </li>
+        </ul>
+      </React.Fragment>
     )
   }
 }

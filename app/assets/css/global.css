@@ -1,10 +1,6 @@
 h1,h2,h3,p{
   font-weight:400
 }
-.safeMenu>ul,.whitelist_items{
-  list-style-type:none;
-  overflow-y:auto
-}
 html{
   width:100%;
   height:100%;
@@ -336,10 +332,6 @@ section.auction,section.home{
 .button-group>button.reject{
   background:#fff;
   color:#fb4f62
-}
-
-form > .whitelist-form input {
-  margin-right:15px
 }
 
 form .password-form {
@@ -723,7 +715,6 @@ form input.noborder{
   -ms-flex-align:center;
   align-items:center;
   background:#fff;
-  position:relative
 }
 .extension-inner>header.noBorder{
   border-bottom:1px solid transparent
@@ -957,6 +948,18 @@ form input.noborder{
   box-shadow:0 1px 1px 0 rgba(234,63,82,.24);
   transition:all .3s ease-in-out
 }
+.safeMenuBackground{
+  visibility:hidden;
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:100
+}
+.safeMenuBackground.active{
+  visibility:visible;
+}
 .safeMenu,.safeMenu.active::before{
   position:absolute;
   left:0;
@@ -974,7 +977,7 @@ form input.noborder{
   min-height:100px;
   height:auto;
   top:54px;
-  z-index:99;
+  z-index:101;
   opacity:0;
   transform-origin:center top;
   transform:scale(0);
@@ -1000,6 +1003,7 @@ form input.noborder{
 .safeMenu>ul{
   width:100%;
   height:100%;
+  max-height: 500px;
   display:-ms-flexbox;
   display:flex;
   -ms-flex-wrap:wrap;
@@ -1009,7 +1013,19 @@ form input.noborder{
   -ms-flex-align:start;
   align-items:flex-start;
   -ms-flex-line-pack:start;
-  align-content:flex-start
+  align-content:flex-start;
+  list-style-type:none;
+  overflow-y:auto
+}
+.safeMenu>ul::-webkit-scrollbar{
+  width:8px
+}
+.safeMenu>ul::-webkit-scrollbar-track{
+  background:#E4E8F1
+}
+.safeMenu>ul::-webkit-scrollbar-thumb{
+  border-radius:6px;
+  background:#A2A8BA
 }
 .safeMenu>ul>li{
   -ms-flex:1 1 auto;
@@ -1150,6 +1166,15 @@ form input.noborder{
   -moz-appearance:none;
   appearance:none
 }
+
+.safeDrawerMenuBackground.active{
+  position:absolute;
+  height:100%;
+  width:100%;
+  background:rgba(26,73,119,.6);
+  z-index:97
+}
+
 .safeDrawerMenu{
   border-top:1px solid #E4E8F1;
   position:absolute
@@ -1181,22 +1206,16 @@ form input.noborder{
   content:"";
   transform:translateX(600px);
   transition:all .2s ease-in-out;
-  z-index:-1
+  z-index:1
 }
 .safeDrawerMenu.active{
   transform:translateX(0);
   visibility:visible
 }
-.safeDrawerMenu.active::before{
-  content:"";
-  transform:translateX(0);
-  position:absolute;
-  left:0;
-  height:100%;
-  width:100%;
-  box-shadow:100px 0 0 0 rgba(26,73,119,.6)
-}
 .safeDrawerMenu>li{
+  width:100%;
+}
+.safeDrawerMenu>li>a>div{
   width:100%;
   height:auto;
   line-height:1;
@@ -1215,7 +1234,7 @@ form input.noborder{
   color: inherit;
   text-decoration: none
 }
-.safeDrawerMenu>li[data-menu]::before{
+.safeDrawerMenu>li>a>div[data-menu]::before{
   content:"";
   display:inline-block;
   margin:0 10px 2px 0;
@@ -1227,22 +1246,22 @@ form input.noborder{
   width:100%;
   box-sizing:border-box
 }
-.safeDrawerMenu>li[data-menu=whitelist]::before{
+.safeDrawerMenu>li>a>div[data-menu=whitelist]::before{
   background:url(../images/menu_whitelist.svg) center/contain no-repeat
 }
-.safeDrawerMenu>li[data-menu=timeout]::before{
+.safeDrawerMenu>li>a>div[data-menu=timeout]::before{
   background:url(../images/menu_timeout.svg) center/contain no-repeat
 }
-.safeDrawerMenu>li[data-menu=password]::before{
+.safeDrawerMenu>li>a>div[data-menu=password]::before{
   background:url(../images/menu_password.svg) center/contain no-repeat
 }
-.safeDrawerMenu>li[data-menu=resync]::before{
+.safeDrawerMenu>li>a>div[data-menu=resync]::before{
   background:url(../images/resync.svg) center/contain no-repeat
 }
-.safeDrawerMenu>li[data-menu=replace-recovery-phrase]::before{
+.safeDrawerMenu>li>a>div[data-menu=replace-recovery-phrase]::before{
   background:url(../images/replace_recovery_phrase.svg) center/contain no-repeat
 }
-.safeDrawerMenu>li[data-menu=about]::before{
+.safeDrawerMenu>li>a>div[data-menu=about]::before{
   background:url(../images/about.svg) center/contain no-repeat
 }
 
@@ -1336,10 +1355,6 @@ form input.noborder{
   padding:20px 0
 }
 
-form > .whitelist-form {
-  display:flex;
-}
-
 .whitelist_add>form{
   -ms-flex:1;
   flex:1;
@@ -1358,7 +1373,8 @@ form > .whitelist-form {
 }
 .whitelist_add>form>p{
   width:100%;
-  margin:5px auto 0;
+  margin:5px auto;
+  margin-left: 25px;
   text-align:left
 }
 .whitelist_add>form>button{
@@ -1367,6 +1383,12 @@ form > .whitelist-form {
   padding:0 1em;
   margin:0 0 0 10px;
   font-size:1.3em
+}
+form>.whitelist-form {
+  display:flex;
+}
+form>.whitelist-form input {
+  margin-right:15px
 }
 .whitelist_items{
   width:100%;
@@ -1382,7 +1404,9 @@ form > .whitelist-form {
   align-content:flex-start;
   padding:0 0 50px;
   box-sizing:border-box;
-  height:362px
+  height:362px;
+  list-style-type:none;
+  overflow-y:auto
 }
 .whitelist_items>li{
   background:#fff;
@@ -1423,12 +1447,12 @@ form > .whitelist-form {
 .whitelist_items>li>button:hover{
   transform:scale(1.2)
 }
-.whitelist_items::-webkit-scrollbar{
-  width:8px
-}
 .overlayPageContent,.timeout_items,.timeout_items .radio{
   align-content:flex-start;
   width:100%
+}
+.whitelist_items::-webkit-scrollbar{
+  width:8px
 }
 .whitelist_items::-webkit-scrollbar-track{
   background:#E4E8F1
@@ -1845,6 +1869,15 @@ footer .stepper-dots>li.active{
   line-height:1;
   margin: 1.5em auto 0;
 }
+
+.slowTradeBanner{
+  bottom:0;
+  box-shadow: 0 -1px 4px 0 rgba(0,0,0,0.12);
+  cursor:pointer;
+  position: absolute;
+  width:100%;
+}
+
 .unlockSafe .safeLogo{
   width:110px;
   height:72px;

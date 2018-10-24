@@ -53,10 +53,10 @@ class Layout extends Component {
                     className={styles.button}
                     onClick={handleAddDapp(newDapp)}
                   >ADD</button>
-                  {errorMessage &&
-                    <p className={styles.textRed}>{errorMessage}</p>
-                  }
                 </div>
+                {errorMessage &&
+                  <p className={styles.textRed}>{errorMessage}</p>
+                }
               </form>
             </span>
             <ul className={styles.whitelist_items}>

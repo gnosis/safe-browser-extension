@@ -5,13 +5,15 @@ import Blockie from 'components/Blockie'
 import Page from 'components/Page'
 import WhitelistedDappState from './WhitelistedDappState/containers'
 import styles from 'assets/css/global.css'
+import slowTradeBanner from 'assets/images/slow-trade-banner.png'
 
 class Layout extends Component {
   render () {
     const {
       currentSafe,
       properties,
-      openEtherScan
+      openEtherScan,
+      openSlowTrade
     } = this.props
 
     return (
@@ -36,6 +38,11 @@ class Layout extends Component {
             </Link>
           </div>
         </div>
+        <img
+          src={slowTradeBanner}
+          className={styles.slowTradeBanner}
+          onClick={openSlowTrade}
+        />
       </Page>
     )
   }
