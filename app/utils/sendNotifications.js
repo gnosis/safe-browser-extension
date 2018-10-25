@@ -133,7 +133,8 @@ export const getNonce = async (tx) => {
     const estimationValue = isTokenTransfer(tx.data) ? '0' : tx.displayedValue.toString(10)
     const estimations = await getTransactionEstimations(tx.from, tx.to, estimationValue, tx.data, 0)
 
-    return estimations && (estimations.nonce + 1).toString()
+    const lastUsedNonce = estimations.lastUsedNonce ? estimations.lastUsedNonce + 1 : 0
+    return estimations && lastUsedNonce.toString()
   }
   return null
 }
