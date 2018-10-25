@@ -52,10 +52,11 @@ export const setUpTransaction = (tx, estimations, displayedValue, decimals) => {
     return
   }
 
-  tx.txGas = new BigNumber(estimations.safeTxGas).toString(10)
   tx.dataGas = new BigNumber(estimations.dataGas).toString(10)
   tx.gasPrice = new BigNumber(estimations.gasPrice).toString(10)
   tx.gasToken = estimations.gasToken
+  tx.operationalGas = new BigNumber(estimations.operationalGas).toString(10)
+  tx.txGas = new BigNumber(estimations.safeTxGas).toString(10)
 }
 
 export const calculateGasEstimation = async (
@@ -68,10 +69,11 @@ export const calculateGasEstimation = async (
     estimations = await getTransactionEstimations(tx.from, tx.to, estimationValue, tx.data, 0)
   } else {
     estimations = {
-      safeTxGas: tx.txGas,
       dataGas: tx.dataGas,
       gasPrice: tx.gasPrice,
-      gasToken: tx.gasToken
+      gasToken: tx.gasToken,
+      operationalGas: tx.operationalGas,
+      safeTxGas: tx.txGas
     }
   }
   return estimations
