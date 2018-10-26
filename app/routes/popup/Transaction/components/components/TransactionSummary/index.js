@@ -10,10 +10,10 @@ class TransactionSummary extends Component {
   constructor (props) {
     super(props)
     const { transaction } = this.props
-
     this.state = {
       ethBalance: undefined
     }
+
     this.isTokenTransfer = isTokenTransfer(transaction.data)
   }
 
@@ -25,19 +25,36 @@ class TransactionSummary extends Component {
     this.setState({ ethBalance })
   }
 
+  calculateTransactionFee = (estimations) => {
+    const totalGas = estimations &&
+      new BigNumber(estimations.dataGas)
+        .plus(new BigNumber(estimations.safeTxGas))
+        .plus(new BigNumber(estimations.operationalGas))
+    const transactionFee = totalGas && toGWei(totalGas.times(new BigNumber(estimations.gasPrice)))
+
+    return transactionFee
+  }
+
+  calculateTotalCost = (displayedValue) => {
+    const totalCost = (displayedValue && this.transactionFee)
+      ? displayedValue.plus(this.transactionFee)
+      : null
+
+    return totalCost
+  }
+
   render () {
+    const { ethBalance } = this.state
     const {
       estimations,
       displayedValue
     } = this.props
-    const { ethBalance } = this.state
 
-    const totalGas = estimations && new BigNumber(estimations.dataGas).plus(new BigNumber(estimations.safeTxGas))
-    const transactionFee = totalGas && toGWei(totalGas.times(new BigNumber(estimations.gasPrice)))
-    const totalCost = (displayedValue && transactionFee) ? displayedValue.plus(transactionFee) : null
+    this.transactionFee = this.calculateTransactionFee(estimations)
+    this.totalCost = this.calculateTotalCost(displayedValue)
 
-    const txFeeString = transactionFee ? -transactionFee.toString(10) : '-'
-    const txCostString = totalCost ? -totalCost.toString(10) : '-'
+    const txFeeString = this.transactionFee ? -this.transactionFee.toString(10) : '-'
+    const txCostString = this.totalCost ? -this.totalCost.toString(10) : '-'
     const ethBalanceString = ethBalance ? ethBalance.toString(10) : '-'
 
     return (

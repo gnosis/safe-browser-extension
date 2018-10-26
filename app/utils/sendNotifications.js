@@ -33,6 +33,7 @@ export const sendTransaction = async (
     operation: tx.operation,
     txGas: tx.txGas,
     dataGas: tx.dataGas,
+    operationalGas: tx.operationalGas,
     gasPrice: tx.gasPrice,
     gasToken: tx.gasToken,
     nonce: tx.nonce,
