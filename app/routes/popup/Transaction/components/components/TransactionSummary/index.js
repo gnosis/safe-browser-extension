@@ -9,18 +9,12 @@ import styles from 'assets/css/global.css'
 class TransactionSummary extends Component {
   constructor (props) {
     super(props)
-    const {
-      transaction,
-      estimations,
-      displayedValue
-    } = this.props
+    const { transaction } = this.props
     this.state = {
       ethBalance: undefined
     }
 
     this.isTokenTransfer = isTokenTransfer(transaction.data)
-    this.transactionFee = this.calculateTransactionFee(estimations)
-    this.totalCost = this.calculateTotalCost(displayedValue)
   }
 
   componentDidMount = async () => {
@@ -51,6 +45,13 @@ class TransactionSummary extends Component {
 
   render () {
     const { ethBalance } = this.state
+    const {
+      estimations,
+      displayedValue
+    } = this.props
+
+    this.transactionFee = this.calculateTransactionFee(estimations)
+    this.totalCost = this.calculateTotalCost(displayedValue)
 
     const txFeeString = this.transactionFee ? -this.transactionFee.toString(10) : '-'
     const txCostString = this.totalCost ? -this.totalCost.toString(10) : '-'
