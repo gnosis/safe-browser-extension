@@ -14,12 +14,17 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
 }, {})
 envKeys['process.env.NODE_ENV'] = `"${process.env.NODE_ENV}"` || 'development'
 
-const faviconBuild = 'favicon_rinkeby.png'
-const faviconDev = 'favicon_rinkeby_red.png'
 const getFavicon = () => {
-  return (process.env.NODE_ENV === 'production')
-    ? faviconBuild
-    : faviconDev
+  switch (process.env.NODE_ENV) {
+    case 'development':
+      return 'favicon_rinkeby_red.png'
+    case 'staging':
+      return 'favicon_rinkeby_orange.png'
+    case 'pre-production':
+      return 'favicon_rinkeby_green.png'
+    case 'production':
+      return 'favicon_rinkeby_blue.png'
+  }
 }
 
 const postcssPlugins = [
@@ -138,7 +143,7 @@ module.exports = {
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, './app/assets/images/', getFavicon()),
-        to: path.resolve(__dirname, './build/assets/images/' + faviconBuild),
+        to: path.resolve(__dirname, './build/assets/images/favicon_rinkeby.png'),
         force: true
       }
     ])

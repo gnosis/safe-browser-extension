@@ -23,6 +23,11 @@ const configuration = () => {
 
 const getConfig = ensureOnce(configuration)
 
+const checkProdEnviroment = () => {
+  const env = process.env.NODE_ENV
+  return (env === 'pre-production' || env === 'production')
+}
+
 export const getVersion = () => {
   return manifest.version
 }
@@ -65,7 +70,7 @@ export const getIosAppUrl = () => {
 }
 
 export const getPushNotificationServiceUrl = () => {
-  if (process.env.NODE_ENV === 'production' && process.env.PUSH_NOTIFICATION_SERVICE_URL) {
+  if (checkProdEnviroment() && process.env.PUSH_NOTIFICATION_SERVICE_URL) {
     return process.env.PUSH_NOTIFICATION_SERVICE_URL
   }
 
@@ -74,7 +79,7 @@ export const getPushNotificationServiceUrl = () => {
 }
 
 export const getTransactionRelayServiceUrl = () => {
-  if (process.env.NODE_ENV === 'production' && process.env.TRANSACTION_RELAY_SERVICE_URL) {
+  if (checkProdEnviroment() && process.env.TRANSACTION_RELAY_SERVICE_URL) {
     return process.env.TRANSACTION_RELAY_SERVICE_URL
   }
 
@@ -88,7 +93,7 @@ export const getTokenListUrl = () => {
 }
 
 export const getFirebaseAuthDomain = () => {
-  if (process.env.NODE_ENV === 'production' && process.env.FIREBASE_AUTH_DOMAIN) {
+  if (checkProdEnviroment() && process.env.FIREBASE_AUTH_DOMAIN) {
     return process.env.FIREBASE_AUTH_DOMAIN
   }
 
@@ -97,7 +102,7 @@ export const getFirebaseAuthDomain = () => {
 }
 
 export const getFirebaseDatabaseUrl = () => {
-  if (process.env.NODE_ENV === 'production' && process.env.FIREBASE_DATABASE_URL) {
+  if (checkProdEnviroment() && process.env.FIREBASE_DATABASE_URL) {
     return process.env.FIREBASE_DATABASE_URL
   }
 
@@ -106,7 +111,7 @@ export const getFirebaseDatabaseUrl = () => {
 }
 
 export const getFirebaseProjectId = () => {
-  if (process.env.NODE_ENV === 'production' && process.env.FIREBASE_PROJECT_ID) {
+  if (checkProdEnviroment() && process.env.FIREBASE_PROJECT_ID) {
     return process.env.FIREBASE_PROJECT_ID
   }
 
@@ -115,7 +120,7 @@ export const getFirebaseProjectId = () => {
 }
 
 export const getFirebaseStorageBucket = () => {
-  if (process.env.NODE_ENV === 'production' && process.env.FIREBASE_STORAGE_BUCKET) {
+  if (checkProdEnviroment() && process.env.FIREBASE_STORAGE_BUCKET) {
     return process.env.FIREBASE_STORAGE_BUCKET
   }
 
@@ -124,7 +129,7 @@ export const getFirebaseStorageBucket = () => {
 }
 
 export const getFirebaseMessagingSenderId = () => {
-  if (process.env.NODE_ENV === 'production' && process.env.FIREBASE_MESSAGING_SENDER_ID) {
+  if (checkProdEnviroment() && process.env.FIREBASE_MESSAGING_SENDER_ID) {
     return process.env.FIREBASE_MESSAGING_SENDER_ID
   }
 

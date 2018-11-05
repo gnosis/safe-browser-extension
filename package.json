@@ -4,9 +4,13 @@
   "main": "app/index.js",
   "scripts": {
     "build:dev": "cross-env NODE_ENV=development ./node_modules/.bin/webpack --progress",
+    "build:staging": "cross-env NODE_ENV=staging ./node_modules/.bin/webpack --progress",
+    "build:pre-prod": "cross-env NODE_ENV=pre-production ./node_modules/.bin/webpack --progress",
     "build:prod": "cross-env NODE_ENV=production ./node_modules/.bin/webpack --progress",
     "build": "npm run build:dev",
     "watch:dev": "cross-env NODE_ENV=development ./node_modules/.bin/webpack --progress --watch",
+    "watch:staging": "cross-env NODE_ENV=staging ./node_modules/.bin/webpack --progress --watch",
+    "watch:pre-prod": "cross-env NODE_ENV=pre-production ./node_modules/.bin/webpack --progress --watch",
     "watch:prod": "cross-env NODE_ENV=production ./node_modules/.bin/webpack --progress --watch",
     "watch": "npm run watch:dev",
     "clean": "rm -rf build",
