@@ -40,15 +40,15 @@ class SafeSubprovider {
   }
 
   handleRequest = (payload, next, end) => {
-    const accounts = [this.currentSafe]
+    const account = this.currentSafe
 
     switch (payload.method) {
       case 'eth_accounts':
-        end(null, accounts)
+        end(null, [account])
         return
 
       case 'eth_coinbase':
-        end(null, accounts)
+        end(null, account)
         return
 
       case 'eth_sendTransaction':
