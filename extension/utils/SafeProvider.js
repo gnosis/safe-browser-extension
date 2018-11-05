@@ -16,6 +16,8 @@ const SafeProvider = ({
 }) => {
   var engine = new ProviderEngine()
 
+  engine.setMaxListeners(0)
+
   // isMetamask is something temporary. Must be deleted.
   engine.isMetaMask = !0
 

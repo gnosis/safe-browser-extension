@@ -28,16 +28,28 @@ export const getVersion = () => {
 }
 
 export const getNetworkName = () => {
+  if (process.env.NODE_ENV === 'production' && process.env.NETWORK_NAME) {
+    return process.env.NETWORK_NAME
+  }
+
   const config = getConfig()
   return config[NETWORK_NAME]
 }
 
 export const getNetworkVersion = () => {
+  if (process.env.NODE_ENV === 'production' && process.env.NETWORK_VERSION) {
+    return process.env.NETWORK_VERSION
+  }
+
   const config = getConfig()
   return config[NETWORK_VERSION]
 }
 
 export const getNetworkUrl = () => {
+  if (process.env.NODE_ENV === 'production' && process.env.NETWORK_URL) {
+    return process.env.NETWORK_URL
+  }
+
   const config = getConfig()
   return config[NETWORK_URL]
 }
