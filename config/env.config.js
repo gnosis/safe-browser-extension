@@ -17,6 +17,8 @@ import {
   FIREBASE_MESSAGING_SENDER_ID,
   FAVICON
 } from './names'
+import dotenv from 'dotenv'
+dotenv.config({})
 
 const tokenListUrl = 'https://gist.githubusercontent.com/rmeissner/98911fcf74b0ea9731e2dae2441c97a4/raw/'
 const testFirebaseAuthDomain = 'test-safe-notifications.firebaseapp.com'
@@ -30,7 +32,7 @@ const stagingTransactionRelayServiceUrl = 'https://safe-relay.staging.gnosisdev.
 const envConfig = {
   [PRODUCTION]: {
     [ANDROID_APP_URL]: 'https://play.google.com/apps/testing/pm.gnosis.heimdall.dev',
-    [IOS_APP_URL]: 'https://itunes.apple.com/<ios-app-link-here>',
+    [IOS_APP_URL]: 'https://testflight.apple.com/join/fMCYpOfT',
     [PUSH_NOTIFICATION_SERVICE_URL]: process.env.PUSH_NOTIFICATION_SERVICE_URL,
     [TRANSACTION_RELAY_SERVICE_URL]: {
       [MAINNET]: process.env.TRANSACTION_RELAY_SERVICE_MAINNET_URL,
@@ -49,7 +51,7 @@ const envConfig = {
   },
   [PRE_PRODUCTION]: {
     [ANDROID_APP_URL]: 'https://play.google.com/apps/testing/pm.gnosis.heimdall.dev',
-    [IOS_APP_URL]: 'https://itunes.apple.com/<ios-app-link-here>',
+    [IOS_APP_URL]: 'https://testflight.apple.com/join/fMCYpOfT',
     [PUSH_NOTIFICATION_SERVICE_URL]: process.env.PUSH_NOTIFICATION_SERVICE_URL,
     [TRANSACTION_RELAY_SERVICE_URL]: {
       [MAINNET]: process.env.TRANSACTION_RELAY_SERVICE_MAINNET_URL,
@@ -65,7 +67,7 @@ const envConfig = {
   },
   [STAGING]: {
     [ANDROID_APP_URL]: 'https://play.google.com/apps/testing/pm.gnosis.heimdall.dev',
-    [IOS_APP_URL]: 'https://itunes.apple.com/<ios-app-link-here>',
+    [IOS_APP_URL]: 'https://testflight.apple.com/join/fMCYpOfT',
     [PUSH_NOTIFICATION_SERVICE_URL]: stagingPushNotificationServiceUrl,
     [TRANSACTION_RELAY_SERVICE_URL]: stagingTransactionRelayServiceUrl,
     [TOKEN_LIST_URL]: tokenListUrl,
@@ -78,7 +80,7 @@ const envConfig = {
   },
   [DEVELOPMENT]: {
     [ANDROID_APP_URL]: 'https://play.google.com/apps/testing/pm.gnosis.heimdall.dev',
-    [IOS_APP_URL]: 'https://itunes.apple.com/<ios-app-link-here>',
+    [IOS_APP_URL]: 'https://testflight.apple.com/join/fMCYpOfT',
     [PUSH_NOTIFICATION_SERVICE_URL]: stagingPushNotificationServiceUrl,
     [TRANSACTION_RELAY_SERVICE_URL]: stagingTransactionRelayServiceUrl,
     [TOKEN_LIST_URL]: tokenListUrl,
