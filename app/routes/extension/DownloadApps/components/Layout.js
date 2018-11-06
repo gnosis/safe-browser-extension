@@ -6,7 +6,7 @@ import AppQr from './AppQr/AppQr'
 import PairingProcess from './PairingProcess/containers/PairingProcess'
 import styles from 'assets/css/global.css'
 import playStore from 'assets/images/playstore.svg'
-// import appStore from 'assets/images/appstore.svg'
+import appStore from 'assets/images/appstore.svg'
 import {
   getAndroidAppUrl,
   getIosAppUrl
@@ -25,10 +25,10 @@ class Layout extends Component {
   render () {
     const {
       toggleQrAndroid,
-      // toggleQrIos,
+      toggleQrIos,
       toggleQrPairing,
       showQrAndroid,
-      // showQrIos,
+      showQrIos,
       showQrPairing,
       password
     } = this.props
@@ -40,12 +40,12 @@ class Layout extends Component {
           simpleHeader
           noBorder
         >
-          <div className={cx(styles.content, (showQrAndroid || /* showQrIos || */ showQrPairing) && styles.blur)}>
+          <div className={cx(styles.content, (showQrAndroid || showQrIos || showQrPairing) && styles.blur)}>
             <h1>Extension setup succesfully!<br /><strong>Connect with the mobile app.</strong></h1>
             <ol>
               <li>
                 <p>Download &amp; install the mobile app</p>
-                {/* <button onClick={toggleQrIos} data-os='ios'>iPhone &amp; iPad</button> */}
+                <button onClick={toggleQrIos} data-os='ios'>iPhone &amp; iPad</button>
                 <button onClick={toggleQrAndroid} data-os='android'>Android</button>
               </li>
               <li>
@@ -69,14 +69,14 @@ class Layout extends Component {
             storeImage={playStore}
           />
         }
-        {/* showQrIos &&
+        {showQrIos &&
           <AppQr
             toggleQr={toggleQrIos}
             os='IOS'
             link={this.iosAppUrl}
             storeImage={appStore}
           />
-        */}
+        }
         {showQrPairing &&
           <PairingProcess
             toggleQr={toggleQrPairing}
