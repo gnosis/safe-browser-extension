@@ -10,7 +10,7 @@ export const networkConfig = {
   [MAINNET]: {
     [NETWORK_NAME]: 'Mainnet',
     [NETWORK_VERSION]: 1,
-    [NETWORK_URL]: 'https://infura.io/gnosis'
+    [NETWORK_URL]: 'https://mainnet.infura.io/gnosis'
   },
   [RINKEBY]: {
     [NETWORK_NAME]: 'Rinkeby',
