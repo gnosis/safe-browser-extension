@@ -1,13 +1,19 @@
+export const MAINNET = 'mainnet'
+export const RINKEBY = 'rinkeby'
+
+export const PRODUCTION = 'production'
+export const PRE_PRODUCTION = 'pre-production'
+export const STAGING = 'staging'
+export const DEVELOPMENT = 'development'
+
 export const NETWORK_NAME = 'NETWORK_NAME'
 export const NETWORK_VERSION = 'NETWORK_VERSION'
 export const NETWORK_URL = 'NETWORK_URL'
 
-export const ANDROID_APP_URL = 'ANDROID_APP_URL'
-export const IOS_APP_URL = 'IOS_APP_URL'
-
 export const PUSH_NOTIFICATION_SERVICE_URL = 'PUSH_NOTIFICATION_SERVICE_URL'
 export const TRANSACTION_RELAY_SERVICE_URL = 'TRANSACTION_RELAY_SERVICE_URL'
-
+export const ANDROID_APP_URL = 'ANDROID_APP_URL'
+export const IOS_APP_URL = 'IOS_APP_URL'
 export const TOKEN_LIST_URL = 'TOKEN_LIST_URL'
 
 export const FIREBASE_AUTH_DOMAIN = 'FIREBASE_AUTH_DOMAIN'
@@ -15,3 +21,5 @@ export const FIREBASE_DATABASE_URL = 'FIREBASE_DATABASE_URL'
 export const FIREBASE_PROJECT_ID = 'FIREBASE_PROJECT_ID'
 export const FIREBASE_STORAGE_BUCKET = 'FIREBASE_STORAGE_BUCKET'
 export const FIREBASE_MESSAGING_SENDER_ID = 'FIREBASE_MESSAGING_SENDER_ID'
+
+export const FAVICON = 'FAVICON'

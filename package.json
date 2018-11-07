@@ -3,11 +3,17 @@
   "version": "0.5.2",
   "main": "app/index.js",
   "scripts": {
-    "build:dev": "cross-env NODE_ENV=development ./node_modules/.bin/webpack --progress",
-    "build:prod": "cross-env NODE_ENV=production ./node_modules/.bin/webpack --progress",
+    "build:dev": "cross-env NODE_ENV=development webpack --progress",
+    "build:staging": "cross-env NODE_ENV=staging webpack --progress",
+    "build:preprod": "cross-env NODE_ENV=pre-production webpack --progress",
+    "build:prod": "cross-env NODE_ENV=production webpack --progress",
+    "build:prod-mainnet": "cross-env NODE_ENV=production NETWORK=mainnet webpack --progress",
     "build": "npm run build:dev",
-    "watch:dev": "cross-env NODE_ENV=development ./node_modules/.bin/webpack --progress --watch",
-    "watch:prod": "cross-env NODE_ENV=production ./node_modules/.bin/webpack --progress --watch",
+    "watch:dev": "cross-env NODE_ENV=development webpack --progress --watch",
+    "watch:staging": "cross-env NODE_ENV=staging webpack --progress --watch",
+    "watch:preprod": "cross-env NODE_ENV=pre-production webpack --progress --watch",
+    "watch:prod": "cross-env NODE_ENV=production webpack --progress --watch",
+    "watch:prod-mainnet": "cross-env NODE_ENV=production NETWORK=mainnet webpack --progress --watch",
     "watch": "npm run watch:dev",
     "clean": "rm -rf build",
     "test": "jest",
@@ -55,6 +61,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
+    "babel-register": "^6.26.0",
     "classnames": "^2.2.5",
     "copy-webpack-plugin": "^4.4.1",
     "cross-env": "^5.2.0",
@@ -82,7 +89,8 @@
     "verbose": true,
     "testMatch": [
       "<rootDir>/app/**/__tests__/**/*.js?(x)",
-      "<rootDir>/app/**/?(*.)(spec|test).js?(x)"
+      "<rootDir>/app/**/?(*.)(spec|test).js?(x)",
+      "<rootDir>/config/**/?(*.)(spec|test).js?(x)"
     ],
     "transform": {
       "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",

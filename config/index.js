@@ -1,5 +1,11 @@
-import { ensureOnce } from 'utils/singleton'
+import { ensureOnce } from '../app/utils/singleton'
 import {
+  MAINNET,
+  RINKEBY,
+  PRODUCTION,
+  PRE_PRODUCTION,
+  STAGING,
+  DEVELOPMENT,
   NETWORK_NAME,
   NETWORK_VERSION,
   NETWORK_URL,
@@ -12,122 +18,129 @@ import {
   FIREBASE_DATABASE_URL,
   FIREBASE_PROJECT_ID,
   FIREBASE_STORAGE_BUCKET,
-  FIREBASE_MESSAGING_SENDER_ID
+  FIREBASE_MESSAGING_SENDER_ID,
+  FAVICON
 } from './names'
-import mainConfig from './main'
+import envConfig from './env.config'
+import networkConfig from './network.config'
 import manifest from '../extension/manifest.json'
 
-const configuration = () => {
-  return mainConfig
+const envConfiguration = () => {
+  return envConfig
 }
 
-const getConfig = ensureOnce(configuration)
+const networkConfiguration = () => {
+  return networkConfig
+}
+
+const getEnvConfig = ensureOnce(envConfiguration)
+
+const getNetworkConfig = ensureOnce(networkConfiguration)
+
+export const getEnviroment = () => {
+  const env = process.env.NODE_ENV
+  return (env === PRODUCTION || env === PRE_PRODUCTION || env === STAGING || env === DEVELOPMENT)
+    ? env
+    : STAGING
+}
+
+export const getNetwork = () => {
+  const env = process.env.NETWORK
+  return (env === MAINNET || env === RINKEBY)
+    ? env
+    : RINKEBY
+}
 
 export const getVersion = () => {
   return manifest.version
 }
 
 export const getNetworkName = () => {
-  if (process.env.NODE_ENV === 'production' && process.env.NETWORK_NAME) {
-    return process.env.NETWORK_NAME
-  }
-
-  const config = getConfig()
-  return config[NETWORK_NAME]
+  const config = getNetworkConfig()
+  const network = getNetwork()
+  return config[network][NETWORK_NAME]
 }
 
 export const getNetworkVersion = () => {
-  if (process.env.NODE_ENV === 'production' && process.env.NETWORK_VERSION) {
-    return process.env.NETWORK_VERSION
-  }
-
-  const config = getConfig()
-  return config[NETWORK_VERSION]
+  const config = getNetworkConfig()
+  const network = getNetwork()
+  return config[network][NETWORK_VERSION]
 }
 
 export const getNetworkUrl = () => {
-  if (process.env.NODE_ENV === 'production' && process.env.NETWORK_URL) {
-    return process.env.NETWORK_URL
-  }
-
-  const config = getConfig()
-  return config[NETWORK_URL]
+  const config = getNetworkConfig()
+  const network = getNetwork()
+  return config[network][NETWORK_URL]
 }
 
 export const getAndroidAppUrl = () => {
-  const config = getConfig()
-  return config[ANDROID_APP_URL]
+  const config = getEnvConfig()
+  const enviroment = getEnviroment()
+  return config[enviroment][ANDROID_APP_URL]
 }
 
 export const getIosAppUrl = () => {
-  const config = getConfig()
-  return config[IOS_APP_URL]
+  const config = getEnvConfig()
+  const enviroment = getEnviroment()
+  return config[enviroment][IOS_APP_URL]
 }
 
 export const getPushNotificationServiceUrl = () => {
-  if (process.env.NODE_ENV === 'production' && process.env.PUSH_NOTIFICATION_SERVICE_URL) {
-    return process.env.PUSH_NOTIFICATION_SERVICE_URL
-  }
-
-  const config = getConfig()
-  return config[PUSH_NOTIFICATION_SERVICE_URL]
+  const config = getEnvConfig()
+  const enviroment = getEnviroment()
+  return config[enviroment][PUSH_NOTIFICATION_SERVICE_URL]
 }
 
 export const getTransactionRelayServiceUrl = () => {
-  if (process.env.NODE_ENV === 'production' && process.env.TRANSACTION_RELAY_SERVICE_URL) {
-    return process.env.TRANSACTION_RELAY_SERVICE_URL
-  }
-
-  const config = getConfig()
-  return config[TRANSACTION_RELAY_SERVICE_URL]
+  const config = getEnvConfig()
+  const enviroment = getEnviroment()
+  const network = getNetwork()
+  return (enviroment === PRODUCTION || enviroment === PRE_PRODUCTION)
+    ? config[enviroment][TRANSACTION_RELAY_SERVICE_URL][network]
+    : config[enviroment][TRANSACTION_RELAY_SERVICE_URL]
 }
 
 export const getTokenListUrl = () => {
-  const config = getConfig()
-  return config[TOKEN_LIST_URL]
+  const config = getEnvConfig()
+  const enviroment = getEnviroment()
+  return config[enviroment][TOKEN_LIST_URL]
 }
 
 export const getFirebaseAuthDomain = () => {
-  if (process.env.NODE_ENV === 'production' && process.env.FIREBASE_AUTH_DOMAIN) {
-    return process.env.FIREBASE_AUTH_DOMAIN
-  }
-
-  const config = getConfig()
-  return config[FIREBASE_AUTH_DOMAIN]
+  const config = getEnvConfig()
+  const enviroment = getEnviroment()
+  return config[enviroment][FIREBASE_AUTH_DOMAIN]
 }
 
 export const getFirebaseDatabaseUrl = () => {
-  if (process.env.NODE_ENV === 'production' && process.env.FIREBASE_DATABASE_URL) {
-    return process.env.FIREBASE_DATABASE_URL
-  }
-
-  const config = getConfig()
-  return config[FIREBASE_DATABASE_URL]
+  const config = getEnvConfig()
+  const enviroment = getEnviroment()
+  return config[enviroment][FIREBASE_DATABASE_URL]
 }
 
 export const getFirebaseProjectId = () => {
-  if (process.env.NODE_ENV === 'production' && process.env.FIREBASE_PROJECT_ID) {
-    return process.env.FIREBASE_PROJECT_ID
-  }
-
-  const config = getConfig()
-  return config[FIREBASE_PROJECT_ID]
+  const config = getEnvConfig()
+  const enviroment = getEnviroment()
+  return config[enviroment][FIREBASE_PROJECT_ID]
 }
 
 export const getFirebaseStorageBucket = () => {
-  if (process.env.NODE_ENV === 'production' && process.env.FIREBASE_STORAGE_BUCKET) {
-    return process.env.FIREBASE_STORAGE_BUCKET
-  }
-
-  const config = getConfig()
-  return config[FIREBASE_STORAGE_BUCKET]
+  const config = getEnvConfig()
+  const enviroment = getEnviroment()
+  return config[enviroment][FIREBASE_STORAGE_BUCKET]
 }
 
 export const getFirebaseMessagingSenderId = () => {
-  if (process.env.NODE_ENV === 'production' && process.env.FIREBASE_MESSAGING_SENDER_ID) {
-    return process.env.FIREBASE_MESSAGING_SENDER_ID
-  }
+  const config = getEnvConfig()
+  const enviroment = getEnviroment()
+  return config[enviroment][FIREBASE_MESSAGING_SENDER_ID]
+}
 
-  const config = getConfig()
-  return config[FIREBASE_MESSAGING_SENDER_ID]
+export const getFavicon = () => {
+  const config = getEnvConfig()
+  const enviroment = getEnviroment()
+  const network = getNetwork()
+  return (enviroment === PRODUCTION)
+    ? config[enviroment][FAVICON][network]
+    : config[enviroment][FAVICON]
 }
