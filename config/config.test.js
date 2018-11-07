@@ -122,7 +122,7 @@ const testGetFavicon = (value) => {
 }
 
 describe('Configuration', () => {
-  describe('Configuration Development', () => {
+  describe('Configuration Development Rinkeby', () => {
     beforeAll(() => {
       process.env.NODE_ENV = DEVELOPMENT
       process.env.NETWORK = RINKEBY
@@ -185,7 +185,7 @@ describe('Configuration', () => {
     })
   })
 
-  describe('Configuration Staging', () => {
+  describe('Configuration Staging Rinkeby', () => {
     beforeAll(() => {
       process.env.NODE_ENV = STAGING
       process.env.NETWORK = RINKEBY
@@ -248,7 +248,7 @@ describe('Configuration', () => {
     })
   })
 
-  describe('Configuration Pre-production', () => {
+  describe('Configuration Pre-production Rinkeby', () => {
     beforeAll(() => {
       process.env.NODE_ENV = PRE_PRODUCTION
       process.env.NETWORK = RINKEBY
@@ -308,6 +308,69 @@ describe('Configuration', () => {
 
     test('getFavicon', () => {
       testGetFavicon('favicon_rinkeby_green.png')
+    })
+  })
+
+  describe('Configuration Pre-production Mainnet', () => {
+    beforeAll(() => {
+      process.env.NODE_ENV = PRE_PRODUCTION
+      process.env.NETWORK = MAINNET
+    })
+
+    test('getNetworkName', () => {
+      testGetNetworkName('Mainnet')
+    })
+
+    test('getNetworkVersion', () => {
+      testGetNetworkVersion(1)
+    })
+
+    test('getNetworkUrl', () => {
+      testGetNetworkUrl('https://mainnet.infura.io/gnosis')
+    })
+
+    test('getAndroidAppUrl', () => {
+      testGetAndroidAppUrl('https://play.google.com/apps/testing/pm.gnosis.heimdall.dev')
+    })
+
+    test('getIosAppUrl', () => {
+      testGetIosAppUrl('https://testflight.apple.com/join/fMCYpOfT')
+    })
+
+    test('getPushNotificationServiceUrl', () => {
+      testGetPushNotificationServiceUrl(process.env.PUSH_NOTIFICATION_SERVICE_URL)
+    })
+
+    test('getTransactionRelayServiceUrl', () => {
+      testGetTransactionRelayServiceUrl(process.env.TRANSACTION_RELAY_SERVICE_MAINNET_URL)
+    })
+
+    test('getTokenListUrl', () => {
+      testGetTokenListUrl('https://raw.githubusercontent.com/rmeissner/crypto_resources/master/tokens/mainnet/tokens.json')
+    })
+
+    test('getFirebaseAuthDomain', () => {
+      testGetFirebaseAuthDomain(process.env.FIREBASE_AUTH_DOMAIN)
+    })
+
+    test('getFirebaseDatabaseUrl', () => {
+      testGetFirebaseDatabaseUrl(process.env.FIREBASE_DATABASE_URL)
+    })
+
+    test('getFirebaseProjectId', () => {
+      testGetFirebaseProjectId(process.env.FIREBASE_PROJECT_ID)
+    })
+
+    test('getFirebaseStorageBucket', () => {
+      testGetFirebaseStorageBucket(process.env.FIREBASE_STORAGE_BUCKET)
+    })
+
+    test('getFirebaseMessagingSenderId ', () => {
+      testGetFirebaseMessagingSenderId(process.env.FIREBASE_MESSAGING_SENDER_ID)
+    })
+
+    test('getFavicon', () => {
+      testGetFavicon('favicon_mainnet_green.png')
     })
   })
 
@@ -389,7 +452,7 @@ describe('Configuration', () => {
     })
 
     test('getNetworkUrl', () => {
-      testGetNetworkUrl('https://infura.io/gnosis')
+      testGetNetworkUrl('https://mainnet.infura.io/gnosis')
     })
 
     test('getAndroidAppUrl', () => {
@@ -409,7 +472,7 @@ describe('Configuration', () => {
     })
 
     test('getTokenListUrl', () => {
-      testGetTokenListUrl('https://gist.githubusercontent.com/rmeissner/98911fcf74b0ea9731e2dae2441c97a4/raw/')
+      testGetTokenListUrl('https://raw.githubusercontent.com/rmeissner/crypto_resources/master/tokens/mainnet/tokens.json')
     })
 
     test('getFirebaseAuthDomain', () => {
@@ -433,7 +496,7 @@ describe('Configuration', () => {
     })
 
     test('getFavicon', () => {
-      testGetFavicon('favicon.png')
+      testGetFavicon('favicon_mainnet.png')
     })
   })
 })
