@@ -20,7 +20,8 @@ import {
 import dotenv from 'dotenv'
 dotenv.config({})
 
-const tokenListUrl = 'https://gist.githubusercontent.com/rmeissner/98911fcf74b0ea9731e2dae2441c97a4/raw/'
+const rinkebyTokenListUrl = 'https://gist.githubusercontent.com/rmeissner/98911fcf74b0ea9731e2dae2441c97a4/raw/'
+const mainnetTokenListUrl = 'https://raw.githubusercontent.com/rmeissner/crypto_resources/master/tokens/mainnet/tokens.json'
 const testFirebaseAuthDomain = 'test-safe-notifications.firebaseapp.com'
 const testFirebaseDatabaseUrl = 'https://test-safe-notifications.firebaseio.com'
 const testFirebaseProjectId = 'test-safe-notifications'
@@ -38,14 +39,17 @@ const envConfig = {
       [MAINNET]: process.env.TRANSACTION_RELAY_SERVICE_MAINNET_URL,
       [RINKEBY]: process.env.TRANSACTION_RELAY_SERVICE_RINKEBY_URL
     },
-    [TOKEN_LIST_URL]: tokenListUrl,
+    [TOKEN_LIST_URL]: {
+      [MAINNET]: mainnetTokenListUrl,
+      [RINKEBY]: rinkebyTokenListUrl
+    },
     [FIREBASE_AUTH_DOMAIN]: process.env.FIREBASE_AUTH_DOMAIN,
     [FIREBASE_DATABASE_URL]: process.env.FIREBASE_DATABASE_URL,
     [FIREBASE_PROJECT_ID]: process.env.FIREBASE_PROJECT_ID,
     [FIREBASE_STORAGE_BUCKET]: process.env.FIREBASE_STORAGE_BUCKET,
     [FIREBASE_MESSAGING_SENDER_ID]: process.env.FIREBASE_MESSAGING_SENDER_ID,
     [FAVICON]: {
-      [MAINNET]: 'favicon.png',
+      [MAINNET]: 'favicon_mainnet.png',
       [RINKEBY]: 'favicon_rinkeby_blue.png'
     }
   },
@@ -57,20 +61,26 @@ const envConfig = {
       [MAINNET]: process.env.TRANSACTION_RELAY_SERVICE_MAINNET_URL,
       [RINKEBY]: process.env.TRANSACTION_RELAY_SERVICE_RINKEBY_URL
     },
-    [TOKEN_LIST_URL]: tokenListUrl,
+    [TOKEN_LIST_URL]: {
+      [MAINNET]: mainnetTokenListUrl,
+      [RINKEBY]: rinkebyTokenListUrl
+    },
     [FIREBASE_AUTH_DOMAIN]: process.env.FIREBASE_AUTH_DOMAIN,
     [FIREBASE_DATABASE_URL]: process.env.FIREBASE_DATABASE_URL,
     [FIREBASE_PROJECT_ID]: process.env.FIREBASE_PROJECT_ID,
     [FIREBASE_STORAGE_BUCKET]: process.env.FIREBASE_STORAGE_BUCKET,
     [FIREBASE_MESSAGING_SENDER_ID]: process.env.FIREBASE_MESSAGING_SENDER_ID,
-    [FAVICON]: 'favicon_rinkeby_green.png'
+    [FAVICON]: {
+      [MAINNET]: 'favicon_mainnet_green.png',
+      [RINKEBY]: 'favicon_rinkeby_green.png'
+    }
   },
   [STAGING]: {
     [ANDROID_APP_URL]: 'https://play.google.com/apps/testing/pm.gnosis.heimdall.dev',
     [IOS_APP_URL]: 'https://testflight.apple.com/join/fMCYpOfT',
     [PUSH_NOTIFICATION_SERVICE_URL]: stagingPushNotificationServiceUrl,
     [TRANSACTION_RELAY_SERVICE_URL]: stagingTransactionRelayServiceUrl,
-    [TOKEN_LIST_URL]: tokenListUrl,
+    [TOKEN_LIST_URL]: rinkebyTokenListUrl,
     [FIREBASE_AUTH_DOMAIN]: testFirebaseAuthDomain,
     [FIREBASE_DATABASE_URL]: testFirebaseDatabaseUrl,
     [FIREBASE_PROJECT_ID]: testFirebaseProjectId,
@@ -83,7 +93,7 @@ const envConfig = {
     [IOS_APP_URL]: 'https://testflight.apple.com/join/fMCYpOfT',
     [PUSH_NOTIFICATION_SERVICE_URL]: stagingPushNotificationServiceUrl,
     [TRANSACTION_RELAY_SERVICE_URL]: stagingTransactionRelayServiceUrl,
-    [TOKEN_LIST_URL]: tokenListUrl,
+    [TOKEN_LIST_URL]: rinkebyTokenListUrl,
     [FIREBASE_AUTH_DOMAIN]: testFirebaseAuthDomain,
     [FIREBASE_DATABASE_URL]: testFirebaseDatabaseUrl,
     [FIREBASE_PROJECT_ID]: testFirebaseProjectId,

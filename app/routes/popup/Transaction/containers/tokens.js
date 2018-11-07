@@ -8,9 +8,11 @@ import BigNumber from 'bignumber.js'
 
 import { promisify } from 'utils/promisify'
 import {
+  getNetwork,
   getNetworkUrl,
   getTokenListUrl
 } from '../../../../../config'
+import { MAINNET } from '../../../../../config/names'
 
 const getStandardTokenContract = async () => {
   const contract = await TruffleContract(StandardToken)
@@ -73,7 +75,12 @@ const getListedTokens = async (address) => {
 }
 
 export const getTokenData = async (address) => {
-  const tokenList = await getListedTokens()
+  let tokenList = await getListedTokens()
+
+  tokenList = (getNetwork() === MAINNET)
+    ? tokenList.results.map(t => t.token)
+    : tokenList
+
   let erc20token = {
     address: undefined,
     symbol: undefined,

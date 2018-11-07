@@ -103,7 +103,10 @@ export const getTransactionRelayServiceUrl = () => {
 export const getTokenListUrl = () => {
   const config = getEnvConfig()
   const enviroment = getEnviroment()
-  return config[enviroment][TOKEN_LIST_URL]
+  const network = getNetwork()
+  return (enviroment === PRODUCTION || enviroment === PRE_PRODUCTION)
+    ? config[enviroment][TOKEN_LIST_URL][network]
+    : config[enviroment][TOKEN_LIST_URL]
 }
 
 export const getFirebaseAuthDomain = () => {
@@ -140,7 +143,7 @@ export const getFavicon = () => {
   const config = getEnvConfig()
   const enviroment = getEnviroment()
   const network = getNetwork()
-  return (enviroment === PRODUCTION)
+  return (enviroment === PRODUCTION || enviroment === PRE_PRODUCTION)
     ? config[enviroment][FAVICON][network]
     : config[enviroment][FAVICON]
 }
