@@ -34,7 +34,7 @@
     "crypto-js": "^3.1.9-1",
     "ethereumjs-util": "^5.1.5",
     "ethereumjs-wallet": "^0.6.0",
-    "firebase": "^4.13.1",
+    "firebase": "^5.5.7",
     "history": "^4.7.2",
     "node-fetch": "^2.2.0",
     "qr-image": "^3.2.0",
@@ -51,7 +51,8 @@
     "truffle-contract": "^3.0.5",
     "uuid": "^3.3.2",
     "web3": "^0.20.6",
-    "web3-provider-engine": "^14.0.4"
+    "web3-provider-engine": "^14.0.4",
+    "write-json-file": "^3.0.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

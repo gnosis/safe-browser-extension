@@ -23,7 +23,9 @@ import {
 } from './names'
 import envConfig from './env.config'
 import networkConfig from './network.config'
-import manifest from '../extension/manifest.json'
+import manifest from '../extension/manifest_template.json'
+import dotenv from 'dotenv'
+dotenv.config({})
 
 const envConfiguration = () => {
   return envConfig
@@ -45,9 +47,9 @@ export const getEnviroment = () => {
 }
 
 export const getNetwork = () => {
-  const env = process.env.NETWORK
-  return (env === MAINNET || env === RINKEBY)
-    ? env
+  const network = process.env.NETWORK
+  return (network === MAINNET || network === RINKEBY)
+    ? network
     : RINKEBY
 }
 

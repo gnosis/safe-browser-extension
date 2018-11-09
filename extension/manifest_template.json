@@ -1,10 +1,10 @@
 {
   "manifest_version": 2,
-  "name": "Gnosis Safe - Rinkeby",
+  "name": null,
   "version": "0.5.2",
   "description": "",
   "browser_action": {
-    "default_title": "Gnosis Safe - Rinkeby",
+    "default_title": null,
     "default_popup": "index.html"
   },
   "author": "Gnosis",
