@@ -1,0 +1,257 @@
+{
+  "retry": {
+    "message": "재시도"
+  },
+  "estimated_transaction_fee": {
+    "message": "예상 거래 수수료"
+  },
+  "review_transaction": {
+    "message": "거래 확인"
+  },
+  "new_password": {
+    "message": "신규 비밀번호"
+  },
+  "change_password": {
+    "message": "비밀번호 변경"
+  },
+  "next": {
+    "message": "다음"
+  },
+  "confirm_password": {
+    "message": "비밀번호 확인"
+  },
+  "password_doesnt_match": {
+    "message": "비밀번호가 일치하지 않습니다"
+  },
+  "confirm": {
+    "message": "확인"
+  },
+  "terms": {
+    "message": "약관"
+  },
+  "no_thanks": {
+    "message": "아니오"
+  },
+  "agree": {
+    "message": "동의합니다"
+  },
+  "personal_edition": {
+    "message": "개인용"
+  },
+  "safe_balance": {
+    "message": "Safe 잔고"
+  },
+  "request_confirmation_wait_x_s": {
+    "message": "재발송 요청 전에 %s초만 기다려주세요."
+  },
+  "request_confirmation": {
+    "message": "확인 요청 재전송"
+  },
+  "unknown_token": {
+    "message": "알 수 없는 토큰"
+  },
+  "awaiting_confirmations": {
+    "message": "확인 대기 중"
+  },
+  "enter_password": {
+    "message": "비밀번호를 입력하세요"
+  },
+  "reject": {
+    "message": "거부"
+  },
+  "default_safe_name": {
+    "message": "Safe"
+  },
+  "save": {
+    "message": "저장"
+  },
+  "terms_of_service": {
+    "message": "이용 약관"
+  },
+  "privacy_policy": {
+    "message": "프라이버시 정책"
+  },
+  "terms_first_bullet": {
+    "message": "본사는 연령과 성별을 비롯한 인구통계학적 데이터를 수집하지 않습니다."
+  },
+  "terms_second_bullet": {
+    "message": "Gnosis Ltd.는 앱의 품질 보장을 위해 익명의 앱 사용 데이터 및 오류 보고서를 수집합니다."
+  },
+  "transaction_submitted": {
+    "message": "거래가 제출되었습니다"
+  },
+  "safe_already_exists": {
+    "message": "이미 Safe가 존재합니다"
+  },
+  "replace_recovery_phrase": {
+    "message": "복구 문장 대체하기"
+  },
+  "store_description": {
+    "message": "Gnosis Safe는 다중서명 이더리움 지갑으로서 사용자가 자신의 디지털 자산을 쉽고 안전하게 관리할 수 있게 도와주며, 탈중앙화된 웹 상에서 자유로운 활동을 할 수 있도록 도와줍니다.\n\nGnosis Safe 사용자는 이더리움과 ERC-20 토큰을 보유하거나 전송할 수 있고, 크롬 확장프로그램을 통해 타 탈중앙화 어플리케이션과도 상호작용할 수 있습니다."
+  },
+  "view_on_etherscan": {
+    "message": "이더스캔으로 보기"
+  },
+  "manage_sites_whitelist": {
+    "message": "사이트 허용목록 관리하기"
+  },
+  "delete_all": {
+    "message": "전체 삭제"
+  },
+  "add_website": {
+    "message": "웹사이트 추가하기"
+  },
+  "invalid_website": {
+    "message": "무효 웹사이트"
+  },
+  "website_whitelisted": {
+    "message": "이 웹사이트는 허용 목록에 이미 등록되어 있습니다"
+  },
+  "set_lock_timeout": {
+    "message": "잠금 시간 설정"
+  },
+  "locking_min_default": {
+    "message": " (기본값)"
+  },
+  "locking_min": {
+    "message": "최소"
+  },
+  "change_password_description": {
+    "message": "비밀번호는 확장프로그램 잠금해제와 거래 확인을 위해 사용됩니다.\n<strong>이 비밀번호를 타인과 공유하지 마세요!</strong>"
+  },
+  "new_password_identical_chars": {
+    "message": "2번 연속 같은 글자를 입력하지 마세요"
+  },
+  "new_password_number_and_letter": {
+    "message": "암호는 최소 1개 이상의 숫자와 글자로 이루어져야 합니다"
+  },
+  "new_password_min_chars": {
+    "message": "최소 8자 입력하세요"
+  },
+  "save_new_password": {
+    "message": "신규 암호 저장"
+  },
+  "resync_with_mobile_app": {
+    "message": "모바일앱 재동기화"
+  },
+  "replace_recovery_phrase_explanation": {
+    "message": "모바일 앱에서 요청 시 아래 QR 코드를 스캔하세요"
+  },
+  "about": {
+    "message": "About"
+  },
+  "version": {
+    "message": "버전"
+  },
+  "connect_new_safe": {
+    "message": "신규 Safe에 연결"
+  },
+  "connected_extension_succesfully": {
+    "message": "확장 프로그램이 성공적으로 설치되었습니다!<br /> <strong>모바일 앱과 연결하세요.</strong>"
+  },
+  "download_mobile_app": {
+    "message": "모바일 앱 다운로드 및 설치"
+  },
+  "iphone_and_ipad": {
+    "message": "아이폰, 아이패드"
+  },
+  "android": {
+    "message": "안드로이드"
+  },
+  "connect_extension_explanation": {
+    "message": "QR 코드를 스캔하여 확장 프로그램과 모바일 앱을 연결하세요"
+  },
+  "show_qr_code": {
+    "message": "QR 코드 스캔하기"
+  },
+  "show_qr_code_description": {
+    "message": "모바일 앱에서 요청 시 아래 QR 코드를 스캔하세요"
+  },
+  "browser_extension": {
+    "message": "브라우저 확장 기능"
+  },
+  "safe_for_ios": {
+    "message": "Gnosis Safe<br />(iOS)"
+  },
+  "safe_for_android": {
+    "message": "Gnosis Safe<br />(Android)"
+  },
+  "unlock": {
+    "message": "잠금 해제"
+  },
+  "confirm_transaction": {
+    "message": "거래 확인"
+  },
+  "max_total": {
+    "message": "최대 합계"
+  },
+  "transaction_rejected": {
+    "message": "거래 거부"
+  },
+  "confirm_transaction_state": {
+    "message": "이 거래는 Gnosis Safe 모바일 앱에서 시작되었습니다. 귀하가 확인해주시면 모바일 앱이 거래를 제출합니다."
+  },
+  "confirmation_requested": {
+    "message": "신규 거래 확인이 요청되었습니다"
+  },
+  "safe_creation": {
+    "message": "Safe 생성"
+  },
+  "safe_created": {
+    "message": "신규 Safe가 생성되었습니다"
+  },
+  "website_not_whitelisted": {
+    "message": "이 웹사이트는 허용 목록에 미등록되어 있습니다"
+  },
+  "web3_injection_failed": {
+    "message": "Gnosis Safe web3 제공자 인젝션 실패"
+  },
+  "provider_not_syncronous": {
+    "message": "SafeProvider는 이 동기 요청을 지원하지 않습니다"
+  },
+  "options_page_title": {
+    "message": "Gnosis Safe를 설치해 주셔서 감사합니다!"
+  },
+  "options_page_header": {
+    "message": "<br />Gnosis Safe 브라우저 확장 기능을 설치해주셔서 감사합니다!"
+  },
+  "options_page_description": {
+    "message": "Safe 확장 프로그램을 사용하기 위해서는 우선 알림을 허용해야 합니다. 알림을 통해 Gnosis Safe 모바일 앱에서 이루어진 거래가 통보됩니다."
+  },
+  "allow_notifications": {
+    "message": "알림 허용"
+  },
+  "notifications_permission_required": {
+    "message": "알림 수신에 대한 권한은 필수입니다"
+  },
+  "extension_store_description": {
+    "message": "2단계 인증(2FA)를 통해 이더와 ERC-20 토큰을 안전하게 보호하세요"
+  },
+  "get_started": {
+    "message": "시작하기"
+  },
+  "add": {
+    "message": "추가하기"
+  },
+  "create_password_title": {
+    "message": "브라우저 확장프로그램에 비밀번호를 설정하여 보호하세요"
+  },
+  "confirm_create_password_title": {
+    "message": "고지가 보이네요!<br />비밀번호를 한 번 더 확인해주세요."
+  },
+  "internet_connection_error": {
+    "message": "인터넷 연결 불가"
+  },
+  "check_internet_connection": {
+    "message": "인터넷 연결 상태 확인해주세요!"
+  },
+  "review_terms": {
+    "message": "<a href='https://safe.gnosis.io/terms' target='_blank'>이용약관</a>과 <a href='https://safe.gnosis.io/privacy' target='_blank'>프라이버시 정책</a>을 검토해주세요."
+  },
+  "back": {
+    "message": "이전"
+  },
+  "confirm_with_mobile": {
+    "message": "본 거래를 Gnosis Safe 모바일앱에서 확인해주세요."
+  }
+}
