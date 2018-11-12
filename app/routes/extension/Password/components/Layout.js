@@ -4,6 +4,7 @@ import Page from 'components/Page'
 import keyHole from 'assets/images/keyhole.svg'
 import styles from 'assets/css/global.css'
 import { getNetwork } from '../../../../../config'
+import { UNLOCK } from '../../../../../config/messages'
 
 class Layout extends Component {
   prevent = (e) => {
@@ -49,7 +50,7 @@ class Layout extends Component {
                   onClick={validatePasswords}
                   className={styles.button}
                 >
-                  UNLOCK
+                  {UNLOCK}
                 </button>
               </div>
             </div>

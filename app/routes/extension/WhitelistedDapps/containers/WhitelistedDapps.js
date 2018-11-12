@@ -6,6 +6,10 @@ import { EXTENSION_SETTINGS } from 'utils/analytics/events'
 import { normalizeUrl } from 'utils/helpers'
 import Layout from '../components/Layout'
 import actions from './actions'
+import {
+  INVALID_WEBSITE,
+  WEBSITE_WHITELISTED
+} from '../../../../../config/messages'
 
 class WhitelistedDapps extends Component {
   constructor (props) {
@@ -23,14 +27,14 @@ class WhitelistedDapps extends Component {
 
   validateDapp = (dapp) => {
     if (!dapp) {
-      this.setState({ errorMessage: 'Invalid URL' })
+      this.setState({ errorMessage: INVALID_WEBSITE })
       return false
     }
 
     const { whitelistedDapps } = this.props
 
     if (whitelistedDapps.indexOf(dapp) > -1) {
-      this.setState({ errorMessage: 'URL already whitelisted' })
+      this.setState({ errorMessage: WEBSITE_WHITELISTED })
       return false
     }
 

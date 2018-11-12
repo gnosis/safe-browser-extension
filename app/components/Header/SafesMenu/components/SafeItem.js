@@ -6,6 +6,7 @@ import styles from 'assets/css/global.css'
 import edit from 'assets/images/edit.svg'
 import trashWhite from 'assets/images/trash_white.svg'
 import actions from './actions'
+import { SAVE } from '../../../../../config/messages'
 
 class SafeItem extends Component {
   constructor (props) {
@@ -98,7 +99,7 @@ class SafeItem extends Component {
             <button
               className={styles.safeToolsSave}
               onClick={this.saveEditSafeAlias(address)}
-            >SAVE</button>
+            >{SAVE}</button>
             <img
               src={edit}
               height='12'

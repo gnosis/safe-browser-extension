@@ -1,6 +1,10 @@
 import React from 'react'
 
 import styles from 'assets/css/global.css'
+import {
+  LOCKING_MIN,
+  LOCKING_MIN_DEFAULT
+} from '../../../../../../config/messages'
 
 const TimeBlock = ({
   handleOptionChange,
@@ -16,7 +20,7 @@ const TimeBlock = ({
       readOnly
     />
     <label onClick={handleOptionChange(minTime)}>
-      {minTime}min {minTime === 5 && ' (default)'}
+      {minTime}{LOCKING_MIN} {minTime === 5 && LOCKING_MIN_DEFAULT}
     </label>
   </div>
 )

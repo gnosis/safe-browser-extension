@@ -5,6 +5,7 @@ import classNames from 'classnames/bind'
 import Page from 'components/Page'
 import styles from 'assets/css/global.css'
 import { ACCOUNT_URL } from 'routes/routes'
+import { BACK, MANAGE_SITES_WHITELIST, DELETE_ALL, ADD } from '../../../../../config/messages'
 
 const cx = classNames.bind(styles)
 
@@ -29,13 +30,13 @@ class Layout extends Component {
         <div className={styles.overlayPage}>
           <span className={styles.overlayPageHeader}>
             <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)}>
-              <p>Back</p>
+              <p>{BACK}</p>
             </Link>
-            <h2>Manage Whitelist</h2>
+            <h2>{MANAGE_SITES_WHITELIST}</h2>
             <p
               className={styles.action_DeleteAll}
               onClick={handleDeleteAllDapps()}
-            >Delete All</p>
+            >{DELETE_ALL}</p>
           </span>
           <span className={styles.overlayPageContent}>
             <span className={styles.whitelist_add}>
@@ -52,7 +53,7 @@ class Layout extends Component {
                   <button
                     className={styles.button}
                     onClick={handleAddDapp(newDapp)}
-                  >ADD</button>
+                  >{ADD}</button>
                 </div>
                 {errorMessage &&
                   <p className={styles.textRed}>{errorMessage}</p>

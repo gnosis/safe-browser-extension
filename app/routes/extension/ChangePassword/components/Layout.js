@@ -8,6 +8,12 @@ import ConfirmPasswordForm from 'routes/extension/ConfirmPassword/components/Con
 import styles from 'assets/css/global.css'
 import warningImage from 'assets/images/warning.svg'
 import { ACCOUNT_URL } from 'routes/routes'
+import {
+  BACK,
+  CHANGE_PASSWORD,
+  CHANGE_PASSWORD_DESCRIPTION,
+  SAVE_NEW_PASSWORD
+} from '../../../../../config/messages'
 
 const cx = classNames.bind(styles)
 
@@ -32,13 +38,13 @@ class Layout extends Component {
         <div className={styles.overlayPage} data-page='password'>
           <span className={styles.overlayPageHeader}>
             <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)}>
-              <p>Back</p>
+              <p>{BACK}</p>
             </Link>
-            <h2>Change password</h2>
+            <h2>{CHANGE_PASSWORD}</h2>
           </span>
           <span className={styles.warningPassword}>
             <img src={warningImage} />
-            <p>Password is used to unlock the extension and confirm transactions. <strong>Don't share this password with others!</strong></p>
+            <p>{CHANGE_PASSWORD_DESCRIPTION}</p>
           </span>
           <span className={styles.overlayPageContent}>
             <form onSubmit={this.prevent}>
@@ -54,8 +60,8 @@ class Layout extends Component {
                   passwordsMatch={this.props.confirmPasswordReady}
                 />
                 {createPasswordReady && confirmPasswordReady
-                  ? <button type='button' className={styles.button} onClick={updateMasterPassword}>SAVE NEW PASSWORD</button>
-                  : <button className={styles.button}>SAVE NEW PASSWORD</button>
+                  ? <button type='button' className={styles.button} onClick={updateMasterPassword}>{SAVE_NEW_PASSWORD}</button>
+                  : <button className={styles.button}>{SAVE_NEW_PASSWORD}</button>
                 }
               </div>
             </form>

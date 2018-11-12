@@ -2,6 +2,14 @@
 import { getNetwork } from '../config'
 import { MAINNET } from '../config/names'
 import notificationImage from 'assets/images/notification_image.jpg'
+import {
+  SAFE_CREATED,
+  SAFE_CREATION,
+  CONFIRM_TRANSACTION,
+  CONFIRMATION_REQUEST,
+  TRANSACTION_SUBMITTED,
+  TRANSACTION_REJECTED
+} from '../config/messages'
 
 self.addEventListener('push', (event) => {
   const payload = event.data.json().data
@@ -9,19 +17,19 @@ self.addEventListener('push', (event) => {
   let title, message, url
   switch (payload.type) {
     case 'safeCreation':
-      title = 'Safe Creation'
-      message = 'A new Safe was created'
+      title = SAFE_CREATION
+      message = SAFE_CREATED
       url = null
       break
 
     case 'requestConfirmation':
-      title = 'Confirm transaction'
-      message = 'The confirmation of a new transaction was requested'
+      title = CONFIRM_TRANSACTION
+      message = CONFIRMATION_REQUEST
       url = null
       break
 
     case 'sendTransactionHash':
-      title = 'Transaction submitted'
+      title = TRANSACTION_SUBMITTED
       message = payload.chainHash
       const etherScanUrl = (getNetwork() === MAINNET)
         ? 'https://etherscan.io/tx/'
@@ -30,7 +38,7 @@ self.addEventListener('push', (event) => {
       break
 
     case 'rejectTransaction':
-      title = 'Transaction rejected'
+      title = TRANSACTION_REJECTED
       message = payload.hash
       url = null
       break

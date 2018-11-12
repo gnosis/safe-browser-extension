@@ -8,6 +8,10 @@ import {
   MSG_RESOLVED_TRANSACTION,
   EV_RESOLVED_TRANSACTION
 } from './utils/messages'
+import {
+  WEBSITE_NOT_WHITELISTED,
+  WEB3_INJECTION_FAILED
+} from '../config/messages'
 
 // Checks if the page is whitelisted to inject the web3 provider
 chrome.runtime.sendMessage(
@@ -20,7 +24,7 @@ chrome.runtime.sendMessage(
       injectScript()
       setUpWeb3(response.currentSafe)
     } else {
-      console.log('This web page is not whitelisted.')
+      console.log(WEBSITE_NOT_WHITELISTED)
     }
   }
 )
@@ -41,7 +45,7 @@ function injectScript () {
     }
     xhr.send()
   } catch (err) {
-    console.error('Gnosis web3 provider injection failed.', err)
+    console.error(WEB3_INJECTION_FAILED, err)
   }
 }
 

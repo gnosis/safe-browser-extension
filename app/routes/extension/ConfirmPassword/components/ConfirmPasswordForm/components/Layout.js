@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import styles from 'assets/css/global.css'
+import { PASSWORD_DOESNT_MATCH } from '../../../../../../../config/messages'
 
 class Layout extends Component {
   render () {
@@ -25,7 +26,7 @@ class Layout extends Component {
         </div>
         {!passwordsMatch &&
           <p className={filling ? styles.textRed : null}>
-            Password does not match
+            {PASSWORD_DOESNT_MATCH}
           </p>
         }
       </React.Fragment>

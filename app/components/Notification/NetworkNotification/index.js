@@ -2,12 +2,16 @@ import React from 'react'
 import Network from 'react-network'
 
 import styles from 'assets/css/global.css'
+import {
+  INTERNET_CONNECTION_ERROR,
+  CHECK_INTERNET_CONNECTION
+} from '../../../../config/messages'
 
 const NotificationMessage = () => (
   <div className={styles.networkNotification}>
     <div>
-      <p>Unable to connect with internet.</p>
-      <p>Please check your connection!</p>
+      <p>{INTERNET_CONNECTION_ERROR}</p>
+      <p>{CHECK_INTERNET_CONNECTION}</p>
     </div>
   </div>
 )

@@ -11,6 +11,14 @@ import {
   getAndroidAppUrl,
   getIosAppUrl
 } from '../../../../../config'
+import {
+  CONNECTED_EXTENSION_SUCCESFULLY,
+  IPHONE_AND_IPAD,
+  ANDROID,
+  DOWNLOAD_MOBILE_APP,
+  CONNECT_EXTENSION_EXPLANATION,
+  SHOW_QR_CODE
+} from '../../../../../config/messages'
 
 const cx = classNames.bind(styles)
 
@@ -41,21 +49,21 @@ class Layout extends Component {
           noBorder
         >
           <div className={cx(styles.content, (showQrAndroid || showQrIos || showQrPairing) && styles.blur)}>
-            <h1>Extension setup succesfully!<br /><strong>Connect with the mobile app.</strong></h1>
+            <h1>{CONNECTED_EXTENSION_SUCCESFULLY}</h1>
             <ol>
               <li>
-                <p>Download &amp; install the mobile app</p>
-                <button onClick={toggleQrIos} data-os='ios'>iPhone &amp; iPad</button>
-                <button onClick={toggleQrAndroid} data-os='android'>Android</button>
+                <p>{DOWNLOAD_MOBILE_APP}</p>
+                <button onClick={toggleQrIos} data-os='ios'>{IPHONE_AND_IPAD}</button>
+                <button onClick={toggleQrAndroid} data-os='android'>{ANDROID}</button>
               </li>
               <li>
-                <p>Connect extension with mobile app by scanning the QR code</p>
+                <p>{CONNECT_EXTENSION_EXPLANATION}</p>
                 <button
                   onClick={toggleQrPairing}
                   className={styles.button}
                   data-qr='mobilepair'
                 >
-                  SHOW QR CODE
+                  {SHOW_QR_CODE}
                 </button>
               </li>
             </ol>

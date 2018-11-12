@@ -4,6 +4,12 @@ import Network from 'react-network'
 
 import mobileImage from 'assets/images/mobile.svg'
 import styles from 'assets/css/global.css'
+import {
+  AWAITING_CONFIRMATIONS,
+  REQUEST_CONFIRMATION,
+  REQUEST_CONFIRMATION_WAIT_X_S,
+  CONFIRM_WITH_MOBILE
+} from '../../../../../../../config/messages'
 
 const cx = classNames.bind(styles)
 
@@ -12,29 +18,30 @@ const SendTransactionState = ({
   handleConfirmTransaction
 }) => {
   const time = seconds < 10 ? '00:0' + seconds.toString() : '00:' + seconds.toString()
+  const waitingTime = REQUEST_CONFIRMATION_WAIT_X_S.replace('%s', time)
 
   return (
     <div className={cx(styles.transactionState)}>
       <span className={styles.await}>
-        <p>AWAITING CONFIRMATION</p>
+        <p>{AWAITING_CONFIRMATIONS}</p>
         <div className={styles.progress}>
           <div className={styles.indeterminate} />
         </div>
       </span>
       <span className={styles.message}>
         <img src={mobileImage} height='55' width='30' />
-        <p>Confirm this transaction with the Gnosis Safe mobile app.</p>
+        <p>{CONFIRM_WITH_MOBILE}</p>
       </span>
       <Network
         render={({ online }) =>
           online && (
             <span className={styles.resend}>
-              <p>wait {time}s before re-sending request</p>
+              <p>{waitingTime}</p>
               <button
                 className={cx(styles.button, styles.white)}
                 disabled={seconds > 0}
                 onClick={handleConfirmTransaction}
-              >Re-send confirmation request</button>
+              >{REQUEST_CONFIRMATION}</button>
             </span>
           )
         }
