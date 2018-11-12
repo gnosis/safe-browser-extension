@@ -1,4 +1,6 @@
 /* eslint-env serviceworker */
+import { getNetwork } from '../config'
+import { MAINNET } from '../config/names'
 import notificationImage from 'assets/images/notification_image.jpg'
 
 self.addEventListener('push', (event) => {
@@ -21,7 +23,10 @@ self.addEventListener('push', (event) => {
     case 'sendTransactionHash':
       title = 'Transaction submitted'
       message = payload.chainHash
-      url = 'https://rinkeby.etherscan.io/tx/' + payload.chainHash
+      const etherScanUrl = (getNetwork() === MAINNET)
+        ? 'https://etherscan.io/tx/'
+        : 'https://rinkeby.etherscan.io/tx/'
+      url = etherScanUrl + payload.chainHash
       break
 
     case 'rejectTransaction':

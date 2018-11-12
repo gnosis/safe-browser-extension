@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Page from 'components/Page'
 import keyHole from 'assets/images/keyhole.svg'
 import styles from 'assets/css/global.css'
+import { getNetwork } from '../../../../../config'
 
 class Layout extends Component {
   prevent = (e) => {
@@ -25,7 +26,7 @@ class Layout extends Component {
       >
         <form onSubmit={this.prevent} data-validation={dataValidation}>
           <div className={styles.content}>
-            <span className={styles.safeLogo} data-network='rinkeby' />
+            <span className={styles.safeLogo} data-network={getNetwork()} />
             <div className={styles.lockshape} data-validation={dataValidation}>
               <img
                 id={styles.keyhole}

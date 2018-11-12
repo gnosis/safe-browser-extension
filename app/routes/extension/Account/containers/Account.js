@@ -11,6 +11,8 @@ import {
   DOWNLOAD_APPS_URL
 } from 'routes/routes'
 import selector from './selector'
+import { getNetwork } from '../../../../../config'
+import { MAINNET } from '../../../../../config/names'
 
 class Account extends Component {
   componentDidMount = () => {
@@ -39,7 +41,11 @@ class Account extends Component {
   openEtherScan = async () => {
     const { safes } = this.props
     await ga(['_trackEvent', SAFES, 'click-view-safe-on-etherscan', 'View Safe on Etherscan'])
-    window.open('http://rinkeby.etherscan.io/address/' + safes.currentSafe)
+
+    const etherScanUrl = (getNetwork() === MAINNET)
+      ? 'http://etherscan.io/address/'
+      : 'http://rinkeby.etherscan.io/address/'
+    window.open(etherScanUrl + safes.currentSafe)
   }
 
   openSlowTrade = async () => {

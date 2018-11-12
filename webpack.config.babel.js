@@ -5,6 +5,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const cssVars = require('postcss-simple-vars')
 const cssVariables = require(path.resolve(__dirname, './app/theme/variables'))
+const writeJsonFile = require('write-json-file')
+const manifest = require('./extension/manifest_template.json')
+const config = require(path.resolve(__dirname, './config'))
+const names = require(path.resolve(__dirname, './config/names'))
 const dotenv = require('dotenv')
 const env = dotenv.config().parsed
 
@@ -12,15 +16,18 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
   prev[`process.env.${next}`] = JSON.stringify(env[next])
   return prev
 }, {})
-envKeys['process.env.NODE_ENV'] = `"${process.env.NODE_ENV}"` || 'development'
+envKeys['process.env.NODE_ENV'] = process.env.NODE_ENV ? `"${process.env.NODE_ENV}"` : `"${names.DEVELOPMENT}"`
+envKeys['process.env.NETWORK'] = process.env.NETWORK ? `"${process.env.NETWORK}"` : `"${names.RINKEBY}"`
 
-const faviconBuild = 'favicon_rinkeby.png'
-const faviconDev = 'favicon_rinkeby_red.png'
-const getFavicon = () => {
-  return (process.env.NODE_ENV === 'production')
-    ? faviconBuild
-    : faviconDev
-}
+const title = (config.getNetwork() === names.MAINNET)
+  ? 'Gnosis Safe'
+  : 'Gnosis Safe - Rinkeby'
+
+console.log(title)
+
+manifest.name = title
+manifest.browser_action.default_title = title
+writeJsonFile.sync('./build/manifest.json', manifest)
 
 const postcssPlugins = [
   cssVars({
@@ -130,15 +137,8 @@ module.exports = {
     new webpack.DefinePlugin(envKeys),
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, './extension/manifest.json'),
-        to: path.resolve(__dirname, './build/manifest.json'),
-        force: true
-      }
-    ]),
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, './app/assets/images/', getFavicon()),
-        to: path.resolve(__dirname, './build/assets/images/' + faviconBuild),
+        from: path.resolve(__dirname, './app/assets/images/', config.getFavicon()),
+        to: path.resolve(__dirname, './build/assets/images/favicon.png'),
         force: true
       }
     ])
