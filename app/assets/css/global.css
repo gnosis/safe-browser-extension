@@ -852,6 +852,9 @@ form input.noborder{
   text-align:center;
   padding: 0;
 }
+.QR>p{
+  text-transform: uppercase
+}
 .lockedState{
   position:absolute;
   right:14px;
@@ -1643,7 +1646,6 @@ footer .stepper-dots>li.active{
 }
 .welcome .disclaimer>span{
   background:#fff;
-  height:24em;
   width:100%;
   position:absolute;
   bottom:0;
@@ -1701,7 +1703,7 @@ footer .stepper-dots>li.active{
 }
 .welcome .disclaimer>span>div>button,
 .welcome .disclaimer>span>div>a{
-  max-width:115px;
+  max-width:130px;
   margin:0;
   padding:0;
   height:35px;
@@ -2316,7 +2318,8 @@ footer .stepper-dots>li.active{
   letter-spacing:3px;
   text-align:center;
   width: 100%;
-  margin:0
+  margin:0;
+  text-transform: uppercase
 }
 .extensionTX .extension-inner .transactionState .message{
   display:-ms-flexbox;
