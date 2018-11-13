@@ -6,6 +6,8 @@ const config = require(path.resolve(__dirname, '../config'))
 const names = require(path.resolve(__dirname, '../config/names'))
 const env = dotenv.config().parsed
 
+const buildDirectory = './build/'
+
 export const generateEnvVariables = () => {
   const envKeys = Object.keys(env).reduce((prev, next) => {
     prev[`process.env.${next}`] = JSON.stringify(env[next])
@@ -19,6 +21,10 @@ export const generateEnvVariables = () => {
 
 export const generateManifestFile = () => {
   try {
+    if (!fs.existsSync(buildDirectory)) {
+      fs.mkdirSync(buildDirectory)
+    }
+
     const title = (config.getNetwork() === names.MAINNET)
       ? 'Gnosis Safe'
       : 'Gnosis Safe - Rinkeby'
@@ -27,7 +33,7 @@ export const generateManifestFile = () => {
     manifest.browser_action.default_title = title
 
     fs.writeFileSync(
-      './build/manifest.json',
+      buildDirectory + 'manifest.json',
       JSON.stringify(manifest, null, '  ')
     )
   } catch (err) {
