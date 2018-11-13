@@ -3,7 +3,13 @@ import classNames from 'classnames/bind'
 
 import styles from '../../app/assets/css/global.css'
 import notificationsImage from '../../app/assets/images/notifications_setting.svg'
-import { OPTIONS_PAGE_HEADER, OPTIONS_PAGE_DESCRIPTION, ALLOW_NOTIFICATIONS } from '../../config/messages'
+import { getNetwork } from '../../config'
+import {
+  OPTIONS_PAGE_HEADER,
+  OPTIONS_PAGE_DESCRIPTION,
+  ALLOW_NOTIFICATIONS,
+  PERSONAL_EDITION
+} from '../../config/messages'
 
 const cx = classNames.bind(styles)
 
@@ -52,7 +58,12 @@ class OptionsPage extends Component {
     return (
       <div className={styles.start}>
         <div className={styles.content}>
-          <span className={styles.safeLogo} />
+          <span
+            className={styles.safeLogo}
+            data-network={getNetwork()}
+          >
+            <span className={styles.edition}>{PERSONAL_EDITION}</span>
+          </span>
           <h1>{OPTIONS_PAGE_HEADER}</h1>
           <p>{OPTIONS_PAGE_DESCRIPTION}</p>
           <img

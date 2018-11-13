@@ -4,7 +4,10 @@ import Page from 'components/Page'
 import keyHole from 'assets/images/keyhole.svg'
 import styles from 'assets/css/global.css'
 import { getNetwork } from '../../../../../config'
-import { UNLOCK } from '../../../../../config/messages'
+import {
+  UNLOCK,
+  PERSONAL_EDITION
+} from '../../../../../config/messages'
 
 class Layout extends Component {
   prevent = (e) => {
@@ -27,7 +30,12 @@ class Layout extends Component {
       >
         <form onSubmit={this.prevent} data-validation={dataValidation}>
           <div className={styles.content}>
-            <span className={styles.safeLogo} data-network={getNetwork()} />
+            <span
+              className={styles.safeLogo}
+              data-network={getNetwork()}
+            >
+              <span className={styles.edition}>{PERSONAL_EDITION}</span>
+            </span>
             <div className={styles.lockshape} data-validation={dataValidation}>
               <img
                 id={styles.keyhole}

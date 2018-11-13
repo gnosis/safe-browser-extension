@@ -4,6 +4,7 @@ import classNames from 'classnames/bind'
 
 import styles from 'assets/css/global.css'
 import { CREATE_PASSWORD_URL } from 'routes/routes'
+import { getNetwork } from '../../../../../config'
 import {
   EXTENSION_STORE_DESCRIPTION,
   GET_STARTED,
@@ -12,7 +13,8 @@ import {
   AGREE,
   TERMS_FIRST_BULLET,
   TERMS_SECOND_BULLET,
-  NO_THANKS
+  NO_THANKS,
+  PERSONAL_EDITION
 } from '../../../../../config/messages'
 
 const cx = classNames.bind(styles)
@@ -26,8 +28,10 @@ const Layout = ({
       <div className={cx(styles.content, showDisclaimer && styles.blur)}>
         <span
           className={cx(styles.safeLogo, styles.animated, styles.fadeInUp)}
-          data-network='rinkeby'
-        />
+          data-network={getNetwork()}
+        >
+          <span className={styles.edition}>{PERSONAL_EDITION}</span>
+        </span>
         <h1>{EXTENSION_STORE_DESCRIPTION}</h1>
         <button
           onClick={toggleDisclaimer}

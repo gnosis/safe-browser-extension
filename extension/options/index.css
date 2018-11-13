@@ -38,7 +38,8 @@ body.start{
 	font-weight: 100;
 	font-size: 3em;
 	letter-spacing: 0;
-	line-height: 1.3
+  line-height: 1.3;
+  min-width: 410px;
 }
 .start p {
 	margin: 1.5em auto 3em;
