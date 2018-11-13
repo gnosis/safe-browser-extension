@@ -9,7 +9,6 @@ import styles from 'assets/css/global.css'
 import warningImage from 'assets/images/warning.svg'
 import { ACCOUNT_URL } from 'routes/routes'
 import {
-  BACK,
   CHANGE_PASSWORD,
   CHANGE_PASSWORD_DESCRIPTION,
   SAVE_NEW_PASSWORD
@@ -37,9 +36,7 @@ class Layout extends Component {
       <Page>
         <div className={styles.overlayPage} data-page='password'>
           <span className={styles.overlayPageHeader}>
-            <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)}>
-              <p>{BACK}</p>
-            </Link>
+            <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)} />
             <h2>{CHANGE_PASSWORD}</h2>
           </span>
           <span className={styles.warningPassword}>

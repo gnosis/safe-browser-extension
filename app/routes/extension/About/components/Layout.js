@@ -7,7 +7,6 @@ import { ACCOUNT_URL } from 'routes/routes'
 import styles from 'assets/css/global.css'
 import {
   ABOUT,
-  BACK,
   TERMS_OF_SERVICE,
   PRIVACY_POLICY,
   VERSION
@@ -25,9 +24,7 @@ class Layout extends Component {
       <Page>
         <div className={styles.overlayPage}>
           <span className={styles.overlayPageHeader}>
-            <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)}>
-              <p>{BACK}</p>
-            </Link>
+            <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)} />
             <h2>{ABOUT}</h2>
           </span>
           <div className={styles.overlayPageContent}>

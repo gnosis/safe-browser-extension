@@ -1292,23 +1292,19 @@ form input.noborder{
   flex-wrap:nowrap;
   border-bottom:1px solid #E4E8F1;
   -ms-flex-pack:justify;
-  justify-content:space-between;
+  justify-content:flex-start;
   -ms-flex-align:center;
   align-items:center;
   -ms-flex-line-pack:center;
   align-content:center
 }
 .overlayPageHeader>h2{
-  position:absolute;
-  left:0;
-  right:0;
-  margin:auto;
-  text-align:center;
-  width:210px;
+  margin:0 0 0 16px;
+  text-align:left;
   line-height:1;
   font-weight:400;
-  font-size:1.6em;
-  color:#21435A
+  font-size:1.5em;
+  color:#21435A;
 }
 .overlayPageHeader .btn-back{
   display:-ms-flexbox;
@@ -1339,7 +1335,8 @@ form input.noborder{
   letter-spacing:0
 }
 .overlayPageHeader .btn-back.active:hover{
-  transform:translateX(-2px)
+  transform:translateX(-2px);
+
 }
 .overlayPageHeader .action_DeleteAll{
   font-weight:400;
@@ -1348,7 +1345,9 @@ form input.noborder{
   text-align:right;
   line-height:1;
   text-decoration:none;
-  cursor: pointer
+  cursor: pointer;
+  justify-self:flex-end;
+  margin-left:auto
 }
 .whitelist_add{
   display:-ms-flexbox;
@@ -2270,6 +2269,7 @@ footer .stepper-dots>li.active{
   font-weight:inherit;
   color:inherit;
   margin: 0;
+  text-align: left;
 }
 .extensionTX .extension-inner .transactionSummary>span strong{
   display:-ms-flexbox;

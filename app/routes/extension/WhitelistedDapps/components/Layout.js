@@ -5,7 +5,12 @@ import classNames from 'classnames/bind'
 import Page from 'components/Page'
 import styles from 'assets/css/global.css'
 import { ACCOUNT_URL } from 'routes/routes'
-import { BACK, MANAGE_SITES_WHITELIST, DELETE_ALL, ADD } from '../../../../../config/messages'
+import {
+  MANAGE_SITES_WHITELIST,
+  DELETE_ALL,
+  ADD,
+  ADD_WEBSITE
+} from '../../../../../config/messages'
 
 const cx = classNames.bind(styles)
 
@@ -29,9 +34,7 @@ class Layout extends Component {
       <Page>
         <div className={styles.overlayPage}>
           <span className={styles.overlayPageHeader}>
-            <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)}>
-              <p>{BACK}</p>
-            </Link>
+            <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)} />
             <h2>{MANAGE_SITES_WHITELIST}</h2>
             <p
               className={styles.action_DeleteAll}
@@ -44,7 +47,7 @@ class Layout extends Component {
                 <div className={styles.whitelistForm}>
                   <input
                     type='text'
-                    placeholder='Add website'
+                    placeholder={ADD_WEBSITE}
                     name='whitelist-add'
                     className={styles.noborder}
                     value={newDapp}

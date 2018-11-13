@@ -6,7 +6,8 @@ import styles from 'assets/css/global.css'
 import { getNetwork } from '../../../../../config'
 import {
   UNLOCK,
-  PERSONAL_EDITION
+  PERSONAL_EDITION,
+  ENTER_PASSWORD
 } from '../../../../../config/messages'
 
 class Layout extends Component {
@@ -47,7 +48,7 @@ class Layout extends Component {
               <div>
                 <input
                   type='password'
-                  placeholder='Enter password'
+                  placeholder={ENTER_PASSWORD}
                   value={password}
                   name='unlock'
                   onChange={updatePassword}

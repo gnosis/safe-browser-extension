@@ -4,7 +4,8 @@ import styles from 'assets/css/global.css'
 import {
   NEW_PASSWORD_IDENTICAL_CHARS,
   NEW_PASSWORD_NUMBER_AND_LETTER,
-  NEW_PASSWORD_MIN_CHAR
+  NEW_PASSWORD_MIN_CHAR,
+  NEW_PASSWORD
 } from '../../../../../../../config/messages'
 
 class Layout extends Component {
@@ -26,7 +27,7 @@ class Layout extends Component {
         <div data-validation={dataValidation}>
           <input
             type='password'
-            placeholder='New password'
+            placeholder={NEW_PASSWORD}
             value={newPassword}
             onChange={updateNewPassword}
           />
