@@ -1,6 +1,6 @@
 {
   "retry": {
-    "message": "Nova tentativa"
+    "message": "Reintentar"
   },
   "estimated_transaction_fee": {
     "message": "Coste estimado da transacción"
@@ -93,7 +93,7 @@
     "message": "Ver en Etherscan.io"
   },
   "manage_sites_whitelist": {
-    "message": "Xestionar sitios web de confianza"
+    "message": "Sitios web de confianza"
   },
   "delete_all": {
     "message": "Borrar todo"
@@ -108,7 +108,7 @@
     "message": "Sitio web xa incluido"
   },
   "set_lock_timeout": {
-    "message": "Configurar o temporizador de bloqueo"
+    "message": "Temporizador de bloqueo"
   },
   "locking_min_default": {
     "message": " (por defecto)"
@@ -253,5 +253,8 @@
   },
   "confirm_with_mobile": {
     "message": "Confirma esta transacción coa aplicación móbil Gnosis Safe."
+  },
+  "sync": {
+    "message": "Sincronizar"
   }
 }

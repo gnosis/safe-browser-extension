@@ -108,7 +108,7 @@
     "message": "Website bereits zugelassen"
   },
   "set_lock_timeout": {
-    "message": "Sperrzeit einstellen"
+    "message": "Sperrzeit"
   },
   "locking_min_default": {
     "message": " (Standard)"
@@ -150,10 +150,10 @@
     "message": "Extension erfolgreich aufgesetzt!<br /><strong>Mit der App verbinden.</strong>"
   },
   "download_mobile_app": {
-    "message": "Lade amp; installiere die App"
+    "message": "Lade & installiere die App"
   },
   "iphone_and_ipad": {
-    "message": "iPhone amp; iPad"
+    "message": "iPhone & iPad"
   },
   "android": {
     "message": "Android"
@@ -207,7 +207,7 @@
     "message": "Gnosis Safe Web3-Provider-Injektion fehlgeschlagen"
   },
   "provider_not_syncronous": {
-    "message": "SafeProvider unterstützt diesen synchronen Request"
+    "message": "SafeProvider unterstützt diesen synchronen Request nicht"
   },
   "options_page_title": {
     "message": "Gnosis Safe - Danke für's Installieren!"
@@ -253,5 +253,8 @@
   },
   "confirm_with_mobile": {
     "message": "Bestätige diese Transaktion mit der Gnosis Safe Mobile App"
+  },
+  "sync": {
+    "message": "Synchronisieren"
   }
 }

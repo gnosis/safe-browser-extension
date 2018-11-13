@@ -93,7 +93,7 @@
     "message": "Ver en Etherscan.io"
   },
   "manage_sites_whitelist": {
-    "message": "Administrar sitios web de confianza"
+    "message": "Sitios web de confianza"
   },
   "delete_all": {
     "message": "Borrar todo"
@@ -108,7 +108,7 @@
     "message": "Sitio web ya incluido"
   },
   "set_lock_timeout": {
-    "message": "Configurar el temporizador de bloqueo"
+    "message": "Temporizador de bloqueo"
   },
   "locking_min_default": {
     "message": " (por defecto)"
@@ -147,7 +147,7 @@
     "message": "Conectar nueva Safe"
   },
   "connected_extension_succesfully": {
-    "message": "Extensión configurada correctamente!<br /><strong>Conéctala a la aplicación móvil.</strong>"
+    "message": "¡Extensión configurada correctamente!<br /><strong>Conéctala a la aplicación móvil.</strong>"
   },
   "download_mobile_app": {
     "message": "Descarga e instala la aplicación móvil"
@@ -253,5 +253,8 @@
   },
   "confirm_with_mobile": {
     "message": "Confirma esta transacción con la aplicación móvil Gnosis Safe."
+  },
+  "sync": {
+    "message": "Sincronizar"
   }
 }

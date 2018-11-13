@@ -108,7 +108,7 @@
     "message": "이 웹사이트는 허용 목록에 이미 등록되어 있습니다"
   },
   "set_lock_timeout": {
-    "message": "잠금 시간 설정"
+    "message": "잠금 시간"
   },
   "locking_min_default": {
     "message": " (기본값)"
@@ -253,5 +253,8 @@
   },
   "confirm_with_mobile": {
     "message": "본 거래를 Gnosis Safe 모바일앱에서 확인해주세요."
+  },
+  "sync": {
+    "message": "동기화"
   }
 }

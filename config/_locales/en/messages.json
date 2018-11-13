@@ -150,10 +150,10 @@
     "message": "Extension setup succesfully!<br /><strong>Connect with the mobile app.</strong>"
   },
   "download_mobile_app": {
-    "message": "Download amp; install the mobile app"
+    "message": "Download & install the mobile app"
   },
   "iphone_and_ipad": {
-    "message": "iPhone amp; iPad"
+    "message": "iPhone & iPad"
   },
   "android": {
     "message": "Android"
@@ -253,5 +253,8 @@
   },
   "confirm_with_mobile": {
     "message": "Confirm this transaction with the Gnosis Safe mobile app."
+  },
+  "sync": {
+    "message": "Sync"
   }
 }

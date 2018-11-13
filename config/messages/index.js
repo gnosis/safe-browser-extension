@@ -72,6 +72,7 @@ export const SET_LOCK_TIMEOUT = ReactHtmlParser(chrome.i18n.getMessage('set_lock
 export const SHOW_QR_CODE = ReactHtmlParser(chrome.i18n.getMessage('show_qr_code'))
 export const SHOW_QR_CODE_DESCRIPTION = ReactHtmlParser(chrome.i18n.getMessage('show_qr_code_description'))
 export const STORE_DESCRIPTION = ReactHtmlParser(chrome.i18n.getMessage('store_description'))
+export const SYNC = ReactHtmlParser(chrome.i18n.getMessage('sync'))
 export const TERMS = ReactHtmlParser(chrome.i18n.getMessage('terms'))
 export const TERMS_FIRST_BULLET = ReactHtmlParser(chrome.i18n.getMessage('terms_first_bullet'))
 export const TERMS_OF_SERVICE = ReactHtmlParser(chrome.i18n.getMessage('terms_of_service'))
