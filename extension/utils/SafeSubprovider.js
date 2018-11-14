@@ -4,7 +4,6 @@ import {
   EV_RESOLVED_TRANSACTION,
   EV_UPDATE_WEB3
 } from './messages'
-import { TRANSACTION_REJECTED } from '../../config/messages'
 
 class SafeSubprovider {
   constructor () {
@@ -34,7 +33,7 @@ class SafeSubprovider {
       if (data.detail.hash) {
         end(null, data.detail.hash)
       } else {
-        end(new Error(TRANSACTION_REJECTED, data.detail.id))
+        end(new Error('Transaction rejected', data.detail.id))
       }
     }
     document.addEventListener(EV_RESOLVED_TRANSACTION + id, resolveTransactionHandler)

@@ -2386,13 +2386,14 @@ footer .stepper-dots>li.active{
   text-align:center;
   width:100%;
   margin:0 auto 8px;
-  font-size:1.3em
+  font-size:1.1em
 }
 .extensionTX .extension-inner .transactionState .resend>button{
   color:#28B2FA;
   font-size:1.3em;
   font-weight:500;
-  letter-spacing:1px
+  letter-spacing:1px;
+  padding:0 10px
 }
 .extensionTX .extension-inner .button-group>button{
   font-size:1.5em

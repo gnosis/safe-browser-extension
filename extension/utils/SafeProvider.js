@@ -10,7 +10,6 @@ import FetchSubprovider from 'web3-provider-engine/subproviders/fetch.js'
 
 import SafeSubprovider from './SafeSubprovider'
 import { getNetworkVersion } from '../../config'
-import { PROVIDER_NOT_SYNCRONOUS } from '../../config/messages'
 
 const SafeProvider = ({
   rpcUrl
@@ -75,7 +74,7 @@ const SafeProvider = ({
         break
 
       default:
-        throw new Error(PROVIDER_NOT_SYNCRONOUS)
+        throw new Error('SafeProvider does not support this synchronous request')
     }
     return {
       id: payload.id,

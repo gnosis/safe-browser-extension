@@ -24,7 +24,7 @@ chrome.runtime.sendMessage(
       injectScript()
       setUpWeb3(response.currentSafe)
     } else {
-      console.log(WEBSITE_NOT_WHITELISTED)
+      console.log(WEBSITE_NOT_WHITELISTED.toString())
     }
   }
 )
@@ -45,7 +45,7 @@ function injectScript () {
     }
     xhr.send()
   } catch (err) {
-    console.error(WEB3_INJECTION_FAILED, err)
+    console.error(WEB3_INJECTION_FAILED.toString(), err)
   }
 }
 

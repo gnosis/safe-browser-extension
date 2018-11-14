@@ -18,7 +18,7 @@ const SendTransactionState = ({
   handleConfirmTransaction
 }) => {
   const time = seconds < 10 ? '00:0' + seconds.toString() : '00:' + seconds.toString()
-  const waitingTime = REQUEST_CONFIRMATION_WAIT_X_S.replace('%s', time)
+  const waitingTime = REQUEST_CONFIRMATION_WAIT_X_S.toString().replace('%s', time)
 
   return (
     <div className={cx(styles.transactionState)}>
