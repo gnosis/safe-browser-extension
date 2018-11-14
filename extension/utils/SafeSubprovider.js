@@ -33,7 +33,7 @@ class SafeSubprovider {
       if (data.detail.hash) {
         end(null, data.detail.hash)
       } else {
-        end(new Error('The transaction was rejected. ' + data.detail.id))
+        end(new Error('Transaction rejected', data.detail.id))
       }
     }
     document.addEventListener(EV_RESOLVED_TRANSACTION + id, resolveTransactionHandler)

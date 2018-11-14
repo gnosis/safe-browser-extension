@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 
 import NetworkNotification from 'components/Notification/NetworkNotification'
 import styles from 'assets/css/global.css'
+import {
+  BROWSER_EXTENSION,
+  SHOW_QR_CODE_DESCRIPTION
+} from '../../../../../../../config/messages'
 
 class Layout extends Component {
   render () {
@@ -18,9 +22,9 @@ class Layout extends Component {
           onClick={toggleQr}
         />
         <div className={styles.innerOverlayContent}>
-          <p>Scan the QR code below when requested in the mobile app</p>
+          <p>{SHOW_QR_CODE_DESCRIPTION}</p>
           <span className={styles.QR}>
-            <p>BROWSER EXTENSION</p>
+            <p>{BROWSER_EXTENSION}</p>
             <div ref={qrPairingRef} />
             <div className={styles.message}>
               {message && <div>{message}</div>}

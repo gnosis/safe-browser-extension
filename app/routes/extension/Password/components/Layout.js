@@ -4,6 +4,11 @@ import Page from 'components/Page'
 import keyHole from 'assets/images/keyhole.svg'
 import styles from 'assets/css/global.css'
 import { getNetwork } from '../../../../../config'
+import {
+  UNLOCK,
+  PERSONAL_EDITION,
+  ENTER_PASSWORD
+} from '../../../../../config/messages'
 
 class Layout extends Component {
   prevent = (e) => {
@@ -26,7 +31,12 @@ class Layout extends Component {
       >
         <form onSubmit={this.prevent} data-validation={dataValidation}>
           <div className={styles.content}>
-            <span className={styles.safeLogo} data-network={getNetwork()} />
+            <span
+              className={styles.safeLogo}
+              data-network={getNetwork()}
+            >
+              <span className={styles.edition}>{PERSONAL_EDITION}</span>
+            </span>
             <div className={styles.lockshape} data-validation={dataValidation}>
               <img
                 id={styles.keyhole}
@@ -38,7 +48,7 @@ class Layout extends Component {
               <div>
                 <input
                   type='password'
-                  placeholder='Enter password'
+                  placeholder={ENTER_PASSWORD}
                   value={password}
                   name='unlock'
                   onChange={updatePassword}
@@ -49,7 +59,7 @@ class Layout extends Component {
                   onClick={validatePasswords}
                   className={styles.button}
                 >
-                  UNLOCK
+                  {UNLOCK}
                 </button>
               </div>
             </div>

@@ -3,6 +3,10 @@ import React, { Component } from 'react'
 import { createQrImage } from 'utils/qrdisplay'
 import NetworkNotification from 'components/Notification/NetworkNotification'
 import styles from 'assets/css/global.css'
+import {
+  SAFE_FOR_ANDROID,
+  SAFE_FOR_IOS
+} from '../../../../../../config/messages'
 
 class AppQr extends Component {
   componentDidMount = () => {
@@ -35,7 +39,12 @@ class AppQr extends Component {
         />
         <div className={styles.innerOverlayContent}>
           <span className={styles.QR}>
-            <p>GNOSIS SAFE<br />FOR {os}</p>
+            <p>
+              {(os === 'ANDROID')
+                ? SAFE_FOR_ANDROID
+                : SAFE_FOR_IOS
+              }
+            </p>
             <div id='qr-app' />
           </span>
           <img

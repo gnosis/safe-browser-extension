@@ -1,0 +1,260 @@
+{
+  "retry": {
+    "message": "Reintentar"
+  },
+  "estimated_transaction_fee": {
+    "message": "Coste estimado da transacción"
+  },
+  "review_transaction": {
+    "message": "Revisión da transacción"
+  },
+  "new_password": {
+    "message": "Novo contrasinal"
+  },
+  "change_password": {
+    "message": "Cambiar o contrasinal"
+  },
+  "next": {
+    "message": "Seguinte"
+  },
+  "confirm_password": {
+    "message": "Confirmar contrasinal"
+  },
+  "password_doesnt_match": {
+    "message": "Os contrasinais non coinciden"
+  },
+  "confirm": {
+    "message": "Confirmar"
+  },
+  "terms": {
+    "message": "Termos"
+  },
+  "no_thanks": {
+    "message": "Non, grazas"
+  },
+  "agree": {
+    "message": "De acordo"
+  },
+  "personal_edition": {
+    "message": "Edición Persoal"
+  },
+  "safe_balance": {
+    "message": "Saldo da Safe"
+  },
+  "request_confirmation_wait_x_s": {
+    "message": "Por favor, agarde %s segundos antes de reenviar a solicitude."
+  },
+  "request_confirmation": {
+    "message": "Reenviar solicitude de confirmación"
+  },
+  "unknown_token": {
+    "message": "Token descoñecido"
+  },
+  "awaiting_confirmations": {
+    "message": "Agardando a confirmación"
+  },
+  "enter_password": {
+    "message": "Escriba o contrasinal"
+  },
+  "reject": {
+    "message": "Rexeitar"
+  },
+  "default_safe_name": {
+    "message": "Safe"
+  },
+  "save": {
+    "message": "Gardar"
+  },
+  "terms_of_service": {
+    "message": "Termos de Uso"
+  },
+  "privacy_policy": {
+    "message": "Política de Privacidade"
+  },
+  "terms_first_bullet": {
+    "message": "Non recollemos datos demográficos como a idade e o sexo."
+  },
+  "terms_second_bullet": {
+    "message": "Recopilamos datos anónimos de uso da aplicación e informes de fallos para garantir a calidade da nosa aplicación."
+  },
+  "transaction_submitted": {
+    "message": "Transacción enviada"
+  },
+  "safe_already_exists": {
+    "message": "A Safe xa existe"
+  },
+  "replace_recovery_phrase": {
+    "message": "Substituír a clave de recuperación"
+  },
+  "store_description": {
+    "message": "Gnosis Safe é unha carteira multisinatura de Ethereum que permite aos usuarios, de forma cómoda e segura, a xestión dos seus activos dixitais e a interacción coa web descentralizada.\n\nPodes recibir, gardar e transferir Ether e tokens ERC-20 con Gnosis Safe. A través da extensión de Chrome podes interactuar con aplicacións descentralizadas."
+  },
+  "view_on_etherscan": {
+    "message": "Ver en Etherscan.io"
+  },
+  "manage_sites_whitelist": {
+    "message": "Sitios web de confianza"
+  },
+  "delete_all": {
+    "message": "Borrar todo"
+  },
+  "add_website": {
+    "message": "Engadir sitio web"
+  },
+  "invalid_website": {
+    "message": "Sitio web non válido"
+  },
+  "website_whitelisted": {
+    "message": "Sitio web xa incluido"
+  },
+  "set_lock_timeout": {
+    "message": "Temporizador de bloqueo"
+  },
+  "locking_min_default": {
+    "message": " (por defecto)"
+  },
+  "locking_min": {
+    "message": "min"
+  },
+  "change_password_description": {
+    "message": "O contrasinal utilizarase para desbloquear a extensión e confirmar transaccións. <strong>Non comparta este contrasinal con outras persoas!</strong>"
+  },
+  "new_password_identical_chars": {
+    "message": "Non máis de 2 caracteres idénticos consecutivos"
+  },
+  "new_password_number_and_letter": {
+    "message": "Contrasinal con polo menos 1 número e 1 letra"
+  },
+  "new_password_min_chars": {
+    "message": "Lonxitude mínima de 8 caracteres"
+  },
+  "save_new_password": {
+    "message": "Gardar novo contrasinal"
+  },
+  "resync_with_mobile_app": {
+    "message": "Sincronizar coa aplicación móbil"
+  },
+  "replace_recovery_phrase_explanation": {
+    "message": "Escanea o código QR cando se solicite na aplicación móbil"
+  },
+  "about": {
+    "message": "Acerca de"
+  },
+  "version": {
+    "message": "Versión"
+  },
+  "connect_new_safe": {
+    "message": "Conectar nova Safe"
+  },
+  "connected_extension_succesfully": {
+    "message": "Extensión configurada correctamente!<br /><strong>Conéctaa coa aplicación móbil</strong>"
+  },
+  "download_mobile_app": {
+    "message": "Descarga e instala a aplicación móbil"
+  },
+  "iphone_and_ipad": {
+    "message": "iPhone e iPad"
+  },
+  "android": {
+    "message": "Android"
+  },
+  "connect_extension_explanation": {
+    "message": "Conecta a extensión coa aplicación móbil escaneando o código QR"
+  },
+  "show_qr_code": {
+    "message": "Amosar código QR"
+  },
+  "show_qr_code_description": {
+    "message": "Escanea o código QR cando se solicite na aplicación móbil"
+  },
+  "browser_extension": {
+    "message": "Extensión do navegador"
+  },
+  "safe_for_ios": {
+    "message": "Gnosis Safe<br />para iOS"
+  },
+  "safe_for_android": {
+    "message": "Gnosis Safe<br />para Android"
+  },
+  "unlock": {
+    "message": "Desbloquear"
+  },
+  "confirm_transaction": {
+    "message": "Confirmar a transcción"
+  },
+  "max_total": {
+    "message": "Max. total"
+  },
+  "transaction_rejected": {
+    "message": "Transacción rexeitada"
+  },
+  "confirm_transaction_state": {
+    "message": "Esta transacción iniciouse dende a aplicación móbil Gnosis Safe. Cando se confirme, a aplicación enviará a transacción."
+  },
+  "confirmation_requested": {
+    "message": "Solicitouse a confirmación dunha nova transacción"
+  },
+  "safe_creation": {
+    "message": "Creación dunha Safe"
+  },
+  "safe_created": {
+    "message": "Creouse unha nova Safe"
+  },
+  "website_not_whitelisted": {
+    "message": "Este sitio web non está no listado de sitios de confianza"
+  },
+  "web3_injection_failed": {
+    "message": "A inxección do proveedor web3 de Gnosis Safe fallou"
+  },
+  "provider_not_syncronous": {
+    "message": "SafeProvider non soporta esta petición síncrona"
+  },
+  "options_page_title": {
+    "message": "Gnosis Safe - Grazas pola instalación!"
+  },
+  "options_page_header": {
+    "message": "Grazas por instalar<br />a extensión Gnosis Safe"
+  },
+  "options_page_description": {
+    "message": "Para utilizar a extensión Gnosis Safe, primeiro debes permitir as notificacións. Utilízanse para notificarche as transaccións enviadas dende a aplicación móbil de Gnosis Safe."
+  },
+  "allow_notifications": {
+    "message": "Permitir notificacións"
+  },
+  "notifications_permission_required": {
+    "message": "Requírese permiso para recibir notificacións"
+  },
+  "extension_store_description": {
+    "message": "Garda Ether e tokens ERC-20 de forma segura e con autenticación de 2 factores."
+  },
+  "get_started": {
+    "message": "Comezar"
+  },
+  "add": {
+    "message": "Engadir"
+  },
+  "create_password_title": {
+    "message": "Asegura e cifra a túa extensión cun contrasinal"
+  },
+  "confirm_create_password_title": {
+    "message": "Case rematamos!<br />Confirma o teu contrasinal."
+  },
+  "internet_connection_error": {
+    "message": "Non hai conexión a Internet"
+  },
+  "check_internet_connection": {
+    "message": "Por favor, comproba a túa conexión!"
+  },
+  "review_terms": {
+    "message": "Por favor, revisa os nosos <a href='https://safe.gnosis.io/terms' target='_blank'>Termos de Uso</a> e <a href='https://safe.gnosis.io/privacy' target='_blank'>Política de Privacidade</a>."
+  },
+  "back": {
+    "message": "Volver"
+  },
+  "confirm_with_mobile": {
+    "message": "Confirma esta transacción coa aplicación móbil Gnosis Safe."
+  },
+  "sync": {
+    "message": "Sincronizar"
+  }
+}

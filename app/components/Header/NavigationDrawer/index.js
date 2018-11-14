@@ -13,6 +13,14 @@ import {
   ABOUT_URL,
   REPLACE_RECOVERY_PHRASE_URL
 } from 'routes/routes'
+import {
+  MANAGE_SITES_WHITELIST,
+  SET_LOCK_TIMEOUT,
+  CHANGE_PASSWORD,
+  RESYNC_WITH_MOBILE_APP,
+  ABOUT,
+  REPLACE_RECOVERY_PRASE
+} from '../../../../config/messages'
 
 const cx = classNames.bind(styles)
 
@@ -48,32 +56,32 @@ class NavigationDrawer extends Component {
         <ul className={cx(styles.safeDrawerMenu, showMenu && styles.active)}>
           <li>
             <Link to={WHITELIST_URL}>
-              <div data-menu='whitelist'>Manage sites whitelist</div>
+              <div data-menu='whitelist'>{MANAGE_SITES_WHITELIST}</div>
             </Link>
           </li>
           <li>
             <Link to={LOCKING_URL}>
-              <div data-menu='timeout'>Set lock timeout</div>
+              <div data-menu='timeout'>{SET_LOCK_TIMEOUT}</div>
             </Link>
           </li>
           <li>
             <Link to={changePasswordUrl}>
-              <div data-menu='password'>Change password</div>
+              <div data-menu='password'>{CHANGE_PASSWORD}</div>
             </Link>
           </li>
           <li>
             <Link to={resyncTokenUrl}>
-              <div data-menu='resync'>Resync with mobile app</div>
+              <div data-menu='resync'>{RESYNC_WITH_MOBILE_APP}</div>
             </Link>
           </li>
           <li>
             <Link to={replaceRecoveryPhraseUrl}>
-              <div data-menu='replace-recovery-phrase'>Replace recovery phrase</div>
+              <div data-menu='replace-recovery-phrase'>{REPLACE_RECOVERY_PRASE}</div>
             </Link>
           </li>
           <li>
             <Link to={ABOUT_URL}>
-              <div data-menu='about'>About</div>
+              <div data-menu='about'>{ABOUT}</div>
             </Link>
           </li>
         </ul>

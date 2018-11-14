@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 
 import styles from 'assets/css/global.css'
+import {
+  NEW_PASSWORD_IDENTICAL_CHARS,
+  NEW_PASSWORD_NUMBER_AND_LETTER,
+  NEW_PASSWORD_MIN_CHAR,
+  NEW_PASSWORD
+} from '../../../../../../../config/messages'
 
 class Layout extends Component {
   render () {
@@ -21,19 +27,19 @@ class Layout extends Component {
         <div data-validation={dataValidation}>
           <input
             type='password'
-            placeholder='New password'
+            placeholder={NEW_PASSWORD}
             value={newPassword}
             onChange={updateNewPassword}
           />
         </div>
         <p className={newPassword && rowStyle}>
-          No more than 2 identical characters in a row
+          {NEW_PASSWORD_IDENTICAL_CHARS}
         </p>
         <p className={newPassword && numberLetterStyle}>
-          Password with at least 1 number and 1 letter
+          {NEW_PASSWORD_NUMBER_AND_LETTER}
         </p>
         <p className={newPassword && lengthStyle}>
-          Use a minimum of 8 characters
+          {NEW_PASSWORD_MIN_CHAR}
         </p>
       </React.Fragment>
     )

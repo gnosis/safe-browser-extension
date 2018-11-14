@@ -12,6 +12,7 @@ import {
 import { createQrImage } from 'utils/qrdisplay'
 import Layout from '../components/Layout'
 import selector from './selector'
+import { NOTIFICATIONS_PERMISSION_REQUIRED } from '../../../../../../../config/messages'
 
 class PairingProcess extends Component {
   constructor (props) {
@@ -34,7 +35,7 @@ class PairingProcess extends Component {
     try {
       const token = await setUpNotifications()
       if (token === null) {
-        this.setState({ message: 'Permission to receive notifications required.' })
+        this.setState({ message: NOTIFICATIONS_PERMISSION_REQUIRED })
         return
       }
       if (authPushNotificationService(token, currentAccount.getPrivateKey())) {

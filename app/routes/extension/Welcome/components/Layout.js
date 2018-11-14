@@ -4,6 +4,18 @@ import classNames from 'classnames/bind'
 
 import styles from 'assets/css/global.css'
 import { CREATE_PASSWORD_URL } from 'routes/routes'
+import { getNetwork } from '../../../../../config'
+import {
+  EXTENSION_STORE_DESCRIPTION,
+  GET_STARTED,
+  TERMS,
+  REVIEW_TERMS,
+  AGREE,
+  TERMS_FIRST_BULLET,
+  TERMS_SECOND_BULLET,
+  NO_THANKS,
+  PERSONAL_EDITION
+} from '../../../../../config/messages'
 
 const cx = classNames.bind(styles)
 
@@ -14,27 +26,34 @@ const Layout = ({
   <div className={cx(styles.extension, styles.welcome)}>
     <div className={styles.extensionInner}>
       <div className={cx(styles.content, showDisclaimer && styles.blur)}>
-        <span className={cx(styles.safeLogo, styles.animated, styles.fadeInUp)} data-network='rinkeby' />
-        <h1>Safely store Ether and ERC20 tokens with 2-factor authentication.</h1>
-        <button onClick={toggleDisclaimer} className={cx(styles.button, styles.round)}>
-          GET STARTED
+        <span
+          className={cx(styles.safeLogo, styles.animated, styles.fadeInUp)}
+          data-network={getNetwork()}
+        >
+          <span className={styles.edition}>{PERSONAL_EDITION}</span>
+        </span>
+        <h1>{EXTENSION_STORE_DESCRIPTION}</h1>
+        <button
+          onClick={toggleDisclaimer}
+          className={cx(styles.button, styles.round)}
+        >
+          {GET_STARTED}
         </button>
       </div>
     </div>
     <div className={cx(styles.disclaimer, showDisclaimer ? styles.show : null)}>
       <span>
-        <h2>Terms</h2>
+        <h2>{TERMS}</h2>
         <p>
-          Please review our <a href='https://safe.gnosis.io/terms' target='_blank'>Terms of Use</a> and <a href='https://safe.gnosis.io/privacy' target='_blank'>Privacy Policy</a>.
+          {REVIEW_TERMS}
           <ul>
-            <li>We do not collect demographic data like age and gender.</li>
-            <li>We collect anonymized app usage data and crash reports to ensure the quality of our app.</li>
+            <li>{TERMS_FIRST_BULLET}</li>
+            <li>{TERMS_SECOND_BULLET}</li>
           </ul>
         </p>
-
         <div>
-          <button onClick={toggleDisclaimer} className={cx(styles.button, styles.naked)}>NO THANKS</button>
-          <Link to={CREATE_PASSWORD_URL} className={styles.button}>AGREE</Link>
+          <button onClick={toggleDisclaimer} className={cx(styles.button, styles.naked)}>{NO_THANKS}</button>
+          <Link to={CREATE_PASSWORD_URL} className={styles.button}>{AGREE}</Link>
         </div>
       </span>
     </div>

@@ -5,6 +5,11 @@ import { toGWei } from 'utils/helpers'
 import { isTokenTransfer } from '../../../containers/tokens'
 import { getEthBalance } from '../../../containers/transactions'
 import styles from 'assets/css/global.css'
+import {
+  SAFE_BALANCE,
+  ESTIMATED_TRANSACTION_FEE,
+  MAX_TOTAL
+} from '../../../../../../../config/messages'
 
 class TransactionSummary extends Component {
   constructor (props) {
@@ -60,20 +65,20 @@ class TransactionSummary extends Component {
     return (
       <div className={styles.transactionSummary} >
         <span>
-          <p>Safe balance</p>
+          <p>{SAFE_BALANCE}</p>
           <span>
             <strong>{ethBalanceString} <small>ETH</small></strong>
           </span>
         </span>
         <span>
-          <p>Estimated transaction fee</p>
+          <p>{ESTIMATED_TRANSACTION_FEE}</p>
           <span>
             <strong className={styles.textRed}>{txFeeString} <small>ETH</small></strong>
           </span>
         </span>
         {!this.isTokenTransfer &&
           <span className={styles.subtotal}>
-            <p>Max. total</p>
+            <p>{MAX_TOTAL}</p>
             <span>
               <strong className={styles.textRed}>{txCostString} <small>ETH</small></strong>
               <small />

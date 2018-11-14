@@ -5,6 +5,10 @@ import classNames from 'classnames'
 import Page from 'components/Page'
 import { ACCOUNT_URL } from 'routes/routes'
 import styles from 'assets/css/global.css'
+import {
+  REPLACE_RECOVERY_PRASE,
+  REPLACE_RECOVERY_PRASE_EXPLANATION
+} from '../../../../../config/messages'
 
 const cx = classNames.bind(styles)
 
@@ -14,13 +18,11 @@ class Layout extends Component {
       <Page>
         <div className={styles.overlayPage}>
           <span className={styles.overlayPageHeader}>
-            <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)}>
-              <p>Back</p>
-            </Link>
-            <h2>Replace recovery phrase</h2>
+            <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)} />
+            <h2>{REPLACE_RECOVERY_PRASE}</h2>
           </span>
           <div className={cx(styles.overlayPageContent, styles.replaceRecoveryPhraseContent)}>
-            <p>Scan the QR code below when requested in the mobile app</p>
+            <p>{REPLACE_RECOVERY_PRASE_EXPLANATION}</p>
             <span className={styles.QR}>
               <div id='qr-replace-recovery-phrase' />
             </span>

@@ -3,6 +3,7 @@ import classNames from 'classnames/bind'
 
 import SafeItem from './SafeItem'
 import styles from 'assets/css/global.css'
+import { CONNECT_NEW_SAFE } from '../../../../../config/messages'
 
 const cx = classNames.bind(styles)
 
@@ -46,7 +47,7 @@ const Layout = ({
                 </li>
               ))}
               <li className={styles.safeMenuNewSafe} onClick={handleAddNewSafe}>
-                <p>Connect to new Safe</p>
+                <p>{CONNECT_NEW_SAFE}</p>
               </li>
             </ul>
           </span>

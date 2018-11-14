@@ -74,7 +74,7 @@ const SafeProvider = ({
         break
 
       default:
-        throw new Error('SafeProvider does not support this synchronous request.')
+        throw new Error('SafeProvider does not support this synchronous request')
     }
     return {
       id: payload.id,

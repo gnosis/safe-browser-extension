@@ -8,6 +8,10 @@ import {
   TRANSACTION_URL,
   PASSWORD_URL
 } from 'routes/routes'
+import {
+  REJECT,
+  CONFIRM
+} from '../../../../../../../config/messages'
 
 const cx = classNames.bind(styles)
 
@@ -22,13 +26,13 @@ const FooterButtons = ({
       onClick={handleRejectTransaction}
       className={cx(styles.button, styles.reject)}
     >
-      REJECT
+      {REJECT}
     </button>
     <button
       onClick={handleConfirmTransaction}
       className={cx(styles.button, styles.confirm)}
     >
-      CONFIRM
+      {CONFIRM}
     </button>
   </span>
 )

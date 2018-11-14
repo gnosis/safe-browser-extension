@@ -9,6 +9,9 @@ import {
   CONFIRM_PASSWORD_URL,
   WELCOME_URL
 } from 'routes/routes'
+import {
+  CREATE_PASSWORD_TITLE, CHANGE_PASSWORD_DESCRIPTION
+} from '../../../../../config/messages'
 
 class Layout extends Component {
   prevent = (e) => {
@@ -35,10 +38,10 @@ class Layout extends Component {
       <Page page={styles.password1} simpleHeader>
         <form onSubmit={this.prevent}>
           <div className={styles.content}>
-            <h1>Secure and encrypt your browser extension with a password</h1>
+            <h1>{CREATE_PASSWORD_TITLE}</h1>
             <span className={styles.warningPassword}>
               <img src={warningImage} />
-              <p>Password is used to unlock the extension and confirm transactions. <strong>Don't share this password with others!</strong></p>
+              <p>{CHANGE_PASSWORD_DESCRIPTION}</p>
             </span>
             <div className={styles.passwordForm}>
               <CreatePasswordForm

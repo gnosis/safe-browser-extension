@@ -26,6 +26,7 @@ import {
   MSG_RESOLVED_TRANSACTION,
   MSG_PENDING_SENDTRANSACTION
 } from './utils/messages'
+import { SAFE_ALREADY_EXISTS } from '../config/messages'
 
 const persistedState = loadStorage()
 
@@ -265,7 +266,7 @@ const safeCreation = (payload) => {
   ).length === 0
 
   if (safes.length > 0 && !validSafeAddress) {
-    console.error('Safe', payload.safe, 'already exists.')
+    console.error(SAFE_ALREADY_EXISTS, payload.safe)
     return
   }
   const checksumedAddress = EthUtil.toChecksumAddress(payload.safe)

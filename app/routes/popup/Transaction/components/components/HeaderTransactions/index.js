@@ -2,6 +2,7 @@ import React from 'react'
 import classNames from 'classnames'
 
 import styles from 'assets/css/global.css'
+import { REVIEW_TRANSACTION } from '../../../../../../../config/messages'
 
 const cx = classNames.bind(styles)
 
@@ -14,7 +15,7 @@ const HeaderTransactions = ({
 }) => (
   <React.Fragment>
     <span className={styles.PageHeader}>
-      <h2>Review Transaction</h2>
+      <h2>{REVIEW_TRANSACTION}</h2>
 
       {transactionsLength > 1 &&
       <span className={styles.pagination}>

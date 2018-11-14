@@ -4,9 +4,9 @@ import classNames from 'classnames'
 
 import Page from 'components/Page'
 import TimeBlock from './TimeBlock'
-
 import styles from 'assets/css/global.css'
 import { ACCOUNT_URL } from 'routes/routes'
+import { SET_LOCK_TIMEOUT } from '../../../../../config/messages'
 
 const cx = classNames.bind(styles)
 
@@ -21,10 +21,8 @@ class Layout extends Component {
       <Page>
         <div className={styles.overlayPage}>
           <span className={styles.overlayPageHeader}>
-            <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)}>
-              <p>Back</p>
-            </Link>
-            <h2>Set Lock Timeout</h2>
+            <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)} />
+            <h2>{SET_LOCK_TIMEOUT}</h2>
           </span>
           <span className={styles.overlayPageContent}>
             <form className={styles.timeout_items}>

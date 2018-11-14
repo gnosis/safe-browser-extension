@@ -6,6 +6,7 @@ import Page from 'components/Page'
 import WhitelistedDappState from './WhitelistedDappState/containers'
 import styles from 'assets/css/global.css'
 import slowTradeBanner from 'assets/images/slow-trade-banner.png'
+import { VIEW_ON_ETHERSCAN } from '../../../../../config/messages'
 
 class Layout extends Component {
   render () {
@@ -34,7 +35,7 @@ class Layout extends Component {
               to='#'
               className={styles.externalLink}
               onClick={openEtherScan}>
-              View on Etherscan.io
+              {VIEW_ON_ETHERSCAN}
             </Link>
           </div>
         </div>

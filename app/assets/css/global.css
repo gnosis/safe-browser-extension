@@ -117,13 +117,14 @@ section.auction,section.home{
   background: #a2a8ba;
   position: absolute;
 }
-.safeLogo::after{
-  content:"Personal Edition";
+.safeLogo>.edition{
+  position: absolute;
   font-weight:400;
+  text-transform: uppercase;
   font-size:1em;
+  text-align: center;
   color:#A2A8BA;
   letter-spacing:.2em;
-  position:absolute;
   bottom:-2em;
   width:13em;
   left:-.8em
@@ -608,7 +609,8 @@ form input.noborder{
   font-weight:100;
   font-size:3em;
   letter-spacing:0;
-  line-height:1.3
+  line-height:1.3;
+  min-width: 410px;
 }
 .start p{
   margin:1.5em auto 3em;
@@ -851,6 +853,9 @@ form input.noborder{
   line-height:1.2;
   text-align:center;
   padding: 0;
+}
+.QR>p{
+  text-transform: uppercase
 }
 .lockedState{
   position:absolute;
@@ -1287,23 +1292,19 @@ form input.noborder{
   flex-wrap:nowrap;
   border-bottom:1px solid #E4E8F1;
   -ms-flex-pack:justify;
-  justify-content:space-between;
+  justify-content:flex-start;
   -ms-flex-align:center;
   align-items:center;
   -ms-flex-line-pack:center;
   align-content:center
 }
 .overlayPageHeader>h2{
-  position:absolute;
-  left:0;
-  right:0;
-  margin:auto;
-  text-align:center;
-  width:210px;
+  margin:0 0 0 16px;
+  text-align:left;
   line-height:1;
   font-weight:400;
-  font-size:1.6em;
-  color:#21435A
+  font-size:1.5em;
+  color:#21435A;
 }
 .overlayPageHeader .btn-back{
   display:-ms-flexbox;
@@ -1334,7 +1335,8 @@ form input.noborder{
   letter-spacing:0
 }
 .overlayPageHeader .btn-back.active:hover{
-  transform:translateX(-2px)
+  transform:translateX(-2px);
+
 }
 .overlayPageHeader .action_DeleteAll{
   font-weight:400;
@@ -1343,7 +1345,9 @@ form input.noborder{
   text-align:right;
   line-height:1;
   text-decoration:none;
-  cursor: pointer
+  cursor: pointer;
+  justify-self:flex-end;
+  margin-left:auto
 }
 .whitelist_add{
   display:-ms-flexbox;
@@ -1643,7 +1647,6 @@ footer .stepper-dots>li.active{
 }
 .welcome .disclaimer>span{
   background:#fff;
-  height:24em;
   width:100%;
   position:absolute;
   bottom:0;
@@ -1701,7 +1704,7 @@ footer .stepper-dots>li.active{
 }
 .welcome .disclaimer>span>div>button,
 .welcome .disclaimer>span>div>a{
-  max-width:115px;
+  max-width:130px;
   margin:0;
   padding:0;
   height:35px;
@@ -2266,6 +2269,7 @@ footer .stepper-dots>li.active{
   font-weight:inherit;
   color:inherit;
   margin: 0;
+  text-align: left;
 }
 .extensionTX .extension-inner .transactionSummary>span strong{
   display:-ms-flexbox;
@@ -2316,7 +2320,8 @@ footer .stepper-dots>li.active{
   letter-spacing:3px;
   text-align:center;
   width: 100%;
-  margin:0
+  margin:0;
+  text-transform: uppercase
 }
 .extensionTX .extension-inner .transactionState .message{
   display:-ms-flexbox;
@@ -2381,13 +2386,14 @@ footer .stepper-dots>li.active{
   text-align:center;
   width:100%;
   margin:0 auto 8px;
-  font-size:1.3em
+  font-size:1.1em
 }
 .extensionTX .extension-inner .transactionState .resend>button{
   color:#28B2FA;
   font-size:1.3em;
   font-weight:500;
-  letter-spacing:1px
+  letter-spacing:1px;
+  padding:0 10px
 }
 .extensionTX .extension-inner .button-group>button{
   font-size:1.5em

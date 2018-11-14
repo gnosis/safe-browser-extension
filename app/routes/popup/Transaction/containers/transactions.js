@@ -10,6 +10,7 @@ import {
 } from './tokens'
 import { getTransactionEstimations } from '../components/SendTransaction/containers/gasData'
 import { getNetworkUrl } from '../../../../../config'
+import { UNKNOWN_TOKEN } from '../../../../../config/messages'
 
 export const getEthBalance = async (address) => {
   const web3 = new Web3(new Web3.providers.HttpProvider(getNetworkUrl()))
@@ -28,11 +29,11 @@ export const getTransactionData = async (to, from, data, value, ethBalance) => {
     const token = await getTokenData(to)
     const balance = await getTokenBalance(token.address, from, token.decimals)
     const val = getTokenTransferValue(data, token.decimals)
-    const symbol = token.symbol ? token.symbol : 'UNKNOWN TOKEN'
+    const symbol = token.symbol ? token.symbol : UNKNOWN_TOKEN
     return { balance, value: val, symbol, decimals: token.decimals }
   } catch (err) {
     console.error(err)
-    return { balance: new BigNumber(0), value: new BigNumber(0), symbol: 'UNKNOWN TOKEN', decimals: 0 }
+    return { balance: new BigNumber(0), value: new BigNumber(0), symbol: UNKNOWN_TOKEN, decimals: 0 }
   }
 }
 

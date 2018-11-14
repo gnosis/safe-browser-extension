@@ -8,6 +8,7 @@
     "default_popup": "index.html"
   },
   "author": "Gnosis",
+  "default_locale": "en",
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true

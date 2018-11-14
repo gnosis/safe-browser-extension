@@ -19,7 +19,8 @@
     "watch": "npm run watch:dev",
     "clean": "rm -rf build",
     "test": "jest",
-    "standard": "standard --fix"
+    "standard": "standard --fix",
+    "lokalise": "node scripts/lokalise.js"
   },
   "repository": {
     "type": "git",
@@ -41,6 +42,7 @@
     "react": "^16.3.0",
     "react-chrome-redux": "^1.5.1",
     "react-dom": "^16.3.0",
+    "react-html-parser": "^2.0.2",
     "react-network": "^1.0.1",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
@@ -51,8 +53,7 @@
     "truffle-contract": "^3.0.5",
     "uuid": "^3.3.2",
     "web3": "^0.20.6",
-    "web3-provider-engine": "^14.0.4",
-    "write-json-file": "^3.0.2"
+    "web3-provider-engine": "^14.0.4"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
