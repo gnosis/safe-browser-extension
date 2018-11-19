@@ -108,7 +108,7 @@
     "message": "이 웹사이트는 허용 목록에 이미 등록되어 있습니다"
   },
   "set_lock_timeout": {
-    "message": "잠금 시간"
+    "message": "잠금 시간 설정"
   },
   "locking_min_default": {
     "message": " (기본값)"
@@ -153,7 +153,7 @@
     "message": "모바일 앱 다운로드 및 설치"
   },
   "iphone_and_ipad": {
-    "message": "아이폰, 아이패드"
+    "message": "아이폰 및 아이패드"
   },
   "android": {
     "message": "안드로이드"
