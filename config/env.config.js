@@ -32,7 +32,7 @@ const stagingTransactionRelayServiceUrl = 'https://safe-relay.staging.gnosisdev.
 
 const envConfig = {
   [PRODUCTION]: {
-    [ANDROID_APP_URL]: 'https://play.google.com/apps/testing/pm.gnosis.heimdall.dev',
+    [ANDROID_APP_URL]: 'https://play.google.com/store/apps/details?id=pm.gnosis.heimdall',
     [IOS_APP_URL]: 'https://testflight.apple.com/join/fMCYpOfT',
     [PUSH_NOTIFICATION_SERVICE_URL]: process.env.PUSH_NOTIFICATION_SERVICE_URL,
     [TRANSACTION_RELAY_SERVICE_URL]: {
