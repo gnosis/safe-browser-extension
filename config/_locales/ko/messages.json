@@ -69,7 +69,7 @@
     "message": "이용 약관"
   },
   "privacy_policy": {
-    "message": "프라이버시 정책"
+    "message": "개인정보처리정책"
   },
   "terms_first_bullet": {
     "message": "본사는 연령과 성별을 비롯한 인구통계학적 데이터를 수집하지 않습니다."
@@ -120,10 +120,10 @@
     "message": "비밀번호는 확장프로그램 잠금해제와 거래 확인을 위해 사용됩니다.\n<strong>이 비밀번호를 타인과 공유하지 마세요!</strong>"
   },
   "new_password_identical_chars": {
-    "message": "2번 연속 같은 글자를 입력하지 마세요"
+    "message": "2번 연속 같은 문자를 입력하지 마세요"
   },
   "new_password_number_and_letter": {
-    "message": "암호는 최소 1개 이상의 숫자와 글자로 이루어져야 합니다"
+    "message": "암호는 최소 1개 이상의 숫자와 문자로 이루어져야 합니다"
   },
   "new_password_min_chars": {
     "message": "최소 8자 입력하세요"
@@ -237,7 +237,7 @@
     "message": "브라우저 확장프로그램에 비밀번호를 설정하여 보호하세요"
   },
   "confirm_create_password_title": {
-    "message": "고지가 보이네요!<br />비밀번호를 한 번 더 확인해주세요."
+    "message": "거의 다 끝났습니다!<br />비밀번호를 한 번 더 확인해주세요."
   },
   "internet_connection_error": {
     "message": "인터넷 연결 불가"
@@ -246,7 +246,7 @@
     "message": "인터넷 연결 상태 확인해주세요!"
   },
   "review_terms": {
-    "message": "<a href='https://safe.gnosis.io/terms' target='_blank'>이용약관</a>과 <a href='https://safe.gnosis.io/privacy' target='_blank'>프라이버시 정책</a>을 검토해주세요."
+    "message": "<a href='https://safe.gnosis.io/terms' target='_blank'>이용약관</a>과 <a href='https://safe.gnosis.io/privacy' target='_blank'>개인정보처리정책</a>을 검토해주세요."
   },
   "back": {
     "message": "이전"
