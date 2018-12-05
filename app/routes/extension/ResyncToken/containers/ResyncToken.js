@@ -13,6 +13,10 @@ import {
 } from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'
 import Layout from '../components/Layout'
 import selector from './selector'
+import {
+  ERROR_SYNCING,
+  SYNCED_TOKEN
+} from '../../../../../config/messages'
 
 class ResyncToken extends Component {
   constructor (props) {
@@ -21,6 +25,10 @@ class ResyncToken extends Component {
     const { location } = this.props
     const validPassword = location && location.state && location.state.password
     this.password = validPassword ? location.state.password : undefined
+
+    this.state = {
+      message: undefined
+    }
   }
 
   handleResync = () => async (e) => {
@@ -35,18 +43,31 @@ class ResyncToken extends Component {
 
     try {
       const token = await setUpNotifications()
-      if (token === null) return
+      if (token === null) {
+        this.setState({ message: ERROR_SYNCING })
+        return
+      }
       authPushNotificationService(token, currentAccount.getPrivateKey())
+      this.setState({ message: SYNCED_TOKEN })
     } catch (err) {
+      this.setState({ message: ERROR_SYNCING })
       console.error(err)
     }
+
     ga(['_trackEvent', EXTENSION_SETTINGS, 'click-resync-push-token', 'Resync push token'])
+
+    setTimeout(() => {
+      this.setState({ message: undefined })
+    }, 1000)
   }
 
   render () {
+    const { message } = this.state
+
     return (
       <Layout
         handleResync={this.handleResync}
+        message={message}
       />
     )
   }

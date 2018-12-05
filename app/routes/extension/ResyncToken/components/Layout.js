@@ -5,19 +5,26 @@ import classNames from 'classnames/bind'
 import Page from 'components/Page'
 import styles from 'assets/css/global.css'
 import { ACCOUNT_URL } from 'routes/routes'
-import { SYNC } from '../../../../../config/messages'
+import {
+  RESYNC_WITH_MOBILE_APP,
+  SYNC
+} from '../../../../../config/messages'
 
 const cx = classNames.bind(styles)
 
 class Layout extends Component {
   render () {
-    const { handleResync } = this.props
+    const {
+      handleResync,
+      message
+    } = this.props
 
     return (
       <Page>
         <div className={styles.overlayPage}>
           <span className={styles.overlayPageHeader}>
             <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)} />
+            <h2>{RESYNC_WITH_MOBILE_APP}</h2>
           </span>
           <button
             className={cx(styles.button, styles.buttonResync)}
@@ -25,6 +32,9 @@ class Layout extends Component {
           >
             {SYNC}
           </button>
+          <div className={styles.message}>
+            {message && <div>{message}</div>}
+          </div>
         </div>
       </Page>
     )

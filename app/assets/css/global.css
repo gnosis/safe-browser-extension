@@ -1283,6 +1283,13 @@ form input.noborder{
 .overlayPage .warning-password{
   margin:0
 }
+.overlayPage > .message {
+  --border: 1px solid red;
+  padding:20px;
+  color:inherit;
+  font-size:1.3em;
+  text-align:center
+}
 .overlayPageHeader{
   height:48px;
   padding:0 20px;
