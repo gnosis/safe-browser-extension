@@ -9,8 +9,8 @@ self.addEventListener('push', (event) => {
   let title, message, url
   switch (payload.type) {
     case 'safeCreation':
-      title = 'Safe Creation'
-      message = 'A new Safe was created'
+      title = 'Safe connected'
+      message = 'Your Safe is now synced to your browser extension'
       url = null
       break
 

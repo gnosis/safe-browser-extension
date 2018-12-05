@@ -194,11 +194,11 @@
   "confirmation_requested": {
     "message": "신규 거래 확인이 요청되었습니다"
   },
-  "safe_creation": {
+  "safe_connected_title": {
     "message": "Safe 생성"
   },
-  "safe_created": {
-    "message": "신규 Safe가 생성되었습니다"
+  "safe_connected_description": {
+    "message": "귀하의 Safe가 브라우저 확장프로그램에 동기화되었습니다"
   },
   "website_not_whitelisted": {
     "message": "이 웹사이트는 허용 목록에 미등록되어 있습니다"
@@ -256,5 +256,8 @@
   },
   "sync": {
     "message": "동기화"
+  },
+  "synced_token": {
+    "message": "동기화 됨"
   }
 }

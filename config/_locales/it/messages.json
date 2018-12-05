@@ -194,11 +194,11 @@
   "confirmation_requested": {
     "message": "E' stata richiesta la conferma di una nuova transazione."
   },
-  "safe_creation": {
-    "message": "Creazione di un Safe"
+  "safe_connected_title": {
+    "message": "Safe connesso"
   },
-  "safe_created": {
-    "message": "È stato creato un nuovo Safe"
+  "safe_connected_description": {
+    "message": "Il Safe è adesso connesso con l'estensione del browser"
   },
   "website_not_whitelisted": {
     "message": "Questo sito Web non è autorizzato"
@@ -228,7 +228,7 @@
     "message": "Memorizza in modo sicuro Ether e token ERC-20 con autenticazione a 2 fattori."
   },
   "get_started": {
-    "message": "Iniziare"
+    "message": "Inizia"
   },
   "add": {
     "message": "Aggiungere"
@@ -256,5 +256,8 @@
   },
   "sync": {
     "message": "Sincronizzare"
+  },
+  "synced_token": {
+    "message": "Sincronizzato"
   }
 }

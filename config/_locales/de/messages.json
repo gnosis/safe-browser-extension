@@ -194,10 +194,10 @@
   "confirmation_requested": {
     "message": "Die Bestätigung einer neuen Transaktion wurde angefordert"
   },
-  "safe_creation": {
+  "safe_connected_title": {
     "message": "Safe Erstellung"
   },
-  "safe_created": {
+  "safe_connected_description": {
     "message": "Ein neuer Safe wurde erstellt"
   },
   "website_not_whitelisted": {
@@ -256,5 +256,8 @@
   },
   "sync": {
     "message": "Synchronisieren"
+  },
+  "synced_token": {
+    "message": "Synchronisiert"
   }
 }

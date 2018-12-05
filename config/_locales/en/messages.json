@@ -194,11 +194,11 @@
   "confirmation_requested": {
     "message": "The confirmation of a new transaction was requested"
   },
-  "safe_creation": {
-    "message": "Safe creation"
+  "safe_connected_title": {
+    "message": "Safe connected"
   },
-  "safe_created": {
-    "message": "A new Safe was created"
+  "safe_connected_description": {
+    "message": "Your Safe is now synced to your browser extension"
   },
   "website_not_whitelisted": {
     "message": "This website is not whitelisted"
@@ -256,5 +256,8 @@
   },
   "sync": {
     "message": "Sync"
+  },
+  "synced_token": {
+    "message": "Synced"
   }
 }

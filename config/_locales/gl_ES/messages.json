@@ -194,11 +194,11 @@
   "confirmation_requested": {
     "message": "Solicitouse a confirmación dunha nova transacción"
   },
-  "safe_creation": {
-    "message": "Creación dunha Safe"
+  "safe_connected_title": {
+    "message": "Safe conectada"
   },
-  "safe_created": {
-    "message": "Creouse unha nova Safe"
+  "safe_connected_description": {
+    "message": "Emparellouse a túa Safe coa extensión do navegador"
   },
   "website_not_whitelisted": {
     "message": "Este sitio web non está no listado de sitios de confianza"
@@ -256,5 +256,8 @@
   },
   "sync": {
     "message": "Sincronizar"
+  },
+  "synced_token": {
+    "message": "Sincronizado"
   }
 }
