@@ -62,6 +62,9 @@
   "default_safe_name": {
     "message": "Safe"
   },
+  "error_syncing": {
+    "message": "동기화 오류"
+  },
   "save": {
     "message": "저장"
   },

@@ -62,6 +62,9 @@
   "default_safe_name": {
     "message": "Safe"
   },
+  "error_syncing": {
+    "message": "Erro de sincronización"
+  },
   "save": {
     "message": "Gardar"
   },
