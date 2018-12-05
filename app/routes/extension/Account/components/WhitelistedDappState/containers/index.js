@@ -12,6 +12,7 @@ class WhitelistedDappState extends Component {
     super(props)
 
     this.state = {
+      showWhitelistedDappState: undefined,
       url: '',
       whitelisted: undefined
     }
@@ -26,11 +27,15 @@ class WhitelistedDappState extends Component {
 
   isWhitelistedDapp = (url) => {
     const { whitelistedDapps } = this.props
+
     const normalizedUrl = normalizeUrl(url)
+    const whitelistableDapp = (normalizedUrl.indexOf('.') > -1)
+    const whitelisted = (whitelistedDapps.indexOf(normalizedUrl) > -1)
 
     this.setState({
+      showWhitelistedDappState: whitelistableDapp,
       url: normalizedUrl,
-      whitelisted: (whitelistedDapps.indexOf(normalizedUrl) > -1)
+      whitelisted
     })
   }
 
@@ -49,14 +54,17 @@ class WhitelistedDappState extends Component {
   }
 
   render () {
-    const { url, whitelisted } = this.state
-    const { whitelistedDapps } = this.props
+    const {
+      showWhitelistedDappState,
+      url,
+      whitelisted
+    } = this.state
 
     return (
       <Layout
+        showWhitelistedDappState={showWhitelistedDappState}
         url={url}
         whitelisted={whitelisted}
-        whitelistedDapps={whitelistedDapps}
         handleWhitelistDapp={this.handleWhitelistDapp}
       />
     )

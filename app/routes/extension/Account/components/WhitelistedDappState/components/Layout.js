@@ -3,13 +3,13 @@ import React from 'react'
 import styles from 'assets/css/global.css'
 
 const Layout = ({
+  showWhitelistedDappState,
   url,
   whitelisted,
-  whitelistedDapps,
   handleWhitelistDapp
 }) => (
   <div className={styles.whitelister} data-whitelisted={whitelisted}>
-    {whitelisted !== undefined &&
+    {showWhitelistedDappState && whitelisted !== undefined &&
       <React.Fragment>
         <p>{url}</p>
         <span className={styles.whitelistSwitch}>
