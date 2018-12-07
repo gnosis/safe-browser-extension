@@ -50,7 +50,11 @@ class Account extends Component {
 
   openSlowTrade = async () => {
     await ga(['_trackEvent', SAFES, 'click-slow-trade-banner', 'Click Slow Trade banner'])
-    window.open('https://slow.trade')
+    if (getNetwork() === MAINNET) {
+      window.open('https://slow.trade')
+    } else {
+      window.open('https://rinkeby.slow.trade')
+    }
   }
 
   focusTransactionWindow = () => {
