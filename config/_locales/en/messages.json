@@ -262,5 +262,8 @@
   },
   "synced_token": {
     "message": "Synced"
+  },
+  "approve": {
+    "message": "Approve"
   }
 }
