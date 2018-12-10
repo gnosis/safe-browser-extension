@@ -12,6 +12,7 @@ class About extends Component {
     return (
       <Layout
         versionNumber={this.versionNumber}
+        location={this.props.location}
       />
     )
   }

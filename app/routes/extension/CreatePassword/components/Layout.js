@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import Page from 'components/Page'
-import Footer from 'components/Footer'
+import FooterSteps from 'components/Footers/FooterSteps'
 import CreatePasswordForm from './CreatePasswordForm/containers/CreatePasswordForm'
 import styles from 'assets/css/global.css'
 import warningImage from 'assets/images/warning.svg'
@@ -22,7 +22,8 @@ class Layout extends Component {
     const {
       newPassword,
       manageCreatePassword,
-      ready
+      ready,
+      location
     } = this.props
 
     const nextLink = ready
@@ -35,7 +36,11 @@ class Layout extends Component {
       : ''
 
     return (
-      <Page page={styles.password1} simpleHeader>
+      <Page
+        page={styles.password1}
+        location={location}
+        simpleHeader
+      >
         <form onSubmit={this.prevent}>
           <div className={styles.content}>
             <h1>{CREATE_PASSWORD_TITLE}</h1>
@@ -51,7 +56,7 @@ class Layout extends Component {
               />
             </div>
           </div>
-          <Footer
+          <FooterSteps
             link={WELCOME_URL}
             ready={ready}
             firstStep

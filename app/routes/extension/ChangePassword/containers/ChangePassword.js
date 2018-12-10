@@ -9,7 +9,7 @@ import { createEthAccount } from 'routes/extension/DownloadApps/components/Pairi
 import Layout from '../components/Layout'
 import actions from './actions'
 import selector from './selector'
-import { MSG_LOCK_ACCOUNT } from '../../../../../extension/utils/messages'
+import messages from '../../../../../extension/utils/messages'
 import { ACCOUNT_URL } from 'routes/routes'
 
 class ChangePassword extends Component {
@@ -70,7 +70,7 @@ class ChangePassword extends Component {
     const { encryptedMnemonic, hmac } = createEthAccount(mnemonic, newPassword)
 
     chrome.runtime.sendMessage({
-      msg: MSG_LOCK_ACCOUNT
+      msg: messages.MSG_LOCK_ACCOUNT
     })
 
     ga(['_trackEvent', EXTENSION_SETTINGS, 'click-change-password', 'Change password'])
@@ -99,6 +99,7 @@ class ChangePassword extends Component {
         updateMasterPassword={this.updateMasterPassword}
         confirmPasswordReady={confirmPasswordReady}
         createPasswordReady={createPasswordReady}
+        location={this.props.location}
       />
     )
   }

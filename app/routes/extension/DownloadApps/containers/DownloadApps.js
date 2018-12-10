@@ -91,6 +91,7 @@ class DownloadApps extends Component {
         showQrIos={showQrIos}
         showQrPairing={showQrPairing}
         password={this.password}
+        location={this.props.location}
       />
     )
   }

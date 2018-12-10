@@ -6,7 +6,7 @@ import { ga } from 'utils/analytics'
 import { SAFES } from 'utils/analytics/events'
 import selector from './selector'
 import actions from './actions'
-import { MSG_LOCK_ACCOUNT } from '../../../../../extension/utils/messages'
+import messages from '../../../../../extension/utils/messages'
 import Layout from '../components/Layout'
 import {
   PASSWORD_URL,
@@ -60,7 +60,7 @@ class SafesMenu extends Component {
 
     if (safeList.length === 1) {
       chrome.runtime.sendMessage({
-        msg: MSG_LOCK_ACCOUNT
+        msg: messages.MSG_LOCK_ACCOUNT
       })
     }
     ga(['_trackEvent', SAFES, 'click-remove-safe', 'Remove Safe'])

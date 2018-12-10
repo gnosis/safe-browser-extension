@@ -37,7 +37,8 @@ class Header extends Component {
     } = this.state
     const {
       txReview,
-      transactionNumber
+      transactionNumber,
+      location
     } = this.props
 
     return (
@@ -59,10 +60,7 @@ class Header extends Component {
             showingTransaction={txReview}
             transactionNumber={transactionNumber}
           />
-          <LockingState
-            txReview={txReview}
-            properties={this.props.properties}
-          />
+          <LockingState location={location} />
         </header>
         {!txReview &&
           <NavigationDrawer

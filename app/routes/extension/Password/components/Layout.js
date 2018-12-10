@@ -21,12 +21,14 @@ class Layout extends Component {
       updatePassword,
       validatePasswords,
       rotation,
-      dataValidation
+      dataValidation,
+      location
     } = this.props
 
     return (
       <Page
         page={styles.unlockSafe}
+        location={location}
         withoutHeader
       >
         <form onSubmit={this.prevent} data-validation={dataValidation}>

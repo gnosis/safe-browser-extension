@@ -16,8 +16,6 @@ class Password extends Component {
       dataValidation: '',
       rotation: { 'transform': 'rotate(0deg)' }
     }
-
-    this.properties = props.location.state
   }
 
   updatePassword = (e) => {
@@ -62,9 +60,9 @@ class Password extends Component {
 
     if (this.state.continue) {
       return <Redirect to={{
-        pathname: this.properties.dest,
+        pathname: this.props.location.state.dest,
         state: {
-          ...this.properties,
+          ...this.props.location.state,
           password
         }
       }} />
@@ -77,6 +75,7 @@ class Password extends Component {
         validatePasswords={this.validatePasswords}
         dataValidation={dataValidation}
         rotation={rotation}
+        location={this.props.location}
       />
     )
   }

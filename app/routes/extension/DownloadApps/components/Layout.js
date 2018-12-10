@@ -38,13 +38,15 @@ class Layout extends Component {
       showQrAndroid,
       showQrIos,
       showQrPairing,
-      password
+      password,
+      location
     } = this.props
 
     return (
       <React.Fragment>
         <Page
           page={styles.appConnect}
+          location={location}
           simpleHeader
           noBorder
         >

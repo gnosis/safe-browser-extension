@@ -16,7 +16,7 @@ import Header from 'components/Header'
 import Layout from '../components/Layout'
 import actions from './actions'
 import selector from './selector'
-import { MSG_RESOLVED_TRANSACTION } from '../../../../../extension/utils/messages'
+import messages from '../../../../../extension/utils/messages'
 import styles from 'assets/css/global.css'
 
 class Transaction extends Component {
@@ -129,7 +129,7 @@ class Transaction extends Component {
 
     await chrome.tabs.query({ windowId: transaction.dappWindowId }, (tabs) => {
       chrome.tabs.sendMessage(transaction.dappTabId, {
-        msg: MSG_RESOLVED_TRANSACTION,
+        msg: messages.MSG_RESOLVED_TRANSACTION,
         hash: null,
         id: transaction.tx.id
       }, () => removeTx(position))
@@ -152,19 +152,23 @@ class Transaction extends Component {
       loadedData,
       reviewedTx
     } = this.state
-    const { account, transactions } = this.props
+    const {
+      account,
+      transactions,
+      location
+    } = this.props
 
     const transaction = transactions.txs[transactionNumber].tx
     setUpTransaction(transaction, estimations, displayedValue, decimals)
 
     return (
-      <div className={styles.extensionTx}>
+      <div className={styles.extensionPopup}>
         <div className={styles.extensionInner}>
           <Header
             noBorder
             txReview
             transactionNumber={transactionNumber}
-            properties={this.props.location}
+            location={location}
           />
           <div className={styles.Page}>
             <Layout

@@ -8,15 +8,8 @@ import { EXTENSION_SETTINGS } from 'utils/analytics/events'
 import SafesLocked from '../components/SafesLocked'
 import SafesUnlocked from '../components/SafesUnlocked'
 import actions from './actions'
-import {
-  MSG_LOCK_ACCOUNT,
-  MSG_LOCK_ACCOUNT_TIMER
-} from '../../../../../extension/utils/messages'
-import {
-  PASSWORD_URL,
-  TRANSACTION_URL,
-  ACCOUNT_URL
-} from 'routes/routes'
+import messages from '../../../../../extension/utils/messages'
+import { PASSWORD_URL } from 'routes/routes'
 
 class LockingState extends Component {
   constructor (props) {
@@ -31,16 +24,18 @@ class LockingState extends Component {
 
   handleLockAccount = () => {
     chrome.runtime.sendMessage({
-      msg: MSG_LOCK_ACCOUNT
+      msg: messages.MSG_LOCK_ACCOUNT
     })
     ga(['_trackEvent', EXTENSION_SETTINGS, 'click-lock-extension', 'Lock extension'])
   }
 
   unlockedAccount = (props) => {
-    const hasPassword = props && props.properties && props.properties.state
-    if (!hasPassword) { return }
+    const hasPassword = props && props.location && props.location.state
+    if (!hasPassword) {
+      return
+    }
 
-    const { password } = props.properties.state
+    const { password } = props.location.state
     const unlockingTime = new Date()
     const encryptedMnemonic = props.account.secondFA.seed
     const mnemonic = CryptoJs.AES.decrypt(
@@ -51,7 +46,7 @@ class LockingState extends Component {
     this.props.onUnlockAccount(mnemonic, unlockingTime.toISOString())
 
     chrome.runtime.sendMessage({
-      msg: MSG_LOCK_ACCOUNT_TIMER
+      msg: messages.MSG_LOCK_ACCOUNT_TIMER
     })
   }
 
@@ -63,7 +58,7 @@ class LockingState extends Component {
   render () {
     const {
       account,
-      txReview
+      location
     } = this.props
     const { lockedAccount } = this.state
 
@@ -71,7 +66,7 @@ class LockingState extends Component {
       const url = {
         pathname: PASSWORD_URL,
         state: {
-          dest: (txReview) ? TRANSACTION_URL : ACCOUNT_URL
+          dest: location.pathname
         }
       }
       return <Redirect to={url} />

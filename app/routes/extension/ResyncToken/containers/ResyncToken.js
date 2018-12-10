@@ -68,6 +68,7 @@ class ResyncToken extends Component {
       <Layout
         handleResync={this.handleResync}
         message={message}
+        location={this.props.location}
       />
     )
   }

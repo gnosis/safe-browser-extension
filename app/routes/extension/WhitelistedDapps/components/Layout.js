@@ -27,11 +27,12 @@ class Layout extends Component {
       updateNewDapp,
       handleAddDapp,
       handleDeleteDapp,
-      handleDeleteAllDapps
+      handleDeleteAllDapps,
+      location
     } = this.props
 
     return (
-      <Page>
+      <Page location={location}>
         <div className={styles.overlayPage}>
           <span className={styles.overlayPageHeader}>
             <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)} />

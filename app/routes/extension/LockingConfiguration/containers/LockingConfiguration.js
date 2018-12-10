@@ -5,7 +5,7 @@ import { ga } from 'utils/analytics'
 import { EXTENSION_SETTINGS } from 'utils/analytics/events'
 import Layout from '../components/Layout'
 import actions from './actions'
-import { MSG_CONFIGURE_ACCOUNT_LOCKING } from '../../../../../extension/utils/messages'
+import messages from '../../../../../extension/utils/messages'
 
 class LockingConfiguration extends Component {
   constructor (props) {
@@ -24,7 +24,7 @@ class LockingConfiguration extends Component {
       unlockingTime = new Date().toISOString()
 
       chrome.runtime.sendMessage({
-        msg: MSG_CONFIGURE_ACCOUNT_LOCKING
+        msg: messages.MSG_CONFIGURE_ACCOUNT_LOCKING
       })
     }
     this.props.onConfigureLocking(minutes, unlockingTime)
@@ -41,6 +41,7 @@ class LockingConfiguration extends Component {
       <Layout
         minutes={minutes}
         handleOptionChange={this.handleOptionChange}
+        location={this.props.location}
       />
     )
   }
