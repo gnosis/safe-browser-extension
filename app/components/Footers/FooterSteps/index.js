@@ -3,11 +3,11 @@ import classNames from 'classnames/bind'
 import { Redirect } from 'react-router'
 
 import styles from 'assets/css/global.css'
-import { NEXT } from '../../../config/messages'
+import { NEXT } from '../../../../config/messages'
 
 const cx = classNames.bind(styles)
 
-class Footer extends Component {
+class FooterSteps extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -54,4 +54,4 @@ class Footer extends Component {
   }
 }
 
-export default Footer
+export default FooterSteps
