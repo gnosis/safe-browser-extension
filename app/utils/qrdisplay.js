@@ -6,11 +6,16 @@ export const getQrData = (data, size) => {
 }
 
 export const createQrImage = (elem, data, size) => {
+  
   if (data && elem) {
     const image = document.createElement('img')
     image.setAttribute('src', getQrData(data, size))
     const oldChild = elem.firstElementChild
     if (oldChild) { oldChild.remove() }
     elem.appendChild(image)
+  } else if (!data && elem) {
+    const errorMessage = document.createElement('p')
+    errorMessage.innerHTML = "Error loading QR code. Please check your internet connection"
+    elem.appendChild(errorMessage)
   }
 }
