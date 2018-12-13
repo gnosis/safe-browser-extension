@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 import {
   PASSWORD_URL,
   TRANSACTION_URL,
+  ACCESS_REQUEST_URL,
   ACCOUNT_URL,
   WELCOME_URL,
   DOWNLOAD_APPS_URL,
@@ -18,6 +19,7 @@ import {
 } from './routes'
 
 import Transaction from 'routes/popup/Transaction/containers/Transaction'
+import AccessRequest from 'routes/popup/AccessRequest/containers/AccessRequest'
 import Welcome from 'routes/extension/Welcome/containers/Welcome'
 import DownloadApps from 'routes/extension/DownloadApps/containers/DownloadApps'
 import ChangePassword from 'routes/extension/ChangePassword/containers/ChangePassword'
@@ -37,6 +39,7 @@ export const PopupRoutes = () => (
   <Switch>
     <Route exact path={PASSWORD_URL} component={Password} />
     <Route exact path={TRANSACTION_URL} component={Transaction} />
+    <Route exact path={ACCESS_REQUEST_URL} component={AccessRequest} />
   </Switch>
 )
 
