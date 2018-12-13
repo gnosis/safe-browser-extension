@@ -11,7 +11,10 @@ import {
   DOWNLOAD_APPS_URL,
   WELCOME_URL
 } from 'routes/routes'
-import { history, store } from './store'
+import {
+  history,
+  store
+} from './store'
 import { withAnalytics } from 'utils/analytics'
 
 const calculateInitialUrl = (account, safes) => {

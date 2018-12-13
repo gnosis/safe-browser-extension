@@ -26,3 +26,13 @@ export const shortenAddress = (address) => {
 export const toGWei = (number) => {
   return number.dividedBy(1000000000000000000)
 }
+
+export const getPopupEnviroment = (transactions, enabledDapps) => {
+  if (transactions.txs && transactions.txs.length > 0) {
+    return 'PENDING_TRANSACTIONS'
+  } else if (enabledDapps.providerRequest) {
+    return 'PENDING_ENABLED_DAPP'
+  } else {
+    return 'NO_POPUP'
+  }
+}
