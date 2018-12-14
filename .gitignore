@@ -6,3 +6,6 @@ build
 
 # dotenv environment variables file
 .env
+
+#.mac undesired files
+.DS_Store
