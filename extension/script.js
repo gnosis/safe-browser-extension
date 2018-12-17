@@ -13,42 +13,42 @@ const safeProvider = new SafeProvider({
 })
 
 const ethereumProvider = safeProvider
-window.web3 = new Web3(ethereumProvider)
 
 ethereumProvider.enable = () => {
-  console.log('enabling...')
-
-  window.addEventListener(messages.EV_UPDATE_WEB3, () => console.log('EV_UPDATE_WEB3 listo'))
   return new Promise((resolve, reject) => {
-    console.log('asking for eth_accounts')
     safeProvider.sendAsync({ method: 'eth_accounts', params: [] }, (error, response) => {
       if (error) {
-        console.log('error', error)
         reject(error)
       } else {
-        console.log('response bien', response)
-        resolve(response.result)
+        resolve(response)
       }
     })
   })
 }
 
 window.ethereum = ethereumProvider
+window.web3 = new Web3(ethereumProvider)
 
 const scriptReadyEvent = new window.CustomEvent(messages.EV_SCRIPT_READY)
 window.dispatchEvent(scriptReadyEvent)
 
+/*
 window.addEventListener('load', () => {
+  console.log('loaded')
   if (window.ethereum) {
     // Modern dapp browsers...
     window.web3 = new Web3(window.ethereum)
+    console.log('window.ethereum')
     try {
       // Request account access if needed
+      console.log('enable()')
       window.ethereum.enable().then((result) => {
         // Acccounts now exposed
         // window.web3.eth.sendTransaction({ ... })
+        console.log('enabled!', result)
       })
     } catch (error) {
+      console.log('error', error)
       // User denied account access...
     }
   } else if (window.web3) {
@@ -57,8 +57,10 @@ window.addEventListener('load', () => {
     window.web3 = new Web3(window.web3.currentProvider)
     // Acccounts always exposed
     // window.web3.eth.sendTransaction({ ... })
+    console.log('window.web3')
   } else {
     // Non-dapp browsers...
+    console.log('empty')
   }
 })
-
+*/

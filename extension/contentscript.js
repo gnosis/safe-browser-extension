@@ -6,7 +6,7 @@ import {
 
 const injectScript = () => {
   try {
-    // Injects script.js with the web3 provider
+    // Injects script.js with the ethereum provider
     var xhr = new window.XMLHttpRequest()
     xhr.open('GET', chrome.extension.getURL('script.js'), true)
     xhr.onreadystatechange = function () {
@@ -24,7 +24,18 @@ const injectScript = () => {
   }
 }
 
-const activeListeners = () => {
+const activeListeners = (currentSafe) => {
+  window.addEventListener(messages.EV_SCRIPT_READY, (data) => {
+    updateProvider(currentSafe)
+  })
+
+  window.addEventListener(messages.EV_SHOW_POPUP_TX, (data) => {
+    chrome.runtime.sendMessage({
+      msg: messages.MSG_SHOW_POPUP_TX,
+      tx: data.detail
+    })
+  })
+
   chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
       switch (request.msg) {
@@ -42,7 +53,7 @@ const activeListeners = () => {
           break
 
         case messages.MSG_UPDATE_CURRENT_SAFE:
-          updateWeb3(request.newSafeAddress)
+          updateProvider(request.newSafeAddress)
           break
       }
     }
@@ -57,8 +68,7 @@ chrome.runtime.sendMessage(
   },
   (response) => {
     if (response.answer) {
-      activeListeners()
-      setUpWeb3(response.currentSafe)
+      activeListeners(response.currentSafe)
       injectScript()
     } else {
       console.log(WEBSITE_NOT_WHITELISTED.toString())
@@ -66,24 +76,10 @@ chrome.runtime.sendMessage(
   }
 )
 
-const setUpWeb3 = (currentSafe) => {
-  window.addEventListener(messages.EV_SCRIPT_READY, (data) => {
-    updateWeb3(currentSafe)
-  })
-}
-
-const updateWeb3 = (currentSafe) => {
-  const updateWeb3Event = new window.CustomEvent(
-    messages.EV_UPDATE_WEB3,
+const updateProvider = (currentSafe) => {
+  const updateProviderEvent = new window.CustomEvent(
+    messages.EV_UPDATE_PROVIDER,
     { detail: currentSafe }
   )
-  window.dispatchEvent(updateWeb3Event)
-  console.log('web3 updated')
+  window.dispatchEvent(updateProviderEvent)
 }
-
-window.addEventListener(messages.EV_SHOW_POPUP, (data) => {
-  chrome.runtime.sendMessage({
-    msg: messages.MSG_SHOW_POPUP_TX,
-    tx: data.detail
-  })
-})
