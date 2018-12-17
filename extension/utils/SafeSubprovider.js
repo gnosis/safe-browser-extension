@@ -41,7 +41,7 @@ class SafeSubprovider {
 
   handleRequest = (payload, next, end) => {
     const account = this.currentSafe
-
+    console.log(payload)
     switch (payload.method) {
       case 'eth_accounts':
         end(null, [account])

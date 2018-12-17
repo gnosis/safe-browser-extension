@@ -5,9 +5,8 @@ class PopupController {
   }
 
   focusPopup = () => {
-    const providerRequest = this.storageController.getStoreState().enabledDapps.providerRequest
     const transactions = this.storageController.getStoreState().transactions
-    const popUpWindowId = (providerRequest && providerRequest.windowId) || (transactions && transactions.windowId)
+    const popUpWindowId = (transactions && transactions.windowId)
 
     chrome.windows.update(popUpWindowId, { 'focused': true })
   }

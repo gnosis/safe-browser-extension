@@ -15,28 +15,21 @@ const safeProvider = new SafeProvider({
 const ethereumProvider = safeProvider
 window.web3 = new Web3(ethereumProvider)
 
-let ethereumProviderHandler
-
 ethereumProvider.enable = () => {
-  return new Promise((resolve, reject) => {
-    window.removeEventListener(messages.EV_RESOLVED_PROVIDER_REQUEST, ethereumProviderHandler)
-    ethereumProviderHandler = ({ detail }) => {
-      if (detail.error) {
-        reject(detail.error)
-      } else {
-        safeProvider.sendAsync({ method: 'eth_accounts', params: [] }, (error, response) => {
-          if (error) {
-            reject(error)
-          } else {
-            resolve(response.result)
-          }
-        })
-      }
-    }
-    window.addEventListener(messages.EV_RESOLVED_PROVIDER_REQUEST, ethereumProviderHandler)
+  console.log('enabling...')
 
-    const ethereumEnableProviderEvent = new window.CustomEvent(messages.EV_ETHEREUM_ENABLE_PROVIDER)
-    window.dispatchEvent(ethereumEnableProviderEvent)
+  window.addEventListener(messages.EV_UPDATE_WEB3, () => console.log('EV_UPDATE_WEB3 listo'))
+  return new Promise((resolve, reject) => {
+    console.log('asking for eth_accounts')
+    safeProvider.sendAsync({ method: 'eth_accounts', params: [] }, (error, response) => {
+      if (error) {
+        console.log('error', error)
+        reject(error)
+      } else {
+        console.log('response bien', response)
+        resolve(response.result)
+      }
+    })
   })
 }
 
@@ -45,7 +38,6 @@ window.ethereum = ethereumProvider
 const scriptReadyEvent = new window.CustomEvent(messages.EV_SCRIPT_READY)
 window.dispatchEvent(scriptReadyEvent)
 
-/*
 window.addEventListener('load', () => {
   if (window.ethereum) {
     // Modern dapp browsers...
@@ -69,4 +61,4 @@ window.addEventListener('load', () => {
     // Non-dapp browsers...
   }
 })
-*/
+

@@ -2407,10 +2407,6 @@ footer .stepper-dots>li.active{
 .extensionPopup .extension-inner .button-group>button{
   font-size:1.5em
 }
-.extensionPopup .extension-inner .access-request{
-  text-align:center;
-  padding-top: 50px
-}
 .network-notification{
   background:#EA3F52;
   height:55px;

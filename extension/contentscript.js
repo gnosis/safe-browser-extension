@@ -25,15 +25,6 @@ const injectScript = () => {
 }
 
 const activeListeners = () => {
-  window.addEventListener(messages.EV_ETHEREUM_ENABLE_PROVIDER, (data) => {
-    chrome.runtime.sendMessage({
-      msg: messages.MSG_ETHEREUM_PROVIDER_REQUEST,
-      origin: window.location.hostname,
-      image: getIcon(),
-      title: getTitle()
-    })
-  })
-
   chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
       switch (request.msg) {
@@ -53,49 +44,9 @@ const activeListeners = () => {
         case messages.MSG_UPDATE_CURRENT_SAFE:
           updateWeb3(request.newSafeAddress)
           break
-
-        case messages.MSG_APPROVE_PROVIDER_REQUEST:
-          const approvedProviderRequest = new window.CustomEvent(
-            messages.EV_RESOLVED_PROVIDER_REQUEST,
-            {
-              detail: {}
-            }
-          )
-          window.dispatchEvent(approvedProviderRequest)
-          break
-
-        case messages.MSG_REJECT_PROVIDER_REQUEST:
-          const rejectedProviderRequest = new window.CustomEvent(
-            messages.EV_RESOLVED_PROVIDER_REQUEST,
-            {
-              detail: request.detail
-            }
-          )
-          window.dispatchEvent(rejectedProviderRequest)
-          break
       }
     }
   )
-}
-
-const getIcon = () => {
-  const shortcutIcon = window.document.querySelector('head > link[rel="shortcut icon"]')
-  if (shortcutIcon) {
-    return shortcutIcon.href
-  }
-  const icon = Array.from(window.document.querySelectorAll('head > link[rel="icon"]')).find((icon) => Boolean(icon.href))
-  if (icon) {
-    return icon.href
-  }
-  return null
-}
-
-const getTitle = () => {
-  const siteName = window.document.querySelector('head > meta[property="og:site_name"]')
-  if (siteName) {
-    return siteName.content
-  }
-  return window.document.title
 }
 
 // Checks if the page is whitelisted to inject the web3 provider
@@ -127,6 +78,7 @@ const updateWeb3 = (currentSafe) => {
     { detail: currentSafe }
   )
   window.dispatchEvent(updateWeb3Event)
+  console.log('web3 updated')
 }
 
 window.addEventListener(messages.EV_SHOW_POPUP, (data) => {

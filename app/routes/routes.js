@@ -1,5 +1,4 @@
 export const TRANSACTION_URL = '/transaction'
-export const ACCESS_REQUEST_URL = '/access-request'
 
 export const WELCOME_URL = '/welcome'
 export const DOWNLOAD_APPS_URL = '/download-apps'

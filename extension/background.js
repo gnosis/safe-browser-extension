@@ -5,11 +5,6 @@ import { normalizeUrl } from 'utils/helpers'
 import messages from './utils/messages'
 import StorageController from './utils/storageController'
 import PopupController from './utils/popupController'
-import {
-  accessRequest,
-  removeAccessRequest
-  // removeAllEnabledDapps
-} from 'actions/enabledDapps'
 import { lockAccount } from 'actions/account'
 import { addSafe } from 'actions/safes'
 import {
@@ -80,21 +75,6 @@ chrome.runtime.onMessage.addListener(
 
       case messages.MSG_PENDING_SENDTRANSACTION:
         setPendingTransaction(request.position)
-        break
-
-      case messages.MSG_ETHEREUM_PROVIDER_REQUEST:
-        const { origin, title, image } = request
-        if (isWhiteListedDapp(normalizeUrl(sender.tab.url))) {
-          ethereumProviderRequest(normalizeUrl(origin), title, image, sender.tab.windowId, sender.tab.id)
-        }
-        break
-
-      case messages.MSG_APPROVE_PROVIDER_REQUEST:
-        approveEthereumProviderRequest()
-        break
-
-      case messages.MSG_REJECT_PROVIDER_REQUEST:
-        rejectEthereumProviderRequest()
         break
 
       default:
@@ -199,52 +179,7 @@ const setPendingTransaction = (position) => {
   pendingTransactionPosition = position
 }
 
-const ethereumProviderRequest = (origin, title, image, dappWindowId, dappTabId) => {
-  const approvedOrigin = storageController.getStoreState().enabledDapps.dapps.filter(dapp => dapp === origin)
-  if (approvedOrigin.length === 0) {
-    popupController.showPopup(
-      (window) => storageController.getStore().dispatch(accessRequest(origin, title, image, window.id, dappWindowId, dappTabId))
-    )
-  } else {
-    approveEthereumProviderRequest(dappWindowId, dappTabId)
-  }
-}
-
-const approveEthereumProviderRequest = (currentDappWindowId, currentDappTabId) => {
-  let dappWindowId
-  let dappTabId
-
-  if (!currentDappWindowId && !currentDappTabId) {
-    const providerRequest = storageController.getStoreState().enabledDapps.providerRequest
-    dappWindowId = providerRequest.dappWindowId
-    dappTabId = providerRequest.dappTabId
-  } else {
-    dappWindowId = currentDappWindowId
-    dappTabId = currentDappTabId
-  }
-
-  chrome.tabs.query({ windowId: dappWindowId }, function (tabs) {
-    chrome.tabs.sendMessage(dappTabId, {
-      msg: messages.MSG_APPROVE_PROVIDER_REQUEST
-    })
-  })
-}
-
-const rejectEthereumProviderRequest = () => {
-  const {
-    dappWindowId,
-    dappTabId
-  } = storageController.getStoreState().enabledDapps.providerRequest
-
-  chrome.tabs.query({ windowId: dappWindowId }, function (tabs) {
-    chrome.tabs.sendMessage(dappTabId, {
-      msg: messages.MSG_REJECT_PROVIDER_REQUEST
-    })
-  })
-}
-
 chrome.windows.onRemoved.addListener((windowId) => {
-  const providerRequest = storageController.getStoreState().enabledDapps.providerRequest
   const transactions = storageController.getStoreState().transactions
 
   if (transactions && (windowId === transactions.windowId)) {
@@ -265,17 +200,10 @@ chrome.windows.onRemoved.addListener((windowId) => {
     storageController.getStore().dispatch(removeAllTransactions())
     popupController.handleClosePopup()
   }
-
-  if (providerRequest && (windowId === providerRequest.windowId)) {
-    storageController.getStore().dispatch(removeAccessRequest())
-    popupController.handleClosePopup()
-  }
 })
 
-// storageController.getStore().dispatch(removeAllEnabledDapps())
 storageController.getStore().dispatch(lockAccount())
 storageController.getStore().dispatch(removeAllTransactions())
-storageController.getStore().dispatch(removeAccessRequest())
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.addEventListener('message', (event) => {

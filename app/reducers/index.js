@@ -4,7 +4,6 @@ import account from './account'
 import whitelistedDapps from './whitelistedDapps'
 import transactions from './transactions'
 import safes from './safes'
-import enabledDapps from './enabledDapps'
 
 import { LOGOUT_ACCOUNT } from 'actions/account'
 
@@ -12,7 +11,6 @@ const reducers = combineReducers({
   account,
   safes,
   whitelistedDapps,
-  enabledDapps,
   transactions
 })
 
