@@ -19,8 +19,12 @@ const SafeProvider = ({
 
   engine.setMaxListeners(0)
 
-  // isMetamask is something temporary. Must be deleted.
+  // Metamask methods are temporary. Must be deleted in the future.
   engine.isMetaMask = !0
+  engine._metamask = {
+    isApproved: () => true,
+    isUnlocked: () => true
+  }
 
   engine.isSafe = true
   engine.isConnected = () => {
