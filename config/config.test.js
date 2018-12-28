@@ -52,9 +52,14 @@ const testGetAndroidAppUrl = (value) => {
 }
 
 const testGetIosAppUrl = (value) => {
-  const androidAppUrl = getAndroidAppUrl()
-  const validAndroidAppUrl = (androidAppUrl && androidAppUrl !== '')
-  expect(validAndroidAppUrl).toEqual(true)
+  const iosAppUrl = getIosAppUrl()
+  const validIosAppUrl = (iosAppUrl && iosAppUrl !== '')
+    ? true
+    : false
+  const extistsIosApp = (value)
+    ? true
+    : false
+  expect(validIosAppUrl).toEqual(extistsIosApp)
   expect(getIosAppUrl()).toEqual(value)
 }
 
@@ -141,11 +146,11 @@ describe('Configuration', () => {
     })
 
     test('getAndroidAppUrl', () => {
-      testGetAndroidAppUrl('https://play.google.com/apps/testing/pm.gnosis.heimdall.dev')
+      testGetAndroidAppUrl('https://betas.to/riowXzcx')
     })
 
     test('getIosAppUrl', () => {
-      testGetIosAppUrl('https://testflight.apple.com/join/fMCYpOfT')
+      testGetIosAppUrl('https://betas.to/7TovLG11')
     })
 
     test('getPushNotificationServiceUrl', () => {
@@ -204,11 +209,11 @@ describe('Configuration', () => {
     })
 
     test('getAndroidAppUrl', () => {
-      testGetAndroidAppUrl('https://play.google.com/apps/testing/pm.gnosis.heimdall.dev')
+      testGetAndroidAppUrl('https://betas.to/riowXzcx')
     })
 
     test('getIosAppUrl', () => {
-      testGetIosAppUrl('https://testflight.apple.com/join/fMCYpOfT')
+      testGetIosAppUrl('https://betas.to/7TovLG11')
     })
 
     test('getPushNotificationServiceUrl', () => {
@@ -267,11 +272,11 @@ describe('Configuration', () => {
     })
 
     test('getAndroidAppUrl', () => {
-      testGetAndroidAppUrl('https://play.google.com/apps/testing/pm.gnosis.heimdall.dev')
+      testGetAndroidAppUrl('https://play.google.com/store/apps/details?id=pm.gnosis.heimdall.dev')
     })
 
     test('getIosAppUrl', () => {
-      testGetIosAppUrl('https://testflight.apple.com/join/fMCYpOfT')
+      testGetIosAppUrl(null)
     })
 
     test('getPushNotificationServiceUrl', () => {
@@ -330,11 +335,11 @@ describe('Configuration', () => {
     })
 
     test('getAndroidAppUrl', () => {
-      testGetAndroidAppUrl('https://play.google.com/apps/testing/pm.gnosis.heimdall.dev')
+      testGetAndroidAppUrl('https://play.google.com/store/apps/details?id=pm.gnosis.heimdall')
     })
 
     test('getIosAppUrl', () => {
-      testGetIosAppUrl('https://testflight.apple.com/join/fMCYpOfT')
+      testGetIosAppUrl('http://appstore.com/gnosissafemainnet')
     })
 
     test('getPushNotificationServiceUrl', () => {
@@ -393,11 +398,11 @@ describe('Configuration', () => {
     })
 
     test('getAndroidAppUrl', () => {
-      testGetAndroidAppUrl('https://play.google.com/apps/testing/pm.gnosis.heimdall.dev')
+      testGetAndroidAppUrl('https://play.google.com/store/apps/details?id=pm.gnosis.heimdall.dev')
     })
 
     test('getIosAppUrl', () => {
-      testGetIosAppUrl('https://testflight.apple.com/join/fMCYpOfT')
+      testGetIosAppUrl(null)
     })
 
     test('getPushNotificationServiceUrl', () => {
@@ -456,11 +461,11 @@ describe('Configuration', () => {
     })
 
     test('getAndroidAppUrl', () => {
-      testGetAndroidAppUrl('https://play.google.com/apps/testing/pm.gnosis.heimdall.dev')
+      testGetAndroidAppUrl('https://play.google.com/store/apps/details?id=pm.gnosis.heimdall')
     })
 
     test('getIosAppUrl', () => {
-      testGetIosAppUrl('https://testflight.apple.com/join/fMCYpOfT')
+      testGetIosAppUrl('http://appstore.com/gnosissafemainnet')
     })
 
     test('getPushNotificationServiceUrl', () => {

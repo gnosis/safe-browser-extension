@@ -13,7 +13,7 @@ import {
 } from '../../../../../config'
 import {
   CONNECTED_EXTENSION_SUCCESFULLY,
-  // IPHONE_AND_IPAD,
+  IPHONE_AND_IPAD,
   ANDROID,
   DOWNLOAD_MOBILE_APP,
   CONNECT_EXTENSION_EXPLANATION,
@@ -53,7 +53,7 @@ class Layout extends Component {
             <ol>
               <li>
                 <p>{DOWNLOAD_MOBILE_APP}</p>
-                {/* <button onClick={toggleQrIos} data-os='ios'>{IPHONE_AND_IPAD}</button> */}
+                {this.iosAppUrl && <button onClick={toggleQrIos} data-os='ios'>{IPHONE_AND_IPAD}</button>}
                 <button onClick={toggleQrAndroid} data-os='android'>{ANDROID}</button>
               </li>
               <li>

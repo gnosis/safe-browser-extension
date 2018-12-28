@@ -78,13 +78,19 @@ export const getNetworkUrl = () => {
 export const getAndroidAppUrl = () => {
   const config = getEnvConfig()
   const enviroment = getEnviroment()
-  return config[enviroment][ANDROID_APP_URL]
+  const network = getNetwork()
+  return (enviroment === PRODUCTION || enviroment === PRE_PRODUCTION)
+    ? config[enviroment][ANDROID_APP_URL][network]
+    : config[enviroment][ANDROID_APP_URL]
 }
 
 export const getIosAppUrl = () => {
   const config = getEnvConfig()
   const enviroment = getEnviroment()
-  return config[enviroment][IOS_APP_URL]
+  const network = getNetwork()
+  return (enviroment === PRODUCTION || enviroment === PRE_PRODUCTION)
+    ? config[enviroment][IOS_APP_URL][network]
+    : config[enviroment][IOS_APP_URL]
 }
 
 export const getPushNotificationServiceUrl = () => {

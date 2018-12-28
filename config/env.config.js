@@ -20,20 +20,37 @@ import {
 import dotenv from 'dotenv'
 dotenv.config({})
 
+const mainnetAppStoreAndroid = 'https://play.google.com/store/apps/details?id=pm.gnosis.heimdall'
+const mainnetAppStoreIos = 'http://appstore.com/gnosissafemainnet'
+const rinkebyAppStoreAndroid = 'https://play.google.com/store/apps/details?id=pm.gnosis.heimdall.dev'
+const rinkebyAppStoreIos = null
+const rinkebyStagingAndroid = 'https://betas.to/riowXzcx'
+const rinkebyStagingIos = 'https://betas.to/7TovLG11'
+
 const rinkebyTokenListUrl = 'https://gist.githubusercontent.com/rmeissner/98911fcf74b0ea9731e2dae2441c97a4/raw/'
 const mainnetTokenListUrl = 'https://raw.githubusercontent.com/rmeissner/crypto_resources/master/tokens/mainnet/tokens.json'
+
+const stagingPushNotificationServiceUrl = 'https://safe-notification.staging.gnosisdev.com/api/v1/'
+const stagingTransactionRelayServiceUrl = 'https://safe-relay.staging.gnosisdev.com/api/v1/'
+
 const testFirebaseAuthDomain = 'test-safe-notifications.firebaseapp.com'
 const testFirebaseDatabaseUrl = 'https://test-safe-notifications.firebaseio.com'
 const testFirebaseProjectId = 'test-safe-notifications'
 const testFirebaseStorageBucket = 'test-safe-notifications.appspot.com'
 const testFirebaseMessagingSenderId = '64389160972'
-const stagingPushNotificationServiceUrl = 'https://safe-notification.staging.gnosisdev.com/api/v1/'
-const stagingTransactionRelayServiceUrl = 'https://safe-relay.staging.gnosisdev.com/api/v1/'
 
 const envConfig = {
   [PRODUCTION]: {
-    [ANDROID_APP_URL]: 'https://play.google.com/store/apps/details?id=pm.gnosis.heimdall',
-    [IOS_APP_URL]: 'https://testflight.apple.com/join/fMCYpOfT',
+    [ANDROID_APP_URL]:
+    {
+      [MAINNET]: mainnetAppStoreAndroid,
+      [RINKEBY]: rinkebyAppStoreAndroid
+    },
+    [IOS_APP_URL]:
+    {
+      [MAINNET]: mainnetAppStoreIos,
+      [RINKEBY]: rinkebyAppStoreIos
+    },
     [PUSH_NOTIFICATION_SERVICE_URL]: process.env.PUSH_NOTIFICATION_SERVICE_URL,
     [TRANSACTION_RELAY_SERVICE_URL]: {
       [MAINNET]: process.env.TRANSACTION_RELAY_SERVICE_MAINNET_URL,
@@ -54,8 +71,14 @@ const envConfig = {
     }
   },
   [PRE_PRODUCTION]: {
-    [ANDROID_APP_URL]: 'https://play.google.com/apps/testing/pm.gnosis.heimdall.dev',
-    [IOS_APP_URL]: 'https://testflight.apple.com/join/fMCYpOfT',
+    [ANDROID_APP_URL]: {
+      [MAINNET]: mainnetAppStoreAndroid,
+      [RINKEBY]: rinkebyAppStoreAndroid
+    },
+    [IOS_APP_URL]: {
+      [MAINNET]: mainnetAppStoreIos,
+      [RINKEBY]: rinkebyAppStoreIos
+    },
     [PUSH_NOTIFICATION_SERVICE_URL]: process.env.PUSH_NOTIFICATION_SERVICE_URL,
     [TRANSACTION_RELAY_SERVICE_URL]: {
       [MAINNET]: process.env.TRANSACTION_RELAY_SERVICE_MAINNET_URL,
@@ -76,8 +99,8 @@ const envConfig = {
     }
   },
   [STAGING]: {
-    [ANDROID_APP_URL]: 'https://play.google.com/apps/testing/pm.gnosis.heimdall.dev',
-    [IOS_APP_URL]: 'https://testflight.apple.com/join/fMCYpOfT',
+    [ANDROID_APP_URL]: rinkebyStagingAndroid,
+    [IOS_APP_URL]: rinkebyStagingIos,
     [PUSH_NOTIFICATION_SERVICE_URL]: stagingPushNotificationServiceUrl,
     [TRANSACTION_RELAY_SERVICE_URL]: stagingTransactionRelayServiceUrl,
     [TOKEN_LIST_URL]: rinkebyTokenListUrl,
@@ -89,8 +112,8 @@ const envConfig = {
     [FAVICON]: 'favicon_rinkeby_orange.png'
   },
   [DEVELOPMENT]: {
-    [ANDROID_APP_URL]: 'https://play.google.com/apps/testing/pm.gnosis.heimdall.dev',
-    [IOS_APP_URL]: 'https://testflight.apple.com/join/fMCYpOfT',
+    [ANDROID_APP_URL]: rinkebyStagingAndroid,
+    [IOS_APP_URL]: rinkebyStagingIos,
     [PUSH_NOTIFICATION_SERVICE_URL]: stagingPushNotificationServiceUrl,
     [TRANSACTION_RELAY_SERVICE_URL]: stagingTransactionRelayServiceUrl,
     [TOKEN_LIST_URL]: rinkebyTokenListUrl,
