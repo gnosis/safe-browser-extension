@@ -1,15 +1,17 @@
 import {
   ADD_TRANSACTION,
   REMOVE_TRANSACTION,
-  REMOVE_ALL_TRANSACTIONS
+  REMOVE_ALL_TRANSACTIONS,
+  SET_PAYMENT_TOKEN
 } from 'actions/transactions'
 
 const initialState = {
   windowId: undefined,
-  txs: []
+  txs: [],
+  paymentToken: undefined
 }
 
-function transactions (state = initialState, action) {
+function transactions(state = initialState, action) {
   let transactions
 
   switch (action.type) {
@@ -43,10 +45,27 @@ function transactions (state = initialState, action) {
 
     case REMOVE_ALL_TRANSACTIONS:
       return {
+        ...state,
         windowId: undefined,
         txs: []
       }
 
+    case SET_PAYMENT_TOKEN:
+      const newState = {
+        ...state,
+        paymentToken: undefined
+      }
+      if (action.paymentToken) {
+        newState.paymentToken = {
+          address: action.paymentToken.address,
+          decimals: action.paymentToken.decimals,
+          logoUri: action.paymentToken.logoUri,
+          name: action.paymentToken.name,
+          symbol: action.paymentToken.symbol
+        }
+      }
+      return newState
+    
     default:
       return state
   }
