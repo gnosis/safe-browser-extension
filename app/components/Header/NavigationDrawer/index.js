@@ -11,7 +11,8 @@ import {
   WHITELIST_URL,
   LOCKING_URL,
   ABOUT_URL,
-  REPLACE_RECOVERY_PHRASE_URL
+  REPLACE_RECOVERY_PHRASE_URL,
+  PAYMENT_TOKEN_URL
 } from 'routes/routes'
 import {
   MANAGE_SITES_WHITELIST,
@@ -19,7 +20,8 @@ import {
   CHANGE_PASSWORD,
   RESYNC_WITH_MOBILE_APP,
   ABOUT,
-  REPLACE_RECOVERY_PRASE
+  REPLACE_RECOVERY_PRASE,
+  PAYMENT_TOKEN
 } from '../../../../config/messages'
 
 const cx = classNames.bind(styles)
@@ -37,16 +39,23 @@ class NavigationDrawer extends Component {
       : url
     return protectedUrl
   }
+  
 
   render () {
     const {
       showMenu,
-      toggleMenu
+      toggleMenu,
+      transactions
     } = this.props
 
     const changePasswordUrl = this.passwordProtection(CHANGE_PASSWORD_URL)
     const resyncTokenUrl = this.passwordProtection(RESYNC_TOKEN_URL)
     const replaceRecoveryPhraseUrl = this.passwordProtection(REPLACE_RECOVERY_PHRASE_URL)
+
+    const paymentTokenDetail = transactions.paymentToken && transactions.paymentToken.symbol
+      ? transactions.paymentToken.symbol.toUpperCase() + ' (' + transactions.paymentToken.name + ')'
+      : 'ETH (Ether)'
+
     return (
       <React.Fragment>
         <div
@@ -80,6 +89,16 @@ class NavigationDrawer extends Component {
             </Link>
           </li>
           <li>
+            <Link to={PAYMENT_TOKEN_URL}>
+              <div data-menu='payment-token'>
+                <div className={styles.descriptiveMenuEntry}>
+                  <div>{PAYMENT_TOKEN}</div>
+                  <div className={styles.token}>{paymentTokenDetail}</div>
+                </div>
+              </div>
+            </Link>
+          </li>
+          <li>
             <Link to={ABOUT_URL}>
               <div data-menu='about'>{ABOUT}</div>
             </Link>
@@ -90,9 +109,10 @@ class NavigationDrawer extends Component {
   }
 }
 
-const mapStateToProps = ({ account }, props) => {
+const mapStateToProps = ({ account, transactions }, props) => {
   return {
-    account
+    account,
+    transactions
   }
 }
 
