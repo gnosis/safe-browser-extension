@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import classNames from 'classnames'
+import classNames from 'classnames/bind'
 
 import Page from 'components/Page'
 import { ACCOUNT_URL } from 'routes/routes'

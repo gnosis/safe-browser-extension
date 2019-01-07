@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import classNames from 'classnames/bind'
 
 import styles from 'assets/css/global.css'
 import { REVIEW_TRANSACTION } from '../../../../../../../config/messages'
