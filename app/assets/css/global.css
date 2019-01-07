@@ -1266,6 +1266,20 @@ form input.noborder{
 .safeDrawerMenu>li>a>div[data-menu=replace-recovery-phrase]::before{
   background:url(../images/replace_recovery_phrase.svg) center/contain no-repeat
 }
+.safeDrawerMenu>li>a>div[data-menu=payment-token]::before{
+  background:url(../images/card.svg) center/contain no-repeat;
+  float: left;
+  margin:6px 10px 0 0;
+}
+.safeDrawerMenu>li>a>div[data-menu=payment-token]>.descriptive-menu-entry{
+  display:flex;
+  flex-direction: column;
+}
+.safeDrawerMenu>li>a>div[data-menu=payment-token]>.descriptive-menu-entry>.token{
+  margin-top: 2px;
+  color:#aaa;
+}
+
 .safeDrawerMenu>li>a>div[data-menu=about]::before{
   background:url(../images/about.svg) center/contain no-repeat
 }
@@ -1460,17 +1474,24 @@ form>.whitelist-form input {
 .whitelist_items>li>button:hover{
   transform:scale(1.2)
 }
-.overlayPageContent,.timeout_items,.timeout_items .radio{
+.overlayPageContent,
+.timeout_items,
+.token_items,
+.timeout_items .radio,
+.token_items .radio{
   align-content:flex-start;
   width:100%
 }
-.whitelist_items::-webkit-scrollbar{
+.whitelist_items::-webkit-scrollbar,
+.token_items::-webkit-scrollbar{
   width:8px
 }
-.whitelist_items::-webkit-scrollbar-track{
+.whitelist_items::-webkit-scrollbar-track,
+.token_items::-webkit-scrollbar-track{
   background:#E4E8F1
 }
-.whitelist_items::-webkit-scrollbar-thumb{
+.whitelist_items::-webkit-scrollbar-thumb,
+.token_items::-webkit-scrollbar-thumb{
   border-radius:6px;
   background:#A2A8BA
 }
@@ -1487,6 +1508,24 @@ form>.whitelist-form input {
   align-items:flex-start;
   -ms-flex-line-pack:start
 }
+.token_items{
+  width:100%;
+  display:-ms-flexbox;
+  display:flex;
+  -ms-flex-wrap:wrap;
+  flex-wrap:wrap;
+  -ms-flex-pack:start;
+  justify-content:flex-start;
+  -ms-flex-align:start;
+  align-items:flex-start;
+  -ms-flex-line-pack:start;
+  align-content:flex-start;
+  padding:0 0 50px;
+  box-sizing:border-box;
+  height:440px;
+  list-style-type:none;
+  overflow-y:auto;
+}
 .timeout_items{
   height:inherit;
   display:-ms-flexbox;
@@ -1502,7 +1541,8 @@ form>.whitelist-form input {
   padding:0 0 50px;
   box-sizing:border-box
 }
-.timeout_items .radio{
+.timeout_items .radio,
+.token_items .radio {
   display:-ms-flexbox;
   display:flex;
   -ms-flex-pack:start;
@@ -1519,6 +1559,22 @@ form>.whitelist-form input {
   color:#21435A;
   transition:all .3s ease-in-out;
   position:relative
+}
+.token_items label {
+  height: 30px;
+  line-height: 30px;
+  overflow: hidden;
+}
+.token_items label:before {
+  top: 5px;
+}
+.token_items label:after {
+  top: 10px;
+}
+.token_items .token_logo {
+  height: 30px;
+  width: 30px;
+  padding-right: 10px;
 }
 .external-link::after{
   content:"";
