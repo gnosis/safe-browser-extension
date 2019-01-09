@@ -6,6 +6,7 @@ import {
   getTransactionRelayServiceUrl,
   getNetworkUrl
 } from '../../../../../../../config'
+import { ADDRESS_ZERO } from 'utils/helpers'
 import GnosisSafe from '../../../../../../../contracts/GnosisSafe.json'
 
 export const getTransactionEstimations = async (
@@ -13,26 +14,30 @@ export const getTransactionEstimations = async (
   to,
   value,
   data,
-  operation
+  operation,
+  gasToken
 ) => {
   const url = getTransactionRelayServiceUrl() + 'safes/' + safe + '/transactions/estimate/'
   const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   }
-  const body = JSON.stringify({
+  const body = {
     safe,
     to,
     value,
     data,
     operation
-  })
+  }
+  if (gasToken) {
+    body.gasToken = gasToken
+  }
 
   try {
     const response = await fetch(url, {
       method: 'POST',
       headers,
-      body,
+      body: JSON.stringify(body),
       credentials: 'omit',
       referrerPolicy: 'no-referrer'
     })
@@ -60,8 +65,8 @@ export const getTxHash = async (tx) => {
       tx.txGas,
       tx.dataGas,
       tx.gasPrice,
-      tx.gasToken || '0x0',
-      tx.refundReceiver || '0x0',
+      tx.gasToken || ADDRESS_ZERO,
+      tx.refundReceiver || ADDRESS_ZERO,
       tx.nonce
     )
     return hash

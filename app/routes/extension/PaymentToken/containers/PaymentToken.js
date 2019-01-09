@@ -55,7 +55,8 @@ class PaymentToken extends Component {
         decimals: token.decimals,
         logoUri: token.logoUri,
         name: token.name,
-        symbol: token.symbol
+        symbol: token.symbol,
+        decimals: token.decimals
       }
 
     onSetPaymentToken(paymentToken)

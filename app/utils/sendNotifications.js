@@ -132,7 +132,7 @@ export const getOwners = async (accountAddress, safeAddress) => {
 export const getNonce = async (tx) => {
   if (tx.type === 'sendTransaction') {
     const estimationValue = isTokenTransfer(tx.data) ? '0' : tx.displayedValue.toString(10)
-    const estimations = await getTransactionEstimations(tx.from, tx.to, estimationValue, tx.data, 0)
+    const estimations = await getTransactionEstimations(tx.from, tx.to, estimationValue, tx.data, 0, tx.gasToken)
     const lastUsedNonce = (estimations.lastUsedNonce === null) ? 0 : estimations.lastUsedNonce + 1
 
     return estimations && lastUsedNonce.toString()
