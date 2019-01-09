@@ -1,5 +1,7 @@
 import EthUtil from 'ethereumjs-util'
 
+export const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000'
+
 export const normalizeUrl = (url) => {
   var domain
 
