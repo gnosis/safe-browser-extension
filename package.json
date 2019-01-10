@@ -94,6 +94,9 @@
     "testMatch": [
       "<rootDir>/app/**/__tests__/**/*.js?(x)",
       "<rootDir>/app/**/?(*.)(spec|test).js?(x)",
+      "<rootDir>/extension/**/__tests__/**/*.js?(x)",
+      "<rootDir>/extension/**/?(*.)(spec|test).js?(x)",
+      "<rootDir>/config/**/__tests__/**/*.js?(x)",
       "<rootDir>/config/**/?(*.)(spec|test).js?(x)"
     ],
     "transform": {
