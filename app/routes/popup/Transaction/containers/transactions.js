@@ -84,14 +84,15 @@ export const calculateGasEstimation = async (
   return estimations
 }
 
-const getTransactionFee = (estimations) => {
+const getTransactionFee = (estimations, gasTokenDecimals) => {
   BigNumber.config({ ROUNDING_MODE: BigNumber.ROUND_UP })
   const totalGas = estimations &&
     new BigNumber(estimations.dataGas)
       .plus(new BigNumber(estimations.safeTxGas))
       .plus(new BigNumber(estimations.operationalGas))
-  const transactionFee = totalGas && toGWei(totalGas.times(new BigNumber(estimations.gasPrice)))
-  return transactionFee
+  const transactionFee = totalGas && totalGas.times(new BigNumber(estimations.gasPrice))
+  const formatedTransactionFee = transactionFee.dividedBy(10 ** gasTokenDecimals)
+  return formatedTransactionFee
 }
 
 /*
@@ -115,16 +116,18 @@ export const getTransactionSummary = async (transaction, estimations) => {
   let gasTokenBalance
   let gasTokenSymbol
   let gasTokenData
+  let transactionFee
   if (transaction.gasToken && transaction.gasToken !== ADDRESS_ZERO) {
     gasTokenData = await getTokenData(transaction.gasToken)
     gasTokenBalance = await getTokenBalance(transaction.gasToken, transaction.from, gasTokenData.decimals)
     gasTokenSymbol = gasTokenData.symbol
+    transactionFee = getTransactionFee(estimations, gasTokenData.decimals)
   } else {
     gasTokenBalance = await getEthBalance(transaction.from)
     gasTokenSymbol = 'ETH'
+    transactionFee = getTransactionFee(estimations, 18)
   }
 
-  const transactionFee = getTransactionFee(estimations)
 
   // const transactionTotalCost = getTransactionTotalCost(transaction, transactionFee, gasTokenData)
 
