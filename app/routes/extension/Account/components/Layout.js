@@ -12,13 +12,16 @@ class Layout extends Component {
   render () {
     const {
       currentSafe,
-      properties,
+      location,
       openEtherScan,
       openSlowTrade
     } = this.props
 
     return (
-      <Page page={styles.safeOverview} properties={properties}>
+      <Page
+        page={styles.safeOverview}
+        location={location}
+      >
         <div className={styles.content}>
           <WhitelistedDappState />
           <div className={styles.safeContent}>

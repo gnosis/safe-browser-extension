@@ -27,6 +27,7 @@ class CreatePassword extends Component {
         newPassword={newPassword}
         manageCreatePassword={this.manageCreatePassword}
         ready={this.state.ready}
+        location={this.props.location}
       />
     )
   }

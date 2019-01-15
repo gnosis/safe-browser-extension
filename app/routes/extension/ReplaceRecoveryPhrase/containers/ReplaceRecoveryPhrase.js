@@ -86,8 +86,8 @@ class ReplaceRecoveryPhrase extends Component {
     return (
       <Layout
         currentSafe={safes.currentSafe}
-        properties={this.props.location}
         qrReplaceRecoveryPhraseRef={this.qrReplaceRecoveryPhraseRef}
+        location={this.props.location}
       />
     )
   }

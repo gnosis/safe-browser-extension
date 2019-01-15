@@ -29,11 +29,12 @@ class Layout extends Component {
       manageConfirmPassword,
       updateMasterPassword,
       confirmPasswordReady,
-      createPasswordReady
+      createPasswordReady,
+      location
     } = this.props
 
     return (
-      <Page>
+      <Page location={location}>
         <div className={styles.overlayPage} data-page='password'>
           <span className={styles.overlayPageHeader}>
             <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)} />

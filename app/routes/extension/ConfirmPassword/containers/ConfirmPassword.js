@@ -10,14 +10,12 @@ class ConfirmPassword extends Component {
       confirmPassword: '',
       passwordsMatch: false
     }
-
-    this.properties = props.location.state
   }
 
   manageConfirmPassword = (confirmPassword) => {
     this.setState({
       confirmPassword,
-      passwordsMatch: (confirmPassword === this.properties.password)
+      passwordsMatch: (confirmPassword === this.props.location.state.password)
     })
   }
 
@@ -30,9 +28,9 @@ class ConfirmPassword extends Component {
     return (
       <Layout
         confirmPassword={confirmPassword}
-        properties={this.properties}
         manageConfirmPassword={this.manageConfirmPassword}
         passwordsMatch={passwordsMatch}
+        location={this.props.location}
       />
     )
   }

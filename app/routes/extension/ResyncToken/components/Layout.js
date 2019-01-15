@@ -16,11 +16,12 @@ class Layout extends Component {
   render () {
     const {
       handleResync,
-      message
+      message,
+      location
     } = this.props
 
     return (
-      <Page>
+      <Page location={location}>
         <div className={styles.overlayPage}>
           <span className={styles.overlayPageHeader}>
             <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)} />

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { Route } from 'react-router-dom'
 import { ConnectedRouter } from 'react-router-redux'
+
 import { ExtensionRoutes } from 'routes'
 import {
   ACCOUNT_URL,
@@ -10,8 +11,10 @@ import {
   DOWNLOAD_APPS_URL,
   WELCOME_URL
 } from 'routes/routes'
-import { history, store } from './store'
-
+import {
+  history,
+  store
+} from './store'
 import { withAnalytics } from 'utils/analytics'
 
 const calculateInitialUrl = (account, safes) => {

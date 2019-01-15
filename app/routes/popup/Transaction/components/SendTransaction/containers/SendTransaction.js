@@ -7,10 +7,7 @@ import selector from './selector'
 import { getTxHash } from './gasData'
 import { sendTransaction, getNonce } from 'utils/sendNotifications'
 import Layout from '../components/Layout'
-import {
-  MSG_PENDING_SENDTRANSACTION,
-  MSG_RESOLVED_TRANSACTION
-} from '../../../../../../../extension/utils/messages'
+import messages from '../../../../../../../extension/utils/messages'
 
 class SendTransaction extends Component {
   constructor (props) {
@@ -33,7 +30,7 @@ class SendTransaction extends Component {
     this.handleTransaction()
 
     chrome.runtime.sendMessage({
-      msg: MSG_PENDING_SENDTRANSACTION,
+      msg: messages.MSG_PENDING_SENDTRANSACTION,
       position: transactionNumber
     })
 
@@ -50,7 +47,7 @@ class SendTransaction extends Component {
   handleMobileAppResponse = () => {
     chrome.runtime.onMessage.addListener(
       (request, sender, sendResponse) => {
-        if (request.msg === MSG_RESOLVED_TRANSACTION) {
+        if (request.msg === messages.MSG_RESOLVED_TRANSACTION) {
           clearInterval(this.timer)
           this.handleRemoveTransaction()
         }

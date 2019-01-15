@@ -80,9 +80,9 @@ class Account extends Component {
     return (
       <Layout
         currentSafe={safes.currentSafe}
-        properties={this.props.location}
         openEtherScan={this.openEtherScan}
         openSlowTrade={this.openSlowTrade}
+        location={this.props.location}
       />
     )
   }

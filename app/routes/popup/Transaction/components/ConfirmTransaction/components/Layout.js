@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 
-import FooterTransactions from '../../components/FooterTransactions'
+import FooterButtons from 'components/Footers/FooterButtons/containers'
 import ConfirmTransactionState from '../../components/TransactionState/ConfirmTransactionState'
 import RetryLoadDataTransactionState from '../../components/TransactionState/RetryLoadDataTransactionState'
+import { TRANSACTION_URL } from 'routes/routes'
+import {
+  REJECT,
+  CONFIRM
+} from '../../../../../../../config/messages'
+
 class Layout extends Component {
   render () {
     const {
-      lockedAccount,
       loadedData,
       reviewedTx,
       handleConfirmTransaction,
@@ -25,12 +30,12 @@ class Layout extends Component {
         {loadedData && (
           <React.Fragment>
             {!reviewedTx &&
-              <FooterTransactions
-                loadedData={loadedData}
-                reviewedTx={reviewedTx}
-                lockedAccount={lockedAccount}
-                handleRejectTransaction={handleRejectTransaction}
-                handleConfirmTransaction={handleConfirmTransaction}
+              <FooterButtons
+                nextUrl={TRANSACTION_URL}
+                rejectionText={REJECT}
+                confirmationText={CONFIRM}
+                handleRejection={handleRejectTransaction}
+                handleConfirmation={handleConfirmTransaction}
               />
             }
           </React.Fragment>

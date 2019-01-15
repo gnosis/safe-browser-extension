@@ -1,50 +1,33 @@
 import uuid from 'uuid/v4'
-import {
-  EV_SHOW_POPUP,
-  EV_RESOLVED_TRANSACTION,
-  EV_UPDATE_WEB3
-} from './messages'
+import messages from './messages'
 
 class SafeSubprovider {
-  constructor () {
-    this.currentSafe = undefined
-
-    const self = this
-    document.addEventListener(EV_UPDATE_WEB3, function (data) {
-      self.updateCurrentSafe(data.detail)
-    })
-  }
-
-  updateCurrentSafe = (currentSafe) => {
-    this.currentSafe = currentSafe
-  }
-
   sendTransaction = (payload, end) => {
     const id = uuid()
     payload.params[0].id = id
     const showPopupEvent = new window.CustomEvent(
-      EV_SHOW_POPUP,
+      messages.EV_SHOW_POPUP_TX,
       { detail: payload.params[0] }
     )
-    document.dispatchEvent(showPopupEvent)
+    window.dispatchEvent(showPopupEvent)
 
     const resolveTransactionHandler = (data) => {
-      document.removeEventListener(EV_RESOLVED_TRANSACTION + data.detail.id, resolveTransactionHandler)
+      window.removeEventListener(messages.EV_RESOLVED_TRANSACTION + data.detail.id, resolveTransactionHandler)
       if (data.detail.hash) {
         end(null, data.detail.hash)
       } else {
         end(new Error('Transaction rejected', data.detail.id))
       }
     }
-    document.addEventListener(EV_RESOLVED_TRANSACTION + id, resolveTransactionHandler)
+    window.addEventListener(messages.EV_RESOLVED_TRANSACTION + id, resolveTransactionHandler)
   }
 
   handleRequest = (payload, next, end) => {
-    const account = this.currentSafe
+    const account = this.engine.currentSafe
 
     switch (payload.method) {
       case 'eth_accounts':
-        end(null, [account])
+        end(null, account ? [account] : [])
         return
 
       case 'eth_coinbase':

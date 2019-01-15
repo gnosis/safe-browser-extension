@@ -1,35 +1,17 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router'
 
-import FooterTransactions from 'routes/popup/Transaction/components/components/FooterTransactions'
+import FooterButtons from 'components/Footers/FooterButtons/containers'
 import SendTransactionState from '../../components/TransactionState/SendTransactionState'
 import RetryLoadDataTransactionState from '../../components/TransactionState/RetryLoadDataTransactionState'
+import { TRANSACTION_URL } from 'routes/routes'
 import {
-  TRANSACTION_URL,
-  PASSWORD_URL
-} from 'routes/routes'
+  REJECT,
+  CONFIRM
+} from '../../../../../../../config/messages'
 
 class Layout extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      resolvedTransaction: false
-    }
-  }
-
-  handleConfirmTransaction = () => {
-    const { handleConfirmTransaction, lockedAccount } = this.props
-
-    if (lockedAccount) {
-      this.setState({ resolvedTransaction: true })
-    } else {
-      handleConfirmTransaction(true)
-    }
-  }
-
   render () {
     const {
-      lockedAccount,
       loadedData,
       reviewedTx,
       seconds,
@@ -37,17 +19,6 @@ class Layout extends Component {
       handleRejectTransaction,
       retryShowTransaction
     } = this.props
-    const { resolvedTransaction } = this.state
-
-    if (resolvedTransaction && lockedAccount) {
-      const passwordUrl = {
-        pathname: PASSWORD_URL,
-        state: {
-          dest: TRANSACTION_URL
-        }
-      }
-      return <Redirect to={passwordUrl} />
-    }
 
     return (
       <React.Fragment>
@@ -64,12 +35,12 @@ class Layout extends Component {
                 handleConfirmTransaction={handleConfirmTransaction}
               />
             ) : (
-              <FooterTransactions
-                loadedData={loadedData}
-                reviewedTx={reviewedTx}
-                lockedAccount={lockedAccount}
-                handleRejectTransaction={handleRejectTransaction}
-                handleConfirmTransaction={handleConfirmTransaction}
+              <FooterButtons
+                nextUrl={TRANSACTION_URL}
+                rejectionText={REJECT}
+                confirmationText={CONFIRM}
+                handleRejection={handleRejectTransaction}
+                handleConfirmation={handleConfirmTransaction}
               />
             )}
           </React.Fragment>

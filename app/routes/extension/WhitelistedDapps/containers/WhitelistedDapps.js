@@ -78,6 +78,7 @@ class WhitelistedDapps extends Component {
         handleAddDapp={this.handleAddDapp}
         handleDeleteDapp={this.handleDeleteDapp}
         handleDeleteAllDapps={this.handleDeleteAllDapps}
+        location={this.props.location}
       />
     )
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import Page from 'components/Page'
-import Footer from 'components/Footer'
+import FooterSteps from 'components/Footers/FooterSteps'
 import ConfirmPasswordForm from './ConfirmPasswordForm/containers/ConfirmPasswordForm'
 import styles from 'assets/css/global.css'
 import warningImage from 'assets/images/warning.svg'
@@ -22,20 +22,24 @@ class Layout extends Component {
   render () {
     const {
       confirmPassword,
-      properties,
       manageConfirmPassword,
-      passwordsMatch
+      passwordsMatch,
+      location
     } = this.props
 
     const nextLink = passwordsMatch
       ? {
         pathname: DOWNLOAD_APPS_URL,
-        state: properties
+        state: location.state
       }
       : ''
 
     return (
-      <Page page={styles.password2} simpleHeader>
+      <Page
+        page={styles.password2}
+        location={location}
+        simpleHeader
+      >
         <form onSubmit={this.prevent}>
           <div className={styles.content}>
             <h1>{CONFIRM_CREATE_PASSWORD_TITLE}</h1>
@@ -51,7 +55,7 @@ class Layout extends Component {
               />
             </div>
           </div>
-          <Footer
+          <FooterSteps
             link={CREATE_PASSWORD_URL}
             ready={passwordsMatch}
             secondStep

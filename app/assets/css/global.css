@@ -664,7 +664,7 @@ form input.noborder{
   font-style:normal;
   font-weight:400;
   outline:0;
-  min-width:25px;
+  /*min-width:25px;*/
   line-height: 1;
   /* CHROME/SAFARI only */
   display: -webkit-box;
@@ -1397,6 +1397,8 @@ form input.noborder{
 }
 form>.whitelist-form {
   display:flex;
+  width:100%;
+  padding:0 16px
 }
 form>.whitelist-form input {
   margin-right:15px
@@ -1970,13 +1972,13 @@ footer .stepper-dots>li.active{
 #keyhole{
   position:absolute
 }
-.extensionTX{
+.extensionPopup{
   height:650px;
   overflow:hidden;
   border-radius:2px;
   background:#fff;
 }
-.extensionTX .extension-inner .Page{
+.extensionPopup .extension-inner .Page{
   background:#F4F5F9;
   width:100%;
   height:calc(100% - 58px);
@@ -1987,7 +1989,7 @@ footer .stepper-dots>li.active{
   box-sizing:border-box;
   transition:all .3s ease-in-out
 }
-.extensionTX .extension-inner .PageHeader{
+.extensionPopup .extension-inner .PageHeader{
   height:36px;
   padding:0 20px;
   display:-ms-flexbox;
@@ -2004,7 +2006,7 @@ footer .stepper-dots>li.active{
   align-content:center;
   box-sizing:border-box
 }
-.extensionTX .extension-inner .PageHeader>h2{
+.extensionPopup .extension-inner .PageHeader>h2{
   margin:0;
   text-align:center;
   width:auto;
@@ -2015,7 +2017,7 @@ footer .stepper-dots>li.active{
   text-transform:uppercase;
   letter-spacing:2px
 }
-.extensionTX .extension-inner .PageHeader .pagination{
+.extensionPopup .extension-inner .PageHeader .pagination{
   -ms-flex:0 1 auto;
   flex:0 1 auto;
   margin:0 0 0 auto;
@@ -2030,13 +2032,13 @@ footer .stepper-dots>li.active{
   align-content:flex-end;
   z-index:2
 }
-.extensionTX .extension-inner .PageHeader .pagination>p{
+.extensionPopup .extension-inner .PageHeader .pagination>p{
   margin:0 10px;
   color:#21435A;
   font-size:1.5em;
   font-weight:400
 }
-.extensionTX .extension-inner .PageHeader .btn-back,.extensionTX .extension-inner .PageHeader .btn-next{
+.extensionPopup .extension-inner .PageHeader .btn-back,.extensionPopup .extension-inner .PageHeader .btn-next{
   display:-ms-flexbox;
   display:flex;
   -ms-flex-align:center;
@@ -2049,38 +2051,38 @@ footer .stepper-dots>li.active{
   text-decoration:none;
   width:15px
 }
-.extensionTX .extension-inner .PageHeader .btn-back.active,.extensionTX .extension-inner .PageHeader .btn-next.active{
+.extensionPopup .extension-inner .PageHeader .btn-back.active,.extensionPopup .extension-inner .PageHeader .btn-next.active{
   pointer-events:auto
 }
-.extensionTX .extension-inner .PageHeader .btn-back.active>p,.extensionTX .extension-inner .PageHeader .btn-next.active>p{
+.extensionPopup .extension-inner .PageHeader .btn-back.active>p,.extensionPopup .extension-inner .PageHeader .btn-next.active>p{
   color:#28B2FA
 }
-.extensionTX .extension-inner .PageHeader .btn-back>p,.extensionTX .extension-inner .PageHeader .btn-next>p{
+.extensionPopup .extension-inner .PageHeader .btn-back>p,.extensionPopup .extension-inner .PageHeader .btn-next>p{
   color:#A2A8BA;
   padding:0 0 0 25px;
   font-weight:500;
   font-size:14px;
   letter-spacing:0
 }
-.extensionTX .extension-inner .PageHeader .btn-back{
+.extensionPopup .extension-inner .PageHeader .btn-back{
   background:url(../images/arrow-left-grey.svg) center/contain no-repeat
 }
-.extensionTX .extension-inner .PageHeader .btn-back:hover{
+.extensionPopup .extension-inner .PageHeader .btn-back:hover{
   transform:translateX(-2px)
 }
-.extensionTX .extension-inner .PageHeader .btn-back.active{
+.extensionPopup .extension-inner .PageHeader .btn-back.active{
   background:url(../images/arrow-left-blue.svg) center/contain no-repeat
 }
-.extensionTX .extension-inner .PageHeader .btn-next{
+.extensionPopup .extension-inner .PageHeader .btn-next{
   background:url(../images/arrow-right-grey.svg) center/contain no-repeat
 }
-.extensionTX .extension-inner .PageHeader .btn-next:hover{
+.extensionPopup .extension-inner .PageHeader .btn-next:hover{
   transform:translateX(2px)
 }
-.extensionTX .extension-inner .PageHeader .btn-next.active{
+.extensionPopup .extension-inner .PageHeader .btn-next.active{
   background:url(../images/arrow-right-blue.svg) center/contain no-repeat
 }
-.extensionTX .extension-inner .PageContent{
+.extensionPopup .extension-inner .PageContent{
   display:-ms-flexbox;
   display:flex;
   -ms-flex-wrap:wrap;
@@ -2092,7 +2094,7 @@ footer .stepper-dots>li.active{
   margin:20px auto 0;
   padding:0
 }
-.extensionTX .extension-inner .transactionFrom,.extensionTX .extension-inner .transactionRecipient{
+.extensionPopup .extension-inner .transactionFrom,.extensionPopup .extension-inner .transactionRecipient{
   display:-ms-flexbox;
   display:flex;
   -ms-flex-pack:justify;
@@ -2105,7 +2107,7 @@ footer .stepper-dots>li.active{
   margin:0 auto;
   padding:0 20px
 }
-.extensionTX .extension-inner .transactionFrom span,.extensionTX .extension-inner .transactionRecipient span{
+.extensionPopup .extension-inner .transactionFrom span,.extensionPopup .extension-inner .transactionRecipient span{
   display:-ms-flexbox;
   display:flex;
   -ms-flex-wrap:nowrap;
@@ -2117,10 +2119,10 @@ footer .stepper-dots>li.active{
   word-break:break-all;
   box-sizing:border-box
 }
-.extensionTX .extension-inner .transactionFrom .identicon,.extensionTX .extension-inner .transactionRecipient .identicon{
+.extensionPopup .extension-inner .transactionFrom .identicon,.extensionPopup .extension-inner .transactionRecipient .identicon{
   margin:0 10px 0 0
 }
-.extensionTX .extension-inner .transactionFrom span p,.extensionTX .extension-inner .transactionRecipient span p{
+.extensionPopup .extension-inner .transactionFrom span p,.extensionPopup .extension-inner .transactionRecipient span p{
   display:-ms-flexbox;
   display:flex;
   -ms-flex-wrap:wrap;
@@ -2129,11 +2131,11 @@ footer .stepper-dots>li.active{
   line-height:1.3;
   word-break:inherit
 }
-.extensionTX .extension-inner .transactionFrom span p,.extensionTX .extension-inner .transactionRecipient span p{
+.extensionPopup .extension-inner .transactionFrom span p,.extensionPopup .extension-inner .transactionRecipient span p{
   margin: 0;
   text-align: left
 }
-.extensionTX .extension-inner .transactionFrom span p i,.extensionTX .extension-inner .transactionRecipient span p i{
+.extensionPopup .extension-inner .transactionFrom span p i,.extensionPopup .extension-inner .transactionRecipient span p i{
   width:100%;
   -ms-flex:1 1 auto;
   flex:1 1 auto;
@@ -2143,7 +2145,7 @@ footer .stepper-dots>li.active{
   color:#21435A;
   word-break:inherit
 }
-.extensionTX .extension-inner .transactionFrom>span>p>small,.extensionTX .extension-inner .transactionRecipient>span>p>small{
+.extensionPopup .extension-inner .transactionFrom>span>p>small,.extensionPopup .extension-inner .transactionRecipient>span>p>small{
   width:100%;
   font-size:inherit;
   -ms-flex:1 1 auto;
@@ -2153,7 +2155,7 @@ footer .stepper-dots>li.active{
   word-break:inherit;
   letter-spacing:-1px
 }
-.extensionTX .extension-inner .transactionFrom>span>small,.extensionTX .extension-inner .transactionRecipient>span>small{
+.extensionPopup .extension-inner .transactionFrom>span>small,.extensionPopup .extension-inner .transactionRecipient>span>small{
   font-family:"Roboto Mono",Courier,monospace;
   font-size:1.3em;
   color:#21435A;
@@ -2161,16 +2163,16 @@ footer .stepper-dots>li.active{
   line-height:1.1;
   letter-spacing:-1px
 }
-.extensionTX .extension-inner .transactionFrom>span:first-of-type{
+.extensionPopup .extension-inner .transactionFrom>span:first-of-type{
   width:50%
 }
-.extensionTX .extension-inner .transactionFrom>span:last-of-type{
+.extensionPopup .extension-inner .transactionFrom>span:last-of-type{
   width:50%;
   text-align:right;
   -ms-flex-pack:end;
   justify-content:flex-end;
 }
-.extensionTX .extension-inner .transactionValue{
+.extensionPopup .extension-inner .transactionValue{
   display:-ms-flexbox;
   display:flex;
   -ms-flex-wrap:wrap;
@@ -2180,7 +2182,7 @@ footer .stepper-dots>li.active{
   margin:0 auto 10px;
   padding:0 20px
 }
-.extensionTX .extension-inner .transactionValue::before{
+.extensionPopup .extension-inner .transactionValue::before{
   content:"";
   height:21px;
   width:13px;
@@ -2191,7 +2193,7 @@ footer .stepper-dots>li.active{
   top:16px;
   padding:0 30px 0 0
 }
-.extensionTX .extension-inner .transactionValue::after{
+.extensionPopup .extension-inner .transactionValue::after{
   content:"";
   height:1px;
   width:80%;
@@ -2201,7 +2203,7 @@ footer .stepper-dots>li.active{
   background:#E4E8F1;
   z-index:-1
 }
-.extensionTX .extension-inner .transactionValue>strong{
+.extensionPopup .extension-inner .transactionValue>strong{
   font-family:"Roboto Mono",Courier,monospace;
   font-size:1.7em;
   color:#fb4f62;
@@ -2217,11 +2219,11 @@ footer .stepper-dots>li.active{
   max-width:90%;
   word-wrap:break-word
 }
-.extensionTX .extension-inner .transactionValue>strong>small{
+.extensionPopup .extension-inner .transactionValue>strong>small{
   font-size:inherit;
   font-weight:inherit
 }
-.extensionTX .extension-inner .transactionValue>small{
+.extensionPopup .extension-inner .transactionValue>small{
   font-family:"Roboto Mono",Courier,monospace;
   font-size:1.3em;
   color:#A2A8BA;
@@ -2233,7 +2235,7 @@ footer .stepper-dots>li.active{
   box-sizing:border-box;
   word-wrap:break-word
 }
-.extensionTX .extension-inner .transactionSummary{
+.extensionPopup .extension-inner .transactionSummary{
   display:-ms-flexbox;
   display:flex;
   -ms-flex-wrap:wrap;
@@ -2245,7 +2247,7 @@ footer .stepper-dots>li.active{
   background:#E4E8F1;
   margin:20px 0
 }
-.extensionTX .extension-inner .transactionSummary>span{
+.extensionPopup .extension-inner .transactionSummary>span{
   width:100%;
   display:-ms-flexbox;
   display:flex;
@@ -2258,7 +2260,7 @@ footer .stepper-dots>li.active{
   color:#65707E;
   margin:4px 0
 }
-.extensionTX .extension-inner .transactionSummary>span>span{
+.extensionPopup .extension-inner .transactionSummary>span>span{
   display:-ms-flexbox;
   display:flex;
   -ms-flex-wrap:wrap;
@@ -2271,14 +2273,14 @@ footer .stepper-dots>li.active{
   -ms-flex-pack:end;
   justify-content:flex-end
 }
-.extensionTX .extension-inner .transactionSummary>span p{
+.extensionPopup .extension-inner .transactionSummary>span p{
   font-size:inherit;
   font-weight:inherit;
   color:inherit;
   margin: 0;
   text-align: left;
 }
-.extensionTX .extension-inner .transactionSummary>span strong{
+.extensionPopup .extension-inner .transactionSummary>span strong{
   display:-ms-flexbox;
   display:flex;
   -ms-flex-wrap:nowrap;
@@ -2290,29 +2292,29 @@ footer .stepper-dots>li.active{
   margin:0 0 2px;
   letter-spacing: -0.7px
 }
-.extensionTX .extension-inner .transactionSummary>span small{
+.extensionPopup .extension-inner .transactionSummary>span small{
   font-size:inherit;
   text-align:right
 }
-.extensionTX .extension-inner .transactionSummary>span>span>small{
+.extensionPopup .extension-inner .transactionSummary>span>span>small{
   color:#A2A8BA
 }
-.extensionTX .extension-inner .transactionSummary>span strong>small{
+.extensionPopup .extension-inner .transactionSummary>span strong>small{
   margin:0 0 0 4px
 }
-.extensionTX .extension-inner .transactionSummary .subtotal{
+.extensionPopup .extension-inner .transactionSummary .subtotal{
   font-weight:700;
   color:#21435A
 }
-.extensionTX .extension-inner .transactionSummary .subtotal span>small{
+.extensionPopup .extension-inner .transactionSummary .subtotal span>small{
   color:#A2A8BA;
   font-weight:400
 }
-.extensionTX .extension-inner .transactionState{
+.extensionPopup .extension-inner .transactionState{
   margin:0 auto;
   padding:0 20px
 }
-.extensionTX .extension-inner .transactionState .await{
+.extensionPopup .extension-inner .transactionState .await{
   width:100%;
   display:-ms-flexbox;
   display:flex;
@@ -2320,7 +2322,7 @@ footer .stepper-dots>li.active{
   flex-wrap:wrap;
   text-align:center
 }
-.extensionTX .extension-inner .transactionState .await p{
+.extensionPopup .extension-inner .transactionState .await p{
   font-weight:500;
   font-size:1.2em;
   color:#65707E;
@@ -2330,7 +2332,7 @@ footer .stepper-dots>li.active{
   margin:0;
   text-transform: uppercase
 }
-.extensionTX .extension-inner .transactionState .message{
+.extensionPopup .extension-inner .transactionState .message{
   display:-ms-flexbox;
   display:flex;
   -ms-flex-wrap:nowrap;
@@ -2342,11 +2344,11 @@ footer .stepper-dots>li.active{
   -ms-flex-align:center;
   align-items:center
 }
-.extensionTX .extension-inner .transactionState .message img{
+.extensionPopup .extension-inner .transactionState .message img{
   margin:0 15px 0 0;
   display: block
 }
-.extensionTX .extension-inner .transactionState .message p{
+.extensionPopup .extension-inner .transactionState .message p{
   font-size:1.3em;
   color:#21435A;
   letter-spacing:0;
@@ -2354,7 +2356,7 @@ footer .stepper-dots>li.active{
   margin: 0;
   text-align: left
 }
-.extensionTX .extension-inner .transactionState .errorMessage {
+.extensionPopup .extension-inner .transactionState .errorMessage {
   font-size: 1.3em;
   color: white;
   letter-spacing: 0;
@@ -2370,14 +2372,14 @@ footer .stepper-dots>li.active{
   margin: 0 auto;
   box-sizing: border-box;
 }
-.extensionTX .extension-inner .transactionState .errorMessage>p{
+.extensionPopup .extension-inner .transactionState .errorMessage>p{
   font-size:inherit;
   color:inherit;
   letter-spacing:inherit;
   line-height:inherit;
   text-align: center;
 }
-.extensionTX .extension-inner .transactionState .resend{
+.extensionPopup .extension-inner .transactionState .resend{
   display:-ms-flexbox;
   display:flex;
   -ms-flex-wrap:wrap;
@@ -2389,20 +2391,20 @@ footer .stepper-dots>li.active{
   -ms-flex-line-pack:center;
   align-content:center
 }
-.extensionTX .extension-inner .transactionState .resend>p{
+.extensionPopup .extension-inner .transactionState .resend>p{
   text-align:center;
   width:100%;
   margin:0 auto 8px;
   font-size:1.1em
 }
-.extensionTX .extension-inner .transactionState .resend>button{
+.extensionPopup .extension-inner .transactionState .resend>button{
   color:#28B2FA;
   font-size:1.3em;
   font-weight:500;
   letter-spacing:1px;
   padding:0 10px
 }
-.extensionTX .extension-inner .button-group>button{
+.extensionPopup .extension-inner .button-group>button{
   font-size:1.5em
 }
 .network-notification{

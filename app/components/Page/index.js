@@ -8,14 +8,14 @@ import styles from 'assets/css/global.css'
 
 const cx = classNames.bind(styles)
 
-const header = (withoutHeader, simpleHeader, noBorder, properties) => {
+const header = (withoutHeader, simpleHeader, noBorder, location) => {
   if (withoutHeader) {
     return
   }
   if (simpleHeader) {
     return <SimpleHeader noBorder={noBorder} />
   }
-  return <Header properties={properties} />
+  return <Header location={location} />
 }
 
 const Page = ({
@@ -24,14 +24,14 @@ const Page = ({
   simpleHeader,
   noBorder,
   children,
-  properties
+  location
 }) => (
   <div className={cx(
     styles.extension,
     page
   )}>
     <div className={styles.extensionInner}>
-      {header(withoutHeader, simpleHeader, noBorder, properties)}
+      {header(withoutHeader, simpleHeader, noBorder, location)}
       {children}
       <NetworkNotification />
     </div>

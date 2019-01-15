@@ -262,5 +262,8 @@
   },
   "synced_token": {
     "message": "동기화 됨"
+  },
+  "approve": {
+    "message": "승인"
   }
 }

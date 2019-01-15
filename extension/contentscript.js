@@ -1,37 +1,12 @@
-import {
-  MSG_ALLOW_INJECTION,
-  MSG_UPDATE_CURRENT_SAFE,
-  MSG_SHOW_POPUP,
-  EV_SHOW_POPUP,
-  EV_SCRIPT_READY,
-  EV_UPDATE_WEB3,
-  MSG_RESOLVED_TRANSACTION,
-  EV_RESOLVED_TRANSACTION
-} from './utils/messages'
+import messages from './utils/messages'
 import {
   WEBSITE_NOT_WHITELISTED,
   WEB3_INJECTION_FAILED
 } from '../config/messages'
 
-// Checks if the page is whitelisted to inject the web3 provider
-chrome.runtime.sendMessage(
-  {
-    msg: MSG_ALLOW_INJECTION,
-    url: window.location.host
-  },
-  function (response) {
-    if (response.answer) {
-      injectScript()
-      setUpWeb3(response.currentSafe)
-    } else {
-      console.log(WEBSITE_NOT_WHITELISTED.toString())
-    }
-  }
-)
-
-function injectScript () {
+const injectScript = () => {
   try {
-    // Injects script.js with the web3 provider
+    // Injects script.js with the ethereum provider
     var xhr = new window.XMLHttpRequest()
     xhr.open('GET', chrome.extension.getURL('script.js'), true)
     xhr.onreadystatechange = function () {
@@ -49,48 +24,62 @@ function injectScript () {
   }
 }
 
-function setUpWeb3 (currentSafe) {
-  document.addEventListener(EV_SCRIPT_READY, function (data) {
-    updateWeb3(currentSafe)
+const activeListeners = (currentSafe) => {
+  window.addEventListener(messages.EV_SCRIPT_READY, (data) => {
+    updateProvider(currentSafe)
   })
+
+  window.addEventListener(messages.EV_SHOW_POPUP_TX, (data) => {
+    chrome.runtime.sendMessage({
+      msg: messages.MSG_SHOW_POPUP_TX,
+      tx: data.detail
+    })
+  })
+
+  chrome.runtime.onMessage.addListener(
+    function (request, sender, sendResponse) {
+      switch (request.msg) {
+        case messages.MSG_RESOLVED_TRANSACTION:
+          const resolvedTransactionEvent = new window.CustomEvent(
+            messages.EV_RESOLVED_TRANSACTION + request.id,
+            {
+              detail: {
+                hash: request.hash,
+                id: request.id
+              }
+            }
+          )
+          window.dispatchEvent(resolvedTransactionEvent)
+          break
+
+        case messages.MSG_UPDATE_CURRENT_SAFE:
+          updateProvider(request.newSafeAddress)
+          break
+      }
+    }
+  )
 }
 
-chrome.runtime.onMessage.addListener(
-  function (request, sender, sendResponse) {
-    if (request.msg === MSG_UPDATE_CURRENT_SAFE) {
-      updateWeb3(request.newSafeAddress)
+// Checks if the page is whitelisted to inject the web3 provider
+chrome.runtime.sendMessage(
+  {
+    msg: messages.MSG_ALLOW_INJECTION,
+    url: window.location.host
+  },
+  (response) => {
+    if (response.answer) {
+      activeListeners(response.currentSafe)
+      injectScript()
+    } else {
+      console.log(WEBSITE_NOT_WHITELISTED.toString())
     }
   }
 )
 
-function updateWeb3 (currentSafe) {
-  const updateWeb3Event = new window.CustomEvent(
-    EV_UPDATE_WEB3,
+const updateProvider = (currentSafe) => {
+  const updateProviderEvent = new window.CustomEvent(
+    messages.EV_UPDATE_PROVIDER,
     { detail: currentSafe }
   )
-  document.dispatchEvent(updateWeb3Event)
+  window.dispatchEvent(updateProviderEvent)
 }
-
-document.addEventListener(EV_SHOW_POPUP, function (data) {
-  chrome.runtime.sendMessage({
-    msg: MSG_SHOW_POPUP,
-    tx: data.detail
-  })
-})
-
-chrome.runtime.onMessage.addListener(
-  function (request, sender, sendResponse) {
-    if (request.msg === MSG_RESOLVED_TRANSACTION) {
-      const resolvedTransactionEvent = new window.CustomEvent(
-        EV_RESOLVED_TRANSACTION + request.id,
-        {
-          detail: {
-            hash: request.hash,
-            id: request.id
-          }
-        }
-      )
-      document.dispatchEvent(resolvedTransactionEvent)
-    }
-  }
-)

@@ -10,6 +10,7 @@ import FetchSubprovider from 'web3-provider-engine/subproviders/fetch.js'
 
 import SafeSubprovider from './SafeSubprovider'
 import { getNetworkVersion } from '../../config'
+import { EV_UPDATE_PROVIDER } from './messages'
 
 const SafeProvider = ({
   rpcUrl
@@ -18,11 +19,15 @@ const SafeProvider = ({
 
   engine.setMaxListeners(0)
 
-  // isMetamask is something temporary. Must be deleted.
+  // Metamask methods are temporary. Must be deleted in the future.
   engine.isMetaMask = !0
+  engine._metamask = {
+    isApproved: () => true,
+    isUnlocked: () => true
+  }
 
   engine.isSafe = true
-  engine.isConnected = function () {
+  engine.isConnected = () => {
     return true
   }
 
@@ -63,9 +68,18 @@ const SafeProvider = ({
   const sendSync = (payload) => {
     // eslint-disable-next-line
     var r = undefined
+
     switch (payload.method) {
       case 'net_version':
         r = getNetworkVersion().toString()
+        break
+
+      case 'eth_accounts':
+        r = engine.currentSafe ? [engine.currentSafe] : []
+        break
+
+      case 'eth_coinbase':
+        r = engine.currentSafe || null
         break
 
       case 'eth_uninstallFilter':
@@ -74,7 +88,7 @@ const SafeProvider = ({
         break
 
       default:
-        throw new Error('SafeProvider does not support this synchronous request')
+        throw new Error('SafeProvider does not support this synchronous request', payload)
     }
     return {
       id: payload.id,
@@ -90,6 +104,10 @@ const SafeProvider = ({
       return sendSync(payload)
     }
   }
+
+  window.addEventListener(EV_UPDATE_PROVIDER, (data) => {
+    engine.currentSafe = data.detail
+  })
 
   engine.start()
 

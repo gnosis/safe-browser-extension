@@ -28,7 +28,9 @@ function transactions (state = initialState, action) {
           transaction
         ]
       }
-      if (action.windowId) { transactions.windowId = action.windowId }
+      if (action.windowId) {
+        transactions.windowId = action.windowId
+      }
       return transactions
 
     case REMOVE_TRANSACTION:
