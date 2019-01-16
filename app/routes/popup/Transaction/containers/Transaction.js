@@ -118,8 +118,10 @@ class Transaction extends Component {
   }
 
   removeTransaction = async (position) => {
-    const { transactions } = this.props
-    var removeTx = this.props.onRemoveTransaction
+    const {
+      transactions,
+      onRemoveTransaction
+    } = this.props
 
     const transactionsLength = transactions.txs.length - 1
     chrome.browserAction.setBadgeBackgroundColor({ color: '#888' })
@@ -127,13 +129,17 @@ class Transaction extends Component {
 
     const transaction = transactions.txs[position]
 
-    await chrome.tabs.query({ windowId: transaction.dappWindowId }, (tabs) => {
-      chrome.tabs.sendMessage(transaction.dappTabId, {
-        msg: messages.MSG_RESOLVED_TRANSACTION,
-        hash: null,
-        id: transaction.tx.id
-      }, () => removeTx(position))
-    })
+    if (transaction.dappWindowId && transaction.dappTabId) {
+      await chrome.tabs.query({ windowId: transaction.dappWindowId }, (tabs) => {
+        chrome.tabs.sendMessage(transaction.dappTabId, {
+          msg: messages.MSG_RESOLVED_TRANSACTION,
+          hash: null,
+          id: transaction.tx.id
+        }, () => onRemoveTransaction(position))
+      })
+    } else {
+      onRemoveTransaction(position)
+    }
   }
 
   getSafeAlias = (address) => {
