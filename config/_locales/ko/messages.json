@@ -198,7 +198,7 @@
     "message": "신규 거래 확인이 요청되었습니다"
   },
   "safe_connected_title": {
-    "message": "Safe 생성"
+    "message": "Safe 연결 완료"
   },
   "safe_connected_description": {
     "message": "귀하의 Safe가 브라우저 확장프로그램에 동기화되었습니다"
@@ -265,5 +265,8 @@
   },
   "approve": {
     "message": "승인"
+  },
+  "payment_token": {
+    "message": "네트워크 수수료 지불용 토큰"
   }
 }

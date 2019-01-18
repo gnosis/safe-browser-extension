@@ -265,5 +265,8 @@
   },
   "approve": {
     "message": "Aprobar"
+  },
+  "payment_token": {
+    "message": "Pagamento con tokens (para costes da rede)"
   }
 }

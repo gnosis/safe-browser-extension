@@ -5,7 +5,6 @@ import { shortenAddress } from 'utils/helpers'
 import styles from 'assets/css/global.css'
 
 const TransactionAddressData = ({
-  style,
   address,
   alias,
   balance,

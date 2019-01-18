@@ -41,6 +41,7 @@ module.exports = {
     modules: [
       path.resolve(__dirname, './app/'),
       path.resolve(__dirname, './extension/'),
+      path.resolve(__dirname, './config'),
       path.resolve(__dirname, './node_modules/')
     ]
   },

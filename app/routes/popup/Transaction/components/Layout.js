@@ -23,7 +23,7 @@ class Layout extends Component {
       lockedAccount,
       loadedData,
       reviewedTx,
-      estimations,
+      transactionSummary,
       safeAlias,
       ethAccount,
       previousTransaction,
@@ -33,9 +33,13 @@ class Layout extends Component {
       handleTransaction
     } = this.props
 
-    const decimalValue = transaction.decimals ? transaction.displayedValue.div(10 ** transaction.decimals) : transaction.displayedValue
+    const decimalValue = transaction.decimals
+      ? transaction.displayedValue.div(10 ** transaction.decimals)
+      : transaction.displayedValue
     const displayedValue = decimalValue ? decimalValue.toString(10) : '-'
-    const toAddress = isTokenTransfer(transaction.data) ? getTokenTransferAddress(transaction.data) : transaction.to
+    const toAddress = isTokenTransfer(transaction.data)
+      ? getTokenTransferAddress(transaction.data)
+      : transaction.to
 
     return (
       <React.Fragment>
@@ -63,8 +67,7 @@ class Layout extends Component {
           />
           <TransactionSummary
             transaction={transaction}
-            estimations={estimations}
-            displayedValue={decimalValue}
+            transactionSummary={transactionSummary}
           />
           {transaction && (transaction.type === 'confirmTransaction') &&
             <ConfirmTransaction

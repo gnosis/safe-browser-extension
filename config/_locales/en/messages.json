@@ -265,5 +265,8 @@
   },
   "approve": {
     "message": "Approve"
+  },
+  "payment_token": {
+    "message": "Payment token (for network fees)"
   }
 }

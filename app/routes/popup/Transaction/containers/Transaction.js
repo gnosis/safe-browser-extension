@@ -10,7 +10,8 @@ import {
   getTransactionData,
   setUpTransaction,
   getEthBalance,
-  calculateGasEstimation
+  calculateGasEstimation,
+  getTransactionSummary
 } from './transactions'
 import Header from 'components/Header'
 import Layout from '../components/Layout'
@@ -25,9 +26,10 @@ class Transaction extends Component {
 
     this.state = {
       transactionNumber: 0,
+      transactionId: undefined,
       balance: undefined,
       loadedData: undefined,
-      reviewedTx: false
+      reviewedTx: false,
     }
 
     const { location } = this.props
@@ -55,6 +57,7 @@ class Transaction extends Component {
     if (!tx) return
 
     this.setState({
+      transactionId: tx.id,
       reviewedTx: false,
       loadedData: undefined,
       transactionNumber,
@@ -62,13 +65,15 @@ class Transaction extends Component {
       symbol: undefined,
       displayedValue: undefined,
       decimals: undefined,
-      estimations: undefined
+      estimations: undefined,
+      transactionSummary: undefined,
     })
 
     try {
       const ethBalance = await getEthBalance(tx.from)
       const { balance, symbol, value, decimals } = await getTransactionData(tx.to, tx.from, tx.data, tx.value, ethBalance)
       const estimations = await calculateGasEstimation(tx, value)
+      const transactionSummary = await getTransactionSummary(tx, estimations, value)
 
       let loadedData
       if (ethBalance instanceof BigNumber && balance instanceof BigNumber && estimations && symbol) {
@@ -83,7 +88,8 @@ class Transaction extends Component {
         displayedValue: value,
         decimals,
         estimations,
-        loadedData
+        loadedData,
+        transactionSummary
       })
     } catch (err) {
       this.setState({ loadedData: false })
@@ -155,6 +161,7 @@ class Transaction extends Component {
       displayedValue,
       decimals,
       estimations,
+      transactionSummary,
       loadedData,
       reviewedTx
     } = this.state
@@ -186,7 +193,7 @@ class Transaction extends Component {
               lockedAccount={account.lockedState}
               loadedData={loadedData}
               reviewedTx={reviewedTx}
-              estimations={estimations}
+              transactionSummary={transactionSummary}
               safeAlias={this.getSafeAlias(transaction.safe)}
               ethAccount={this.ethAccount}
               previousTransaction={this.previousTransaction}

@@ -12,6 +12,7 @@ import {
   removeAllTransactions
 } from 'actions/transactions'
 import { SAFE_ALREADY_EXISTS } from '../config/messages'
+import { ADDRESS_ZERO } from '../app/utils/helpers'
 
 const storageController = new StorageController()
 const popupController = new PopupController({ storageController })
@@ -122,6 +123,9 @@ const showTransactionPopup = (transaction, dappWindowId, dappTabId) => {
   if (transaction.safe) {
     transaction.from = transaction.safe
   }
+  if (transaction.gasToken === '0' || transaction.gasToken === '0x' || transaction.gasToken === '0x0') {
+    transaction.gasToken = ADDRESS_ZERO
+  } 
 
   const validTransaction = safes.filter(safe => safe.address.toLowerCase() === transaction.from.toLowerCase()).length > 0
   if (!validTransaction) {
@@ -151,6 +155,8 @@ const showConfirmTransactionPopup = (transaction) => {
 
 const showSendTransactionPopup = (transaction, dappWindowId, dappTabId) => {
   transaction.type = 'sendTransaction'
+  const paymentToken = storageController.getStoreState().transactions.paymentToken
+  transaction.gasToken = (paymentToken) ? paymentToken.address : ADDRESS_ZERO
   showTransactionPopup(transaction, dappWindowId, dappTabId)
 }
 
