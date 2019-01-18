@@ -5,8 +5,6 @@ import {
   UPDATE_SAFE_ALIAS
 } from 'components/Header/SafesMenu/store/actions'
 
-import { DEFAULT_SAFE_NAME } from '../../config/messages'
-
 const initialState = {
   currentSafe: undefined,
   safes: []
@@ -18,8 +16,8 @@ function safes (state = initialState, action) {
       const newSafe = {
         address: action.address,
         alias: (count === 1)
-          ? DEFAULT_SAFE_NAME
-          : DEFAULT_SAFE_NAME + ' ' + action.address.substring(action.address.length - 4)
+          ? 'Safe'
+          : 'Safe ' + action.address.substring(action.address.length - 4)
       }
       return {
         ...state,
