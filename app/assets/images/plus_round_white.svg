@@ -1,14 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
-    <title>Shape</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="#overlay-safe-select-menu" transform="translate(-16.000000, -214.000000)" fill="#FFFFFF" fill-rule="nonzero">
-            <g id="Shape">
-                <path d="M24,214 C19.584,214 16,217.584 16,222 C16,226.416 19.584,230 24,230 C28.416,230 32,226.416 32,222 C32,217.584 28.416,214 24,214 Z M28,222.8 L24.8,222.8 L24.8,226 L23.2,226 L23.2,222.8 L20,222.8 L20,221.2 L23.2,221.2 L23.2,218 L24.8,218 L24.8,221.2 L28,221.2 L28,222.8 Z"></path>
-            </g>
-        </g>
-    </g>
-</svg>
+<svg width="16" height="16" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>Shape</title><desc>Created with Sketch.</desc><g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="#overlay-safe-select-menu" transform="translate(-16.000000, -214.000000)" fill="#FFF" fill-rule="nonzero"><g id="Shape"><path d="M24,214 C19.584,214 16,217.584 16,222 C16,226.416 19.584,230 24,230 C28.416,230 32,226.416 32,222 C32,217.584 28.416,214 24,214 Z M28,222.8 L24.8,222.8 L24.8,226 L23.2,226 L23.2,222.8 L20,222.8 L20,221.2 L23.2,221.2 L23.2,218 L24.8,218 L24.8,221.2 L28,221.2 L28,222.8 Z"/></g></g></g></svg>

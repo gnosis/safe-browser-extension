@@ -1,16 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="10px" height="8px" viewBox="0 0 10 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
-    <title>Shape</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="#restrict-site-locked" transform="translate(-342.000000, -20.000000)" fill="#FFFFFF" fill-rule="nonzero">
-            <g id="Group-7" transform="translate(320.000000, 14.000000)">
-                <g id="switch-on">
-                    <polygon id="Shape" points="23.75 8.375 22 10.125 25.75 14 32 7.875 30.25 6 25.75 10.5"></polygon>
-                </g>
-            </g>
-        </g>
-    </g>
-</svg>
+<svg width="10" height="8" viewBox="0 0 10 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>Shape</title><desc>Created with Sketch.</desc><g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="#restrict-site-locked" transform="translate(-342.000000, -20.000000)" fill="#FFF" fill-rule="nonzero"><g id="Group-7" transform="translate(320.000000, 14.000000)"><g id="switch-on"><polygon id="Shape" points="23.75 8.375 22 10.125 25.75 14 32 7.875 30.25 6 25.75 10.5"/></g></g></g></g></svg>

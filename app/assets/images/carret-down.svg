@@ -1,14 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="7px" height="4px" viewBox="0 0 7 4" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
-    <title>Shape</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="#header-with-locks" transform="translate(-253.000000, -30.000000)" fill="#28B2FA" fill-rule="nonzero">
-            <g id="Shape">
-                <path d="M255.85347,33.8028919 C256.116281,34.0657027 256.541693,34.0657027 256.803875,33.8028919 L259.459089,31.1476778 C259.882613,30.7241537 259.582616,30 258.983887,30 L253.673459,30.0006302 C253.074733,30.0006302 252.774732,30.7247839 253.198256,31.1476788 L255.85347,33.8028919 Z"></path>
-            </g>
-        </g>
-    </g>
-</svg>
+<svg width="7" height="4" viewBox="0 0 7 4" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>Shape</title><desc>Created with Sketch.</desc><g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="#header-with-locks" transform="translate(-253.000000, -30.000000)" fill="#28B2FA" fill-rule="nonzero"><g id="Shape"><path d="M255.85347,33.8028919 C256.116281,34.0657027 256.541693,34.0657027 256.803875,33.8028919 L259.459089,31.1476778 C259.882613,30.7241537 259.582616,30 258.983887,30 L253.673459,30.0006302 C253.074733,30.0006302 252.774732,30.7247839 253.198256,31.1476788 L255.85347,33.8028919 Z"/></g></g></g></svg>

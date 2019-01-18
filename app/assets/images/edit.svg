@@ -1,10 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="10px" height="10px" viewBox="0 0 10 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
-    <title>edit</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Browser-extension" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M0,7.91695598 L0,10 L2.08304402,10 L8.22663519,3.85640883 L6.14359117,1.77336481 L0,7.91695598 Z M9.83752257,2.24552146 C10.0541591,2.02888488 10.0541591,1.67893348 9.83752257,1.4622969 L8.5377031,0.162477434 C8.32106652,-0.0541591446 7.97111512,-0.0541591446 7.75447854,0.162477434 L6.73795306,1.17900292 L8.82099708,3.26204694 L9.83752257,2.24552146 Z" id="edit" fill="#FFFFFF" fill-rule="nonzero"></path>
-    </g>
-</svg>
+<svg width="10" height="10" viewBox="0 0 10 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>edit</title><desc>Created with Sketch.</desc><g id="Browser-extension" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><path d="M0,7.91695598 L0,10 L2.08304402,10 L8.22663519,3.85640883 L6.14359117,1.77336481 L0,7.91695598 Z M9.83752257,2.24552146 C10.0541591,2.02888488 10.0541591,1.67893348 9.83752257,1.4622969 L8.5377031,0.162477434 C8.32106652,-0.0541591446 7.97111512,-0.0541591446 7.75447854,0.162477434 L6.73795306,1.17900292 L8.82099708,3.26204694 L9.83752257,2.24552146 Z" id="edit" fill="#FFF" fill-rule="nonzero"/></g></svg>
