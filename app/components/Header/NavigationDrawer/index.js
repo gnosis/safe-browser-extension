@@ -14,6 +14,8 @@ import {
   REPLACE_RECOVERY_PHRASE_URL,
   PAYMENT_TOKEN_URL
 } from 'routes/routes'
+import { getNetwork } from '../../../../config'
+import { MAINNET } from '../../../../config/names'
 import {
   MANAGE_SITES_WHITELIST,
   SET_LOCK_TIMEOUT,
@@ -88,16 +90,18 @@ class NavigationDrawer extends Component {
               <div data-menu='replace-recovery-phrase'>{REPLACE_RECOVERY_PRASE}</div>
             </Link>
           </li>
-          <li>
-            <Link to={PAYMENT_TOKEN_URL}>
-              <div data-menu='payment-token'>
-                <div className={styles.descriptiveMenuEntry}>
-                  <div>{PAYMENT_TOKEN}</div>
-                  <div className={styles.token}>{paymentTokenDetail}</div>
+          {(getNetwork() !== MAINNET) &&
+            <li>
+              <Link to={PAYMENT_TOKEN_URL}>
+                <div data-menu='payment-token'>
+                  <div className={styles.descriptiveMenuEntry}>
+                    <div>{PAYMENT_TOKEN}</div>
+                    <div className={styles.token}>{paymentTokenDetail}</div>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          </li>
+              </Link>
+            </li>
+          }
           <li>
             <Link to={ABOUT_URL}>
               <div data-menu='about'>{ABOUT}</div>
