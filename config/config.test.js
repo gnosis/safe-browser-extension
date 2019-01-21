@@ -142,7 +142,7 @@ describe('Configuration', () => {
     })
 
     test('getNetworkUrl', () => {
-      testGetNetworkUrl('https://rinkeby.infura.io/gnosis')
+      testGetNetworkUrl('https://rinkeby.infura.io/v3/' + process.env.INFURA_PROJECT_ID)
     })
 
     test('getAndroidAppUrl', () => {
@@ -205,7 +205,7 @@ describe('Configuration', () => {
     })
 
     test('getNetworkUrl', () => {
-      testGetNetworkUrl('https://rinkeby.infura.io/gnosis')
+      testGetNetworkUrl('https://rinkeby.infura.io/v3/' + process.env.INFURA_PROJECT_ID)
     })
 
     test('getAndroidAppUrl', () => {
@@ -268,7 +268,7 @@ describe('Configuration', () => {
     })
 
     test('getNetworkUrl', () => {
-      testGetNetworkUrl('https://rinkeby.infura.io/gnosis')
+      testGetNetworkUrl('https://rinkeby.infura.io/v3/' + process.env.INFURA_PROJECT_ID)
     })
 
     test('getAndroidAppUrl', () => {
@@ -331,7 +331,7 @@ describe('Configuration', () => {
     })
 
     test('getNetworkUrl', () => {
-      testGetNetworkUrl('https://mainnet.infura.io/gnosis')
+      testGetNetworkUrl('https://mainnet.infura.io/v3/' + process.env.INFURA_PROJECT_ID)
     })
 
     test('getAndroidAppUrl', () => {
@@ -394,7 +394,7 @@ describe('Configuration', () => {
     })
 
     test('getNetworkUrl', () => {
-      testGetNetworkUrl('https://rinkeby.infura.io/gnosis')
+      testGetNetworkUrl('https://rinkeby.infura.io/v3/' + process.env.INFURA_PROJECT_ID)
     })
 
     test('getAndroidAppUrl', () => {
@@ -457,7 +457,7 @@ describe('Configuration', () => {
     })
 
     test('getNetworkUrl', () => {
-      testGetNetworkUrl('https://mainnet.infura.io/gnosis')
+      testGetNetworkUrl('https://mainnet.infura.io/v3/' + process.env.INFURA_PROJECT_ID)
     })
 
     test('getAndroidAppUrl', () => {
