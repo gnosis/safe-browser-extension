@@ -29,7 +29,7 @@ class WhitelistedDappState extends Component {
     const { whitelistedDapps } = this.props
 
     const normalizedUrl = normalizeUrl(url)
-    const whitelistableDapp = (normalizedUrl.indexOf('.') > -1)
+    const whitelistableDapp = (normalizedUrl.indexOf('.') > -1) || (normalizedUrl.substring(0, 9) === 'localhost')
     const whitelisted = (whitelistedDapps.indexOf(normalizedUrl) > -1)
 
     this.setState({
