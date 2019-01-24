@@ -50,6 +50,7 @@
     "react-router-redux": "^5.0.0-alpha.9",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "safe-web3-provider": "github:gnosis/safe-web3-provider",
     "truffle-contract": "^3.0.5",
     "uuid": "^3.3.2",
     "web3": "^0.20.6",

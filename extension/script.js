@@ -1,7 +1,6 @@
 import Web3 from 'web3'
+import SafeProvider from 'safe-web3-provider'
 
-import SafeProvider from './utils/SafeProvider'
-import messages from './utils/messages'
 import { getNetworkUrl } from '../config'
 
 if (typeof window.web3 !== 'undefined') {
@@ -12,25 +11,8 @@ const safeProvider = new SafeProvider({
   rpcUrl: getNetworkUrl()
 })
 
-const ethereumProvider = safeProvider
-
-ethereumProvider.enable = () => {
-  return new Promise((resolve, reject) => {
-    safeProvider.sendAsync({ method: 'eth_accounts', params: [] }, (error, response) => {
-      if (error) {
-        reject(error)
-      } else {
-        resolve(response)
-      }
-    })
-  })
-}
-
-window.ethereum = ethereumProvider
-window.web3 = new Web3(ethereumProvider)
-
-const scriptReadyEvent = new window.CustomEvent(messages.EV_SCRIPT_READY)
-window.dispatchEvent(scriptReadyEvent)
+window.ethereum = safeProvider
+window.web3 = new Web3(safeProvider)
 
 /*
 window.addEventListener('load', () => {
