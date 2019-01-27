@@ -25,7 +25,7 @@ const injectScript = () => {
 }
 
 const activeListeners = (currentSafe) => {
-  window.addEventListener(messages.EV_SCRIPT_READY, (data) => {
+  window.addEventListener(messages.EV_SAFE_PROVIDER_READY, (data) => {
     updateProvider(currentSafe)
   })
 
@@ -78,7 +78,7 @@ chrome.runtime.sendMessage(
 
 const updateProvider = (currentSafe) => {
   const updateProviderEvent = new window.CustomEvent(
-    messages.EV_UPDATE_PROVIDER,
+    messages.EV_SAFE_UPDATE_PROVIDER,
     { detail: currentSafe }
   )
   window.dispatchEvent(updateProviderEvent)
