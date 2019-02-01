@@ -48,13 +48,13 @@ class ReplaceRecoveryPhrase extends Component {
   generateQrCodeContent = (safeAddress) => {
     const {
       selectEncryptedMnemonic,
-      selectUnencryptedMnemonicSelector
+      selectUnencryptedMnemonic
     } = this.props
 
-    const account = !selectUnencryptedMnemonicSelector && this.password
+    const account = !selectUnencryptedMnemonic && this.password
       ? getDecryptedEthAccount(selectEncryptedMnemonic, this.password)
-      : createAccountFromMnemonic(selectUnencryptedMnemonicSelector)
-
+      : createAccountFromMnemonic(selectUnencryptedMnemonic)
+    
     const data = EthUtil.sha3('GNO' + safeAddress)
     const vrs = EthUtil.ecsign(data, account.getPrivateKey())
     const r = new BigNumber(EthUtil.bufferToHex(vrs.r))
