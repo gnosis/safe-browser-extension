@@ -34,14 +34,14 @@ class ResyncToken extends Component {
   handleResync = () => async (e) => {
     const {
       selectEncryptedMnemonic,
-      selectUnencryptedMnemonicSelector
+      selectUnencryptedMnemonic
     } = this.props
 
-    const currentAccount = !selectUnencryptedMnemonicSelector && this.password
+    const currentAccount = !selectUnencryptedMnemonic && this.password
       ? getDecryptedEthAccount(selectEncryptedMnemonic, this.password)
-      : createAccountFromMnemonic(selectUnencryptedMnemonicSelector)
+      : createAccountFromMnemonic(selectUnencryptedMnemonic)
 
-    try {
+      try {
       const token = await setUpNotifications()
       if (token === null) {
         this.setState({ message: ERROR_SYNCING })
