@@ -3,6 +3,7 @@ import {
   WEBSITE_NOT_WHITELISTED,
   WEB3_INJECTION_FAILED
 } from '../config/messages'
+import { getNetworkUrl } from '../config'
 
 const injectScript = () => {
   try {
@@ -25,10 +26,18 @@ const injectScript = () => {
 }
 
 const activeListeners = (currentSafe) => {
-  window.addEventListener(messages.EV_SAFE_PROVIDER_READY, (data) => {
+  const safeProviderReadyHandler = () => {
+    window.removeEventListener(messages.EV_SAFE_PROVIDER_READY, safeProviderReadyHandler)
     updateProvider(currentSafe)
-  })
+  }
+  window.addEventListener(messages.EV_SAFE_PROVIDER_READY, safeProviderReadyHandler)
 
+  const safeProviderWaitingHandler = () => {
+    window.removeEventListener(messages.EV_SAFE_PROVIDER_WAITING, safeProviderWaitingHandler)
+    initializeProvider(currentSafe)
+  }
+  window.addEventListener(messages.EV_SAFE_PROVIDER_WAITING, safeProviderWaitingHandler)
+  
   window.addEventListener(messages.EV_SHOW_POPUP_TX, (data) => {
     chrome.runtime.sendMessage({
       msg: messages.MSG_SHOW_POPUP_TX,
@@ -75,6 +84,20 @@ chrome.runtime.sendMessage(
     }
   }
 )
+
+const initializeProvider = (currentSafe) => {
+  const networkUrl = getNetworkUrl()
+  const initializeProviderEvent = new window.CustomEvent(
+    messages.EV_SAFE_INITIALIZE_PROVIDER,
+    {
+      detail: {
+        rpcUrl: networkUrl,
+        safe: currentSafe
+      }
+    }
+  )
+  window.dispatchEvent(initializeProviderEvent)
+}
 
 const updateProvider = (currentSafe) => {
   const updateProviderEvent = new window.CustomEvent(
