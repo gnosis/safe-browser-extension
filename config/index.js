@@ -13,7 +13,6 @@ import {
   IOS_APP_URL,
   PUSH_NOTIFICATION_SERVICE_URL,
   TRANSACTION_RELAY_SERVICE_URL,
-  TOKEN_LIST_URL,
   FIREBASE_AUTH_DOMAIN,
   FIREBASE_DATABASE_URL,
   FIREBASE_PROJECT_ID,
@@ -106,15 +105,6 @@ export const getTransactionRelayServiceUrl = () => {
   return (enviroment === PRODUCTION || enviroment === PRE_PRODUCTION)
     ? config[enviroment][TRANSACTION_RELAY_SERVICE_URL][network]
     : config[enviroment][TRANSACTION_RELAY_SERVICE_URL]
-}
-
-export const getTokenListUrl = () => {
-  const config = getEnvConfig()
-  const enviroment = getEnviroment()
-  const network = getNetwork()
-  return (enviroment === PRODUCTION || enviroment === PRE_PRODUCTION)
-    ? config[enviroment][TOKEN_LIST_URL][network]
-    : config[enviroment][TOKEN_LIST_URL]
 }
 
 export const getFirebaseAuthDomain = () => {

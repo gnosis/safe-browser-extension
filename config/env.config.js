@@ -9,7 +9,6 @@ import {
   TRANSACTION_RELAY_SERVICE_URL,
   ANDROID_APP_URL,
   IOS_APP_URL,
-  TOKEN_LIST_URL,
   FIREBASE_AUTH_DOMAIN,
   FIREBASE_DATABASE_URL,
   FIREBASE_PROJECT_ID,
@@ -27,11 +26,7 @@ const rinkebyAppStoreIos = null
 const rinkebyStagingAndroid = 'https://betas.to/riowXzcx'
 const rinkebyStagingIos = 'https://betas.to/7TovLG11'
 
-const rinkebyTokenListUrl = 'https://gist.githubusercontent.com/rmeissner/98911fcf74b0ea9731e2dae2441c97a4/raw/'
-const mainnetTokenListUrl = 'https://raw.githubusercontent.com/rmeissner/crypto_resources/master/tokens/mainnet/tokens.json'
-
 const stagingPushNotificationServiceUrl = 'https://safe-notification.staging.gnosisdev.com/api/v1/'
-const stagingTransactionRelayServiceUrl = 'https://safe-relay.staging.gnosisdev.com/api/v1/'
 
 const testFirebaseAuthDomain = 'test-safe-notifications.firebaseapp.com'
 const testFirebaseDatabaseUrl = 'https://test-safe-notifications.firebaseio.com'
@@ -55,10 +50,6 @@ const envConfig = {
     [TRANSACTION_RELAY_SERVICE_URL]: {
       [MAINNET]: process.env.TRANSACTION_RELAY_SERVICE_MAINNET_URL,
       [RINKEBY]: process.env.TRANSACTION_RELAY_SERVICE_RINKEBY_URL
-    },
-    [TOKEN_LIST_URL]: {
-      [MAINNET]: mainnetTokenListUrl,
-      [RINKEBY]: rinkebyTokenListUrl
     },
     [FIREBASE_AUTH_DOMAIN]: process.env.FIREBASE_AUTH_DOMAIN,
     [FIREBASE_DATABASE_URL]: process.env.FIREBASE_DATABASE_URL,
@@ -84,10 +75,6 @@ const envConfig = {
       [MAINNET]: process.env.TRANSACTION_RELAY_SERVICE_MAINNET_URL,
       [RINKEBY]: process.env.TRANSACTION_RELAY_SERVICE_RINKEBY_URL
     },
-    [TOKEN_LIST_URL]: {
-      [MAINNET]: mainnetTokenListUrl,
-      [RINKEBY]: rinkebyTokenListUrl
-    },
     [FIREBASE_AUTH_DOMAIN]: process.env.FIREBASE_AUTH_DOMAIN,
     [FIREBASE_DATABASE_URL]: process.env.FIREBASE_DATABASE_URL,
     [FIREBASE_PROJECT_ID]: process.env.FIREBASE_PROJECT_ID,
@@ -102,8 +89,7 @@ const envConfig = {
     [ANDROID_APP_URL]: rinkebyStagingAndroid,
     [IOS_APP_URL]: rinkebyStagingIos,
     [PUSH_NOTIFICATION_SERVICE_URL]: stagingPushNotificationServiceUrl,
-    [TRANSACTION_RELAY_SERVICE_URL]: stagingTransactionRelayServiceUrl,
-    [TOKEN_LIST_URL]: rinkebyTokenListUrl,
+    [TRANSACTION_RELAY_SERVICE_URL]: process.env.TRANSACTION_RELAY_SERVICE_RINKEBY_URL,
     [FIREBASE_AUTH_DOMAIN]: testFirebaseAuthDomain,
     [FIREBASE_DATABASE_URL]: testFirebaseDatabaseUrl,
     [FIREBASE_PROJECT_ID]: testFirebaseProjectId,
@@ -115,8 +101,7 @@ const envConfig = {
     [ANDROID_APP_URL]: rinkebyStagingAndroid,
     [IOS_APP_URL]: rinkebyStagingIos,
     [PUSH_NOTIFICATION_SERVICE_URL]: stagingPushNotificationServiceUrl,
-    [TRANSACTION_RELAY_SERVICE_URL]: stagingTransactionRelayServiceUrl,
-    [TOKEN_LIST_URL]: rinkebyTokenListUrl,
+    [TRANSACTION_RELAY_SERVICE_URL]: process.env.TRANSACTION_RELAY_SERVICE_RINKEBY_URL,
     [FIREBASE_AUTH_DOMAIN]: testFirebaseAuthDomain,
     [FIREBASE_DATABASE_URL]: testFirebaseDatabaseUrl,
     [FIREBASE_PROJECT_ID]: testFirebaseProjectId,

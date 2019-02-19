@@ -7,12 +7,8 @@ import StandardToken from '@gnosis.pm/util-contracts/build/contracts/StandardTok
 import BigNumber from 'bignumber.js'
 
 import { promisify } from 'utils/promisify'
-import {
-  getNetwork,
-  getNetworkUrl,
-  getTokenListUrl
-} from '../../../../../config'
-import { MAINNET } from '../../../../../config/names'
+import { getNetworkUrl } from '../../../../../config'
+import { getTokensFromRelayService } from 'utils/tokens'
 
 const getStandardTokenContract = async () => {
   const contract = await TruffleContract(StandardToken)
@@ -51,58 +47,26 @@ export const getTokenTransferAddress = (data) => {
   return address
 }
 
-export const getTokenTransferValue = (data, decimals) => {
+export const getTokenTransferValue = (data) => {
   const value = new BigNumber('0x' + data.substring(74))
   return (!value) ? new BigNumber(0) : value
 }
 
-const getListedTokens = async (address) => {
-  try {
-    const headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }
-    const result = await fetch(getTokenListUrl(), {
-      headers,
-      credentials: 'omit',
-      referrerPolicy: 'no-referrer'
-    })
-    return result.json()
-  } catch (err) {
-    console.error(err)
-    return []
-  }
-}
-
 export const getTokenData = async (address) => {
-  let tokenList = await getListedTokens()
-
-  tokenList = (getNetwork() === MAINNET)
-    ? tokenList.results.map(t => t.token)
-    : tokenList
-
-  let erc20token = {
-    address: undefined,
-    symbol: undefined,
-    decimals: undefined
+  let tokenList = await getTokensFromRelayService()
+  if (tokenList && tokenList.length > 0) {
+    const filteredTokens = tokenList.filter(token => token.address.toLowerCase() === address.toLowerCase())
+    if (filteredTokens && (filteredTokens.length > 0)) {
+      const token = filteredTokens[0]
+      const erc20token = {
+        address: token.address,
+        symbol: token.symbol,
+        decimals: token.decimals
+      }
+      return erc20token
+    }
   }
-
-  const filteredTokens = tokenList.filter(token => token.address.toLowerCase() === address.toLowerCase())
-  const isListedToken = filteredTokens.length > 0
-  if (isListedToken) {
-    erc20token = getListedTokenData(filteredTokens)
-  } else {
-    erc20token = getNotListedTokenData(address)
-  }
-  return erc20token
-}
-
-const getListedTokenData = (filteredTokens) => {
-  const erc20token = {
-    address: filteredTokens[0].address,
-    symbol: filteredTokens[0].symbol,
-    decimals: filteredTokens[0].decimals
-  }
+  const erc20token = getNotListedTokenData(address)
   return erc20token
 }
 

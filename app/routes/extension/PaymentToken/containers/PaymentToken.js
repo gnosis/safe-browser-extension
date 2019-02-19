@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import fetch from 'node-fetch'
 
 import { ga } from 'utils/analytics'
+import { getTokensFromRelayService } from 'utils/tokens'
 import { EXTENSION_SETTINGS } from 'utils/analytics/events'
-import { getTransactionRelayServiceUrl } from '../../../../../config'
 import Layout from '../components/Layout'
 import actions from './actions'
 import selector from './selector'
@@ -19,31 +18,9 @@ class PaymentToken extends Component {
     }
   }
 
-  getTokens = async () => {
-    const url = getTransactionRelayServiceUrl() + 'tokens?gas=true'
-    const headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }
-    try {
-      const response = await fetch(url, {
-        method: 'GET',
-        headers
-      })
-      return (response && response.status === 200)
-        ? response.json()
-        : null
-    } catch (err) {
-      console.error(err)
-    }
-  }
-
   componentDidMount = async () => {
-    const tokens = await this.getTokens()
-
-    this.setState({
-      tokenList: tokens.results
-    })
+    const tokens = await getTokensFromRelayService({ gas: true })
+    this.setState({ tokenList: tokens })
   }
 
   handlePaymentToken = (token) => (e) => {

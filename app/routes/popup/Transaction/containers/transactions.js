@@ -8,10 +8,7 @@ import {
   getTokenBalance,
   getTokenTransferValue
 } from './tokens'
-import {
-  ADDRESS_ZERO,
-  toGWei
-} from 'utils/helpers'
+import { ADDRESS_ZERO } from 'utils/helpers'
 import { getTransactionEstimations } from '../components/SendTransaction/containers/gasData'
 import { getNetworkUrl } from '../../../../../config'
 import { UNKNOWN_TOKEN } from '../../../../../config/messages'
@@ -32,7 +29,7 @@ export const getTransactionData = async (to, from, data, value, ethBalance) => {
   try {
     const token = await getTokenData(to)
     const balance = await getTokenBalance(token.address, from, token.decimals)
-    const val = getTokenTransferValue(data, token.decimals)
+    const val = getTokenTransferValue(data)
     const symbol = token.symbol ? token.symbol : UNKNOWN_TOKEN
     return { balance, value: val, symbol, decimals: token.decimals }
   } catch (err) {

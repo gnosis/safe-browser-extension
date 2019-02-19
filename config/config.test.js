@@ -6,7 +6,6 @@ import {
   getIosAppUrl,
   getPushNotificationServiceUrl,
   getTransactionRelayServiceUrl,
-  getTokenListUrl,
   getFirebaseAuthDomain,
   getFirebaseDatabaseUrl,
   getFirebaseProjectId,
@@ -75,13 +74,6 @@ const testGetTransactionRelayServiceUrl = (value) => {
   const validTransactionRelayServiceUrl = (transactionRelayServiceUrl && transactionRelayServiceUrl !== '')
   expect(validTransactionRelayServiceUrl).toEqual(true)
   expect(transactionRelayServiceUrl).toEqual(value)
-}
-
-const testGetTokenListUrl = (value) => {
-  const tokenListUrl = getTokenListUrl()
-  const validTokenListUrl = (tokenListUrl && tokenListUrl !== '')
-  expect(validTokenListUrl).toEqual(true)
-  expect(tokenListUrl).toEqual(value)
 }
 
 const testGetFirebaseAuthDomain = (value) => {
@@ -158,11 +150,7 @@ describe('Configuration', () => {
     })
 
     test('getTransactionRelayServiceUrl', () => {
-      testGetTransactionRelayServiceUrl('https://safe-relay.staging.gnosisdev.com/api/v1/')
-    })
-
-    test('getTokenListUrl', () => {
-      testGetTokenListUrl('https://gist.githubusercontent.com/rmeissner/98911fcf74b0ea9731e2dae2441c97a4/raw/')
+      testGetTransactionRelayServiceUrl(process.env.TRANSACTION_RELAY_SERVICE_RINKEBY_URL)
     })
 
     test('getFirebaseAuthDomain', () => {
@@ -221,11 +209,7 @@ describe('Configuration', () => {
     })
 
     test('getTransactionRelayServiceUrl', () => {
-      testGetTransactionRelayServiceUrl('https://safe-relay.staging.gnosisdev.com/api/v1/')
-    })
-
-    test('getTokenListUrl', () => {
-      testGetTokenListUrl('https://gist.githubusercontent.com/rmeissner/98911fcf74b0ea9731e2dae2441c97a4/raw/')
+      testGetTransactionRelayServiceUrl(process.env.TRANSACTION_RELAY_SERVICE_RINKEBY_URL)
     })
 
     test('getFirebaseAuthDomain', () => {
@@ -287,10 +271,6 @@ describe('Configuration', () => {
       testGetTransactionRelayServiceUrl(process.env.TRANSACTION_RELAY_SERVICE_RINKEBY_URL)
     })
 
-    test('getTokenListUrl', () => {
-      testGetTokenListUrl('https://gist.githubusercontent.com/rmeissner/98911fcf74b0ea9731e2dae2441c97a4/raw/')
-    })
-
     test('getFirebaseAuthDomain', () => {
       testGetFirebaseAuthDomain(process.env.FIREBASE_AUTH_DOMAIN)
     })
@@ -348,10 +328,6 @@ describe('Configuration', () => {
 
     test('getTransactionRelayServiceUrl', () => {
       testGetTransactionRelayServiceUrl(process.env.TRANSACTION_RELAY_SERVICE_MAINNET_URL)
-    })
-
-    test('getTokenListUrl', () => {
-      testGetTokenListUrl('https://raw.githubusercontent.com/rmeissner/crypto_resources/master/tokens/mainnet/tokens.json')
     })
 
     test('getFirebaseAuthDomain', () => {
@@ -413,10 +389,6 @@ describe('Configuration', () => {
       testGetTransactionRelayServiceUrl(process.env.TRANSACTION_RELAY_SERVICE_RINKEBY_URL)
     })
 
-    test('getTokenListUrl', () => {
-      testGetTokenListUrl('https://gist.githubusercontent.com/rmeissner/98911fcf74b0ea9731e2dae2441c97a4/raw/')
-    })
-
     test('getFirebaseAuthDomain', () => {
       testGetFirebaseAuthDomain(process.env.FIREBASE_AUTH_DOMAIN)
     })
@@ -474,10 +446,6 @@ describe('Configuration', () => {
 
     test('getTransactionRelayServiceUrl', () => {
       testGetTransactionRelayServiceUrl(process.env.TRANSACTION_RELAY_SERVICE_MAINNET_URL)
-    })
-
-    test('getTokenListUrl', () => {
-      testGetTokenListUrl('https://raw.githubusercontent.com/rmeissner/crypto_resources/master/tokens/mainnet/tokens.json')
     })
 
     test('getFirebaseAuthDomain', () => {
