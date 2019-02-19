@@ -90,18 +90,16 @@ class NavigationDrawer extends Component {
               <div data-menu='replace-recovery-phrase'>{REPLACE_RECOVERY_PRASE}</div>
             </Link>
           </li>
-          {(getNetwork() !== MAINNET) &&
-            <li>
-              <Link to={PAYMENT_TOKEN_URL}>
-                <div data-menu='payment-token'>
-                  <div className={styles.descriptiveMenuEntry}>
-                    <div>{PAYMENT_TOKEN}</div>
-                    <div className={styles.token}>{paymentTokenDetail}</div>
-                  </div>
+          <li>
+            <Link to={PAYMENT_TOKEN_URL}>
+              <div data-menu='payment-token'>
+                <div className={styles.descriptiveMenuEntry}>
+                  <div>{PAYMENT_TOKEN}</div>
+                  <div className={styles.token}>{paymentTokenDetail}</div>
                 </div>
-              </Link>
-            </li>
-          }
+              </div>
+            </Link>
+          </li>
           <li>
             <Link to={ABOUT_URL}>
               <div data-menu='about'>{ABOUT}</div>
