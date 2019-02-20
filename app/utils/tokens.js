@@ -8,9 +8,8 @@ import { RINKEBY } from '../../config/names'
 
 export const getTokensFromRelayService = async (params) => {
   const baseParams = 'limit=1000&ordering=relevance,name'
-  const searchParam = (getNetwork() === RINKEBY) ? '&search=rinkeby' : ''
   const gasParam = (params && params.gas) ? '&gas=true' : ''
-  const url = getTransactionRelayServiceUrl() + 'tokens?' + baseParams + searchParam + gasParam
+  const url = getTransactionRelayServiceUrl() + 'tokens?' + baseParams + gasParam
   
   const headers = {
     'Accept': 'application/json',

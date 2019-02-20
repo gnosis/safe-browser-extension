@@ -27,6 +27,7 @@ const rinkebyStagingAndroid = 'https://betas.to/riowXzcx'
 const rinkebyStagingIos = 'https://betas.to/7TovLG11'
 
 const stagingPushNotificationServiceUrl = 'https://safe-notification.staging.gnosisdev.com/api/v1/'
+const stagingTransactionRelayServiceUrl = 'https://safe-relay.staging.gnosisdev.com/api/v1/'
 
 const testFirebaseAuthDomain = 'test-safe-notifications.firebaseapp.com'
 const testFirebaseDatabaseUrl = 'https://test-safe-notifications.firebaseio.com'
@@ -89,7 +90,7 @@ const envConfig = {
     [ANDROID_APP_URL]: rinkebyStagingAndroid,
     [IOS_APP_URL]: rinkebyStagingIos,
     [PUSH_NOTIFICATION_SERVICE_URL]: stagingPushNotificationServiceUrl,
-    [TRANSACTION_RELAY_SERVICE_URL]: process.env.TRANSACTION_RELAY_SERVICE_RINKEBY_URL,
+    [TRANSACTION_RELAY_SERVICE_URL]: stagingTransactionRelayServiceUrl,
     [FIREBASE_AUTH_DOMAIN]: testFirebaseAuthDomain,
     [FIREBASE_DATABASE_URL]: testFirebaseDatabaseUrl,
     [FIREBASE_PROJECT_ID]: testFirebaseProjectId,
@@ -101,7 +102,7 @@ const envConfig = {
     [ANDROID_APP_URL]: rinkebyStagingAndroid,
     [IOS_APP_URL]: rinkebyStagingIos,
     [PUSH_NOTIFICATION_SERVICE_URL]: stagingPushNotificationServiceUrl,
-    [TRANSACTION_RELAY_SERVICE_URL]: process.env.TRANSACTION_RELAY_SERVICE_RINKEBY_URL,
+    [TRANSACTION_RELAY_SERVICE_URL]: stagingTransactionRelayServiceUrl,
     [FIREBASE_AUTH_DOMAIN]: testFirebaseAuthDomain,
     [FIREBASE_DATABASE_URL]: testFirebaseDatabaseUrl,
     [FIREBASE_PROJECT_ID]: testFirebaseProjectId,

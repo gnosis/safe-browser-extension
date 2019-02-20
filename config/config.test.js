@@ -150,7 +150,7 @@ describe('Configuration', () => {
     })
 
     test('getTransactionRelayServiceUrl', () => {
-      testGetTransactionRelayServiceUrl(process.env.TRANSACTION_RELAY_SERVICE_RINKEBY_URL)
+      testGetTransactionRelayServiceUrl('https://safe-relay.staging.gnosisdev.com/api/v1/')
     })
 
     test('getFirebaseAuthDomain', () => {
@@ -209,7 +209,7 @@ describe('Configuration', () => {
     })
 
     test('getTransactionRelayServiceUrl', () => {
-      testGetTransactionRelayServiceUrl(process.env.TRANSACTION_RELAY_SERVICE_RINKEBY_URL)
+      testGetTransactionRelayServiceUrl('https://safe-relay.staging.gnosisdev.com/api/v1/')
     })
 
     test('getFirebaseAuthDomain', () => {
