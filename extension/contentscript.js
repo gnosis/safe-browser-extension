@@ -36,15 +36,24 @@ const activeListeners = (currentSafe) => {
     })
   })
 
-  chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    switch (request.msg) {
-      case messages.MSG_RESOLVED_TRANSACTION:
-        const resolvedTransactionEvent = new window.CustomEvent(
-          messages.EV_RESOLVED_TRANSACTION + request.id,
-          {
-            detail: {
-              hash: request.hash,
-              id: request.id
+  window.addEventListener(messages.EV_SHOW_POPUP_SIGNATURE, (data) => {
+    chrome.runtime.sendMessage({
+      msg: messages.MSG_SHOW_POPUP_SIGNATURE,
+      message: data.detail
+    })
+  })
+
+  chrome.runtime.onMessage.addListener(
+    function (request, sender, sendResponse) {
+      switch (request.msg) {
+        case messages.MSG_RESOLVED_TRANSACTION:
+          const resolvedTransactionEvent = new window.CustomEvent(
+            messages.EV_RESOLVED_TRANSACTION + request.id,
+            {
+              detail: {
+                hash: request.hash,
+                id: request.id
+              }
             }
           }
         )
