@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 
+import { REVIEW_TRANSACTION } from '../../../../../config/messages'
 import { isTokenTransfer, getTokenTransferAddress } from '../containers/tokens'
-import HeaderTransactions from 'routes/popup/Transaction/components/components/HeaderTransactions'
-import TransactionAddressData from 'routes/popup/Transaction/components/components/TransactionAddressData'
-import TransactionSummary from 'routes/popup/Transaction/components/components/TransactionSummary'
+import HeaderTransactions from 'components/Popup/HeaderTransactions'
+import TransactionAddressData from 'components/Popup/TransactionAddressData'
+import TransactionSummary from 'components/Popup/TransactionSummary'
 import ConfirmTransaction from 'routes/popup/Transaction/components/ConfirmTransaction/containers/ConfirmTransaction'
 import SendTransaction from 'routes/popup/Transaction/components/SendTransaction/containers/SendTransaction'
 import styles from 'assets/css/global.css'
@@ -54,11 +55,12 @@ class Layout extends Component {
     return (
       <React.Fragment>
         <HeaderTransactions
-          transactionsLength={transactions.txs.length}
-          previousTransaction={previousTransaction}
-          transactionNumber={transactionNumber}
-          nextTransaction={nextTransaction}
-          reviewedTx={reviewedTx}
+          title={REVIEW_TRANSACTION}
+          reviewedElement={reviewedTx}
+          numElements={transactions.txs.length}
+          previousElement={previousTransaction}
+          elementNumber={transactionNumber}
+          nextElement={nextTransaction}
         />
         <form onSubmit={this.prevent} className={styles.PageContent}>
           <TransactionAddressData

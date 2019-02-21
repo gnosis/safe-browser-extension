@@ -9,7 +9,7 @@ import {
   REQUEST_CONFIRMATION,
   REQUEST_CONFIRMATION_WAIT_X_S,
   CONFIRM_WITH_MOBILE
-} from '../../../../../../../config/messages'
+} from '../../../../config/messages'
 
 const cx = classNames.bind(styles)
 

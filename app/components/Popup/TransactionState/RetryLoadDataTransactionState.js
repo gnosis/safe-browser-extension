@@ -5,7 +5,7 @@ import styles from 'assets/css/global.css'
 import {
   AWAITING_CONFIRMATIONS,
   RETRY
-} from '../../../../../../../config/messages'
+} from '../../../../config/messages'
 
 const cx = classNames.bind(styles)
 

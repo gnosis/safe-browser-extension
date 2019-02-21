@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
 import FooterButtons from 'components/Footers/FooterButtons/containers'
-import SendTransactionState from '../../components/TransactionState/SendTransactionState'
-import RetryLoadDataTransactionState from '../../components/TransactionState/RetryLoadDataTransactionState'
+import SendTransactionState from 'components/Popup/TransactionState/SendTransactionState'
+import RetryLoadDataTransactionState from 'components/Popup/TransactionState/RetryLoadDataTransactionState'
 import { TRANSACTION_URL } from 'routes/routes'
 import { REJECT, CONFIRM } from '../../../../../../../config/messages'
 
