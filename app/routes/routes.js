@@ -1,4 +1,5 @@
 export const TRANSACTION_URL = '/transaction'
+export const SIGN_MESSAGE_URL = '/sign-message'
 
 export const WELCOME_URL = '/welcome'
 export const DOWNLOAD_APPS_URL = '/download-apps'

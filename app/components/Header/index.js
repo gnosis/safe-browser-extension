@@ -54,7 +54,6 @@ class Header extends Component {
             toggleSafes={this.toggleSafes}
             showSafes={showSafes}
             showingTransaction={txReview}
-            transactionNumber={transactionNumber}
           />
           <LockingState location={location} />
         </header>
