@@ -69,7 +69,7 @@ class SafesMenu extends Component {
     const {
       toggleSafes,
       showSafes,
-      showingTransaction,
+      isPopup,
       safes,
       extensionTitle,
       popupTitle
@@ -89,7 +89,9 @@ class SafesMenu extends Component {
       )
     }
 
-    const safeAlias = showingTransaction ? popupTitle : extensionTitle
+    const safeAlias = (isPopup)
+      ? popupTitle
+      : extensionTitle
     return (
       <Layout
         safes={safes}
@@ -99,7 +101,7 @@ class SafesMenu extends Component {
         handleSelectSafe={this.handleSelectSafe}
         handleRemoveSafe={this.handleRemoveSafe}
         handleAddNewSafe={this.handleAddNewSafe}
-        showingTransaction={showingTransaction}
+        isPopup={isPopup}
       />
     )
   }
