@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
 import { REVIEW_SIGN_MESSAGE } from '../../../../../config/messages'
-import HeaderTransactions from 'components/Popup/HeaderTransactions'
-import TransactionAddressData from 'components/Popup/TransactionAddressData'
+import HeaderPopup from 'components/Popup/HeaderPopup'
+import AccountData from 'components/Popup/AccountData'
 import styles from 'assets/css/global.css'
 
 class Layout extends Component {
@@ -16,13 +16,13 @@ class Layout extends Component {
 
     return (
       <React.Fragment>
-        <HeaderTransactions
+        <HeaderPopup
           title={REVIEW_SIGN_MESSAGE}
           numElements={1}
           elementNumber={0}
         />
         <form onSubmit={this.prevent} className={styles.PageContent}>
-          <TransactionAddressData
+          <AccountData
             address={address}
             alias={alias}
             balance={balance}

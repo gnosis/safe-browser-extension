@@ -5,7 +5,7 @@ import styles from 'assets/css/global.css'
 
 const cx = classNames.bind(styles)
 
-const HeaderTransactions = ({
+const HeaderPopup = ({
   title,
   reviewedElement,
   numElements,
@@ -33,4 +33,4 @@ const HeaderTransactions = ({
   </React.Fragment>
 )
 
-export default HeaderTransactions
+export default HeaderPopup

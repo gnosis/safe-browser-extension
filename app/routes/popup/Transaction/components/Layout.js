@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 import { REVIEW_TRANSACTION } from '../../../../../config/messages'
 import { isTokenTransfer, getTokenTransferAddress } from '../containers/tokens'
-import HeaderTransactions from 'components/Popup/HeaderTransactions'
-import TransactionAddressData from 'components/Popup/TransactionAddressData'
+import HeaderPopup from 'components/Popup/HeaderPopup'
+import AccountData from 'components/Popup/AccountData'
 import TransactionSummary from 'components/Popup/TransactionSummary'
 import ConfirmTransaction from 'routes/popup/Transaction/components/ConfirmTransaction/containers/ConfirmTransaction'
 import SendTransaction from 'routes/popup/Transaction/components/SendTransaction/containers/SendTransaction'
@@ -54,7 +54,7 @@ class Layout extends Component {
 
     return (
       <React.Fragment>
-        <HeaderTransactions
+        <HeaderPopup
           title={REVIEW_TRANSACTION}
           reviewedElement={reviewedTx}
           numElements={transactions.txs.length}
@@ -63,7 +63,7 @@ class Layout extends Component {
           nextElement={nextTransaction}
         />
         <form onSubmit={this.prevent} className={styles.PageContent}>
-          <TransactionAddressData
+          <AccountData
             address={transaction.safe}
             alias={safeAlias}
             balance={balance}

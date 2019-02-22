@@ -4,7 +4,7 @@ import Blockie from 'components/Blockie'
 import { shortenAddress } from 'utils/helpers'
 import styles from 'assets/css/global.css'
 
-const TransactionAddressData = ({
+const AccountData = ({
   address,
   alias,
   balance,
@@ -39,4 +39,4 @@ const TransactionAddressData = ({
   )
 }
 
-export default TransactionAddressData
+export default AccountData
