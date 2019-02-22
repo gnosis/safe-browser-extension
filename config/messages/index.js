@@ -71,6 +71,7 @@ export const REQUEST_CONFIRMATION = ReactHtmlParser(chrome.i18n.getMessage('requ
 export const REQUEST_CONFIRMATION_WAIT_X_S = ReactHtmlParser(chrome.i18n.getMessage('request_confirmation_wait_x_s'))
 export const RESYNC_WITH_MOBILE_APP = ReactHtmlParser(chrome.i18n.getMessage('resync_with_mobile_app'))
 export const RETRY = ReactHtmlParser(chrome.i18n.getMessage('retry'))
+export const REVIEW_SIGN_MESSAGE = ReactHtmlParser(chrome.i18n.getMessage('review_sign_message'))
 export const REVIEW_TERMS = ReactHtmlParser(chrome.i18n.getMessage('review_terms'))
 export const REVIEW_TRANSACTION = ReactHtmlParser(chrome.i18n.getMessage('review_transaction'))
 export const SAFE_ALREADY_EXISTS = ReactHtmlParser(chrome.i18n.getMessage('safe_already_exists'))

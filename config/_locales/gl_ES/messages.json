@@ -268,5 +268,8 @@
   },
   "payment_token": {
     "message": "Pagamento con tokens (para costes da rede)"
+  },
+  "review_sign_message": {
+    "message": "Revisión da sinatura"
   }
 }
