@@ -1,10 +1,7 @@
 import EthUtil from 'ethereumjs-util'
 import BigNumber from 'bignumber.js'
 import 'babel-polyfill'
-import TruffleContract from 'truffle-contract'
-import Web3 from 'web3'
 import fetch from 'node-fetch'
-
 import { getTransactionEstimations } from 'routes/popup/Transaction/components/SendTransaction/containers/gasData'
 import { isTokenTransfer } from 'routes/popup/Transaction/containers/tokens'
 import GnosisSafe from '../../contracts/GnosisSafe.json'
@@ -76,7 +73,7 @@ export const sendNotification = async (
 ) => {
   let owners
   try {
-    owners = await getOwners(accountAddress, safeAddress)
+    owners = await getOwners(safeAddress, accountAddress)
   } catch (err) {
     console.error(err)
     return
