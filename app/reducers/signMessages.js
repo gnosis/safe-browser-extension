@@ -3,7 +3,12 @@ import {
   REMOVE_SIGN_MESSAGE
 } from 'actions/signMessages'
 
-const initialState = {}
+const initialState = {
+  dappWindowId: undefined,
+  dappTabId: undefined,
+  windowId: undefined,
+  message: []
+}
 
 function signMessages(state = initialState, action) {
   switch (action.type) {

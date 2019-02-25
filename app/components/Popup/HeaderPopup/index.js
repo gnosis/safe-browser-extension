@@ -25,7 +25,7 @@ const HeaderPopup = ({
           <p><strong>{elementNumber + 1}</strong> of <strong>{numElements}</strong></p>
           <span to='#' onClick={nextElement} className={cx(
             styles.btnNext,
-            (reviewedElement || elementNumber === (elementsLength - 1)) ? styles.hide : styles.active)
+            (reviewedElement || elementNumber === (numElements - 1)) ? styles.hide : styles.active)
           } />
         </span>
       )}
