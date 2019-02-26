@@ -34,3 +34,45 @@ export const getNonce = async (tx) => {
   }
   return null
 }
+
+export const getThreshold = async (safeAddress) => {
+  const contract = TruffleContract(GnosisSafe)
+  const provider = new Web3.providers.HttpProvider(getNetworkUrl())
+  contract.setProvider(provider)
+
+  try {
+    const instance = await contract.at(safeAddress)
+    const threshold = await instance.getThreshold.call()
+    return threshold.toNumber()
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const getMessageHash = async (safeAddress, message) => {
+  const contract = TruffleContract(GnosisSafe)
+  const provider = new Web3.providers.HttpProvider(getNetworkUrl())
+  contract.setProvider(provider)
+
+  try {
+    const instance = await contract.at(safeAddress)
+    const hash = await instance.getMessageHash.call(message)
+    return hash
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const isValidSignature = async (safeAddress, message, walletSignature) => {
+  const contract = TruffleContract(GnosisSafe)
+  const provider = new Web3.providers.HttpProvider(getNetworkUrl())
+  contract.setProvider(provider)
+
+  try {
+    const instance = await contract.at(safeAddress)
+    const validSignature = await instance.isValidSignature.call(message, walletSignature)
+    return validSignature
+  } catch (err) {
+    console.error(err)
+  }
+}
