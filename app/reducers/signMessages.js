@@ -1,6 +1,7 @@
 import {
   ADD_SIGN_MESSAGE,
-  REMOVE_SIGN_MESSAGE
+  REMOVE_SIGN_MESSAGE,
+  REMOVE_ALL_SIGN_MESSAGES
 } from 'actions/signMessages'
 
 const initialState = {
@@ -21,6 +22,12 @@ function signMessages(state = initialState, action) {
       }
 
     case REMOVE_SIGN_MESSAGE:
+      return {
+        ...state,
+        message: []
+      }
+
+    case REMOVE_ALL_SIGN_MESSAGES:
       return initialState
 
     default:
