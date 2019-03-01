@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import { promisify } from 'utils/promisify'
 import { ga } from 'utils/analytics'
 import { EXTENSION_SETTINGS } from 'utils/analytics/events'
 import { normalizeUrl } from 'utils/helpers'
@@ -8,7 +9,7 @@ import actions from './actions'
 import Layout from '../components/Layout'
 
 class WhitelistedDappState extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -19,18 +20,31 @@ class WhitelistedDappState extends Component {
   }
 
   componentDidMount = () => {
-    chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
+    chrome.tabs.query({ active: true, lastFocusedWindow: true }, async (tabs) => {
       const url = tabs[0].url
-      this.isWhitelistedDapp(url)
+      await this.isWhitelistedDapp(url)
     })
   }
 
-  isWhitelistedDapp = (url) => {
+  isWhitelistedDapp = async (url) => {
     const { whitelistedDapps } = this.props
+    const urlObject = new URL(url)
 
+    const alwaysAllowedProtocols = ['http:', 'https:', 'localhost:']
+    let whitelistableDapp = alwaysAllowedProtocols.indexOf(urlObject.protocol) > -1
+    console.log('whitelisteable', whitelistableDapp)
+    
+    if (!whitelistableDapp && (urlObject.protocol === 'file:')) {
+      whitelistableDapp = await promisify(cb => chrome.extension.isAllowedFileSchemeAccess(cb))
+      console.log('isAllowedFileAccess', whitelistableDapp)
+    }
+    
     const normalizedUrl = normalizeUrl(url)
-    const whitelistableDapp = (normalizedUrl.indexOf('.') > -1) || (normalizedUrl.substring(0, 9) === 'localhost')
+    console.log('normalizedUrl', normalizedUrl)
+
     const whitelisted = (whitelistedDapps.indexOf(normalizedUrl) > -1)
+    console.log('whitelisted', whitelisted)
+    
 
     this.setState({
       showWhitelistedDappState: whitelistableDapp,
@@ -53,7 +67,7 @@ class WhitelistedDappState extends Component {
     e.preventDefault()
   }
 
-  render () {
+  render() {
     const {
       showWhitelistedDappState,
       url,

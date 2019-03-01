@@ -64,7 +64,7 @@ const activeListeners = (currentSafe) => {
 chrome.runtime.sendMessage(
   {
     msg: messages.MSG_ALLOW_INJECTION,
-    url: window.location.host
+    url: window.location.origin
   },
   (response) => {
     if (response.answer) {
