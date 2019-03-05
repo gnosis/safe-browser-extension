@@ -60,9 +60,22 @@ const activeListeners = (currentSafe) => {
         window.dispatchEvent(resolvedTransactionEvent)
         break
 
-      case messages.MSG_UPDATE_CURRENT_SAFE:
-        updateProvider(request.newSafeAddress)
-        break
+        case messages.MSG_RESOLVED_WALLET_SIGN_TYPED_DATA:
+          const resolvedSignMessageEvent = new window.CustomEvent(
+            messages.EV_RESOLVED_WALLET_SIGN_TYPED_DATA,
+            {
+              detail: {
+                walletSignature: request.walletSignature
+              }
+            }
+          )
+          window.dispatchEvent(resolvedSignMessageEvent)
+          break
+
+        case messages.MSG_UPDATE_CURRENT_SAFE:
+          updateProvider(request.newSafeAddress)
+          break
+      }
     }
   })
 }
