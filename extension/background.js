@@ -13,7 +13,10 @@ import {
   addTransaction,
   removeAllTransactions
 } from 'actions/transactions'
-import { addSignMessage, removeSignMessage } from 'actions/signMessages'
+import {
+  addSignMessage,
+  removeAllSignMessage
+} from 'actions/signMessages'
 import { SAFE_ALREADY_EXISTS } from '../config/messages'
 import { ADDRESS_ZERO } from '../app/utils/helpers'
 
@@ -194,6 +197,14 @@ const showSendTransactionPopup = (transaction, dappWindowId, dappTabId) => {
 }
 
 const showSendSignaturePopup = (message, dappWindowId, dappTabId) => {
+  const currentSafe = storageController.getStoreState().safes.currentSafe
+
+  message[2] = 'sendSignMessage'
+  message[3] = EthUtil.toChecksumAddress(currentSafe)
+
+  chrome.browserAction.setBadgeBackgroundColor({ color: '#888' })
+  chrome.browserAction.setBadgeText({ text: '1' })
+
   popupController.showPopup(
     (window) => storageController.getStore().dispatch(addSignMessage(message, window.id, dappWindowId, dappTabId))
   )
@@ -231,12 +242,10 @@ chrome.windows.onRemoved.addListener((windowId) => {
   if (transactions && windowId === transactions.windowId) {
     chrome.browserAction.setBadgeText({ text: '' })
 
-    for (const i in transactions.txs) {
-      const transaction = transactions.txs[i]
+    for (const transaction of transactions.txs) {
       if (transaction.dappWindowId && transaction.dappTabId) {
-        chrome.tabs.query({ windowId: transaction.dappWindowId }, function(
-          tabs
-        ) {
+
+        chrome.tabs.query({ windowId: transaction.dappWindowId }, function (tabs) {
           chrome.tabs.sendMessage(transaction.dappTabId, {
             msg: messages.MSG_RESOLVED_TRANSACTION,
             hash: null,
@@ -250,14 +259,24 @@ chrome.windows.onRemoved.addListener((windowId) => {
   }
 
   if (signMessages && (windowId === signMessages.windowId)) {
-    storageController.getStore().dispatch(removeSignMessage())
+    chrome.browserAction.setBadgeText({ text: '' })
+
+    if (signMessages.dappWindowId && signMessages.dappTabId) {
+      chrome.tabs.query({ windowId: signMessages.dappWindowId }, function (tabs) {
+        chrome.tabs.sendMessage(signMessages.dappTabId, {
+          msg: messages.MSG_RESOLVED_WALLET_SIGN_TYPED_DATA,
+          walletSignature: null
+        })
+      })
+    }
+    storageController.getStore().dispatch(removeAllSignMessage())
     popupController.handleClosePopup()
   }
 })
 
 storageController.getStore().dispatch(lockAccount())
 storageController.getStore().dispatch(removeAllTransactions())
-storageController.getStore().dispatch(removeSignMessage())
+storageController.getStore().dispatch(removeAllSignMessage())
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.addEventListener('message', (event) => {
@@ -278,6 +297,10 @@ if ('serviceWorker' in navigator) {
 
       case 'rejectTransaction':
         sendTransactionHash(payload, false)
+        break
+
+      case 'signTypedDataConfirmation':
+        signTypedDataConfirmation(payload)
         break
 
       default:
@@ -320,7 +343,7 @@ const sendTransactionHash = (payload, accepted) => {
   const transactionsLength =
     storageController.getStoreState().transactions.txs.length - 1
   chrome.browserAction.setBadgeBackgroundColor({ color: '#888' })
-  chrome.browserAction.setBadgeText({ text: transactionsLength.toString() })
+  chrome.browserAction.setBadgeText({ text: (transactionsLength < 0) ? '' : transactionsLength.toString() })
 
   chrome.tabs.query({ active: true, windowId: popUpWindowId }, function(tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {
@@ -338,4 +361,16 @@ const sendTransactionHash = (payload, accepted) => {
   })
 
   pendingTransactionPosition = null
+}
+
+const signTypedDataConfirmation = (payload) => {
+  const popUpWindowId = storageController.getStoreState().signMessages.windowId
+
+  chrome.tabs.query({ active: true, windowId: popUpWindowId }, function (tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, {
+      msg: messages.MSG_RESOLVED_OWNER_SIGN_TYPED_DATA,
+      hash: payload.hash,
+      signature: payload.signature
+    })
+  })
 }
