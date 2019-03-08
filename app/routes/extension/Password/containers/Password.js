@@ -6,7 +6,7 @@ import {
   setUpNotifications,
   authPushNotificationService
 } from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairingNotifications'
-import { getDecryptedEthAccount } from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'
+import { getDecryptedAllEthAccounts } from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'
 import actions from './actions'
 import selector from './selector'
 import Layout from '../components/Layout'
@@ -67,16 +67,24 @@ class Password extends Component {
 
   notifyVersionUpdate = async () => {
     const { password } = this.state
-    const { device, notifyDeviceUpdated, selectEncryptedMnemonic } = this.props
+    const {
+      device,
+      notifyDeviceUpdated,
+      selectEncryptedMnemonic,
+      safes,
+      account
+    } = this.props
 
     if (!device.lastUpdateNotified && password && selectEncryptedMnemonic) {
       try {
-        const currentAccount = getDecryptedEthAccount(
+        const accounts = getDecryptedAllEthAccounts(
           selectEncryptedMnemonic,
-          password
+          password,
+          safes,
+          account
         )
         const token = await setUpNotifications()
-        const auth = await authPushNotificationService(token, [currentAccount])
+        const auth = await authPushNotificationService(token, accounts)
         if (token && auth) {
           notifyDeviceUpdated()
         }
