@@ -32,20 +32,23 @@ class DownloadApps extends Component {
   }
 
   componentDidMount = () => {
-    const { account } = this.props
+    const { account, onCreateAccount } = this.props
+
     const hasAccount =
       account.secondFA && Object.keys(account.secondFA).length > 0
 
-    if (hasAccount || !this.password) return
+    if (hasAccount || !this.password) {
+      return
+    }
 
     const mnemonic = Bip39.generateMnemonic()
-    const currentAccount = createAccountFromMnemonic(mnemonic)
+    const currentAccount = createAccountFromMnemonic(mnemonic, 0)
     const { encryptedMnemonic, hmac } = createEthAccount(
       mnemonic,
       this.password
     )
 
-    this.props.onCreateAccount(
+    onCreateAccount(
       currentAccount.getChecksumAddressString(),
       encryptedMnemonic,
       hmac

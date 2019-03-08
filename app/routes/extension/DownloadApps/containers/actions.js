@@ -1,3 +1,5 @@
 import { createAccount } from '../store/actions'
 
-export default { createAccount }
+export default {
+  createAccount
+}

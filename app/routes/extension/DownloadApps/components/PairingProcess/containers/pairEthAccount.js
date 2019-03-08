@@ -4,11 +4,14 @@ import HdKey from 'ethereumjs-wallet/hdkey'
 import EthUtil from 'ethereumjs-util'
 import BigNumber from 'bignumber.js'
 
-export const createAccountFromMnemonic = (mnemonic) => {
+export const createAccountFromMnemonic = (mnemonic, accountIndex) => {
   const seed = Bip39.mnemonicToSeed(mnemonic)
   const hdWallet = HdKey.fromMasterSeed(seed)
   const walletHdPath = "m/44'/60'/0'/0"
-  const newAccount = hdWallet.derivePath(walletHdPath + '/0').getWallet()
+  const newAccount = hdWallet
+    .derivePath(walletHdPath + '/' + accountIndex)
+    .getWallet()
+
   return newAccount
 }
 
@@ -25,16 +28,36 @@ export const createEthAccount = (mnemonic, password) => {
   }
 }
 
-export const getDecryptedEthAccount = (encryptedMnemonic, password) => {
+export const getDecryptedEthAccount = (
+  encryptedMnemonic,
+  password,
+  accountIndex
+) => {
   const mnemonic = CryptoJs.AES.decrypt(encryptedMnemonic, password).toString(
     CryptoJs.enc.Utf8
   )
 
-  return createAccountFromMnemonic(mnemonic)
+  return createAccountFromMnemonic(mnemonic, accountIndex)
 }
 
-export const getUnencryptedEthAccount = (mnemonic) => {
-  return createAccountFromMnemonic(mnemonic)
+export const getDecryptedAllEthAccounts = (
+  encryptedMnemonic,
+  password,
+  safes,
+  account
+) => {
+  const mnemonic = CryptoJs.AES.decrypt(encryptedMnemonic, password).toString(
+    CryptoJs.enc.Utf8
+  )
+  const nextOwnerAccountIndex = account.secondFA.currentAccountIndex + 1
+
+  const accounts = safes.safes
+    ? safes.safes.map((safe) =>
+        createAccountFromMnemonic(mnemonic, safe.accountIndex)
+      )
+    : [createAccountFromMnemonic(mnemonic, nextOwnerAccountIndex)]
+
+  return accounts
 }
 
 export const generatePairingCodeContent = (privateKey) => {
