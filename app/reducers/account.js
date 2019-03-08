@@ -1,7 +1,7 @@
 import { CREATE_ACCOUNT } from 'routes/extension/DownloadApps/store/actions'
 import { CONFIGURE_LOCKING } from 'routes/extension/LockingConfiguration/store/actions'
 import { UNLOCK_ACCOUNT } from 'components/Header/LockingState/store/actions'
-import { LOCK_ACCOUNT } from 'actions/account'
+import { LOCK_ACCOUNT, INCREMENT_CURRENT_ACCOUNT_INDEX } from 'actions/account'
 import { UPDATE_MASTER_PASSWORD } from 'routes/extension/ChangePassword/store/actions'
 
 const initalState = {
@@ -9,7 +9,8 @@ const initalState = {
   unlockingTime: undefined,
   autoLockInterval: 5,
   secondFA: {
-    unlockedMnemonic: undefined
+    unlockedMnemonic: undefined,
+    currentAccountIndex: undefined
   }
 }
 
@@ -19,7 +20,8 @@ function account(state = initalState, action) {
       const secondFA = {
         address: action.address,
         seed: action.seed,
-        hmac: action.hmac
+        hmac: action.hmac,
+        currentAccountIndex: 0
       }
       return {
         ...state,
@@ -66,6 +68,15 @@ function account(state = initalState, action) {
           seed: action.seed,
           hmac: action.hmac,
           unlockedMnemonic: undefined
+        }
+      }
+
+    case INCREMENT_CURRENT_ACCOUNT_INDEX:
+      return {
+        ...state,
+        secondFA: {
+          ...state.secondFA,
+          currentAccountIndex: state.secondFA.currentAccountIndex + 1
         }
       }
 

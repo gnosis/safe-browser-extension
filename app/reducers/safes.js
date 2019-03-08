@@ -14,6 +14,7 @@ function safes(state = initialState, action) {
     case ADD_SAFE:
       const count = state.safes.length + 1
       const newSafe = {
+        accountIndex: action.accountIndex,
         address: action.address,
         alias:
           count === 1
