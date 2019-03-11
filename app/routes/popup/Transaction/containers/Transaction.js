@@ -38,13 +38,18 @@ class Transaction extends Component {
   }
 
   componentDidMount = () => {
-    const { seed, unlockedMnemonic } = this.props.account.secondFA
+    const { transactions, safes } = this.props
     const { transactionNumber } = this.state
+    const { seed, unlockedMnemonic } = this.props.account.secondFA
+
+    const tx = transactions.txs[transactionNumber].tx
+    const txSafe = safes.safes.filter((safe) => safe.address === tx.from)[0]
 
     this.ethAccount =
       !unlockedMnemonic && this.password
-        ? getDecryptedEthAccount(seed, this.password)
-        : createAccountFromMnemonic(unlockedMnemonic)
+        ? getDecryptedEthAccount(seed, this.password, txSafe.accountIndex)
+        : createAccountFromMnemonic(unlockedMnemonic, txSafe.accountIndex)
+
     this.showTransaction(transactionNumber)
   }
 
