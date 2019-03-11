@@ -29,12 +29,27 @@ class ResyncToken extends Component {
   }
 
   handleResync = () => async (e) => {
-    const { selectEncryptedMnemonic, selectUnencryptedMnemonic } = this.props
+    const {
+      safes,
+      selectEncryptedMnemonic,
+      selectUnencryptedMnemonic
+    } = this.props
+
+    const currentSafe = safes.safes.filter(
+      (safe) => safe.address === safes.currentSafe
+    )[0]
 
     const currentAccount =
       !selectUnencryptedMnemonic && this.password
-        ? getDecryptedEthAccount(selectEncryptedMnemonic, this.password)
-        : createAccountFromMnemonic(selectUnencryptedMnemonic)
+        ? getDecryptedEthAccount(
+            selectEncryptedMnemonic,
+            this.password,
+            currentSafe.accountIndex
+          )
+        : createAccountFromMnemonic(
+            selectUnencryptedMnemonic,
+            currentSafe.accountIndex
+          )
 
     try {
       const token = await setUpNotifications()
