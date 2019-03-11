@@ -4,7 +4,7 @@ import { normalizeUrl } from 'utils/helpers'
 import messages from './utils/messages'
 import StorageController from './utils/storageController'
 import PopupController from './utils/popupController'
-import { lockAccount } from 'actions/account'
+import { lockAccount, incrementCurrentAccountIndex } from 'actions/account'
 import { addSafe } from 'actions/safes'
 import { updateDeviceData } from 'actions/device'
 import { addTransaction, removeAllTransactions } from 'actions/transactions'
@@ -263,6 +263,8 @@ if ('serviceWorker' in navigator) {
 
 const safeCreation = (payload) => {
   const safes = storageController.getStoreState().safes.safes
+  const account = storageController.getStoreState().account
+
   const validSafeAddress =
     safes.filter(
       (safe) => safe.address.toLowerCase() === payload.safe.toLowerCase()
@@ -273,7 +275,12 @@ const safeCreation = (payload) => {
     return
   }
   const checksumedAddress = EthUtil.toChecksumAddress(payload.safe)
-  storageController.getStore().dispatch(addSafe(checksumedAddress))
+  storageController
+    .getStore()
+    .dispatch(
+      addSafe(checksumedAddress, account.secondFA.currentAccountIndex + 1)
+    )
+  storageController.getStore().dispatch(incrementCurrentAccountIndex())
 }
 
 const sendTransactionHash = (payload, accepted) => {
