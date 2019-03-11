@@ -17,38 +17,51 @@ class ReplaceRecoveryPhrase extends Component {
   constructor(props) {
     super(props)
 
-    this.qrReplaceRecoveryPhraseRef = React.createRef()
-
     const { location } = this.props
     const validPassword = location && location.state && location.state.password
     this.password = validPassword ? location.state.password : undefined
+    this.qrReplaceRecoveryPhraseRef = React.createRef()
   }
 
   componentDidMount = () => {
     const { safes } = this.props
+
+    const currentSafe = safes.safes.filter(
+      (safe) => safe.address === safes.currentSafe
+    )[0]
+
     createQrImage(
       document.getElementById('qr-replace-recovery-phrase'),
-      this.generateQrCodeContent(safes.currentSafe),
+      this.generateQrCodeContent(safes.currentSafe, currentSafe.accountIndex),
       3
     )
   }
 
   componentDidUpdate = (prevProps, prevState) => {
     const { safes } = this.props
+
+    const currentSafe = safes.safes.filter(
+      (safe) => safe.address === safes.currentSafe
+    )[0]
+
     createQrImage(
       document.getElementById('qr-replace-recovery-phrase'),
-      this.generateQrCodeContent(safes.currentSafe),
+      this.generateQrCodeContent(safes.currentSafe, currentSafe.accountIndex),
       3
     )
   }
 
-  generateQrCodeContent = (safeAddress) => {
+  generateQrCodeContent = (safeAddress, accountIndex) => {
     const { selectEncryptedMnemonic, selectUnencryptedMnemonic } = this.props
 
     const account =
       !selectUnencryptedMnemonic && this.password
-        ? getDecryptedEthAccount(selectEncryptedMnemonic, this.password)
-        : createAccountFromMnemonic(selectUnencryptedMnemonic)
+        ? getDecryptedEthAccount(
+            selectEncryptedMnemonic,
+            this.password,
+            accountIndex
+          )
+        : createAccountFromMnemonic(selectUnencryptedMnemonic, accountIndex)
 
     const data = EthUtil.sha3('GNO' + safeAddress)
     const vrs = EthUtil.ecsign(data, account.getPrivateKey())
