@@ -9,9 +9,7 @@ import {
 
 const cx = classNames.bind(styles)
 
-const RetryLoadDataTransactionState = ({
-  retryShowTransaction
-}) => (
+const RetryLoadDataTransactionState = ({ retryShowTransaction }) => (
   <div className={cx(styles.transactionState)}>
     <span className={styles.await}>
       <p>{AWAITING_CONFIRMATIONS}</p>
@@ -20,7 +18,9 @@ const RetryLoadDataTransactionState = ({
       <button
         className={cx(styles.button, styles.white)}
         onClick={retryShowTransaction}
-      >{RETRY}</button>
+      >
+        {RETRY}
+      </button>
     </span>
   </div>
 )

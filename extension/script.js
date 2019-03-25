@@ -4,7 +4,9 @@ import SafeProvider from 'safe-web3-provider'
 import { getNetworkUrl } from '../config'
 
 if (typeof window.web3 !== 'undefined') {
-  throw new Error('Gnosis Safe detected another web3. Use the SafeProvider directly or unistall the other providers.')
+  throw new Error(
+    'Gnosis Safe detected another web3. Use the SafeProvider directly or unistall the other providers.'
+  )
 }
 
 const safeProvider = new SafeProvider({

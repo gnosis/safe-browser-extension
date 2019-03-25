@@ -15,7 +15,7 @@ class Layout extends Component {
     e.preventDefault()
   }
 
-  render () {
+  render() {
     const {
       password,
       updatePassword,
@@ -26,41 +26,28 @@ class Layout extends Component {
     } = this.props
 
     return (
-      <Page
-        page={styles.unlockSafe}
-        location={location}
-        withoutHeader
-      >
+      <Page page={styles.unlockSafe} location={location} withoutHeader>
         <form onSubmit={this.prevent} data-validation={dataValidation}>
           <div className={styles.content}>
-            <span
-              className={styles.safeLogo}
-              data-network={getNetwork()}
-            >
+            <span className={styles.safeLogo} data-network={getNetwork()}>
               <span className={styles.edition}>{PERSONAL_EDITION}</span>
             </span>
             <div className={styles.lockshape} data-validation={dataValidation}>
-              <img
-                id={styles.keyhole}
-                src={keyHole}
-              />
+              <img id={styles.keyhole} src={keyHole} />
               <span className={styles.lockshape_dots} style={rotation} />
             </div>
             <div className={styles.passwordForm}>
               <div>
                 <input
-                  type='password'
+                  type="password"
                   placeholder={ENTER_PASSWORD}
                   value={password}
-                  name='unlock'
+                  name="unlock"
                   onChange={updatePassword}
                   className={styles.noborder}
                   autoFocus
                 />
-                <button
-                  onClick={validatePasswords}
-                  className={styles.button}
-                >
+                <button onClick={validatePasswords} className={styles.button}>
                   {UNLOCK}
                 </button>
               </div>

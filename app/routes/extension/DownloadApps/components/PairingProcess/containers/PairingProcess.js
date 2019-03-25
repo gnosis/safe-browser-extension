@@ -15,7 +15,7 @@ import selector from './selector'
 import { NOTIFICATIONS_PERMISSION_REQUIRED } from '../../../../../../../config/messages'
 
 class PairingProcess extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.qrPairingRef = React.createRef()
@@ -25,12 +25,10 @@ class PairingProcess extends Component {
   }
 
   componentDidMount = async () => {
-    const {
-      password,
-      selectEncryptedMnemonic
-    } = this.props
+    const { password, selectEncryptedMnemonic } = this.props
 
-    const currentAccount = password && getDecryptedEthAccount(selectEncryptedMnemonic, password)
+    const currentAccount =
+      password && getDecryptedEthAccount(selectEncryptedMnemonic, password)
 
     try {
       const token = await setUpNotifications()
@@ -55,7 +53,7 @@ class PairingProcess extends Component {
     )
   }
 
-  render () {
+  render() {
     const { toggleQr } = this.props
     const { message } = this.state
 
@@ -69,6 +67,4 @@ class PairingProcess extends Component {
   }
 }
 
-export default connect(
-  selector
-)(PairingProcess)
+export default connect(selector)(PairingProcess)

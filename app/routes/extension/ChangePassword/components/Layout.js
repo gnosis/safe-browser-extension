@@ -21,7 +21,7 @@ class Layout extends Component {
     e.preventDefault()
   }
 
-  render () {
+  render() {
     const {
       newPassword,
       confirmPassword,
@@ -35,9 +35,12 @@ class Layout extends Component {
 
     return (
       <Page location={location}>
-        <div className={styles.overlayPage} data-page='password'>
+        <div className={styles.overlayPage} data-page="password">
           <span className={styles.overlayPageHeader}>
-            <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)} />
+            <Link
+              to={ACCOUNT_URL}
+              className={cx(styles.btnBack, styles.active)}
+            />
             <h2>{CHANGE_PASSWORD}</h2>
           </span>
           <span className={styles.warningPassword}>
@@ -57,10 +60,17 @@ class Layout extends Component {
                   manageConfirmPassword={manageConfirmPassword}
                   passwordsMatch={this.props.confirmPasswordReady}
                 />
-                {createPasswordReady && confirmPasswordReady
-                  ? <button type='button' className={styles.button} onClick={updateMasterPassword}>{SAVE_NEW_PASSWORD}</button>
-                  : <button className={styles.button}>{SAVE_NEW_PASSWORD}</button>
-                }
+                {createPasswordReady && confirmPasswordReady ? (
+                  <button
+                    type="button"
+                    className={styles.button}
+                    onClick={updateMasterPassword}
+                  >
+                    {SAVE_NEW_PASSWORD}
+                  </button>
+                ) : (
+                  <button className={styles.button}>{SAVE_NEW_PASSWORD}</button>
+                )}
               </div>
             </form>
           </span>

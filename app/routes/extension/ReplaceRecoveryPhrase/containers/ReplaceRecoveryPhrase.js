@@ -4,10 +4,7 @@ import { Redirect } from 'react-router'
 import EthUtil from 'ethereumjs-util'
 import BigNumber from 'bignumber.js'
 
-import {
-  PASSWORD_URL,
-  REPLACE_RECOVERY_PHRASE_URL
-} from 'routes/routes'
+import { PASSWORD_URL, REPLACE_RECOVERY_PHRASE_URL } from 'routes/routes'
 import { createQrImage } from 'utils/qrdisplay'
 import {
   getDecryptedEthAccount,
@@ -17,7 +14,7 @@ import Layout from '../components/Layout'
 import selector from './selector'
 
 class ReplaceRecoveryPhrase extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.qrReplaceRecoveryPhraseRef = React.createRef()
@@ -46,15 +43,13 @@ class ReplaceRecoveryPhrase extends Component {
   }
 
   generateQrCodeContent = (safeAddress) => {
-    const {
-      selectEncryptedMnemonic,
-      selectUnencryptedMnemonic
-    } = this.props
+    const { selectEncryptedMnemonic, selectUnencryptedMnemonic } = this.props
 
-    const account = !selectUnencryptedMnemonic && this.password
-      ? getDecryptedEthAccount(selectEncryptedMnemonic, this.password)
-      : createAccountFromMnemonic(selectUnencryptedMnemonic)
-    
+    const account =
+      !selectUnencryptedMnemonic && this.password
+        ? getDecryptedEthAccount(selectEncryptedMnemonic, this.password)
+        : createAccountFromMnemonic(selectUnencryptedMnemonic)
+
     const data = EthUtil.sha3('GNO' + safeAddress)
     const vrs = EthUtil.ecsign(data, account.getPrivateKey())
     const r = new BigNumber(EthUtil.bufferToHex(vrs.r))
@@ -71,7 +66,7 @@ class ReplaceRecoveryPhrase extends Component {
     return qrCodeContent
   }
 
-  render () {
+  render() {
     const { safes } = this.props
     const url = {
       pathname: PASSWORD_URL,
@@ -93,6 +88,4 @@ class ReplaceRecoveryPhrase extends Component {
   }
 }
 
-export default connect(
-  selector
-)(ReplaceRecoveryPhrase)
+export default connect(selector)(ReplaceRecoveryPhrase)

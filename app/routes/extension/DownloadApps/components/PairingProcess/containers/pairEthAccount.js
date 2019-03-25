@@ -7,14 +7,17 @@ import BigNumber from 'bignumber.js'
 export const createAccountFromMnemonic = (mnemonic) => {
   const seed = Bip39.mnemonicToSeed(mnemonic)
   const hdWallet = HdKey.fromMasterSeed(seed)
-  const walletHdPath = 'm/44\'/60\'/0\'/0'
+  const walletHdPath = "m/44'/60'/0'/0"
   const newAccount = hdWallet.derivePath(walletHdPath + '/0').getWallet()
   return newAccount
 }
 
 export const createEthAccount = (mnemonic, password) => {
   const encryptedMnemonic = CryptoJs.AES.encrypt(mnemonic, password).toString()
-  const hmac = CryptoJs.HmacSHA256(encryptedMnemonic, CryptoJs.SHA256(password)).toString()
+  const hmac = CryptoJs.HmacSHA256(
+    encryptedMnemonic,
+    CryptoJs.SHA256(password)
+  ).toString()
 
   return {
     encryptedMnemonic,
@@ -23,7 +26,9 @@ export const createEthAccount = (mnemonic, password) => {
 }
 
 export const getDecryptedEthAccount = (encryptedMnemonic, password) => {
-  const mnemonic = CryptoJs.AES.decrypt(encryptedMnemonic, password).toString(CryptoJs.enc.Utf8)
+  const mnemonic = CryptoJs.AES.decrypt(encryptedMnemonic, password).toString(
+    CryptoJs.enc.Utf8
+  )
 
   return createAccountFromMnemonic(mnemonic)
 }
@@ -34,8 +39,11 @@ export const getUnencryptedEthAccount = (mnemonic) => {
 
 export const generatePairingCodeContent = (privateKey) => {
   const startDate = new Date()
-  const expirationDate = new Date(startDate.setMinutes(startDate.getMinutes() + 10))
-  const formatedExpirationDate = expirationDate.toISOString().split('.')[0] + '+00:00'
+  const expirationDate = new Date(
+    startDate.setMinutes(startDate.getMinutes() + 10)
+  )
+  const formatedExpirationDate =
+    expirationDate.toISOString().split('.')[0] + '+00:00'
 
   const data = EthUtil.sha3('GNO' + formatedExpirationDate)
   const vrs = EthUtil.ecsign(data, privateKey)

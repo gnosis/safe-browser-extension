@@ -9,24 +9,21 @@ import {
 } from '../../../../../../../config/messages'
 
 class Layout extends Component {
-  render () {
-    const {
-      newPassword,
-      error,
-      updateNewPassword,
-      ready
-    } = this.props
+  render() {
+    const { newPassword, error, updateNewPassword, ready } = this.props
 
-    const rowStyle = (error && error.row) ? styles.textGreen : styles.textRed
-    const numberLetterStyle = (error && error.number && error.letter) ? styles.textGreen : styles.textRed
-    const lengthStyle = (error && error.length) ? styles.textGreen : styles.textRed
+    const rowStyle = error && error.row ? styles.textGreen : styles.textRed
+    const numberLetterStyle =
+      error && error.number && error.letter ? styles.textGreen : styles.textRed
+    const lengthStyle =
+      error && error.length ? styles.textGreen : styles.textRed
     const dataValidation = !ready && newPassword !== '' ? 'ERROR' : ''
 
     return (
       <React.Fragment>
         <div data-validation={dataValidation}>
           <input
-            type='password'
+            type="password"
             placeholder={NEW_PASSWORD}
             value={newPassword}
             onChange={updateNewPassword}
@@ -38,9 +35,7 @@ class Layout extends Component {
         <p className={newPassword && numberLetterStyle}>
           {NEW_PASSWORD_NUMBER_AND_LETTER}
         </p>
-        <p className={newPassword && lengthStyle}>
-          {NEW_PASSWORD_MIN_CHAR}
-        </p>
+        <p className={newPassword && lengthStyle}>{NEW_PASSWORD_MIN_CHAR}</p>
       </React.Fragment>
     )
   }

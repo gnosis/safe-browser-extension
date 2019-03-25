@@ -23,19 +23,14 @@ describe('Test whitelisted dapps redux reducer', () => {
     actualStore.dispatch(addWhitelistedDapp(whitelistedDapp))
 
     // THEN
-    const expectedState = [
-      whitelistedDapp
-    ]
+    const expectedState = [whitelistedDapp]
     expect(actualStore.getState().whitelistedDapps).toEqual(expectedState)
   })
 
   test('Delete whitelisted dapp test', () => {
     // GIVEN
     const stateBefore = {
-      whitelistedDapps: [
-        dapp1,
-        dapp2
-      ]
+      whitelistedDapps: [dapp1, dapp2]
     }
     const actualStore = createStore(rootReducer, stateBefore)
 
@@ -43,9 +38,7 @@ describe('Test whitelisted dapps redux reducer', () => {
     actualStore.dispatch(deleteWhitelistedDapp(dapp1))
 
     // THEN
-    let expectedState = [
-      dapp2
-    ]
+    let expectedState = [dapp2]
     expect(actualStore.getState().whitelistedDapps).toEqual(expectedState)
 
     // WHEN
@@ -59,10 +52,7 @@ describe('Test whitelisted dapps redux reducer', () => {
   test('Delete all whitelisted dapps test', () => {
     // GIVEN
     const stateBefore = {
-      whitelistedDapps: [
-        dapp1,
-        dapp2
-      ]
+      whitelistedDapps: [dapp1, dapp2]
     }
     const actualStore = createStore(rootReducer, stateBefore)
 

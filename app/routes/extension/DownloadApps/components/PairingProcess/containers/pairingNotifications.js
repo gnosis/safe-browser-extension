@@ -38,7 +38,7 @@ export const authPushNotificationService = async (pushToken, accounts) => {
   try {
     const url = getPushNotificationServiceUrl() + '/api/v2/auth/'
     const headers = {
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json'
     }
     const body = generateAuthContent(pushToken, accounts)
@@ -55,8 +55,10 @@ export const authPushNotificationService = async (pushToken, accounts) => {
       if (authResponse.length !== accounts.length) {
         return false
       }
-      const accountAddresses = accounts.map(account => account.getChecksumAddressString()).sort()
-      const authAddresses = authResponse.map(account => account.owner).sort()
+      const accountAddresses = accounts
+        .map((account) => account.getChecksumAddressString())
+        .sort()
+      const authAddresses = authResponse.map((account) => account.owner).sort()
       return JSON.stringify(accountAddresses) == JSON.stringify(authAddresses)
     }
     return false
@@ -73,9 +75,11 @@ const generateAuthContent = (pushToken, accounts) => {
   const client = 'extension'
   const bundle = 'safe-browser-extension'
 
-  const data = EthUtil.sha3('GNO' + pushToken + buildNumber + versionNumber + client + bundle)
+  const data = EthUtil.sha3(
+    'GNO' + pushToken + buildNumber + versionNumber + client + bundle
+  )
 
-  const signatures = accounts.map(account => {
+  const signatures = accounts.map((account) => {
     const vrs = EthUtil.ecsign(data, account.getPrivateKey())
     const v = vrs.v
     const r = new BigNumber(EthUtil.bufferToHex(vrs.r)).toString(10)

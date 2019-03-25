@@ -5,10 +5,7 @@ import FooterSteps from 'components/Footers/FooterSteps'
 import ConfirmPasswordForm from './ConfirmPasswordForm/containers/ConfirmPasswordForm'
 import styles from 'assets/css/global.css'
 import warningImage from 'assets/images/warning.svg'
-import {
-  DOWNLOAD_APPS_URL,
-  CREATE_PASSWORD_URL
-} from 'routes/routes'
+import { DOWNLOAD_APPS_URL, CREATE_PASSWORD_URL } from 'routes/routes'
 import {
   CONFIRM_CREATE_PASSWORD_TITLE,
   CHANGE_PASSWORD_DESCRIPTION
@@ -19,7 +16,7 @@ class Layout extends Component {
     e.preventDefault()
   }
 
-  render () {
+  render() {
     const {
       confirmPassword,
       manageConfirmPassword,
@@ -29,17 +26,13 @@ class Layout extends Component {
 
     const nextLink = passwordsMatch
       ? {
-        pathname: DOWNLOAD_APPS_URL,
-        state: location.state
-      }
+          pathname: DOWNLOAD_APPS_URL,
+          state: location.state
+        }
       : ''
 
     return (
-      <Page
-        page={styles.password2}
-        location={location}
-        simpleHeader
-      >
+      <Page page={styles.password2} location={location} simpleHeader>
         <form onSubmit={this.prevent}>
           <div className={styles.content}>
             <h1>{CONFIRM_CREATE_PASSWORD_TITLE}</h1>

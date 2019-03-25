@@ -12,7 +12,7 @@ import messages from '../../../../../extension/utils/messages'
 import { PASSWORD_URL } from 'routes/routes'
 
 class LockingState extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.unlockedAccount(props)
@@ -26,7 +26,12 @@ class LockingState extends Component {
     chrome.runtime.sendMessage({
       msg: messages.MSG_LOCK_ACCOUNT
     })
-    ga(['_trackEvent', EXTENSION_SETTINGS, 'click-lock-extension', 'Lock extension'])
+    ga([
+      '_trackEvent',
+      EXTENSION_SETTINGS,
+      'click-lock-extension',
+      'Lock extension'
+    ])
   }
 
   unlockedAccount = (props) => {
@@ -38,10 +43,9 @@ class LockingState extends Component {
     const { password } = props.location.state
     const unlockingTime = new Date()
     const encryptedMnemonic = props.account.secondFA.seed
-    const mnemonic = CryptoJs.AES.decrypt(
-      encryptedMnemonic,
-      password
-    ).toString(CryptoJs.enc.Utf8)
+    const mnemonic = CryptoJs.AES.decrypt(encryptedMnemonic, password).toString(
+      CryptoJs.enc.Utf8
+    )
 
     this.props.onUnlockAccount(mnemonic, unlockingTime.toISOString())
 
@@ -52,14 +56,16 @@ class LockingState extends Component {
 
   handleUnlockAccount = (e) => {
     this.setState({ lockedAccount: true })
-    ga(['_trackEvent', EXTENSION_SETTINGS, 'click-unlock-extension', 'Unlock extension'])
+    ga([
+      '_trackEvent',
+      EXTENSION_SETTINGS,
+      'click-unlock-extension',
+      'Unlock extension'
+    ])
   }
 
-  render () {
-    const {
-      account,
-      location
-    } = this.props
+  render() {
+    const { account, location } = this.props
     const { lockedAccount } = this.state
 
     if (lockedAccount) {
@@ -71,10 +77,10 @@ class LockingState extends Component {
       }
       return <Redirect to={url} />
     }
-    return (
-      account.lockedState
-        ? <SafesLocked handleUnlockAccount={this.handleUnlockAccount} />
-        : <SafesUnlocked handleLockAccount={this.handleLockAccount} />
+    return account.lockedState ? (
+      <SafesLocked handleUnlockAccount={this.handleUnlockAccount} />
+    ) : (
+      <SafesUnlocked handleLockAccount={this.handleLockAccount} />
     )
   }
 }

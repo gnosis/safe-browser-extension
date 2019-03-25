@@ -7,7 +7,7 @@ import { CONFIRM_TRANSACTION_STATE } from '../../../../../../../config/messages'
 const ConfirmTransactionState = () => (
   <div className={styles.transactionState}>
     <span className={styles.message}>
-      <img src={mobileImage} height='55' width='30' />
+      <img src={mobileImage} height="55" width="30" />
       <p>{CONFIRM_TRANSACTION_STATE}</p>
     </span>
   </div>

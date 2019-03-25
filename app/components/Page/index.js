@@ -26,10 +26,7 @@ const Page = ({
   children,
   location
 }) => (
-  <div className={cx(
-    styles.extension,
-    page
-  )}>
+  <div className={cx(styles.extension, page)}>
     <div className={styles.extensionInner}>
       {header(withoutHeader, simpleHeader, noBorder, location)}
       {children}

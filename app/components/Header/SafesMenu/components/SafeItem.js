@@ -9,7 +9,7 @@ import actions from './actions'
 import { SAVE } from '../../../../../config/messages'
 
 class SafeItem extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -17,7 +17,8 @@ class SafeItem extends Component {
     }
 
     this.aliasRef = React.createRef()
-    this.addressDisplayed = props.address.substring(0, 8) +
+    this.addressDisplayed =
+      props.address.substring(0, 8) +
       '...' +
       props.address.substring(props.address.length - 6, props.address.length)
   }
@@ -49,7 +50,10 @@ class SafeItem extends Component {
   }
 
   placeCursorAtEnd = (element) => {
-    if (typeof window.getSelection !== 'undefined' && typeof document.createRange !== 'undefined') {
+    if (
+      typeof window.getSelection !== 'undefined' &&
+      typeof document.createRange !== 'undefined'
+    ) {
       const range = document.createRange()
       range.selectNodeContents(element)
       range.collapse(false)
@@ -72,13 +76,9 @@ class SafeItem extends Component {
     }
   }
 
-  render () {
+  render() {
     const { editSafeAlias } = this.state
-    const {
-      removeSafe,
-      address,
-      alias
-    } = this.props
+    const { removeSafe, address, alias } = this.props
 
     return (
       <React.Fragment>
@@ -99,18 +99,20 @@ class SafeItem extends Component {
             <button
               className={styles.safeToolsSave}
               onClick={this.saveEditSafeAlias(address)}
-            >{SAVE}</button>
+            >
+              {SAVE}
+            </button>
             <img
               src={edit}
-              height='12'
-              width='12'
+              height="12"
+              width="12"
               className={styles.safeToolsEdit}
               onClick={this.showEditSafeAlias}
             />
             <img
               src={trashWhite}
-              height='12'
-              width='12'
+              height="12"
+              width="12"
               className={styles.safeToolsDelete}
               onClick={removeSafe(address)}
             />
@@ -123,7 +125,8 @@ class SafeItem extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdateSafeAlias: (address, alias) => dispatch(actions.updateSafeAlias(address, alias))
+    onUpdateSafeAlias: (address, alias) =>
+      dispatch(actions.updateSafeAlias(address, alias))
   }
 }
 

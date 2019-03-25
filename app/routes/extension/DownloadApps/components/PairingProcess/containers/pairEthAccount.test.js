@@ -17,8 +17,10 @@ Enzyme.configure({ adapter: new Adapter() })
 
 const password = 'asdfasdf1'
 const address = '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'
-const mnemonic = 'myth like bonus scare over problem client lizard pioneer submit female collect'
-const seed = 'U2FsdGVkX1/PzvlOtLnvBa19Yl/wNyn+xeNJ/ZCFaPwFh+svYVUB7LSaocwBtb1tQIXandPp2A2gKj99B0uoWSigdVh4G8J1bEr+Pa6cqgPuN4nNRVhxAw+Sud+x0+8W'
+const mnemonic =
+  'myth like bonus scare over problem client lizard pioneer submit female collect'
+const seed =
+  'U2FsdGVkX1/PzvlOtLnvBa19Yl/wNyn+xeNJ/ZCFaPwFh+svYVUB7LSaocwBtb1tQIXandPp2A2gKj99B0uoWSigdVh4G8J1bEr+Pa6cqgPuN4nNRVhxAw+Sud+x0+8W'
 const hmac = '421e3feb800198552c762254830deaadd24a84eff4600897bbe1f9282dc47563'
 
 const account = {
@@ -50,10 +52,7 @@ describe('pairEthAccount', () => {
   })
 
   test('Create Ethereum account before connecting the first Safe', () => {
-    const {
-      encryptedMnemonic,
-      hmac
-    } = createEthAccount(mnemonic, password)
+    const { encryptedMnemonic, hmac } = createEthAccount(mnemonic, password)
 
     const decryptedHmac = CryptoJs.HmacSHA256(
       encryptedMnemonic,
@@ -65,9 +64,14 @@ describe('pairEthAccount', () => {
   test('Get decrypted Ethereum account before connecting the second Safe', () => {
     const localAccount = setUpSecondSafeLockedState()
 
-    const currentAccount = getDecryptedEthAccount(localAccount.secondFA.seed, password)
+    const currentAccount = getDecryptedEthAccount(
+      localAccount.secondFA.seed,
+      password
+    )
 
-    expect(currentAccount.getChecksumAddressString()).toEqual(localAccount.secondFA.address)
+    expect(currentAccount.getChecksumAddressString()).toEqual(
+      localAccount.secondFA.address
+    )
   })
 
   test('Get unencrypted Ethereum account before connecting the second Safe', () => {
@@ -77,7 +81,9 @@ describe('pairEthAccount', () => {
       localAccount.secondFA.unlockedMnemonic
     )
 
-    expect(currentAccount.getChecksumAddressString()).toEqual(localAccount.secondFA.address)
+    expect(currentAccount.getChecksumAddressString()).toEqual(
+      localAccount.secondFA.address
+    )
   })
 
   test('QR-code for the pairing process', () => {
@@ -85,7 +91,9 @@ describe('pairEthAccount', () => {
     const publicKeyAccount = ethAccount.getPublicKeyString()
     const addressAccount = ethAccount.getAddress()
 
-    const pairingCode = JSON.parse(generatePairingCodeContent(ethAccount.getPrivateKey()))
+    const pairingCode = JSON.parse(
+      generatePairingCodeContent(ethAccount.getPrivateKey())
+    )
 
     const data = EthUtil.sha3('GNO' + pairingCode.expirationDate)
     const publicKeyCode = EthUtil.bufferToHex(

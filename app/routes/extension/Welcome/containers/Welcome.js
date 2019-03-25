@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Layout from '../components/Layout'
 
 class Welcome extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -17,7 +17,7 @@ class Welcome extends Component {
     }))
   }
 
-  render () {
+  render() {
     const { showDisclaimer } = this.state
 
     return (

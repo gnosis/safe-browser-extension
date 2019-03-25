@@ -34,9 +34,7 @@ describe('Test Safes redux reducer', () => {
     // THEN
     const expectedState = {
       currentSafe: safe1.address,
-      safes: [
-        safe1
-      ]
+      safes: [safe1]
     }
     expect(actualStore.getState().safes).toEqual(expectedState)
   })
@@ -46,9 +44,7 @@ describe('Test Safes redux reducer', () => {
     const stateBefore = {
       safes: {
         currentSafe: safe1.address,
-        safes: [
-          safe1
-        ]
+        safes: [safe1]
       }
     }
     const actualStore = createStore(rootReducer, stateBefore)
@@ -59,10 +55,7 @@ describe('Test Safes redux reducer', () => {
     // THEN
     const expectedState = {
       currentSafe: safe2.address,
-      safes: [
-        safe1,
-        safe2
-      ]
+      safes: [safe1, safe2]
     }
     expect(actualStore.getState().safes).toEqual(expectedState)
   })
@@ -72,10 +65,7 @@ describe('Test Safes redux reducer', () => {
     const stateBefore = {
       safes: {
         currentSafe: safe2.address,
-        safes: [
-          safe1,
-          safe2
-        ]
+        safes: [safe1, safe2]
       }
     }
     const actualStore = createStore(rootReducer, stateBefore)
@@ -88,9 +78,7 @@ describe('Test Safes redux reducer', () => {
     // THEN
     const expectedState = {
       currentSafe: safe1.address,
-      safes: [
-        safe1
-      ]
+      safes: [safe1]
     }
     expect(actualStore.getState().safes).toEqual(expectedState)
   })
@@ -100,9 +88,7 @@ describe('Test Safes redux reducer', () => {
     const stateBefore = {
       safes: {
         currentSafe: safe1.address,
-        safes: [
-          safe1
-        ]
+        safes: [safe1]
       }
     }
     const actualStore = createStore(rootReducer, stateBefore)
@@ -125,10 +111,7 @@ describe('Test Safes redux reducer', () => {
     const stateBefore = {
       safes: {
         currentSafe: safe1.address,
-        safes: [
-          safe1,
-          safe2
-        ]
+        safes: [safe1, safe2]
       }
     }
     const actualStore = createStore(rootReducer, stateBefore)
@@ -139,10 +122,7 @@ describe('Test Safes redux reducer', () => {
     // THEN
     const expectedState = {
       currentSafe: safe2.address,
-      safes: [
-        safe1,
-        safe2
-      ]
+      safes: [safe1, safe2]
     }
     expect(actualStore.getState().safes).toEqual(expectedState)
   })
@@ -152,9 +132,7 @@ describe('Test Safes redux reducer', () => {
     const stateBefore = {
       safes: {
         currentSafe: safe1.address,
-        safes: [
-          safe1
-        ]
+        safes: [safe1]
       }
     }
     const actualStore = createStore(rootReducer, stateBefore)

@@ -11,18 +11,12 @@ import {
   DOWNLOAD_APPS_URL,
   WELCOME_URL
 } from 'routes/routes'
-import {
-  history,
-  store
-} from './store'
+import { history, store } from './store'
 import { withAnalytics } from 'utils/analytics'
 
-const calculateInitialUrl = (
-  account,
-  safes,
-  device
-) => {
-  const validAccount = store.state.account.secondFA && Object.keys(account.secondFA).length > 0
+const calculateInitialUrl = (account, safes, device) => {
+  const validAccount =
+    store.state.account.secondFA && Object.keys(account.secondFA).length > 0
   const validSafes = safes.safes && safes.safes.length > 0
   const lastUpdateNotified = device.lastUpdateNotified
 
@@ -52,33 +46,29 @@ const calculateInitialUrl = (
   }
 }
 
-store
-  .ready()
-  .then(async () => {
-    const permission = await navigator.permissions.query({ name: 'notifications' })
-    if (permission.state !== 'granted') {
-      chrome.runtime.openOptionsPage
-        ? chrome.runtime.openOptionsPage()
-        : window.open(chrome.runtime.getURL('options/options.html'))
-
-      return
-    }
-
-    const {
-      account,
-      safes,
-      device
-    } = store.state
-
-    const url = calculateInitialUrl(account, safes, device)
-    history.push(url)
-
-    ReactDOM.render(
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <Route component={withAnalytics(ExtensionRoutes, {})} />
-        </ConnectedRouter>
-      </Provider>,
-      document.getElementById('root')
-    )
+store.ready().then(async () => {
+  const permission = await navigator.permissions.query({
+    name: 'notifications'
   })
+  if (permission.state !== 'granted') {
+    chrome.runtime.openOptionsPage
+      ? chrome.runtime.openOptionsPage()
+      : window.open(chrome.runtime.getURL('options/options.html'))
+
+    return
+  }
+
+  const { account, safes, device } = store.state
+
+  const url = calculateInitialUrl(account, safes, device)
+  history.push(url)
+
+  ReactDOM.render(
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <Route component={withAnalytics(ExtensionRoutes, {})} />
+      </ConnectedRouter>
+    </Provider>,
+    document.getElementById('root')
+  )
+})

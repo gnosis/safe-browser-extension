@@ -8,19 +8,12 @@ import {
 } from '../../../../../../../config/messages'
 
 class Layout extends Component {
-  render () {
-    const {
-      qrPairingRef,
-      toggleQr,
-      message
-    } = this.props
+  render() {
+    const { qrPairingRef, toggleQr, message } = this.props
 
     return (
       <div className={styles.innerOverlay}>
-        <button
-          className={styles.buttonExit}
-          onClick={toggleQr}
-        />
+        <button className={styles.buttonExit} onClick={toggleQr} />
         <div className={styles.innerOverlayContent}>
           <p>{SHOW_QR_CODE_DESCRIPTION}</p>
           <span className={styles.QR}>

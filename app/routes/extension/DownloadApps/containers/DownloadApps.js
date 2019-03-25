@@ -14,7 +14,7 @@ import actions from './actions'
 import { ACCOUNT_URL } from 'routes/routes'
 
 class DownloadApps extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     const { safes } = this.props
 
@@ -33,50 +33,69 @@ class DownloadApps extends Component {
 
   componentDidMount = () => {
     const { account } = this.props
-    const hasAccount = account.secondFA && Object.keys(account.secondFA).length > 0
+    const hasAccount =
+      account.secondFA && Object.keys(account.secondFA).length > 0
 
     if (hasAccount || !this.password) return
 
     const mnemonic = Bip39.generateMnemonic()
     const currentAccount = createAccountFromMnemonic(mnemonic)
-    const { encryptedMnemonic, hmac } = createEthAccount(mnemonic, this.password)
+    const { encryptedMnemonic, hmac } = createEthAccount(
+      mnemonic,
+      this.password
+    )
 
-    this.props.onCreateAccount(currentAccount.getChecksumAddressString(), encryptedMnemonic, hmac)
+    this.props.onCreateAccount(
+      currentAccount.getChecksumAddressString(),
+      encryptedMnemonic,
+      hmac
+    )
   }
 
   toggleQrAndroid = () => {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       if (!prevState.showQrAndroid) {
-        ga(['_trackEvent', ONBOARDING, 'click-download-android-app', 'Download Android app'])
+        ga([
+          '_trackEvent',
+          ONBOARDING,
+          'click-download-android-app',
+          'Download Android app'
+        ])
       }
       return { showQrAndroid: !prevState.showQrAndroid }
     })
   }
 
   toggleQrIos = () => {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       if (!prevState.showQrIos) {
-        ga(['_trackEvent', ONBOARDING, 'click-download-iphone-app', 'Download iPhone app'])
+        ga([
+          '_trackEvent',
+          ONBOARDING,
+          'click-download-iphone-app',
+          'Download iPhone app'
+        ])
       }
       return { showQrIos: !prevState.showQrIos }
     })
   }
 
   toggleQrPairing = () => {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       if (!prevState.showQrPairing) {
-        ga(['_trackEvent', ONBOARDING, 'click-show-pairing-qr-code', 'Show pairing QR-code'])
+        ga([
+          '_trackEvent',
+          ONBOARDING,
+          'click-show-pairing-qr-code',
+          'Show pairing QR-code'
+        ])
       }
       return { showQrPairing: !prevState.showQrPairing }
     })
   }
 
-  render () {
-    const {
-      showQrAndroid,
-      showQrIos,
-      showQrPairing
-    } = this.state
+  render() {
+    const { showQrAndroid, showQrIos, showQrPairing } = this.state
     const { safes } = this.props
 
     if (safes !== null && safes.safes.length > this.pairedSafes) {
@@ -106,7 +125,8 @@ const mapStateToProps = ({ account, safes }, props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onCreateAccount: (address, seed, hmac) => dispatch(actions.createAccount(address, seed, hmac))
+    onCreateAccount: (address, seed, hmac) =>
+      dispatch(actions.createAccount(address, seed, hmac))
   }
 }
 

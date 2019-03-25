@@ -13,7 +13,7 @@ const initalState = {
   }
 }
 
-function account (state = initalState, action) {
+function account(state = initalState, action) {
   switch (action.type) {
     case CREATE_ACCOUNT:
       const secondFA = {

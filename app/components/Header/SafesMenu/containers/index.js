@@ -8,13 +8,10 @@ import selector from './selector'
 import actions from './actions'
 import messages from '../../../../../extension/utils/messages'
 import Layout from '../components/Layout'
-import {
-  PASSWORD_URL,
-  DOWNLOAD_APPS_URL
-} from 'routes/routes'
+import { PASSWORD_URL, DOWNLOAD_APPS_URL } from 'routes/routes'
 
 class SafesMenu extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -23,10 +20,7 @@ class SafesMenu extends Component {
   }
 
   handleSelectSafe = (safeAddress) => (e) => {
-    const {
-      onSelectSafe,
-      toggleSafes
-    } = this.props
+    const { onSelectSafe, toggleSafes } = this.props
 
     onSelectSafe(safeAddress)
     toggleSafes()
@@ -34,27 +28,32 @@ class SafesMenu extends Component {
   }
 
   handleAddNewSafe = () => {
-    ga(['_trackEvent', SAFES, 'click-connect-to-new-safe', 'Connect to new Safe'])
+    ga([
+      '_trackEvent',
+      SAFES,
+      'click-connect-to-new-safe',
+      'Connect to new Safe'
+    ])
     this.setState({ addNewSafe: true })
   }
 
   handleRemoveSafe = (safeAddress) => (e) => {
     e.stopPropagation()
-    const {
-      safes,
-      onRemoveSafe
-    } = this.props
+    const { safes, onRemoveSafe } = this.props
     const safeList = safes.safes
 
     let newCurrentSafe
     if (safeList.length > 1) {
-      const deletedIndex = safeList.map(safe => safe.address).indexOf(safeAddress)
+      const deletedIndex = safeList
+        .map((safe) => safe.address)
+        .indexOf(safeAddress)
 
-      newCurrentSafe = (safes.currentSafe === safeAddress)
-        ? ((deletedIndex === 0)
-          ? safeList[1].address
-          : safeList[deletedIndex - 1].address)
-        : safes.currentSafe
+      newCurrentSafe =
+        safes.currentSafe === safeAddress
+          ? deletedIndex === 0
+            ? safeList[1].address
+            : safeList[deletedIndex - 1].address
+          : safes.currentSafe
     }
     onRemoveSafe(safeAddress, newCurrentSafe)
 
@@ -66,7 +65,7 @@ class SafesMenu extends Component {
     ga(['_trackEvent', SAFES, 'click-remove-safe', 'Remove Safe'])
   }
 
-  render () {
+  render() {
     const {
       toggleSafes,
       showSafes,
@@ -79,18 +78,18 @@ class SafesMenu extends Component {
 
     if (addNewSafe || safes.safes.length === 0) {
       return (
-        <Redirect to={{
-          pathname: PASSWORD_URL,
-          state: {
-            dest: DOWNLOAD_APPS_URL
-          }
-        }} />
+        <Redirect
+          to={{
+            pathname: PASSWORD_URL,
+            state: {
+              dest: DOWNLOAD_APPS_URL
+            }
+          }}
+        />
       )
     }
 
-    const safeAlias = (showingTransaction)
-      ? popupTitle
-      : extensionTitle
+    const safeAlias = showingTransaction ? popupTitle : extensionTitle
     return (
       <Layout
         safes={safes}
@@ -109,7 +108,8 @@ class SafesMenu extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     onSelectSafe: (address) => dispatch(actions.selectSafe(address)),
-    onRemoveSafe: (address, currentSafe) => dispatch(actions.removeSafe(address, currentSafe))
+    onRemoveSafe: (address, currentSafe) =>
+      dispatch(actions.removeSafe(address, currentSafe))
   }
 }
 

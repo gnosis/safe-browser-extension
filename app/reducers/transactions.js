@@ -25,10 +25,7 @@ function transactions(state = initialState, action) {
       }
       transactions = {
         ...state,
-        txs: [
-          ...state.txs,
-          transaction
-        ]
+        txs: [...state.txs, transaction]
       }
       if (action.windowId) {
         transactions.windowId = action.windowId
@@ -65,7 +62,7 @@ function transactions(state = initialState, action) {
         }
       }
       return newState
-    
+
     default:
       return state
   }

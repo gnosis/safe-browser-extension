@@ -25,34 +25,41 @@ const Layout = ({
       >
         <i>{safeAlias && safeAlias}</i>
       </span>
-      {!showingTransaction &&
+      {!showingTransaction && (
         <React.Fragment>
           <div
-            className={cx(styles.safeMenuBackground, showSafes && styles.active)}
+            className={cx(
+              styles.safeMenuBackground,
+              showSafes && styles.active
+            )}
             onClick={toggleSafes}
           />
           <span className={cx(styles.safeMenu, showSafes && styles.active)}>
             <ul>
-              {safes.safes && safes.safes.map((safe) => (
-                <li
-                  className={cx(styles.safeMenuSafeItem, (safe.address === safes.currentSafe) && styles.active)}
-                  onClick={handleSelectSafe(safe.address)}
-                  key={safe.address}
-                >
-                  <SafeItem
-                    address={safe.address}
-                    alias={safe.alias}
-                    removeSafe={handleRemoveSafe}
-                  />
-                </li>
-              ))}
+              {safes.safes &&
+                safes.safes.map((safe) => (
+                  <li
+                    className={cx(
+                      styles.safeMenuSafeItem,
+                      safe.address === safes.currentSafe && styles.active
+                    )}
+                    onClick={handleSelectSafe(safe.address)}
+                    key={safe.address}
+                  >
+                    <SafeItem
+                      address={safe.address}
+                      alias={safe.alias}
+                      removeSafe={handleRemoveSafe}
+                    />
+                  </li>
+                ))}
               <li className={styles.safeMenuNewSafe} onClick={handleAddNewSafe}>
                 <p>{CONNECT_NEW_SAFE}</p>
               </li>
             </ul>
           </span>
         </React.Fragment>
-      }
+      )}
     </React.Fragment>
   )
 }

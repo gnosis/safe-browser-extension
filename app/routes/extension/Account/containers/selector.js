@@ -3,7 +3,6 @@ import {
   accountSelector,
   safesSelector,
   transactionsSelector
-
 } from '../store/selectors'
 
 export default createStructuredSelector({

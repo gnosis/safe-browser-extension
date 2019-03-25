@@ -4,13 +4,10 @@ import FooterButtons from 'components/Footers/FooterButtons/containers'
 import SendTransactionState from '../../components/TransactionState/SendTransactionState'
 import RetryLoadDataTransactionState from '../../components/TransactionState/RetryLoadDataTransactionState'
 import { TRANSACTION_URL } from 'routes/routes'
-import {
-  REJECT,
-  CONFIRM
-} from '../../../../../../../config/messages'
+import { REJECT, CONFIRM } from '../../../../../../../config/messages'
 
 class Layout extends Component {
-  render () {
+  render() {
     const {
       loadedData,
       reviewedTx,
@@ -22,11 +19,11 @@ class Layout extends Component {
 
     return (
       <React.Fragment>
-        {(loadedData === false) &&
+        {loadedData === false && (
           <RetryLoadDataTransactionState
             retryShowTransaction={retryShowTransaction}
           />
-        }
+        )}
         {loadedData && (
           <React.Fragment>
             {reviewedTx ? (
