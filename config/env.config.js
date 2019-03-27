@@ -22,7 +22,7 @@ dotenv.config({})
 const mainnetAppStoreAndroid = 'https://play.google.com/store/apps/details?id=pm.gnosis.heimdall'
 const mainnetAppStoreIos = 'https://appstore.com/gnosissafesmartwallet'
 const rinkebyAppStoreAndroid = 'https://play.google.com/store/apps/details?id=pm.gnosis.heimdall.dev'
-const rinkebyAppStoreIos = null
+const rinkebyAppStoreIos = 'https://testflight.apple.com/join/r9q5stIb'
 const rinkebyStagingAndroid = 'https://betas.to/riowXzcx'
 const rinkebyStagingIos = 'https://betas.to/7TovLG11'
 
