@@ -24,7 +24,7 @@ const mainnetAppStoreIos = 'https://appstore.com/gnosissafesmartwallet'
 const rinkebyAppStoreAndroid = 'https://play.google.com/store/apps/details?id=pm.gnosis.heimdall.dev'
 const rinkebyAppStoreIos = 'https://testflight.apple.com/join/r9q5stIb'
 const rinkebyStagingAndroid = 'https://betas.to/riowXzcx'
-const rinkebyStagingIos = 'https://betas.to/7TovLG11'
+const rinkebyStagingIos = 'https://betas.to/qnfzuPN6'
 
 const stagingPushNotificationServiceUrl = 'https://safe-notification.staging.gnosisdev.com/api/v1/'
 const stagingTransactionRelayServiceUrl = 'https://safe-relay.staging.gnosisdev.com/api/v1/'
