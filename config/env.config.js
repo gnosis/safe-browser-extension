@@ -20,7 +20,7 @@ import dotenv from 'dotenv'
 dotenv.config({})
 
 const mainnetAppStoreAndroid = 'https://play.google.com/store/apps/details?id=pm.gnosis.heimdall'
-const mainnetAppStoreIos = 'http://appstore.com/gnosissafemainnet'
+const mainnetAppStoreIos = 'https://appstore.com/gnosissafesmartwallet'
 const rinkebyAppStoreAndroid = 'https://play.google.com/store/apps/details?id=pm.gnosis.heimdall.dev'
 const rinkebyAppStoreIos = null
 const rinkebyStagingAndroid = 'https://betas.to/riowXzcx'
