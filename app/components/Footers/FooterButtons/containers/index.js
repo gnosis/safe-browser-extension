@@ -21,10 +21,11 @@ class FooterButtons extends Component {
   handleRejection = () => {
     const {
       handleRejection,
-      account
+      account,
+      rejectWithExtensionLockedAllowed
     } = this.props
 
-    if (account.lockedState) {
+    if (account.lockedState && !rejectWithExtensionLockedAllowed) {
       this.setState({ requestResolved: true })
     } else {
       handleRejection()
