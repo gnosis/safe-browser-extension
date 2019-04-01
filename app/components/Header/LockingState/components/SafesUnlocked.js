@@ -6,8 +6,9 @@ import styles from 'assets/css/global.css'
 class SafesUnlocked extends Component {
   constructor (props) {
     super(props)
+    const { account } = this.props
 
-    this.autoLockInterval = this.props.account.autoLockInterval
+    this.autoLockInterval = account.autoLockInterval
     const diffSeconds = this.setTime(this.autoLockInterval)
     this.state = {
       time: this.secondsToTime(diffSeconds),
@@ -27,10 +28,12 @@ class SafesUnlocked extends Component {
   }
 
   setTime = (autoLockInterval) => {
-    this.initDate = new Date(this.props.account.unlockingTime).getTime()
-    this.endDate = new Date(this.initDate + (autoLockInterval * 60000))
-    this.now = new Date()
-    const diffSeconds = Math.trunc(Math.abs(this.endDate - this.now) / 1000)
+    const { account } = this.props
+
+    const initDate = new Date(account.unlockingTime).getTime()
+    const endDate = new Date(initDate + (autoLockInterval * 60000))
+    const now = new Date()
+    const diffSeconds = Math.trunc(Math.abs(endDate - now) / 1000)
 
     return diffSeconds
   }
@@ -47,7 +50,11 @@ class SafesUnlocked extends Component {
   }
 
   countDown = () => {
-    const newAutoLockInterval = this.props.account.autoLockInterval
+    const {
+      account,
+      handleLockAccount 
+    } = this.props
+    const newAutoLockInterval = account.autoLockInterval
 
     if (this.autoLockInterval !== newAutoLockInterval) {
       this.autoLockInterval = newAutoLockInterval
@@ -58,10 +65,19 @@ class SafesUnlocked extends Component {
       })
       return
     }
-    this.setState((prevState) => ({
-      time: this.secondsToTime(prevState.seconds - 1),
-      seconds: (prevState.seconds - 1)
-    }))
+
+    this.setState((prevState) => {
+      const seconds = prevState.seconds - 1
+      
+      if (seconds > account.autoLockInterval * 60 || seconds < 0) {
+        handleLockAccount()
+      }
+      
+      return {
+        time: this.secondsToTime(seconds),
+        seconds
+      }
+    })
   }
 
   render () {
