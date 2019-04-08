@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import BigNumber from 'bignumber.js'
-import { promisify } from 'utils/promisify'
-import messages from '../../../../../extension/utils/messages'
+
 import {
   getDecryptedEthAccount,
   createAccountFromMnemonic
@@ -12,6 +11,7 @@ import Header from 'components/Header'
 import Layout from '../components/Layout'
 import actions from './actions'
 import selector from './selector'
+import messages from '../../../../../extension/utils/messages'
 import styles from 'assets/css/global.css'
 
 class SignMessage extends Component {

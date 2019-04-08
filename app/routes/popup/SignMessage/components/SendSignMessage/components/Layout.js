@@ -14,36 +14,25 @@ class Layout extends Component {
       loadedData,
       reviewedSignature,
       seconds,
-      owners,
-      ownerSignatures,
-      threshold,
       handleConfirmSignMessage,
       handleRejectSignMessage,
+      retryShowSignMessage
     } = this.props
 
     return (
       <React.Fragment>
         {(loadedData === false) &&
-          <div>RETRY LOAD DATA</div>
+          <RetryLoadDataTransactionState
+            retryShowElement={retryShowSignMessage}
+          />
         }
         {loadedData && (
           <React.Fragment>
             {reviewedSignature ? (
-              <div>
-                <div style={{padding:'20px'}}>
-                  <h2>Confirmations needed: {ownerSignatures.length}/{threshold && threshold.toString()}</h2>
-                  <br />
-                  <h2>Collected signatures from:</h2>
-                  <br />
-                  {ownerSignatures && ownerSignatures.map(owner => (
-                    <div key={owner.address}>{owner.address}<br /><br /></div>
-                  ))}
-                </div>
-                {/*<SendTransactionState
-                  seconds={seconds}
-                  handleConfirmTransaction={handleConfirmSignMessage}
-                />*/}
-              </div>
+              <SendTransactionState
+                seconds={seconds}
+                handleConfirmTransaction={handleConfirmSignMessage}
+              />
             ) : (
               <FooterButtons
                 nextUrl={SIGN_MESSAGE_URL}

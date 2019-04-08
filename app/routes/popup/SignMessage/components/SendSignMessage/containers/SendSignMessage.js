@@ -7,46 +7,40 @@ import { SIGNATURES } from 'utils/analytics/events'
 import messages from '../../../../../../../extension/utils/messages'
 import selector from './selector'
 import {
-  getSignaturesOwnersRatio,
   createWalletSignature,
   getEip712MessageHash,
   signMessageByExtension,
   getOwnerFromSignature
 } from '../../../containers/signMessages'
 import { sendSignMessage } from 'utils/sendNotifications'
-import { getMessageHash } from 'logic/contracts/safeContracts'
+import {
+  getThreshold,
+  getOwners,
+  getMessageHash } from 'logic/contracts/safeContracts'
 import Layout from '../components/Layout'
 
 class SendSignMessage extends Component {
   constructor (props) {
     super(props)
     this.maxSeconds = 30
+    this.ownerSignatures = []
     this.state = {
-      owners: [],
-      threshold: undefined,
       seconds: this.maxSeconds,
-      ownerSignatures: []
+      owners: [],
+      threshold: undefined
     }
   }
 
   componentDidMount = async () => {
-    const { signMessages, ethAccount } = this.props
-    const { owners, threshold } = await getSignaturesOwnersRatio(ethAccount, signMessages)
+    const { signMessages } = this.props
+
+    const safeAddress = signMessages.message[3]
+    const threshold = await getThreshold(safeAddress)
+    const owners = await getOwners(safeAddress)
     this.setState({
       owners,
       threshold
     })
-  }
-
-  componentDidUpdate = async (prevProps, prevState) => {
-    const { ethAccount, signMessages } = this.props
-    if (ethAccount && ethAccount !== prevProps.ethAccount) {
-      const { owners, threshold } = await getSignaturesOwnersRatio(ethAccount, signMessages)
-      this.setState({
-        owners,
-        threshold
-      })
-    }
   }
 
   handleConfirmSignMessage = (resend) => {
@@ -70,7 +64,6 @@ class SendSignMessage extends Component {
   handleMobileAppResponse = async () => {
     chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
       if (request.msg === messages.MSG_RESOLVED_OWNER_SIGN_TYPED_DATA) {
-        clearInterval(this.timer)
         if (request.hash && this.messageHash === request.hash) {
           const ownerSignature = {
             r: request.signature.slice(0, 66),
@@ -87,15 +80,15 @@ class SendSignMessage extends Component {
   }
 
   handleSignature = async (address, signature) => {
+    const { signMessages } = this.props
     const {
       owners,
-      ownerSignatures,
       threshold
     } = this.state
-    const { signMessages } = this.props
+
     const checksumedAddress = address && EthUtil.toChecksumAddress(address)
 
-    if (ownerSignatures.map(ownerSignature => ownerSignature.signature).indexOf(signature) >= 0) {
+    if (this.ownerSignatures.map(ownerSignature => ownerSignature.signature).indexOf(signature) >= 0) {
       console.error('Signature', signature, 'has been already collected.')
       return
     }
@@ -107,24 +100,21 @@ class SendSignMessage extends Component {
       address: checksumedAddress,
       signature
     }
-    this.setState((prevState) => {
-      const newOwnerSignatures = prevState.ownerSignatures
-      newOwnerSignatures.push(ownerSignature)
-      return { ownerSignatures: newOwnerSignatures }
-    })
+    this.ownerSignatures.push(ownerSignature)
 
-    if (ownerSignatures && threshold && ownerSignatures.length >= threshold) {
+    if (this.ownerSignatures.length === threshold) {
+      clearInterval(this.timer)
       const message = signMessages.message[1]
       const safeAddress = signMessages.message[3]
-      const walletSignature = await createWalletSignature(ownerSignatures, message, safeAddress)
+      const walletSignature = await createWalletSignature(this.ownerSignatures, message, safeAddress)
       await this.handleRemoveSignMessage(walletSignature)
     }
   }
 
   handleSignMessage = async () => {
     const {
-      signMessages,
-      ethAccount
+      ethAccount,
+      signMessages
     } = this.props
 
     this.setState({ seconds: this.maxSeconds })
@@ -177,7 +167,7 @@ class SendSignMessage extends Component {
   startCountdown = () => {
     this.timer = setInterval(
       this.countDown,
-      500
+      1000
     )
   }
 
@@ -202,12 +192,7 @@ class SendSignMessage extends Component {
       loadedData,
       reviewedSignature
     } = this.props
-    const {
-      seconds,
-      owners,
-      threshold,
-      ownerSignatures
-    } = this.state
+    const { seconds } = this.state
 
     return (
       <Layout
@@ -215,9 +200,6 @@ class SendSignMessage extends Component {
         loadedData={loadedData}
         reviewedSignature={reviewedSignature}
         seconds={seconds}
-        owners={owners}
-        ownerSignatures={ownerSignatures}
-        threshold={threshold}
         handleConfirmSignMessage={this.handleConfirmSignMessage}
         handleRejectSignMessage={this.handleRejectSignMessage}
         retryShowSignMessage={this.retryShowSignMessage}

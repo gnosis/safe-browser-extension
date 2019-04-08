@@ -21,7 +21,7 @@ class Layout extends Component {
       <React.Fragment>
         {loadedData === false && (
           <RetryLoadDataTransactionState
-            retryShowTransaction={retryShowTransaction}
+            retryShowElement={retryShowTransaction}
           />
         )}
         {loadedData && (
@@ -29,7 +29,7 @@ class Layout extends Component {
             {reviewedTx ? (
               <SendTransactionState
                 seconds={seconds}
-                handleConfirmTransaction={handleConfirmTransaction}
+                retryShowElement={handleConfirmTransaction}
               />
             ) : (
               <FooterButtons

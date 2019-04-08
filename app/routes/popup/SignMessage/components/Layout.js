@@ -74,7 +74,7 @@ class Layout extends Component {
               loadedData={loadedData}
               reviewedSignature={reviewedSignature}
             />
-        }
+          }
         </form>
       </React.Fragment>
     )
