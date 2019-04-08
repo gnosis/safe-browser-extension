@@ -1,0 +1,23 @@
+language: node_js
+
+node_js:
+- '9'
+
+cache:
+  directories:
+    - node_modules
+
+before_deploy:
+  - npm run build:prod # TODO: We need to zip this and create a file that we can upload in the deploy step
+  - npm run build:prod-mainnet # TODO: same here
+
+deploy:
+  provider: releases
+  api_key: "${GITHUB_API_KEY}"
+  file_glob: true
+  file:
+    - build/*-rinkeby.zip #TODO add correct file path
+    - build/*-mainnet.zip #TODO add correct file path
+  skip_cleanup: true
+  on:
+    tags: true
