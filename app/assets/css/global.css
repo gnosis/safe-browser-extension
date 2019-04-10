@@ -2489,6 +2489,70 @@ footer .stepper-dots>li.active{
   letter-spacing:1px;
   padding:0 10px
 }
+
+.extensionPopup .extension-inner .signMessageSummary{
+  display:-ms-flexbox;
+  display:flex;
+  -ms-flex-wrap:wrap;
+  flex-wrap:wrap;
+  width:100%;
+  -ms-flex-pack:justify;
+  justify-content:space-between;
+  padding:10px 20px;
+  margin:20px 0;
+  border-top:1px solid #e4e8f1;
+  color: #65707e;
+}
+.extensionPopup .extension-inner .signMessageSummary>span{
+  width:100%;
+  display:-ms-flexbox;
+  display:flex;
+  -ms-flex-wrap:nowrap;
+  flex-wrap:nowrap;
+  -ms-flex-pack:justify;
+  font-size:1.3em;
+  line-height:1;
+
+  margin:4px 0
+}
+.extensionPopup .extension-inner .signMessageSummary>span>span{
+  display:-ms-flexbox;
+  display:flex;
+  -ms-flex-wrap:wrap;
+  flex-wrap:wrap;
+  text-align:left;
+  -ms-flex-align:center;
+  align-items:center;
+  -ms-flex-line-pack:center;
+  align-content:center;
+  -ms-flex-pack:end;
+  justify-content:flex-end;
+  word-break:break-all
+}
+.extensionPopup .extension-inner .signMessageSummary>span p{
+  font-size:inherit;
+  font-weight:inherit;
+  color:inherit;
+  margin: 0;
+  text-align: left;
+  width: 110px;
+  min-width: 110px;
+  margin-right: 5px;
+}
+.extensionPopup .extension-inner .youAreSigning {
+  text-align:center;
+  padding-top:20px;
+  width:100%;
+  font-size:14px;
+  color:#a2a8ba;
+}
+.extensionPopup .extension-inner .viewMessage {
+  text-align:center;
+  padding-bottom:25px;
+  width:100%;
+  font-size:14px;
+}
+
 .extensionPopup .extension-inner .button-group>button{
   font-size:1.5em
 }
