@@ -5,6 +5,7 @@ import {
   PASSWORD_URL,
   TRANSACTION_URL,
   SIGN_MESSAGE_URL,
+  VIEW_MESSAGE_URL,
   ACCOUNT_URL,
   WELCOME_URL,
   DOWNLOAD_APPS_URL,
@@ -21,6 +22,8 @@ import {
 
 import Transaction from 'routes/popup/Transaction/containers/Transaction'
 import SignMessage from 'routes/popup/SignMessage/containers/SignMessage'
+import ViewMessage from 'routes/popup/ViewMessage/containers/ViewMessage'
+
 import Welcome from 'routes/extension/Welcome/containers/Welcome'
 import DownloadApps from 'routes/extension/DownloadApps/containers/DownloadApps'
 import ChangePassword from 'routes/extension/ChangePassword/containers/ChangePassword'
@@ -42,6 +45,7 @@ export const PopupRoutes = () => (
     <Route exact path={PASSWORD_URL} component={Password} />
     <Route exact path={TRANSACTION_URL} component={Transaction} />
     <Route exact path={SIGN_MESSAGE_URL} component={SignMessage} />
+    <Route exact path={VIEW_MESSAGE_URL} component={ViewMessage} />
   </Switch>
 )
 

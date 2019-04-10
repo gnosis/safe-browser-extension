@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
-import ReactJson from 'react-json-view'
+import { Link } from 'react-router-dom'
 
-import { REVIEW_SIGN_MESSAGE } from '../../../../../config/messages'
+import { VIEW_MESSAGE_URL } from 'routes/routes'
+import {
+  REVIEW_SIGN_MESSAGE,
+  YOU_ARE_SIGNING,
+  NAME,
+  URL,
+  VERIFYING_CONTRACT,
+  VIEW_MESSAGE
+} from '../../../../../config/messages'
 import HeaderPopup from 'components/Popup/HeaderPopup'
 import AccountData from 'components/Popup/AccountData'
 import SendSignMessage from 'routes/popup/SignMessage/components/SendSignMessage/containers/SendSignMessage'
@@ -12,7 +20,7 @@ class Layout extends Component {
     e.preventDefault()
   }
 
-  render () {
+  render() {
     const {
       signMessages,
       balance,
@@ -26,6 +34,8 @@ class Layout extends Component {
       showSignMessage,
       handleSignMessage
     } = this.props
+
+    const signedMessage = JSON.parse(signMessages.message[1])
 
     return (
       <React.Fragment>
@@ -41,28 +51,27 @@ class Layout extends Component {
             balance={balance}
             symbol={'ETH'}
           />
-          {!reviewedSignature && signMessages && signMessages.message[1] &&
-            <div style={{padding:'20px'}}>
-              <h2>Domain</h2>
-              <br/>
-              <ReactJson
-                src={JSON.parse(signMessages.message[1]).domain}
-                enableClipboard={false}
-                displayObjectSize={false}
-                displayDataTypes={false}
-                collapsed={1}
-              />
-              <br/>
-              <h2>Message</h2>
-              <br/>
-              <ReactJson
-                src={JSON.parse(signMessages.message[1]).message}
-                enableClipboard={false}
-                displayObjectSize={false}
-                displayDataTypes={false}
-                collapsed={1}
-              />
-            </div>
+          <div className={styles.youAreSigning}>{YOU_ARE_SIGNING}:</div>
+          {signedMessage && 
+            <React.Fragment>
+              <div className={styles.signMessageSummary}>
+                <span>
+                  <p><b>{NAME}</b></p>
+                  <span>{signedMessage.domain.name}</span>
+                </span>
+                <span>
+                  <p><b>{URL}</b></p>
+                  <span></span>
+                </span>
+                <span>
+                  <p><b>{VERIFYING_CONTRACT}</b></p>
+                  <span>{signedMessage.domain.verifyingContract}</span>
+                </span>
+              </div>
+              <div className={styles.viewMessage}>
+                <Link to={VIEW_MESSAGE_URL}>{VIEW_MESSAGE}</Link>
+              </div>
+            </React.Fragment>
           }
           {signMessages && (signMessages.message[2] === 'sendSignMessage') &&
             <SendSignMessage
