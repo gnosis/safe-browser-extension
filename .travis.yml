@@ -9,6 +9,9 @@ cache:
   directories:
     - node_modules
 
+script:
+  - chmod +x ci/build_production_releases.sh
+
 before_deploy:
   - ./ci/build_production_releases.sh
 

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ev
 
 rm -r ./ci/outputs
 
