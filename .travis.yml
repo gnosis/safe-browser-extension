@@ -12,7 +12,7 @@ cache:
     - node_modules
 
 before_install:
-  - apt install zip
+  - apt-get install zip
 
 before_deploy:
   - ./ci/build_production_releases.sh
