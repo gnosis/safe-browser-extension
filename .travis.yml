@@ -11,9 +11,6 @@ cache:
   directories:
     - node_modules
 
-before_install:
-  - apt-get install zip
-
 before_deploy:
   - ./ci/build_production_releases.sh
 
