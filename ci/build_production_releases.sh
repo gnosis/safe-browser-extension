@@ -1,14 +1,23 @@
 #!/bin/bash
-set -ev
+set -v
 
-rm -r ./ci/outputs
+if [ ! -e ".env" ]; then
+    touch .env
+fi 
+if [ -d "./ci/outputs" ]; then
+  rm -r ./ci/outputs
+fi
+mkdir ./ci/outputs
+if [ -d "./build" ]; then
+  rm -r ./build
+fi
 
 # PRODUCTION: Build and zip Rinkeby version
-rm -r ./build
 npm run build:prod
 zip -r ./ci/outputs/prod-rinkeby.zip ./build/*
 
-# PRODUCTION: Build and zip Mainnet version
 rm -r ./build
+
+# PRODUCTION: Build and zip Mainnet version
 npm run build:prod-mainnet
 zip -r ./ci/outputs/prod-mainnet.zip ./build/*
