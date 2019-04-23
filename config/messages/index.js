@@ -1,5 +1,14 @@
 import ReactHtmlParser from 'react-html-parser'
 
+let chrome = window.chrome
+if (!chrome && process.env.NODE_ENV === 'test') {
+  chrome = {
+    i18n: {
+      getMessage: message => message
+    }
+  }
+}
+
 export const ABOUT = ReactHtmlParser(chrome.i18n.getMessage('about'))
 export const ADD = ReactHtmlParser(chrome.i18n.getMessage('add'))
 export const ADD_WEBSITE = ReactHtmlParser(chrome.i18n.getMessage('add_website'))

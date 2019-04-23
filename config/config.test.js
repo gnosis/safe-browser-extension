@@ -142,7 +142,7 @@ describe('Configuration', () => {
     })
 
     test('getIosAppUrl', () => {
-      testGetIosAppUrl('https://betas.to/7TovLG11')
+      testGetIosAppUrl('https://betas.to/qnfzuPN6')
     })
 
     test('getPushNotificationServiceUrl', () => {
@@ -201,7 +201,7 @@ describe('Configuration', () => {
     })
 
     test('getIosAppUrl', () => {
-      testGetIosAppUrl('https://betas.to/7TovLG11')
+      testGetIosAppUrl('https://betas.to/qnfzuPN6')
     })
 
     test('getPushNotificationServiceUrl', () => {
@@ -260,7 +260,7 @@ describe('Configuration', () => {
     })
 
     test('getIosAppUrl', () => {
-      testGetIosAppUrl(null)
+      testGetIosAppUrl('https://testflight.apple.com/join/r9q5stIb')
     })
 
     test('getPushNotificationServiceUrl', () => {
@@ -319,7 +319,7 @@ describe('Configuration', () => {
     })
 
     test('getIosAppUrl', () => {
-      testGetIosAppUrl('http://appstore.com/gnosissafemainnet')
+      testGetIosAppUrl('https://appstore.com/gnosissafesmartwallet')
     })
 
     test('getPushNotificationServiceUrl', () => {
@@ -378,7 +378,7 @@ describe('Configuration', () => {
     })
 
     test('getIosAppUrl', () => {
-      testGetIosAppUrl(null)
+      testGetIosAppUrl('https://testflight.apple.com/join/r9q5stIb')
     })
 
     test('getPushNotificationServiceUrl', () => {
@@ -437,7 +437,7 @@ describe('Configuration', () => {
     })
 
     test('getIosAppUrl', () => {
-      testGetIosAppUrl('http://appstore.com/gnosissafemainnet')
+      testGetIosAppUrl('https://appstore.com/gnosissafesmartwallet')
     })
 
     test('getPushNotificationServiceUrl', () => {
