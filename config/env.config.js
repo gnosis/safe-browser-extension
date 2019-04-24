@@ -26,12 +26,12 @@ const rinkebyAppStoreIos = 'https://testflight.apple.com/join/r9q5stIb'
 const rinkebyStagingAndroid = 'https://betas.to/riowXzcx'
 const rinkebyStagingIos = 'https://betas.to/qnfzuPN6'
 
-const prodPushNotificationServiceUrl = 'https://safe-notification.gnosis.pm/api/v1/'
-const stagingPushNotificationServiceUrl = 'https://safe-notification.staging.gnosisdev.com/api/v1/'
+const prodPushNotificationServiceUrl = 'https://safe-notification.gnosis.pm'
+const stagingPushNotificationServiceUrl = 'https://safe-notification.staging.gnosisdev.com'
 
-const prodRinkebyTransactionRelayServiceUrl = 'https://safe-relay.rinkeby.gnosis.pm/api/v1/'
-const prodMainnetTransactionRelayServiceUrl = 'https://safe-relay.gnosis.pm/api/v1/'
-const stagingTransactionRelayServiceUrl = 'https://safe-relay.staging.gnosisdev.com/api/v1/'
+const prodRinkebyTransactionRelayServiceUrl = 'https://safe-relay.rinkeby.gnosis.pm'
+const prodMainnetTransactionRelayServiceUrl = 'https://safe-relay.gnosis.pm'
+const stagingTransactionRelayServiceUrl = 'https://safe-relay.staging.gnosisdev.com'
 
 const testFirebaseAuthDomain = 'test-safe-notifications.firebaseapp.com'
 const testFirebaseDatabaseUrl = 'https://test-safe-notifications.firebaseio.com'

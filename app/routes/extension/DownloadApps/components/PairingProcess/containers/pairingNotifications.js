@@ -34,7 +34,7 @@ const setUpFirebase = () => {
 
 export const authPushNotificationService = async (pushToken, privateKey) => {
   try {
-    const url = getPushNotificationServiceUrl() + 'auth/'
+    const url = getPushNotificationServiceUrl() + '/api/v1/auth/'
     const headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'

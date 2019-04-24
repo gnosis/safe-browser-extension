@@ -146,11 +146,11 @@ describe('Configuration', () => {
     })
 
     test('getPushNotificationServiceUrl', () => {
-      testGetPushNotificationServiceUrl('https://safe-notification.staging.gnosisdev.com/api/v1/')
+      testGetPushNotificationServiceUrl('https://safe-notification.staging.gnosisdev.com')
     })
 
     test('getTransactionRelayServiceUrl', () => {
-      testGetTransactionRelayServiceUrl('https://safe-relay.staging.gnosisdev.com/api/v1/')
+      testGetTransactionRelayServiceUrl('https://safe-relay.staging.gnosisdev.com')
     })
 
     test('getFirebaseAuthDomain', () => {
@@ -205,11 +205,11 @@ describe('Configuration', () => {
     })
 
     test('getPushNotificationServiceUrl', () => {
-      testGetPushNotificationServiceUrl('https://safe-notification.staging.gnosisdev.com/api/v1/')
+      testGetPushNotificationServiceUrl('https://safe-notification.staging.gnosisdev.com')
     })
 
     test('getTransactionRelayServiceUrl', () => {
-      testGetTransactionRelayServiceUrl('https://safe-relay.staging.gnosisdev.com/api/v1/')
+      testGetTransactionRelayServiceUrl('https://safe-relay.staging.gnosisdev.com')
     })
 
     test('getFirebaseAuthDomain', () => {
@@ -264,11 +264,11 @@ describe('Configuration', () => {
     })
 
     test('getPushNotificationServiceUrl', () => {
-      testGetPushNotificationServiceUrl('https://safe-notification.gnosis.pm/api/v1/')
+      testGetPushNotificationServiceUrl('https://safe-notification.gnosis.pm')
     })
 
     test('getTransactionRelayServiceUrl', () => {
-      testGetTransactionRelayServiceUrl('https://safe-relay.rinkeby.gnosis.pm/api/v1/')
+      testGetTransactionRelayServiceUrl('https://safe-relay.rinkeby.gnosis.pm')
     })
 
     test('getFirebaseAuthDomain', () => {
@@ -323,11 +323,11 @@ describe('Configuration', () => {
     })
 
     test('getPushNotificationServiceUrl', () => {
-      testGetPushNotificationServiceUrl('https://safe-notification.gnosis.pm/api/v1/')
+      testGetPushNotificationServiceUrl('https://safe-notification.gnosis.pm')
     })
 
     test('getTransactionRelayServiceUrl', () => {
-      testGetTransactionRelayServiceUrl('https://safe-relay.gnosis.pm/api/v1/')
+      testGetTransactionRelayServiceUrl('https://safe-relay.gnosis.pm')
     })
 
     test('getFirebaseAuthDomain', () => {
@@ -382,11 +382,11 @@ describe('Configuration', () => {
     })
 
     test('getPushNotificationServiceUrl', () => {
-      testGetPushNotificationServiceUrl('https://safe-notification.gnosis.pm/api/v1/')
+      testGetPushNotificationServiceUrl('https://safe-notification.gnosis.pm')
     })
 
     test('getTransactionRelayServiceUrl', () => {
-      testGetTransactionRelayServiceUrl('https://safe-relay.rinkeby.gnosis.pm/api/v1/')
+      testGetTransactionRelayServiceUrl('https://safe-relay.rinkeby.gnosis.pm')
     })
 
     test('getFirebaseAuthDomain', () => {
@@ -441,11 +441,11 @@ describe('Configuration', () => {
     })
 
     test('getPushNotificationServiceUrl', () => {
-      testGetPushNotificationServiceUrl('https://safe-notification.gnosis.pm/api/v1/')
+      testGetPushNotificationServiceUrl('https://safe-notification.gnosis.pm')
     })
 
     test('getTransactionRelayServiceUrl', () => {
-      testGetTransactionRelayServiceUrl('https://safe-relay.gnosis.pm/api/v1/')
+      testGetTransactionRelayServiceUrl('https://safe-relay.gnosis.pm')
     })
 
     test('getFirebaseAuthDomain', () => {
