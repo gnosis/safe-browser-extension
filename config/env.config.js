@@ -26,7 +26,11 @@ const rinkebyAppStoreIos = 'https://testflight.apple.com/join/r9q5stIb'
 const rinkebyStagingAndroid = 'https://betas.to/riowXzcx'
 const rinkebyStagingIos = 'https://betas.to/qnfzuPN6'
 
+const prodPushNotificationServiceUrl = 'https://safe-notification.gnosis.pm/api/v1/'
 const stagingPushNotificationServiceUrl = 'https://safe-notification.staging.gnosisdev.com/api/v1/'
+
+const prodRinkebyTransactionRelayServiceUrl = 'https://safe-relay.rinkeby.gnosis.pm/api/v1/'
+const prodMainnetTransactionRelayServiceUrl = 'https://safe-relay.gnosis.pm/api/v1/'
 const stagingTransactionRelayServiceUrl = 'https://safe-relay.staging.gnosisdev.com/api/v1/'
 
 const testFirebaseAuthDomain = 'test-safe-notifications.firebaseapp.com'
@@ -47,10 +51,10 @@ const envConfig = {
       [MAINNET]: mainnetAppStoreIos,
       [RINKEBY]: rinkebyAppStoreIos
     },
-    [PUSH_NOTIFICATION_SERVICE_URL]: process.env.PUSH_NOTIFICATION_SERVICE_URL,
+    [PUSH_NOTIFICATION_SERVICE_URL]: prodPushNotificationServiceUrl,
     [TRANSACTION_RELAY_SERVICE_URL]: {
-      [MAINNET]: process.env.TRANSACTION_RELAY_SERVICE_MAINNET_URL,
-      [RINKEBY]: process.env.TRANSACTION_RELAY_SERVICE_RINKEBY_URL
+      [MAINNET]: prodMainnetTransactionRelayServiceUrl,
+      [RINKEBY]: prodRinkebyTransactionRelayServiceUrl
     },
     [FIREBASE_AUTH_DOMAIN]: process.env.FIREBASE_AUTH_DOMAIN,
     [FIREBASE_DATABASE_URL]: process.env.FIREBASE_DATABASE_URL,
@@ -71,10 +75,10 @@ const envConfig = {
       [MAINNET]: mainnetAppStoreIos,
       [RINKEBY]: rinkebyAppStoreIos
     },
-    [PUSH_NOTIFICATION_SERVICE_URL]: process.env.PUSH_NOTIFICATION_SERVICE_URL,
+    [PUSH_NOTIFICATION_SERVICE_URL]: prodPushNotificationServiceUrl,
     [TRANSACTION_RELAY_SERVICE_URL]: {
-      [MAINNET]: process.env.TRANSACTION_RELAY_SERVICE_MAINNET_URL,
-      [RINKEBY]: process.env.TRANSACTION_RELAY_SERVICE_RINKEBY_URL
+      [MAINNET]: prodMainnetTransactionRelayServiceUrl,
+      [RINKEBY]: prodRinkebyTransactionRelayServiceUrl
     },
     [FIREBASE_AUTH_DOMAIN]: process.env.FIREBASE_AUTH_DOMAIN,
     [FIREBASE_DATABASE_URL]: process.env.FIREBASE_DATABASE_URL,

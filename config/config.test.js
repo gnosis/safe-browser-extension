@@ -264,11 +264,11 @@ describe('Configuration', () => {
     })
 
     test('getPushNotificationServiceUrl', () => {
-      testGetPushNotificationServiceUrl(process.env.PUSH_NOTIFICATION_SERVICE_URL)
+      testGetPushNotificationServiceUrl('https://safe-notification.gnosis.pm/api/v1/')
     })
 
     test('getTransactionRelayServiceUrl', () => {
-      testGetTransactionRelayServiceUrl(process.env.TRANSACTION_RELAY_SERVICE_RINKEBY_URL)
+      testGetTransactionRelayServiceUrl('https://safe-relay.rinkeby.gnosis.pm/api/v1/')
     })
 
     test('getFirebaseAuthDomain', () => {
@@ -323,11 +323,11 @@ describe('Configuration', () => {
     })
 
     test('getPushNotificationServiceUrl', () => {
-      testGetPushNotificationServiceUrl(process.env.PUSH_NOTIFICATION_SERVICE_URL)
+      testGetPushNotificationServiceUrl('https://safe-notification.gnosis.pm/api/v1/')
     })
 
     test('getTransactionRelayServiceUrl', () => {
-      testGetTransactionRelayServiceUrl(process.env.TRANSACTION_RELAY_SERVICE_MAINNET_URL)
+      testGetTransactionRelayServiceUrl('https://safe-relay.gnosis.pm/api/v1/')
     })
 
     test('getFirebaseAuthDomain', () => {
@@ -382,11 +382,11 @@ describe('Configuration', () => {
     })
 
     test('getPushNotificationServiceUrl', () => {
-      testGetPushNotificationServiceUrl(process.env.PUSH_NOTIFICATION_SERVICE_URL)
+      testGetPushNotificationServiceUrl('https://safe-notification.gnosis.pm/api/v1/')
     })
 
     test('getTransactionRelayServiceUrl', () => {
-      testGetTransactionRelayServiceUrl(process.env.TRANSACTION_RELAY_SERVICE_RINKEBY_URL)
+      testGetTransactionRelayServiceUrl('https://safe-relay.rinkeby.gnosis.pm/api/v1/')
     })
 
     test('getFirebaseAuthDomain', () => {
@@ -441,11 +441,11 @@ describe('Configuration', () => {
     })
 
     test('getPushNotificationServiceUrl', () => {
-      testGetPushNotificationServiceUrl(process.env.PUSH_NOTIFICATION_SERVICE_URL)
+      testGetPushNotificationServiceUrl('https://safe-notification.gnosis.pm/api/v1/')
     })
 
     test('getTransactionRelayServiceUrl', () => {
-      testGetTransactionRelayServiceUrl(process.env.TRANSACTION_RELAY_SERVICE_MAINNET_URL)
+      testGetTransactionRelayServiceUrl('https://safe-relay.gnosis.pm/api/v1/')
     })
 
     test('getFirebaseAuthDomain', () => {
