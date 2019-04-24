@@ -38,7 +38,7 @@ class PairingProcess extends Component {
         this.setState({ message: NOTIFICATIONS_PERMISSION_REQUIRED })
         return
       }
-      if (authPushNotificationService(token, currentAccount.getPrivateKey())) {
+      if (authPushNotificationService(token, [currentAccount.getPrivateKey()])) {
         this.renderQrImageFrom(currentAccount.getPrivateKey())
       }
     } catch (err) {

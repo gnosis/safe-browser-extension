@@ -10,7 +10,8 @@ import {
   getFirebaseProjectId,
   getFirebaseStorageBucket,
   getFirebaseMessagingSenderId,
-  getPushNotificationServiceUrl
+  getPushNotificationServiceUrl,
+  getVersion
 } from '../../../../../../../config'
 
 export const setUpNotifications = () => {
@@ -32,14 +33,14 @@ const setUpFirebase = () => {
   return firebase.messaging()
 }
 
-export const authPushNotificationService = async (pushToken, privateKey) => {
+export const authPushNotificationService = async (pushToken, privateKeys) => {
   try {
-    const url = getPushNotificationServiceUrl() + '/api/v1/auth/'
+    const url = getPushNotificationServiceUrl() + '/api/v2/auth/'
     const headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }
-    const body = generateAuthContent(pushToken, privateKey)
+    const body = generateAuthContent(pushToken, privateKeys)
     const response = await fetch(url, {
       method: 'POST',
       headers,
@@ -55,18 +56,24 @@ export const authPushNotificationService = async (pushToken, privateKey) => {
 }
 
 // Data sent to the push notification service to register and pair the device.
-const generateAuthContent = (pushToken, privateKey) => {
+const generateAuthContent = (pushToken, privateKeys) => {
   const data = EthUtil.sha3('GNO' + pushToken)
-  const vrs = EthUtil.ecsign(data, privateKey)
-  const r = new BigNumber(EthUtil.bufferToHex(vrs.r))
-  const s = new BigNumber(EthUtil.bufferToHex(vrs.s))
+
+  const processedPrivateKeys = privateKeys.map(privateKey => {
+    const vrs = EthUtil.ecsign(data, privateKey)
+    const v = vrs.v
+    const r = new BigNumber(EthUtil.bufferToHex(vrs.r)).toString(10)
+    const s = new BigNumber(EthUtil.bufferToHex(vrs.s)).toString(10)
+    return { r, s, v }
+  })
+
   const authContent = JSON.stringify({
-    signature: {
-      r: r.toString(10),
-      s: s.toString(10),
-      v: vrs.v
-    },
-    push_token: pushToken
+    push_token: pushToken,
+    build_number: process.env.TRAVIS_BUILD_NUMBER || '0',
+    version_name: getVersion(),
+    client: 'extension',
+    bundle: 'safe-browser-extension',
+    signatures: processedPrivateKeys
   })
   return authContent
 }

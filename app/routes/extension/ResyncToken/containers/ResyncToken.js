@@ -47,7 +47,7 @@ class ResyncToken extends Component {
         this.setState({ message: ERROR_SYNCING })
         return
       }
-      authPushNotificationService(token, currentAccount.getPrivateKey())
+      authPushNotificationService(token, [currentAccount.getPrivateKey()])
       this.setState({ message: SYNCED_TOKEN })
     } catch (err) {
       this.setState({ message: ERROR_SYNCING })
