@@ -11,7 +11,8 @@ import {
   getFirebaseStorageBucket,
   getFirebaseMessagingSenderId,
   getPushNotificationServiceUrl,
-  getVersion
+  getAppVersionNumber,
+  getAppBuildNumber
 } from '../../../../../../../config'
 
 export const setUpNotifications = () => {
@@ -69,8 +70,8 @@ const generateAuthContent = (pushToken, privateKeys) => {
 
   const authContent = JSON.stringify({
     push_token: pushToken,
-    build_number: process.env.TRAVIS_BUILD_NUMBER || '0',
-    version_name: getVersion(),
+    build_number: getAppBuildNumber(),
+    version_name: getAppVersionNumber(),
     client: 'extension',
     bundle: 'safe-browser-extension',
     signatures: processedPrivateKeys

@@ -52,8 +52,12 @@ export const getNetwork = () => {
     : RINKEBY
 }
 
-export const getVersion = () => {
+export const getAppVersionNumber = () => {
   return manifest.version
+}
+
+export const getAppBuildNumber = () => {
+  return process.env.TRAVIS_BUILD_NUMBER || '0'
 }
 
 export const getNetworkName = () => {
