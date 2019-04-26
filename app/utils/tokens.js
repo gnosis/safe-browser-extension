@@ -1,10 +1,6 @@
 import fetch from 'node-fetch'
 
-import {
-  getNetwork,
-  getTransactionRelayServiceUrl
-} from '../../config'
-import { RINKEBY } from '../../config/names'
+import { getTransactionRelayServiceUrl } from '../../config'
 
 export const getTokensFromRelayService = async (params) => {
   const baseParams = 'limit=1000&ordering=relevance,name'
@@ -27,6 +23,7 @@ export const getTokensFromRelayService = async (params) => {
     }
     return []
   } catch (err) {
+    console.error(err)
     return []
   }
 }

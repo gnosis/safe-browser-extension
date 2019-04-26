@@ -6,7 +6,7 @@ import {
 const initalState = {
   versionNumber: undefined,
   buildNumber: undefined,
-  updateNotified: false
+  lastUpdateNotified: false
 }
 
 function device(state = initalState, action) {
@@ -15,13 +15,13 @@ function device(state = initalState, action) {
       return {
         versionNumber: action.versionNumber,
         buildNumber: action.buildNumber,
-        updateNotified: false
+        lastUpdateNotified: false
       }
 
     case NOTIFY_DEVICE_UPDATED:
       return {
         ...state,
-        updateNotified: true,
+        lastUpdateNotified: true,
       }
 
     default:

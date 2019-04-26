@@ -16,7 +16,7 @@ describe('Test device redux reducer', () => {
       device: {
         versionNumber: undefined,
         buildNumber: undefined,
-        updateNotified: true
+        lastUpdateNotified: true
       }
     }
     const currentStore = createStore(rootReducer, stateBefore)
@@ -30,7 +30,7 @@ describe('Test device redux reducer', () => {
     const expectedState = {
       versionNumber: appVersion,
       buildNumber: buildNumber,
-      updateNotified: false
+      lastUpdateNotified: false
     }
     expect(currentStore.getState().device).toEqual(expectedState)
   })
@@ -43,7 +43,7 @@ describe('Test device redux reducer', () => {
       device: {
         versionNumber: appVersion,
         buildNumber: buildNumber,
-        updateNotified: false
+        lastUpdateNotified: false
       }
     }
     const currentStore = createStore(rootReducer, stateBefore)
@@ -55,7 +55,7 @@ describe('Test device redux reducer', () => {
     const expectedState = {
       versionNumber: appVersion,
       buildNumber: buildNumber,
-      updateNotified: true
+      lastUpdateNotified: true
     }
     expect(currentStore.getState().device).toEqual(expectedState)
   })
