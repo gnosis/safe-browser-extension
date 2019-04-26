@@ -34,14 +34,15 @@ const setUpFirebase = () => {
   return firebase.messaging()
 }
 
-export const authPushNotificationService = async (pushToken, privateKeys) => {
+export const authPushNotificationService = async (pushToken, accounts) => {
   try {
     const url = getPushNotificationServiceUrl() + '/api/v2/auth/'
     const headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }
-    const body = generateAuthContent(pushToken, privateKeys)
+    const body = generateAuthContent(pushToken, accounts)
+
     const response = await fetch(url, {
       method: 'POST',
       headers,
@@ -49,7 +50,16 @@ export const authPushNotificationService = async (pushToken, privateKeys) => {
       credentials: 'omit',
       referrerPolicy: 'no-referrer'
     })
-    return response && response.status === 201
+    if (response && response.status === 201) {
+      const authResponse = await response.json()
+      if (authResponse.length !== accounts.length) {
+        return false
+      }
+      const accountAddresses = accounts.map(account => account.getChecksumAddressString()).sort()
+      const authAddresses = authResponse.map(account => account.owner).sort()
+      return JSON.stringify(accountAddresses) == JSON.stringify(authAddresses)
+    }
+    return false
   } catch (err) {
     console.error(err)
     return false
@@ -57,11 +67,16 @@ export const authPushNotificationService = async (pushToken, privateKeys) => {
 }
 
 // Data sent to the push notification service to register and pair the device.
-const generateAuthContent = (pushToken, privateKeys) => {
-  const data = EthUtil.sha3('GNO' + pushToken)
+const generateAuthContent = (pushToken, accounts) => {
+  const buildNumber = getAppBuildNumber()
+  const versionNumber = getAppVersionNumber()
+  const client = 'extension'
+  const bundle = 'safe-browser-extension'
 
-  const processedPrivateKeys = privateKeys.map(privateKey => {
-    const vrs = EthUtil.ecsign(data, privateKey)
+  const data = EthUtil.sha3('GNO' + pushToken + buildNumber + versionNumber + client + bundle)
+
+  const signatures = accounts.map(account => {
+    const vrs = EthUtil.ecsign(data, account.getPrivateKey())
     const v = vrs.v
     const r = new BigNumber(EthUtil.bufferToHex(vrs.r)).toString(10)
     const s = new BigNumber(EthUtil.bufferToHex(vrs.s)).toString(10)
@@ -70,11 +85,11 @@ const generateAuthContent = (pushToken, privateKeys) => {
 
   const authContent = JSON.stringify({
     push_token: pushToken,
-    build_number: getAppBuildNumber(),
-    version_name: getAppVersionNumber(),
-    client: 'extension',
-    bundle: 'safe-browser-extension',
-    signatures: processedPrivateKeys
+    build_number: buildNumber,
+    version_name: versionNumber,
+    client,
+    bundle,
+    signatures
   })
   return authContent
 }

@@ -17,11 +17,26 @@ import {
 } from './store'
 import { withAnalytics } from 'utils/analytics'
 
-const calculateInitialUrl = (account, safes) => {
+const calculateInitialUrl = (
+  account,
+  safes,
+  device
+) => {
   const validAccount = store.state.account.secondFA && Object.keys(account.secondFA).length > 0
   const validSafes = safes.safes && safes.safes.length > 0
+  const lastUpdateNotified = device.lastUpdateNotified
 
-  if (validAccount && validSafes) return ACCOUNT_URL
+  if (validAccount && validSafes) {
+    if (!lastUpdateNotified) {
+      return {
+        pathname: PASSWORD_URL,
+        state: {
+          dest: ACCOUNT_URL
+        }
+      }
+    }
+    return ACCOUNT_URL
+  }
 
   if (validAccount && !validSafes) {
     return {
@@ -49,8 +64,13 @@ store
       return
     }
 
-    const { account, safes } = store.state
-    const url = calculateInitialUrl(account, safes)
+    const {
+      account,
+      safes,
+      device
+    } = store.state
+
+    const url = calculateInitialUrl(account, safes, device)
     history.push(url)
 
     ReactDOM.render(
