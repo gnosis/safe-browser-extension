@@ -30,7 +30,8 @@ describe('Test account redux reducer', () => {
           address: undefined,
           hmac: undefined,
           seed: undefined,
-          unlockedMnemonic: undefined
+          unlockedMnemonic: undefined,
+          currentAccountIndex: undefined
         }
       }
     }
@@ -48,7 +49,8 @@ describe('Test account redux reducer', () => {
         address,
         hmac,
         seed,
-        unlockedMnemonic: undefined
+        unlockedMnemonic: undefined,
+        currentAccountIndex: 0
       }
     }
     expect(actualStore.getState().account).toEqual(expectedState)

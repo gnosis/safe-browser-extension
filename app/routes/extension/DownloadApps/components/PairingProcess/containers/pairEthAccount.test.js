@@ -7,7 +7,6 @@ import Web3 from 'web3'
 import {
   createEthAccount,
   getDecryptedEthAccount,
-  getUnencryptedEthAccount,
   createAccountFromMnemonic,
   generatePairingCodeContent
 } from './pairEthAccount'
@@ -17,37 +16,43 @@ Enzyme.configure({ adapter: new Adapter() })
 
 const password = 'asdfasdf1'
 const address = '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'
+const address1 = '0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'
+
+
 const mnemonic =
   'myth like bonus scare over problem client lizard pioneer submit female collect'
 const seed =
   'U2FsdGVkX1/PzvlOtLnvBa19Yl/wNyn+xeNJ/ZCFaPwFh+svYVUB7LSaocwBtb1tQIXandPp2A2gKj99B0uoWSigdVh4G8J1bEr+Pa6cqgPuN4nNRVhxAw+Sud+x0+8W'
 const hmac = '421e3feb800198552c762254830deaadd24a84eff4600897bbe1f9282dc47563'
 
-const account = {
-  secondFA: { address, seed, hmac }
-}
-
 const setUpSecondSafeUnlockedState = () => {
   return {
-    ...account,
     lockedState: false,
     secondFA: {
-      ...account.secondFA,
-      unlockedMnemonic: mnemonic
+      address,
+      seed,
+      hmac,
+      unlockedMnemonic: mnemonic,
+      currentAccountIndex: 0
     }
   }
 }
 
 const setUpSecondSafeLockedState = () => {
   return {
-    ...account,
+    secondFA: {
+      address,
+      seed,
+      hmac,
+      currentAccountIndex: 0
+    },
     lockedState: true
   }
 }
 
 describe('pairEthAccount', () => {
   test('Create Ethereum account from mnemonic', () => {
-    const ethAccount = createAccountFromMnemonic(mnemonic)
+    const ethAccount = createAccountFromMnemonic(mnemonic, 0)
     expect(ethAccount.getChecksumAddressString()).toEqual(address)
   })
 
@@ -66,7 +71,8 @@ describe('pairEthAccount', () => {
 
     const currentAccount = getDecryptedEthAccount(
       localAccount.secondFA.seed,
-      password
+      password,
+      0
     )
 
     expect(currentAccount.getChecksumAddressString()).toEqual(
@@ -77,8 +83,9 @@ describe('pairEthAccount', () => {
   test('Get unencrypted Ethereum account before connecting the second Safe', () => {
     const localAccount = setUpSecondSafeUnlockedState()
 
-    const currentAccount = getUnencryptedEthAccount(
-      localAccount.secondFA.unlockedMnemonic
+    const currentAccount = createAccountFromMnemonic(
+      localAccount.secondFA.unlockedMnemonic,
+      0
     )
 
     expect(currentAccount.getChecksumAddressString()).toEqual(
@@ -87,7 +94,7 @@ describe('pairEthAccount', () => {
   })
 
   test('QR-code for the pairing process', () => {
-    const ethAccount = createAccountFromMnemonic(mnemonic)
+    const ethAccount = createAccountFromMnemonic(mnemonic, 0)
     const publicKeyAccount = ethAccount.getPublicKeyString()
     const addressAccount = ethAccount.getAddress()
 
