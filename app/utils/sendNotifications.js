@@ -88,7 +88,7 @@ export const sendNotification = async (
   const signedData = EthUtil.sha3('GNO' + data)
   const vrs = EthUtil.ecsign(signedData, privateKey)
 
-  const url = getPushNotificationServiceUrl() + 'notifications/'
+  const url = getPushNotificationServiceUrl() + '/api/v1/notifications/'
   const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json'

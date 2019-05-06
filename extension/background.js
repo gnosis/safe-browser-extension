@@ -1,16 +1,20 @@
 import uuid from 'uuid/v4'
 import EthUtil from 'ethereumjs-util'
-
 import { normalizeUrl } from 'utils/helpers'
 import messages from './utils/messages'
 import StorageController from './utils/storageController'
 import PopupController from './utils/popupController'
 import { lockAccount } from 'actions/account'
 import { addSafe } from 'actions/safes'
+import { updateDeviceData } from 'actions/device'
 import {
   addTransaction,
   removeAllTransactions
 } from 'actions/transactions'
+import {
+  getAppVersionNumber,
+  getAppBuildNumber
+} from '../config'
 import { SAFE_ALREADY_EXISTS } from '../config/messages'
 import { ADDRESS_ZERO } from '../app/utils/helpers'
 
@@ -34,6 +38,14 @@ if ('serviceWorker' in navigator) {
       }
     })
 }
+
+chrome.runtime.onInstalled.addListener((details) => {
+  if (details.reason === 'install' || details.reason === 'update') {
+    storageController.getStore().dispatch(
+      updateDeviceData(getAppVersionNumber(), getAppBuildNumber())
+    )
+  }
+})
 
 const updateCurrentSafe = () => {
   let storePreviousSafeAddress = storeCurrentSafeAddress

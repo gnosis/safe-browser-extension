@@ -5,10 +5,21 @@ const config = require(path.resolve(__dirname, '../config'))
 const names = require(path.resolve(__dirname, '../config/names'))
 
 const buildDirectory = './build/'
+const envVars = [
+  'DEVELOPMENT_GA_TRACKING_ID',
+  'PRODUCTION_GA_TRACKING_ID',
+  'INFURA_PROJECT_ID',
+  'FIREBASE_AUTH_DOMAIN',
+  'FIREBASE_DATABASE_URL',
+  'FIREBASE_PROJECT_ID',
+  'FIREBASE_STORAGE_BUCKET',
+  'FIREBASE_MESSAGING_SENDER_ID'
+]
 
 export const generateEnvVariables = () => {
   const envKeys = Object
     .keys(process.env)
+    .filter(key => envVars.includes(key))
     .reduce((env, key) => {
       env[key] = JSON.stringify(process.env[key])
       return env
