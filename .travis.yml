@@ -1,3 +1,5 @@
+if: (branch = master) OR (branch = develop) OR (type = pull_request) OR (tag IS present)
+
 dist: xenial
 
 language: node_js
