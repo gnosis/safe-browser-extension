@@ -26,3 +26,5 @@ deploy:
     - ci/outputs/*-mainnet.zip
   skip_cleanup: true
   draft: true
+  on:
+    tags: true
