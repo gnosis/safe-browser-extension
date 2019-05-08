@@ -142,15 +142,15 @@ describe('Configuration', () => {
     })
 
     test('getIosAppUrl', () => {
-      testGetIosAppUrl('https://betas.to/7TovLG11')
+      testGetIosAppUrl('https://betas.to/qnfzuPN6')
     })
 
     test('getPushNotificationServiceUrl', () => {
-      testGetPushNotificationServiceUrl('https://safe-notification.staging.gnosisdev.com/api/v1/')
+      testGetPushNotificationServiceUrl('https://safe-notification.staging.gnosisdev.com')
     })
 
     test('getTransactionRelayServiceUrl', () => {
-      testGetTransactionRelayServiceUrl('https://safe-relay.staging.gnosisdev.com/api/v1/')
+      testGetTransactionRelayServiceUrl('https://safe-relay.staging.gnosisdev.com')
     })
 
     test('getFirebaseAuthDomain', () => {
@@ -201,15 +201,15 @@ describe('Configuration', () => {
     })
 
     test('getIosAppUrl', () => {
-      testGetIosAppUrl('https://betas.to/7TovLG11')
+      testGetIosAppUrl('https://betas.to/qnfzuPN6')
     })
 
     test('getPushNotificationServiceUrl', () => {
-      testGetPushNotificationServiceUrl('https://safe-notification.staging.gnosisdev.com/api/v1/')
+      testGetPushNotificationServiceUrl('https://safe-notification.staging.gnosisdev.com')
     })
 
     test('getTransactionRelayServiceUrl', () => {
-      testGetTransactionRelayServiceUrl('https://safe-relay.staging.gnosisdev.com/api/v1/')
+      testGetTransactionRelayServiceUrl('https://safe-relay.staging.gnosisdev.com')
     })
 
     test('getFirebaseAuthDomain', () => {
@@ -260,15 +260,15 @@ describe('Configuration', () => {
     })
 
     test('getIosAppUrl', () => {
-      testGetIosAppUrl(null)
+      testGetIosAppUrl('https://testflight.apple.com/join/r9q5stIb')
     })
 
     test('getPushNotificationServiceUrl', () => {
-      testGetPushNotificationServiceUrl(process.env.PUSH_NOTIFICATION_SERVICE_URL)
+      testGetPushNotificationServiceUrl('https://safe-notification.gnosis.pm')
     })
 
     test('getTransactionRelayServiceUrl', () => {
-      testGetTransactionRelayServiceUrl(process.env.TRANSACTION_RELAY_SERVICE_RINKEBY_URL)
+      testGetTransactionRelayServiceUrl('https://safe-relay.rinkeby.gnosis.pm')
     })
 
     test('getFirebaseAuthDomain', () => {
@@ -319,15 +319,15 @@ describe('Configuration', () => {
     })
 
     test('getIosAppUrl', () => {
-      testGetIosAppUrl('http://appstore.com/gnosissafemainnet')
+      testGetIosAppUrl('https://appstore.com/gnosissafesmartwallet')
     })
 
     test('getPushNotificationServiceUrl', () => {
-      testGetPushNotificationServiceUrl(process.env.PUSH_NOTIFICATION_SERVICE_URL)
+      testGetPushNotificationServiceUrl('https://safe-notification.gnosis.pm')
     })
 
     test('getTransactionRelayServiceUrl', () => {
-      testGetTransactionRelayServiceUrl(process.env.TRANSACTION_RELAY_SERVICE_MAINNET_URL)
+      testGetTransactionRelayServiceUrl('https://safe-relay.gnosis.pm')
     })
 
     test('getFirebaseAuthDomain', () => {
@@ -378,15 +378,15 @@ describe('Configuration', () => {
     })
 
     test('getIosAppUrl', () => {
-      testGetIosAppUrl(null)
+      testGetIosAppUrl('https://testflight.apple.com/join/r9q5stIb')
     })
 
     test('getPushNotificationServiceUrl', () => {
-      testGetPushNotificationServiceUrl(process.env.PUSH_NOTIFICATION_SERVICE_URL)
+      testGetPushNotificationServiceUrl('https://safe-notification.gnosis.pm')
     })
 
     test('getTransactionRelayServiceUrl', () => {
-      testGetTransactionRelayServiceUrl(process.env.TRANSACTION_RELAY_SERVICE_RINKEBY_URL)
+      testGetTransactionRelayServiceUrl('https://safe-relay.rinkeby.gnosis.pm')
     })
 
     test('getFirebaseAuthDomain', () => {
@@ -437,15 +437,15 @@ describe('Configuration', () => {
     })
 
     test('getIosAppUrl', () => {
-      testGetIosAppUrl('http://appstore.com/gnosissafemainnet')
+      testGetIosAppUrl('https://appstore.com/gnosissafesmartwallet')
     })
 
     test('getPushNotificationServiceUrl', () => {
-      testGetPushNotificationServiceUrl(process.env.PUSH_NOTIFICATION_SERVICE_URL)
+      testGetPushNotificationServiceUrl('https://safe-notification.gnosis.pm')
     })
 
     test('getTransactionRelayServiceUrl', () => {
-      testGetTransactionRelayServiceUrl(process.env.TRANSACTION_RELAY_SERVICE_MAINNET_URL)
+      testGetTransactionRelayServiceUrl('https://safe-relay.gnosis.pm')
     })
 
     test('getFirebaseAuthDomain', () => {

@@ -41,6 +41,7 @@ class Layout extends Component {
                 confirmationText={CONFIRM}
                 handleRejection={handleRejectTransaction}
                 handleConfirmation={handleConfirmTransaction}
+                rejectWithExtensionLockedAllowed
               />
             )}
           </React.Fragment>

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
 import Layout from '../components/Layout'
-import { getVersion } from '../../../../../config'
+import { getAppVersionNumber } from '../../../../../config'
 
 class About extends Component {
   componentWillMount = () => {
-    this.versionNumber = getVersion()
+    this.versionNumber = getAppVersionNumber()
   }
 
   render () {

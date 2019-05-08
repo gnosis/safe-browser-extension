@@ -1,16 +1,20 @@
 import uuid from 'uuid/v4'
 import EthUtil from 'ethereumjs-util'
-
 import { normalizeUrl } from 'utils/helpers'
 import messages from './utils/messages'
 import StorageController from './utils/storageController'
 import PopupController from './utils/popupController'
 import { lockAccount } from 'actions/account'
 import { addSafe } from 'actions/safes'
+import { updateDeviceData } from 'actions/device'
 import {
   addTransaction,
   removeAllTransactions
 } from 'actions/transactions'
+import {
+  getAppVersionNumber,
+  getAppBuildNumber
+} from '../config'
 import { SAFE_ALREADY_EXISTS } from '../config/messages'
 import { ADDRESS_ZERO } from '../app/utils/helpers'
 
@@ -35,6 +39,14 @@ if ('serviceWorker' in navigator) {
     })
 }
 
+chrome.runtime.onInstalled.addListener((details) => {
+  if (details.reason === 'install' || details.reason === 'update') {
+    storageController.getStore().dispatch(
+      updateDeviceData(getAppVersionNumber(), getAppBuildNumber())
+    )
+  }
+})
+
 const updateCurrentSafe = () => {
   let storePreviousSafeAddress = storeCurrentSafeAddress
   storeCurrentSafeAddress = storageController.getStoreState().safes.currentSafe
@@ -43,7 +55,7 @@ const updateCurrentSafe = () => {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       chrome.tabs.sendMessage(tabs[0].id, {
         msg: messages.MSG_UPDATE_CURRENT_SAFE,
-        newSafeAddress: storeCurrentSafeAddress
+        newSafeAddress: storeCurrentSafeAddress.toLowerCase()
       })
     })
   }
@@ -86,7 +98,7 @@ chrome.runtime.onMessage.addListener(
 const allowInjection = (url, sendResponse) => {
   const allowInjection = isWhiteListedDapp(normalizeUrl(url))
   const currentSafe = allowInjection
-    ? storageController.getStoreState().safes.currentSafe
+    ? storageController.getStoreState().safes.currentSafe.toLowerCase()
     : undefined
 
   sendResponse({

@@ -1,22 +1,34 @@
 const path = require('path')
 const fs = require('fs')
-const dotenv = require('dotenv')
 const manifest = require(path.resolve(__dirname, '../config/manifest_template.json'))
 const config = require(path.resolve(__dirname, '../config'))
 const names = require(path.resolve(__dirname, '../config/names'))
-const env = dotenv.config().parsed
 
 const buildDirectory = './build/'
+const envVars = [
+  'DEVELOPMENT_GA_TRACKING_ID',
+  'PRODUCTION_GA_TRACKING_ID',
+  'INFURA_PROJECT_ID',
+  'FIREBASE_AUTH_DOMAIN',
+  'FIREBASE_DATABASE_URL',
+  'FIREBASE_PROJECT_ID',
+  'FIREBASE_STORAGE_BUCKET',
+  'FIREBASE_MESSAGING_SENDER_ID'
+]
 
 export const generateEnvVariables = () => {
-  const envKeys = Object.keys(env).reduce((prev, next) => {
-    prev[`process.env.${next}`] = JSON.stringify(env[next])
-    return prev
-  }, {})
-  envKeys['process.env.NODE_ENV'] = process.env.NODE_ENV ? `"${process.env.NODE_ENV}"` : `"${names.DEVELOPMENT}"`
-  envKeys['process.env.NETWORK'] = process.env.NETWORK ? `"${process.env.NETWORK}"` : `"${names.RINKEBY}"`
+  const envKeys = Object
+    .keys(process.env)
+    .filter(key => envVars.includes(key))
+    .reduce((env, key) => {
+      env[key] = JSON.stringify(process.env[key])
+      return env
+    }, {
+      'NODE_ENV': process.env.NODE_ENV ? JSON.stringify(process.env.NODE_ENV) : JSON.stringify(names.DEVELOPMENT),
+      'NETWORK': process.env.NETWORK ? JSON.stringify(process.env.NETWORK) : JSON.stringify(names.RINKEBY)
+    })
 
-  return envKeys
+  return { 'process.env': envKeys }
 }
 
 export const generateManifestFile = () => {

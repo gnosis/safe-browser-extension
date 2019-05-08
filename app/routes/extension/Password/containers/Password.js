@@ -2,7 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 import CryptoJs from 'crypto-js'
-
+import {
+  setUpNotifications,
+  authPushNotificationService
+} from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairingNotifications'
+import { getDecryptedEthAccount } from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'
+import actions from './actions'
+import selector from './selector'
 import Layout from '../components/Layout'
 
 class Password extends Component {
@@ -31,7 +37,7 @@ class Password extends Component {
     })
   }
 
-  validatePasswords = () => {
+  validatePasswords = async () => {
     const { password } = this.state
     const { account } = this.props
     const encryptedSeed = account.secondFA.seed
@@ -39,6 +45,8 @@ class Password extends Component {
 
     if (decryptedHmac === account.secondFA.hmac) {
       this.setState({ dataValidation: 'OK' })
+      await this.notifyVersionUpdate()
+
       setTimeout(() => {
         this.setState({ continue: true })
       }, 500)
@@ -51,11 +59,33 @@ class Password extends Component {
     }, 500)
   }
 
+  notifyVersionUpdate = async () => {
+    const { password } = this.state
+    const {
+      device,
+      notifyDeviceUpdated,
+      selectEncryptedMnemonic
+    } = this.props
+
+    if (!device.lastUpdateNotified && password && selectEncryptedMnemonic) {
+      try {
+        const currentAccount = getDecryptedEthAccount(selectEncryptedMnemonic, password)
+        const token = await setUpNotifications()
+        const auth = await authPushNotificationService(token, [currentAccount])
+        if (token && auth) {
+          notifyDeviceUpdated()
+        }
+      } catch (err) {
+        console.error(err)
+      }
+    }
+  }
+
   render () {
     const {
       password,
       rotation,
-      dataValidation
+      dataValidation,
     } = this.state
 
     if (this.state.continue) {
@@ -81,12 +111,13 @@ class Password extends Component {
   }
 }
 
-const mapStateToProps = ({ account }, props) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    account
+    notifyDeviceUpdated: () => dispatch(actions.notifyDeviceUpdated())
   }
 }
 
 export default connect(
-  mapStateToProps
+  selector,
+  mapDispatchToProps
 )(Password)

@@ -17,7 +17,7 @@ export const getTransactionEstimations = async (
   operation,
   gasToken
 ) => {
-  const url = getTransactionRelayServiceUrl() + 'safes/' + safe + '/transactions/estimate/'
+  const url = getTransactionRelayServiceUrl() + '/api/v1/safes/' + safe + '/transactions/estimate/'
   const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json'

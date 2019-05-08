@@ -1,15 +1,11 @@
 import fetch from 'node-fetch'
 
-import {
-  getNetwork,
-  getTransactionRelayServiceUrl
-} from '../../config'
-import { RINKEBY } from '../../config/names'
+import { getTransactionRelayServiceUrl } from '../../config'
 
 export const getTokensFromRelayService = async (params) => {
   const baseParams = 'limit=1000&ordering=relevance,name'
   const gasParam = (params && params.gas) ? '&gas=true' : ''
-  const url = getTransactionRelayServiceUrl() + 'tokens?' + baseParams + gasParam
+  const url = getTransactionRelayServiceUrl() + '/api/v1/tokens?' + baseParams + gasParam
   
   const headers = {
     'Accept': 'application/json',
@@ -27,6 +23,7 @@ export const getTokensFromRelayService = async (params) => {
     }
     return []
   } catch (err) {
+    console.error(err)
     return []
   }
 }
