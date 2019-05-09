@@ -18,7 +18,6 @@ const password = 'asdfasdf1'
 const address = '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'
 const address1 = '0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'
 
-
 const mnemonic =
   'myth like bonus scare over problem client lizard pioneer submit female collect'
 const seed =
