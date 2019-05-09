@@ -86,8 +86,14 @@
   "safe_already_exists": {
     "message": "La Safe ya existe"
   },
+  "receive_funds": {
+    "message": "Recibir transferencias"
+  },
   "replace_recovery_phrase": {
-    "message": "Reemplazar la clave de recuperación"
+    "message": "Reemplazar la clave\\nde recuperación"
+  },
+  "layout_replace_recovery_phrase_transaction_info_description": {
+    "message": "La clave de seguridad antigua será invalidada y reemplazada por la nueva."
   },
   "store_description": {
     "message": "Gnosis Safe es una cartera multifirma de Ethereum que permite a los usuarios, de forma cómoda y segura, la gestión de sus activos digitales y la interacción con la web descentralizada.\n\nPuedes recibir, guardar y transferir Ether y tokens ERC-20 con Gnosis Safe. A través de la extensión de Chrome puedes interactuar con aplicaciones descentralizadas."
@@ -268,5 +274,29 @@
   },
   "payment_token": {
     "message": "Pago con tokens (para costes de red)"
+  },
+  "review_sign_message": {
+    "message": "Revisión de la firma"
+  },
+  "balance_after_transfer": {
+    "message": "Balance después de la transferencia"
+  },
+  "amount": {
+    "message": "Importe"
+  },
+  "recipients_address": {
+    "message": "Dirección del destinatario"
+  },
+  "review": {
+    "message": "Revisión"
+  },
+  "send_title": {
+    "message": "Enviar [%s]"
+  },
+  "paste_from_clipboard": {
+    "message": "Pegar desde el portapapeles"
+  },
+  "address_invalid": {
+    "message": "Dirección inválida"
   }
 }
