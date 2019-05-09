@@ -7,6 +7,10 @@ import TransactionSummary from 'routes/popup/Transaction/components/components/T
 import ConfirmTransaction from 'routes/popup/Transaction/components/ConfirmTransaction/containers/ConfirmTransaction'
 import SendTransaction from 'routes/popup/Transaction/components/SendTransaction/containers/SendTransaction'
 import styles from 'assets/css/global.css'
+import {
+  REPLACE_RECOVERY_PRASE,
+  REPLACE_RECOVERY_PHRASE_DESCRIPTION
+} from '../../../../../config/messages'
 
 class Layout extends Component {
   prevent = (e) => {
@@ -24,6 +28,7 @@ class Layout extends Component {
       loadedData,
       reviewedTx,
       transactionSummary,
+      replaceRecoveryPhrase,
       safeAlias,
       ethAccount,
       previousTransaction,
@@ -40,6 +45,11 @@ class Layout extends Component {
     const toAddress = isTokenTransfer(transaction.data)
       ? getTokenTransferAddress(transaction.data)
       : transaction.to
+    let replaceRecoveryPhraseTitle
+    if (replaceRecoveryPhrase) {
+      replaceRecoveryPhraseTitle =
+        REPLACE_RECOVERY_PRASE.toString().split('\\n')[0] + '...'
+    }
 
     return (
       <React.Fragment>
@@ -56,14 +66,30 @@ class Layout extends Component {
             alias={safeAlias}
             balance={balance}
             symbol={symbol}
+            noBalance={replaceRecoveryPhrase}
           />
-          <div className={styles.transactionValue}>
-            <strong>
-              {displayedValue} {symbol}
-            </strong>
-            <small>&nbsp;</small>
-          </div>
-          <TransactionAddressData address={toAddress} noBalance />
+
+          {!replaceRecoveryPhrase ? (
+            <React.Fragment>
+              <div className={styles.transactionValue}>
+                <strong>
+                  {displayedValue} {symbol}
+                </strong>
+                <small>&nbsp;</small>
+              </div>
+              <TransactionAddressData address={toAddress} noBalance />
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <div className={styles.replaceRecoveryPhrase}>
+                <strong>{replaceRecoveryPhraseTitle}</strong>
+              </div>
+              <div className={styles.replaceRecoveryPhraseDesc}>
+                {REPLACE_RECOVERY_PHRASE_DESCRIPTION}
+              </div>
+            </React.Fragment>
+          )}
+
           <TransactionSummary
             transaction={transaction}
             transactionSummary={transactionSummary}
