@@ -96,7 +96,7 @@ export const sendNotification = async (
 ) => {
   let owners
   try {
-    owners = await getOwners(safeAddress, accountAddress)
+    owners = await getOwners(accountAddress, safeAddress)
   } catch (err) {
     console.error(err)
     return

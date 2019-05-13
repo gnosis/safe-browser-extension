@@ -10,10 +10,6 @@ import { updateDeviceData } from 'actions/device'
 import { addTransaction, removeAllTransactions } from 'actions/transactions'
 import { getAppVersionNumber, getAppBuildNumber } from '../config'
 import {
-  addTransaction,
-  removeAllTransactions
-} from 'actions/transactions'
-import {
   addSignMessage,
   removeAllSignMessage
 } from 'actions/signMessages'

@@ -55,10 +55,9 @@ const activeListeners = (currentSafe) => {
                 id: request.id
               }
             }
-          }
-        )
-        window.dispatchEvent(resolvedTransactionEvent)
-        break
+          )
+          window.dispatchEvent(resolvedTransactionEvent)
+          break
 
         case messages.MSG_RESOLVED_WALLET_SIGN_TYPED_DATA:
           const resolvedSignMessageEvent = new window.CustomEvent(
@@ -77,7 +76,7 @@ const activeListeners = (currentSafe) => {
           break
       }
     }
-  })
+  )
 }
 
 // Checks if the page is whitelisted to inject the web3 provider

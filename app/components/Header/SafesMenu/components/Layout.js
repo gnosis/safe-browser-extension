@@ -25,7 +25,7 @@ const Layout = ({
       >
         <i>{safeAlias && safeAlias}</i>
       </span>
-      {!isPopup &&
+      {!isPopup && (
         <React.Fragment>
           <div
             className={cx(

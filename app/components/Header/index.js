@@ -44,7 +44,7 @@ class Header extends Component {
     return (
       <React.Fragment>
         <header>
-          {!isPopup &&
+          {!isPopup && (
             <div
               className={cx(
                 styles.menuTrigger,

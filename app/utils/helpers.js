@@ -28,7 +28,7 @@ export const shortenAddress = (address) => {
   }
 
   const checksumedAddress = EthUtil.toChecksumAddress(address)
-  return checksumedAddress &&
+  return checksumedAddress && (
     checksumedAddress.substring(0, 8) +
       '...' +
       checksumedAddress.substring(

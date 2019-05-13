@@ -1,7 +1,7 @@
 import { createStructuredSelector } from 'reselect'
 import {
   safesSelector,
-  selectCurrentSafeAliasSelector,
+  selectCurrentSafeAlias,
   selectCurrentTransactionSafeAlias
 } from '../store/selectors'
 

@@ -79,7 +79,7 @@ class Layout extends Component {
                 </strong>
                 <small>&nbsp;</small>
               </div>
-              <TransactionAddressData address={toAddress} noBalance />
+              <AccountData address={toAddress} noBalance />
             </React.Fragment>
           ) : (
             <React.Fragment>
