@@ -15,7 +15,7 @@ import selector from './selector'
 import { NOTIFICATIONS_PERMISSION_REQUIRED } from '../../../../../../../config/messages'
 
 class PairingProcess extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.qrPairingRef = React.createRef()
@@ -25,12 +25,16 @@ class PairingProcess extends Component {
   }
 
   componentDidMount = async () => {
-    const {
-      password,
-      selectEncryptedMnemonic
-    } = this.props
+    const { password, selectEncryptedMnemonic, account } = this.props
 
-    const currentAccount = password && getDecryptedEthAccount(selectEncryptedMnemonic, password)
+    const nextOwnerAccountIndex = account.secondFA.currentAccountIndex + 1
+    const nextOwnerAccount =
+      password &&
+      getDecryptedEthAccount(
+        selectEncryptedMnemonic,
+        password,
+        nextOwnerAccountIndex
+      )
 
     try {
       const token = await setUpNotifications()
@@ -38,9 +42,9 @@ class PairingProcess extends Component {
         this.setState({ message: NOTIFICATIONS_PERMISSION_REQUIRED })
         return
       }
-      const auth = await authPushNotificationService(token, [currentAccount])
+      const auth = await authPushNotificationService(token, [nextOwnerAccount])
       if (auth) {
-        this.renderQrImageFrom(currentAccount.getPrivateKey())
+        this.renderQrImageFrom(nextOwnerAccount.getPrivateKey())
       }
     } catch (err) {
       console.error(err)
@@ -55,7 +59,7 @@ class PairingProcess extends Component {
     )
   }
 
-  render () {
+  render() {
     const { toggleQr } = this.props
     const { message } = this.state
 
@@ -69,6 +73,4 @@ class PairingProcess extends Component {
   }
 }
 
-export default connect(
-  selector
-)(PairingProcess)
+export default connect(selector)(PairingProcess)

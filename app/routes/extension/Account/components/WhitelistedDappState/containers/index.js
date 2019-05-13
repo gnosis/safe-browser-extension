@@ -8,7 +8,7 @@ import actions from './actions'
 import Layout from '../components/Layout'
 
 class WhitelistedDappState extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -29,8 +29,10 @@ class WhitelistedDappState extends Component {
     const { whitelistedDapps } = this.props
 
     const normalizedUrl = normalizeUrl(url)
-    const whitelistableDapp = (normalizedUrl.indexOf('.') > -1) || (normalizedUrl.substring(0, 9) === 'localhost')
-    const whitelisted = (whitelistedDapps.indexOf(normalizedUrl) > -1)
+    const whitelistableDapp =
+      normalizedUrl.indexOf('.') > -1 ||
+      normalizedUrl.substring(0, 9) === 'localhost'
+    const whitelisted = whitelistedDapps.indexOf(normalizedUrl) > -1
 
     this.setState({
       showWhitelistedDappState: whitelistableDapp,
@@ -40,25 +42,31 @@ class WhitelistedDappState extends Component {
   }
 
   handleWhitelistDapp = (dapp) => (e) => {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       if (!prevState.whitelisted) {
         this.props.onAddWhitelistedDapp(dapp)
-        ga(['_trackEvent', EXTENSION_SETTINGS, 'click-add-to-whitelist-via-toggle', 'Add to whitelist via toggle: ' + dapp])
+        ga([
+          '_trackEvent',
+          EXTENSION_SETTINGS,
+          'click-add-to-whitelist-via-toggle',
+          'Add to whitelist via toggle: ' + dapp
+        ])
       } else {
         this.props.onDeleteWhitelistedDapp(dapp)
-        ga(['_trackEvent', EXTENSION_SETTINGS, 'click-remove-from-whitelist-via-toggle', 'Remove from whitelist via toggle: ' + dapp])
+        ga([
+          '_trackEvent',
+          EXTENSION_SETTINGS,
+          'click-remove-from-whitelist-via-toggle',
+          'Remove from whitelist via toggle: ' + dapp
+        ])
       }
       return { whitelisted: !prevState.whitelisted }
     })
     e.preventDefault()
   }
 
-  render () {
-    const {
-      showWhitelistedDappState,
-      url,
-      whitelisted
-    } = this.state
+  render() {
+    const { showWhitelistedDappState, url, whitelisted } = this.state
 
     return (
       <Layout
@@ -80,7 +88,8 @@ const mapStateToProps = ({ whitelistedDapps }, props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onAddWhitelistedDapp: (dapp) => dispatch(actions.addWhitelistedDapp(dapp)),
-    onDeleteWhitelistedDapp: (dapp) => dispatch(actions.deleteWhitelistedDapp(dapp))
+    onDeleteWhitelistedDapp: (dapp) =>
+      dispatch(actions.deleteWhitelistedDapp(dapp))
   }
 }
 

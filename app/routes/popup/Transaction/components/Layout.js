@@ -13,7 +13,7 @@ class Layout extends Component {
     e.preventDefault()
   }
 
-  render () {
+  render() {
     const {
       transaction,
       transactions,
@@ -58,18 +58,17 @@ class Layout extends Component {
             symbol={symbol}
           />
           <div className={styles.transactionValue}>
-            <strong>{displayedValue} {symbol}</strong>
+            <strong>
+              {displayedValue} {symbol}
+            </strong>
             <small>&nbsp;</small>
           </div>
-          <TransactionAddressData
-            address={toAddress}
-            noBalance
-          />
+          <TransactionAddressData address={toAddress} noBalance />
           <TransactionSummary
             transaction={transaction}
             transactionSummary={transactionSummary}
           />
-          {transaction && (transaction.type === 'confirmTransaction') &&
+          {transaction && transaction.type === 'confirmTransaction' && (
             <ConfirmTransaction
               transactionNumber={transactionNumber}
               ethAccount={ethAccount}
@@ -81,8 +80,8 @@ class Layout extends Component {
               loadedData={loadedData}
               reviewedTx={reviewedTx}
             />
-          }
-          {transaction && (transaction.type === 'sendTransaction') &&
+          )}
+          {transaction && transaction.type === 'sendTransaction' && (
             <SendTransaction
               transactionNumber={transactionNumber}
               ethAccount={ethAccount}
@@ -94,7 +93,7 @@ class Layout extends Component {
               loadedData={loadedData}
               reviewedTx={reviewedTx}
             />
-          }
+          )}
         </form>
       </React.Fragment>
     )

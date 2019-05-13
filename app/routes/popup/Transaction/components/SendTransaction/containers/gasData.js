@@ -17,9 +17,13 @@ export const getTransactionEstimations = async (
   operation,
   gasToken
 ) => {
-  const url = getTransactionRelayServiceUrl() + '/api/v1/safes/' + safe + '/transactions/estimate/'
+  const url =
+    getTransactionRelayServiceUrl() +
+    '/api/v1/safes/' +
+    safe +
+    '/transactions/estimate/'
   const headers = {
-    'Accept': 'application/json',
+    Accept: 'application/json',
     'Content-Type': 'application/json'
   }
   const body = {
@@ -41,9 +45,7 @@ export const getTransactionEstimations = async (
       credentials: 'omit',
       referrerPolicy: 'no-referrer'
     })
-    return (response && response.status === 200)
-      ? response.json()
-      : null
+    return response && response.status === 200 ? response.json() : null
   } catch (err) {
     console.error(err)
   }

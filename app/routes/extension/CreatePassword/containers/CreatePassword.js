@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Layout from '../components/Layout'
 
 class CreatePassword extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -19,7 +19,7 @@ class CreatePassword extends Component {
     })
   }
 
-  render () {
+  render() {
     const { newPassword } = this.state
 
     return (

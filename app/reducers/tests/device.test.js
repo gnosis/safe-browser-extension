@@ -1,13 +1,7 @@
 import rootReducer from 'reducers'
 import { createStore } from 'redux'
-import {
-  notifyDeviceUpdated,
-  updateDeviceData
-} from 'actions/device'
-import {
-  getAppVersionNumber,
-  getAppBuildNumber
-} from '../../../config'
+import { notifyDeviceUpdated, updateDeviceData } from 'actions/device'
+import { getAppVersionNumber, getAppBuildNumber } from '../../../config'
 
 describe('Test device redux reducer', () => {
   test('Update device data on extension update', () => {

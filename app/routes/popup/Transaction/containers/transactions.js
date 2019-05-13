@@ -16,13 +16,13 @@ import { UNKNOWN_TOKEN } from '../../../../../config/messages'
 export const getEthBalance = async (address) => {
   const web3 = new Web3(new Web3.providers.HttpProvider(getNetworkUrl()))
   let ethBalance
-  ethBalance = await promisify(cb => web3.eth.getBalance(address, cb))
+  ethBalance = await promisify((cb) => web3.eth.getBalance(address, cb))
   return web3.fromWei(ethBalance, 'ether')
 }
 
 export const getTransactionData = async (to, from, data, value, ethBalance) => {
   if (!isTokenTransfer(data)) {
-    const val = (value) ? new BigNumber(value) : new BigNumber(0)
+    const val = value ? new BigNumber(value) : new BigNumber(0)
     return { balance: ethBalance, value: val, symbol: 'ETH', decimals: 18 }
   }
 
@@ -34,7 +34,12 @@ export const getTransactionData = async (to, from, data, value, ethBalance) => {
     return { balance, value: val, symbol, decimals: token.decimals }
   } catch (err) {
     console.error(err)
-    return { balance: new BigNumber(0), value: new BigNumber(0), symbol: UNKNOWN_TOKEN, decimals: 0 }
+    return {
+      balance: new BigNumber(0),
+      value: new BigNumber(0),
+      symbol: UNKNOWN_TOKEN,
+      decimals: 0
+    }
   }
 }
 
@@ -61,14 +66,18 @@ export const setUpTransaction = (tx, estimations, value, decimals) => {
   tx.txGas = new BigNumber(estimations.safeTxGas).toString(10)
 }
 
-export const calculateGasEstimation = async (
-  tx,
-  value
-) => {
+export const calculateGasEstimation = async (tx, value) => {
   let estimations
   if (tx.type === 'sendTransaction') {
     const estimationValue = isTokenTransfer(tx.data) ? '0' : value.toString(10)
-    estimations = await getTransactionEstimations(tx.from, tx.to, estimationValue, tx.data, 0, tx.gasToken)
+    estimations = await getTransactionEstimations(
+      tx.from,
+      tx.to,
+      estimationValue,
+      tx.data,
+      0,
+      tx.gasToken
+    )
   } else {
     estimations = {
       dataGas: tx.dataGas,
@@ -83,12 +92,16 @@ export const calculateGasEstimation = async (
 
 const getTransactionFee = (estimations, gasTokenDecimals) => {
   BigNumber.config({ ROUNDING_MODE: BigNumber.ROUND_UP })
-  const totalGas = estimations &&
+  const totalGas =
+    estimations &&
     new BigNumber(estimations.dataGas)
       .plus(new BigNumber(estimations.safeTxGas))
       .plus(new BigNumber(estimations.operationalGas))
-  const transactionFee = totalGas && totalGas.times(new BigNumber(estimations.gasPrice))
-  const formatedTransactionFee = transactionFee.dividedBy(10 ** gasTokenDecimals)
+  const transactionFee =
+    totalGas && totalGas.times(new BigNumber(estimations.gasPrice))
+  const formatedTransactionFee = transactionFee.dividedBy(
+    10 ** gasTokenDecimals
+  )
   return formatedTransactionFee
 }
 
@@ -116,7 +129,11 @@ export const getTransactionSummary = async (transaction, estimations) => {
   let transactionFee
   if (transaction.gasToken && transaction.gasToken !== ADDRESS_ZERO) {
     gasTokenData = await getTokenData(transaction.gasToken)
-    gasTokenBalance = await getTokenBalance(transaction.gasToken, transaction.from, gasTokenData.decimals)
+    gasTokenBalance = await getTokenBalance(
+      transaction.gasToken,
+      transaction.from,
+      gasTokenData.decimals
+    )
     gasTokenSymbol = gasTokenData.symbol
     transactionFee = getTransactionFee(estimations, gasTokenData.decimals)
   } else {
@@ -125,14 +142,13 @@ export const getTransactionSummary = async (transaction, estimations) => {
     transactionFee = getTransactionFee(estimations, 18)
   }
 
-
   // const transactionTotalCost = getTransactionTotalCost(transaction, transactionFee, gasTokenData)
 
   return {
     gasTokenAddress: transaction.gasToken,
     gasTokenBalance,
     gasTokenSymbol,
-    transactionFee,
+    transactionFee
     // transactionTotalCost
   }
 }

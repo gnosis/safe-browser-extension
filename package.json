@@ -19,7 +19,7 @@
     "watch": "npm run watch:dev",
     "clean": "rm -rf build",
     "test": "jest",
-    "standard": "standard --fix",
+    "format": "prettier --write 'app/**/*.js' 'extension/**/*.js'",
     "lokalise": "node scripts/lokalise.js"
   },
   "repository": {
@@ -74,6 +74,13 @@
     "dotenv": "^6.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-node": "^9.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-react": "^7.13.0",
+    "eslint-plugin-standard": "^4.0.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
     "html-webpack-plugin": "^2.30.1",
@@ -81,9 +88,9 @@
     "jest-enzyme": "^6.0.0",
     "postcss-loader": "^2.1.3",
     "postcss-simple-vars": "^4.1.0",
+    "prettier": "^1.17.0",
     "redux-test-utils": "^0.2.2",
     "reselect": "^3.0.1",
-    "standard": "^11.0.1",
     "style-loader": "^0.20.1",
     "webpack": "^3.10.0"
   },
@@ -115,17 +122,5 @@
       "jest-enzyme"
     ],
     "testURL": "http://localhost/"
-  },
-  "standard": {
-    "parser": "babel-eslint",
-    "env": [
-      "jest"
-    ],
-    "globals": [
-      "chrome"
-    ],
-    "ignore": [
-      "/app/utils/blockies.js"
-    ]
   }
 }

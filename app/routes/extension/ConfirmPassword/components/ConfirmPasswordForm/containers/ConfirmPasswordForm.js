@@ -7,11 +7,8 @@ class ConfirmPasswordForm extends Component {
     this.props.manageConfirmPassword(e.target.value)
   }
 
-  render () {
-    const {
-      confirmPassword,
-      passwordsMatch
-    } = this.props
+  render() {
+    const { confirmPassword, passwordsMatch } = this.props
 
     return (
       <Layout

@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Layout from '../components/Layout'
 
 class CreatePasswordForm extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -73,11 +73,11 @@ class CreatePasswordForm extends Component {
     const letter = this.validateLetter(password)
     const row = this.validateRow(password)
 
-    const result = (length && number && letter && row)
+    const result = length && number && letter && row
     this.props.manageCreatePassword(password, result)
   }
 
-  render () {
+  render() {
     const { error } = this.state
     const { newPassword, ready } = this.props
 

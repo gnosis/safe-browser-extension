@@ -26,7 +26,7 @@ describe('Confirm Password Form Validation', () => {
     expect(manageConfirmPassword).toHaveBeenCalled()
   })
 
-  test('It should return false if the password doesn\'t match', () => {
+  test("It should return false if the password doesn't match", () => {
     const confirmPassword = 'asdfasdf'
     const props = {
       confirmPassword,

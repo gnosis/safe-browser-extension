@@ -8,7 +8,7 @@ class About extends Component {
     this.versionNumber = getAppVersionNumber()
   }
 
-  render () {
+  render() {
     return (
       <Layout
         versionNumber={this.versionNumber}

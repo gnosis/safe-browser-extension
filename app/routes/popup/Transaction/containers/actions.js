@@ -1,6 +1,4 @@
-import {
-  removeTransaction
-} from 'actions/transactions'
+import { removeTransaction } from 'actions/transactions'
 
 export default {
   removeTransaction

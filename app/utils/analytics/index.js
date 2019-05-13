@@ -16,9 +16,10 @@ const loadGoogleAnalytics = () => {
   s.parentNode.insertBefore(script, s)
 
   script.onload = () => {
-    const gaTrackingId = (process.env.NODE_ENV === 'production')
-      ? process.env.PRODUCTION_GA_TRACKING_ID
-      : process.env.DEVELOPMENT_GA_TRACKING_ID
+    const gaTrackingId =
+      process.env.NODE_ENV === 'production'
+        ? process.env.PRODUCTION_GA_TRACKING_ID
+        : process.env.DEVELOPMENT_GA_TRACKING_ID
 
     ga(['_setAccount', gaTrackingId])
     ga(['_trackPageview'])
@@ -28,20 +29,22 @@ loadGoogleAnalytics()
 
 export const withAnalytics = (WrappedComponent, options = {}) => {
   const HOC = class extends Component {
-    componentDidMount () {
+    componentDidMount() {
       ga(['_trackPageview'])
     }
 
-    componentWillReceiveProps (nextProps) {
+    componentWillReceiveProps(nextProps) {
       const nextPage = nextProps.location.pathname
-      const currentPage = (this.props.location && this.props.location.pathname) || window.location.pathname
+      const currentPage =
+        (this.props.location && this.props.location.pathname) ||
+        window.location.pathname
 
       if (currentPage !== nextPage) {
         ga(['_trackPageview'])
       }
     }
 
-    render () {
+    render() {
       return <WrappedComponent {...this.props} />
     }
   }

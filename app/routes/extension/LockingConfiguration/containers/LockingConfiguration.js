@@ -8,7 +8,7 @@ import actions from './actions'
 import messages from '../../../../../extension/utils/messages'
 
 class LockingConfiguration extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -28,14 +28,17 @@ class LockingConfiguration extends Component {
       })
     }
     this.props.onConfigureLocking(minutes, unlockingTime)
-    ga(['_trackEvent', EXTENSION_SETTINGS, 'click-set-lock-timeout', 'Set lock timeout: ' + minutes + 'min'])
+    ga([
+      '_trackEvent',
+      EXTENSION_SETTINGS,
+      'click-set-lock-timeout',
+      'Set lock timeout: ' + minutes + 'min'
+    ])
     this.setState({ minutes })
   }
 
-  render () {
-    const {
-      minutes
-    } = this.state
+  render() {
+    const { minutes } = this.state
 
     return (
       <Layout
@@ -55,7 +58,8 @@ const mapStateToProps = ({ account }, props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onConfigureLocking: (minutes, unlockingTime) => dispatch(actions.configureLocking(minutes, unlockingTime))
+    onConfigureLocking: (minutes, unlockingTime) =>
+      dispatch(actions.configureLocking(minutes, unlockingTime))
   }
 }
 

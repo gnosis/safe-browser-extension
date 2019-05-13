@@ -7,10 +7,7 @@ import PairingProcess from './PairingProcess/containers/PairingProcess'
 import styles from 'assets/css/global.css'
 import playStore from 'assets/images/playstore.svg'
 import appStore from 'assets/images/appstore.svg'
-import {
-  getAndroidAppUrl,
-  getIosAppUrl
-} from '../../../../../config'
+import { getAndroidAppUrl, getIosAppUrl } from '../../../../../config'
 import {
   CONNECTED_EXTENSION_SUCCESFULLY,
   IPHONE_AND_IPAD,
@@ -23,14 +20,14 @@ import {
 const cx = classNames.bind(styles)
 
 class Layout extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.androidAppUrl = getAndroidAppUrl()
     this.iosAppUrl = getIosAppUrl()
   }
 
-  render () {
+  render() {
     const {
       toggleQrAndroid,
       toggleQrIos,
@@ -50,20 +47,31 @@ class Layout extends Component {
           simpleHeader
           noBorder
         >
-          <div className={cx(styles.content, (showQrAndroid || showQrIos || showQrPairing) && styles.blur)}>
+          <div
+            className={cx(
+              styles.content,
+              (showQrAndroid || showQrIos || showQrPairing) && styles.blur
+            )}
+          >
             <h1>{CONNECTED_EXTENSION_SUCCESFULLY}</h1>
             <ol>
               <li>
                 <p>{DOWNLOAD_MOBILE_APP}</p>
-                {this.iosAppUrl && <button onClick={toggleQrIos} data-os='ios'>{IPHONE_AND_IPAD}</button>}
-                <button onClick={toggleQrAndroid} data-os='android'>{ANDROID}</button>
+                {this.iosAppUrl && (
+                  <button onClick={toggleQrIos} data-os="ios">
+                    {IPHONE_AND_IPAD}
+                  </button>
+                )}
+                <button onClick={toggleQrAndroid} data-os="android">
+                  {ANDROID}
+                </button>
               </li>
               <li>
                 <p>{CONNECT_EXTENSION_EXPLANATION}</p>
                 <button
                   onClick={toggleQrPairing}
                   className={styles.button}
-                  data-qr='mobilepair'
+                  data-qr="mobilepair"
                 >
                   {SHOW_QR_CODE}
                 </button>
@@ -71,28 +79,25 @@ class Layout extends Component {
             </ol>
           </div>
         </Page>
-        {showQrAndroid &&
+        {showQrAndroid && (
           <AppQr
             toggleQr={toggleQrAndroid}
-            os='ANDROID'
+            os="ANDROID"
             link={this.androidAppUrl}
             storeImage={playStore}
           />
-        }
-        {showQrIos &&
+        )}
+        {showQrIos && (
           <AppQr
             toggleQr={toggleQrIos}
-            os='IOS'
+            os="IOS"
             link={this.iosAppUrl}
             storeImage={appStore}
           />
-        }
-        {showQrPairing &&
-          <PairingProcess
-            toggleQr={toggleQrPairing}
-            password={password}
-          />
-        }
+        )}
+        {showQrPairing && (
+          <PairingProcess toggleQr={toggleQrPairing} password={password} />
+        )}
       </React.Fragment>
     )
   }

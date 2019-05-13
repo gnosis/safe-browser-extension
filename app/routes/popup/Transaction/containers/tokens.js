@@ -31,7 +31,7 @@ export const getTokenBalance = async (tokenAddress, address, decimals) => {
     const erc20Token = await getStandardTokenContract()
     const instance = await erc20Token.at(tokenAddress)
     const funds = await instance.balanceOf(address)
-    const balance = (!decimals) ? new BigNumber(funds) : funds.div(10 ** decimals)
+    const balance = !decimals ? new BigNumber(funds) : funds.div(10 ** decimals)
     return balance
   } catch (err) {
     console.error(err)
@@ -49,14 +49,16 @@ export const getTokenTransferAddress = (data) => {
 
 export const getTokenTransferValue = (data) => {
   const value = new BigNumber('0x' + data.substring(74))
-  return (!value) ? new BigNumber(0) : value
+  return !value ? new BigNumber(0) : value
 }
 
 export const getTokenData = async (address) => {
   let tokenList = await getTokensFromRelayService()
   if (tokenList && tokenList.length > 0) {
-    const filteredTokens = tokenList.filter(token => token.address.toLowerCase() === address.toLowerCase())
-    if (filteredTokens && (filteredTokens.length > 0)) {
+    const filteredTokens = tokenList.filter(
+      (token) => token.address.toLowerCase() === address.toLowerCase()
+    )
+    if (filteredTokens && filteredTokens.length > 0) {
       const token = filteredTokens[0]
       const erc20token = {
         address: token.address,
@@ -76,12 +78,17 @@ const getNotListedTokenData = async (address) => {
   const instance = await humanErc20token.at(address)
 
   const dataSymbol = await instance.contract.symbol.getData()
-  const symbolResult = await promisify(cb => web3.eth.call({ to: address, data: dataSymbol }, cb))
+  const symbolResult = await promisify((cb) =>
+    web3.eth.call({ to: address, data: dataSymbol }, cb)
+  )
   const symbol = symbolResult !== '0x' ? await instance.symbol() : undefined
 
   const dataDecimals = await instance.contract.decimals.getData()
-  const decimalsResult = await promisify(cb => web3.eth.call({ to: address, data: dataDecimals }, cb))
-  const decimals = decimalsResult !== '0x' ? `${await instance.decimals()}` : undefined
+  const decimalsResult = await promisify((cb) =>
+    web3.eth.call({ to: address, data: dataDecimals }, cb)
+  )
+  const decimals =
+    decimalsResult !== '0x' ? `${await instance.decimals()}` : undefined
 
   const erc20token = {
     address,

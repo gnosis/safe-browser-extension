@@ -13,20 +13,28 @@ import {
 const cx = classNames.bind(styles)
 
 class Layout extends Component {
-  render () {
+  render() {
     const { location } = this.props
 
     return (
       <Page location={location}>
         <div className={styles.overlayPage}>
           <span className={styles.overlayPageHeader}>
-            <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)} />
+            <Link
+              to={ACCOUNT_URL}
+              className={cx(styles.btnBack, styles.active)}
+            />
             <h2>{REPLACE_RECOVERY_PRASE}</h2>
           </span>
-          <div className={cx(styles.overlayPageContent, styles.replaceRecoveryPhraseContent)}>
+          <div
+            className={cx(
+              styles.overlayPageContent,
+              styles.replaceRecoveryPhraseContent
+            )}
+          >
             <p>{REPLACE_RECOVERY_PRASE_EXPLANATION}</p>
             <span className={styles.QR}>
-              <div id='qr-replace-recovery-phrase' />
+              <div id="qr-replace-recovery-phrase" />
             </span>
           </div>
         </div>

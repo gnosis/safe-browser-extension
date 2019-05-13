@@ -9,12 +9,12 @@ const injectScript = () => {
     // Injects script.js with the ethereum provider
     var xhr = new window.XMLHttpRequest()
     xhr.open('GET', chrome.extension.getURL('script.js'), true)
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
       if (xhr.readyState === 4) {
         var s = document.createElement('script')
         s.type = 'text/javascript'
         s.src = chrome.extension.getURL('script.js')
-        var container = (document.documentElement || document.head)
+        var container = document.documentElement || document.head
         container.insertBefore(s, container.children[0])
       }
     }
@@ -36,28 +36,26 @@ const activeListeners = (currentSafe) => {
     })
   })
 
-  chrome.runtime.onMessage.addListener(
-    function (request, sender, sendResponse) {
-      switch (request.msg) {
-        case messages.MSG_RESOLVED_TRANSACTION:
-          const resolvedTransactionEvent = new window.CustomEvent(
-            messages.EV_RESOLVED_TRANSACTION + request.id,
-            {
-              detail: {
-                hash: request.hash,
-                id: request.id
-              }
+  chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    switch (request.msg) {
+      case messages.MSG_RESOLVED_TRANSACTION:
+        const resolvedTransactionEvent = new window.CustomEvent(
+          messages.EV_RESOLVED_TRANSACTION + request.id,
+          {
+            detail: {
+              hash: request.hash,
+              id: request.id
             }
-          )
-          window.dispatchEvent(resolvedTransactionEvent)
-          break
+          }
+        )
+        window.dispatchEvent(resolvedTransactionEvent)
+        break
 
-        case messages.MSG_UPDATE_CURRENT_SAFE:
-          updateProvider(request.newSafeAddress)
-          break
-      }
+      case messages.MSG_UPDATE_CURRENT_SAFE:
+        updateProvider(request.newSafeAddress)
+        break
     }
-  )
+  })
 }
 
 // Checks if the page is whitelisted to inject the web3 provider

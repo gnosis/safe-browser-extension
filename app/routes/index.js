@@ -55,7 +55,11 @@ export const ExtensionRoutes = () => (
     <Route exact path={LOCKING_URL} component={LockingConfiguration} />
     <Route exact path={RESYNC_TOKEN_URL} component={ResyncToken} />
     <Route exact path={ABOUT_URL} component={About} />
-    <Route exact path={REPLACE_RECOVERY_PHRASE_URL} component={ReplaceRecoveryPhrase} />
+    <Route
+      exact
+      path={REPLACE_RECOVERY_PHRASE_URL}
+      component={ReplaceRecoveryPhrase}
+    />
     <Route exact path={PAYMENT_TOKEN_URL} component={PaymentToken} />
   </Switch>
 )

@@ -1,7 +1,4 @@
-import {
-  UPDATE_DEVICE_DATA,
-  NOTIFY_DEVICE_UPDATED
-} from 'actions/device'
+import { UPDATE_DEVICE_DATA, NOTIFY_DEVICE_UPDATED } from 'actions/device'
 
 const initalState = {
   versionNumber: undefined,
@@ -21,7 +18,7 @@ function device(state = initalState, action) {
     case NOTIFY_DEVICE_UPDATED:
       return {
         ...state,
-        lastUpdateNotified: true,
+        lastUpdateNotified: true
       }
 
     default:

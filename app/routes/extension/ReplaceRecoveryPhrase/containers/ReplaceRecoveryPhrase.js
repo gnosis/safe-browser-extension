@@ -4,10 +4,7 @@ import { Redirect } from 'react-router'
 import EthUtil from 'ethereumjs-util'
 import BigNumber from 'bignumber.js'
 
-import {
-  PASSWORD_URL,
-  REPLACE_RECOVERY_PHRASE_URL
-} from 'routes/routes'
+import { PASSWORD_URL, REPLACE_RECOVERY_PHRASE_URL } from 'routes/routes'
 import { createQrImage } from 'utils/qrdisplay'
 import {
   getDecryptedEthAccount,
@@ -17,44 +14,55 @@ import Layout from '../components/Layout'
 import selector from './selector'
 
 class ReplaceRecoveryPhrase extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
-
-    this.qrReplaceRecoveryPhraseRef = React.createRef()
 
     const { location } = this.props
     const validPassword = location && location.state && location.state.password
     this.password = validPassword ? location.state.password : undefined
+    this.qrReplaceRecoveryPhraseRef = React.createRef()
   }
 
   componentDidMount = () => {
     const { safes } = this.props
+
+    const currentSafe = safes.safes.filter(
+      (safe) => safe.address === safes.currentSafe
+    )[0]
+
     createQrImage(
       document.getElementById('qr-replace-recovery-phrase'),
-      this.generateQrCodeContent(safes.currentSafe),
+      this.generateQrCodeContent(safes.currentSafe, currentSafe.accountIndex),
       3
     )
   }
 
   componentDidUpdate = (prevProps, prevState) => {
     const { safes } = this.props
+
+    const currentSafe = safes.safes.filter(
+      (safe) => safe.address === safes.currentSafe
+    )[0]
+
     createQrImage(
       document.getElementById('qr-replace-recovery-phrase'),
-      this.generateQrCodeContent(safes.currentSafe),
+      this.generateQrCodeContent(safes.currentSafe, currentSafe.accountIndex),
       3
     )
   }
 
-  generateQrCodeContent = (safeAddress) => {
-    const {
-      selectEncryptedMnemonic,
-      selectUnencryptedMnemonic
-    } = this.props
+  generateQrCodeContent = (safeAddress, accountIndex) => {
+    const { selectEncryptedMnemonic, selectUnencryptedMnemonic } = this.props
 
-    const account = !selectUnencryptedMnemonic && this.password
-      ? getDecryptedEthAccount(selectEncryptedMnemonic, this.password)
-      : createAccountFromMnemonic(selectUnencryptedMnemonic)
-    
+    const account =
+      !selectUnencryptedMnemonic && this.password
+        ? getDecryptedEthAccount(
+            selectEncryptedMnemonic,
+            this.password,
+            accountIndex
+          )
+        : createAccountFromMnemonic(selectUnencryptedMnemonic, accountIndex)
+
     const data = EthUtil.sha3('GNO' + safeAddress)
     const vrs = EthUtil.ecsign(data, account.getPrivateKey())
     const r = new BigNumber(EthUtil.bufferToHex(vrs.r))
@@ -71,7 +79,7 @@ class ReplaceRecoveryPhrase extends Component {
     return qrCodeContent
   }
 
-  render () {
+  render() {
     const { safes } = this.props
     const url = {
       pathname: PASSWORD_URL,
@@ -93,6 +101,4 @@ class ReplaceRecoveryPhrase extends Component {
   }
 }
 
-export default connect(
-  selector
-)(ReplaceRecoveryPhrase)
+export default connect(selector)(ReplaceRecoveryPhrase)

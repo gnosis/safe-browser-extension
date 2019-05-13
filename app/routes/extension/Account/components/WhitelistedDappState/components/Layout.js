@@ -9,18 +9,18 @@ const Layout = ({
   handleWhitelistDapp
 }) => (
   <div className={styles.whitelister} data-whitelisted={whitelisted}>
-    {showWhitelistedDappState && whitelisted !== undefined &&
+    {showWhitelistedDappState && whitelisted !== undefined && (
       <React.Fragment>
         <p>{url}</p>
         <span className={styles.whitelistSwitch}>
           <label onClick={handleWhitelistDapp(url)}>
-            <input type='checkbox' checked={whitelisted} readOnly />
+            <input type="checkbox" checked={whitelisted} readOnly />
             <span className={styles.switch} />
             <span className={styles.toggle} />
           </label>
         </span>
       </React.Fragment>
-    }
+    )}
   </div>
 )
 

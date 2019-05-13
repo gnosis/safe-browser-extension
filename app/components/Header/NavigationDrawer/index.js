@@ -33,66 +33,72 @@ class NavigationDrawer extends Component {
     const { account } = this.props
     const protectedUrl = account.lockedState
       ? {
-        pathname: PASSWORD_URL,
-        state: {
-          dest: url
+          pathname: PASSWORD_URL,
+          state: {
+            dest: url
+          }
         }
-      }
       : url
     return protectedUrl
   }
-  
 
-  render () {
-    const {
-      showMenu,
-      toggleMenu,
-      transactions
-    } = this.props
+  render() {
+    const { showMenu, toggleMenu, transactions } = this.props
 
     const changePasswordUrl = this.passwordProtection(CHANGE_PASSWORD_URL)
     const resyncTokenUrl = this.passwordProtection(RESYNC_TOKEN_URL)
-    const replaceRecoveryPhraseUrl = this.passwordProtection(REPLACE_RECOVERY_PHRASE_URL)
+    const replaceRecoveryPhraseUrl = this.passwordProtection(
+      REPLACE_RECOVERY_PHRASE_URL
+    )
 
-    const paymentTokenDetail = transactions.paymentToken && transactions.paymentToken.symbol
-      ? transactions.paymentToken.symbol.toUpperCase() + ' (' + transactions.paymentToken.name + ')'
-      : 'ETH (Ether)'
+    const paymentTokenDetail =
+      transactions.paymentToken && transactions.paymentToken.symbol
+        ? transactions.paymentToken.symbol.toUpperCase() +
+          ' (' +
+          transactions.paymentToken.name +
+          ')'
+        : 'ETH (Ether)'
 
     return (
       <React.Fragment>
         <div
-          className={cx(styles.safeDrawerMenuBackground, showMenu && styles.active)}
+          className={cx(
+            styles.safeDrawerMenuBackground,
+            showMenu && styles.active
+          )}
           onClick={toggleMenu}
         />
         <ul className={cx(styles.safeDrawerMenu, showMenu && styles.active)}>
           <li>
             <Link to={WHITELIST_URL}>
-              <div data-menu='whitelist'>{MANAGE_SITES_WHITELIST}</div>
+              <div data-menu="whitelist">{MANAGE_SITES_WHITELIST}</div>
             </Link>
           </li>
           <li>
             <Link to={LOCKING_URL}>
-              <div data-menu='timeout'>{SET_LOCK_TIMEOUT}</div>
+              <div data-menu="timeout">{SET_LOCK_TIMEOUT}</div>
             </Link>
           </li>
           <li>
             <Link to={changePasswordUrl}>
-              <div data-menu='password'>{CHANGE_PASSWORD}</div>
+              <div data-menu="password">{CHANGE_PASSWORD}</div>
             </Link>
           </li>
           <li>
             <Link to={resyncTokenUrl}>
-              <div data-menu='resync'>{RESYNC_WITH_MOBILE_APP}</div>
+              <div data-menu="resync">{RESYNC_WITH_MOBILE_APP}</div>
             </Link>
           </li>
           <li>
             <Link to={replaceRecoveryPhraseUrl}>
-              <div data-menu='replace-recovery-phrase'>{REPLACE_RECOVERY_PRASE}</div>
+              <div data-menu="replace-recovery-phrase">
+                {REPLACE_RECOVERY_PRASE}
+              </div>
             </Link>
           </li>
           <li>
             <Link to={PAYMENT_TOKEN_URL}>
-              <div data-menu='payment-token'>
+              <div data-menu="payment-token">
                 <div className={styles.descriptiveMenuEntry}>
                   <div>{PAYMENT_TOKEN}</div>
                   <div className={styles.token}>{paymentTokenDetail}</div>
@@ -102,7 +108,7 @@ class NavigationDrawer extends Component {
           </li>
           <li>
             <Link to={ABOUT_URL}>
-              <div data-menu='about'>{ABOUT}</div>
+              <div data-menu="about">{ABOUT}</div>
             </Link>
           </li>
         </ul>
@@ -118,6 +124,4 @@ const mapStateToProps = ({ account, transactions }, props) => {
   }
 }
 
-export default connect(
-  mapStateToProps
-)(NavigationDrawer)
+export default connect(mapStateToProps)(NavigationDrawer)

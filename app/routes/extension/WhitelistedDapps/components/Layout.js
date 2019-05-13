@@ -19,7 +19,7 @@ class Layout extends Component {
     e.preventDefault()
   }
 
-  render () {
+  render() {
     const {
       newDapp,
       errorMessage,
@@ -35,21 +35,26 @@ class Layout extends Component {
       <Page location={location}>
         <div className={styles.overlayPage}>
           <span className={styles.overlayPageHeader}>
-            <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)} />
+            <Link
+              to={ACCOUNT_URL}
+              className={cx(styles.btnBack, styles.active)}
+            />
             <h2>{MANAGE_SITES_WHITELIST}</h2>
             <p
               className={styles.action_DeleteAll}
               onClick={handleDeleteAllDapps()}
-            >{DELETE_ALL}</p>
+            >
+              {DELETE_ALL}
+            </p>
           </span>
           <span className={styles.overlayPageContent}>
             <span className={styles.whitelist_add}>
-              <form data-validation='ERROR' onSubmit={this.prevent}>
+              <form data-validation="ERROR" onSubmit={this.prevent}>
                 <div className={styles.whitelistForm}>
                   <input
-                    type='text'
+                    type="text"
                     placeholder={ADD_WEBSITE}
-                    name='whitelist-add'
+                    name="whitelist-add"
                     className={styles.noborder}
                     value={newDapp}
                     onChange={updateNewDapp}
@@ -57,11 +62,13 @@ class Layout extends Component {
                   <button
                     className={styles.button}
                     onClick={handleAddDapp(newDapp)}
-                  >{ADD}</button>
+                  >
+                    {ADD}
+                  </button>
                 </div>
-                {errorMessage &&
+                {errorMessage && (
                   <p className={styles.textRed}>{errorMessage}</p>
-                }
+                )}
               </form>
             </span>
             <ul className={styles.whitelist_items}>

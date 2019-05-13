@@ -25,29 +25,31 @@ class PaymentToken extends Component {
 
   handlePaymentToken = (token) => (e) => {
     const { onSetPaymentToken } = this.props
-    const paymentToken = (!token)
+    const paymentToken = !token
       ? null
       : {
-        address: token.address,
-        decimals: token.decimals,
-        logoUri: token.logoUri,
-        name: token.name,
-        symbol: token.symbol,
-        decimals: token.decimals
-      }
+          address: token.address,
+          decimals: token.decimals,
+          logoUri: token.logoUri,
+          name: token.name,
+          symbol: token.symbol,
+          decimals: token.decimals
+        }
 
     onSetPaymentToken(paymentToken)
     const symbol = token ? token.symbol : 'ETH'
-    ga(['_trackEvent', EXTENSION_SETTINGS, 'click-set-payment-token', 'Use ' + symbol + ' for paying transaction fees'])
+    ga([
+      '_trackEvent',
+      EXTENSION_SETTINGS,
+      'click-set-payment-token',
+      'Use ' + symbol + ' for paying transaction fees'
+    ])
     this.setState({ selectedPaymentToken: token })
   }
 
-  render () {
+  render() {
     const { location } = this.props
-    const {
-      tokenList,
-      selectedPaymentToken
-    } = this.state
+    const { tokenList, selectedPaymentToken } = this.state
 
     return (
       <Layout
@@ -62,7 +64,8 @@ class PaymentToken extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSetPaymentToken: (paymentToken) => dispatch(actions.setPaymentToken(paymentToken))
+    onSetPaymentToken: (paymentToken) =>
+      dispatch(actions.setPaymentToken(paymentToken))
   }
 }
 

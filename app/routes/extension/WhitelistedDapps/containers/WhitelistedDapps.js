@@ -12,7 +12,7 @@ import {
 } from '../../../../../config/messages'
 
 class WhitelistedDapps extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -47,14 +47,24 @@ class WhitelistedDapps extends Component {
 
     if (this.validateDapp(newDapp)) {
       this.props.onAddWhitelistedDapp(newDapp)
-      ga(['_trackEvent', EXTENSION_SETTINGS, 'click-add-to-whitelist-via-settings', 'Add to whitelist via settings: ' + newDapp])
+      ga([
+        '_trackEvent',
+        EXTENSION_SETTINGS,
+        'click-add-to-whitelist-via-settings',
+        'Add to whitelist via settings: ' + newDapp
+      ])
       this.setState({ newDapp: '' })
     }
   }
 
   handleDeleteDapp = (dapp) => (e) => {
     this.props.onDeleteWhitelistedDapp(dapp)
-    ga(['_trackEvent', EXTENSION_SETTINGS, 'click-remove-from-whitelist-via-settings', 'Remove from whitelist via settings: ' + dapp])
+    ga([
+      '_trackEvent',
+      EXTENSION_SETTINGS,
+      'click-remove-from-whitelist-via-settings',
+      'Remove from whitelist via settings: ' + dapp
+    ])
   }
 
   handleDeleteAllDapps = () => (e) => {
@@ -62,10 +72,15 @@ class WhitelistedDapps extends Component {
 
     if (whitelistedDapps.length <= 0) return
     this.props.ondeleteAllWhitelistedDapps()
-    ga(['_trackEvent', EXTENSION_SETTINGS, 'click-remove-entire-whitelist', 'Remove entire whitelist'])
+    ga([
+      '_trackEvent',
+      EXTENSION_SETTINGS,
+      'click-remove-entire-whitelist',
+      'Remove entire whitelist'
+    ])
   }
 
-  render () {
+  render() {
     const { newDapp, errorMessage } = this.state
     const { whitelistedDapps } = this.props
 
@@ -93,8 +108,10 @@ const mapStateToProps = ({ whitelistedDapps }, props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onAddWhitelistedDapp: (dapp) => dispatch(actions.addWhitelistedDapp(dapp)),
-    onDeleteWhitelistedDapp: (dapp) => dispatch(actions.deleteWhitelistedDapp(dapp)),
-    ondeleteAllWhitelistedDapps: () => dispatch(actions.deleteAllWhitelistedDapps())
+    onDeleteWhitelistedDapp: (dapp) =>
+      dispatch(actions.deleteWhitelistedDapp(dapp)),
+    ondeleteAllWhitelistedDapps: () =>
+      dispatch(actions.deleteAllWhitelistedDapps())
   }
 }
 

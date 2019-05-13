@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Layout from '../components/Layout'
 
 class ConfirmPassword extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -15,15 +15,12 @@ class ConfirmPassword extends Component {
   manageConfirmPassword = (confirmPassword) => {
     this.setState({
       confirmPassword,
-      passwordsMatch: (confirmPassword === this.props.location.state.password)
+      passwordsMatch: confirmPassword === this.props.location.state.password
     })
   }
 
-  render () {
-    const {
-      confirmPassword,
-      passwordsMatch
-    } = this.state
+  render() {
+    const { confirmPassword, passwordsMatch } = this.state
 
     return (
       <Layout

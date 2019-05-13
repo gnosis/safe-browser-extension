@@ -18,8 +18,9 @@ class OptionsPage extends Component {
     // var message = document.getElementById('message')
     var notificationsButton = document.getElementById('requestNotitications')
 
-    navigator.permissions.query({ name: 'notifications' })
-      .then(function (permission) {
+    navigator.permissions
+      .query({ name: 'notifications' })
+      .then(function(permission) {
         switch (permission.state) {
           case 'granted':
             notificationsButton.style.display = 'none'
@@ -34,10 +35,10 @@ class OptionsPage extends Component {
             notificationsButton.style.display = 'block'
             // message.innerHTML = 'You need to allow notifications'
 
-            notificationsButton.addEventListener('click', function () {
+            notificationsButton.addEventListener('click', function() {
               // eslint-disable-next-line
               Notification.requestPermission()
-                .then(function (permission) {
+                .then(function(permission) {
                   if (permission === 'granted') {
                     window.close()
                   }
@@ -45,7 +46,7 @@ class OptionsPage extends Component {
                     notificationsButton.style.display = 'none'
                   }
                 })
-                .catch(function (err) {
+                .catch(function(err) {
                   console.error(err)
                 })
             })
@@ -54,27 +55,22 @@ class OptionsPage extends Component {
       })
   }
 
-  render () {
+  render() {
     return (
       <div className={styles.start}>
         <div className={styles.content}>
-          <span
-            className={styles.safeLogo}
-            data-network={getNetwork()}
-          >
+          <span className={styles.safeLogo} data-network={getNetwork()}>
             <span className={styles.edition}>{PERSONAL_EDITION}</span>
           </span>
           <h1>{OPTIONS_PAGE_HEADER}</h1>
           <p>{OPTIONS_PAGE_DESCRIPTION}</p>
-          <img
-            src={notificationsImage}
-            height='134'
-            width='170'
-          />
+          <img src={notificationsImage} height="134" width="170" />
           <button
             className={cx(styles.button, styles.round)}
-            id='requestNotitications'
-          >{ALLOW_NOTIFICATIONS}</button>
+            id="requestNotitications"
+          >
+            {ALLOW_NOTIFICATIONS}
+          </button>
         </div>
       </div>
     )

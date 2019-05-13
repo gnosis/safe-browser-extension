@@ -12,46 +12,29 @@ class AppQr extends Component {
   componentDidMount = () => {
     const { link } = this.props
 
-    createQrImage(
-      document.getElementById('qr-app'),
-      link,
-      4
-    )
+    createQrImage(document.getElementById('qr-app'), link, 4)
   }
 
   handleOpenApp = (url) => (e) => {
     chrome.tabs.create({ url })
   }
 
-  render () {
-    const {
-      toggleQr,
-      os,
-      link,
-      storeImage
-    } = this.props
+  render() {
+    const { toggleQr, os, link, storeImage } = this.props
 
     return (
       <div className={styles.innerOverlay}>
-        <button
-          className={styles.buttonExit}
-          onClick={toggleQr}
-        />
+        <button className={styles.buttonExit} onClick={toggleQr} />
         <div className={styles.innerOverlayContent}>
           <span className={styles.QR}>
-            <p>
-              {(os === 'ANDROID')
-                ? SAFE_FOR_ANDROID
-                : SAFE_FOR_IOS
-              }
-            </p>
-            <div id='qr-app' />
+            <p>{os === 'ANDROID' ? SAFE_FOR_ANDROID : SAFE_FOR_IOS}</p>
+            <div id="qr-app" />
           </span>
           <img
             src={storeImage}
             onClick={this.handleOpenApp(link)}
-            height='40'
-            width='135'
+            height="40"
+            width="135"
           />
         </div>
         <NetworkNotification />

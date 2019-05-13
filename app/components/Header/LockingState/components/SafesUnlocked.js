@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import styles from 'assets/css/global.css'
 
 class SafesUnlocked extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     const { account } = this.props
 
@@ -17,10 +17,7 @@ class SafesUnlocked extends Component {
   }
 
   componentDidMount = () => {
-    this.timer = setInterval(
-      this.countDown,
-      1000
-    )
+    this.timer = setInterval(this.countDown, 1000)
   }
 
   componentWillUnmount = () => {
@@ -31,7 +28,7 @@ class SafesUnlocked extends Component {
     const { account } = this.props
 
     const initDate = new Date(account.unlockingTime).getTime()
-    const endDate = new Date(initDate + (autoLockInterval * 60000))
+    const endDate = new Date(initDate + autoLockInterval * 60000)
     const now = new Date()
     const diffSeconds = Math.trunc(Math.abs(endDate - now) / 1000)
 
@@ -50,10 +47,7 @@ class SafesUnlocked extends Component {
   }
 
   countDown = () => {
-    const {
-      account,
-      handleLockAccount 
-    } = this.props
+    const { account, handleLockAccount } = this.props
     const newAutoLockInterval = account.autoLockInterval
 
     if (this.autoLockInterval !== newAutoLockInterval) {
@@ -68,11 +62,11 @@ class SafesUnlocked extends Component {
 
     this.setState((prevState) => {
       const seconds = prevState.seconds - 1
-      
+
       if (seconds > account.autoLockInterval * 60 || seconds < 0) {
         handleLockAccount()
       }
-      
+
       return {
         time: this.secondsToTime(seconds),
         seconds
@@ -80,19 +74,21 @@ class SafesUnlocked extends Component {
     })
   }
 
-  render () {
+  render() {
     const { handleLockAccount } = this.props
     const { minutes, seconds } = this.state.time
 
-    const minutesString = (minutes < 10) ? '0' + minutes.toString() : minutes.toString()
-    const secondsString = (seconds < 10) ? '0' + seconds.toString() : seconds.toString()
+    const minutesString =
+      minutes < 10 ? '0' + minutes.toString() : minutes.toString()
+    const secondsString =
+      seconds < 10 ? '0' + seconds.toString() : seconds.toString()
     const timeoutString = minutesString + 'm ' + secondsString + 's'
 
     return (
       <span
         className={styles.lockedState}
         onClick={handleLockAccount}
-        data-locked='false'
+        data-locked="false"
         data-timeout={timeoutString}
       />
     )
@@ -105,6 +101,4 @@ const mapStateToProps = ({ account }, props) => {
   }
 }
 
-export default connect(
-  mapStateToProps
-)(SafesUnlocked)
+export default connect(mapStateToProps)(SafesUnlocked)

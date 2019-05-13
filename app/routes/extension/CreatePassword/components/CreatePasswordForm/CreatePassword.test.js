@@ -116,7 +116,7 @@ describe('Create Password Form Validation', () => {
     expect(component.state().error.row).toEqual(true)
   })
 
-  test('validatePasswords: It should return false if the password doesn\'t meet all the requirements', () => {
+  test("validatePasswords: It should return false if the password doesn't meet all the requirements", () => {
     const newPassword = ''
     const props = {
       newPassword: '',
@@ -135,7 +135,7 @@ describe('Create Password Form Validation', () => {
     expect(component.state().error.row).toEqual(false)
   })
 
-  test('validatePasswords: It should return false if the password doesn\'t meet all the requirements', () => {
+  test("validatePasswords: It should return false if the password doesn't meet all the requirements", () => {
     const newPassword = 'aa'
     const props = {
       newPassword: '',

@@ -6,13 +6,13 @@ import {
   setUpNotifications,
   authPushNotificationService
 } from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairingNotifications'
-import { getDecryptedEthAccount } from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'
+import { getDecryptedAllEthAccounts } from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'
 import actions from './actions'
 import selector from './selector'
 import Layout from '../components/Layout'
 
 class Password extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -20,7 +20,7 @@ class Password extends Component {
       errorMessage: '',
       continue: false,
       dataValidation: '',
-      rotation: { 'transform': 'rotate(0deg)' }
+      rotation: { transform: 'rotate(0deg)' }
     }
   }
 
@@ -28,7 +28,10 @@ class Password extends Component {
     const currentPassword = e.target.value
     const rotateRandom = [15, 30, -45, 120, 230, -10]
     const rotation = {
-      'transform': 'rotate(' + rotateRandom[Math.floor(Math.random() * rotateRandom.length)] + 'deg)'
+      transform:
+        'rotate(' +
+        rotateRandom[Math.floor(Math.random() * rotateRandom.length)] +
+        'deg)'
     }
 
     this.setState({
@@ -41,7 +44,10 @@ class Password extends Component {
     const { password } = this.state
     const { account } = this.props
     const encryptedSeed = account.secondFA.seed
-    const decryptedHmac = CryptoJs.HmacSHA256(encryptedSeed, CryptoJs.SHA256(password)).toString()
+    const decryptedHmac = CryptoJs.HmacSHA256(
+      encryptedSeed,
+      CryptoJs.SHA256(password)
+    ).toString()
 
     if (decryptedHmac === account.secondFA.hmac) {
       this.setState({ dataValidation: 'OK' })
@@ -64,14 +70,21 @@ class Password extends Component {
     const {
       device,
       notifyDeviceUpdated,
-      selectEncryptedMnemonic
+      selectEncryptedMnemonic,
+      safes,
+      account
     } = this.props
 
     if (!device.lastUpdateNotified && password && selectEncryptedMnemonic) {
       try {
-        const currentAccount = getDecryptedEthAccount(selectEncryptedMnemonic, password)
+        const accounts = getDecryptedAllEthAccounts(
+          selectEncryptedMnemonic,
+          password,
+          safes,
+          account
+        )
         const token = await setUpNotifications()
-        const auth = await authPushNotificationService(token, [currentAccount])
+        const auth = await authPushNotificationService(token, accounts)
         if (token && auth) {
           notifyDeviceUpdated()
         }
@@ -81,21 +94,21 @@ class Password extends Component {
     }
   }
 
-  render () {
-    const {
-      password,
-      rotation,
-      dataValidation,
-    } = this.state
+  render() {
+    const { password, rotation, dataValidation } = this.state
 
     if (this.state.continue) {
-      return <Redirect to={{
-        pathname: this.props.location.state.dest,
-        state: {
-          ...this.props.location.state,
-          password
-        }
-      }} />
+      return (
+        <Redirect
+          to={{
+            pathname: this.props.location.state.dest,
+            state: {
+              ...this.props.location.state,
+              password
+            }
+          }}
+        />
+      )
     }
 
     return (

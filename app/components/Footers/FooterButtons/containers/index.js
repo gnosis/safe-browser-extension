@@ -11,7 +11,7 @@ import selector from './selector'
 const cx = classNames.bind(styles)
 
 class FooterButtons extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       requestResolved: false
@@ -33,10 +33,7 @@ class FooterButtons extends Component {
   }
 
   handleConfirmation = () => {
-    const {
-      handleConfirmation,
-      account
-    } = this.props
+    const { handleConfirmation, account } = this.props
 
     if (account.lockedState) {
       this.setState({ requestResolved: true })
@@ -45,13 +42,8 @@ class FooterButtons extends Component {
     }
   }
 
-  render () {
-    const {
-      account,
-      nextUrl,
-      rejectionText,
-      confirmationText
-    } = this.props
+  render() {
+    const { account, nextUrl, rejectionText, confirmationText } = this.props
     const { requestResolved } = this.state
 
     if (requestResolved && account.lockedState) {
@@ -85,6 +77,4 @@ class FooterButtons extends Component {
   }
 }
 
-export default connect(
-  selector
-)(FooterButtons)
+export default connect(selector)(FooterButtons)
