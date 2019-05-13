@@ -3,7 +3,7 @@
     "message": "Retry"
   },
   "estimated_transaction_fee": {
-    "message": "Estimated Transaction Fee"
+    "message": "Estimated Network Fee"
   },
   "review_transaction": {
     "message": "Review transaction"
@@ -45,7 +45,7 @@
     "message": "Please wait %s sec before resending request."
   },
   "request_confirmation": {
-    "message": "Re-send confirmation request"
+    "message": "Resend confirmation request"
   },
   "unknown_token": {
     "message": "Unknown Token"
@@ -86,8 +86,14 @@
   "safe_already_exists": {
     "message": "Safe already exists"
   },
+  "receive_funds": {
+    "message": "Receive Funds"
+  },
   "replace_recovery_phrase": {
-    "message": "Replace recovery phrase"
+    "message": "Replace recovery\\nphrase"
+  },
+  "layout_replace_recovery_phrase_transaction_info_description": {
+    "message": "The old recovery phrase will become invalid and will be replaced by the new one."
   },
   "store_description": {
     "message": "The Gnosis Safe is a multi-signature Ethereum wallet providing users with a convenient, secure way to manage their digital assets and interact with the decentralized web.\n\nYou can receive, hold and transfer Ether and ERC-20 tokens with the Gnosis Safe. Via the Chrome extension you can interact with decentralized applications."
@@ -268,5 +274,29 @@
   },
   "payment_token": {
     "message": "Payment token (for network fees)"
+  },
+  "review_sign_message": {
+    "message": "Review signature"
+  },
+  "balance_after_transfer": {
+    "message": "Balance after transfer"
+  },
+  "amount": {
+    "message": "Amount"
+  },
+  "recipients_address": {
+    "message": "Recipient’s address"
+  },
+  "review": {
+    "message": "Review"
+  },
+  "send_title": {
+    "message": "Send [%s]"
+  },
+  "paste_from_clipboard": {
+    "message": "Paste from Clipboard"
+  },
+  "address_invalid": {
+    "message": "Address is invalid"
   }
 }

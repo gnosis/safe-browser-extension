@@ -152,3 +152,22 @@ export const getTransactionSummary = async (transaction, estimations) => {
     // transactionTotalCost
   }
 }
+
+export const isReplaceRecoveryPhrase = (data) => {
+  const prefix = data.substr(0, 10)
+  if (prefix !== '0x8d80ff0a') {
+    return false
+  }
+  const payload = data.substr(10)
+  if (payload.length !== 1280) {
+    return false
+  }
+  const partitions = payload.match(/.{64}/g)
+  if (partitions.length !== 20) {
+    return false
+  }
+  if (partitions[3] != partitions[12]) {
+    return false
+  }
+  return true
+}

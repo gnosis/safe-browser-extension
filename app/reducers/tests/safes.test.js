@@ -206,7 +206,7 @@ describe('Test Safes redux reducer', () => {
       safes: [
         {
           address: safe1.address,
-          accountIndex: 1, 
+          accountIndex: 1,
           alias: newAlias
         }
       ]

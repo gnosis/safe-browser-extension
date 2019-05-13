@@ -86,8 +86,14 @@
   "safe_already_exists": {
     "message": "Il Safe già esiste"
   },
+  "receive_funds": {
+    "message": "Ricevi fondi"
+  },
   "replace_recovery_phrase": {
-    "message": "Sostituisci la frase di recupero"
+    "message": "Sostituisci la frase\\ndi recupero"
+  },
+  "layout_replace_recovery_phrase_transaction_info_description": {
+    "message": "La vecchia frase di recupero non sarà più valida e verrà sostituita da quella nuova."
   },
   "store_description": {
     "message": "Gnosis Safe è un portafoglio Ethereum multi-firma che consente agli utenti di gestire i propri beni digitali e l'interazione con il Web decentralizzato in modo comodo e sicuro.\n\nCon Gnosis Safe puoi ricevere, conservare e trasferire Ether e token ERC-20. Attraverso l'estensione per browser Chrome puoi interagire con applicazioni decentralizzate."
@@ -265,5 +271,32 @@
   },
   "approve": {
     "message": "Approvare"
+  },
+  "payment_token": {
+    "message": "Token di pagamento (per commissioni di rete)"
+  },
+  "review_sign_message": {
+    "message": "Rivedi la firma"
+  },
+  "balance_after_transfer": {
+    "message": "Saldo dopo il trasferimento"
+  },
+  "amount": {
+    "message": "Importo"
+  },
+  "recipients_address": {
+    "message": "Indirizzo del destinatario"
+  },
+  "review": {
+    "message": "Revisione"
+  },
+  "send_title": {
+    "message": "Invia [%s]"
+  },
+  "paste_from_clipboard": {
+    "message": "Incolla dagli appunti"
+  },
+  "address_invalid": {
+    "message": "Indirizzo non valido"
   }
 }

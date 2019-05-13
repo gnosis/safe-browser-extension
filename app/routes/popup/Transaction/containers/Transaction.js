@@ -11,7 +11,8 @@ import {
   setUpTransaction,
   getEthBalance,
   calculateGasEstimation,
-  getTransactionSummary
+  getTransactionSummary,
+  isReplaceRecoveryPhrase
 } from './transactions'
 import Header from 'components/Header'
 import Layout from '../components/Layout'
@@ -62,6 +63,7 @@ class Transaction extends Component {
     const tx = transactions.txs[transactionNumber].tx
     if (!tx) return
 
+    const replaceRecoveryPhrase = isReplaceRecoveryPhrase(tx.data)
     this.setState({
       transactionId: tx.id,
       reviewedTx: false,
@@ -72,7 +74,8 @@ class Transaction extends Component {
       displayedValue: undefined,
       decimals: undefined,
       estimations: undefined,
-      transactionSummary: undefined
+      transactionSummary: undefined,
+      replaceRecoveryPhrase
     })
 
     try {
@@ -188,7 +191,8 @@ class Transaction extends Component {
       estimations,
       transactionSummary,
       loadedData,
-      reviewedTx
+      reviewedTx,
+      replaceRecoveryPhrase
     } = this.state
     const { account, transactions, location } = this.props
 
@@ -215,6 +219,7 @@ class Transaction extends Component {
               loadedData={loadedData}
               reviewedTx={reviewedTx}
               transactionSummary={transactionSummary}
+              replaceRecoveryPhrase={replaceRecoveryPhrase}
               safeAlias={this.getSafeAlias(transaction.safe)}
               ethAccount={this.ethAccount}
               previousTransaction={this.previousTransaction}
