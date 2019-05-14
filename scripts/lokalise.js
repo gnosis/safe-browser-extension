@@ -23,7 +23,8 @@ const getLanguages = async () => {
 const getTranslations = async () => {
   const url = 'https://api.lokalise.co/api2/projects/' + env.LOKALISE_PROJECT_ID + '/keys' +
     '?include_translations=1' +
-    '&filter_platforms=other'
+    '&filter_platforms=other' +
+    '&limit=5000'
   const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
@@ -85,20 +86,22 @@ const generateI18nFiles = async (languagesIso) => {
           const languageName = languageList.filter(l => l.lang_iso === langIso)[0].lang_name
           errorsLanguage.push('[' + key.keyName + '] was not translated to: ' + languageName + ' (' + langIso + ')')
         }
-        languageObject[key.keyName] = {
-          message: languageKey[0].translation
+        if (languageKey[0].translation !== '') {
+          languageObject[key.keyName] = {
+            message: languageKey[0].translation
+          }
         }
       })
 
-      if (errorsLanguage.length > 0) {
+      //if (errorsLanguage.length > 0) {
         errorsLanguage.map(elem => console.log(elem))
         errors = errors.concat(errorsLanguage)
-      } else {
+      //} else {
         fs.writeFileSync(
           localesRootDirectory + langIso + '/messages.json',
           JSON.stringify(languageObject, null, '  ')
         )
-      }
+      //}
     })
 
     if (errors.length > 0) {

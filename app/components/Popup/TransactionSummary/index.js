@@ -6,7 +6,7 @@ import {
   SAFE_BALANCE,
   ESTIMATED_TRANSACTION_FEE
   // MAX_TOTAL
-} from '../../../../../../../config/messages'
+} from '../../../../config/messages'
 import styles from 'assets/css/global.css'
 
 class TransactionSummary extends Component {

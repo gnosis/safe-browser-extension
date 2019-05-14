@@ -1,7 +1,6 @@
 import Web3 from 'web3'
 import BigNumber from 'bignumber.js'
 
-import { promisify } from 'utils/promisify'
 import {
   isTokenTransfer,
   getTokenData,
@@ -10,15 +9,8 @@ import {
 } from './tokens'
 import { ADDRESS_ZERO } from 'utils/helpers'
 import { getTransactionEstimations } from '../components/SendTransaction/containers/gasData'
-import { getNetworkUrl } from '../../../../../config'
 import { UNKNOWN_TOKEN } from '../../../../../config/messages'
-
-export const getEthBalance = async (address) => {
-  const web3 = new Web3(new Web3.providers.HttpProvider(getNetworkUrl()))
-  let ethBalance
-  ethBalance = await promisify((cb) => web3.eth.getBalance(address, cb))
-  return web3.fromWei(ethBalance, 'ether')
-}
+import { getEthBalance } from 'utils/helpers'
 
 export const getTransactionData = async (to, from, data, value, ethBalance) => {
   if (!isTokenTransfer(data)) {

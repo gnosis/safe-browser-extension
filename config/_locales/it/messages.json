@@ -1,4 +1,7 @@
 {
+  "name": {
+    "message": "Nome"
+  },
   "retry": {
     "message": "Riprova"
   },
@@ -90,7 +93,7 @@
     "message": "Ricevi fondi"
   },
   "replace_recovery_phrase": {
-    "message": "Sostituisci la frase\\ndi recupero"
+    "message": "Sostituisci la frase di recupero"
   },
   "layout_replace_recovery_phrase_transaction_info_description": {
     "message": "La vecchia frase di recupero non sarà più valida e verrà sostituita da quella nuova."
@@ -281,22 +284,241 @@
   "balance_after_transfer": {
     "message": "Saldo dopo il trasferimento"
   },
-  "amount": {
-    "message": "Importo"
-  },
-  "recipients_address": {
-    "message": "Indirizzo del destinatario"
-  },
   "review": {
     "message": "Revisione"
   },
-  "send_title": {
-    "message": "Invia [%s]"
+  "password": {
+    "message": "Password"
   },
-  "paste_from_clipboard": {
-    "message": "Incolla dagli appunti"
+  "enter_the_decentralized_web": {
+    "message": "Entra nel Web decentralizzato."
   },
-  "address_invalid": {
-    "message": "Indirizzo non valido"
+  "password_confirmed": {
+    "message": "Password confermata"
+  },
+  "please_review_terms_and_privacy_policy": {
+    "message": "Leggere attentamente le condizioni d'uso e l'informativa sulla privacy."
+  },
+  "privacy_policy_link": {
+    "message": "<a href='https://safe.gnosis.io/privacy' target='_blank'>Informativa sulla privacy</a>"
+  },
+  "terms_link": {
+    "message": "<a href='https://safe.gnosis.io/terms' target='_blank'>Termini d'uso</a>"
+  },
+  "transaction_connects_safe_to_2FA": {
+    "message": "Questa transazione collega questo Safe con l'estensione del browser. Le transazioni future richiederanno la conferma da entrambi i dispositivi."
+  },
+  "your_safe_consists_of": {
+    "message": "Il tuo Safe è composto da:"
+  },
+  "safe_consists_list": {
+    "message": "1. Questa app mobile. \\n \n2. La sua estensione per il browser. \\n \n3. Una frase di recupero."
+  },
+  "loose_or_change_phone": {
+    "message": "Se si perde o si cambia il telefono, utilizza l'indirizzo del Safe e la frase di recupero per ripristinare l'accesso alle tue risorse digitali."
+  },
+  "address_already_in_app": {
+    "message": "L'indirizzo è già presente nella tua app"
+  },
+  "enter_safe_address": {
+    "message": "Inserisci l'indirizzo del Safe"
+  },
+  "recover_safe_title": {
+    "message": "Recupero Safe"
+  },
+  "enter_seed": {
+    "message": "Inserisci la tua frase di recupero"
+  },
+  "incorrect_seed": {
+    "message": "Frase di recupero errata"
+  },
+  "enter_recovery": {
+    "message": "Inserisci la frase di recupero"
+  },
+  "transaction_details_here": {
+    "message": "Visualizza i dettagli della transazione qui"
+  },
+  "tx_submitted_replace_be": {
+    "message": "La transazione è stata inviata e dovrebbe completarsi in un paio di minuti. La sostituzione dell'estensione del browser è in corso."
+  },
+  "new_entry": {
+    "message": "Nuova voce"
+  },
+  "enter_name": {
+    "message": "Inserisci il nome"
+  },
+  "what_is_network_fee": {
+    "message": "Cosa sono le commissioni di rete?"
+  },
+  "enter_new_password": {
+    "message": "Inserire una nuova password"
+  },
+  "delete_entry": {
+    "message": "Elimina voce"
+  },
+  "edit_entry": {
+    "message": "Modifica voce"
+  },
+  "tap_view_options": {
+    "message": "Tocca qui per visualizzare le opzioni"
+  },
+  "no_results_found": {
+    "message": "Nessun risultato trovato"
+  },
+  "search": {
+    "message": "Cerca"
+  },
+  "edit": {
+    "message": "Modifica"
+  },
+  "send_again": {
+    "message": "Inviare %s di nuovo"
+  },
+  "give_feedback": {
+    "message": "Dare un Feedback"
+  },
+  "rate_app": {
+    "message": "Valuta l'app"
+  },
+  "licenses": {
+    "message": "Licenze"
+  },
+  "support": {
+    "message": "Supporto"
+  },
+  "enter_current_password": {
+    "message": "Inserisci la password corrente"
+  },
+  "incorrect_password": {
+    "message": "Password errata"
+  },
+  "incoming_tx": {
+    "message": "Trasferimento in entrata"
+  },
+  "current_balance": {
+    "message": "Saldo attuale"
+  },
+  "recovered_safe": {
+    "message": "Safe\\nrecuperato"
+  },
+  "existing_safe_recovered": {
+    "message": "Il Safe esistente verrà recuperato e associato a questo dispositivo."
+  },
+  "name_too_long": {
+    "message": "Il nome è troppo lungo. Massimo 120 caratteri."
+  },
+  "transaction_submitted_safe_being_created": {
+    "message": "La tua transazione è stata inviata. Il tuo Safe verrà creato a breve. Questo potrebbe richiedere un paio di minuti."
+  },
+  "follow_progress_on_etherscan": {
+    "message": "<font color=#27a0ff> Segui i progressi su Etherscan.io </font>"
+  },
+  "safe_title": {
+    "message": "Safe"
+  },
+  "bytes_included": {
+    "message": "%d byte inclusi"
+  },
+  "please_have_safe_address_ready": {
+    "message": "Per favore, tieni a portata di mano l'indirizzo e la frase di recupero del Safe."
+  },
+  "recovery_fee_will_be_deducted": {
+    "message": "Una commissione per il recupero verrà automaticamente detratta dal saldo del Safe recuperato."
+  },
+  "new_be": {
+    "message": "Nuova estensione per il browser"
+  },
+  "yesterday": {
+    "message": "IERI"
+  },
+  "pending_captalized": {
+    "message": "IN SOSPESO"
+  },
+  "done": {
+    "message": "Fatto"
+  },
+  "error_or_invalid_qr": {
+    "message": "Errore nell'accoppiamento di dispositivi o codice QR non valido"
+  },
+  "error": {
+    "message": "Errore"
+  },
+  "connecting_in_progress": {
+    "message": "Il collegamento all'estensione del browser è in corso. La transazione è stata inviata e dovrebbe richiedere un paio di minuti."
+  },
+  "safe_creation_fee": {
+    "message": "Costo di creazione del Safe"
+  },
+  "network_fee_required": {
+    "message": "È necessario pagare una commissione di rete per creare il tuo nuovo Safe."
+  },
+  "send_this_amount": {
+    "message": "Invia almeno questo importo al tuo nuovo Safe:"
+  },
+  "please_send_x": {
+    "message": "Si prega di inviare solo %s"
+  },
+  "refresh": {
+    "message": "Aggiorna"
+  },
+  "create_safe_title": {
+    "message": "Creazione Safe"
+  },
+  "cancel_safe_creation": {
+    "message": "Annullare la creazione del Safe?"
+  },
+  "cancel_creation_warning": {
+    "message": "Se annulli, tutti i progressi fatti andranno persi e non sarai in grado di utilizzare questo indirizzo."
+  },
+  "open_be_link": {
+    "message": "1. Apri il <a href='https://chrome.google.com/webstore/detail/gnosis-safe-mainnet-beta/iecodoenhaghdlpodmhooppdhjhmibde?hl=en' target='_blank'> link all'estensione del browser Chrome </a> sul tuo computer."
+  },
+  "skip_setup_later": {
+    "message": "Salta e imposta in seguito"
+  },
+  "new_seed": {
+    "message": "Nuova frase di recupero"
+  },
+  "amount_needed": {
+    "message": "Importo richiesto"
+  },
+  "send_remainder": {
+    "message": "Invia almeno l'importo restante al tuo Safe "
+  },
+  "view_entry": {
+    "message": "Visualizza voce"
+  },
+  "enter_safe_address_field": {
+    "message": "Inserisci l'indirizzo del tuo Safe"
+  },
+  "amount_received": {
+    "message": "Importo ricevuto"
+  },
+  "once_process_is_complete": {
+    "message": "Una volta completato questo processo, sarà possibile utilizzare solo la nuova estensione del browser per confermare le transazioni.\\n\\nSi prega di tenere a portata di mano la frase di recupero del Safe per confermare il recupero."
+  },
+  "future_tx_approved_by_both": {
+    "message": "Tutte le transazioni future dovranno essere approvate da entrambi i dispositivi."
+  },
+  "ios_open_be_link_text": {
+    "message": "1. Apri il link all'estensione del browser Chrome sul tuo computer desktop."
+  },
+  "info": {
+    "message": "Info"
+  },
+  "sync_with_extension_sent": {
+    "message": "Notifica di risincronizzazione inviata correttamente"
+  },
+  "change_payment_method": {
+    "message": "Cambia il metodo di pagamento della commissione"
+  },
+  "fee_method": {
+    "message": "Metodo di pagamento della commissione"
+  },
+  "fee": {
+    "message": "Commissioni"
+  },
+  "this_payment_will_be_used": {
+    "message": "Questo metodo di pagamento verrà utilizzato per pagare le commissioni di rete in tutte le transazioni."
   }
 }

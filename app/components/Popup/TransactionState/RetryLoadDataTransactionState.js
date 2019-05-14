@@ -5,11 +5,13 @@ import styles from 'assets/css/global.css'
 import {
   AWAITING_CONFIRMATIONS,
   RETRY
-} from '../../../../../../../config/messages'
+} from '../../../../config/messages'
 
 const cx = classNames.bind(styles)
 
-const RetryLoadDataTransactionState = ({ retryShowTransaction }) => (
+const RetryLoadDataTransactionState = ({
+  retryShowElement
+}) => (
   <div className={cx(styles.transactionState)}>
     <span className={styles.await}>
       <p>{AWAITING_CONFIRMATIONS}</p>
@@ -17,10 +19,8 @@ const RetryLoadDataTransactionState = ({ retryShowTransaction }) => (
     <span className={styles.resend}>
       <button
         className={cx(styles.button, styles.white)}
-        onClick={retryShowTransaction}
-      >
-        {RETRY}
-      </button>
+        onClick={retryShowElement}
+      >{RETRY}</button>
     </span>
   </div>
 )

@@ -1,14 +1,34 @@
 import EthUtil from 'ethereumjs-util'
 import BigNumber from 'bignumber.js'
 import 'babel-polyfill'
-import TruffleContract from 'truffle-contract'
-import Web3 from 'web3'
 import fetch from 'node-fetch'
-
 import { getTransactionEstimations } from 'routes/popup/Transaction/components/SendTransaction/containers/gasData'
 import { isTokenTransfer } from 'routes/popup/Transaction/containers/tokens'
 import GnosisSafe from '../../contracts/GnosisSafe.json'
 import { getPushNotificationServiceUrl, getNetworkUrl } from '../../config'
+
+export const sendSignMessage = async (
+  accountAddress,
+  privateKey,
+  message,
+  messageHash,
+  safeAddress
+) => {
+  const hash = EthUtil.toBuffer(messageHash)
+  const vrs = EthUtil.ecsign(hash, privateKey)
+  const r = new BigNumber(EthUtil.bufferToHex(vrs.r))
+  const s = new BigNumber(EthUtil.bufferToHex(vrs.s))
+  const data = JSON.stringify({
+    type: 'signTypedData',
+    payload: message,
+    safe: safeAddress,
+    r: r.toString(10),
+    s: s.toString(10),
+    v: vrs.v.toString(10)
+  })
+
+  return sendNotification(data, privateKey, accountAddress, safeAddress)
+}
 
 export const sendTransaction = async (
   accountAddress,

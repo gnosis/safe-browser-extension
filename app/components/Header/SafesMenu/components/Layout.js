@@ -15,17 +15,17 @@ const Layout = ({
   handleAddNewSafe,
   handleSelectSafe,
   handleRemoveSafe,
-  showingTransaction
+  isPopup
 }) => {
   return (
     <React.Fragment>
       <span
-        className={cx(styles.safeIcon, !showingTransaction && styles.hasMenu)}
-        onClick={!showingTransaction ? toggleSafes : null}
+        className={cx(styles.safeIcon, !isPopup && styles.hasMenu)}
+        onClick={!isPopup ? toggleSafes : null}
       >
         <i>{safeAlias && safeAlias}</i>
       </span>
-      {!showingTransaction && (
+      {!isPopup && (
         <React.Fragment>
           <div
             className={cx(

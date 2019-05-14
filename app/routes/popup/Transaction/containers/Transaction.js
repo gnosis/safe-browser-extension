@@ -9,11 +9,11 @@ import {
 import {
   getTransactionData,
   setUpTransaction,
-  getEthBalance,
   calculateGasEstimation,
   getTransactionSummary,
   isReplaceRecoveryPhrase
 } from './transactions'
+import { getEthBalance } from 'utils/helpers'
 import Header from 'components/Header'
 import Layout from '../components/Layout'
 import actions from './actions'
@@ -204,8 +204,7 @@ class Transaction extends Component {
         <div className={styles.extensionInner}>
           <Header
             noBorder
-            txReview
-            transactionNumber={transactionNumber}
+            isPopup
             location={location}
           />
           <div className={styles.Page}>

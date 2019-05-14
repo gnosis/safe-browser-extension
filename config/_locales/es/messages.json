@@ -1,4 +1,7 @@
 {
+  "name": {
+    "message": "Nombre"
+  },
   "retry": {
     "message": "Reintentar"
   },
@@ -90,7 +93,7 @@
     "message": "Recibir transferencias"
   },
   "replace_recovery_phrase": {
-    "message": "Reemplazar la clave\\nde recuperación"
+    "message": "Reemplazar la clave de recuperación"
   },
   "layout_replace_recovery_phrase_transaction_info_description": {
     "message": "La clave de seguridad antigua será invalidada y reemplazada por la nueva."
@@ -281,22 +284,22 @@
   "balance_after_transfer": {
     "message": "Balance después de la transferencia"
   },
-  "amount": {
-    "message": "Importe"
-  },
-  "recipients_address": {
-    "message": "Dirección del destinatario"
-  },
   "review": {
     "message": "Revisión"
   },
-  "send_title": {
-    "message": "Enviar [%s]"
+  "view_message": {
+    "message": "Ver el mensaje"
   },
-  "paste_from_clipboard": {
-    "message": "Pegar desde el portapapeles"
+  "message": {
+    "message": "Mensaje"
   },
-  "address_invalid": {
-    "message": "Dirección inválida"
+  "domain": {
+    "message": "Dominio"
+  },
+  "verifying_contract": {
+    "message": "Contrato de verificación"
+  },
+  "you_are_signing": {
+    "message": "Estás firmando"
   }
 }
