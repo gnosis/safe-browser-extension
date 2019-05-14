@@ -46,11 +46,6 @@ class Layout extends Component {
     const toAddress = isTokenTransfer(transaction.data)
       ? getTokenTransferAddress(transaction.data)
       : transaction.to
-    let replaceRecoveryPhraseTitle
-    if (replaceRecoveryPhrase) {
-      replaceRecoveryPhraseTitle =
-        REPLACE_RECOVERY_PRASE.toString().split('\\n')[0] + '...'
-    }
 
     return (
       <React.Fragment>
@@ -84,7 +79,7 @@ class Layout extends Component {
           ) : (
             <React.Fragment>
               <div className={styles.replaceRecoveryPhrase}>
-                <strong>{replaceRecoveryPhraseTitle}</strong>
+                <strong>{REPLACE_RECOVERY_PRASE.toString()}</strong>
               </div>
               <div className={styles.replaceRecoveryPhraseDesc}>
                 {REPLACE_RECOVERY_PHRASE_DESCRIPTION}

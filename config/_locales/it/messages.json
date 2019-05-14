@@ -90,7 +90,7 @@
     "message": "Ricevi fondi"
   },
   "replace_recovery_phrase": {
-    "message": "Sostituisci la frase\\ndi recupero"
+    "message": "Sostituisci la frase di recupero"
   },
   "layout_replace_recovery_phrase_transaction_info_description": {
     "message": "La vecchia frase di recupero non sarà più valida e verrà sostituita da quella nuova."

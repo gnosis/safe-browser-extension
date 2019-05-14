@@ -90,7 +90,7 @@
     "message": "Recibir transferencias"
   },
   "replace_recovery_phrase": {
-    "message": "Reemplazar la clave\\nde recuperación"
+    "message": "Reemplazar la clave de recuperación"
   },
   "layout_replace_recovery_phrase_transaction_info_description": {
     "message": "La clave de seguridad antigua será invalidada y reemplazada por la nueva."
