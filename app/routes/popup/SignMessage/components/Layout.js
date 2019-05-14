@@ -36,6 +36,7 @@ class Layout extends Component {
     } = this.props
 
     const signedMessage = JSON.parse(signMessages.message[1])
+    const senderUrl = signMessages.message[4]
 
     return (
       <React.Fragment>
@@ -60,8 +61,8 @@ class Layout extends Component {
                   <span>{signedMessage.domain.name}</span>
                 </span>
                 <span>
-                  <p><b>{URL}</b></p>
-                  <span></span>
+                  <p><b>Url:</b></p>
+                  <span>{senderUrl}</span>
                 </span>
                 <span>
                   <p><b>{VERIFYING_CONTRACT}</b></p>
@@ -69,7 +70,7 @@ class Layout extends Component {
                 </span>
               </div>
               <div className={styles.viewMessage}>
-                <Link to={VIEW_MESSAGE_URL}>{VIEW_MESSAGE}</Link>
+                <Link className={styles.viewMessageLink} to={VIEW_MESSAGE_URL}>{VIEW_MESSAGE}</Link>
               </div>
             </React.Fragment>
           }

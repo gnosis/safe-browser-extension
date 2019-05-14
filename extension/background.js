@@ -70,7 +70,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
     case messages.MSG_SHOW_POPUP_SIGNATURE:
       if (isWhiteListedDapp(normalizeUrl(sender.tab.url))) {
-        showSendSignaturePopup(request.message, sender.tab.windowId, sender.tab.id)
+        showSendSignaturePopup(request.message, sender.tab.windowId, sender.tab.id, normalizeUrl(sender.tab.url))
       }
       break
 
@@ -192,11 +192,12 @@ const showSendTransactionPopup = (transaction, dappWindowId, dappTabId) => {
   showTransactionPopup(transaction, dappWindowId, dappTabId)
 }
 
-const showSendSignaturePopup = (message, dappWindowId, dappTabId) => {
+const showSendSignaturePopup = (message, dappWindowId, dappTabId, senderUrl) => {
   const currentSafe = storageController.getStoreState().safes.currentSafe
 
   message[2] = 'sendSignMessage'
   message[3] = EthUtil.toChecksumAddress(currentSafe)
+  message[4] = senderUrl
 
   chrome.browserAction.setBadgeBackgroundColor({ color: '#888' })
   chrome.browserAction.setBadgeText({ text: '1' })

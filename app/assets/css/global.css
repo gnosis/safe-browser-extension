@@ -2550,7 +2550,11 @@ footer .stepper-dots>li.active{
   text-align:center;
   padding-bottom:25px;
   width:100%;
-  font-size:14px;
+  font-size:13px;
+  font-weight: bold;
+}
+.extensionPopup .extension-inner .viewMessageLink {
+  text-decoration: none;
 }
 
 .extensionPopup .extension-inner .button-group>button{

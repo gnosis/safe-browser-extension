@@ -49,13 +49,10 @@ export const getDecryptedAllEthAccounts = (
   const mnemonic = CryptoJs.AES.decrypt(encryptedMnemonic, password).toString(
     CryptoJs.enc.Utf8
   )
-  const nextOwnerAccountIndex = account.secondFA.currentAccountIndex + 1
 
   const accounts = safes.safes
-    ? safes.safes.map((safe) =>
-        createAccountFromMnemonic(mnemonic, safe.accountIndex)
-      )
-    : [createAccountFromMnemonic(mnemonic, nextOwnerAccountIndex)]
+    ? safes.safes.map((safe) => createAccountFromMnemonic(mnemonic, safe.accountIndex || 0))
+    : [createAccountFromMnemonic(mnemonic, 0)]
 
   return accounts
 }

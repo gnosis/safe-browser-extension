@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import BigNumber from 'bignumber.js'
-
 import {
   getDecryptedEthAccount,
   createAccountFromMnemonic
@@ -25,16 +24,21 @@ class SignMessage extends Component {
     }
 
     const { location } = this.props
-    const { seed, unlockedMnemonic } = this.props.account.secondFA
     const validPassword = location && location.state && location.state.password
-
     this.password = validPassword ? location.state.password : undefined
-    this.ethAccount = !unlockedMnemonic && this.password
-      ? getDecryptedEthAccount(seed, this.password)
-      : createAccountFromMnemonic(unlockedMnemonic)
   }
 
   componentDidMount = () => {
+    const { safes, signMessages } = this.props
+    const { seed, unlockedMnemonic } = this.props.account.secondFA
+    
+    const safeMessage = signMessages ? signMessages.message[3] : ''
+    const currentSafe = safes.safes.filter((safe) => safe.address === safeMessage)[0]
+
+    this.ethAccount = !unlockedMnemonic && this.password
+      ? getDecryptedEthAccount(seed, this.password, currentSafe.accountIndex)
+      : createAccountFromMnemonic(unlockedMnemonic, currentSafe.accountIndex)
+
     this.showSignMessage()
   }
 
