@@ -27,7 +27,10 @@ class PairingProcess extends Component {
   componentDidMount = async () => {
     const { password, selectEncryptedMnemonic, account } = this.props
 
-    const nextOwnerAccountIndex = account.secondFA.currentAccountIndex + 1
+    const nextOwnerAccountIndex = account.secondFA.currentAccountIndex
+      ? account.secondFA.currentAccountIndex + 1
+      : 1
+
     const nextOwnerAccount =
       password &&
       getDecryptedEthAccount(
