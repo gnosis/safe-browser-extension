@@ -31,13 +31,23 @@ class SignMessage extends Component {
   componentDidMount = () => {
     const { safes, signMessages } = this.props
     const { seed, unlockedMnemonic } = this.props.account.secondFA
-    
-    const safeMessage = signMessages ? signMessages.message[3] : ''
-    const currentSafe = safes.safes.filter((safe) => safe.address === safeMessage)[0]
 
-    this.ethAccount = !unlockedMnemonic && this.password
-      ? getDecryptedEthAccount(seed, this.password, currentSafe.accountIndex)
-      : createAccountFromMnemonic(unlockedMnemonic, currentSafe.accountIndex)
+    const safeMessage = signMessages ? signMessages.message[3] : ''
+    const currentSafe = safes.safes.filter(
+      (safe) => safe.address === safeMessage
+    )[0]
+
+    this.ethAccount =
+      !unlockedMnemonic && this.password
+        ? getDecryptedEthAccount(
+            seed,
+            this.password,
+            currentSafe.accountIndex || 0
+          )
+        : createAccountFromMnemonic(
+            unlockedMnemonic,
+            currentSafe.accountIndex || 0
+          )
 
     this.showSignMessage()
   }
@@ -45,7 +55,7 @@ class SignMessage extends Component {
   showSignMessage = async () => {
     const { signMessages } = this.props
 
-    if (!signMessages || (signMessages.message.length === 0)) {
+    if (!signMessages || signMessages.message.length === 0) {
       return
     }
 
@@ -53,7 +63,7 @@ class SignMessage extends Component {
     let loadedData = false
     try {
       balance = await getEthBalance(signMessages.message[3])
-      loadedData = (balance instanceof BigNumber)
+      loadedData = balance instanceof BigNumber
     } catch (err) {
       console.error(err)
     }
@@ -75,10 +85,7 @@ class SignMessage extends Component {
   }
 
   removeSignMessage = (walletSignature) => {
-    const {
-      signMessages,
-      onRemoveSignMessage
-    } = this.props
+    const { signMessages, onRemoveSignMessage } = this.props
 
     if (signMessages.dappWindowId && signMessages.dappTabId) {
       chrome.tabs.sendMessage(signMessages.dappTabId, {
@@ -93,31 +100,21 @@ class SignMessage extends Component {
 
   getSafeAlias = (address) => {
     const { safes } = this.props
-    return (address) ? safes.safes.filter(s => s.address === address)[0].alias : ''
+    return address
+      ? safes.safes.filter((s) => s.address === address)[0].alias
+      : ''
   }
 
   render() {
-    const {
-      balance,
-      loadedData,
-      reviewedSignature
-    } = this.state
-    const {
-      account,
-      signMessages,
-      location
-    } = this.props
+    const { balance, loadedData, reviewedSignature } = this.state
+    const { account, signMessages, location } = this.props
 
     const safe = signMessages ? signMessages.message[3] : ''
 
     return (
       <div className={styles.extensionPopup}>
         <div className={styles.extensionInner}>
-          <Header
-            noBorder
-            isPopup
-            location={location}
-          />
+          <Header noBorder isPopup location={location} />
           <div className={styles.Page}>
             <Layout
               signMessages={signMessages}

@@ -71,8 +71,7 @@ class Password extends Component {
       device,
       notifyDeviceUpdated,
       selectEncryptedMnemonic,
-      safes,
-      account
+      safes
     } = this.props
 
     if (!device.lastUpdateNotified && password && selectEncryptedMnemonic) {
@@ -80,8 +79,7 @@ class Password extends Component {
         const accounts = getDecryptedAllEthAccounts(
           selectEncryptedMnemonic,
           password,
-          safes,
-          account
+          safes
         )
         const token = await setUpNotifications()
         const auth = await authPushNotificationService(token, accounts)

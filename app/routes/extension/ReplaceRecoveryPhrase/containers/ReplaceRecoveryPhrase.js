@@ -24,52 +24,51 @@ class ReplaceRecoveryPhrase extends Component {
   }
 
   componentDidMount = () => {
-    const { safes } = this.props
-
-    const currentSafe = safes.safes.filter(
-      (safe) => safe.address === safes.currentSafe
-    )[0]
-
     createQrImage(
       document.getElementById('qr-replace-recovery-phrase'),
-      this.generateQrCodeContent(safes.currentSafe, currentSafe.accountIndex),
+      this.generateQrCodeContent(),
       3
     )
   }
 
   componentDidUpdate = (prevProps, prevState) => {
-    const { safes } = this.props
-
-    const currentSafe = safes.safes.filter(
-      (safe) => safe.address === safes.currentSafe
-    )[0]
-
     createQrImage(
       document.getElementById('qr-replace-recovery-phrase'),
-      this.generateQrCodeContent(safes.currentSafe, currentSafe.accountIndex),
+      this.generateQrCodeContent(),
       3
     )
   }
 
-  generateQrCodeContent = (safeAddress, accountIndex) => {
-    const { selectEncryptedMnemonic, selectUnencryptedMnemonic } = this.props
+  generateQrCodeContent = () => {
+    const {
+      selectEncryptedMnemonic,
+      selectUnencryptedMnemonic,
+      safes
+    } = this.props
+
+    const safe = safes.safes.filter(
+      (safe) => safe.address === safes.currentSafe
+    )[0]
 
     const account =
       !selectUnencryptedMnemonic && this.password
         ? getDecryptedEthAccount(
             selectEncryptedMnemonic,
             this.password,
-            accountIndex
+            safe.accountIndex || 0
           )
-        : createAccountFromMnemonic(selectUnencryptedMnemonic, accountIndex)
+        : createAccountFromMnemonic(
+            selectUnencryptedMnemonic,
+            safe.accountIndex || 0
+          )
 
-    const data = EthUtil.sha3('GNO' + safeAddress)
+    const data = EthUtil.sha3('GNO' + safe.address)
     const vrs = EthUtil.ecsign(data, account.getPrivateKey())
     const r = new BigNumber(EthUtil.bufferToHex(vrs.r))
     const s = new BigNumber(EthUtil.bufferToHex(vrs.s))
 
     const qrCodeContent = JSON.stringify({
-      address: safeAddress,
+      address: safe.address,
       signature: {
         r: r.toString(10),
         s: s.toString(10),

@@ -43,15 +43,16 @@ export const getDecryptedEthAccount = (
 export const getDecryptedAllEthAccounts = (
   encryptedMnemonic,
   password,
-  safes,
-  account
+  safes
 ) => {
   const mnemonic = CryptoJs.AES.decrypt(encryptedMnemonic, password).toString(
     CryptoJs.enc.Utf8
   )
 
   const accounts = safes.safes
-    ? safes.safes.map((safe) => createAccountFromMnemonic(mnemonic, safe.accountIndex || 0))
+    ? safes.safes.map((safe) =>
+        createAccountFromMnemonic(mnemonic, safe.accountIndex || 0)
+      )
     : [createAccountFromMnemonic(mnemonic, 0)]
 
   return accounts

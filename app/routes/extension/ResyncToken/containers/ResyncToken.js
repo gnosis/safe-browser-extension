@@ -44,11 +44,11 @@ class ResyncToken extends Component {
         ? getDecryptedEthAccount(
             selectEncryptedMnemonic,
             this.password,
-            currentSafe.accountIndex
+            currentSafe.accountIndex || 0
           )
         : createAccountFromMnemonic(
             selectUnencryptedMnemonic,
-            currentSafe.accountIndex
+            currentSafe.accountIndex || 0
           )
 
     try {

@@ -48,8 +48,8 @@ class Transaction extends Component {
 
     this.ethAccount =
       !unlockedMnemonic && this.password
-        ? getDecryptedEthAccount(seed, this.password, txSafe.accountIndex)
-        : createAccountFromMnemonic(unlockedMnemonic, txSafe.accountIndex)
+        ? getDecryptedEthAccount(seed, this.password, txSafe.accountIndex || 0)
+        : createAccountFromMnemonic(unlockedMnemonic, txSafe.accountIndex || 0)
 
     this.showTransaction(transactionNumber)
   }
@@ -202,11 +202,7 @@ class Transaction extends Component {
     return (
       <div className={styles.extensionPopup}>
         <div className={styles.extensionInner}>
-          <Header
-            noBorder
-            isPopup
-            location={location}
-          />
+          <Header noBorder isPopup location={location} />
           <div className={styles.Page}>
             <Layout
               transaction={transaction}
