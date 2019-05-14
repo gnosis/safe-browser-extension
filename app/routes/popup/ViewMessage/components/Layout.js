@@ -4,10 +4,7 @@ import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 
 import { SIGN_MESSAGE_URL } from 'routes/routes'
-import {
-  MESSAGE,
-  DOMAIN
-} from '../../../../../config/messages'
+import { MESSAGE, DOMAIN } from '../../../../../config/messages'
 import styles from 'assets/css/global.css'
 
 const cx = classNames.bind(styles)
@@ -21,7 +18,10 @@ class Layout extends Component {
     return (
       <div className={styles.overlayPage}>
         <span className={styles.overlayPageHeader}>
-          <Link to={SIGN_MESSAGE_URL} className={cx(styles.btnBack, styles.active)} />
+          <Link
+            to={SIGN_MESSAGE_URL}
+            className={cx(styles.btnBack, styles.active)}
+          />
           <h2>{MESSAGE}</h2>
         </span>
         <span className={styles.overlayPageContent}>
@@ -48,7 +48,6 @@ class Layout extends Component {
           </div>
         </span>
       </div>
-
     )
   }
 }

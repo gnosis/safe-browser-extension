@@ -16,11 +16,12 @@ import { sendSignMessage } from 'utils/sendNotifications'
 import {
   getThreshold,
   getOwners,
-  getMessageHash } from 'logic/contracts/safeContracts'
+  getMessageHash
+} from 'logic/contracts/safeContracts'
 import Layout from '../components/Layout'
 
 class SendSignMessage extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.maxSeconds = 30
     this.ownerSignatures = []
@@ -51,44 +52,65 @@ class SendSignMessage extends Component {
     }
     this.handleSignMessage()
 
-    !(resend)
-      ? ga(['_trackEvent', SIGNATURES, 'click-confirm-sign-typed-data-from-dapp', 'Confirm sign typed data from Dapp'])
-      : ga(['_trackEvent', SIGNATURES, 'click-re-send-sign-typed-data-from-dapp', 'Re-send sign typed data from Dapp'])
+    !resend
+      ? ga([
+          '_trackEvent',
+          SIGNATURES,
+          'click-confirm-sign-typed-data-from-dapp',
+          'Confirm sign typed data from Dapp'
+        ])
+      : ga([
+          '_trackEvent',
+          SIGNATURES,
+          'click-re-send-sign-typed-data-from-dapp',
+          'Re-send sign typed data from Dapp'
+        ])
   }
 
   handleRejectSignMessage = async () => {
     this.handleRemoveSignMessage(null)
-    ga(['_trackEvent', SIGNATURES, 'click-reject-sign-typed-data-from-dapp', 'Reject sign typed data from Dapp'])
+    ga([
+      '_trackEvent',
+      SIGNATURES,
+      'click-reject-sign-typed-data-from-dapp',
+      'Reject sign typed data from Dapp'
+    ])
   }
 
   handleMobileAppResponse = async () => {
-    chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
-      if (request.msg === messages.MSG_RESOLVED_OWNER_SIGN_TYPED_DATA) {
-        if (request.hash && this.messageHash === request.hash) {
-          const ownerSignature = {
-            r: request.signature.slice(0, 66),
-            s: '0x' + request.signature.slice(66, 130),
-            v: '0x' + request.signature.slice(130, 132)
-          }
-          const ownerAddress = getOwnerFromSignature(request.hash, ownerSignature)
-          if (ownerAddress) {
-            await this.handleSignature(ownerAddress, request.signature)
+    chrome.runtime.onMessage.addListener(
+      async (request, sender, sendResponse) => {
+        if (request.msg === messages.MSG_RESOLVED_OWNER_SIGN_TYPED_DATA) {
+          if (request.hash && this.messageHash === request.hash) {
+            const ownerSignature = {
+              r: request.signature.slice(0, 66),
+              s: '0x' + request.signature.slice(66, 130),
+              v: '0x' + request.signature.slice(130, 132)
+            }
+            const ownerAddress = getOwnerFromSignature(
+              request.hash,
+              ownerSignature
+            )
+            if (ownerAddress) {
+              await this.handleSignature(ownerAddress, request.signature)
+            }
           }
         }
       }
-    })
+    )
   }
 
   handleSignature = async (address, signature) => {
     const { signMessages } = this.props
-    const {
-      owners,
-      threshold
-    } = this.state
+    const { owners, threshold } = this.state
 
     const checksumedAddress = address && EthUtil.toChecksumAddress(address)
 
-    if (this.ownerSignatures.map(ownerSignature => ownerSignature.signature).indexOf(signature) >= 0) {
+    if (
+      this.ownerSignatures
+        .map((ownerSignature) => ownerSignature.signature)
+        .indexOf(signature) >= 0
+    ) {
       console.error('Signature', signature, 'has been already collected.')
       return
     }
@@ -106,16 +128,17 @@ class SendSignMessage extends Component {
       clearInterval(this.timer)
       const message = signMessages.message[1]
       const safeAddress = signMessages.message[3]
-      const walletSignature = await createWalletSignature(this.ownerSignatures, message, safeAddress)
+      const walletSignature = await createWalletSignature(
+        this.ownerSignatures,
+        message,
+        safeAddress
+      )
       await this.handleRemoveSignMessage(walletSignature)
     }
   }
 
   handleSignMessage = async () => {
-    const {
-      ethAccount,
-      signMessages
-    } = this.props
+    const { ethAccount, signMessages } = this.props
 
     this.setState({ seconds: this.maxSeconds })
     this.startCountdown()
@@ -132,7 +155,10 @@ class SendSignMessage extends Component {
         v: '0x' + v
       }
       const extensionHexSignature = '0x' + r + s + v
-      const extensionAddress = getOwnerFromSignature(this.messageHash, extensionSignature)
+      const extensionAddress = getOwnerFromSignature(
+        this.messageHash,
+        extensionSignature
+      )
       await this.handleSignature(extensionAddress, extensionHexSignature)
 
       const response = await sendSignMessage(
@@ -165,10 +191,7 @@ class SendSignMessage extends Component {
   }
 
   startCountdown = () => {
-    this.timer = setInterval(
-      this.countDown,
-      1000
-    )
+    this.timer = setInterval(this.countDown, 1000)
   }
 
   countDown = () => {
@@ -178,7 +201,7 @@ class SendSignMessage extends Component {
       return
     }
     this.setState((prevState) => ({
-      seconds: (prevState.seconds - 1)
+      seconds: prevState.seconds - 1
     }))
   }
 
@@ -186,12 +209,8 @@ class SendSignMessage extends Component {
     clearInterval(this.timer)
   }
 
-  render () {
-    const {
-      lockedAccount,
-      loadedData,
-      reviewedSignature
-    } = this.props
+  render() {
+    const { lockedAccount, loadedData, reviewedSignature } = this.props
     const { seconds } = this.state
 
     return (
@@ -208,6 +227,4 @@ class SendSignMessage extends Component {
   }
 }
 
-export default connect(
-  selector
-)(SendSignMessage)
+export default connect(selector)(SendSignMessage)

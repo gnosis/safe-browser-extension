@@ -7,7 +7,6 @@ import safes from './safes'
 import device from './device'
 import signMessages from './signMessages'
 
-
 import { LOGOUT_ACCOUNT } from 'actions/account'
 
 const reducers = combineReducers({

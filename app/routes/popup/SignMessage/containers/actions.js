@@ -1,6 +1,4 @@
-import {
-  removeSignMessage
-} from 'actions/signMessages'
+import { removeSignMessage } from 'actions/signMessages'
 
 export default {
   removeSignMessage

@@ -53,28 +53,36 @@ class Layout extends Component {
             symbol={'ETH'}
           />
           <div className={styles.youAreSigning}>{YOU_ARE_SIGNING}:</div>
-          {signedMessage && 
+          {signedMessage && (
             <React.Fragment>
               <div className={styles.signMessageSummary}>
                 <span>
-                  <p><b>{NAME}</b></p>
+                  <p>
+                    <b>{NAME}</b>
+                  </p>
                   <span>{signedMessage.domain.name}</span>
                 </span>
                 <span>
-                  <p><b>Url:</b></p>
+                  <p>
+                    <b>Url:</b>
+                  </p>
                   <span>{senderUrl}</span>
                 </span>
                 <span>
-                  <p><b>{VERIFYING_CONTRACT}</b></p>
+                  <p>
+                    <b>{VERIFYING_CONTRACT}</b>
+                  </p>
                   <span>{signedMessage.domain.verifyingContract}</span>
                 </span>
               </div>
               <div className={styles.viewMessage}>
-                <Link className={styles.viewMessageLink} to={VIEW_MESSAGE_URL}>{VIEW_MESSAGE}</Link>
+                <Link className={styles.viewMessageLink} to={VIEW_MESSAGE_URL}>
+                  {VIEW_MESSAGE}
+                </Link>
               </div>
             </React.Fragment>
-          }
-          {signMessages && (signMessages.message[2] === 'sendSignMessage') &&
+          )}
+          {signMessages && signMessages.message[2] === 'sendSignMessage' && (
             <SendSignMessage
               ethAccount={ethAccount}
               showSignMessage={showSignMessage}
@@ -84,7 +92,7 @@ class Layout extends Component {
               loadedData={loadedData}
               reviewedSignature={reviewedSignature}
             />
-          }
+          )}
         </form>
       </React.Fragment>
     )

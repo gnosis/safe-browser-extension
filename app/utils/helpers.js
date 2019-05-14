@@ -28,7 +28,8 @@ export const shortenAddress = (address) => {
   }
 
   const checksumedAddress = EthUtil.toChecksumAddress(address)
-  return checksumedAddress && (
+  return (
+    checksumedAddress &&
     checksumedAddress.substring(0, 8) +
       '...' +
       checksumedAddress.substring(
@@ -45,7 +46,7 @@ export const toGWei = (number) => {
 export const getEthBalance = async (address) => {
   const web3 = new Web3(new Web3.providers.HttpProvider(getNetworkUrl()))
   let ethBalance
-  ethBalance = await promisify(cb => web3.eth.getBalance(address, cb))
+  ethBalance = await promisify((cb) => web3.eth.getBalance(address, cb))
   return web3.fromWei(ethBalance, 'ether')
 }
 

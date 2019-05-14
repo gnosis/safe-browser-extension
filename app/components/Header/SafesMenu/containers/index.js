@@ -89,9 +89,7 @@ class SafesMenu extends Component {
       )
     }
 
-    const safeAlias = (isPopup)
-      ? popupTitle
-      : extensionTitle
+    const safeAlias = isPopup ? popupTitle : extensionTitle
     return (
       <Layout
         safes={safes}

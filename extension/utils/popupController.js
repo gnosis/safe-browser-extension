@@ -7,7 +7,9 @@ class PopupController {
   focusPopup = () => {
     const transactions = this.storageController.getStoreState().transactions
     const signMessages = this.storageController.getStoreState().signMessages
-    const popUpWindowId = (transactions && transactions.windowId) || (signMessages && signMessages.windowId)
+    const popUpWindowId =
+      (transactions && transactions.windowId) ||
+      (signMessages && signMessages.windowId)
 
     chrome.windows.update(popUpWindowId, { focused: true })
   }

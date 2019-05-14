@@ -74,13 +74,23 @@ export const signMessageByExtension = (messageHash, ethAccount) => {
   return { r, s, v }
 }
 
-export const createWalletSignature = async (ownerSignatures, message, safeAddress) => {
+export const createWalletSignature = async (
+  ownerSignatures,
+  message,
+  safeAddress
+) => {
   ownerSignatures.sort(compareOwnerSignatures)
-  const walletSignature = '0x' + ownerSignatures.map(
-    ownerSignature => ownerSignature.signature.slice(2)
-  ).join('')
+  const walletSignature =
+    '0x' +
+    ownerSignatures
+      .map((ownerSignature) => ownerSignature.signature.slice(2))
+      .join('')
 
   const hexEip712Hash = getEip712MessageHash(message, safeAddress)
-  const validSignature = await isValidSignature(safeAddress, hexEip712Hash, walletSignature)
-  return (validSignature) ? walletSignature : null
+  const validSignature = await isValidSignature(
+    safeAddress,
+    hexEip712Hash,
+    walletSignature
+  )
+  return validSignature ? walletSignature : null
 }

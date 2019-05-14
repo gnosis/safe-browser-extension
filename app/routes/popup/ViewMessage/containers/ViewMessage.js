@@ -16,19 +16,12 @@ class ViewMessage extends Component {
   }
 
   render() {
-    const {
-      signMessages,
-      location
-    } = this.props
+    const { signMessages, location } = this.props
 
     return (
       <div className={styles.extensionPopup}>
         <div className={styles.extensionInner}>
-          <Header
-            noBorder
-            isPopup
-            location={location}
-          />
+          <Header noBorder isPopup location={location} />
           <div className={styles.Page}>
             <Layout signMessages={signMessages} />
           </div>
@@ -38,6 +31,4 @@ class ViewMessage extends Component {
   }
 }
 
-export default connect(
-  selector
-)(ViewMessage)
+export default connect(selector)(ViewMessage)

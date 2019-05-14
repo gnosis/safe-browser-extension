@@ -4,17 +4,15 @@ import Blockie from 'components/Blockie'
 import { shortenAddress } from 'utils/helpers'
 import styles from 'assets/css/global.css'
 
-const AccountData = ({
-  address,
-  alias,
-  balance,
-  noBalance,
-  symbol
-}) => {
+const AccountData = ({ address, alias, balance, noBalance, symbol }) => {
   const addressBalance = balance ? balance.toString(10) : '-'
 
   return (
-    <div className={noBalance ? styles.transactionRecipient : styles.transactionFrom}>
+    <div
+      className={
+        noBalance ? styles.transactionRecipient : styles.transactionFrom
+      }
+    >
       {address && (
         <React.Fragment>
           <span>
@@ -26,9 +24,13 @@ const AccountData = ({
               <small>{shortenAddress(address)}</small>
             </p>
           </span>
-          {!noBalance &&
-            <span><small>{addressBalance} {symbol}</small></span>
-          }
+          {!noBalance && (
+            <span>
+              <small>
+                {addressBalance} {symbol}
+              </small>
+            </span>
+          )}
         </React.Fragment>
       )}
     </div>

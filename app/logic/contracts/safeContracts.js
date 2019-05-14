@@ -14,11 +14,13 @@ export const getOwners = async (safeAddress, accountAddress) => {
   try {
     const instance = await contract.at(safeAddress)
     const owners = await instance.getOwners.call()
-    const destOwners = (accountAddress)
-      ? owners.filter(owner => owner.toLowerCase() !== accountAddress.toLowerCase())
+    const destOwners = accountAddress
+      ? owners.filter(
+          (owner) => owner.toLowerCase() !== accountAddress.toLowerCase()
+        )
       : owners
 
-    return destOwners.map(owner => EthUtil.toChecksumAddress(owner))
+    return destOwners.map((owner) => EthUtil.toChecksumAddress(owner))
   } catch (err) {
     console.error(err)
   }
@@ -26,9 +28,19 @@ export const getOwners = async (safeAddress, accountAddress) => {
 
 export const getNonce = async (tx) => {
   if (tx.type === 'sendTransaction') {
-    const estimationValue = isTokenTransfer(tx.data) ? '0' : tx.displayedValue.toString(10)
-    const estimations = await getTransactionEstimations(tx.from, tx.to, estimationValue, tx.data, 0, tx.gasToken)
-    const lastUsedNonce = (estimations.lastUsedNonce === null) ? 0 : estimations.lastUsedNonce + 1
+    const estimationValue = isTokenTransfer(tx.data)
+      ? '0'
+      : tx.displayedValue.toString(10)
+    const estimations = await getTransactionEstimations(
+      tx.from,
+      tx.to,
+      estimationValue,
+      tx.data,
+      0,
+      tx.gasToken
+    )
+    const lastUsedNonce =
+      estimations.lastUsedNonce === null ? 0 : estimations.lastUsedNonce + 1
 
     return estimations && lastUsedNonce.toString()
   }
@@ -63,14 +75,21 @@ export const getMessageHash = async (safeAddress, message) => {
   }
 }
 
-export const isValidSignature = async (safeAddress, message, walletSignature) => {
+export const isValidSignature = async (
+  safeAddress,
+  message,
+  walletSignature
+) => {
   const contract = TruffleContract(GnosisSafe)
   const provider = new Web3.providers.HttpProvider(getNetworkUrl())
   contract.setProvider(provider)
 
   try {
     const instance = await contract.at(safeAddress)
-    const validSignature = await instance.isValidSignature.call(message, walletSignature)
+    const validSignature = await instance.isValidSignature.call(
+      message,
+      walletSignature
+    )
     return validSignature
   } catch (err) {
     console.error(err)

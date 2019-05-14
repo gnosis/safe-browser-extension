@@ -9,10 +9,7 @@ import { addSafe } from 'actions/safes'
 import { updateDeviceData } from 'actions/device'
 import { addTransaction, removeAllTransactions } from 'actions/transactions'
 import { getAppVersionNumber, getAppBuildNumber } from '../config'
-import {
-  addSignMessage,
-  removeAllSignMessage
-} from 'actions/signMessages'
+import { addSignMessage, removeAllSignMessage } from 'actions/signMessages'
 import { SAFE_ALREADY_EXISTS } from '../config/messages'
 import { ADDRESS_ZERO } from '../app/utils/helpers'
 
@@ -70,7 +67,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
     case messages.MSG_SHOW_POPUP_SIGNATURE:
       if (isWhiteListedDapp(normalizeUrl(sender.tab.url))) {
-        showSendSignaturePopup(request.message, sender.tab.windowId, sender.tab.id, normalizeUrl(sender.tab.url))
+        showSendSignaturePopup(
+          request.message,
+          sender.tab.windowId,
+          sender.tab.id,
+          normalizeUrl(sender.tab.url)
+        )
       }
       break
 
@@ -192,7 +194,12 @@ const showSendTransactionPopup = (transaction, dappWindowId, dappTabId) => {
   showTransactionPopup(transaction, dappWindowId, dappTabId)
 }
 
-const showSendSignaturePopup = (message, dappWindowId, dappTabId, senderUrl) => {
+const showSendSignaturePopup = (
+  message,
+  dappWindowId,
+  dappTabId,
+  senderUrl
+) => {
   const currentSafe = storageController.getStoreState().safes.currentSafe
 
   message[2] = 'sendSignMessage'
@@ -202,8 +209,10 @@ const showSendSignaturePopup = (message, dappWindowId, dappTabId, senderUrl) => 
   chrome.browserAction.setBadgeBackgroundColor({ color: '#888' })
   chrome.browserAction.setBadgeText({ text: '1' })
 
-  popupController.showPopup(
-    (window) => storageController.getStore().dispatch(addSignMessage(message, window.id, dappWindowId, dappTabId))
+  popupController.showPopup((window) =>
+    storageController
+      .getStore()
+      .dispatch(addSignMessage(message, window.id, dappWindowId, dappTabId))
   )
 }
 
@@ -241,8 +250,9 @@ chrome.windows.onRemoved.addListener((windowId) => {
 
     for (const transaction of transactions.txs) {
       if (transaction.dappWindowId && transaction.dappTabId) {
-
-        chrome.tabs.query({ windowId: transaction.dappWindowId }, function (tabs) {
+        chrome.tabs.query({ windowId: transaction.dappWindowId }, function(
+          tabs
+        ) {
           chrome.tabs.sendMessage(transaction.dappTabId, {
             msg: messages.MSG_RESOLVED_TRANSACTION,
             hash: null,
@@ -255,11 +265,13 @@ chrome.windows.onRemoved.addListener((windowId) => {
     popupController.handleClosePopup()
   }
 
-  if (signMessages && (windowId === signMessages.windowId)) {
+  if (signMessages && windowId === signMessages.windowId) {
     chrome.browserAction.setBadgeText({ text: '' })
 
     if (signMessages.dappWindowId && signMessages.dappTabId) {
-      chrome.tabs.query({ windowId: signMessages.dappWindowId }, function (tabs) {
+      chrome.tabs.query({ windowId: signMessages.dappWindowId }, function(
+        tabs
+      ) {
         chrome.tabs.sendMessage(signMessages.dappTabId, {
           msg: messages.MSG_RESOLVED_WALLET_SIGN_TYPED_DATA,
           walletSignature: null
@@ -340,7 +352,9 @@ const sendTransactionHash = (payload, accepted) => {
   const transactionsLength =
     storageController.getStoreState().transactions.txs.length - 1
   chrome.browserAction.setBadgeBackgroundColor({ color: '#888' })
-  chrome.browserAction.setBadgeText({ text: (transactionsLength < 0) ? '' : transactionsLength.toString() })
+  chrome.browserAction.setBadgeText({
+    text: transactionsLength < 0 ? '' : transactionsLength.toString()
+  })
 
   chrome.tabs.query({ active: true, windowId: popUpWindowId }, function(tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {
@@ -363,7 +377,7 @@ const sendTransactionHash = (payload, accepted) => {
 const signTypedDataConfirmation = (payload) => {
   const popUpWindowId = storageController.getStoreState().signMessages.windowId
 
-  chrome.tabs.query({ active: true, windowId: popUpWindowId }, function (tabs) {
+  chrome.tabs.query({ active: true, windowId: popUpWindowId }, function(tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {
       msg: messages.MSG_RESOLVED_OWNER_SIGN_TYPED_DATA,
       hash: payload.hash,

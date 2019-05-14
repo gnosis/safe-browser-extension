@@ -24,13 +24,15 @@ class SignTypedDataEip712 {
   encodeType = (primaryType) => {
     // Get dependencies primary first, then alphabetical
     let deps = this.dependencies(primaryType)
-    deps = deps.filter(t => t != primaryType)
+    deps = deps.filter((t) => t != primaryType)
     deps = [primaryType].concat(deps.sort())
 
     // Format as a string with fields
     let result = ''
     for (let type of deps) {
-      result += `${type}(${this.types[type].map(({ name, type }) => `${type} ${name}`).join(',')})`
+      result += `${type}(${this.types[type]
+        .map(({ name, type }) => `${type} ${name}`)
+        .join(',')})`
     }
     return result
   }
@@ -81,10 +83,11 @@ class SignTypedDataEip712 {
       Buffer.concat([
         Buffer.from('1901', 'hex'),
         this.structHash('EIP712Domain', this.typedData.domain),
-        this.structHash(this.typedData.primaryType, this.typedData.message),
-      ]),
+        this.structHash(this.typedData.primaryType, this.typedData.message)
+      ])
     )
-    const hexEip712MessageHash = '0x' + Buffer.from(eip712MessageHash).toString('hex')
+    const hexEip712MessageHash =
+      '0x' + Buffer.from(eip712MessageHash).toString('hex')
     return hexEip712MessageHash
   }
 }

@@ -18,15 +18,29 @@ const HeaderPopup = ({
       <h2>{title}</h2>
       {numElements > 1 && (
         <span className={styles.pagination}>
-          <span onClick={previousElement} className={cx(
-            styles.btnBack,
-            (reviewedElement || elementNumber === 0) ? styles.hide : styles.active)
-          } />
-          <p><strong>{elementNumber + 1}</strong> of <strong>{numElements}</strong></p>
-          <span to='#' onClick={nextElement} className={cx(
-            styles.btnNext,
-            (reviewedElement || elementNumber === (numElements - 1)) ? styles.hide : styles.active)
-          } />
+          <span
+            onClick={previousElement}
+            className={cx(
+              styles.btnBack,
+              reviewedElement || elementNumber === 0
+                ? styles.hide
+                : styles.active
+            )}
+          />
+          <p>
+            <strong>{elementNumber + 1}</strong> of{' '}
+            <strong>{numElements}</strong>
+          </p>
+          <span
+            to="#"
+            onClick={nextElement}
+            className={cx(
+              styles.btnNext,
+              reviewedElement || elementNumber === numElements - 1
+                ? styles.hide
+                : styles.active
+            )}
+          />
         </span>
       )}
     </span>

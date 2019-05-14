@@ -3,13 +3,10 @@ import React, { Component } from 'react'
 import FooterButtons from 'components/Footers/FooterButtons/containers'
 import SendTransactionState from 'components/Popup/TransactionState/SendTransactionState'
 import { SIGN_MESSAGE_URL } from 'routes/routes'
-import {
-  REJECT,
-  CONFIRM
-} from '../../../../../../../config/messages'
+import { REJECT, CONFIRM } from '../../../../../../../config/messages'
 
 class Layout extends Component {
-  render () {
+  render() {
     const {
       loadedData,
       reviewedSignature,
@@ -21,11 +18,11 @@ class Layout extends Component {
 
     return (
       <React.Fragment>
-        {(loadedData === false) &&
+        {loadedData === false && (
           <RetryLoadDataTransactionState
             retryShowElement={retryShowSignMessage}
           />
-        }
+        )}
         {loadedData && (
           <React.Fragment>
             {reviewedSignature ? (

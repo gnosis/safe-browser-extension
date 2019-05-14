@@ -30,16 +30,9 @@ class Header extends Component {
     }))
   }
 
-  render () {
-    const {
-      showMenu,
-      showSafes
-    } = this.state
-    const {
-      isPopup,
-      transactionNumber,
-      location
-    } = this.props
+  render() {
+    const { showMenu, showSafes } = this.state
+    const { isPopup, transactionNumber, location } = this.props
 
     return (
       <React.Fragment>
@@ -64,12 +57,9 @@ class Header extends Component {
           />
           <LockingState location={location} />
         </header>
-        {!isPopup &&
-          <NavigationDrawer
-            showMenu={showMenu}
-            toggleMenu={this.toggleMenu}
-          />
-        }
+        {!isPopup && (
+          <NavigationDrawer showMenu={showMenu} toggleMenu={this.toggleMenu} />
+        )}
       </React.Fragment>
     )
   }

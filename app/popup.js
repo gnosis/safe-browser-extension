@@ -5,14 +5,8 @@ import { Route } from 'react-router-dom'
 import { ConnectedRouter } from 'react-router-redux'
 import { getPopupEnviroment } from 'utils/helpers'
 import { PopupRoutes } from 'routes'
-import {
-  TRANSACTION_URL,
-  SIGN_MESSAGE_URL
-} from 'routes/routes'
-import {
-  history,
-  store
-} from './store'
+import { TRANSACTION_URL, SIGN_MESSAGE_URL } from 'routes/routes'
+import { history, store } from './store'
 import { withAnalytics } from 'utils/analytics'
 
 const calculateInitialUrl = (transactions, signMessages) => {
@@ -25,12 +19,10 @@ const calculateInitialUrl = (transactions, signMessages) => {
   }
 }
 
-store
-  .ready()
-  .then(async () => {
-    const { transactions, signMessages } = store.state
-    const url = calculateInitialUrl(transactions, signMessages)
-    history.push(url)
+store.ready().then(async () => {
+  const { transactions, signMessages } = store.state
+  const url = calculateInitialUrl(transactions, signMessages)
+  history.push(url)
 
   ReactDOM.render(
     <Provider store={store}>

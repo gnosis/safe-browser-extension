@@ -35,7 +35,7 @@ class Blockie extends Component {
     image.src = toDataUrl(address)
     image.height = diameter
     image.width = diameter
-    image.style.borderRadius = (diameter / 2) + 'px'
+    image.style.borderRadius = diameter / 2 + 'px'
     return image
   }
 
