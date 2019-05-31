@@ -331,10 +331,16 @@ const safeCreation = (payload) => {
     return
   }
   const checksumedAddress = EthUtil.toChecksumAddress(payload.safe)
+
+
+  const accountIndex = account.secondFA.currentAccountIndex
+    ? account.secondFA.currentAccountIndex + 1
+    : 1
+
   storageController
     .getStore()
     .dispatch(
-      addSafe(checksumedAddress, account.secondFA.currentAccountIndex + 1)
+      addSafe(checksumedAddress, accountIndex)
     )
   storageController.getStore().dispatch(incrementCurrentAccountIndex())
 }

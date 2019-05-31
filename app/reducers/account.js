@@ -10,7 +10,7 @@ const initalState = {
   autoLockInterval: 5,
   secondFA: {
     unlockedMnemonic: undefined,
-    currentAccountIndex: undefined
+    currentAccountIndex: 0
   }
 }
 
@@ -76,7 +76,9 @@ function account(state = initalState, action) {
         ...state,
         secondFA: {
           ...state.secondFA,
-          currentAccountIndex: state.secondFA.currentAccountIndex + 1
+          currentAccountIndex: state.secondFA.currentAccountIndex
+            ? state.secondFA.currentAccountIndex + 1
+            : 1
         }
       }
 

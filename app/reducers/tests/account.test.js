@@ -31,7 +31,7 @@ describe('Test account redux reducer', () => {
           hmac: undefined,
           seed: undefined,
           unlockedMnemonic: undefined,
-          currentAccountIndex: undefined
+          currentAccountIndex: 0
         }
       }
     }
