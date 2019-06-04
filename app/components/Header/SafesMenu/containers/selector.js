@@ -5,8 +5,9 @@ import {
   selectCurrentTransactionSafeAlias
 } from '../store/selectors'
 
-export default (state, props) => createStructuredSelector({
-  safes: safesSelector,
-  extensionTitle: selectCurrentSafeAlias,
-  popupTitle: selectCurrentTransactionSafeAlias()
-})
+export default (state, props) =>
+  createStructuredSelector({
+    safes: safesSelector,
+    extensionTitle: selectCurrentSafeAlias,
+    popupTitle: selectCurrentTransactionSafeAlias()
+  })

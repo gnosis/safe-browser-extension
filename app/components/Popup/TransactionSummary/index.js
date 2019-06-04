@@ -4,9 +4,9 @@ import React, { Component } from 'react'
 // import { isTokenTransfer } from '../../../containers/tokens'
 import {
   SAFE_BALANCE,
-  ESTIMATED_TRANSACTION_FEE,
+  ESTIMATED_TRANSACTION_FEE
   // MAX_TOTAL
-} from '../../../../../../../config/messages'
+} from '../../../../config/messages'
 import styles from 'assets/css/global.css'
 
 class TransactionSummary extends Component {
@@ -16,10 +16,19 @@ class TransactionSummary extends Component {
       transactionSummary
     } = this.props
 
-    const txFeeString = transactionSummary && transactionSummary.transactionFee ? -transactionSummary.transactionFee.toString() : '-'
+    const txFeeString =
+      transactionSummary && transactionSummary.transactionFee
+        ? -transactionSummary.transactionFee.toString()
+        : '-'
     // const txCostString = transactionSummary && transactionSummary.transactionTotalCost ? -transactionSummary.transactionTotalCost.toString() : '-'
-    const gasTokenBalanceString = transactionSummary && transactionSummary.gasTokenBalance ? transactionSummary.gasTokenBalance.toString() : '-'
-    const gasTokenSymbol = transactionSummary && transactionSummary.gasTokenSymbol && transactionSummary.gasTokenSymbol
+    const gasTokenBalanceString =
+      transactionSummary && transactionSummary.gasTokenBalance
+        ? transactionSummary.gasTokenBalance.toString()
+        : '-'
+    const gasTokenSymbol =
+      transactionSummary &&
+      transactionSummary.gasTokenSymbol &&
+      transactionSummary.gasTokenSymbol
 
     /*
     const isTokenTx = isTokenTransfer(transaction.data)
@@ -33,13 +42,17 @@ class TransactionSummary extends Component {
         <span>
           <p>{SAFE_BALANCE}</p>
           <span>
-            <strong>{gasTokenBalanceString} <small>{gasTokenSymbol}</small></strong>
+            <strong>
+              {gasTokenBalanceString} <small>{gasTokenSymbol}</small>
+            </strong>
           </span>
         </span>
         <span>
           <p>{ESTIMATED_TRANSACTION_FEE}</p>
           <span>
-            <strong className={styles.textRed}>{txFeeString} <small>{gasTokenSymbol}</small></strong>
+            <strong className={styles.textRed}>
+              {txFeeString} <small>{gasTokenSymbol}</small>
+            </strong>
           </span>
         </span>
         {/*showMaxTotal &&

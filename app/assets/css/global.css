@@ -2228,7 +2228,8 @@ footer .stepper-dots>li.active{
   -ms-flex-pack:end;
   justify-content:flex-end;
 }
-.extensionPopup .extension-inner .transactionValue{
+.extensionPopup .extension-inner .transactionValue,
+.extensionPopup .extension-inner .replaceRecoveryPhrase {
   display:-ms-flexbox;
   display:flex;
   -ms-flex-wrap:wrap;
@@ -2238,7 +2239,8 @@ footer .stepper-dots>li.active{
   margin:0 auto 10px;
   padding:0 20px
 }
-.extensionPopup .extension-inner .transactionValue::before{
+.extensionPopup .extension-inner .transactionValue::before,
+.extensionPopup .extension-inner .replaceRecoveryPhrase::before {
   content:"";
   height:21px;
   width:13px;
@@ -2249,7 +2251,8 @@ footer .stepper-dots>li.active{
   top:16px;
   padding:0 30px 0 0
 }
-.extensionPopup .extension-inner .transactionValue::after{
+.extensionPopup .extension-inner .transactionValue::after,
+.extensionPopup .extension-inner .replaceRecoveryPhrase::after {
   content:"";
   height:1px;
   width:80%;
@@ -2259,7 +2262,7 @@ footer .stepper-dots>li.active{
   background:#E4E8F1;
   z-index:-1
 }
-.extensionPopup .extension-inner .transactionValue>strong{
+.extensionPopup .extension-inner .transactionValue>strong {
   font-family:"Roboto Mono",Courier,monospace;
   font-size:1.7em;
   color:#fb4f62;
@@ -2275,11 +2278,37 @@ footer .stepper-dots>li.active{
   max-width:90%;
   word-wrap:break-word
 }
-.extensionPopup .extension-inner .transactionValue>strong>small{
+.extensionPopup .extension-inner .replaceRecoveryPhrase>strong {
+  font-family:"Roboto",Courier,monospace;
+  font-size:1.2em;
+  color:#21435a;
+  letter-spacing:0px;
+  text-align:right;
+  line-height:1;
+  font-weight:700;
+  width:auto;
+  margin:9px 0 0 auto;
+  background:#F4F5F9;
+  padding:0 0 0 15px;
+  box-sizing:border-box;
+  max-width:90%;
+  word-wrap:break-word
+}
+.replaceRecoveryPhraseDesc {
+  font-family:"Roboto",Courier,monospace;
+  padding: 10px;
+  margin-top: 10px;
+  letter-spacing:0px;
+  font-size:1.2em;
+  line-height:1.3;
+}
+.extensionPopup .extension-inner .transactionValue>strong>small,
+.extensionPopup .extension-inner .replaceRecoveryPhrase>strong>small {
   font-size:inherit;
   font-weight:inherit
 }
-.extensionPopup .extension-inner .transactionValue>small{
+.extensionPopup .extension-inner .transactionValue>small,
+.extensionPopup .extension-inner .replaceRecoveryPhrase>small{
   font-family:"Roboto Mono",Courier,monospace;
   font-size:1.3em;
   color:#A2A8BA;
@@ -2460,6 +2489,74 @@ footer .stepper-dots>li.active{
   letter-spacing:1px;
   padding:0 10px
 }
+
+.extensionPopup .extension-inner .signMessageSummary{
+  display:-ms-flexbox;
+  display:flex;
+  -ms-flex-wrap:wrap;
+  flex-wrap:wrap;
+  width:100%;
+  -ms-flex-pack:justify;
+  justify-content:space-between;
+  padding:10px 20px;
+  margin:20px 0;
+  border-top:1px solid #e4e8f1;
+  color: #65707e;
+}
+.extensionPopup .extension-inner .signMessageSummary>span{
+  width:100%;
+  display:-ms-flexbox;
+  display:flex;
+  -ms-flex-wrap:nowrap;
+  flex-wrap:nowrap;
+  -ms-flex-pack:justify;
+  font-size:1.3em;
+  line-height:1;
+
+  margin:4px 0
+}
+.extensionPopup .extension-inner .signMessageSummary>span>span{
+  display:-ms-flexbox;
+  display:flex;
+  -ms-flex-wrap:wrap;
+  flex-wrap:wrap;
+  text-align:left;
+  -ms-flex-align:center;
+  align-items:center;
+  -ms-flex-line-pack:center;
+  align-content:center;
+  -ms-flex-pack:end;
+  justify-content:flex-end;
+  word-break:break-all
+}
+.extensionPopup .extension-inner .signMessageSummary>span p{
+  font-size:inherit;
+  font-weight:inherit;
+  color:inherit;
+  margin: 0;
+  text-align: left;
+  width: 110px;
+  min-width: 110px;
+  margin-right: 5px;
+}
+.extensionPopup .extension-inner .youAreSigning {
+  text-align:center;
+  padding-top:20px;
+  width:100%;
+  font-size:14px;
+  color:#a2a8ba;
+}
+.extensionPopup .extension-inner .viewMessage {
+  text-align:center;
+  padding-bottom:25px;
+  width:100%;
+  font-size:13px;
+  font-weight: bold;
+}
+.extensionPopup .extension-inner .viewMessageLink {
+  text-decoration: none;
+}
+
 .extensionPopup .extension-inner .button-group>button{
   font-size:1.5em
 }

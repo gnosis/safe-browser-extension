@@ -9,10 +9,11 @@ import {
 import {
   getTransactionData,
   setUpTransaction,
-  getEthBalance,
   calculateGasEstimation,
-  getTransactionSummary
+  getTransactionSummary,
+  isReplaceRecoveryPhrase
 } from './transactions'
+import { getEthBalance } from 'utils/helpers'
 import Header from 'components/Header'
 import Layout from '../components/Layout'
 import actions from './actions'
@@ -21,7 +22,7 @@ import messages from '../../../../../extension/utils/messages'
 import styles from 'assets/css/global.css'
 
 class Transaction extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -29,7 +30,7 @@ class Transaction extends Component {
       transactionId: undefined,
       balance: undefined,
       loadedData: undefined,
-      reviewedTx: false,
+      reviewedTx: false
     }
 
     const { location } = this.props
@@ -38,12 +39,18 @@ class Transaction extends Component {
   }
 
   componentDidMount = () => {
-    const { seed, unlockedMnemonic } = this.props.account.secondFA
+    const { transactions, safes } = this.props
     const { transactionNumber } = this.state
+    const { seed, unlockedMnemonic } = this.props.account.secondFA
 
-    this.ethAccount = !unlockedMnemonic && this.password
-      ? getDecryptedEthAccount(seed, this.password)
-      : createAccountFromMnemonic(unlockedMnemonic)
+    const tx = transactions.txs[transactionNumber].tx
+    const txSafe = safes.safes.filter((safe) => safe.address === tx.from)[0]
+
+    this.ethAccount =
+      !unlockedMnemonic && this.password
+        ? getDecryptedEthAccount(seed, this.password, txSafe.accountIndex || 0)
+        : createAccountFromMnemonic(unlockedMnemonic, txSafe.accountIndex || 0)
+
     this.showTransaction(transactionNumber)
   }
 
@@ -56,6 +63,7 @@ class Transaction extends Component {
     const tx = transactions.txs[transactionNumber].tx
     if (!tx) return
 
+    const replaceRecoveryPhrase = isReplaceRecoveryPhrase(tx.data)
     this.setState({
       transactionId: tx.id,
       reviewedTx: false,
@@ -67,16 +75,32 @@ class Transaction extends Component {
       decimals: undefined,
       estimations: undefined,
       transactionSummary: undefined,
+      replaceRecoveryPhrase
     })
 
     try {
       const ethBalance = await getEthBalance(tx.from)
-      const { balance, symbol, value, decimals } = await getTransactionData(tx.to, tx.from, tx.data, tx.value, ethBalance)
+      const { balance, symbol, value, decimals } = await getTransactionData(
+        tx.to,
+        tx.from,
+        tx.data,
+        tx.value,
+        ethBalance
+      )
       const estimations = await calculateGasEstimation(tx, value)
-      const transactionSummary = await getTransactionSummary(tx, estimations, value)
+      const transactionSummary = await getTransactionSummary(
+        tx,
+        estimations,
+        value
+      )
 
       let loadedData
-      if (ethBalance instanceof BigNumber && balance instanceof BigNumber && estimations && symbol) {
+      if (
+        ethBalance instanceof BigNumber &&
+        balance instanceof BigNumber &&
+        estimations &&
+        symbol
+      ) {
         loadedData = true
       } else {
         loadedData = false
@@ -101,7 +125,7 @@ class Transaction extends Component {
     const { transactionNumber } = this.state
     const { transactions } = this.props
 
-    if (transactionNumber < (transactions.txs.length - 1)) {
+    if (transactionNumber < transactions.txs.length - 1) {
       this.showTransaction(transactionNumber + 1)
     }
   }
@@ -124,10 +148,7 @@ class Transaction extends Component {
   }
 
   removeTransaction = async (position) => {
-    const {
-      transactions,
-      onRemoveTransaction
-    } = this.props
+    const { transactions, onRemoveTransaction } = this.props
 
     const transactionsLength = transactions.txs.length - 1
     chrome.browserAction.setBadgeBackgroundColor({ color: '#888' })
@@ -136,13 +157,20 @@ class Transaction extends Component {
     const transaction = transactions.txs[position]
 
     if (transaction.dappWindowId && transaction.dappTabId) {
-      await chrome.tabs.query({ windowId: transaction.dappWindowId }, (tabs) => {
-        chrome.tabs.sendMessage(transaction.dappTabId, {
-          msg: messages.MSG_RESOLVED_TRANSACTION,
-          hash: null,
-          id: transaction.tx.id
-        }, () => onRemoveTransaction(position))
-      })
+      await chrome.tabs.query(
+        { windowId: transaction.dappWindowId },
+        (tabs) => {
+          chrome.tabs.sendMessage(
+            transaction.dappTabId,
+            {
+              msg: messages.MSG_RESOLVED_TRANSACTION,
+              hash: null,
+              id: transaction.tx.id
+            },
+            () => onRemoveTransaction(position)
+          )
+        }
+      )
     } else {
       onRemoveTransaction(position)
     }
@@ -150,10 +178,10 @@ class Transaction extends Component {
 
   getSafeAlias = (address) => {
     const { safes } = this.props
-    return safes.safes.filter(s => s.address === address)[0].alias
+    return safes.safes.filter((s) => s.address === address)[0].alias
   }
 
-  render () {
+  render() {
     const {
       transactionNumber,
       balance,
@@ -163,13 +191,10 @@ class Transaction extends Component {
       estimations,
       transactionSummary,
       loadedData,
-      reviewedTx
+      reviewedTx,
+      replaceRecoveryPhrase
     } = this.state
-    const {
-      account,
-      transactions,
-      location
-    } = this.props
+    const { account, transactions, location } = this.props
 
     const transaction = transactions.txs[transactionNumber].tx
     setUpTransaction(transaction, estimations, displayedValue, decimals)
@@ -177,12 +202,7 @@ class Transaction extends Component {
     return (
       <div className={styles.extensionPopup}>
         <div className={styles.extensionInner}>
-          <Header
-            noBorder
-            txReview
-            transactionNumber={transactionNumber}
-            location={location}
-          />
+          <Header noBorder isPopup location={location} />
           <div className={styles.Page}>
             <Layout
               transaction={transaction}
@@ -194,6 +214,7 @@ class Transaction extends Component {
               loadedData={loadedData}
               reviewedTx={reviewedTx}
               transactionSummary={transactionSummary}
+              replaceRecoveryPhrase={replaceRecoveryPhrase}
               safeAlias={this.getSafeAlias(transaction.safe)}
               ethAccount={this.ethAccount}
               previousTransaction={this.previousTransaction}
@@ -211,7 +232,8 @@ class Transaction extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onRemoveTransaction: (position) => dispatch(actions.removeTransaction(position))
+    onRemoveTransaction: (position) =>
+      dispatch(actions.removeTransaction(position))
   }
 }
 

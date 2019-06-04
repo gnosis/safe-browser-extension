@@ -9,16 +9,17 @@ import {
   REQUEST_CONFIRMATION,
   REQUEST_CONFIRMATION_WAIT_X_S,
   CONFIRM_WITH_MOBILE
-} from '../../../../../../../config/messages'
+} from '../../../../config/messages'
 
 const cx = classNames.bind(styles)
 
-const SendTransactionState = ({
-  seconds,
-  handleConfirmTransaction
-}) => {
-  const time = seconds < 10 ? '00:0' + seconds.toString() : '00:' + seconds.toString()
-  const waitingTime = REQUEST_CONFIRMATION_WAIT_X_S.toString().replace('%s', time)
+const SendTransactionState = ({ seconds, handleConfirmTransaction }) => {
+  const time =
+    seconds < 10 ? '00:0' + seconds.toString() : '00:' + seconds.toString()
+  const waitingTime = REQUEST_CONFIRMATION_WAIT_X_S.toString().replace(
+    '%s',
+    time
+  )
 
   return (
     <div className={cx(styles.transactionState)}>
@@ -29,7 +30,7 @@ const SendTransactionState = ({
         </div>
       </span>
       <span className={styles.message}>
-        <img src={mobileImage} height='55' width='30' />
+        <img src={mobileImage} height="55" width="30" />
         <p>{CONFIRM_WITH_MOBILE}</p>
       </span>
       <Network
@@ -41,7 +42,9 @@ const SendTransactionState = ({
                 className={cx(styles.button, styles.white)}
                 disabled={seconds > 0}
                 onClick={handleConfirmTransaction}
-              >{REQUEST_CONFIRMATION}</button>
+              >
+                {REQUEST_CONFIRMATION}
+              </button>
             </span>
           )
         }

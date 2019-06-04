@@ -8,7 +8,7 @@ import { NEXT } from '../../../../config/messages'
 const cx = classNames.bind(styles)
 
 class FooterSteps extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       actionURL: ''
@@ -20,13 +20,7 @@ class FooterSteps extends Component {
   }
 
   render = () => {
-    const {
-      ready,
-      firstStep,
-      secondStep,
-      link,
-      nextLink
-    } = this.props
+    const { ready, firstStep, secondStep, link, nextLink } = this.props
     const { actionURL } = this.state
 
     if (actionURL !== '') {
@@ -37,7 +31,7 @@ class FooterSteps extends Component {
         <button
           onClick={this.handleButton(link)}
           className={cx(styles.btnBack, styles.active)}
-          type='button'
+          type="button"
         />
         <ul className={styles.stepperDots}>
           <li className={firstStep && styles.active} />

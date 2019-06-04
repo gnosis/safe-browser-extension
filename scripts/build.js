@@ -6,8 +6,8 @@ const names = require(path.resolve(__dirname, '../config/names'))
 
 const buildDirectory = './build/'
 const envVars = [
-  'DEVELOPMENT_GA_TRACKING_ID',
-  'PRODUCTION_GA_TRACKING_ID',
+  'PRODUCTION_MAINNET_GA_TRACKING_ID',
+  'PRODUCTION_RINKEBY_GA_TRACKING_ID',
   'INFURA_PROJECT_ID',
   'FIREBASE_AUTH_DOMAIN',
   'FIREBASE_DATABASE_URL',

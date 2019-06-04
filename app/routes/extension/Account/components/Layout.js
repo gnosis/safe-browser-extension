@@ -9,19 +9,11 @@ import slowTradeBanner from 'assets/images/slow-trade-banner.png'
 import { VIEW_ON_ETHERSCAN } from '../../../../../config/messages'
 
 class Layout extends Component {
-  render () {
-    const {
-      currentSafe,
-      location,
-      openEtherScan,
-      openSlowTrade
-    } = this.props
+  render() {
+    const { currentSafe, location, openEtherScan, openSlowTrade } = this.props
 
     return (
-      <Page
-        page={styles.safeOverview}
-        location={location}
-      >
+      <Page page={styles.safeOverview} location={location}>
         <div className={styles.content}>
           <WhitelistedDappState />
           <div className={styles.safeContent}>
@@ -32,12 +24,13 @@ class Layout extends Component {
                 </div>
                 <p>{currentSafe}</p>
               </div>
-              <div id='qr-safe-address' />
+              <div id="qr-safe-address" />
             </span>
             <Link
-              to='#'
+              to="#"
               className={styles.externalLink}
-              onClick={openEtherScan}>
+              onClick={openEtherScan}
+            >
               {VIEW_ON_ETHERSCAN}
             </Link>
           </div>

@@ -11,7 +11,7 @@ import EthLogo from 'assets/images/tokens/ETH.svg'
 const cx = classNames.bind(styles)
 
 class Layout extends Component {
-  render () {
+  render() {
     const {
       location,
       tokenList,
@@ -23,48 +23,49 @@ class Layout extends Component {
       <Page location={location}>
         <div className={styles.overlayPage}>
           <span className={styles.overlayPageHeader}>
-            <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)} />
+            <Link
+              to={ACCOUNT_URL}
+              className={cx(styles.btnBack, styles.active)}
+            />
             <h2>{PAYMENT_TOKEN}</h2>
           </span>
           <span className={styles.overlayPageContent}>
             <form className={styles.token_items}>
               <div className={styles.radio}>
                 <input
-                  type='radio'
-                  name='paymentToken'
+                  type="radio"
+                  name="paymentToken"
                   value={'0x'}
-                  checked={(!selectedPaymentToken)}
+                  checked={!selectedPaymentToken}
                   readOnly
                 />
                 <label onClick={handlePaymentToken(null)}>
-                  <img
-                    className={styles.tokenLogo}
-                    src={EthLogo}
-                  />
+                  <img className={styles.tokenLogo} src={EthLogo} />
                   <span>ETH (Ether)</span>
                 </label>
               </div>
-              {tokenList && tokenList.length > 0 && tokenList.map((token) => (
-                <div
-                  className={styles.radio}
-                  key={token.symbol}
-                >
-                  <input
-                    type='radio'
-                    name='paymentToken'
-                    value={token.address}
-                    checked={(selectedPaymentToken && token.address === selectedPaymentToken.address)}
-                    readOnly
-                  />
-                  <label onClick={handlePaymentToken(token)}>
-                    <img
-                      className={styles.tokenLogo}
-                      src={token.logoUri}
+              {tokenList &&
+                tokenList.length > 0 &&
+                tokenList.map((token) => (
+                  <div className={styles.radio} key={token.symbol}>
+                    <input
+                      type="radio"
+                      name="paymentToken"
+                      value={token.address}
+                      checked={
+                        selectedPaymentToken &&
+                        token.address === selectedPaymentToken.address
+                      }
+                      readOnly
                     />
-                    <span>{token.symbol} ({token.name})</span>
-                  </label>
-                </div>
-              ))}
+                    <label onClick={handlePaymentToken(token)}>
+                      <img className={styles.tokenLogo} src={token.logoUri} />
+                      <span>
+                        {token.symbol} ({token.name})
+                      </span>
+                    </label>
+                  </div>
+                ))}
             </form>
           </span>
         </div>

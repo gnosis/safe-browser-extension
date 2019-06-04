@@ -27,7 +27,8 @@ const ethTransaction = {
 }
 
 const tokenTransaction = {
-  data: '0xa9059cbb0000000000000000000000009e080f90bbb68d68b5874eea42961a9c0424509b000000000000000000000000000000000000000000000000000000000000000c',
+  data:
+    '0xa9059cbb0000000000000000000000009e080f90bbb68d68b5874eea42961a9c0424509b000000000000000000000000000000000000000000000000000000000000000c',
   dataGas: '46744',
   from: '0x9e080f90BbB68d68b5874eEa42961a9C0424509B',
   gasPrice: '5000000001',
@@ -46,7 +47,8 @@ const tokenTransaction = {
 const paymentToken = {
   address: '0xb3a4Bc89d8517E0e2C9B66703d09D3029ffa1e6d',
   decimals: 6,
-  logoUri: 'http://gnosis-safe-token-logos.s3.amazonaws.com/0xb3a4Bc89d8517E0e2C9B66703d09D3029ffa1e6d.png',
+  logoUri:
+    'http://gnosis-safe-token-logos.s3.amazonaws.com/0xb3a4Bc89d8517E0e2C9B66703d09D3029ffa1e6d.png',
   name: 'Love Rinkeby',
   symbol: 'RLOVE'
 }
@@ -69,9 +71,11 @@ describe('Test transactions redux reducer', () => {
     // THEN
     const expectedState = {
       paymentToken,
-      txs: [{
-        tx: ethTransaction
-      }],
+      txs: [
+        {
+          tx: ethTransaction
+        }
+      ],
       windowId: 0
     }
     expect(actualStore.getState().transactions).toEqual(expectedState)
@@ -82,11 +86,14 @@ describe('Test transactions redux reducer', () => {
     const stateBefore = {
       transactions: {
         paymentToken,
-        txs: [{
-          tx: ethTransaction,
-        }, {
-          tx: tokenTransaction
-        }],
+        txs: [
+          {
+            tx: ethTransaction
+          },
+          {
+            tx: tokenTransaction
+          }
+        ],
         windowId: 0
       }
     }
@@ -99,9 +106,11 @@ describe('Test transactions redux reducer', () => {
     // THEN
     const expectedState = {
       paymentToken,
-      txs: [{
-        tx: tokenTransaction
-      }],
+      txs: [
+        {
+          tx: tokenTransaction
+        }
+      ],
       windowId: 0
     }
     expect(actualStore.getState().transactions).toEqual(expectedState)
@@ -112,11 +121,14 @@ describe('Test transactions redux reducer', () => {
     const stateBefore = {
       transactions: {
         paymentToken,
-        txs: [{
-          tx: ethTransaction
-        }, {
-          tx: tokenTransaction
-        }],
+        txs: [
+          {
+            tx: ethTransaction
+          },
+          {
+            tx: tokenTransaction
+          }
+        ],
         windowId: 0
       }
     }
@@ -139,9 +151,11 @@ describe('Test transactions redux reducer', () => {
     const stateBefore = {
       transactions: {
         paymentToken: {},
-        txs: [{
-          tx: ethTransaction
-        }],
+        txs: [
+          {
+            tx: ethTransaction
+          }
+        ],
         windowId: 0
       }
     }
@@ -153,9 +167,11 @@ describe('Test transactions redux reducer', () => {
     // THEN
     const expectedState = {
       paymentToken,
-      txs: [{
-        tx: ethTransaction
-      }],
+      txs: [
+        {
+          tx: ethTransaction
+        }
+      ],
       windowId: 0
     }
     expect(actualStore.getState().transactions).toEqual(expectedState)
@@ -166,9 +182,11 @@ describe('Test transactions redux reducer', () => {
     const stateBefore = {
       transactions: {
         paymentToken,
-        txs: [{
-          tx: ethTransaction
-        }],
+        txs: [
+          {
+            tx: ethTransaction
+          }
+        ],
         windowId: 0
       }
     }
@@ -179,9 +197,11 @@ describe('Test transactions redux reducer', () => {
 
     // THEN
     const expectedState = {
-      txs: [{
-        tx: ethTransaction
-      }],
+      txs: [
+        {
+          tx: ethTransaction
+        }
+      ],
       windowId: 0
     }
     expect(actualStore.getState().transactions).toEqual(expectedState)

@@ -4,7 +4,7 @@ import {
   DELETE_ALL_WHITELISTED_DAPPS
 } from 'actions/whitelistedDapps'
 
-function whitelistedDapps (state = [], action) {
+function whitelistedDapps(state = [], action) {
   switch (action.type) {
     case ADD_WHITELISTED_DAPP:
       let newState = [...state]
@@ -12,7 +12,7 @@ function whitelistedDapps (state = [], action) {
       return newState
 
     case DELETE_WHITELISTED_DAPP:
-      return state.filter(dapp => (dapp !== action.dapp))
+      return state.filter((dapp) => dapp !== action.dapp)
 
     case DELETE_ALL_WHITELISTED_DAPPS:
       return []

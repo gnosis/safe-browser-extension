@@ -16,7 +16,12 @@ class ConfirmTransaction extends Component {
     }
     this.handleTransaction('confirmTransaction')
 
-    ga(['_trackEvent', TRANSACTIONS, 'click-confirm-transaction-from-mobile-app', 'Confirm transaction from mobile app'])
+    ga([
+      '_trackEvent',
+      TRANSACTIONS,
+      'click-confirm-transaction-from-mobile-app',
+      'Confirm transaction from mobile app'
+    ])
   }
 
   handleRejectTransaction = () => {
@@ -27,14 +32,16 @@ class ConfirmTransaction extends Component {
     }
     this.handleTransaction('rejectTransaction', 'GNO')
 
-    ga(['_trackEvent', TRANSACTIONS, 'click-reject-transaction-from-mobile-app', 'Reject transaction from mobile app'])
+    ga([
+      '_trackEvent',
+      TRANSACTIONS,
+      'click-reject-transaction-from-mobile-app',
+      'Reject transaction from mobile app'
+    ])
   }
 
   handleTransaction = async (type, prefix) => {
-    const {
-      transaction,
-      ethAccount
-    } = this.props
+    const { transaction, ethAccount } = this.props
 
     const hash = transaction.hash
     try {
@@ -68,26 +75,19 @@ class ConfirmTransaction extends Component {
       return
     }
 
-    const position = (transactionNumber >= 1) ? transactionNumber - 1 : 0
+    const position = transactionNumber >= 1 ? transactionNumber - 1 : 0
     await removeTransaction(transactionNumber)
     showTransaction(position)
   }
 
   retryShowTransaction = () => {
-    const {
-      transactionNumber,
-      showTransaction
-    } = this.props
+    const { transactionNumber, showTransaction } = this.props
 
     showTransaction(transactionNumber)
   }
 
-  render () {
-    const {
-      lockedAccount,
-      loadedData,
-      reviewedTx
-    } = this.props
+  render() {
+    const { lockedAccount, loadedData, reviewedTx } = this.props
 
     return (
       <Layout
@@ -102,6 +102,4 @@ class ConfirmTransaction extends Component {
   }
 }
 
-export default connect(
-  selector
-)(ConfirmTransaction)
+export default connect(selector)(ConfirmTransaction)

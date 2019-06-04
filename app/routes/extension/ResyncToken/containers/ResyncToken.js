@@ -13,13 +13,10 @@ import {
 } from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'
 import Layout from '../components/Layout'
 import selector from './selector'
-import {
-  ERROR_SYNCING,
-  SYNCED_TOKEN
-} from '../../../../../config/messages'
+import { ERROR_SYNCING, SYNCED_TOKEN } from '../../../../../config/messages'
 
 class ResyncToken extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     const { location } = this.props
@@ -33,15 +30,28 @@ class ResyncToken extends Component {
 
   handleResync = () => async (e) => {
     const {
+      safes,
       selectEncryptedMnemonic,
       selectUnencryptedMnemonic
     } = this.props
 
-    const currentAccount = !selectUnencryptedMnemonic && this.password
-      ? getDecryptedEthAccount(selectEncryptedMnemonic, this.password)
-      : createAccountFromMnemonic(selectUnencryptedMnemonic)
+    const currentSafe = safes.safes.filter(
+      (safe) => safe.address === safes.currentSafe
+    )[0]
 
-      try {
+    const currentAccount =
+      !selectUnencryptedMnemonic && this.password
+        ? getDecryptedEthAccount(
+            selectEncryptedMnemonic,
+            this.password,
+            currentSafe.accountIndex || 0
+          )
+        : createAccountFromMnemonic(
+            selectUnencryptedMnemonic,
+            currentSafe.accountIndex || 0
+          )
+
+    try {
       const token = await setUpNotifications()
       if (token === null) {
         this.setState({ message: ERROR_SYNCING })
@@ -54,14 +64,19 @@ class ResyncToken extends Component {
       console.error(err)
     }
 
-    ga(['_trackEvent', EXTENSION_SETTINGS, 'click-resync-push-token', 'Resync push token'])
+    ga([
+      '_trackEvent',
+      EXTENSION_SETTINGS,
+      'click-resync-push-token',
+      'Resync push token'
+    ])
 
     setTimeout(() => {
       this.setState({ message: undefined })
     }, 1000)
   }
 
-  render () {
+  render() {
     const { message } = this.state
 
     return (
@@ -74,6 +89,4 @@ class ResyncToken extends Component {
   }
 }
 
-export default connect(
-  selector
-)(ResyncToken)
+export default connect(selector)(ResyncToken)

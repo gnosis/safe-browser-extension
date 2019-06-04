@@ -7,31 +7,31 @@ import {
 } from '../../../../../../../config/messages'
 
 class Layout extends Component {
-  render () {
+  render() {
     const {
       confirmPassword,
       updateConfirmPassword,
       passwordsMatch
     } = this.props
 
-    const filling = (confirmPassword !== '')
+    const filling = confirmPassword !== ''
     const dataValidation = !passwordsMatch && filling ? 'ERROR' : ''
 
     return (
       <React.Fragment>
         <div data-validation={dataValidation}>
           <input
-            type='password'
+            type="password"
             placeholder={CONFIRM_PASSWORD}
             value={confirmPassword}
             onChange={updateConfirmPassword}
           />
         </div>
-        {!passwordsMatch &&
+        {!passwordsMatch && (
           <p className={filling ? styles.textRed : null}>
             {PASSWORD_DOESNT_MATCH}
           </p>
-        }
+        )}
       </React.Fragment>
     )
   }

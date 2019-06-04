@@ -1,4 +1,7 @@
 {
+  "name": {
+    "message": "이름"
+  },
   "retry": {
     "message": "재시도"
   },
@@ -86,8 +89,14 @@
   "safe_already_exists": {
     "message": "이미 Safe가 존재합니다"
   },
+  "receive_funds": {
+    "message": "자금 수신"
+  },
   "replace_recovery_phrase": {
     "message": "복구 문장 대체하기"
+  },
+  "layout_replace_recovery_phrase_transaction_info_description": {
+    "message": "이전 복구 문장은 무효화되고 신규 문장으로 대체됩니다."
   },
   "store_description": {
     "message": "Gnosis Safe는 다중서명 이더리움 지갑으로서 사용자가 자신의 디지털 자산을 쉽고 안전하게 관리할 수 있게 도와주며, 탈중앙화된 웹 상에서 자유로운 활동을 할 수 있도록 도와줍니다.\n\nGnosis Safe 사용자는 이더리움과 ERC-20 토큰을 보유하거나 전송할 수 있고, 크롬 확장프로그램을 통해 타 탈중앙화 어플리케이션과도 상호작용할 수 있습니다."

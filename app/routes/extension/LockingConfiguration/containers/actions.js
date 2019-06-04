@@ -1,6 +1,4 @@
-import {
-  configureLocking
-} from '../store/actions'
+import { configureLocking } from '../store/actions'
 
 export default {
   configureLocking

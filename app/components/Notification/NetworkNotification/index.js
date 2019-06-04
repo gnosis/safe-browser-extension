@@ -16,17 +16,12 @@ const NotificationMessage = () => (
   </div>
 )
 
-const NetworkNotification = ({
-  children
-}) => {
+const NetworkNotification = ({ children }) => {
   if (!children) children = null
 
   return (
     <Network
-      render={({ online }) => online
-        ? children
-        : <NotificationMessage />
-      }
+      render={({ online }) => (online ? children : <NotificationMessage />)}
     />
   )
 }

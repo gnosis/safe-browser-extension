@@ -15,24 +15,34 @@ import {
 const cx = classNames.bind(styles)
 
 class Layout extends Component {
-  render () {
-    const {
-      versionNumber,
-      location
-    } = this.props
+  render() {
+    const { versionNumber, location } = this.props
 
     return (
       <Page location={location}>
         <div className={styles.overlayPage}>
           <span className={styles.overlayPageHeader}>
-            <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)} />
+            <Link
+              to={ACCOUNT_URL}
+              className={cx(styles.btnBack, styles.active)}
+            />
             <h2>{ABOUT}</h2>
           </span>
           <div className={styles.overlayPageContent}>
             <div className={styles.about}>
-              <p>{VERSION}: {versionNumber}</p>
-              <p><a href='https://safe.gnosis.io/terms' target='_blank'>{TERMS_OF_SERVICE}</a></p>
-              <p><a href='https://safe.gnosis.io/privacy' target='_blank'>{PRIVACY_POLICY}</a></p>
+              <p>
+                {VERSION}: {versionNumber}
+              </p>
+              <p>
+                <a href="https://safe.gnosis.io/terms" target="_blank">
+                  {TERMS_OF_SERVICE}
+                </a>
+              </p>
+              <p>
+                <a href="https://safe.gnosis.io/privacy" target="_blank">
+                  {PRIVACY_POLICY}
+                </a>
+              </p>
             </div>
           </div>
         </div>

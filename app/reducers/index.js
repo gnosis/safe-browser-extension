@@ -5,6 +5,7 @@ import whitelistedDapps from './whitelistedDapps'
 import transactions from './transactions'
 import safes from './safes'
 import device from './device'
+import signMessages from './signMessages'
 
 import { LOGOUT_ACCOUNT } from 'actions/account'
 
@@ -13,7 +14,8 @@ const reducers = combineReducers({
   safes,
   whitelistedDapps,
   transactions,
-  device
+  device,
+  signMessages
 })
 
 const rootReducer = (state, action) => {

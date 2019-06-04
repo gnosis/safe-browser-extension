@@ -1,4 +1,7 @@
-import { addWhitelistedDapp, deleteWhitelistedDapp } from 'actions/whitelistedDapps'
+import {
+  addWhitelistedDapp,
+  deleteWhitelistedDapp
+} from 'actions/whitelistedDapps'
 
 export default {
   addWhitelistedDapp,

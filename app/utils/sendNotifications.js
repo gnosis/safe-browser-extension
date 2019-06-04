@@ -1,17 +1,34 @@
 import EthUtil from 'ethereumjs-util'
 import BigNumber from 'bignumber.js'
 import 'babel-polyfill'
-import TruffleContract from 'truffle-contract'
-import Web3 from 'web3'
 import fetch from 'node-fetch'
-
 import { getTransactionEstimations } from 'routes/popup/Transaction/components/SendTransaction/containers/gasData'
 import { isTokenTransfer } from 'routes/popup/Transaction/containers/tokens'
 import GnosisSafe from '../../contracts/GnosisSafe.json'
-import {
-  getPushNotificationServiceUrl,
-  getNetworkUrl
-} from '../../config'
+import { getPushNotificationServiceUrl, getNetworkUrl } from '../../config'
+
+export const sendSignMessage = async (
+  accountAddress,
+  privateKey,
+  message,
+  messageHash,
+  safeAddress
+) => {
+  const hash = EthUtil.toBuffer(messageHash)
+  const vrs = EthUtil.ecsign(hash, privateKey)
+  const r = new BigNumber(EthUtil.bufferToHex(vrs.r))
+  const s = new BigNumber(EthUtil.bufferToHex(vrs.s))
+  const data = JSON.stringify({
+    type: 'signTypedData',
+    payload: message,
+    safe: safeAddress,
+    r: r.toString(10),
+    s: s.toString(10),
+    v: vrs.v.toString(10)
+  })
+
+  return sendNotification(data, privateKey, accountAddress, safeAddress)
+}
 
 export const sendTransaction = async (
   accountAddress,
@@ -28,7 +45,7 @@ export const sendTransaction = async (
     hash: tx.hash,
     safe: tx.safe,
     to: tx.to,
-    value: (tx.value) ? new BigNumber(tx.value).toString(10) : undefined,
+    value: tx.value ? new BigNumber(tx.value).toString(10) : undefined,
     data: tx.data,
     operation: tx.operation,
     txGas: tx.txGas,
@@ -53,7 +70,7 @@ export const requestConfirmationResponse = (
   safeAddress,
   prefix
 ) => {
-  const txHash = (prefix)
+  const txHash = prefix
     ? EthUtil.sha3(prefix + hash + type)
     : EthUtil.toBuffer(hash)
 
@@ -90,7 +107,7 @@ export const sendNotification = async (
 
   const url = getPushNotificationServiceUrl() + '/api/v1/notifications/'
   const headers = {
-    'Accept': 'application/json',
+    Accept: 'application/json',
     'Content-Type': 'application/json'
   }
   const r = new BigNumber(EthUtil.bufferToHex(vrs.r))
@@ -122,8 +139,10 @@ export const getOwners = async (accountAddress, safeAddress) => {
   try {
     const instance = await contract.at(safeAddress)
     const owners = await instance.getOwners.call()
-    const destOwners = owners.filter(owner => owner.toLowerCase() !== accountAddress.toLowerCase())
-    return destOwners.map(owner => EthUtil.toChecksumAddress(owner))
+    const destOwners = owners.filter(
+      (owner) => owner.toLowerCase() !== accountAddress.toLowerCase()
+    )
+    return destOwners.map((owner) => EthUtil.toChecksumAddress(owner))
   } catch (err) {
     console.error(err)
   }
@@ -131,9 +150,19 @@ export const getOwners = async (accountAddress, safeAddress) => {
 
 export const getNonce = async (tx) => {
   if (tx.type === 'sendTransaction') {
-    const estimationValue = isTokenTransfer(tx.data) ? '0' : tx.displayedValue.toString(10)
-    const estimations = await getTransactionEstimations(tx.from, tx.to, estimationValue, tx.data, 0, tx.gasToken)
-    const lastUsedNonce = (estimations.lastUsedNonce === null) ? 0 : estimations.lastUsedNonce + 1
+    const estimationValue = isTokenTransfer(tx.data)
+      ? '0'
+      : tx.displayedValue.toString(10)
+    const estimations = await getTransactionEstimations(
+      tx.from,
+      tx.to,
+      estimationValue,
+      tx.data,
+      0,
+      tx.gasToken
+    )
+    const lastUsedNonce =
+      estimations.lastUsedNonce === null ? 0 : estimations.lastUsedNonce + 1
 
     return estimations && lastUsedNonce.toString()
   }

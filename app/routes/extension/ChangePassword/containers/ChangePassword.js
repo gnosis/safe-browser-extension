@@ -13,7 +13,7 @@ import messages from '../../../../../extension/utils/messages'
 import { ACCOUNT_URL } from 'routes/routes'
 
 class ChangePassword extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -34,7 +34,8 @@ class ChangePassword extends Component {
     this.setState({
       newPassword,
       createPasswordReady,
-      confirmPasswordReady: (newPassword !== '' && newPassword === confirmPassword)
+      confirmPasswordReady:
+        newPassword !== '' && newPassword === confirmPassword
     })
   }
 
@@ -42,16 +43,18 @@ class ChangePassword extends Component {
     const { newPassword } = this.state
     this.setState({
       confirmPassword,
-      confirmPasswordReady: (newPassword !== '' && newPassword === confirmPassword)
+      confirmPasswordReady:
+        newPassword !== '' && newPassword === confirmPassword
     })
   }
 
   updateMasterPassword = () => {
+    const { selectUnencryptedMnemonic, selectEncryptedMnemonic } = this.props
     const {
-      selectUnencryptedMnemonic,
-      selectEncryptedMnemonic
-    } = this.props
-    const { newPassword, createPasswordReady, confirmPasswordReady } = this.state
+      newPassword,
+      createPasswordReady,
+      confirmPasswordReady
+    } = this.state
 
     if (!createPasswordReady || !confirmPasswordReady) {
       return
@@ -73,13 +76,18 @@ class ChangePassword extends Component {
       msg: messages.MSG_LOCK_ACCOUNT
     })
 
-    ga(['_trackEvent', EXTENSION_SETTINGS, 'click-change-password', 'Change password'])
+    ga([
+      '_trackEvent',
+      EXTENSION_SETTINGS,
+      'click-change-password',
+      'Change password'
+    ])
 
     this.props.onUpdateMasterPassword(encryptedMnemonic, hmac)
     this.setState({ redirectToAccount: true })
   }
 
-  render () {
+  render() {
     const {
       newPassword,
       confirmPassword,
@@ -107,7 +115,8 @@ class ChangePassword extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdateMasterPassword: (encryptedMnemonic, hmac) => dispatch(actions.updateMasterPassword(encryptedMnemonic, hmac))
+    onUpdateMasterPassword: (encryptedMnemonic, hmac) =>
+      dispatch(actions.updateMasterPassword(encryptedMnemonic, hmac))
   }
 }
 

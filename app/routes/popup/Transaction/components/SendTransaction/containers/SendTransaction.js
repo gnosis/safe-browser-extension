@@ -5,12 +5,13 @@ import { ga } from 'utils/analytics'
 import { TRANSACTIONS } from 'utils/analytics/events'
 import selector from './selector'
 import { getTxHash } from './gasData'
-import { sendTransaction, getNonce } from 'utils/sendNotifications'
+import { sendTransaction } from 'utils/sendNotifications'
+import { getNonce } from 'logic/contracts/safeContracts'
 import Layout from '../components/Layout'
 import messages from '../../../../../../../extension/utils/messages'
 
 class SendTransaction extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.maxSeconds = 30
     this.state = {
@@ -19,10 +20,7 @@ class SendTransaction extends Component {
   }
 
   handleConfirmTransaction = (resend) => {
-    const {
-      handleTransaction,
-      transactionNumber
-    } = this.props
+    const { handleTransaction, transactionNumber } = this.props
 
     if (!handleTransaction()) {
       return
@@ -34,32 +32,42 @@ class SendTransaction extends Component {
       position: transactionNumber
     })
 
-    !(resend)
-      ? ga(['_trackEvent', TRANSACTIONS, 'click-confirm-transaction-from-dapp', 'Confirm transaction from Dapp'])
-      : ga(['_trackEvent', TRANSACTIONS, 'click-re-send-transaction-from-dapp', 'Re-send transaction from Dapp'])
+    !resend
+      ? ga([
+          '_trackEvent',
+          TRANSACTIONS,
+          'click-confirm-transaction-from-dapp',
+          'Confirm transaction from Dapp'
+        ])
+      : ga([
+          '_trackEvent',
+          TRANSACTIONS,
+          'click-re-send-transaction-from-dapp',
+          'Re-send transaction from Dapp'
+        ])
   }
 
   handleRejectTransaction = () => {
     this.handleRemoveTransaction()
-    ga(['_trackEvent', TRANSACTIONS, 'click-reject-transaction-from-dapp', 'Reject transaction from Dapp'])
+    ga([
+      '_trackEvent',
+      TRANSACTIONS,
+      'click-reject-transaction-from-dapp',
+      'Reject transaction from Dapp'
+    ])
   }
 
   handleMobileAppResponse = () => {
-    chrome.runtime.onMessage.addListener(
-      (request, sender, sendResponse) => {
-        if (request.msg === messages.MSG_RESOLVED_TRANSACTION) {
-          clearInterval(this.timer)
-          this.handleRemoveTransaction()
-        }
+    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+      if (request.msg === messages.MSG_RESOLVED_TRANSACTION) {
+        clearInterval(this.timer)
+        this.handleRemoveTransaction()
       }
-    )
+    })
   }
 
   handleTransaction = async () => {
-    const {
-      transaction,
-      ethAccount
-    } = this.props
+    const { transaction, ethAccount } = this.props
 
     this.setState({ seconds: this.maxSeconds })
     this.startCountdown()
@@ -95,25 +103,19 @@ class SendTransaction extends Component {
       return
     }
 
-    const position = (transactionNumber >= 1) ? transactionNumber - 1 : 0
+    const position = transactionNumber >= 1 ? transactionNumber - 1 : 0
     await removeTransaction(transactionNumber)
     showTransaction(position)
   }
 
   retryShowTransaction = () => {
-    const {
-      transactionNumber,
-      showTransaction
-    } = this.props
+    const { transactionNumber, showTransaction } = this.props
 
     showTransaction(transactionNumber)
   }
 
   startCountdown = () => {
-    this.timer = setInterval(
-      this.countDown,
-      1000
-    )
+    this.timer = setInterval(this.countDown, 1000)
   }
 
   countDown = () => {
@@ -123,7 +125,7 @@ class SendTransaction extends Component {
       return
     }
     this.setState((prevState) => ({
-      seconds: (prevState.seconds - 1)
+      seconds: prevState.seconds - 1
     }))
   }
 
@@ -131,12 +133,8 @@ class SendTransaction extends Component {
     clearInterval(this.timer)
   }
 
-  render () {
-    const {
-      lockedAccount,
-      loadedData,
-      reviewedTx
-    } = this.props
+  render() {
+    const { lockedAccount, loadedData, reviewedTx } = this.props
     const { seconds } = this.state
 
     return (
@@ -153,6 +151,4 @@ class SendTransaction extends Component {
   }
 }
 
-export default connect(
-  selector
-)(SendTransaction)
+export default connect(selector)(SendTransaction)

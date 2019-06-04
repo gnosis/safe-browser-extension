@@ -1,19 +1,24 @@
 import React, { Component } from 'react'
 
+import { REVIEW_TRANSACTION } from '../../../../../config/messages'
 import { isTokenTransfer, getTokenTransferAddress } from '../containers/tokens'
-import HeaderTransactions from 'routes/popup/Transaction/components/components/HeaderTransactions'
-import TransactionAddressData from 'routes/popup/Transaction/components/components/TransactionAddressData'
-import TransactionSummary from 'routes/popup/Transaction/components/components/TransactionSummary'
+import HeaderPopup from 'components/Popup/HeaderPopup'
+import AccountData from 'components/Popup/AccountData'
+import TransactionSummary from 'components/Popup/TransactionSummary'
 import ConfirmTransaction from 'routes/popup/Transaction/components/ConfirmTransaction/containers/ConfirmTransaction'
 import SendTransaction from 'routes/popup/Transaction/components/SendTransaction/containers/SendTransaction'
 import styles from 'assets/css/global.css'
+import {
+  REPLACE_RECOVERY_PRASE,
+  REPLACE_RECOVERY_PHRASE_DESCRIPTION
+} from '../../../../../config/messages'
 
 class Layout extends Component {
   prevent = (e) => {
     e.preventDefault()
   }
 
-  render () {
+  render() {
     const {
       transaction,
       transactions,
@@ -24,6 +29,7 @@ class Layout extends Component {
       loadedData,
       reviewedTx,
       transactionSummary,
+      replaceRecoveryPhrase,
       safeAlias,
       ethAccount,
       previousTransaction,
@@ -43,33 +49,49 @@ class Layout extends Component {
 
     return (
       <React.Fragment>
-        <HeaderTransactions
-          transactionsLength={transactions.txs.length}
-          previousTransaction={previousTransaction}
-          transactionNumber={transactionNumber}
-          nextTransaction={nextTransaction}
-          reviewedTx={reviewedTx}
+        <HeaderPopup
+          title={REVIEW_TRANSACTION}
+          reviewedElement={reviewedTx}
+          numElements={transactions.txs.length}
+          previousElement={previousTransaction}
+          elementNumber={transactionNumber}
+          nextElement={nextTransaction}
         />
         <form onSubmit={this.prevent} className={styles.PageContent}>
-          <TransactionAddressData
+          <AccountData
             address={transaction.safe}
             alias={safeAlias}
             balance={balance}
             symbol={symbol}
+            noBalance={replaceRecoveryPhrase}
           />
-          <div className={styles.transactionValue}>
-            <strong>{displayedValue} {symbol}</strong>
-            <small>&nbsp;</small>
-          </div>
-          <TransactionAddressData
-            address={toAddress}
-            noBalance
-          />
+
+          {!replaceRecoveryPhrase ? (
+            <React.Fragment>
+              <div className={styles.transactionValue}>
+                <strong>
+                  {displayedValue} {symbol}
+                </strong>
+                <small>&nbsp;</small>
+              </div>
+              <AccountData address={toAddress} noBalance />
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <div className={styles.replaceRecoveryPhrase}>
+                <strong>{REPLACE_RECOVERY_PRASE.toString()}</strong>
+              </div>
+              <div className={styles.replaceRecoveryPhraseDesc}>
+                {REPLACE_RECOVERY_PHRASE_DESCRIPTION}
+              </div>
+            </React.Fragment>
+          )}
+
           <TransactionSummary
             transaction={transaction}
             transactionSummary={transactionSummary}
           />
-          {transaction && (transaction.type === 'confirmTransaction') &&
+          {transaction && transaction.type === 'confirmTransaction' && (
             <ConfirmTransaction
               transactionNumber={transactionNumber}
               ethAccount={ethAccount}
@@ -81,8 +103,8 @@ class Layout extends Component {
               loadedData={loadedData}
               reviewedTx={reviewedTx}
             />
-          }
-          {transaction && (transaction.type === 'sendTransaction') &&
+          )}
+          {transaction && transaction.type === 'sendTransaction' && (
             <SendTransaction
               transactionNumber={transactionNumber}
               ethAccount={ethAccount}
@@ -94,7 +116,7 @@ class Layout extends Component {
               loadedData={loadedData}
               reviewedTx={reviewedTx}
             />
-          }
+          )}
         </form>
       </React.Fragment>
     )

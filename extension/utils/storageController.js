@@ -5,10 +5,7 @@ import { wrapStore } from 'react-chrome-redux'
 class StorageController {
   constructor() {
     const persistedState = this.loadStorage()
-    this.store = createStore(
-      rootReducer,
-      persistedState
-    )
+    this.store = createStore(rootReducer, persistedState)
     wrapStore(this.store, { portName: 'SAFE_BROWSER_EXTENSION' })
   }
 
@@ -36,8 +33,7 @@ class StorageController {
     try {
       const savedStorage = state
       window.localStorage.setItem('safe', JSON.stringify(savedStorage))
-    } catch (err) {
-    }
+    } catch (err) {}
   }
 }
 

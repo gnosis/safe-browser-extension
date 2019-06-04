@@ -11,26 +11,41 @@ import { SET_LOCK_TIMEOUT } from '../../../../../config/messages'
 const cx = classNames.bind(styles)
 
 class Layout extends Component {
-  render () {
-    const {
-      minutes,
-      handleOptionChange,
-      location
-    } = this.props
+  render() {
+    const { minutes, handleOptionChange, location } = this.props
 
     return (
       <Page location={location}>
         <div className={styles.overlayPage}>
           <span className={styles.overlayPageHeader}>
-            <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)} />
+            <Link
+              to={ACCOUNT_URL}
+              className={cx(styles.btnBack, styles.active)}
+            />
             <h2>{SET_LOCK_TIMEOUT}</h2>
           </span>
           <span className={styles.overlayPageContent}>
             <form className={styles.timeout_items}>
-              <TimeBlock handleOptionChange={handleOptionChange} minutes={minutes} minTime={5} />
-              <TimeBlock handleOptionChange={handleOptionChange} minutes={minutes} minTime={10} />
-              <TimeBlock handleOptionChange={handleOptionChange} minutes={minutes} minTime={30} />
-              <TimeBlock handleOptionChange={handleOptionChange} minutes={minutes} minTime={60} />
+              <TimeBlock
+                handleOptionChange={handleOptionChange}
+                minutes={minutes}
+                minTime={5}
+              />
+              <TimeBlock
+                handleOptionChange={handleOptionChange}
+                minutes={minutes}
+                minTime={10}
+              />
+              <TimeBlock
+                handleOptionChange={handleOptionChange}
+                minutes={minutes}
+                minTime={30}
+              />
+              <TimeBlock
+                handleOptionChange={handleOptionChange}
+                minutes={minutes}
+                minTime={60}
+              />
             </form>
           </span>
         </div>

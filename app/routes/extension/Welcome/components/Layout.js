@@ -19,10 +19,7 @@ import {
 
 const cx = classNames.bind(styles)
 
-const Layout = ({
-  showDisclaimer,
-  toggleDisclaimer
-}) => (
+const Layout = ({ showDisclaimer, toggleDisclaimer }) => (
   <div className={cx(styles.extension, styles.welcome)}>
     <div className={styles.extensionInner}>
       <div className={cx(styles.content, showDisclaimer && styles.blur)}>
@@ -52,8 +49,15 @@ const Layout = ({
           </ul>
         </p>
         <div>
-          <button onClick={toggleDisclaimer} className={cx(styles.button, styles.naked)}>{NO_THANKS}</button>
-          <Link to={CREATE_PASSWORD_URL} className={styles.button}>{AGREE}</Link>
+          <button
+            onClick={toggleDisclaimer}
+            className={cx(styles.button, styles.naked)}
+          >
+            {NO_THANKS}
+          </button>
+          <Link to={CREATE_PASSWORD_URL} className={styles.button}>
+            {AGREE}
+          </Link>
         </div>
       </span>
     </div>

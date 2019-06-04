@@ -9,7 +9,7 @@ import styles from 'assets/css/global.css'
 const cx = classNames.bind(styles)
 
 class Header extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -30,44 +30,36 @@ class Header extends Component {
     }))
   }
 
-  render () {
-    const {
-      showMenu,
-      showSafes
-    } = this.state
-    const {
-      txReview,
-      transactionNumber,
-      location
-    } = this.props
+  render() {
+    const { showMenu, showSafes } = this.state
+    const { isPopup, transactionNumber, location } = this.props
 
     return (
       <React.Fragment>
         <header>
-          {!txReview &&
+          {!isPopup && (
             <div
-              className={cx(styles.menuTrigger, showMenu ? styles.active : null)}
+              className={cx(
+                styles.menuTrigger,
+                showMenu ? styles.active : null
+              )}
               onClick={this.toggleMenu}
             >
               <span className={styles.line} />
               <span className={styles.line} />
               <span className={styles.line} />
             </div>
-          }
+          )}
           <SafesMenu
             toggleSafes={this.toggleSafes}
             showSafes={showSafes}
-            showingTransaction={txReview}
-            transactionNumber={transactionNumber}
+            isPopup={isPopup}
           />
           <LockingState location={location} />
         </header>
-        {!txReview &&
-          <NavigationDrawer
-            showMenu={showMenu}
-            toggleMenu={this.toggleMenu}
-          />
-        }
+        {!isPopup && (
+          <NavigationDrawer showMenu={showMenu} toggleMenu={this.toggleMenu} />
+        )}
       </React.Fragment>
     )
   }
