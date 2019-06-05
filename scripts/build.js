@@ -38,7 +38,7 @@ export const generateManifestFile = () => {
     }
 
     const title = (config.getNetwork() === names.MAINNET)
-      ? 'Gnosis Safe - Mainnet Beta'
+      ? 'Gnosis Safe - Smart Wallet'
       : 'Gnosis Safe - Rinkeby'
 
     manifest.name = title
