@@ -15,8 +15,7 @@ import { history, store } from './store'
 import { withAnalytics } from 'utils/analytics'
 
 const calculateInitialUrl = (account, safes, device) => {
-  const validAccount =
-    store.state.account.secondFA && Object.keys(account.secondFA).length > 0
+  const validAccount = account.secondFA && account.secondFA.seed
   const validSafes = safes.safes && safes.safes.length > 0
   const lastUpdateNotified = device.lastUpdateNotified
 

@@ -34,8 +34,7 @@ class DownloadApps extends Component {
   componentDidMount = () => {
     const { account, onCreateAccount } = this.props
 
-    const hasAccount =
-      account.secondFA && Object.keys(account.secondFA).length > 0
+    const hasAccount = account.secondFA && account.secondFA.seed
 
     if (hasAccount || !this.password) {
       return

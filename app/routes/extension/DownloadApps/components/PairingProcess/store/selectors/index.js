@@ -9,7 +9,7 @@ const existsAccount = (account) => {
     return false
   }
 
-  return Object.keys(account.secondFA).length > 0
+  return account.secondFA.seed
 }
 
 export const accountSelector = (state) => state.account
