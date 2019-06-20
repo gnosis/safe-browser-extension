@@ -277,5 +277,8 @@
   },
   "payment_token": {
     "message": "네트워크 수수료 지불용 토큰"
+  },
+  "ios_replace_recovery_phrase": {
+    "message": "복구 문장 대체하기"
   }
 }

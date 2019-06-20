@@ -301,5 +301,17 @@
   },
   "you_are_signing": {
     "message": "Estás a asinar"
+  },
+  "ios_replace_recovery_phrase": {
+    "message": "Substituír a clave de recuperación"
+  },
+  "get_chrome": {
+    "message": "Obter Chrome"
+  },
+  "brave_not_supported": {
+    "message": "Ups! Brave non é compatible"
+  },
+  "brave_not_supported_description": {
+    "message": "Gnosis Safe non funciona con Brave. Obteña a última versión de Google Chrome e volva instalar a extensión."
   }
 }
