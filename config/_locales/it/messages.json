@@ -399,7 +399,7 @@
     "message": "Saldo attuale"
   },
   "recovered_safe": {
-    "message": "Safe\\nrecuperato"
+    "message": "Safe recuperato"
   },
   "existing_safe_recovered": {
     "message": "Il Safe esistente verrà recuperato e associato a questo dispositivo."
@@ -456,7 +456,7 @@
     "message": "Invia almeno questo importo al tuo nuovo Safe:"
   },
   "please_send_x": {
-    "message": "Si prega di inviare solo %s"
+    "message": "Si prega di inviare solo [%s]"
   },
   "refresh": {
     "message": "Aggiorna"
@@ -520,5 +520,89 @@
   },
   "this_payment_will_be_used": {
     "message": "Questo metodo di pagamento verrà utilizzato per pagare le commissioni di rete in tutte le transazioni."
+  },
+  "view_message": {
+    "message": "Visualizza messaggio"
+  },
+  "message": {
+    "message": "Messaggio"
+  },
+  "domain": {
+    "message": "Dominio"
+  },
+  "verifying_contract": {
+    "message": "Verifica del contratto"
+  },
+  "you_are_signing": {
+    "message": "Stai firmando"
+  },
+  "ios_replace_recovery_phrase": {
+    "message": "Sostituisci la frase di recupero"
+  },
+  "ios_recovered_safe": {
+    "message": "Safe\\nrecuperato"
+  },
+  "amount_millions": {
+    "message": "MLN"
+  },
+  "amount_billions": {
+    "message": "MLD"
+  },
+  "amount_trillions": {
+    "message": "T"
+  },
+  "just_now": {
+    "message": "Un attimo fa"
+  },
+  "pending": {
+    "message": "In attesa"
+  },
+  "choose_recipient": {
+    "message": "Scegli il destinatario"
+  },
+  "address_input_address_book": {
+    "message": "Rubrica"
+  },
+  "address_input_ens": {
+    "message": "Nome ENS"
+  },
+  "address_input_qr_code": {
+    "message": "Scansiona il codice QR"
+  },
+  "address_input_clipboard": {
+    "message": "Incolla dagli appunti"
+  },
+  "transaction_submitted_safe_being_recovered": {
+    "message": "La tua transazione è stata inviata. Il tuo Safe verrà creato a breve. Questo potrebbe richiedere un paio di minuti."
+  },
+  "sign": {
+    "message": "Firma"
+  },
+  "contract": {
+    "message": "Contratto"
+  },
+  "signature_request": {
+    "message": "Richiesta di firma"
+  },
+  "request_initiated_by_Safe": {
+    "message": "Questa transazione è stata inizializzata dall'app mobile Gnosis Safe. Se confermi, l'app firmerà questo messaggio."
+  },
+  "disconnecting_in_progress": {
+    "message": "Il collegamento all'estensione del browser è in corso. La transazione è stata inviata e dovrebbe richiedere un paio di minuti."
+  },
+  "replaceseed_in_progress": {
+    "message": "La transazione è stata inviata e dovrebbe completarsi in un paio di minuti. La sostituzione della frase di recupero è in corso."
+  },
+  "password_changed": {
+    "message": "La password è stata cambiata."
+  },
+  "get_chrome": {
+    "message": "Ottieni Chrome"
+  },
+  "brave_not_supported": {
+    "message": "Oops! Brave non è supportato"
+  },
+  "brave_not_supported_description": {
+    "message": "L'estensione del browser di Gnosis Safe non funziona con Brave. Si prega di scaricare l'ultima versione di Google Chrome e di installare di nuovo l'estensione."
   }
 }

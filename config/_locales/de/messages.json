@@ -295,5 +295,17 @@
   },
   "future_tx_approved_by_both": {
     "message": "Alle zukünftigen Transaktionen müssen von beiden Geräten genehmigt werden."
+  },
+  "ios_replace_recovery_phrase": {
+    "message": "Ersetze Sicherungsschlüssel"
+  },
+  "get_chrome": {
+    "message": "Chrome Herunterladen"
+  },
+  "brave_not_supported": {
+    "message": "Ups! Leider ist Brave nicht unterstützt"
+  },
+  "brave_not_supported_description": {
+    "message": "Die Gnosis Safe Browser Erweiterung funktioniert leider nicht mit Brave. Bitte installiere die neuste Version von Google Chrome und probiere es erneut."
   }
 }

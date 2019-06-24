@@ -17,7 +17,8 @@ import {
   RESYNC_TOKEN_URL,
   ABOUT_URL,
   REPLACE_RECOVERY_PHRASE_URL,
-  PAYMENT_TOKEN_URL
+  PAYMENT_TOKEN_URL,
+  BLOCK_ACCESS_URL,
 } from './routes'
 
 import Transaction from 'routes/popup/Transaction/containers/Transaction'
@@ -37,6 +38,7 @@ import ResyncToken from 'routes/extension/ResyncToken/containers/ResyncToken'
 import About from 'routes/extension/About/containers/About'
 import ReplaceRecoveryPhrase from 'routes/extension/ReplaceRecoveryPhrase/containers/ReplaceRecoveryPhrase'
 import PaymentToken from 'routes/extension/PaymentToken/containers/PaymentToken'
+import BlockAccess from 'routes/extension/BlockAccess/containers/BlockAccess'
 
 import 'assets/css/global.css'
 
@@ -68,5 +70,6 @@ export const ExtensionRoutes = () => (
       component={ReplaceRecoveryPhrase}
     />
     <Route exact path={PAYMENT_TOKEN_URL} component={PaymentToken} />
+    <Route exact path={BLOCK_ACCESS_URL} component={BlockAccess} />
   </Switch>
 )

@@ -98,7 +98,7 @@ class DownloadApps extends Component {
 
   render() {
     const { showQrAndroid, showQrIos, showQrPairing } = this.state
-    const { safes } = this.props
+    const { safes, location } = this.props
 
     if (safes !== null && safes.safes.length > this.pairedSafes) {
       return <Redirect to={ACCOUNT_URL} />
@@ -112,7 +112,7 @@ class DownloadApps extends Component {
         showQrIos={showQrIos}
         showQrPairing={showQrPairing}
         password={this.password}
-        location={this.props.location}
+        location={location}
       />
     )
   }
