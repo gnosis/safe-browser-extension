@@ -399,7 +399,7 @@
     "message": "Current balance"
   },
   "recovered_safe": {
-    "message": "Recovered\\nSafe"
+    "message": "Recovered Safe"
   },
   "existing_safe_recovered": {
     "message": "The existing Safe will be recovered and associated with this device."
@@ -456,7 +456,7 @@
     "message": "Send at least this amount to your new Safe:"
   },
   "please_send_x": {
-    "message": "Please only send %s"
+    "message": "Please only send [%s]"
   },
   "refresh": {
     "message": "Refresh"
@@ -535,5 +535,74 @@
   },
   "you_are_signing": {
     "message": "You are signing"
+  },
+  "ios_replace_recovery_phrase": {
+    "message": "Replace recovery\\nphrase"
+  },
+  "ios_recovered_safe": {
+    "message": "Recovered\\nSafe"
+  },
+  "amount_millions": {
+    "message": "M"
+  },
+  "amount_billions": {
+    "message": "B"
+  },
+  "amount_trillions": {
+    "message": "T"
+  },
+  "just_now": {
+    "message": "Just now"
+  },
+  "pending": {
+    "message": "Pending"
+  },
+  "choose_recipient": {
+    "message": "Choose Recipient"
+  },
+  "address_input_address_book": {
+    "message": "Address book"
+  },
+  "address_input_ens": {
+    "message": "ENS name"
+  },
+  "address_input_qr_code": {
+    "message": "Scan QR code"
+  },
+  "address_input_clipboard": {
+    "message": "Paste from clipboard"
+  },
+  "transaction_submitted_safe_being_recovered": {
+    "message": "Your transaction was submitted. Your Safe will be recovered now. This might take a couple of minutes."
+  },
+  "sign": {
+    "message": "Sign"
+  },
+  "contract": {
+    "message": "Contract"
+  },
+  "signature_request": {
+    "message": "Signature request"
+  },
+  "request_initiated_by_Safe": {
+    "message": "This request was initiated by the Gnosis Safe mobile app. If you confirm, the mobile app will sign this message."
+  },
+  "disconnecting_in_progress": {
+    "message": "Disconnecting the browser extension is now in progress. The transaction has been submitted and should take a couple of minutes."
+  },
+  "replaceseed_in_progress": {
+    "message": "The transaction has been submitted and should take a couple of minutes. Replacing the recovery phrase is in progress. "
+  },
+  "password_changed": {
+    "message": "Your password has been changed."
+  },
+  "get_chrome": {
+    "message": "Get chrome"
+  },
+  "brave_not_supported": {
+    "message": "Oops! Brave is not supported"
+  },
+  "brave_not_supported_description": {
+    "message": "Gnosis Safe browser extension doesn’t work with Brave. Please get the latest version of Google Chrome and install the extension again."
   }
 }
