@@ -602,6 +602,45 @@ form input.noborder{
   -ms-flex-pack:center;
   justify-content:center
 }
+.blockAccess .overlayPage {
+  background:#f4f5f9;
+  padding: 30px;
+  text-align: center;
+}
+.blockAccess img {
+  margin: 30px auto;
+}
+.blockAccess h1 {
+  line-height: 1em;
+}
+.blockAccess .title {
+  font-family: Roboto;
+  font-size: 19px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.37;
+  letter-spacing: normal;
+  text-align: center;
+  color: #21435a;
+  margin-bottom: 20px;
+}
+.blockAccess .description {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: center;
+  color: #21435a;
+}
+.blockAccess .button {
+  width: 100%;
+  margin-top: 30px;
+}
+
 .start .safeLogo{
   margin:0 auto 7em
 }
@@ -700,7 +739,11 @@ form input.noborder{
   height: 100vh;
 }
 
-.extension.password1,.extension.password2,.extension.unlockSafe,.extension.welcome{
+.extension.password1,
+.extension.password2,
+.extension.unlockSafe,
+.extension.welcome,
+.extension .blockAccess {
   background:fixed,url(../images/mountain.svg) bottom/contain no-repeat,linear-gradient(-180deg,#fff 50%,#E4E8F1 100%)
 }
 .extension-inner{
@@ -1806,7 +1849,10 @@ footer .stepper-dots>li.active{
   margin:2em auto 0;
   box-sizing:border-box
 }
-.appConnect .safeIcon,.password1 .safeIcon,.password2 .safeIcon{
+.appConnect .safeIcon,
+.password1 .safeIcon,
+.password2 .safeIcon,
+.blockAccess .safeIcon {
   width:32px
 }
 .warning-password>img{
