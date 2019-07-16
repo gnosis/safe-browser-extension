@@ -38,9 +38,6 @@
   "agree": {
     "message": "De acuerdo"
   },
-  "personal_edition": {
-    "message": "Edición Personal"
-  },
   "safe_balance": {
     "message": "Saldo de la Safe"
   },
@@ -94,9 +91,6 @@
   },
   "replace_recovery_phrase": {
     "message": "Reemplazar la clave de recuperación"
-  },
-  "layout_replace_recovery_phrase_transaction_info_description": {
-    "message": "La clave de seguridad antigua será invalidada y reemplazada por la nueva."
   },
   "store_description": {
     "message": "Gnosis Safe es una cartera multifirma de Ethereum que permite a los usuarios, de forma cómoda y segura, la gestión de sus activos digitales y la interacción con la web descentralizada.\n\nPuedes recibir, guardar y transferir Ether y tokens ERC-20 con Gnosis Safe. A través de la extensión de Chrome puedes interactuar con aplicaciones descentralizadas."
@@ -281,12 +275,6 @@
   "review_sign_message": {
     "message": "Revisión de la firma"
   },
-  "balance_after_transfer": {
-    "message": "Balance después de la transferencia"
-  },
-  "review": {
-    "message": "Revisión"
-  },
   "view_message": {
     "message": "Ver el mensaje"
   },
@@ -305,6 +293,9 @@
   "ios_replace_recovery_phrase": {
     "message": "Reemplazar la clave de recuperación"
   },
+  "request_initiated_by_Safe": {
+    "message": "Esta solicitud fue iniciada por la aplicación móvil Gnosis Safe. Si la confirmas la aplicación móvil firmará este mensaje"
+  },
   "get_chrome": {
     "message": "Obtener Chrome"
   },
@@ -313,5 +304,8 @@
   },
   "brave_not_supported_description": {
     "message": "Gnosis Safe no funciona con Brave. Obtén la última versión de Google Chrome e instala extensión de nuevo."
+  },
+  "slogan": {
+    "message": "La forma más segura de gestionar tus criptomonedas"
   }
 }

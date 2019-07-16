@@ -38,9 +38,6 @@
   "agree": {
     "message": "Ich stimme zu"
   },
-  "personal_edition": {
-    "message": "Personal Edition"
-  },
   "safe_balance": {
     "message": "Safe-Guthaben"
   },
@@ -94,9 +91,6 @@
   },
   "replace_recovery_phrase": {
     "message": "Ersetze Sicherungsschlüssel"
-  },
-  "layout_replace_recovery_phrase_transaction_info_description": {
-    "message": "Der alte Sicherungsschlüssel wird ungültig und ersetzt von einem neuen."
   },
   "store_description": {
     "message": "Der Gnosis Safe ist ein multi-signature Ethereum-Wallet, welches Nutzern eine bequemen und sicheren Weg bietet, ihre digitalen Assets zu verwalten und mit dem dezentralisierten Web zu interagieren. \n\nMit dem Gnosis Safe kann man Ether und ERC-20 Tokens empfangen, halten und übertragen. Über die Chrome-Erweiterung kann man mit dezentralen Anwendungen interagieren."
@@ -274,27 +268,6 @@
   },
   "approve": {
     "message": "Zulassen"
-  },
-  "amount_needed": {
-    "message": "Benötigter Betrag"
-  },
-  "send_remainder": {
-    "message": "Senden Sie mindestens den folgenden Betrag an Ihren neuen Safe:"
-  },
-  "view_entry": {
-    "message": "Eintrag anzeigen"
-  },
-  "enter_safe_address_field": {
-    "message": "Safe Adresse eingeben"
-  },
-  "amount_received": {
-    "message": "Erhaltener Betrag"
-  },
-  "once_process_is_complete": {
-    "message": "Sobald dieser Prozess abgeschlossen ist, können Sie nur noch die neue Browsererweiterung zur Bestätigung von Transaktionen verwenden.\\n\\nBitte halten Sie Ihre Safe Recovery Phrase bereit, um die Wiederherstellung zu bestätigen."
-  },
-  "future_tx_approved_by_both": {
-    "message": "Alle zukünftigen Transaktionen müssen von beiden Geräten genehmigt werden."
   },
   "ios_replace_recovery_phrase": {
     "message": "Ersetze Sicherungsschlüssel"

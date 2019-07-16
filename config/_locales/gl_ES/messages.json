@@ -38,9 +38,6 @@
   "agree": {
     "message": "De acordo"
   },
-  "personal_edition": {
-    "message": "Edición Persoal"
-  },
   "safe_balance": {
     "message": "Saldo da Safe"
   },
@@ -94,9 +91,6 @@
   },
   "replace_recovery_phrase": {
     "message": "Substituír a clave de recuperación"
-  },
-  "layout_replace_recovery_phrase_transaction_info_description": {
-    "message": "A antiga clave de recuperación non será válida e será substituída pola nova."
   },
   "store_description": {
     "message": "Gnosis Safe é unha carteira multisinatura de Ethereum que permite aos usuarios, de forma cómoda e segura, a xestión dos seus activos dixitais e a interacción coa web descentralizada.\n\nPodes recibir, gardar e transferir Ether e tokens ERC-20 con Gnosis Safe. A través da extensión de Chrome podes interactuar con aplicacións descentralizadas."
@@ -281,12 +275,6 @@
   "review_sign_message": {
     "message": "Revisión da sinatura"
   },
-  "balance_after_transfer": {
-    "message": "Balance despois da transferencia"
-  },
-  "review": {
-    "message": "Revisión"
-  },
   "view_message": {
     "message": "Ver a mensaxe"
   },
@@ -313,5 +301,8 @@
   },
   "brave_not_supported_description": {
     "message": "Gnosis Safe non funciona con Brave. Obteña a última versión de Google Chrome e volva instalar a extensión."
+  },
+  "slogan": {
+    "message": "A forma máis segura de xestionar as túas criptomonedas"
   }
 }
