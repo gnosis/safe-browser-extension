@@ -94,7 +94,8 @@ const generateI18nFiles = async (languagesIso) => {
       })
 
       //if (errorsLanguage.length > 0) {
-        errorsLanguage.map(elem => console.log(elem))
+        errorsLanguage.sort().map(elem => console.error(elem))
+        console.error('LANGUAGE ERRORS:', errorsLanguage.length)
         errors = errors.concat(errorsLanguage)
       //} else {
         fs.writeFileSync(
@@ -105,6 +106,7 @@ const generateI18nFiles = async (languagesIso) => {
     })
 
     if (errors.length > 0) {
+      console.error('TOTAL ERRORS:', errors.length)
       throw new Error('i18n FAILED')
     }
   } catch (err) {
