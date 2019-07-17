@@ -31,8 +31,9 @@ class SignMessage extends Component {
   componentDidMount = () => {
     const { safes, signMessages } = this.props
     const { seed, unlockedMnemonic } = this.props.account.secondFA
+    const { safeAddress } = signMessages.message
 
-    const safeMessage = signMessages ? signMessages.message[3] : ''
+    const safeMessage = signMessages ? safeAddress : ''
     const currentSafe = safes.safes.filter(
       (safe) => safe.address === safeMessage
     )[0]
@@ -54,15 +55,16 @@ class SignMessage extends Component {
 
   showSignMessage = async () => {
     const { signMessages } = this.props
+    const { message, safeAddress } = signMessages.message
 
-    if (!signMessages || signMessages.message.length === 0) {
+    if (!signMessages || message.length === 0) {
       return
     }
 
     let balance = undefined
     let loadedData = false
     try {
-      balance = await getEthBalance(signMessages.message[3])
+      balance = await getEthBalance(safeAddress)
       loadedData = balance instanceof BigNumber
     } catch (err) {
       console.error(err)
@@ -86,9 +88,10 @@ class SignMessage extends Component {
 
   removeSignMessage = (walletSignature) => {
     const { signMessages, onRemoveSignMessage } = this.props
+    const { dappTabId, dappWindowId } = signMessages
 
-    if (signMessages.dappWindowId && signMessages.dappTabId) {
-      chrome.tabs.sendMessage(signMessages.dappTabId, {
+    if (dappWindowId && dappTabId) {
+      chrome.tabs.sendMessage(dappTabId, {
         msg: messages.MSG_RESOLVED_WALLET_SIGN_TYPED_DATA,
         walletSignature
       })
@@ -108,8 +111,8 @@ class SignMessage extends Component {
   render() {
     const { balance, loadedData, reviewedSignature } = this.state
     const { account, signMessages, location } = this.props
-
-    const safe = signMessages ? signMessages.message[3] : ''
+    const { message } = signMessages
+    const safeAddress = message ? message.safeAddress : ''
 
     return (
       <div className={styles.extensionPopup}>
@@ -122,8 +125,8 @@ class SignMessage extends Component {
               lockedAccount={account.lockedState}
               loadedData={loadedData}
               reviewedSignature={reviewedSignature}
-              address={safe}
-              safeAlias={this.getSafeAlias(safe)}
+              address={safeAddress}
+              safeAlias={this.getSafeAlias(safeAddress)}
               ethAccount={this.ethAccount}
               removeSignMessage={this.removeSignMessage}
               showSignMessage={this.showSignMessage}

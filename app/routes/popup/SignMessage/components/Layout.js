@@ -13,6 +13,7 @@ import {
 import HeaderPopup from 'components/Popup/HeaderPopup'
 import AccountData from 'components/Popup/AccountData'
 import SendSignMessage from 'routes/popup/SignMessage/components/SendSignMessage/containers/SendSignMessage'
+import ConfirmSignMessage from 'routes/popup/SignMessage/components/ConfirmSignMessage/containers/ConfirmSignMessage'
 import styles from 'assets/css/global.css'
 
 class Layout extends Component {
@@ -34,9 +35,8 @@ class Layout extends Component {
       showSignMessage,
       handleSignMessage
     } = this.props
-
-    const signedMessage = JSON.parse(signMessages.message[1])
-    const senderUrl = signMessages.message[4]
+    const { message, type, origin } = signMessages.message
+    const signedMessage = JSON.parse(message)
 
     return (
       <React.Fragment>
@@ -62,12 +62,14 @@ class Layout extends Component {
                   </p>
                   <span>{signedMessage.domain.name}</span>
                 </span>
-                <span>
-                  <p>
-                    <b>Url:</b>
-                  </p>
-                  <span>{senderUrl}</span>
-                </span>
+                {origin && (
+                  <span>
+                    <p>
+                      <b>Url</b>
+                    </p>
+                    <span>{origin}</span>
+                  </span>
+                )}
                 <span>
                   <p>
                     <b>{VERIFYING_CONTRACT}</b>
@@ -82,8 +84,19 @@ class Layout extends Component {
               </div>
             </React.Fragment>
           )}
-          {signMessages && signMessages.message[2] === 'sendSignMessage' && (
+          {signMessages && type === 'sendSignMessage' && (
             <SendSignMessage
+              ethAccount={ethAccount}
+              showSignMessage={showSignMessage}
+              handleSignMessage={handleSignMessage}
+              removeSignMessage={removeSignMessage}
+              lockedAccount={lockedAccount}
+              loadedData={loadedData}
+              reviewedSignature={reviewedSignature}
+            />
+          )}
+          {signMessages && type === 'confirmSignMessage' && (
+            <ConfirmSignMessage
               ethAccount={ethAccount}
               showSignMessage={showSignMessage}
               handleSignMessage={handleSignMessage}

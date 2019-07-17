@@ -11,7 +11,7 @@ const web3 = new Web3()
 export const getSignaturesOwnersRatio = async (ethAccount, signMessages) => {
   if (ethAccount) {
     try {
-      const safeAddress = signMessages.message[3]
+      const { safeAddress } = signMessages.message
       const owners = await getOwners(safeAddress)
       const threshold = await getThreshold(safeAddress)
       return {

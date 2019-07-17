@@ -12,7 +12,7 @@ import {
   signMessageByExtension,
   getOwnerFromSignature
 } from '../../../containers/signMessages'
-import { sendSignMessage } from 'utils/sendNotifications'
+import { sendSignTypedData } from 'utils/sendNotifications'
 import {
   getThreshold,
   getOwners,
@@ -34,8 +34,8 @@ class SendSignMessage extends Component {
 
   componentDidMount = async () => {
     const { signMessages } = this.props
+    const { safeAddress } = signMessages.message
 
-    const safeAddress = signMessages.message[3]
     const threshold = await getThreshold(safeAddress)
     const owners = await getOwners(safeAddress)
     this.setState({
@@ -102,8 +102,8 @@ class SendSignMessage extends Component {
 
   handleSignature = async (address, signature) => {
     const { signMessages } = this.props
+    const { message, safeAddress } = signMessages.message
     const { owners, threshold } = this.state
-
     const checksumedAddress = address && EthUtil.toChecksumAddress(address)
 
     if (
@@ -126,12 +126,10 @@ class SendSignMessage extends Component {
 
     if (this.ownerSignatures.length === threshold) {
       clearInterval(this.timer)
-      const message = signMessages.message[1]
-      const safeAddress = signMessages.message[3]
       const walletSignature = await createWalletSignature(
         this.ownerSignatures,
         message,
-        safeAddress
+        safeAddress,
       )
       await this.handleRemoveSignMessage(walletSignature)
     }
@@ -139,13 +137,11 @@ class SendSignMessage extends Component {
 
   handleSignMessage = async () => {
     const { ethAccount, signMessages } = this.props
+    const { message, safeAddress } = signMessages.message
 
     this.setState({ seconds: this.maxSeconds })
     this.startCountdown()
     try {
-      const message = signMessages.message[1]
-      const safeAddress = signMessages.message[3]
-
       const hexEip712Hash = getEip712MessageHash(message, safeAddress)
       this.messageHash = await getMessageHash(safeAddress, hexEip712Hash)
       const { r, s, v } = signMessageByExtension(this.messageHash, ethAccount)
@@ -161,7 +157,7 @@ class SendSignMessage extends Component {
       )
       await this.handleSignature(extensionAddress, extensionHexSignature)
 
-      const response = await sendSignMessage(
+      const response = await sendSignTypedData(
         ethAccount.getChecksumAddressString(),
         ethAccount.getPrivateKey(),
         message,

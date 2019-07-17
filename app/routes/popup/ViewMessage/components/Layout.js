@@ -12,8 +12,8 @@ const cx = classNames.bind(styles)
 class Layout extends Component {
   render() {
     const { signMessages } = this.props
-
-    const signedMessage = JSON.parse(signMessages.message[1])
+    const { message } = signMessages.message
+    const signedMessage = JSON.parse(message)
 
     return (
       <div className={styles.overlayPage}>
