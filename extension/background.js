@@ -10,6 +10,7 @@ import { updateDeviceData } from 'actions/device'
 import { addTransaction, removeAllTransactions } from 'actions/transactions'
 import { getAppVersionNumber, getAppBuildNumber } from '../config'
 import { addSignMessage, removeAllSignMessage } from 'actions/signMessages'
+import { type TypedDataMessage, makeTypedDataMessage } from 'routes/popup/SignMessage/store/models/typedDataMessage'
 import { SAFE_ALREADY_EXISTS } from '../config/messages'
 import { ADDRESS_ZERO } from '../app/utils/helpers'
 
@@ -194,6 +195,29 @@ const showSendTransactionPopup = (transaction, dappWindowId, dappTabId) => {
   showTransactionPopup(transaction, dappWindowId, dappTabId)
 }
 
+const showSignaturePopup = (typedDataMessage: TypedDataMessage, dappWindowId, dappTabId) => {
+  chrome.browserAction.setBadgeBackgroundColor({ color: '#888' })
+  chrome.browserAction.setBadgeText({ text: '1' })
+
+  popupController.showPopup((window) =>
+    storageController
+      .getStore()
+      .dispatch(addSignMessage(typedDataMessage, window.id, dappWindowId, dappTabId))
+  )
+}
+
+const showConfirmSignaturePopup = (payload) => {
+  const currentSafe = storageController.getStoreState().safes.currentSafe
+
+  const typedDataMessage: TypedDataMessage = makeTypedDataMessage({
+    safeAddress: EthUtil.toChecksumAddress(currentSafe),
+    message: payload.payload,
+    type: 'confirmSignMessage',
+  })
+
+  showSignaturePopup(typedDataMessage)
+}
+
 const showSendSignaturePopup = (
   message,
   dappWindowId,
@@ -202,18 +226,14 @@ const showSendSignaturePopup = (
 ) => {
   const currentSafe = storageController.getStoreState().safes.currentSafe
 
-  message[2] = 'sendSignMessage'
-  message[3] = EthUtil.toChecksumAddress(currentSafe)
-  message[4] = senderUrl
+  const typedDataMessage: TypedDataMessage = makeTypedDataMessage({
+    safeAddress: EthUtil.toChecksumAddress(currentSafe),
+    message: message[1],
+    type: 'sendSignMessage',
+    origin: senderUrl
+  })
 
-  chrome.browserAction.setBadgeBackgroundColor({ color: '#888' })
-  chrome.browserAction.setBadgeText({ text: '1' })
-
-  popupController.showPopup((window) =>
-    storageController
-      .getStore()
-      .dispatch(addSignMessage(message, window.id, dappWindowId, dappTabId))
-  )
+  showSignaturePopup(typedDataMessage, dappWindowId, dappTabId)
 }
 
 let lockingTimer = null
@@ -308,6 +328,10 @@ if ('serviceWorker' in navigator) {
         sendTransactionHash(payload, false)
         break
 
+      case 'signTypedData':
+        showConfirmSignaturePopup(payload)
+        break
+
       case 'signTypedDataConfirmation':
         signTypedDataConfirmation(payload)
         break
@@ -331,8 +355,6 @@ const safeCreation = (payload) => {
     return
   }
   const checksumedAddress = EthUtil.toChecksumAddress(payload.safe)
-
-
   const accountIndex = account.secondFA.currentAccountIndex
     ? account.secondFA.currentAccountIndex + 1
     : 1
