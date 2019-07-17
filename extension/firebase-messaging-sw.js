@@ -37,9 +37,15 @@ self.addEventListener('push', (event) => {
       url = null
       break
 
+    case 'signTypedData':
+      title = 'Sign message'
+      message = 'The signature of a new message was requested'
+      url = null
+      break
+
     case 'signTypedDataConfirmation':
-      title = 'Sign typed data confirmation'
-      message = 'Data signed'
+      title = 'Sign message confirmation'
+      message = 'Message signed'
       url = null
       break
 
