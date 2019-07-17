@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-
+import Blockie from 'components/Blockie'
 import { VIEW_MESSAGE_URL } from 'routes/routes'
 import {
   REVIEW_SIGN_MESSAGE,
@@ -10,6 +10,7 @@ import {
   VERIFYING_CONTRACT,
   VIEW_MESSAGE
 } from '../../../../../config/messages'
+import { shortenAddress } from 'utils/helpers'
 import HeaderPopup from 'components/Popup/HeaderPopup'
 import AccountData from 'components/Popup/AccountData'
 import SendSignMessage from 'routes/popup/SignMessage/components/SendSignMessage/containers/SendSignMessage'
@@ -74,7 +75,12 @@ class Layout extends Component {
                   <p>
                     <b>{VERIFYING_CONTRACT}</b>
                   </p>
-                  <span>{signedMessage.domain.verifyingContract}</span>
+                  <span>
+                    <div className={styles.identicon}>
+                      <Blockie address={signedMessage.domain.verifyingContract} diameter={24} />
+                    </div>
+                    <p>{shortenAddress(signedMessage.domain.verifyingContract)}</p>
+                  </span>
                 </span>
               </div>
               <div className={styles.viewMessage}>

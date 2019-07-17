@@ -866,6 +866,7 @@ form input.noborder{
 .identicon{
   pointer-events:none;
   margin-right: 6px;
+  width: auto;
 }
 .QR>div{
   display:-ms-flexbox;
@@ -2574,6 +2575,9 @@ footer .stepper-dots>li.active{
   -ms-flex-pack:end;
   justify-content:flex-end;
   word-break:break-all
+}
+.extensionPopup .extension-inner .signMessageSummary>span>span>p{
+  width: auto;
 }
 .extensionPopup .extension-inner .signMessageSummary>span p{
   font-size:inherit;
