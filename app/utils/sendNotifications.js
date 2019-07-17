@@ -7,7 +7,7 @@ import { isTokenTransfer } from 'routes/popup/Transaction/containers/tokens'
 import GnosisSafe from '../../contracts/GnosisSafe.json'
 import { getPushNotificationServiceUrl, getNetworkUrl } from '../../config'
 
-export const sendSignMessage = async (
+export const sendSignTypedData = async (
   accountAddress,
   privateKey,
   message,
@@ -26,6 +26,36 @@ export const sendSignMessage = async (
     s: s.toString(10),
     v: vrs.v.toString(10)
   })
+
+  return sendNotification(data, privateKey, accountAddress, safeAddress)
+}
+
+export const sendSignTypedDataConfirmation = (
+  type,
+  accountAddress,
+  privateKey,
+  hash,
+  safeAddress,
+  prefix,
+  signature
+) => {
+  const txHash = (prefix)
+    ? EthUtil.sha3(prefix + hash + type)
+    : EthUtil.toBuffer(hash)
+
+  const vrsTxHash = EthUtil.ecsign(txHash, privateKey)
+  const r = new BigNumber(EthUtil.bufferToHex(vrsTxHash.r))
+  const s = new BigNumber(EthUtil.bufferToHex(vrsTxHash.s))
+
+  const data = (type === 'signTypedDataConfirmation' && signature && !prefix)
+    ? JSON.stringify({ type, hash, signature })
+    : JSON.stringify({
+      type,
+      hash,
+      r: r.toString(10),
+      s: s.toString(10),
+      v: vrsTxHash.v.toString(10)
+    })
 
   return sendNotification(data, privateKey, accountAddress, safeAddress)
 }
