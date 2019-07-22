@@ -10,7 +10,10 @@ import { updateDeviceData } from 'actions/device'
 import { addTransaction, removeAllTransactions } from 'actions/transactions'
 import { getAppVersionNumber, getAppBuildNumber } from '../config'
 import { addSignMessage, removeAllSignMessage } from 'actions/signMessages'
-import { type TypedDataMessage, makeTypedDataMessage } from 'routes/popup/SignMessage/store/models/typedDataMessage'
+import {
+  type TypedDataMessage,
+  makeTypedDataMessage
+} from 'routes/popup/SignMessage/store/models/typedDataMessage'
 import { SAFE_ALREADY_EXISTS } from '../config/messages'
 import { ADDRESS_ZERO } from '../app/utils/helpers'
 
@@ -195,14 +198,20 @@ const showSendTransactionPopup = (transaction, dappWindowId, dappTabId) => {
   showTransactionPopup(transaction, dappWindowId, dappTabId)
 }
 
-const showSignaturePopup = (typedDataMessage: TypedDataMessage, dappWindowId, dappTabId) => {
+const showSignaturePopup = (
+  typedDataMessage: TypedDataMessage,
+  dappWindowId,
+  dappTabId
+) => {
   chrome.browserAction.setBadgeBackgroundColor({ color: '#888' })
   chrome.browserAction.setBadgeText({ text: '1' })
 
   popupController.showPopup((window) =>
     storageController
       .getStore()
-      .dispatch(addSignMessage(typedDataMessage, window.id, dappWindowId, dappTabId))
+      .dispatch(
+        addSignMessage(typedDataMessage, window.id, dappWindowId, dappTabId)
+      )
   )
 }
 
@@ -212,7 +221,7 @@ const showConfirmSignaturePopup = (payload) => {
   const typedDataMessage: TypedDataMessage = makeTypedDataMessage({
     safeAddress: EthUtil.toChecksumAddress(currentSafe),
     message: payload.payload,
-    type: 'confirmSignMessage',
+    type: 'confirmSignMessage'
   })
 
   showSignaturePopup(typedDataMessage)
@@ -361,9 +370,7 @@ const safeCreation = (payload) => {
 
   storageController
     .getStore()
-    .dispatch(
-      addSafe(checksumedAddress, accountIndex)
-    )
+    .dispatch(addSafe(checksumedAddress, accountIndex))
   storageController.getStore().dispatch(incrementCurrentAccountIndex())
 }
 

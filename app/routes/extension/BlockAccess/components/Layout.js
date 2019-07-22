@@ -4,7 +4,11 @@ import classNames from 'classnames/bind'
 import Page from 'components/Page'
 import Brave from 'assets/images/brave.svg'
 import styles from 'assets/css/global.css'
-import { GET_CHROME, BRAVE_NOT_SUPPORTED, BRAVE_NOT_SUPPORTED_DESC } from '../../../../../config/messages'
+import {
+  GET_CHROME,
+  BRAVE_NOT_SUPPORTED,
+  BRAVE_NOT_SUPPORTED_DESC
+} from '../../../../../config/messages'
 
 const cx = classNames.bind(styles)
 

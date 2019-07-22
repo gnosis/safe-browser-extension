@@ -39,7 +39,7 @@ export const sendSignTypedDataConfirmation = (
   prefix,
   signature
 ) => {
-  const txHash = (prefix)
+  const txHash = prefix
     ? EthUtil.sha3(prefix + hash + type)
     : EthUtil.toBuffer(hash)
 
@@ -47,15 +47,16 @@ export const sendSignTypedDataConfirmation = (
   const r = new BigNumber(EthUtil.bufferToHex(vrsTxHash.r))
   const s = new BigNumber(EthUtil.bufferToHex(vrsTxHash.s))
 
-  const data = (type === 'signTypedDataConfirmation' && signature && !prefix)
-    ? JSON.stringify({ type, hash, signature })
-    : JSON.stringify({
-      type,
-      hash,
-      r: r.toString(10),
-      s: s.toString(10),
-      v: vrsTxHash.v.toString(10)
-    })
+  const data =
+    type === 'signTypedDataConfirmation' && signature && !prefix
+      ? JSON.stringify({ type, hash, signature })
+      : JSON.stringify({
+          type,
+          hash,
+          r: r.toString(10),
+          s: s.toString(10),
+          v: vrsTxHash.v.toString(10)
+        })
 
   return sendNotification(data, privateKey, accountAddress, safeAddress)
 }

@@ -129,7 +129,7 @@ class SendSignMessage extends Component {
       const walletSignature = await createWalletSignature(
         this.ownerSignatures,
         message,
-        safeAddress,
+        safeAddress
       )
       await this.handleRemoveSignMessage(walletSignature)
     }

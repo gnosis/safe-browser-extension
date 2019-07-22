@@ -4,7 +4,7 @@ import { ga } from 'utils/analytics'
 import { SIGNATURES } from 'utils/analytics/events'
 import {
   getEip712MessageHash,
-  signMessageByExtension,
+  signMessageByExtension
 } from '../../../containers/signMessages'
 import { getMessageHash } from 'logic/contracts/safeContracts'
 import { sendSignTypedDataConfirmation } from 'utils/sendNotifications'
@@ -19,7 +19,12 @@ class ConfirmSignMessage extends Component {
     }
     this.handleSignMessage('signTypedDataConfirmation')
 
-    ga(['_trackEvent', SIGNATURES, 'click-confirm-sign-typed-data-from-mobile-app', 'Confirm sign typed data from mobile app'])
+    ga([
+      '_trackEvent',
+      SIGNATURES,
+      'click-confirm-sign-typed-data-from-mobile-app',
+      'Confirm sign typed data from mobile app'
+    ])
   }
 
   handleRejectSignMessage = () => {
@@ -30,7 +35,12 @@ class ConfirmSignMessage extends Component {
     }
     this.handleSignMessage('rejectSignTypedData', 'GNO')
 
-    ga(['_trackEvent', SIGNATURES, 'click-reject-sign-typed-data-from-mobile-app', 'Reject sign typed data from mobile app'])
+    ga([
+      '_trackEvent',
+      SIGNATURES,
+      'click-reject-sign-typed-data-from-mobile-app',
+      'Reject sign typed data from mobile app'
+    ])
   }
 
   handleSignMessage = async (type, prefix) => {
@@ -81,12 +91,8 @@ class ConfirmSignMessage extends Component {
     showSignMessage()
   }
 
-  render () {
-    const {
-      lockedAccount,
-      loadedData,
-      reviewedTx
-    } = this.props
+  render() {
+    const { lockedAccount, loadedData, reviewedTx } = this.props
 
     return (
       <Layout
@@ -101,6 +107,4 @@ class ConfirmSignMessage extends Component {
   }
 }
 
-export default connect(
-  selector,
-)(ConfirmSignMessage)
+export default connect(selector)(ConfirmSignMessage)

@@ -20,7 +20,8 @@ const loadGoogleAnalytics = () => {
     let gaTrackingId
 
     if (NODE_ENV === 'production') {
-      gaTrackingId = (NETWORK === 'mainnet')
+      gaTrackingId =
+        NETWORK === 'mainnet'
           ? process.env.PRODUCTION_MAINNET_GA_TRACKING_ID
           : process.env.PRODUCTION_RINKEBY_GA_TRACKING_ID
     }

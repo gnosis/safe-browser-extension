@@ -77,9 +77,14 @@ class Layout extends Component {
                   </p>
                   <span>
                     <div className={styles.identicon}>
-                      <Blockie address={signedMessage.domain.verifyingContract} diameter={24} />
+                      <Blockie
+                        address={signedMessage.domain.verifyingContract}
+                        diameter={24}
+                      />
                     </div>
-                    <p>{shortenAddress(signedMessage.domain.verifyingContract)}</p>
+                    <p>
+                      {shortenAddress(signedMessage.domain.verifyingContract)}
+                    </p>
                   </span>
                 </span>
               </div>
