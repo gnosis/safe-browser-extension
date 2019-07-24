@@ -87,7 +87,7 @@
     "message": "Scan onderstaande QR-code wanneer hierom wordt gevraagd in de mobiele app"
   },
   "browser_extension": {
-    "message": "Browser extensie"
+    "message": "Authenticator"
   },
   "safe_for_ios": {
     "message": "Gnosis Safe <br /> voor iOS"

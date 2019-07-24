@@ -174,7 +174,7 @@
     "message": "Scansiona il codice QR qui sotto quando richiesto nell'app mobile"
   },
   "browser_extension": {
-    "message": "Estensione del browser"
+    "message": "Authenticator"
   },
   "safe_for_ios": {
     "message": "Gnosis Safe<br />per iOS"
@@ -303,6 +303,9 @@
     "message": "Oops! Brave non è supportato"
   },
   "brave_not_supported_description": {
-    "message": "L'estensione del browser di Gnosis Safe non funziona con Brave. Si prega di scaricare l'ultima versione di Google Chrome e di installare di nuovo l'estensione."
+    "message": "L'estensione del browser di Gnosis Safe non funziona con Brave. Si prega di scaricare l'ultima versione di Google Chrome e di installare di nuovo l'Authenticator."
+  },
+  "slogan": {
+    "message": "Il modo più sicuro per gestire i tuoi fondi in crypto."
   }
 }

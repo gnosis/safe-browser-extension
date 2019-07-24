@@ -93,7 +93,7 @@
     "message": "Replace recovery phrase"
   },
   "store_description": {
-    "message": "The Gnosis Safe is a multi-signature Ethereum wallet providing users with a convenient, secure way to manage their digital assets and interact with the decentralized web.\n\nYou can receive, hold and transfer Ether and ERC-20 tokens with the Gnosis Safe. Via the Chrome extension you can interact with decentralized applications."
+    "message": "The Gnosis Safe is a multi-signature Ethereum wallet providing users with a convenient, secure way to manage their digital assets and interact with the decentralized web.\n\nYou can receive, hold and transfer Ether and ERC-20 tokens with the Gnosis Safe. Via the Authenticator you can interact with decentralized applications."
   },
   "view_on_etherscan": {
     "message": "View on Etherscan.io"
@@ -123,7 +123,7 @@
     "message": "min"
   },
   "change_password_description": {
-    "message": "Password is used to unlock the extension and confirm transactions. <strong>Don't share this password with others!</strong>"
+    "message": "Password is used to unlock the Authenticator and confirm transactions. <strong>Don't share this password with others!</strong>"
   },
   "new_password_identical_chars": {
     "message": "No more than 2 identical characters in a row"
@@ -153,7 +153,7 @@
     "message": "Connect to new Safe"
   },
   "connected_extension_succesfully": {
-    "message": "Extension setup succesfully!<br /><strong>Connect with the mobile app.</strong>"
+    "message": "Authenticator setup succesfully!<br /><strong>Connect with the mobile app.</strong>"
   },
   "download_mobile_app": {
     "message": "Download & install the mobile app"
@@ -165,7 +165,7 @@
     "message": "Android"
   },
   "connect_extension_explanation": {
-    "message": "Connect extension with mobile app by scanning the QR code"
+    "message": "Connect the Authenticator with mobile app by scanning the QR code"
   },
   "show_qr_code": {
     "message": "Show QR code"
@@ -174,7 +174,7 @@
     "message": "Scan the QR code below when requested in the mobile app"
   },
   "browser_extension": {
-    "message": "Browser extension"
+    "message": "Authenticator"
   },
   "safe_for_ios": {
     "message": "Gnosis Safe<br />for iOS "
@@ -204,7 +204,7 @@
     "message": "Safe connected"
   },
   "safe_connected_description": {
-    "message": "Your Safe is now synced to your browser extension"
+    "message": "Your Safe is now synced to your Authenticator"
   },
   "website_not_whitelisted": {
     "message": "This website is not whitelisted"
@@ -219,10 +219,10 @@
     "message": "Gnosis Safe - Thank you for installing!"
   },
   "options_page_header": {
-    "message": "Thank you for installing<br />the Gnosis Safe browser extension!"
+    "message": "Thank you for installing<br />Authenticator!"
   },
   "options_page_description": {
-    "message": "To use the Safe extension you first need to allow notifications. They are used to notify you about transactions sent from the Gnosis Safe mobile app."
+    "message": "To use the Authenticator you first need to allow notifications. They are used to notify you about transactions sent from the Gnosis Safe mobile app."
   },
   "allow_notifications": {
     "message": "Allow notifications"
@@ -240,7 +240,7 @@
     "message": "Add"
   },
   "create_password_title": {
-    "message": "Secure and encrypt your browser extension with a password"
+    "message": "Secure and encrypt your Authenticator with a password"
   },
   "confirm_create_password_title": {
     "message": "Almost done!<br />Confirm your password."
@@ -297,13 +297,13 @@
     "message": "This request was initiated by the Gnosis Safe mobile app. If you confirm, the mobile app will sign this message."
   },
   "get_chrome": {
-    "message": "Get chrome"
+    "message": "Get Chrome"
   },
   "brave_not_supported": {
     "message": "Oops! Brave is not supported"
   },
   "brave_not_supported_description": {
-    "message": "Gnosis Safe browser extension doesn’t work with Brave. Please get the latest version of Google Chrome and install the extension again."
+    "message": "Gnosis Safe doesn’t work with Brave. Please get the latest version of Google Chrome and install the Authenticator again."
   },
   "slogan": {
     "message": "The most secure way to manage your crypto funds"

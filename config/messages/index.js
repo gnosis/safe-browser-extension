@@ -91,6 +91,7 @@ export const SAVE_NEW_PASSWORD = ReactHtmlParser(chrome.i18n.getMessage('save_ne
 export const SET_LOCK_TIMEOUT = ReactHtmlParser(chrome.i18n.getMessage('set_lock_timeout'))
 export const SHOW_QR_CODE = ReactHtmlParser(chrome.i18n.getMessage('show_qr_code'))
 export const SHOW_QR_CODE_DESCRIPTION = ReactHtmlParser(chrome.i18n.getMessage('show_qr_code_description'))
+export const SLOGAN = ReactHtmlParser(chrome.i18n.getMessage('slogan'))
 export const STORE_DESCRIPTION = ReactHtmlParser(chrome.i18n.getMessage('store_description'))
 export const SYNC = ReactHtmlParser(chrome.i18n.getMessage('sync'))
 export const SYNCED_TOKEN = ReactHtmlParser(chrome.i18n.getMessage('synced_token'))
