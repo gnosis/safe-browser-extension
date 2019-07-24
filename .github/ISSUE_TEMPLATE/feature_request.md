@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea or feature request for the Safe browser extension project
+about: Suggest an idea or feature request for the Authenticator project
 
 ---
 
