@@ -74,12 +74,6 @@
   "privacy_policy": {
     "message": "개인정보처리정책"
   },
-  "terms_first_bullet": {
-    "message": "본사는 연령과 성별을 비롯한 인구통계학적 데이터를 수집하지 않습니다."
-  },
-  "terms_second_bullet": {
-    "message": "Gnosis Ltd.는 앱의 품질 보장을 위해 익명의 앱 사용 데이터 및 오류 보고서를 수집합니다."
-  },
   "transaction_submitted": {
     "message": "거래가 제출되었습니다"
   },
@@ -230,9 +224,6 @@
   "notifications_permission_required": {
     "message": "알림 수신에 대한 권한은 필수입니다"
   },
-  "extension_store_description": {
-    "message": "2단계 인증(2FA)를 통해 이더와 ERC-20 토큰을 안전하게 보호하세요"
-  },
   "get_started": {
     "message": "시작하기"
   },
@@ -250,9 +241,6 @@
   },
   "check_internet_connection": {
     "message": "인터넷 연결 상태 확인해주세요!"
-  },
-  "review_terms": {
-    "message": "<a href='https://safe.gnosis.io/terms' target='_blank'>이용약관</a>과 <a href='https://safe.gnosis.io/privacy' target='_blank'>개인정보처리정책</a>을 검토해주세요."
   },
   "back": {
     "message": "이전"

@@ -143,9 +143,6 @@
   "notifications_permission_required": {
     "message": "Toestemming vereist voor het ontvangen van meldingen"
   },
-  "extension_store_description": {
-    "message": "Ether en ERC-20 tokens veilig bewaren met 2-factor authenticatie."
-  },
   "get_started": {
     "message": "Aan de slag"
   },
@@ -163,9 +160,6 @@
   },
   "check_internet_connection": {
     "message": "Controleer je internetverbinding!"
-  },
-  "review_terms": {
-    "message": "Lees onze <a href='https://safe.gnosis.io/terms' target='_blank'>Gebruiksvoorwaarden</a> en <a href='https://safe.gnosis.io/privacy' target='_blank'>Privacybeleid</a>."
   },
   "back": {
     "message": "Terug"

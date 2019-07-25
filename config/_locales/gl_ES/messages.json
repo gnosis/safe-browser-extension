@@ -74,12 +74,6 @@
   "privacy_policy": {
     "message": "Política de Privacidade"
   },
-  "terms_first_bullet": {
-    "message": "Non recollemos datos demográficos como a idade e o sexo."
-  },
-  "terms_second_bullet": {
-    "message": "Recopilamos datos anónimos de uso da aplicación e informes de fallos para garantir a calidade da nosa aplicación."
-  },
   "transaction_submitted": {
     "message": "Transacción enviada"
   },
@@ -230,9 +224,6 @@
   "notifications_permission_required": {
     "message": "Requírese permiso para recibir notificacións"
   },
-  "extension_store_description": {
-    "message": "Garda Ether e tokens ERC-20 de forma segura e con autenticación de 2 factores."
-  },
   "get_started": {
     "message": "Comezar"
   },
@@ -252,7 +243,7 @@
     "message": "Por favor, comproba a túa conexión!"
   },
   "review_terms": {
-    "message": "Por favor, revisa os nosos <a href='https://safe.gnosis.io/terms' target='_blank'>Termos de Uso</a> e <a href='https://safe.gnosis.io/privacy' target='_blank'>Política de Privacidade</a>."
+    "message": "Se continua, acepta e está de acordo cos <a href='https://safe.gnosis.io/terms' target='_blank'>Termos de Uso</a> e a <a href='https://safe.gnosis.io/privacy' target='_blank'>Política de Privacidade</a>."
   },
   "back": {
     "message": "Volver"

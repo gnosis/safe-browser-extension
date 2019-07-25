@@ -10,7 +10,7 @@ html{
 body{
   background:#fff;
   color:#333;
-  font-family:Roboto,Helvetica,sans-serif;
+  font-family:Averta,Helvetica,sans-serif;
   font-size:10px;
   line-height:10px;
   margin:0;
@@ -19,7 +19,7 @@ body{
   -moz-osx-font-smoothing:grayscale
 }
 body>div>.start{
-  background:fixed,url(../images/mountain.svg) center/cover no-repeat,linear-gradient(-180deg,#fff 50%,#E4E8F1 100%);
+  background:fixed,url(../images/mountainsBackground.svg) center/cover no-repeat,linear-gradient(-180deg,#fff 50%,#E4E8F1 100%);
   position: absolute;
   top:0;
   bottom: 0;
@@ -34,9 +34,6 @@ body>div>.start{
   color:#fff;
   background:#28B2FA
 }
-button{
-  outline:0
-}
 p{
   font-size:1.3em;
   color:#65707E;
@@ -44,7 +41,7 @@ p{
   text-align:center;
   line-height:1.5
 }
-.button,.safeLogo::after,a.button{
+.safeLogo::after{
   line-height:1;
   text-align:center;
   display:block;
@@ -55,10 +52,7 @@ h1,h2,h3{
   margin:0;
   padding:0
 }
-a:active,a:focus,a:link,a:visited{
-  color:#28B2FA;
-  text-decoration:underline
-}
+
 select{
   outline:0
 }
@@ -91,49 +85,11 @@ section.auction,section.home{
       height:100%
   }
 }
-.content,form{
+form{
   display: flex;
   flex-wrap: wrap
 }
-.safeLogo{
-  background:url(../images/gnosis_safe_logo.svg) center/contain no-repeat;
-  height:110px;
-  width:110px;
-  display:block;
-  position:relative
-}
-.safeLogo[data-network="rinkeby"]::before{
-  bottom: -3.5em;
-  text-align: center;
-  font-size: 1.4em;
-  width: auto;
-  padding: .4em 1em;
-  border-radius: 3px;
-  letter-spacing: 5px;
-  left: 0;
-  right: 0;
-  content: "RINKEBY";
-  color: #fff;
-  background: #a2a8ba;
-  position: absolute;
-}
-.safeLogo>.edition{
-  position: absolute;
-  font-weight:400;
-  text-transform: uppercase;
-  font-size:1em;
-  text-align: center;
-  color:#A2A8BA;
-  letter-spacing:.2em;
-  bottom:-2em;
-  width:13em;
-  left:-.8em
-}
-.content{
-  display:-ms-flexbox;
-  display:flex;
-  flex-wrap:wrap
-}
+
 @media only screen and (max-width:736px){
   .hide-small{
       display:none!important
@@ -166,52 +122,12 @@ section.auction,section.home{
   color:#02ae60
 }
 @font-face{
-  font-family:Roboto;
-  src:url(../fonts/roboto-light.woff2) format("woff2");
+  font-family:Averta;
+  src:url("../fonts/averta-regular.woff2") format("woff2");
   font-weight:100;
   font-style:normal
 }
-@font-face{
-  font-family:Roboto;
-  src:url(../fonts/roboto-regular.woff2) format("woff2");
-  font-weight:400;
-  font-style:normal
-}
-@font-face{
-  font-family:Roboto;
-  src:url(../fonts/roboto-medium.woff2) format("woff2");
-  font-weight:500;
-  font-style:normal
-}
-@font-face{
-  font-family:Roboto;
-  src:url(../fonts/roboto-bold.woff2) format("woff2");
-  font-weight:700;
-  font-style:normal
-}
-@font-face{
-  font-family:'Roboto Mono';
-  src:url(../fonts/roboto-mono.woff2) format("woff2");
-  font-weight:400;
-  font-style:normal
-}
-.animated{
-  animation-duration:2.5s;
-  animation-fill-mode:both
-}
-.animated.infinite{
-  animation-iteration-count:infinite
-}
-@keyframes fadeInUp{
-  from{
-      opacity:0;
-      transform:translate3d(0,75%,0)
-  }
-  to{
-      opacity:1;
-      transform:translate3d(0,0,0)
-  }
-}
+
 @keyframes shake{
   41%,8%{
       transform:translateX(-10px)
@@ -237,36 +153,10 @@ section.auction,section.home{
       transform:rotate(180deg)
   }
 }
-.fadeInUp{
-  animation-name:fadeInUp
-}
-.button,a.button{
-  background:#28B2FA;
-  -ms-flex:1;
-  flex:1;
-  padding:0 2em;
-  box-sizing:border-box;
-  font-weight:500;
-  letter-spacing:.1em;
-  font-size:1.4em;
-  color:#fff;
-  vertical-align:middle;
-  will-change:box-shadow;
-  transition:box-shadow .25s ease-in-out;
-  cursor:pointer;
-  outline:0;
-  margin:auto;
-  border:0;
-  height:3em;
-  box-shadow:0 2px 4px 0 rgba(40,178,250,.25);
-  border-radius:4px
-}
+
 .button.button-disabled,.button[disabled],a.button.button-disabled,a.button[disabled]{
   pointer-events:none;
   opacity:.5
-}
-.button.round,a.button.round{
-  border-radius:100px
 }
 .button.naked,a.button.naked{
   box-shadow:none;
@@ -336,7 +226,7 @@ section.auction,section.home{
 }
 
 form .password-form {
-  font-family:Roboto,Helvetica,sans-serif;
+  font-family:Averta,Helvetica,sans-serif;
   display:-ms-flexbox;
   display:flex;
   flex-wrap:wrap;
@@ -614,7 +504,7 @@ form input.noborder{
   line-height: 1em;
 }
 .blockAccess .title {
-  font-family: Roboto;
+  font-family: Averta;
   font-size: 19px;
   font-weight: 300;
   font-style: normal;
@@ -626,7 +516,7 @@ form input.noborder{
   margin-bottom: 20px;
 }
 .blockAccess .description {
-  font-family: Roboto;
+  font-family: Averta;
   font-size: 16px;
   font-weight: normal;
   font-style: normal;
@@ -725,30 +615,14 @@ form input.noborder{
   position:absolute;
   right:-12px
 }
-.extension-inner,.extension-inner>.content{
-  position:relative
-}
-.extension{
-  width:100%;
-  box-shadow:0 0 4px 0 rgba(0,0,0,.5);
-  border-radius:2px;
-  will-change:transform;
-  transform:translateZ(0);
-  background:#fff;
-  overflow: hidden;
-  height: 100vh;
-}
 
 .extension.password1,
 .extension.password2,
 .extension.unlockSafe,
-.extension.welcome,
 .extension .blockAccess {
-  background:fixed,url(../images/mountain.svg) bottom/contain no-repeat,linear-gradient(-180deg,#fff 50%,#E4E8F1 100%)
+  background:fixed,url(../images/mountainsBackground.svg) bottom/contain no-repeat,linear-gradient(-180deg,#fff 50%,#E4E8F1 100%)
 }
-.extension-inner{
-  height:100%
-}
+
 .extension-inner>header{
   height:60px;
   width:100%;
@@ -891,7 +765,7 @@ form input.noborder{
   display:block;
   margin: 0 auto .5em;
   letter-spacing:1px;
-  font-family:"Roboto Mono",Courier,monospace;
+  font-family:"Averta Mono",Courier,monospace;
   font-size:1.4em;
   line-height:1.2;
   text-align:center;
@@ -925,7 +799,7 @@ form input.noborder{
   color:#A2A8BA;
   letter-spacing:-.5px;
   text-align:right;
-  font-family:"Roboto Mono",Courier,monospace
+  font-family:"Averta Mono",Courier,monospace
 }
 .whitelister{
   width:100%;
@@ -1165,7 +1039,7 @@ form input.noborder{
   display:block
 }
 .safeMenu>ul>li>span>small{
-  font-family:"Roboto Mono",Courier,monospace;
+  font-family:"Averta Mono",Courier,monospace;
   font-size:1.2em;
   color:#fff;
   opacity:.7;
@@ -1725,119 +1599,7 @@ footer .stepper-dots>li:not(:last-of-type){
 footer .stepper-dots>li.active{
   background:#28B2FA
 }
-.welcome .extension-inner .safeLogo{
-  margin:9em auto 7em
-}
-.welcome .extension-inner h1{
-  font-weight:100;
-  font-size:1.9em;
-  letter-spacing:0;
-  text-align:center;
-  line-height:1.5;
-  margin:0 auto 1.5em;
-  width:80%
-}
-.welcome .extension-inner .button{
-  width:80%;
-  -ms-flex:none;
-  flex:none
-}
-.welcome .disclaimer{
-  will-change:transform opacity;
-  transform:translate3D(370px,0,0);
-  height:100%;
-  width:100%;
-  background:0 0;
-  position:absolute;
-  top:0;
-  left:0;
-  opacity:0
-}
-.welcome .disclaimer>span{
-  background:#fff;
-  width:100%;
-  position:absolute;
-  bottom:0;
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-wrap:wrap;
-  flex-wrap:wrap;
-  -ms-flex-pack:center;
-  justify-content:center;
-  align-items:center;
-  box-sizing:border-box;
-  padding:2em 0 1em;
-  will-change:transform opacity;
-  transition:all .2s ease-in-out;
-  transform:translate3D(0,16em,0)
-}
-.welcome .disclaimer.show,.welcome .disclaimer.show>span{
-  transform:translate3D(0,0,0)
-}
-.welcome .disclaimer>span>p{
-  -ms-flex:1 auto;
-  flex:1 auto;
-  padding:0 27px;
-  text-align: left
-}
-.welcome .disclaimer ul{
-  list-style: none;
-  margin: 0;
-  padding: 0 15px;
-}
-.welcome .disclaimer ul li::before{
-  background: #28B2FA;
-  border-radius: 50%;
-  content: "";
-  display: inline-block;
-  margin-left: -15px;
-  margin-bottom: 2px;
-  height: 5px;
-  width: 5px;
-  margin-right: 10px;
-}
-.welcome .disclaimer ul li{
-  margin-top: 10px;
-}
-.welcome .disclaimer>span>div{
-  -ms-flex:1 100%;
-  flex:1 100%;
-  -ms-flex-wrap:nowrap;
-  flex-wrap:nowrap;
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-pack:center;
-  justify-content:center;
-  align-items: center;
-}
-.welcome .disclaimer>span>div>button,
-.welcome .disclaimer>span>div>a{
-  max-width:130px;
-  margin:0;
-  padding:0;
-  height:35px;
-  font-size:1.3em;
-  text-decoration: none;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  display: flex;
-}
-.welcome .disclaimer>span>div>button{
-  margin-right:15px
-}
-.welcome .disclaimer.show{
-  display:block;
-  opacity:1
-}
-.welcome .disclaimer.show::before{
-  background:#E4E8F1;
-  opacity:.75;
-  content:"";
-  display:block;
-  width:100%;
-  height:100%
-}
+
 .warning-password{
   width:100%;
   padding:1em 1.5em;
@@ -2252,13 +2014,13 @@ footer .stepper-dots>li.active{
   font-size:inherit;
   -ms-flex:1 1 auto;
   flex:1 1 auto;
-  font-family:"Roboto Mono",Courier,monospace;
+  font-family:"Averta Mono",Courier,monospace;
   color:#A2A8BA;
   word-break:inherit;
   letter-spacing:-1px
 }
 .extensionPopup .extension-inner .transactionFrom>span>small,.extensionPopup .extension-inner .transactionRecipient>span>small{
-  font-family:"Roboto Mono",Courier,monospace;
+  font-family:"Averta Mono",Courier,monospace;
   font-size:1.3em;
   color:#21435A;
   word-break:inherit;
@@ -2309,7 +2071,7 @@ footer .stepper-dots>li.active{
   z-index:-1
 }
 .extensionPopup .extension-inner .transactionValue>strong {
-  font-family:"Roboto Mono",Courier,monospace;
+  font-family:"Averta Mono",Courier,monospace;
   font-size:1.7em;
   color:#fb4f62;
   letter-spacing:-1px;
@@ -2325,7 +2087,7 @@ footer .stepper-dots>li.active{
   word-wrap:break-word
 }
 .extensionPopup .extension-inner .replaceRecoveryPhrase>strong {
-  font-family:"Roboto",Courier,monospace;
+  font-family:"Averta",Courier,monospace;
   font-size:1.2em;
   color:#21435a;
   letter-spacing:0px;
@@ -2341,7 +2103,7 @@ footer .stepper-dots>li.active{
   word-wrap:break-word
 }
 .replaceRecoveryPhraseDesc {
-  font-family:"Roboto",Courier,monospace;
+  font-family:"Averta",Courier,monospace;
   padding: 10px;
   margin-top: 10px;
   letter-spacing:0px;
@@ -2355,7 +2117,7 @@ footer .stepper-dots>li.active{
 }
 .extensionPopup .extension-inner .transactionValue>small,
 .extensionPopup .extension-inner .replaceRecoveryPhrase>small{
-  font-family:"Roboto Mono",Courier,monospace;
+  font-family:"Averta Mono",Courier,monospace;
   font-size:1.3em;
   color:#A2A8BA;
   letter-spacing:-.5px;
@@ -2418,7 +2180,7 @@ footer .stepper-dots>li.active{
   flex-wrap:nowrap;
   font-size:inherit;
   font-weight:inherit;
-  font-family:"Roboto Mono",Courier,monospace;
+  font-family:"Averta Mono",Courier,monospace;
   text-align:right;
   margin:0 0 2px;
   letter-spacing: -0.7px
