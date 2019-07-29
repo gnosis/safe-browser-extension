@@ -2,13 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 import CryptoJs from 'crypto-js'
-
 import { ga } from 'utils/analytics'
 import { EXTENSION_SETTINGS } from 'utils/analytics/events'
 import SafesLocked from '../components/SafesLocked'
 import SafesUnlocked from '../components/SafesUnlocked'
 import actions from './actions'
-import messages from '../../../../../extension/utils/messages'
+import messages from '../../../../../../extension/utils/messages'
 import { PASSWORD_URL } from 'routes/routes'
 
 class LockingState extends Component {

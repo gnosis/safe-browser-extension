@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Blockie from 'components/Blockie'
-
-import styles from 'assets/css/global.css'
 import edit from 'assets/images/edit.svg'
 import trashWhite from 'assets/images/trash_white.svg'
 import actions from './actions'
-import { SAVE } from '../../../../../config/messages'
+import { SAVE } from '../../../../../../config/messages'
+import styles from 'assets/css/global.css'
 
 class SafeItem extends Component {
   constructor(props) {

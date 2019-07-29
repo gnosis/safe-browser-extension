@@ -36,7 +36,7 @@ const calculateInitialUrl = async (account, safes, device) => {
   if (!browserCompatible) {
     return BLOCK_ACCESS_URL
   }
-  
+
   if (validAccount && !validSafes) {
     return {
       pathname: PASSWORD_URL,

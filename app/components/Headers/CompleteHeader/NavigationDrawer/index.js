@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
-
-import styles from 'assets/css/global.css'
 import {
   PASSWORD_URL,
   CHANGE_PASSWORD_URL,
@@ -14,8 +12,6 @@ import {
   REPLACE_RECOVERY_PHRASE_URL,
   PAYMENT_TOKEN_URL
 } from 'routes/routes'
-import { getNetwork } from '../../../../config'
-import { MAINNET } from '../../../../config/names'
 import {
   MANAGE_SITES_WHITELIST,
   SET_LOCK_TIMEOUT,
@@ -24,7 +20,8 @@ import {
   ABOUT,
   REPLACE_RECOVERY_PRASE,
   PAYMENT_TOKEN
-} from '../../../../config/messages'
+} from '../../../../../config/messages'
+import styles from 'assets/css/global.css'
 
 const cx = classNames.bind(styles)
 

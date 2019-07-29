@@ -1,9 +1,8 @@
 import React from 'react'
 import classNames from 'classnames/bind'
-
 import SafeItem from './SafeItem'
-import styles from 'assets/css/global.css'
-import { CONNECT_NEW_SAFE } from '../../../../../config/messages'
+import { CONNECT_NEW_SAFE } from '../../../../../../config/messages'
+import styles from 'components/Headers/style.css'
 
 const cx = classNames.bind(styles)
 

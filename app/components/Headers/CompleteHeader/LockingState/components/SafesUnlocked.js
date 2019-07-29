@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
 import styles from 'assets/css/global.css'
 
 class SafesUnlocked extends Component {

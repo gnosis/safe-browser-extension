@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
-
 import { ga } from 'utils/analytics'
 import { SAFES } from 'utils/analytics/events'
 import selector from './selector'
 import actions from './actions'
-import messages from '../../../../../extension/utils/messages'
+import messages from '../../../../../../extension/utils/messages'
 import Layout from '../components/Layout'
 import { PASSWORD_URL, DOWNLOAD_APPS_URL } from 'routes/routes'
 

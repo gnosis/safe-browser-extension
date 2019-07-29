@@ -4,7 +4,7 @@ import CryptoJs from 'crypto-js'
 
 import { createAccount } from 'routes/extension/DownloadApps/store/actions'
 import { configureLocking } from 'routes/extension/LockingConfiguration/store/actions'
-import { unlockAccount } from 'components/Header/LockingState/store/actions'
+import { unlockAccount } from 'components/Headers/CompleteHeader/LockingState/store/actions'
 import { updateMasterPassword } from 'routes/extension/ChangePassword/store/actions'
 import { lockAccount } from 'actions/account'
 import { createEthAccount } from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'
