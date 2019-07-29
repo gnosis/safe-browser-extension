@@ -1,0 +1,12 @@
+.paragraph {
+  text-overflow: ellipsis;
+  overflow-x: inherit;
+}
+
+.green {
+  color: $green;
+}
+
+.red {
+  color: $red;
+}
