@@ -10,7 +10,7 @@ export const isBrowserCompatible = async () => {
 
     const response = await fetch(url, {
       method: 'GET',
-      headers,
+      headers
     })
     if (response && response.status === 200) {
       const browserData = await response.json()

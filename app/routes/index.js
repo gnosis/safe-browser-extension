@@ -18,7 +18,7 @@ import {
   ABOUT_URL,
   REPLACE_RECOVERY_PHRASE_URL,
   PAYMENT_TOKEN_URL,
-  BLOCK_ACCESS_URL,
+  BLOCK_ACCESS_URL
 } from './routes'
 
 import Transaction from 'routes/popup/Transaction/containers/Transaction'

@@ -5,7 +5,9 @@ const Welcome = () => {
   const [disclaimerVisibility, setDisclaimerVisibility] = useState(false)
 
   const toggleDisclaimer = () => {
-    setDisclaimerVisibility(prevDisclaimerVisibility => !prevDisclaimerVisibility)
+    setDisclaimerVisibility(
+      (prevDisclaimerVisibility) => !prevDisclaimerVisibility
+    )
   }
 
   return (

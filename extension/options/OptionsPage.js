@@ -65,10 +65,7 @@ class OptionsPage extends Component {
           <h1>{OPTIONS_PAGE_HEADER}</h1>
           <p>{OPTIONS_PAGE_DESCRIPTION}</p>
           <img src={notificationsImage} height="134" width="170" />
-          <button
-            className={cx(styles.button, styles.round)}
-            id="requestNotitications"
-          >
+          <button className={styles.button} id="requestNotitications">
             {ALLOW_NOTIFICATIONS}
           </button>
         </div>

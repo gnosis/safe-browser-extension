@@ -7,7 +7,7 @@ import {
   TERMS,
   REVIEW_TERMS,
   AGREE,
-  NO_THANKS,
+  NO_THANKS
 } from '../../../../../../config/messages'
 import styles from './style.css'
 
@@ -23,9 +23,7 @@ const Disclaimer = ({ showDisclaimer, toggleDisclaimer }) => (
           {NO_THANKS}
         </Button>
         <Link to={CREATE_PASSWORD_URL}>
-          <Button>
-            {AGREE}
-          </Button>
+          <Button>{AGREE}</Button>
         </Link>
       </div>
     </span>

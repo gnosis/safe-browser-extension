@@ -3,12 +3,12 @@ html{
   height:100%;
   padding:0;
   margin:0;
-  font-family:Roboto,Helvetica,sans-serif;
+  font-family:Averta,Helvetica,sans-serif;
 }
 body{
   background:#fff;
   color:#333;
-  font-family:Roboto,Helvetica,sans-serif;
+  font-family:Averta,Helvetica,sans-serif;
   font-size:10px;
   line-height:10px;
   margin:0;
@@ -17,7 +17,7 @@ body{
   -moz-osx-font-smoothing:grayscale
 }
 body.start{
-  background:fixed,url(/assets/images/mountain.svg) center/cover no-repeat,linear-gradient(-180deg,#fff 50%,#E4E8F1 100%)
+  background:fixed,url(/assets/images/mountainsBackground.svg) center/cover no-repeat,linear-gradient(-180deg,#fff 50%,#E4E8F1 100%)
 }
 .start .content {
 	max-width: 51em;
@@ -57,9 +57,6 @@ body.start{
 button {
   outline:0
 }
-.button.round,a.button.round{
-  border-radius:100px
-}
 .button,a.button {
   background:#28B2FA;
   -ms-flex:1;
@@ -88,7 +85,7 @@ button {
 	text-transform: uppercase
 }
 .safeLogo {
-	background: url(/assets/images/gnosis_safe_logo.svg) center/contain no-repeat;
+	background: url(/assets/images/gnosisSafeRgbSansDarkblue.svg) center/contain no-repeat;
 	height: 110px;
 	width: 110px;
 	display: block;

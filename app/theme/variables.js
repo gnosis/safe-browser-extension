@@ -21,6 +21,6 @@ module.exports = Object.assign(
     green,
     red,
     white,
-    black,
+    black
   }
 )
