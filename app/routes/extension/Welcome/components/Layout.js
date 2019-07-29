@@ -1,5 +1,6 @@
 import React from 'react'
 import classNames from 'classnames/bind'
+import Page from 'components/layout/Page'
 import Button from 'components/layout/Button'
 import Disclaimer from './Disclaimer'
 import { GET_STARTED, SLOGAN } from '../../../../../config/messages'
@@ -8,8 +9,8 @@ import styles from './style.css'
 const cx = classNames.bind(styles)
 
 const Layout = ({ showDisclaimer, toggleDisclaimer }) => (
-  <div className={cx(styles.extension, styles.welcome)}>
-    <div className={styles.extensionInner}>
+  <React.Fragment>
+    <Page withoutHeader background='mountains'>
       <div className={styles.content}>
         <span className={cx(styles.safeLogo, styles.animated, styles.fadeInUp)}>
           <span className={styles.safeTitle} />
@@ -18,12 +19,12 @@ const Layout = ({ showDisclaimer, toggleDisclaimer }) => (
         <h1>{SLOGAN}</h1>
         <Button onClick={toggleDisclaimer}>{GET_STARTED}</Button>
       </div>
-    </div>
+    </Page>
     <Disclaimer
       showDisclaimer={showDisclaimer}
       toggleDisclaimer={toggleDisclaimer}
     />
-  </div>
+  </React.Fragment>
 )
 
 export default Layout
