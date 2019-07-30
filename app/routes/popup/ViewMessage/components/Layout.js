@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import ReactJson from 'react-json-view'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
-
 import { SIGN_MESSAGE_URL } from 'routes/routes'
 import { MESSAGE, DOMAIN } from '../../../../../config/messages'
 import styles from 'assets/css/global.css'

@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { Switch, Route } from 'react-router-dom'
-
 import {
   PASSWORD_URL,
   TRANSACTION_URL,
@@ -20,11 +19,9 @@ import {
   PAYMENT_TOKEN_URL,
   BLOCK_ACCESS_URL
 } from './routes'
-
 import Transaction from 'routes/popup/Transaction/containers/Transaction'
 import SignMessage from 'routes/popup/SignMessage/containers/SignMessage'
 import ViewMessage from 'routes/popup/ViewMessage/containers/ViewMessage'
-
 import Welcome from 'routes/extension/Welcome/containers/Welcome'
 import DownloadApps from 'routes/extension/DownloadApps/containers/DownloadApps'
 import ChangePassword from 'routes/extension/ChangePassword/containers/ChangePassword'
@@ -39,7 +36,6 @@ import About from 'routes/extension/About/containers/About'
 import ReplaceRecoveryPhrase from 'routes/extension/ReplaceRecoveryPhrase/containers/ReplaceRecoveryPhrase'
 import PaymentToken from 'routes/extension/PaymentToken/containers/PaymentToken'
 import BlockAccess from 'routes/extension/BlockAccess/containers/BlockAccess'
-
 import 'assets/css/global.css'
 
 export const PopupRoutes = () => (

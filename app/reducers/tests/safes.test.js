@@ -1,6 +1,5 @@
 import rootReducer from 'reducers'
 import { createStore } from 'redux'
-
 import { addSafe } from 'actions/safes'
 import { incrementCurrentAccountIndex } from 'actions/account'
 import {

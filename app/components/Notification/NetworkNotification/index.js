@@ -1,6 +1,5 @@
 import React from 'react'
 import Network from 'react-network'
-
 import styles from 'assets/css/global.css'
 import {
   INTERNET_CONNECTION_ERROR,

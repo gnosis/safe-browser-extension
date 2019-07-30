@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 import EthUtil from 'ethereumjs-util'
 import BigNumber from 'bignumber.js'
-
 import { PASSWORD_URL, REPLACE_RECOVERY_PHRASE_URL } from 'routes/routes'
 import { createQrImage } from 'utils/qrdisplay'
 import {

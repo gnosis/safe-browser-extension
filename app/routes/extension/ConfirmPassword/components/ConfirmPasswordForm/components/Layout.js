@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import styles from 'assets/css/global.css'
 import {
   PASSWORD_DOESNT_MATCH,

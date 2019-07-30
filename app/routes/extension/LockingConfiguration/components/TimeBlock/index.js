@@ -1,5 +1,4 @@
 import React from 'react'
-
 import styles from 'assets/css/global.css'
 import {
   LOCKING_MIN,

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import classNames from 'classnames/bind'
-
 import styles from '../../app/assets/css/global.css'
 import notificationsImage from '../../app/assets/images/notifications_setting.svg'
 import { getNetwork } from '../../config'

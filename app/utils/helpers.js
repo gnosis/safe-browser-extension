@@ -1,7 +1,6 @@
 import EthUtil from 'ethereumjs-util'
 import Web3 from 'web3'
 import 'babel-polyfill'
-
 import { promisify } from 'utils/promisify'
 import { getNetworkUrl } from '../../config'
 

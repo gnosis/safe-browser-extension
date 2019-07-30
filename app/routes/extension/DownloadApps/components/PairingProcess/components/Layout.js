@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import NetworkNotification from 'components/Notification/NetworkNotification'
 import styles from 'assets/css/global.css'
 import {

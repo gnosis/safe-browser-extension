@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
 import Header from 'components/Headers/CompleteHeader'
 import Layout from '../components/Layout'
 import selector from './selector'

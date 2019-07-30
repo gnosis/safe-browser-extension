@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import styles from 'assets/css/global.css'
 import {
   NEW_PASSWORD_IDENTICAL_CHARS,

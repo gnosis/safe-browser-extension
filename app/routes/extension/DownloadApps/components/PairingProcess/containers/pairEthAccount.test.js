@@ -3,7 +3,6 @@ import Adapter from 'enzyme-adapter-react-16'
 import CryptoJs from 'crypto-js'
 import EthUtil from 'ethereumjs-util'
 import Web3 from 'web3'
-
 import {
   createEthAccount,
   getDecryptedEthAccount,

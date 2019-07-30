@@ -1,7 +1,6 @@
 import rootReducer from 'reducers'
 import { createStore } from 'redux'
 import CryptoJs from 'crypto-js'
-
 import { createAccount } from 'routes/extension/DownloadApps/store/actions'
 import { configureLocking } from 'routes/extension/LockingConfiguration/store/actions'
 import { unlockAccount } from 'components/Headers/CompleteHeader/LockingState/store/actions'

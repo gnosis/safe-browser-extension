@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
 import { ga } from 'utils/analytics'
 import { EXTENSION_SETTINGS } from 'utils/analytics/events'
 import {

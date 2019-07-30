@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import classNames from 'classnames/bind'
-
 import Page from 'components/layout/Page'
 import AppQr from './AppQr/AppQr'
 import PairingProcess from './PairingProcess/containers/PairingProcess'

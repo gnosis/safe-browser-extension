@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import FooterButtons from 'components/Footers/FooterButtons/containers'
 import SendTransactionState from 'components/Popup/TransactionState/SendTransactionState'
 import { TRANSACTION_URL } from 'routes/routes'

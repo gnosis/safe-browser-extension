@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import Page from 'components/layout/Page'
 import FooterSteps from 'components/Footers/FooterSteps'
 import ConfirmPasswordForm from './ConfirmPasswordForm/containers/ConfirmPasswordForm'

@@ -1,6 +1,5 @@
 import Web3 from 'web3'
 import SafeProvider from 'safe-web3-provider'
-
 import { getNetworkUrl } from '../config'
 
 if (typeof window.web3 !== 'undefined') {

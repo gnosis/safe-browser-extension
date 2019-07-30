@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
-
 import Page from 'components/layout/Page'
 import styles from 'assets/css/global.css'
 import { ACCOUNT_URL } from 'routes/routes'

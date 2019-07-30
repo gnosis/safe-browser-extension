@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Bip39 from 'bip39'
 import { Redirect } from 'react-router'
-
 import { ga } from 'utils/analytics'
 import { ONBOARDING } from 'utils/analytics/events'
 import {

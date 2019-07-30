@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-
 import { VIEW_MESSAGE_URL } from 'routes/routes'
 import {
   REVIEW_SIGN_MESSAGE,

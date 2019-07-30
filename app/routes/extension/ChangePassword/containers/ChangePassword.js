@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 import CryptoJs from 'crypto-js'
-
 import { ga } from 'utils/analytics'
 import { EXTENSION_SETTINGS } from 'utils/analytics/events'
 import { createEthAccount } from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'

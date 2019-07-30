@@ -1,6 +1,5 @@
 import React from 'react'
 import Blockie from 'components/Blockie'
-
 import { shortenAddress } from 'utils/helpers'
 import styles from 'assets/css/global.css'
 

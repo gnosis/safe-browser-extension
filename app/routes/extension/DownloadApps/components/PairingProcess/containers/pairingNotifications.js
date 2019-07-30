@@ -3,7 +3,6 @@ import 'firebase/messaging'
 import EthUtil from 'ethereumjs-util'
 import BigNumber from 'bignumber.js'
 import fetch from 'node-fetch'
-
 import {
   getFirebaseAuthDomain,
   getFirebaseDatabaseUrl,

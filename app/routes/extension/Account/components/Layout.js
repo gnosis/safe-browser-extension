@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Blockie from 'components/Blockie'
-
 import Page from 'components/layout/Page'
 import WhitelistedDappState from './WhitelistedDappState/containers'
 import styles from 'assets/css/global.css'

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import { REVIEW_TRANSACTION } from '../../../../../config/messages'
 import { isTokenTransfer, getTokenTransferAddress } from '../containers/tokens'
 import HeaderPopup from 'components/Popup/HeaderPopup'

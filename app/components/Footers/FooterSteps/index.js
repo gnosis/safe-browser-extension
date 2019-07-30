@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import classNames from 'classnames/bind'
 import { Redirect } from 'react-router'
-
 import styles from 'assets/css/global.css'
 import { NEXT } from '../../../../config/messages'
 

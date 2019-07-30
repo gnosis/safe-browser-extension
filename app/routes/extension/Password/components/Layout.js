@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import Page from 'components/layout/Page'
 import keyHole from 'assets/images/keyhole.svg'
 import styles from 'assets/css/global.css'
