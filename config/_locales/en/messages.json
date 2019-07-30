@@ -117,7 +117,7 @@
     "message": "min"
   },
   "change_password_description": {
-    "message": "Password is used to unlock the Authenticator and confirm transactions. <strong>Don't share this password with others!</strong>"
+    "message": "The password is used to unlock the Authenticator and confirm transactions. <strong>Don't share this password with others!</strong>"
   },
   "new_password_identical_chars": {
     "message": "No more than 2 identical characters in a row"
