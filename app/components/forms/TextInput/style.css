@@ -1,0 +1,69 @@
+.textInput {
+  border-radius: 6px;
+  background-color: $white;
+  border: 1px solid $border;
+  width: 100%;
+  padding: 17px;
+  height: 56px;
+  font-family: Averta, Helvetica, sans-serif;
+  font-size: 16px;
+  color: $green;
+  letter-spacing: 0;
+  line-height: 100%;
+  font-weight: 400;
+  outline: 0;
+  box-sizing: border-box;
+  margin: 0;
+  will-change: border color;
+  transition: all .3s ease-in-out;
+}
+
+.textInput:-ms-input-placeholder,
+.textInput::placeholder {
+  color: $grey;
+  transition: all .2s ease-in-out;
+}
+
+.textInput:focus {
+  border: 1px solid $green;
+  background-color: $white;
+}
+
+.textInput .noborder {
+  border: 0;
+  background: $green;
+  box-shadow: 0 1px 2px 0 rgba(33, 67, 90, .15);
+  border-radius: 2px;
+  font-size: 1.5em;
+  padding: 7px 14px;
+}
+
+div::after {
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+  right: 40px;
+  top: 0;
+  height: 20px;
+  width: 20px;
+}
+
+div[data-validation=OK]::after {
+  content: "";
+  background: url(./assets/check_ok.svg) center/contain no-repeat;
+}
+
+div[data-validation=OK] input {
+  color: $green;
+  border: 1px solid $green;
+}
+
+div[data-validation=ERROR]::after {
+  content: "";
+  background: url(./assets/check_error.svg) center/contain no-repeat;
+}
+
+div[data-validation=ERROR] input {
+  color: $red;
+  border: 1px solid $red;
+}
