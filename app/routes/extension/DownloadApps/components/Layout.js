@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classNames from 'classnames/bind'
 
-import Page from 'components/Page'
+import Page from 'components/layout/Page'
 import AppQr from './AppQr/AppQr'
 import PairingProcess from './PairingProcess/containers/PairingProcess'
 import styles from 'assets/css/global.css'
@@ -42,10 +42,8 @@ class Layout extends Component {
     return (
       <React.Fragment>
         <Page
-          page={styles.appConnect}
           location={location}
           simpleHeader
-          noBorder
         >
           <div
             className={cx(

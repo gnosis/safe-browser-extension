@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames'
 
-import Page from 'components/Page'
+import Page from 'components/layout/Page'
 import TimeBlock from './TimeBlock'
 import styles from 'assets/css/global.css'
 import { ACCOUNT_URL } from 'routes/routes'

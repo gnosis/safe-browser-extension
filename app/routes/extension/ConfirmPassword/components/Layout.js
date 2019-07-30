@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Page from 'components/Page'
+import Page from 'components/layout/Page'
 import FooterSteps from 'components/Footers/FooterSteps'
 import ConfirmPasswordForm from './ConfirmPasswordForm/containers/ConfirmPasswordForm'
 import styles from 'assets/css/global.css'
