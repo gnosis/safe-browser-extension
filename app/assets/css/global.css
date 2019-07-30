@@ -1,6 +1,4 @@
-h1,h2,h3,p{
-  font-weight:400
-}
+
 html{
   width:100%;
   height:100%;
@@ -28,29 +26,18 @@ body>div>.start{
 }
 ::-moz-selection{
   color:#fff;
-  background:#28B2FA
+  background:$green
 }
 ::selection{
   color:#fff;
-  background:#28B2FA
+  background:$green
 }
-p{
-  font-size:1.3em;
-  color:#65707E;
-  letter-spacing:0;
-  text-align:center;
-  line-height:1.5
-}
+
 .safeLogo::after{
   line-height:1;
   text-align:center;
   display:block;
   text-transform:uppercase
-}
-h1,h2,h3{
-  color:#21435A;
-  margin:0;
-  padding:0
 }
 
 select{
@@ -127,6 +114,7 @@ form{
   font-weight:100;
   font-style:normal
 }
+
 
 @keyframes shake{
   41%,8%{
@@ -257,80 +245,13 @@ form .password-form div::after{
   height:16px;
   width:16px
 }
-form div[data-validation=OK]::after{
-  content:"";
-  background:url(../images/check_ok.svg) center/contain no-repeat
-}
-form div[data-validation=OK] input{
-  color:#02ae60;
-  border:2px solid #02ae60
-}
-form div[data-validation=ERROR]::after{
-  content:"";
-  background:url(../images/check_error.svg) center/contain no-repeat
-}
-form div[data-validation=ERROR] input{
-  color:#fb4f62;
-  border:2px solid #fb4f62
-}
-form input{
-  border-radius:6px;
-  background-color:#fff;
-  border:2px solid #c8ced4;
-  width:100%;
-  padding:.9em;
-  font-size:1.6em;
-  color:#28B2FA;
-  letter-spacing:0;
-  line-height:1.7em;
-  font-weight:400;
-  outline:0;
-  box-sizing:border-box;
-  margin:0;
-  will-change:border color;
-  transition:all .3s ease-in-out
-}
-form input:-ms-input-placeholder{
-  color:#65707E;
-  transition:all .2s ease-in-out
-}
-form input::placeholder{
-  color:#65707E;
-  transition:all .2s ease-in-out
-}
-form input:focus{
-  border:2px solid #28B2FA;
-  background-color: #fff;
-}
-form input:focus:-ms-input-placeholder{
-  color:#fff
-}
-form input:focus::placeholder{
-  color:#fff
-}
-form input:-webkit-autofill, 
-form textarea:-webkit-autofill, 
-form select:-webkit-autofill {
-  background-color: #fff;
-  background-image: none !important;
-  color:#65707E;
-}
-form input.noborder{
-  border:0;
-  background:#FFF;
-  box-shadow:0 1px 2px 0 rgba(33,67,90,.15);
-  border-radius:2px;
-  font-size:1.5em;
-  padding:7px 14px
-}
+
 .md-checkbox{
   position:relative;
   margin:16px 0;
   text-align:left
 }
-.QR,.start h1{
-  text-align:center
-}
+
 .md-checkbox label{
   cursor:pointer
 }
@@ -356,7 +277,7 @@ form input.noborder{
   visibility:hidden
 }
 .md-checkbox input[type=checkbox]:checked+label::before{
-  background:#28B2FA;
+  background:$green;
   border:none
 }
 .md-checkbox input[type=checkbox]:checked+label::after{
@@ -386,7 +307,7 @@ form input.noborder{
   font-weight:700
 }
 .radio input[type=radio]:checked+label:before{
-  border-color:#28B2FA
+  border-color:$green
 }
 .radio input[type=radio]:checked+label:after{
   transform:scale(1)
@@ -422,14 +343,14 @@ form input.noborder{
   width:10px;
   height:10px;
   transform:scale(0);
-  background:#28B2FA
+  background:$green
 }
 .progress{
   position:relative;
   height:5px;
   display:block;
   width:100%;
-  background-color:#28B2FA;
+  background-color:$green;
   border-radius:10px;
   background-clip:padding-box;
   margin:.5rem 0 1rem;
@@ -439,7 +360,7 @@ form input.noborder{
   position:absolute;
   top:0;
   bottom:0;
-  background-color:#28B2FA;
+  background-color:$green;
   transition:width .3s linear
 }
 .progress .indeterminate{
@@ -534,13 +455,7 @@ form input.noborder{
 .start .safeLogo{
   margin:0 auto 7em
 }
-.start h1{
-  font-weight:100;
-  font-size:3em;
-  letter-spacing:0;
-  line-height:1.3;
-  min-width: 410px;
-}
+
 .start p{
   margin:1.5em auto 3em;
   font-size:1.5em;
@@ -554,129 +469,13 @@ form input.noborder{
   max-width:30em;
   margin:2.5em auto 0
 }
-.safeIcon{
-  background:url(../images/gnosis_safe_icon.svg) 0/contain no-repeat;
-  height:32px;
-  width:auto;
-  position:relative;
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-pack:start;
-  justify-content:flex-start;
-  -ms-flex-align:center;
-  align-items:center;
-  -ms-flex-wrap:nowrap;
-  flex-wrap:nowrap;
-  cursor:pointer
-}
-.safeIcon[data-network="rinkeby"]::before {
-  text-align: center;
-  font-size: .9em;
-  padding: .1em .3em;
-  border-radius: 3px;
-  left: -6px;
-  content: "RINKEBY";
-  color: #fff;
-  background: #28b2fa;
-  position: absolute;
-  letter-spacing: 0;
-  font-weight: bold;
-  bottom: -5px;
-}
-.safeIcon>i{
-  margin:0 0 0 37px;
-  -ms-flex:1;
-  flex:1;
-  font-size:1.7em;
-  color:#21435A;
-  letter-spacing:-.5px;
-  font-style:normal;
-  font-weight:400;
-  outline:0;
-  /*min-width:25px;*/
-  line-height: 1;
-  /* CHROME/SAFARI only */
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  /* END */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 128px;
-  min-height: 19px;
-  width: auto;
-}
-.safeIcon.hasMenu::after{
-  content:"";
-  background:url(../images/carret-down.svg) center/contain no-repeat;
-  width:8px;
-  height:6px;
-  display:block;
-  position:absolute;
-  right:-12px
-}
 
-.extension.password1,
 .extension.password2,
 .extension.unlockSafe,
 .extension .blockAccess {
   background:fixed,url(../images/mountainsBackground.svg) bottom/contain no-repeat,linear-gradient(-180deg,#fff 50%,#E4E8F1 100%)
 }
 
-.extension-inner>header{
-  height:60px;
-  width:100%;
-  border-bottom:1px solid #E4E8F1;
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-pack:center;
-  justify-content:center;
-  -ms-flex-align:center;
-  align-items:center;
-  background:#fff;
-}
-.extension-inner>header.noBorder{
-  border-bottom:1px solid transparent
-}
-.extension-inner .content h1{
-  letter-spacing:0;
-  text-align:center;
-  font-size:2em;
-  font-weight:300;
-  padding:1.5em 1.5em 0;
-  line-height:1.3;
-  width:100%
-}
-.menuTrigger{
-  position:absolute;
-  left:20px;
-  z-index:10
-}
-.menuTrigger:hover{
-  cursor:pointer
-}
-.menuTrigger .line{
-  width:20px;
-  height:2px;
-  background-color:#A2A8BA;
-  display:block;
-  margin:4px auto;
-  transition:all .2s ease-in-out
-}
-.innerOverlay,.innerOverlayContent{
-  display:-ms-flexbox;
-  width:100%;
-  position:absolute
-}
-.menuTrigger.active .line:nth-child(2){
-  opacity:0
-}
-.menuTrigger.active .line:nth-child(1){
-  transform:translateY(5px) rotate(45deg)
-}
-.menuTrigger.active .line:nth-child(3){
-  transform:translateY(-7px) rotate(-45deg)
-}
 .innerOverlay{
   height:calc(100% - 58px);
   top:58px;
@@ -1027,7 +826,7 @@ form input.noborder{
   word-break: break-all;
 }
 .safeMenu>ul>li>span>p[contenteditable=true]{
-  border:1px dashed #28B2FA;
+  border:1px dashed $green;
   border-radius:3px;
   padding:4px;
   outline:0
@@ -1211,9 +1010,7 @@ form input.noborder{
 .overlayPage[data-page=password] form button{
   margin-top:25px
 }
-.overlayPage .warning-password{
-  margin:0
-}
+
 .overlayPage > .message {
   --border: 1px solid red;
   padding:20px;
@@ -1260,10 +1057,10 @@ form input.noborder{
 }
 .overlayPageHeader .btn-back.active{
   pointer-events:auto;
-  background:url(../images/arrow-left-blue.svg) center/contain no-repeat
+  background:url(../images/arrow-left-green.svg) center/contain no-repeat
 }
 .overlayPageHeader .btn-back.active>p{
-  color:#28B2FA
+  color:$green
 }
 .overlayPageHeader .btn-back>p{
   color:#A2A8BA;
@@ -1502,132 +1299,7 @@ form>.whitelist-form input {
   margin:0 0 0 5px;
   vertical-align:middle
 }
-footer{
-  height:46px;
-  background:#fff;
-  position:absolute;
-  bottom:0;
-  width:100%;
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-wrap:nowrap;
-  flex-wrap:nowrap;
-  -ms-flex-pack:justify;
-  justify-content:space-between;
-  padding:0 1.5em;
-  box-sizing:border-box
-}
-footer button {
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit
-}
-footer .btn-back,footer .btn-next{
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-align:center;
-  align-items:center;
-  -ms-flex-wrap:nowrap;
-  flex-wrap:nowrap;
-  height:100%;
-  transition:all .3s ease-in-out;
-  pointer-events:none
-}
-footer .btn-back.active,footer .btn-next.active{
-  pointer-events:auto
-}
-footer .btn-back.active>p,footer .btn-next.active>p{
-  color:#28B2FA
-}
-footer .btn-back>p,footer .btn-next>p{
-  color:#A2A8BA;
-  font-size:1.5em
-}
-footer .btn-back{
-  background:url(../images/arrow-left-grey.svg) center/contain no-repeat;
-  width:15px
-}
-footer .btn-back.active{
-  background:url(../images/arrow-left-blue.svg) center/contain no-repeat
-}
-footer .btn-next,footer button.btn-next{
-  text-decoration:none
-}
-footer .btn-next::after,footer button.btn-next::after{
-  content:"";
-  display:inline-block;
-  background:url(../images/arrow-right-grey.svg) center/contain no-repeat;
-  width:15px;
-  height:15px;
-  margin:0 0 0 1em;
-  pointer-events:none
-}
-footer .btn-next.active::after,footer button.btn-next.active::after{
-  content:"";
-  background:url(../images/arrow-right-blue.svg) center/contain no-repeat;
-  pointer-events:auto
-}
-footer .stepper-dots{
-  position:absolute;
-  width:70px;
-  height:100%;
-  left:0;
-  right:0;
-  margin:auto;
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-wrap:nowrap;
-  flex-wrap:nowrap;
-  -ms-flex-pack:center;
-  justify-content:center;
-  -ms-flex-align:center;
-  align-items:center
-}
-footer .stepper-dots>li{
-  background:#E3E5EC;
-  height:8px;
-  width:8px;
-  border-radius:8px
-}
-footer .stepper-dots>li:not(:last-of-type){
-  margin:0 .8em 0 0
-}
-footer .stepper-dots>li.active{
-  background:#28B2FA
-}
 
-.warning-password{
-  width:100%;
-  padding:1em 1.5em;
-  background:#fdf5ec;
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-wrap:nowrap;
-  flex-wrap:nowrap;
-  margin:2em auto 0;
-  box-sizing:border-box
-}
-.appConnect .safeIcon,
-.password1 .safeIcon,
-.password2 .safeIcon,
-.blockAccess .safeIcon {
-  width:32px
-}
-.warning-password>img{
-  padding:0 .8em 0 0
-}
-.warning-password>p{
-  line-height:1.5;
-  letter-spacing:0;
-  color:#9a7e47;
-  font-size:1.2em;
-  font-weight:400;
-  text-align:left
-}
 .appConnect{
   background:#F4F5F9
 }
@@ -1822,7 +1494,7 @@ footer .stepper-dots>li.active{
   animation:rotate .7s linear
 }
 .lockshape[data-validation=OK] path{
-  fill:#28B2FA
+  fill:$green
 }
 .lockshape_dots{
   position:absolute;
@@ -1845,6 +1517,7 @@ footer .stepper-dots>li.active{
 .extensionPopup .extension-inner .Page{
   background:#F4F5F9;
   width:100%;
+  height:100%;
   height:calc(100% - 58px);
   position:absolute;
   top:58px;
@@ -1919,7 +1592,7 @@ footer .stepper-dots>li.active{
   pointer-events:auto
 }
 .extensionPopup .extension-inner .PageHeader .btn-back.active>p,.extensionPopup .extension-inner .PageHeader .btn-next.active>p{
-  color:#28B2FA
+  color:$green
 }
 .extensionPopup .extension-inner .PageHeader .btn-back>p,.extensionPopup .extension-inner .PageHeader .btn-next>p{
   color:#A2A8BA;
@@ -1935,7 +1608,7 @@ footer .stepper-dots>li.active{
   transform:translateX(-2px)
 }
 .extensionPopup .extension-inner .PageHeader .btn-back.active{
-  background:url(../images/arrow-left-blue.svg) center/contain no-repeat
+  background:url(../images/arrow-left-green.svg) center/contain no-repeat
 }
 .extensionPopup .extension-inner .PageHeader .btn-next{
   background:url(../images/arrow-right-grey.svg) center/contain no-repeat
@@ -1944,7 +1617,7 @@ footer .stepper-dots>li.active{
   transform:translateX(2px)
 }
 .extensionPopup .extension-inner .PageHeader .btn-next.active{
-  background:url(../images/arrow-right-blue.svg) center/contain no-repeat
+  background:url(../images/arrow-right-green.svg) center/contain no-repeat
 }
 .extensionPopup .extension-inner .PageContent{
   display:-ms-flexbox;
@@ -2291,7 +1964,7 @@ footer .stepper-dots>li.active{
   font-size:1.1em
 }
 .extensionPopup .extension-inner .transactionState .resend>button{
-  color:#28B2FA;
+  color:$green;
   font-size:1.3em;
   font-weight:500;
   letter-spacing:1px;
