@@ -1,6 +1,7 @@
 .paragraph {
   text-overflow: ellipsis;
   overflow-x: inherit;
+  color: $grey;
 }
 
 .green {

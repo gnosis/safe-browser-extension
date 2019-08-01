@@ -1,35 +1,23 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import Layout from '../components/Layout'
 
-class CreatePassword extends Component {
-  constructor(props) {
-    super(props)
+const CreatePassword = ({ ...props }) => {
+  const [newPassword, setNewPassword] = useState('')
+  const [isReady, setIsReady] = useState(false)
 
-    this.state = {
-      newPassword: '',
-      ready: false
-    }
+  const manageCreatePassword = (newPassword, isReady) => {
+    setNewPassword(newPassword)
+    setIsReady(isReady)
   }
 
-  manageCreatePassword = (newPassword, ready) => {
-    this.setState({
-      newPassword,
-      ready
-    })
-  }
-
-  render() {
-    const { newPassword } = this.state
-
-    return (
-      <Layout
-        newPassword={newPassword}
-        manageCreatePassword={this.manageCreatePassword}
-        ready={this.state.ready}
-        location={this.props.location}
-      />
-    )
-  }
+  return (
+    <Layout
+      newPassword={newPassword}
+      manageCreatePassword={manageCreatePassword}
+      isReady={isReady}
+      location={props.location}
+    />
+  )
 }
 
 export default CreatePassword

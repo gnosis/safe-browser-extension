@@ -1,94 +1,63 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import Layout from '../components/Layout'
 
-class CreatePasswordForm extends Component {
-  constructor(props) {
-    super(props)
+const CreatePasswordForm = ({ newPassword, manageCreatePassword, isReady }) => {
+  const [errorLength, setErrorLength] = useState(false)
+  const [errorNumber, setErrorNumber] = useState(false)
+  const [errorLetter, setErrorLetter] = useState(false)
+  const [errorRow, setErrorRow] = useState(false)
 
-    this.state = {
-      error: {
-        length: false,
-        number: false,
-        letter: false,
-        row: false
-      }
-    }
-  }
-
-  updateNewPassword = (e) => {
-    this.validatePassword(e.target.value)
-  }
-
-  validateLength = (password) => {
+  const validateLength = (password) => {
     const validLength = password !== '' && password.length >= 8
-    this.setState((prevState, props) => ({
-      error: {
-        ...prevState.error,
-        length: validLength
-      }
-    }))
+    setErrorLength(validLength)
     return validLength
   }
 
-  validateNumber = (password) => {
+  const validateNumber = (password) => {
     const expression = /.*\d+.*/
     const validExpression = password !== '' && expression.test(password)
-    this.setState((prevState, props) => ({
-      error: {
-        ...prevState.error,
-        number: validExpression
-      }
-    }))
+    setErrorNumber(validExpression)
     return validExpression
   }
 
-  validateLetter = (password) => {
+  const validateLetter = (password) => {
     const expression = /.*[a-zA-Z]+.*/
     const validExpression = password !== '' && expression.test(password)
-    this.setState((prevState, props) => ({
-      error: {
-        ...prevState.error,
-        letter: validExpression
-      }
-    }))
+    setErrorLetter(validExpression)
     return validExpression
   }
 
-  validateRow = (password) => {
+  const validateRow = (password) => {
     const expression = /.*(.)\1{2}.*/
     const validExpression = password !== '' && !expression.test(password)
-    this.setState((prevState, props) => ({
-      error: {
-        ...prevState.error,
-        row: validExpression
-      }
-    }))
+    setErrorRow(validExpression)
     return validExpression
   }
 
-  validatePassword = (password) => {
-    const length = this.validateLength(password)
-    const number = this.validateNumber(password)
-    const letter = this.validateLetter(password)
-    const row = this.validateRow(password)
+  const updateNewPassword = (e) => {
+    const password = e.target.value
 
-    const result = length && number && letter && row
-    this.props.manageCreatePassword(password, result)
+    const hasErrorLength = validateLength(password)
+    const hasErrorNumber = validateLetter(password)
+    const hasErrorLetter = validateNumber(password)
+    const hasErrorRow = validateRow(password)
+
+    const isReady =
+      hasErrorLength && hasErrorNumber && hasErrorLetter && hasErrorRow
+    manageCreatePassword(password, isReady)
   }
 
-  render() {
-    const { error } = this.state
-    const { newPassword, ready } = this.props
-
-    return (
-      <Layout
-        newPassword={newPassword}
-        error={error}
-        updateNewPassword={this.updateNewPassword}
-        ready={ready}
-      />
-    )
-  }
+  return (
+    <Layout
+      errorLength={errorLength}
+      errorNumber={errorNumber}
+      errorLetter={errorLetter}
+      errorRow={errorRow}
+      newPassword={newPassword}
+      updateNewPassword={updateNewPassword}
+      isReady={isReady}
+    />
+  )
 }
 
 export default CreatePasswordForm
