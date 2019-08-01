@@ -213,37 +213,8 @@ form{
   color:#fb4f62
 }
 
-form .password-form {
-  font-family:Averta,Helvetica,sans-serif;
-  display:-ms-flexbox;
-  display:flex;
-  flex-wrap:wrap;
-  padding:0 2em;
-  width: 100%
-}
-
 .md-checkbox.md-checkbox-inline,.radio.md-radio-inline{
   display:inline-block
-}
-form .password-form p{
-  margin:0;
-  width:100%;
-  text-align:left;
-  font-size:1.2em
-}
-form .password-form div{
-  width:100%;
-  position:relative;
-  margin:2em 0 1em
-}
-form .password-form div::after{
-  bottom:0;
-  margin:auto;
-  position:absolute;
-  right:1.2em;
-  top:0;
-  height:16px;
-  width:16px
 }
 
 .md-checkbox{

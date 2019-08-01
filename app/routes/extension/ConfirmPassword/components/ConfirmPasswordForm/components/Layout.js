@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import styles from 'assets/css/global.css'
+import Paragraph from 'components/layout/Paragraph'
+import TextInput from 'components/forms/TextInput'
 import {
   PASSWORD_DOESNT_MATCH,
   CONFIRM_PASSWORD
 } from '../../../../../../../config/messages'
+import styles from './style.css'
 
 class Layout extends Component {
   render() {
@@ -13,23 +15,23 @@ class Layout extends Component {
       passwordsMatch
     } = this.props
 
-    const filling = confirmPassword !== ''
-    const dataValidation = !passwordsMatch && filling ? 'ERROR' : ''
+    const filled = confirmPassword !== ''
+    const dataValidation = filled ? (!passwordsMatch ? 'ERROR' : 'OK') : ''
+    const requirementStyle = filled ? 'red' : 'green'
 
     return (
       <React.Fragment>
-        <div data-validation={dataValidation}>
-          <input
-            type="password"
-            placeholder={CONFIRM_PASSWORD}
-            value={confirmPassword}
-            onChange={updateConfirmPassword}
-          />
-        </div>
+        <TextInput
+          type="password"
+          placeholder={CONFIRM_PASSWORD}
+          value={confirmPassword}
+          onChange={updateConfirmPassword}
+          dataValidation={dataValidation}
+        />
         {!passwordsMatch && (
-          <p className={filling ? styles.textRed : null}>
+          <Paragraph className={styles.requirement} color={filled && requirementStyle}>
             {PASSWORD_DOESNT_MATCH}
-          </p>
+          </Paragraph>
         )}
       </React.Fragment>
     )

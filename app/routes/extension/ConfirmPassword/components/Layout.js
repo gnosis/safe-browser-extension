@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import Page from 'components/layout/Page'
 import FooterSteps from 'components/Footers/FooterSteps'
 import ConfirmPasswordForm from './ConfirmPasswordForm/containers/ConfirmPasswordForm'
-import styles from 'assets/css/global.css'
 import warningImage from 'assets/images/warning.svg'
 import { DOWNLOAD_APPS_URL, CREATE_PASSWORD_URL } from 'routes/routes'
 import {
   CONFIRM_CREATE_PASSWORD_TITLE,
   CHANGE_PASSWORD_DESCRIPTION
 } from '../../../../../config/messages'
+import styles from './style.css'
 
 class Layout extends Component {
   prevent = (e) => {
@@ -31,7 +31,7 @@ class Layout extends Component {
       : ''
 
     return (
-      <Page page={styles.password2} location={location} simpleHeader>
+      <Page background="grey" location={location} simpleHeader>
         <form onSubmit={this.prevent}>
           <div className={styles.content}>
             <h1>{CONFIRM_CREATE_PASSWORD_TITLE}</h1>
@@ -49,7 +49,7 @@ class Layout extends Component {
           </div>
           <FooterSteps
             link={CREATE_PASSWORD_URL}
-            ready={passwordsMatch}
+            isReady={passwordsMatch}
             secondStep
             nextLink={nextLink}
           />
