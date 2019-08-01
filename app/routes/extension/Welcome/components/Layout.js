@@ -10,7 +10,7 @@ const cx = classNames.bind(styles)
 
 const Layout = ({ showDisclaimer, toggleDisclaimer }) => (
   <React.Fragment>
-    <Page withoutHeader background='mountains'>
+    <Page withoutHeader background="mountains">
       <div className={styles.content}>
         <span className={cx(styles.safeLogo, styles.animated, styles.fadeInUp)}>
           <span className={styles.safeTitle} />

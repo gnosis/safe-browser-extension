@@ -21,7 +21,7 @@ const Layout = ({
   const rowStyle = errorRow ? 'green' : 'red'
   const numberLetterStyle = errorNumber && errorLetter ? 'green' : 'red'
   const lengthStyle = errorLength ? 'green' : 'red'
-  const dataValidation = (newPassword !== '') ? (!isReady ? 'ERROR' : 'OK') : ''
+  const dataValidation = newPassword !== '' ? (!isReady ? 'ERROR' : 'OK') : ''
 
   return (
     <React.Fragment>
@@ -32,9 +32,21 @@ const Layout = ({
         onChange={updateNewPassword}
         dataValidation={dataValidation}
       />
-      <Paragraph className={styles.requirement} color={newPassword && rowStyle}>{NEW_PASSWORD_IDENTICAL_CHARS}</Paragraph>
-      <Paragraph className={styles.requirement} color={newPassword && numberLetterStyle}>{NEW_PASSWORD_NUMBER_AND_LETTER}</Paragraph>
-      <Paragraph className={styles.requirement} color={newPassword && lengthStyle}>{NEW_PASSWORD_MIN_CHAR}</Paragraph>
+      <Paragraph className={styles.requirement} color={newPassword && rowStyle}>
+        {NEW_PASSWORD_IDENTICAL_CHARS}
+      </Paragraph>
+      <Paragraph
+        className={styles.requirement}
+        color={newPassword && numberLetterStyle}
+      >
+        {NEW_PASSWORD_NUMBER_AND_LETTER}
+      </Paragraph>
+      <Paragraph
+        className={styles.requirement}
+        color={newPassword && lengthStyle}
+      >
+        {NEW_PASSWORD_MIN_CHAR}
+      </Paragraph>
     </React.Fragment>
   )
 }

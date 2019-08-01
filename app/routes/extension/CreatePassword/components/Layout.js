@@ -25,7 +25,7 @@ const Layout = ({ newPassword, manageCreatePassword, isReady, location }) => {
     : ''
 
   return (
-    <Page background='grey' location={location} simpleHeader>
+    <Page background="grey" location={location} simpleHeader>
       <form onSubmit={prevent}>
         <div className={styles.content}>
           <h1>{CREATE_PASSWORD_TITLE}</h1>

@@ -12,11 +12,11 @@ const Header = ({ isPopup, location }) => {
   const [showSafes, setShowSafes] = useState(false)
 
   const toggleMenu = (e) => {
-    setShowMenu(showMenu => !showMenu)
+    setShowMenu((showMenu) => !showMenu)
   }
 
   const toggleSafes = (e) => {
-    setShowSafes(showSafe => !showSafe)
+    setShowSafes((showSafe) => !showSafe)
   }
 
   return (
@@ -24,10 +24,7 @@ const Header = ({ isPopup, location }) => {
       <header className={styles.header}>
         {!isPopup && (
           <div
-            className={cx(
-              styles.menuTrigger,
-              showMenu ? styles.active : null
-            )}
+            className={cx(styles.menuTrigger, showMenu ? styles.active : null)}
             onClick={toggleMenu}
           >
             <span className={styles.line} />

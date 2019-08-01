@@ -40,10 +40,7 @@ class Layout extends Component {
 
     return (
       <React.Fragment>
-        <Page
-          location={location}
-          simpleHeader
-        >
+        <Page location={location} simpleHeader>
           <div
             className={cx(
               styles.content,
