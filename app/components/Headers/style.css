@@ -50,7 +50,7 @@
 }
 
 .safeIcon {
-  background: url(assets/images/gnosisSafeRgbSansDarkblue.svg) 0/contain no-repeat;
+  background: url(assets/images/safe_logo_mainnet.svg) 0/contain no-repeat;
   height: 32px;
   width: 32px;
   position: relative;

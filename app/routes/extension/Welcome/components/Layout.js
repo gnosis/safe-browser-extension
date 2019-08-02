@@ -12,10 +12,9 @@ const Layout = ({ showDisclaimer, toggleDisclaimer }) => (
   <React.Fragment>
     <Page withoutHeader background="mountains">
       <div className={styles.content}>
-        <span className={cx(styles.safeLogo, styles.animated, styles.fadeInUp)}>
-          <span className={styles.safeTitle} />
-          <span className={styles.authTitle}>Authenticator</span>
-        </span>
+        <span
+          className={cx(styles.safeLogo, styles.animated, styles.fadeInUp)}
+        />
         <h1>{SLOGAN}</h1>
         <Button onClick={toggleDisclaimer}>{GET_STARTED}</Button>
       </div>

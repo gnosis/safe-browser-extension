@@ -1,9 +1,12 @@
 import React from 'react'
+import classNames from 'classnames'
 import styles from './style.css'
 
-const TextInput = ({ dataValidation, ...props }) => (
+const cx = classNames.bind(styles)
+
+const TextInput = ({ dataValidation, className, ...props }) => (
   <div data-validation={dataValidation}>
-    <input className={styles.textInput} {...props} />
+    <input className={cx(styles.textInput, className)} {...props} />
   </div>
 )
 

@@ -66,7 +66,6 @@ export const OPTIONS_PAGE_HEADER = ReactHtmlParser(chrome.i18n.getMessage('optio
 export const OPTIONS_PAGE_TITLE = ReactHtmlParser(chrome.i18n.getMessage('options_page_title'))
 export const PASSWORD_DOESNT_MATCH = ReactHtmlParser(chrome.i18n.getMessage('password_doesnt_match'))
 export const PAYMENT_TOKEN = ReactHtmlParser(chrome.i18n.getMessage('payment_token'))
-export const PERSONAL_EDITION = ReactHtmlParser(chrome.i18n.getMessage('personal_edition'))
 export const PRIVACY_POLICY = ReactHtmlParser(chrome.i18n.getMessage('privacy_policy'))
 export const PROVIDER_NOT_SYNCRONOUS = ReactHtmlParser(chrome.i18n.getMessage('provider_not_syncronous'))
 export const REJECT = ReactHtmlParser(chrome.i18n.getMessage('reject'))

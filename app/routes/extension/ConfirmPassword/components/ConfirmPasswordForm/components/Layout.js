@@ -29,7 +29,10 @@ class Layout extends Component {
           dataValidation={dataValidation}
         />
         {!passwordsMatch && (
-          <Paragraph className={styles.requirement} color={filled && requirementStyle}>
+          <Paragraph
+            className={styles.requirement}
+            color={filled && requirementStyle}
+          >
             {PASSWORD_DOESNT_MATCH}
           </Paragraph>
         )}

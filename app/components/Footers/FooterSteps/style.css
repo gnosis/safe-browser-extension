@@ -14,7 +14,7 @@ footer {
   box-sizing: border-box;
 }
 
-.button {
+.link {
   background: none;
   color: inherit;
   border: none;
@@ -24,7 +24,7 @@ footer {
   outline: inherit;
 }
 
-.button > p {
+.link > p {
   color: $darkGrey;
   padding: 0 0 0 25px;
   font-weight: 500;
@@ -45,7 +45,7 @@ footer {
   text-decoration: none;
 }
 
-.button.active > p {
+.link.active > p {
   color: $green;
   pointer-events: auto;
 }
@@ -107,38 +107,3 @@ footer {
 .stepper-dots > li.active {
   background: $green;
 }
-
-
-/*
- .btn-back{
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-align:center;
-  align-items:center;
-  -ms-flex-wrap:nowrap;
-  flex-wrap:nowrap;
-  height:100%;
-  pointer-events:none;
-  text-decoration:none;
-  background:url(assets/images/arrow-left-grey.svg) center/contain no-repeat;
-  width:15px;
-  transition:transform .25s ease-in-out
-}
- .btn-back.active{
-  pointer-events:auto;
-  background:url(assets/images/arrow-left-green.svg) center/contain no-repeat
-}
- .btn-back.active>p{
-  color:$green
-}
- .btn-back>p{
-  color:#A2A8BA;
-  padding:0 0 0 25px;
-  font-weight:500;
-  font-size:14px;
-  letter-spacing:0
-}
- .btn-back.active:hover{
-  transform:translateX(-2px);
-}
-*/

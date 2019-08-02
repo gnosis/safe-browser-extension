@@ -17,7 +17,7 @@ body{
   -moz-osx-font-smoothing:grayscale
 }
 body.start{
-  background:fixed,url(/assets/images/mountainsBackground.svg) center/cover no-repeat,linear-gradient(-180deg,#fff 50%,#E4E8F1 100%)
+  background:fixed,url(/assets/images/mountains_background.svg) center/cover no-repeat,linear-gradient(-180deg,#fff 50%,#E4E8F1 100%)
 }
 .start .content {
 	max-width: 51em;
@@ -85,7 +85,7 @@ button {
 	text-transform: uppercase
 }
 .safeLogo {
-	background: url(/assets/images/gnosisSafeRgbSansDarkblue.svg) center/contain no-repeat;
+	background: url(/assets/images/safe_logo_mainnet.svg) center/contain no-repeat;
 	height: 110px;
 	width: 110px;
 	display: block;

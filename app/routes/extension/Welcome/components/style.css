@@ -6,30 +6,12 @@
 }
 
 .safeLogo {
-  background: url(assets/images/gnosisSafeRgbSansDarkblue.svg) center/contain no-repeat;
-  height: 103px;
-  width: 103px;
+  background: url(assets/images/safe_logo_text_mainnet.svg) center/contain no-repeat;
+  height: 151px;
+  width: 115px;
   display: block;
   position: relative;
-  margin: 9em auto 7em;
-}
-
-.safeTitle {
-  background: url(../assets/gnosisSafeRgbNameDarkblue.svg) center/contain no-repeat;
-  height: 20px;
-  width: 100%;
-  display: block;
-  position: absolute;
-  bottom: -28px;
-}
-
-.authTitle {
-  position: absolute;
-  font-size: 18.5px;
-  text-align: center;
-  color: $darkBlueTitle;
-  bottom: -45px;
-  left: -6px;
+  margin: 93px auto 25px;
 }
 
 .content h1 {
@@ -38,20 +20,20 @@
   letter-spacing: 0;
   text-align: center;
   line-height: 1.5;
-  margin: 0 auto 1.5em;
+  margin: 0 auto 1.3em;
   width: 75%;
   color: $darkBlueTitle;
 }
 
 .animated {
-  animation-duration: 2.5s;
+  animation-duration: 1.5s;
   animation-fill-mode: both;
 }
 
 @keyframes fadeInUp {
   from {
       opacity: 0;
-      transform: translate3d(0, 75%, 0);
+      transform: translate3d(0, 20%, 0);
   }
   to {
       opacity: 1;
