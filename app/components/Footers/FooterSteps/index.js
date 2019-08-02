@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 import classNames from 'classnames/bind'
-import { Redirect } from 'react-router'
 import Link from 'components/layout/Link'
 import { NEXT } from '../../../../config/messages'
 import styles from './style.css'

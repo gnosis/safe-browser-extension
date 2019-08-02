@@ -144,7 +144,7 @@
     "message": "Versione"
   },
   "connect_new_safe": {
-    "message": "Collega un nuovo Safe"
+    "message": "+ Collega un nuovo Safe"
   },
   "connected_extension_succesfully": {
     "message": "Authenticator configurato correttamente!<br /><strong>Collegalo all'applicazione mobile.</strong>"

@@ -63,7 +63,7 @@
     "message": "Versie"
   },
   "connect_new_safe": {
-    "message": "Maak verbinding met nieuwe Safe"
+    "message": "+ Maak verbinding met nieuwe Safe"
   },
   "connected_extension_succesfully": {
     "message": "Extensie setup succesvol! <br /> <strong> Verbinden met de mobiele app. </strong>"

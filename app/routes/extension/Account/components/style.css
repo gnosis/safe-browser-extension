@@ -1,0 +1,52 @@
+.content {
+  max-width: 51em;
+  width: 100%;
+  margin: 0 auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.innerContent {
+  background: $white;
+  border-radius: 6px;
+  box-shadow: 0 1px 5px 0 rgba(212, 212, 211, 0.59);
+  width: 100%;
+  margin: 16px;
+  text-align: center;
+  padding: 24px;
+}
+
+.innerContent h1 {
+  font-weight: bold;
+  line-height: 1.5;
+  margin: 0 auto;
+  font-size: 16px;
+  padding: 15px 0;
+  text-align: center;
+  color: $darkBlue;
+}
+
+.safeAddress {
+  width: 230px;
+  font-size: 13px;
+  line-height: 1.38;
+  word-break: break-all;
+  margin: 0 auto;
+}
+
+.link {
+  font-size: 13px;
+  line-height: 1.54;
+  width: 100%;
+  text-align: center;
+  margin: 3px 16px 0;
+}
+
+.button{
+  width: 100%;
+  margin: 20px 0 0;
+}

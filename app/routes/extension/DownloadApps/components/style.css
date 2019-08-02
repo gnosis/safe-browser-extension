@@ -22,7 +22,7 @@
 
 .innerContent {
   background: $white;
-  border-radius: 3px;
+  border-radius: 6px;
   box-shadow: 0 1px 5px 0 rgba(212, 212, 211, 0.59);
   height: 403px;
   width: 100%;

@@ -144,7 +144,7 @@
     "message": "Versión"
   },
   "connect_new_safe": {
-    "message": "Conectar nova Safe"
+    "message": "+ Conectar a unha nova Safe"
   },
   "connected_extension_succesfully": {
     "message": "Authenticator configurado correctamente!<br /><strong>Conéctao coa aplicación móbil</strong>"

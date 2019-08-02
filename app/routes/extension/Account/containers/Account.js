@@ -1,38 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 import { ga } from 'utils/analytics'
 import { SAFES } from 'utils/analytics/events'
 import Layout from '../components/Layout'
-import { createQrImage } from 'utils/qrdisplay'
 import { PASSWORD_URL, DOWNLOAD_APPS_URL } from 'routes/routes'
 import selector from './selector'
 import { getNetwork } from '../../../../../config'
 import { MAINNET } from '../../../../../config/names'
 
-class Account extends Component {
-  componentDidMount = () => {
-    const { safes } = this.props
-    createQrImage(
-      document.getElementById('qr-safe-address'),
-      safes.currentSafe,
-      4
-    )
-
-    setTimeout(() => this.focusTransactionWindow(), 100)
-  }
-
-  componentDidUpdate = (prevProps, prevState) => {
-    const { safes } = this.props
-    createQrImage(
-      document.getElementById('qr-safe-address'),
-      safes.currentSafe,
-      4
-    )
-  }
-
-  openEtherScan = async () => {
-    const { safes } = this.props
+const Account = ({ safes, location, transactions, currentSafeAlias }) => {
+  const openEtherScan = async () => {
     await ga([
       '_trackEvent',
       SAFES,
@@ -47,49 +25,34 @@ class Account extends Component {
     window.open(etherScanUrl + safes.currentSafe)
   }
 
-  openSlowTrade = async () => {
-    await ga([
-      '_trackEvent',
-      SAFES,
-      'click-slow-trade-banner',
-      'Click Slow Trade banner'
-    ])
-    if (getNetwork() === MAINNET) {
-      window.open('https://slow.trade')
-    } else {
-      window.open('https://rinkeby.slow.trade')
-    }
-  }
-
-  focusTransactionWindow = () => {
-    const { transactions } = this.props
+  const focusTransactionWindow = () => {
     const windowId = transactions.windowId
     if (windowId) {
       chrome.windows.update(windowId, { focused: true })
     }
   }
 
-  render() {
-    const { safes } = this.props
-    const url = {
-      pathname: PASSWORD_URL,
-      state: {
-        dest: DOWNLOAD_APPS_URL
-      }
-    }
+  setTimeout(() => focusTransactionWindow(), 100)
 
-    if (safes.currentSafe === undefined) {
-      return <Redirect to={url} />
+  const pairingUrl = {
+    pathname: PASSWORD_URL,
+    state: {
+      dest: DOWNLOAD_APPS_URL
     }
-    return (
-      <Layout
-        currentSafe={safes.currentSafe}
-        openEtherScan={this.openEtherScan}
-        openSlowTrade={this.openSlowTrade}
-        location={this.props.location}
-      />
-    )
   }
+
+  if (safes.currentSafe === undefined) {
+    return <Redirect to={pairingUrl} />
+  }
+  return (
+    <Layout
+      currentSafe={safes.currentSafe}
+      currentSafeAlias={currentSafeAlias}
+      openEtherScan={openEtherScan}
+      location={location}
+      pairingUrl={pairingUrl}
+    />
+  )
 }
 
 export default connect(selector)(Account)

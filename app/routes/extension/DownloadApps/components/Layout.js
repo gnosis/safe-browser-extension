@@ -14,7 +14,13 @@ import styles from './style.css'
 
 const cx = classNames.bind(styles)
 
-const Layout = ({ password, location, openGooglePlay, openAppStore, iosAppUrl }) => (
+const Layout = ({
+  password,
+  location,
+  openGooglePlay,
+  openAppStore,
+  iosAppUrl
+}) => (
   <Page location={location} simpleHeader background="grey">
     <div className={styles.content}>
       <h1>{CONNECTED_EXTENSION_SUCCESFULLY}</h1>

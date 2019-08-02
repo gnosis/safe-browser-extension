@@ -144,7 +144,7 @@
     "message": "Version"
   },
   "connect_new_safe": {
-    "message": "Mit neuem Safe verbinden"
+    "message": "+ Mit neuem Safe verbinden"
   },
   "connected_extension_succesfully": {
     "message": "Extension erfolgreich aufgesetzt!<br /><strong>Mit der App verbinden.</strong>"

@@ -1223,21 +1223,9 @@ form>.whitelist-form input {
   width: 30px;
   padding-right: 10px;
 }
-.external-link::after{
-  content:"";
-  background:url(../images/external_link.svg) center/contain no-repeat;
-  width:11px;
-  height:11px;
-  display:inline-block;
-  margin:0 0 0 5px;
-  vertical-align:middle
-}
 
 
-.safeOverview{
-  background:#F4F5F9
-}
-.safeOverview .safeContent, .overlayPageContent .safeContent{
+.overlayPageContent .safeContent{
   height:100%;
   display:-ms-flexbox;
   display:flex;
@@ -1255,19 +1243,11 @@ form>.whitelist-form input {
   -ms-flex-align:center;
   align-items:center
 }
-.safeOverview .safeContent > a, .overlayPageContent .safeContent > a{
+.overlayPageContent .safeContent > a{
   font-size:1.3em;
   font-weight:400;
   line-height:1;
   margin: 1.5em auto 0;
-}
-
-.slowTradeBanner{
-  bottom:0;
-  box-shadow: 0 -1px 4px 0 rgba(0,0,0,0.12);
-  cursor:pointer;
-  position: absolute;
-  width:100%;
 }
 
 .extensionPopup{

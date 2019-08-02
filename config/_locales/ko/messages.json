@@ -144,7 +144,7 @@
     "message": "버전"
   },
   "connect_new_safe": {
-    "message": "신규 Safe에 연결"
+    "message": "+ 신규 Safe에 연결"
   },
   "connected_extension_succesfully": {
     "message": "확장 프로그램이 성공적으로 설치되었습니다!<br /> <strong>모바일 앱과 연결하세요.</strong>"
