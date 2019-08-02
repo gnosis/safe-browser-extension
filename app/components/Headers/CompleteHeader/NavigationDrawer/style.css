@@ -1,0 +1,126 @@
+.safeDrawerMenuBackground.active {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  transition: filter .1s ease-in-out;
+  background: rgba(0, 0, 0, .5);
+  z-index: 97;
+}
+
+.safeDrawerMenu {
+  position: absolute;
+  border-top: 1px solid $border;
+}
+
+.safeDrawerMenu {
+  transform: translateX(-370px);
+  visibility: hidden;
+  will-change: transform, opacity;
+  transition: all .2s ease-in-out;
+  background: $white;
+  height: 510px;
+  width: 80%;
+  left: 0;
+  top: 60px;
+  z-index: 98;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -ms-flex-line-pack: start;
+  align-content: flex-start;
+  color: #65707E;
+}
+
+.safeDrawerMenu::before {
+  content: "";
+  transform: translateX(600px);
+  transition: all .2s ease-in-out;
+  z-index: 1;
+}
+
+.safeDrawerMenu.active {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.safeDrawerMenu > li {
+  width: 100%;
+}
+
+.safeDrawerMenu > li > a > div {
+  width: 100%;
+  height: auto;
+  line-height: 1;
+  padding: 20px;
+  color: inherit;
+  font-size: 1.3em;
+  font-weight: 400;
+  box-sizing: border-box;
+  transition: background .2s ease-in-out;
+  cursor: pointer;
+}
+
+.safeDrawerMenu > li:hover {
+  background: $background;
+}
+
+.safeDrawerMenu > li > a {
+  color: $grey;
+  text-decoration: none;
+}
+
+.safeDrawerMenu > li > a > div[data-menu]::before {
+  content: "";
+  display: inline-block;
+  margin: 0 10px 2px 0;
+  height: 16px;
+  width: 16px;
+  vertical-align: middle;
+}
+
+.safeDrawerMenu > li > a > div[data-menu=whitelist]::before {
+  background: url(./assets/menu_whitelist.svg) center/contain no-repeat;
+}
+
+.safeDrawerMenu > li > a > div[data-menu=timeout]::before {
+  background: url(./assets/menu_timeout.svg) center/contain no-repeat;
+}
+
+.safeDrawerMenu > li > a > div[data-menu=password]::before {
+  background: url(./assets/menu_password.svg) center/contain no-repeat;
+}
+
+.safeDrawerMenu > li > a > div[data-menu=resync]::before {
+  background: url(./assets/menu_resync.svg) center/contain no-repeat;
+}
+
+.safeDrawerMenu > li > a > div[data-menu=replace-recovery-phrase]::before {
+  background: url(./assets/menu_replace_recovery_phrase.svg) center/contain no-repeat;
+}
+
+.safeDrawerMenu > li > a > div[data-menu=payment-token]::before {
+  background: url(./assets/menu_card.svg) center/contain no-repeat;
+  float: left;
+  margin: 6px 10px 0 0;
+}
+
+.safeDrawerMenu > li > a > div[data-menu=payment-token] > .descriptive-menu-entry {
+  display: flex;
+  flex-direction: column;
+}
+
+.safeDrawerMenu > li > a > div[data-menu=payment-token] > .descriptive-menu-entry > .token {
+  margin-top: 2px;
+  color: $darkGrey;
+}
+
+.safeDrawerMenu > li > a > div[data-menu=about]::before {
+  background: url(./assets/menu_about.svg) center/contain no-repeat;
+}

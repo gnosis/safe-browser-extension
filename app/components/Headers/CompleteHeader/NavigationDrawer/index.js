@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
@@ -21,13 +21,12 @@ import {
   REPLACE_RECOVERY_PRASE,
   PAYMENT_TOKEN
 } from '../../../../../config/messages'
-import styles from 'assets/css/global.css'
+import styles from './style.css'
 
 const cx = classNames.bind(styles)
 
-class NavigationDrawer extends Component {
-  passwordProtection = (url) => {
-    const { account } = this.props
+const NavigationDrawer = ({ account, showMenu, toggleMenu, transactions }) => {
+  const passwordProtection = (url) => {
     const protectedUrl = account.lockedState
       ? {
           pathname: PASSWORD_URL,
@@ -39,79 +38,75 @@ class NavigationDrawer extends Component {
     return protectedUrl
   }
 
-  render() {
-    const { showMenu, toggleMenu, transactions } = this.props
+  const changePasswordUrl = passwordProtection(CHANGE_PASSWORD_URL)
+  const resyncTokenUrl = passwordProtection(RESYNC_TOKEN_URL)
+  const replaceRecoveryPhraseUrl = passwordProtection(
+    REPLACE_RECOVERY_PHRASE_URL
+  )
 
-    const changePasswordUrl = this.passwordProtection(CHANGE_PASSWORD_URL)
-    const resyncTokenUrl = this.passwordProtection(RESYNC_TOKEN_URL)
-    const replaceRecoveryPhraseUrl = this.passwordProtection(
-      REPLACE_RECOVERY_PHRASE_URL
-    )
+  const paymentTokenDetail =
+    transactions.paymentToken && transactions.paymentToken.symbol
+      ? transactions.paymentToken.symbol.toUpperCase() +
+        ' (' +
+        transactions.paymentToken.name +
+        ')'
+      : 'ETH (Ether)'
 
-    const paymentTokenDetail =
-      transactions.paymentToken && transactions.paymentToken.symbol
-        ? transactions.paymentToken.symbol.toUpperCase() +
-          ' (' +
-          transactions.paymentToken.name +
-          ')'
-        : 'ETH (Ether)'
-
-    return (
-      <React.Fragment>
-        <div
-          className={cx(
-            styles.safeDrawerMenuBackground,
-            showMenu && styles.active
-          )}
-          onClick={toggleMenu}
-        />
-        <ul className={cx(styles.safeDrawerMenu, showMenu && styles.active)}>
-          <li>
-            <Link to={WHITELIST_URL}>
-              <div data-menu="whitelist">{MANAGE_SITES_WHITELIST}</div>
-            </Link>
-          </li>
-          <li>
-            <Link to={LOCKING_URL}>
-              <div data-menu="timeout">{SET_LOCK_TIMEOUT}</div>
-            </Link>
-          </li>
-          <li>
-            <Link to={changePasswordUrl}>
-              <div data-menu="password">{CHANGE_PASSWORD}</div>
-            </Link>
-          </li>
-          <li>
-            <Link to={resyncTokenUrl}>
-              <div data-menu="resync">{RESYNC_WITH_MOBILE_APP}</div>
-            </Link>
-          </li>
-          <li>
-            <Link to={replaceRecoveryPhraseUrl}>
-              <div data-menu="replace-recovery-phrase">
-                {REPLACE_RECOVERY_PRASE}
+  return (
+    <React.Fragment>
+      <div
+        className={cx(
+          styles.safeDrawerMenuBackground,
+          showMenu && styles.active
+        )}
+        onClick={toggleMenu}
+      />
+      <ul className={cx(styles.safeDrawerMenu, showMenu && styles.active)}>
+        <li>
+          <Link to={WHITELIST_URL}>
+            <div data-menu="whitelist">{MANAGE_SITES_WHITELIST}</div>
+          </Link>
+        </li>
+        <li>
+          <Link to={LOCKING_URL}>
+            <div data-menu="timeout">{SET_LOCK_TIMEOUT}</div>
+          </Link>
+        </li>
+        <li>
+          <Link to={changePasswordUrl}>
+            <div data-menu="password">{CHANGE_PASSWORD}</div>
+          </Link>
+        </li>
+        <li>
+          <Link to={resyncTokenUrl}>
+            <div data-menu="resync">{RESYNC_WITH_MOBILE_APP}</div>
+          </Link>
+        </li>
+        <li>
+          <Link to={replaceRecoveryPhraseUrl}>
+            <div data-menu="replace-recovery-phrase">
+              {REPLACE_RECOVERY_PRASE}
+            </div>
+          </Link>
+        </li>
+        <li>
+          <Link to={PAYMENT_TOKEN_URL}>
+            <div data-menu="payment-token">
+              <div className={styles.descriptiveMenuEntry}>
+                <div>{PAYMENT_TOKEN}</div>
+                <div className={styles.token}>{paymentTokenDetail}</div>
               </div>
-            </Link>
-          </li>
-          <li>
-            <Link to={PAYMENT_TOKEN_URL}>
-              <div data-menu="payment-token">
-                <div className={styles.descriptiveMenuEntry}>
-                  <div>{PAYMENT_TOKEN}</div>
-                  <div className={styles.token}>{paymentTokenDetail}</div>
-                </div>
-              </div>
-            </Link>
-          </li>
-          <li>
-            <Link to={ABOUT_URL}>
-              <div data-menu="about">{ABOUT}</div>
-            </Link>
-          </li>
-        </ul>
-      </React.Fragment>
-    )
-  }
+            </div>
+          </Link>
+        </li>
+        <li>
+          <Link to={ABOUT_URL}>
+            <div data-menu="about">{ABOUT}</div>
+          </Link>
+        </li>
+      </ul>
+    </React.Fragment>
+  )
 }
 
 const mapStateToProps = ({ account, transactions }, props) => {
