@@ -62,16 +62,9 @@ class PairingProcess extends Component {
   }
 
   render() {
-    const { toggleQr } = this.props
     const { message } = this.state
 
-    return (
-      <Layout
-        qrPairingRef={this.qrPairingRef}
-        toggleQr={toggleQr}
-        message={message}
-      />
-    )
+    return <Layout qrPairingRef={this.qrPairingRef} message={message} />
   }
 }
 

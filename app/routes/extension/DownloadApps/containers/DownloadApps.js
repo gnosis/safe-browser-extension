@@ -9,21 +9,18 @@ import {
   createAccountFromMnemonic
 } from '../components/PairingProcess/containers/pairEthAccount'
 import Layout from '../components/Layout'
-import actions from './actions'
 import { ACCOUNT_URL } from 'routes/routes'
+import actions from './actions'
+import { getAndroidAppUrl, getIosAppUrl } from '../../../../../config'
 
 class DownloadApps extends Component {
   constructor(props) {
     super(props)
+
     const { safes } = this.props
-
     this.pairedSafes = safes.safes.length
-
-    this.state = {
-      showQrAndroid: false,
-      showQrIos: false,
-      showQrPairing: false
-    }
+    const iosAppUrl = getIosAppUrl()
+    const androidAppUrl = getAndroidAppUrl()
 
     const { location } = this.props
     const validPassword = location && location.state && location.state.password
@@ -53,50 +50,27 @@ class DownloadApps extends Component {
     )
   }
 
-  toggleQrAndroid = () => {
-    this.setState((prevState) => {
-      if (!prevState.showQrAndroid) {
-        ga([
-          '_trackEvent',
-          ONBOARDING,
-          'click-download-android-app',
-          'Download Android app'
-        ])
-      }
-      return { showQrAndroid: !prevState.showQrAndroid }
-    })
+  openGooglePlay = (e) => {
+    chrome.tabs.create({ url: this.androidAppUrl })
+    ga([
+      '_trackEvent',
+      ONBOARDING,
+      'click-download-android-app',
+      'Download Android app'
+    ])
   }
 
-  toggleQrIos = () => {
-    this.setState((prevState) => {
-      if (!prevState.showQrIos) {
-        ga([
-          '_trackEvent',
-          ONBOARDING,
-          'click-download-iphone-app',
-          'Download iPhone app'
-        ])
-      }
-      return { showQrIos: !prevState.showQrIos }
-    })
-  }
-
-  toggleQrPairing = () => {
-    this.setState((prevState) => {
-      if (!prevState.showQrPairing) {
-        ga([
-          '_trackEvent',
-          ONBOARDING,
-          'click-show-pairing-qr-code',
-          'Show pairing QR-code'
-        ])
-      }
-      return { showQrPairing: !prevState.showQrPairing }
-    })
+  openAppStore = (e) => {
+    chrome.tabs.create({ url: this.iosAppUrl })
+    ga([
+      '_trackEvent',
+      ONBOARDING,
+      'click-download-iphone-app',
+      'Download iPhone app'
+    ])
   }
 
   render() {
-    const { showQrAndroid, showQrIos, showQrPairing } = this.state
     const { safes, location } = this.props
 
     if (safes !== null && safes.safes.length > this.pairedSafes) {
@@ -104,14 +78,11 @@ class DownloadApps extends Component {
     }
     return (
       <Layout
-        toggleQrAndroid={this.toggleQrAndroid}
-        toggleQrIos={this.toggleQrIos}
-        toggleQrPairing={this.toggleQrPairing}
-        showQrAndroid={showQrAndroid}
-        showQrIos={showQrIos}
-        showQrPairing={showQrPairing}
         password={this.password}
         location={location}
+        openGooglePlay={this.openGooglePlay}
+        openAppStore={this.openAppStore}
+        iosAppUrl={this.iosAppUrl}
       />
     )
   }

@@ -346,17 +346,7 @@ form{
       right:-8%
   }
 }
-.start .content{
-  max-width:51em;
-  width:100%;
-  margin:5em auto 0;
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-wrap:wrap;
-  flex-wrap:wrap;
-  -ms-flex-pack:center;
-  justify-content:center
-}
+
 .blockAccess .overlayPage {
   background:#f4f5f9;
   padding: 30px;
@@ -1243,96 +1233,7 @@ form>.whitelist-form input {
   vertical-align:middle
 }
 
-.appConnect{
-  background:#F4F5F9
-}
-.appConnect .extension-inner h1{
-  background:#fff;
-  box-shadow:0 2px 2px 0 rgba(0,0,0,.12);
-  padding:1.4em 0;
-  font-size:1.7em;
-  margin:0 auto 1em
-}
-.appConnect .extension-inner ol{
-  list-style:none;
-  position:relative
-}
-.appConnect .extension-inner ol>li{
-  counter-increment:item;
-  position:relative;
-  padding:0 2em 0 5em;
-  margin:0 0 3em;
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-wrap:wrap;
-  flex-wrap:wrap;
-  -ms-flex-align:start;
-  align-items:flex-start;
-  -ms-flex-pack:start;
-  justify-content:flex-start
-}
-.appConnect .extension-inner ol>li::before{
-  margin-right:10px;
-  content:counter(item);
-  color:#65707e;
-  background:0 0;
-  width:2.3em;
-  text-align:center;
-  display:block;
-  border-radius:100%;
-  height:2.3em;
-  border:1px solid #a2a8ba;
-  line-height:2.2em;
-  font-size:1.5em;
-  box-sizing:border-box;
-  padding:0;
-  font-weight:700;
-  position:absolute;
-  top:1em;
-  left:0
-}
-.appConnect .extension-inner ol>li p{
-  font-size:1.4em
-}
-.appConnect .extension-inner ol>li>button{
-  -ms-flex:0 1 auto;
-  flex:0 1 auto;
-  margin:0;
-  outline:0
-}
-.appConnect .extension-inner ol>li>button[data-os]{
-  background:0 0;
-  border:0;
-  font-size:1.3em;
-  font-weight:700;
-  color:#333;
-  cursor:pointer;
-  will-change:transform;
-  transition:transform .3s ease-in-out
-}
-.appConnect .extension-inner ol>li>button[data-os]:first-of-type{
-  margin:0 2em 0 0
-}
-.appConnect .extension-inner ol>li>button[data-os]:hover{
-  transform:scale3D(1.05,1.05,1.05)
-}
-.appConnect .extension-inner ol>li>button[data-os]::before{
-  width:30px;
-  height:30px;
-  display:block;
-  margin:0 auto .5em
-}
-.appConnect .extension-inner ol>li>button[data-os=ios]::before{
-  content:"";
-  background:url(../images/ios.svg) center/contain no-repeat
-}
-.appConnect .extension-inner ol>li>button[data-os=android]::before{
-  content:"";
-  background:url(../images/android.svg) center/contain no-repeat
-}
-.appConnect .extension-inner ol p{
-  text-align:left
-}
+
 .safeOverview{
   background:#F4F5F9
 }
