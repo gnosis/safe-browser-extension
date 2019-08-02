@@ -283,5 +283,11 @@
   },
   "slogan": {
     "message": "The most secure way to manage your crypto funds"
+  },
+  "whitelisted_site": {
+    "message": "Whitelisted"
+  },
+  "restricted_site": {
+    "message": "Restricted Site"
   }
 }

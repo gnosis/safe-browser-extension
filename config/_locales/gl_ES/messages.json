@@ -283,5 +283,11 @@
   },
   "slogan": {
     "message": "A forma máis segura de xestionar as túas criptomonedas"
+  },
+  "whitelisted_site": {
+    "message": "Web permitida"
+  },
+  "restricted_site": {
+    "message": "Web restrinxida"
   }
 }
