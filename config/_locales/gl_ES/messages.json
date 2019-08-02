@@ -150,25 +150,10 @@
     "message": "Authenticator configurado correctamente!<br /><strong>Conéctao coa aplicación móbil</strong>"
   },
   "download_mobile_app": {
-    "message": "Descarga e instala a aplicación móbil"
-  },
-  "iphone_and_ipad": {
-    "message": "iPhone e iPad"
-  },
-  "android": {
-    "message": "Android"
+    "message": "1. Descarga e instala a aplicación móbil"
   },
   "connect_extension_explanation": {
-    "message": "Conecta o Authenticator coa aplicación móbil escaneando o código QR"
-  },
-  "show_qr_code": {
-    "message": "Amosar código QR"
-  },
-  "show_qr_code_description": {
-    "message": "Escanea o código QR cando se solicite na aplicación móbil"
-  },
-  "browser_extension": {
-    "message": "Authenticator"
+    "message": "2. Conecta o Authenticator coa aplicación móbil escaneando o código QR"
   },
   "safe_for_ios": {
     "message": "Gnosis Safe<br />para iOS"
@@ -282,7 +267,7 @@
     "message": "Estás a asinar"
   },
   "ios_replace_recovery_phrase": {
-    "message": "Substituír a clave de recuperación"
+    "message": "Substituír a clave\\nde recuperación"
   },
   "request_initiated_by_Safe": {
     "message": "Esta transacción foi iniciada pola aplicación móbil Gnosis Safe. Se confirmas, a aplicación móbil asinará esta mensaxe."

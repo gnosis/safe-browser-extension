@@ -150,25 +150,10 @@
     "message": "Authenticator setup succesfully!<br /><strong>Connect with the mobile app.</strong>"
   },
   "download_mobile_app": {
-    "message": "Download & install the mobile app"
-  },
-  "iphone_and_ipad": {
-    "message": "iPhone & iPad"
-  },
-  "android": {
-    "message": "Android"
+    "message": "1. Download & install the mobile app"
   },
   "connect_extension_explanation": {
-    "message": "Connect the Authenticator with mobile app by scanning the QR code"
-  },
-  "show_qr_code": {
-    "message": "Show QR code"
-  },
-  "show_qr_code_description": {
-    "message": "Scan the QR code below when requested in the mobile app"
-  },
-  "browser_extension": {
-    "message": "Authenticator"
+    "message": "2. Connect the Authenticator with the mobile app by scanning the QR code"
   },
   "safe_for_ios": {
     "message": "Gnosis Safe<br />for iOS "

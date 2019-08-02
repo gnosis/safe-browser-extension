@@ -150,25 +150,10 @@
     "message": "확장 프로그램이 성공적으로 설치되었습니다!<br /> <strong>모바일 앱과 연결하세요.</strong>"
   },
   "download_mobile_app": {
-    "message": "모바일 앱 다운로드 및 설치"
-  },
-  "iphone_and_ipad": {
-    "message": "아이폰 및 아이패드"
-  },
-  "android": {
-    "message": "안드로이드"
+    "message": "1. 모바일 앱 다운로드 및 설치"
   },
   "connect_extension_explanation": {
-    "message": "QR 코드를 스캔하여 확장 프로그램과 모바일 앱을 연결하세요"
-  },
-  "show_qr_code": {
-    "message": "QR 코드 스캔하기"
-  },
-  "show_qr_code_description": {
-    "message": "모바일 앱에서 요청 시 아래 QR 코드를 스캔하세요"
-  },
-  "browser_extension": {
-    "message": "브라우저 확장 기능"
+    "message": "2. QR 코드를 스캔하여 확장 프로그램과 모바일 앱을 연결하세요"
   },
   "safe_for_ios": {
     "message": "Gnosis Safe<br />(iOS)"

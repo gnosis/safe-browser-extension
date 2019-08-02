@@ -69,25 +69,10 @@
     "message": "Extensie setup succesvol! <br /> <strong> Verbinden met de mobiele app. </strong>"
   },
   "download_mobile_app": {
-    "message": "Download & installeer de mobiele app"
-  },
-  "iphone_and_ipad": {
-    "message": "iPhone & iPad"
-  },
-  "android": {
-    "message": "Android"
+    "message": "1. Download & installeer de mobiele app"
   },
   "connect_extension_explanation": {
-    "message": "Verbind de extensie met de mobiele app door de QR-code te scannen"
-  },
-  "show_qr_code": {
-    "message": "QR-code weergeven"
-  },
-  "show_qr_code_description": {
-    "message": "Scan onderstaande QR-code wanneer hierom wordt gevraagd in de mobiele app"
-  },
-  "browser_extension": {
-    "message": "Authenticator"
+    "message": "2. Verbind de extensie met de mobiele app door de QR-code te scannen"
   },
   "safe_for_ios": {
     "message": "Gnosis Safe <br /> voor iOS"

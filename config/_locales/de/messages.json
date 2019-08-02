@@ -150,25 +150,10 @@
     "message": "Extension erfolgreich aufgesetzt!<br /><strong>Mit der App verbinden.</strong>"
   },
   "download_mobile_app": {
-    "message": "Lade & installiere die App"
-  },
-  "iphone_and_ipad": {
-    "message": "iPhone & iPad"
-  },
-  "android": {
-    "message": "Android"
+    "message": "1. Lade & installiere die App"
   },
   "connect_extension_explanation": {
-    "message": "Verbinde die Browser-Extension mit der App, indem du den QR-Code scannst"
-  },
-  "show_qr_code": {
-    "message": "QR-Code anzeigen"
-  },
-  "show_qr_code_description": {
-    "message": "Scanne den QR-Code unten, sobald die App dich dazu auffordert"
-  },
-  "browser_extension": {
-    "message": "Authenticator"
+    "message": "2. Verbinde die Browser-Extension mit der App, indem du den QR-Code scannst"
   },
   "safe_for_ios": {
     "message": "Gnosis Safe<br />für iOS"

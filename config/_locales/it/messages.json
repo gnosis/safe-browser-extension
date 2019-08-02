@@ -150,25 +150,10 @@
     "message": "Authenticator configurato correttamente!<br /><strong>Collegalo all'applicazione mobile.</strong>"
   },
   "download_mobile_app": {
-    "message": "Scarica e installa l'applicazione mobile"
-  },
-  "iphone_and_ipad": {
-    "message": "iPhone e iPad"
-  },
-  "android": {
-    "message": "Android"
+    "message": "1. Scarica e installa l'applicazione mobile"
   },
   "connect_extension_explanation": {
-    "message": "Collega l'Authenticator con l'app mobile eseguendo la scansione del codice QR"
-  },
-  "show_qr_code": {
-    "message": "Mostra il codice QR"
-  },
-  "show_qr_code_description": {
-    "message": "Scansiona il codice QR qui sotto quando richiesto nell'app mobile"
-  },
-  "browser_extension": {
-    "message": "Authenticator"
+    "message": "2. Collega l'Authenticator con l'app mobile eseguendo la scansione del codice QR"
   },
   "safe_for_ios": {
     "message": "Gnosis Safe<br />per iOS"
@@ -241,6 +226,9 @@
   },
   "check_internet_connection": {
     "message": "Per favore, controlla la tua connessione!"
+  },
+  "review_terms": {
+    "message": "Continuando accetti e acconsenti i <a href='https://safe.gnosis.io/terms' target='_blank'>Termini di utilizzo</a> e l'<a href='https://safe.gnosis.io/privacy' target='_blank'>Informativa sulla privacy</a>."
   },
   "back": {
     "message": "Indietro"
