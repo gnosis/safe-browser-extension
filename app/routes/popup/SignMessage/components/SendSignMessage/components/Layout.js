@@ -12,23 +12,17 @@ class Layout extends Component {
       reviewedSignature,
       seconds,
       handleConfirmSignMessage,
-      handleRejectSignMessage,
-      retryShowSignMessage
+      handleRejectSignMessage
     } = this.props
 
     return (
       <React.Fragment>
-        {loadedData === false && (
-          <RetryLoadDataTransactionState
-            retryShowElement={retryShowSignMessage}
-          />
-        )}
         {loadedData && (
           <React.Fragment>
             {reviewedSignature ? (
               <SendTransactionState
                 seconds={seconds}
-                handleConfirmTransaction={handleConfirmSignMessage}
+                handleConfirmation={handleConfirmSignMessage}
               />
             ) : (
               <FooterButtons

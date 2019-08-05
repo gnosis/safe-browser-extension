@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 
 import FooterButtons from 'components/Footers/FooterButtons/containers'
 import SendTransactionState from 'components/Popup/TransactionState/SendTransactionState'
-import RetryLoadDataTransactionState from 'components/Popup/TransactionState/RetryLoadDataTransactionState'
 import { TRANSACTION_URL } from 'routes/routes'
 import { REJECT, CONFIRM } from '../../../../../../../config/messages'
 
@@ -14,22 +13,16 @@ class Layout extends Component {
       seconds,
       handleConfirmTransaction,
       handleRejectTransaction,
-      retryShowTransaction
     } = this.props
 
     return (
       <React.Fragment>
-        {loadedData === false && (
-          <RetryLoadDataTransactionState
-            retryShowElement={retryShowTransaction}
-          />
-        )}
         {loadedData && (
           <React.Fragment>
             {reviewedTx ? (
               <SendTransactionState
                 seconds={seconds}
-                retryShowElement={handleConfirmTransaction}
+                handleConfirmation={handleConfirmTransaction}
               />
             ) : (
               <FooterButtons

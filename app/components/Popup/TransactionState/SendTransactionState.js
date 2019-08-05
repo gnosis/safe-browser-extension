@@ -13,7 +13,7 @@ import {
 
 const cx = classNames.bind(styles)
 
-const SendTransactionState = ({ seconds, handleConfirmTransaction }) => {
+const SendTransactionState = ({ seconds, handleConfirmation }) => {
   const time =
     seconds < 10 ? '00:0' + seconds.toString() : '00:' + seconds.toString()
   const waitingTime = REQUEST_CONFIRMATION_WAIT_X_S.toString().replace(
@@ -41,7 +41,7 @@ const SendTransactionState = ({ seconds, handleConfirmTransaction }) => {
               <button
                 className={cx(styles.button, styles.white)}
                 disabled={seconds > 0}
-                onClick={handleConfirmTransaction}
+                onClick={handleConfirmation}
               >
                 {REQUEST_CONFIRMATION}
               </button>

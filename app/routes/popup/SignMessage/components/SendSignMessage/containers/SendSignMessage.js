@@ -23,7 +23,7 @@ import Layout from '../components/Layout'
 class SendSignMessage extends Component {
   constructor(props) {
     super(props)
-    this.maxSeconds = 30
+    this.maxSeconds = 5
     this.ownerSignatures = []
     this.state = {
       seconds: this.maxSeconds,
@@ -184,12 +184,6 @@ class SendSignMessage extends Component {
     return
   }
 
-  retryShowSignMessage = () => {
-    const { showSignMessage } = this.props
-
-    showSignMessage()
-  }
-
   startCountdown = () => {
     this.timer = setInterval(this.countDown, 1000)
   }
@@ -221,7 +215,6 @@ class SendSignMessage extends Component {
         seconds={seconds}
         handleConfirmSignMessage={this.handleConfirmSignMessage}
         handleRejectSignMessage={this.handleRejectSignMessage}
-        retryShowSignMessage={this.retryShowSignMessage}
       />
     )
   }

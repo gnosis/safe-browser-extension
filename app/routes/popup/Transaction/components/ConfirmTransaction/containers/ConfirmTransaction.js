@@ -80,12 +80,6 @@ class ConfirmTransaction extends Component {
     showTransaction(position)
   }
 
-  retryShowTransaction = () => {
-    const { transactionNumber, showTransaction } = this.props
-
-    showTransaction(transactionNumber)
-  }
-
   render() {
     const { lockedAccount, loadedData, reviewedTx } = this.props
 
@@ -96,7 +90,6 @@ class ConfirmTransaction extends Component {
         reviewedTx={reviewedTx}
         handleConfirmTransaction={this.handleConfirmTransaction}
         handleRejectTransaction={this.handleRejectTransaction}
-        retryShowTransaction={this.retryShowTransaction}
       />
     )
   }

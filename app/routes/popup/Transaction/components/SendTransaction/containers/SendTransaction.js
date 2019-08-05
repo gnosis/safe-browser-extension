@@ -13,7 +13,7 @@ import messages from '../../../../../../../extension/utils/messages'
 class SendTransaction extends Component {
   constructor(props) {
     super(props)
-    this.maxSeconds = 30
+    this.maxSeconds = 5
     this.state = {
       seconds: this.maxSeconds
     }
@@ -108,12 +108,6 @@ class SendTransaction extends Component {
     showTransaction(position)
   }
 
-  retryShowTransaction = () => {
-    const { transactionNumber, showTransaction } = this.props
-
-    showTransaction(transactionNumber)
-  }
-
   startCountdown = () => {
     this.timer = setInterval(this.countDown, 1000)
   }
@@ -145,7 +139,6 @@ class SendTransaction extends Component {
         seconds={seconds}
         handleConfirmTransaction={this.handleConfirmTransaction}
         handleRejectTransaction={this.handleRejectTransaction}
-        retryShowTransaction={this.retryShowTransaction}
       />
     )
   }
