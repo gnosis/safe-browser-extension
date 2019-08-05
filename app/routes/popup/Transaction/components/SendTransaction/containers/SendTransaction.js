@@ -13,7 +13,7 @@ import messages from '../../../../../../../extension/utils/messages'
 class SendTransaction extends Component {
   constructor(props) {
     super(props)
-    this.maxSeconds = 5
+    this.maxSeconds = 30
     this.state = {
       seconds: this.maxSeconds
     }

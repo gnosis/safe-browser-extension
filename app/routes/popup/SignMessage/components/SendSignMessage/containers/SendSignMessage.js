@@ -23,7 +23,7 @@ import Layout from '../components/Layout'
 class SendSignMessage extends Component {
   constructor(props) {
     super(props)
-    this.maxSeconds = 5
+    this.maxSeconds = 30
     this.ownerSignatures = []
     this.state = {
       seconds: this.maxSeconds,
