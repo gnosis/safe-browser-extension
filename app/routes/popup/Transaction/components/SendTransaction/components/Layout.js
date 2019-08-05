@@ -8,11 +8,12 @@ import { REJECT, CONFIRM } from '../../../../../../../config/messages'
 class Layout extends Component {
   render() {
     const {
+      lockedAccount,
       loadedData,
       reviewedTx,
       seconds,
       handleConfirmTransaction,
-      handleRejectTransaction,
+      handleRejectTransaction
     } = this.props
 
     return (
@@ -22,11 +23,14 @@ class Layout extends Component {
             {reviewedTx ? (
               <SendTransactionState
                 seconds={seconds}
+                lockedAccount={lockedAccount}
                 handleConfirmation={handleConfirmTransaction}
+                nextUrl={TRANSACTION_URL}
               />
             ) : (
               <FooterButtons
                 nextUrl={TRANSACTION_URL}
+                lockedAccount={lockedAccount}
                 rejectionText={REJECT}
                 confirmationText={CONFIRM}
                 handleRejection={handleRejectTransaction}

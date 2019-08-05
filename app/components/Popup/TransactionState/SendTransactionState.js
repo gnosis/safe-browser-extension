@@ -1,56 +1,90 @@
-import React from 'react'
+import React, { Component } from 'react'
 import classNames from 'classnames/bind'
 import Network from 'react-network'
-
+import { Redirect } from 'react-router'
 import mobileImage from 'assets/images/mobile.svg'
-import styles from 'assets/css/global.css'
+import { PASSWORD_URL } from 'routes/routes'
 import {
   AWAITING_CONFIRMATIONS,
   REQUEST_CONFIRMATION,
   REQUEST_CONFIRMATION_WAIT_X_S,
   CONFIRM_WITH_MOBILE
 } from '../../../../config/messages'
+import styles from 'assets/css/global.css'
 
 const cx = classNames.bind(styles)
 
-const SendTransactionState = ({ seconds, handleConfirmation }) => {
-  const time =
-    seconds < 10 ? '00:0' + seconds.toString() : '00:' + seconds.toString()
-  const waitingTime = REQUEST_CONFIRMATION_WAIT_X_S.toString().replace(
-    '%s',
-    time
-  )
+class SendTransactionState extends Component {
+  constructor(props) {
+    super(props)
 
-  return (
-    <div className={cx(styles.transactionState)}>
-      <span className={styles.await}>
-        <p>{AWAITING_CONFIRMATIONS}</p>
-        <div className={styles.progress}>
-          <div className={styles.indeterminate} />
-        </div>
-      </span>
-      <span className={styles.message}>
-        <img src={mobileImage} height="55" width="30" />
-        <p>{CONFIRM_WITH_MOBILE}</p>
-      </span>
-      <Network
-        render={({ online }) =>
-          online && (
-            <span className={styles.resend}>
-              <p>{waitingTime}</p>
-              <button
-                className={cx(styles.button, styles.white)}
-                disabled={seconds > 0}
-                onClick={handleConfirmation}
-              >
-                {REQUEST_CONFIRMATION}
-              </button>
-            </span>
-          )
+    this.state = {
+      requestResolved: false
+    }
+  }
+
+  handleConfirmation = () => {
+    const { lockedAccount, handleConfirmation } = this.props
+
+    if (lockedAccount) {
+      this.setState({ requestResolved: true })
+      return
+    }
+    handleConfirmation()
+  }
+
+  render() {
+    const { seconds, lockedAccount, nextUrl } = this.props
+    const { requestResolved } = this.state
+
+    const time =
+      seconds < 10 ? '00:0' + seconds.toString() : '00:' + seconds.toString()
+    const waitingTime = REQUEST_CONFIRMATION_WAIT_X_S.toString().replace(
+      '%s',
+      time
+    )
+
+    if (requestResolved && lockedAccount) {
+      const passwordUrl = {
+        pathname: PASSWORD_URL,
+        state: {
+          dest: nextUrl
         }
-      />
-    </div>
-  )
+      }
+      return <Redirect to={passwordUrl} />
+    }
+
+    return (
+      <div className={cx(styles.transactionState)}>
+        <span className={styles.await}>
+          <p>{AWAITING_CONFIRMATIONS}</p>
+          <div className={styles.progress}>
+            <div className={styles.indeterminate} />
+          </div>
+        </span>
+        <span className={styles.message}>
+          <img src={mobileImage} height="55" width="30" />
+          <p>{CONFIRM_WITH_MOBILE}</p>
+        </span>
+        <Network
+          render={({ online }) =>
+            online && (
+              <span className={styles.resend}>
+                <p>{waitingTime}</p>
+                <button
+                  className={cx(styles.button, styles.white)}
+                  disabled={seconds > 0}
+                  onClick={this.handleConfirmation}
+                >
+                  {REQUEST_CONFIRMATION}
+                </button>
+              </span>
+            )
+          }
+        />
+      </div>
+    )
+  }
 }
 
 export default SendTransactionState

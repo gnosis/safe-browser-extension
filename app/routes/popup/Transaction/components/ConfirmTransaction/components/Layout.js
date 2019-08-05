@@ -8,6 +8,7 @@ import { REJECT, CONFIRM } from '../../../../../../../config/messages'
 class Layout extends Component {
   render() {
     const {
+      lockedAccount,
       loadedData,
       reviewedTx,
       handleConfirmTransaction,
@@ -22,6 +23,7 @@ class Layout extends Component {
             {!reviewedTx && (
               <FooterButtons
                 nextUrl={TRANSACTION_URL}
+                lockedAccount={lockedAccount}
                 rejectionText={REJECT}
                 confirmationText={CONFIRM}
                 handleRejection={handleRejectTransaction}

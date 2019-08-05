@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import BigNumber from 'bignumber.js'
-
 import {
   getDecryptedEthAccount,
   createAccountFromMnemonic
@@ -34,8 +33,7 @@ class Transaction extends Component {
     }
 
     const { location } = this.props
-    const validPassword = location && location.state && location.state.password
-    this.password = validPassword ? location.state.password : undefined
+    this.password = location && location.state ? location.state.password : null
   }
 
   componentDidMount = () => {

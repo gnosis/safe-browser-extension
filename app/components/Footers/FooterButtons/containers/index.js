@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import { Redirect } from 'react-router'
-import { connect } from 'react-redux'
-
 import NetworkNotification from 'components/Notification/NetworkNotification'
 import styles from 'assets/css/global.css'
 import { PASSWORD_URL } from 'routes/routes'
-import selector from './selector'
 
 const cx = classNames.bind(styles)
 
@@ -21,11 +18,11 @@ class FooterButtons extends Component {
   handleRejection = () => {
     const {
       handleRejection,
-      account,
+      lockedAccount,
       rejectWithExtensionLockedAllowed
     } = this.props
 
-    if (account.lockedState && !rejectWithExtensionLockedAllowed) {
+    if (lockedAccount && !rejectWithExtensionLockedAllowed) {
       this.setState({ requestResolved: true })
     } else {
       handleRejection()
@@ -33,9 +30,9 @@ class FooterButtons extends Component {
   }
 
   handleConfirmation = () => {
-    const { handleConfirmation, account } = this.props
+    const { handleConfirmation, lockedAccount } = this.props
 
-    if (account.lockedState) {
+    if (lockedAccount) {
       this.setState({ requestResolved: true })
     } else {
       handleConfirmation()
@@ -43,10 +40,15 @@ class FooterButtons extends Component {
   }
 
   render() {
-    const { account, nextUrl, rejectionText, confirmationText } = this.props
+    const {
+      lockedAccount,
+      nextUrl,
+      rejectionText,
+      confirmationText
+    } = this.props
     const { requestResolved } = this.state
 
-    if (requestResolved && account.lockedState) {
+    if (requestResolved && lockedAccount) {
       const passwordUrl = {
         pathname: PASSWORD_URL,
         state: {
@@ -77,4 +79,4 @@ class FooterButtons extends Component {
   }
 }
 
-export default connect(selector)(FooterButtons)
+export default FooterButtons

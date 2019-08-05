@@ -19,7 +19,7 @@
     "watch": "npm run watch:dev",
     "clean": "rm -rf build",
     "test": "jest",
-    "format": "prettier --write 'app/**/*.js' 'extension/**/*.js'",
+    "format": "prettier --write app/**/*.js extension/**/*.js",
     "lokalise": "node scripts/lokalise.js"
   },
   "repository": {
