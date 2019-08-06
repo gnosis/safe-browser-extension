@@ -2,38 +2,35 @@ import React, { Component } from 'react'
 
 import FooterButtons from 'components/Footers/FooterButtons/containers'
 import SendTransactionState from 'components/Popup/TransactionState/SendTransactionState'
-import RetryLoadDataTransactionState from 'components/Popup/TransactionState/RetryLoadDataTransactionState'
 import { TRANSACTION_URL } from 'routes/routes'
 import { REJECT, CONFIRM } from '../../../../../../../config/messages'
 
 class Layout extends Component {
   render() {
     const {
+      lockedAccount,
       loadedData,
       reviewedTx,
       seconds,
       handleConfirmTransaction,
-      handleRejectTransaction,
-      retryShowTransaction
+      handleRejectTransaction
     } = this.props
 
     return (
       <React.Fragment>
-        {loadedData === false && (
-          <RetryLoadDataTransactionState
-            retryShowElement={retryShowTransaction}
-          />
-        )}
         {loadedData && (
           <React.Fragment>
             {reviewedTx ? (
               <SendTransactionState
                 seconds={seconds}
-                retryShowElement={handleConfirmTransaction}
+                lockedAccount={lockedAccount}
+                handleConfirmation={handleConfirmTransaction}
+                nextUrl={TRANSACTION_URL}
               />
             ) : (
               <FooterButtons
                 nextUrl={TRANSACTION_URL}
+                lockedAccount={lockedAccount}
                 rejectionText={REJECT}
                 confirmationText={CONFIRM}
                 handleRejection={handleRejectTransaction}

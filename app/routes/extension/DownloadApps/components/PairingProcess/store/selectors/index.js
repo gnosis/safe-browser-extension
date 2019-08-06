@@ -15,16 +15,6 @@ const existsAccount = (account) => {
 export const accountSelector = (state) => state.account
 export const safesSelector = (state) => state.safes
 
-export const hasAccountSelector = createSelector(
-  accountSelector,
-  (account) => existsAccount(account)
-)
-
-export const hasLockedAccountSelector = createSelector(
-  accountSelector,
-  (account) => existsAccount(account) && account.lockedState
-)
-
 export const selectEncryptedMnemonicSelector = createSelector(
   accountSelector,
   (account) => {

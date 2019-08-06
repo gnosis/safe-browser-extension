@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import EthUtil from 'ethereumjs-util'
-
 import { ga } from 'utils/analytics'
 import { SIGNATURES } from 'utils/analytics/events'
 import messages from '../../../../../../../extension/utils/messages'
@@ -52,19 +51,21 @@ class SendSignMessage extends Component {
     }
     this.handleSignMessage()
 
-    !resend
-      ? ga([
-          '_trackEvent',
-          SIGNATURES,
-          'click-confirm-sign-typed-data-from-dapp',
-          'Confirm sign typed data from Dapp'
-        ])
-      : ga([
-          '_trackEvent',
-          SIGNATURES,
-          'click-re-send-sign-typed-data-from-dapp',
-          'Re-send sign typed data from Dapp'
-        ])
+    if (!resend) {
+      ga([
+        '_trackEvent',
+        SIGNATURES,
+        'click-confirm-sign-typed-data-from-dapp',
+        'Confirm sign typed data from Dapp'
+      ])
+      return
+    }
+    ga([
+      '_trackEvent',
+      SIGNATURES,
+      'click-re-send-sign-typed-data-from-dapp',
+      'Re-send sign typed data from Dapp'
+    ])
   }
 
   handleRejectSignMessage = async () => {
@@ -184,12 +185,6 @@ class SendSignMessage extends Component {
     return
   }
 
-  retryShowSignMessage = () => {
-    const { showSignMessage } = this.props
-
-    showSignMessage()
-  }
-
   startCountdown = () => {
     this.timer = setInterval(this.countDown, 1000)
   }
@@ -221,7 +216,6 @@ class SendSignMessage extends Component {
         seconds={seconds}
         handleConfirmSignMessage={this.handleConfirmSignMessage}
         handleRejectSignMessage={this.handleRejectSignMessage}
-        retryShowSignMessage={this.retryShowSignMessage}
       />
     )
   }
