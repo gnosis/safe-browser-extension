@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 import CryptoJs from 'crypto-js'
@@ -11,59 +11,42 @@ import selector from './selector'
 import messages from '../../../../../extension/utils/messages'
 import { ACCOUNT_URL } from 'routes/routes'
 
-class ChangePassword extends Component {
-  constructor(props) {
-    super(props)
+const ChangePassword = ({
+  selectUnencryptedMnemonic,
+  selectEncryptedMnemonic,
+  onUpdateMasterPassword,
+  location
+}) => {
+  const [newPassword, setNewPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [createPasswordReady, setCreatePasswordReady] = useState(false)
+  const [confirmPasswordReady, setConfirmPasswordReady] = useState(false)
+  const [redirectToAccount, setRedirectToAccount] = useState(false)
 
-    this.state = {
-      newPassword: '',
-      confirmPassword: '',
-      createPasswordReady: false,
-      confirmPasswordReady: false,
-      redirectToAccount: false
-    }
+  const validPassword = location && location.state && location.state.password
+  const oldPassword = validPassword ? location.state.password : undefined
 
-    const { location } = this.props
-    const validPassword = location && location.state && location.state.password
-    this.oldPassword = validPassword ? location.state.password : undefined
+  const manageCreatePassword = (newPassword, createPasswordReady) => {
+    setNewPassword(newPassword)
+    setCreatePasswordReady(createPasswordReady)
+    setConfirmPasswordReady(newPassword !== '' && newPassword === confirmPassword)
   }
 
-  manageCreatePassword = (newPassword, createPasswordReady) => {
-    const { confirmPassword } = this.state
-    this.setState({
-      newPassword,
-      createPasswordReady,
-      confirmPasswordReady:
-        newPassword !== '' && newPassword === confirmPassword
-    })
+  const manageConfirmPassword = (confirmPassword) => {
+    setConfirmPassword(confirmPassword)
+    setConfirmPasswordReady(newPassword !== '' && newPassword === confirmPassword)
   }
 
-  manageConfirmPassword = (confirmPassword) => {
-    const { newPassword } = this.state
-    this.setState({
-      confirmPassword,
-      confirmPasswordReady:
-        newPassword !== '' && newPassword === confirmPassword
-    })
-  }
-
-  updateMasterPassword = () => {
-    const { selectUnencryptedMnemonic, selectEncryptedMnemonic } = this.props
-    const {
-      newPassword,
-      createPasswordReady,
-      confirmPasswordReady
-    } = this.state
-
+  const updateMasterPassword = () => {
     if (!createPasswordReady || !confirmPasswordReady) {
       return
     }
 
     let mnemonic
-    if (this.oldPassword && selectEncryptedMnemonic) {
+    if (oldPassword && selectEncryptedMnemonic) {
       mnemonic = CryptoJs.AES.decrypt(
         selectEncryptedMnemonic,
-        this.oldPassword
+        oldPassword
       ).toString(CryptoJs.enc.Utf8)
     } else if (selectUnencryptedMnemonic) {
       mnemonic = selectUnencryptedMnemonic
@@ -82,34 +65,25 @@ class ChangePassword extends Component {
       'Change password'
     ])
 
-    this.props.onUpdateMasterPassword(encryptedMnemonic, hmac)
-    this.setState({ redirectToAccount: true })
+    onUpdateMasterPassword(encryptedMnemonic, hmac)
+    setRedirectToAccount(true)
   }
 
-  render() {
-    const {
-      newPassword,
-      confirmPassword,
-      redirectToAccount,
-      createPasswordReady,
-      confirmPasswordReady
-    } = this.state
-    if (redirectToAccount) {
-      return <Redirect to={ACCOUNT_URL} />
-    }
-    return (
-      <Layout
-        newPassword={newPassword}
-        confirmPassword={confirmPassword}
-        manageCreatePassword={this.manageCreatePassword}
-        manageConfirmPassword={this.manageConfirmPassword}
-        updateMasterPassword={this.updateMasterPassword}
-        confirmPasswordReady={confirmPasswordReady}
-        createPasswordReady={createPasswordReady}
-        location={this.props.location}
-      />
-    )
+  if (redirectToAccount) {
+    return <Redirect to={ACCOUNT_URL} />
   }
+  return (
+    <Layout
+      newPassword={newPassword}
+      confirmPassword={confirmPassword}
+      manageCreatePassword={manageCreatePassword}
+      manageConfirmPassword={manageConfirmPassword}
+      updateMasterPassword={updateMasterPassword}
+      confirmPasswordReady={confirmPasswordReady}
+      createPasswordReady={createPasswordReady}
+      location={location}
+    />
+  )
 }
 
 const mapDispatchToProps = (dispatch) => {

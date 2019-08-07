@@ -1,0 +1,141 @@
+.content {
+  max-width: 51em;
+  width: 100%;
+  margin: 0 auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.innerContent {
+  background: $white;
+  border-radius: 6px;
+  box-shadow: 0 1px 5px 0 rgba(212, 212, 211, 0.59);
+  width: 100%;
+  margin: 16px;
+  text-align: center;
+  padding: 24px;
+}
+
+.contentHeader {
+  width: 100%;
+  box-sizing: border-box;
+  height: 48px;
+  padding: 0 20px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  border-bottom: 1px solid $lightGrey;
+  -ms-flex-pack: justify;
+  justify-content: flex-start;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+}
+
+.contentHeader > h2 {
+  margin: 0 0 0 16px;
+  text-align: left;
+  line-height: 1;
+  font-weight: 400;
+  font-size: 1.5em;
+  color: $darkBlue;
+}
+
+.contentHeader .btn-back {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  height: 100%;
+  pointer-events: none;
+  text-decoration: none;
+  background: url(assets/images/arrow-left-grey.svg) center/contain no-repeat;
+  width: 15px;
+  transition: transform .25s ease-in-out;
+}
+
+.contentHeader .btn-back.active {
+  pointer-events: auto;
+  background: url(assets/images/arrow-left-green.svg) center/contain no-repeat;
+}
+
+.contentHeader .btn-back.active > p {
+  color: $green;
+}
+
+.contentHeader .btn-back > p {
+  color: $green;
+  padding: 0 0 0 25px;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+.contentHeader .btn-back.active:hover {
+  transform: translateX(-2px);
+}
+
+.contentBody {
+  position: relative;
+  height: auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -ms-flex-line-pack: start;
+  align-content: flex-start;
+  width: 100%;
+}
+
+.warningPassword {
+  width: 100%;
+  background: $lightGrey;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  margin: 2em auto 0;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.warningPassword > img {
+  padding: 0 10px 15px 15px;
+  color: $grey;
+}
+
+.warningPassword > p {
+  padding: 0 25px 0 0;
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: $grey;
+  font-size: 1.2em;
+  font-weight: 400;
+  text-align: left;
+}
+
+.passwordForm {
+  width: 100%;
+  padding: 20px;
+}
+
+.confirmPassword {
+  margin: 0 0 20px 0;
+}
+
+.button {
+  width: 100%;
+  margin: 25px 0 0;
+}
