@@ -3,7 +3,7 @@ import classNames from 'classnames/bind'
 import SafesMenu from './SafesMenu/containers'
 import LockingState from './LockingState/containers'
 import NavigationDrawer from './NavigationDrawer'
-import styles from '../style.css'
+import styles from './style.css'
 
 const cx = classNames.bind(styles)
 

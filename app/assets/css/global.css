@@ -506,75 +506,11 @@ form{
 .QR>p{
   text-transform: uppercase
 }
-.lockedState{
-  position:absolute;
-  right:14px;
-  cursor:pointer;
-  transition:all .15s ease-in-out
-}
-.lockedState[data-locked]{
-  width:18px;
-  height:16px
-}
-.lockedState[data-locked=true]{
-  background:url(../images/locked.svg) center/contain no-repeat
-}
-.lockedState[data-locked=false]{
-  background:url(../images/unlocked.svg) center/contain no-repeat
-}
-.lockedState:not([data-locked=true])[data-timeout]::before{
-  content:attr(data-timeout);
-  position:absolute;
-  left:-45px;
-  top:7px;
-  font-size:1em;
-  color:#A2A8BA;
-  letter-spacing:-.5px;
-  text-align:right;
-  font-family:"Averta Mono",Courier,monospace
-}
 
-.safeTools{
-  position:absolute;
-  right:20px;
-  top:13px;
-  opacity:0;
-  visibility:hidden
-}
-.safeTools>img{
-  opacity:.7;
-  transition:opacity .3s ease-in-out
-}
-.safeTools>img:not(:last-child){
-  margin:0 20px 0 0
-}
-.safeTools>img:hover{
-  opacity:1
-}
-.safeTools .safeTools_save{
-  cursor:pointer;
-  display:none;
-  background:#fff;
-  color:#21435A;
-  font-weight:700;
-  font-size:1em;
-  letter-spacing:0;
-  border-radius:3px;
-  margin:auto;
-  height:21px;
-  line-height:1;
-  border:0;
-  -webkit-appearance:none;
-  -moz-appearance:none;
-  appearance:none
-}
-
-.
 .overlayPage,.overlayPageHeader{
   width:100%;
   box-sizing:border-box
 }
-
 
 .overlayPage{
   background:#F4F5F9;

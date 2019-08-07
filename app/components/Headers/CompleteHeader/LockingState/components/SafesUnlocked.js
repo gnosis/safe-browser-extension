@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import styles from 'assets/css/global.css'
+import styles from './style.css'
 
 class SafesUnlocked extends Component {
   constructor(props) {

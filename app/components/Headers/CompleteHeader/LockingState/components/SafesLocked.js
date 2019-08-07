@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from 'assets/css/global.css'
+import styles from './style.css'
 
 const SafesLocked = ({ handleUnlockAccount }) => (
   <span

@@ -1,8 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
-import styles from '../style.css'
-
-const cx = classNames.bind(styles)
+import styles from './style.css'
 
 const SimpleHeader = () => (
   <header className={styles.header}>
