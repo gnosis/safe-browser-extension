@@ -15,8 +15,8 @@ const Layout = ({
   currentSafe,
   currentSafeAlias,
   location,
-  openEtherScan,
-  pairingUrl
+  handleOpenEtherScan,
+  handleAddNewSafe
 }) => (
   <Page location={location} background="grey">
     <div className={styles.content}>
@@ -26,12 +26,17 @@ const Layout = ({
         <h1 className={styles.safeAddressAlias}>{currentSafeAlias}</h1>
         <Paragraph className={styles.safeAddress}>{currentSafe}</Paragraph>
       </div>
-      <Link to="#" className={styles.link} onClick={openEtherScan} externalLink>
+      <Link
+        to="#"
+        className={styles.link}
+        onClick={handleOpenEtherScan}
+        externalLink
+      >
         {VIEW_ON_ETHERSCAN}
       </Link>
-      <Link to={pairingUrl} className={styles.link}>
-        <Button className={styles.button}>{CONNECT_NEW_SAFE}</Button>
-      </Link>
+      <Button onClick={handleAddNewSafe} className={styles.button}>
+        {CONNECT_NEW_SAFE}
+      </Button>
     </div>
   </Page>
 )

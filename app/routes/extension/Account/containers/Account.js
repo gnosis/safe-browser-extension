@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 import { ga } from 'utils/analytics'
@@ -10,7 +10,19 @@ import { getNetwork } from '../../../../../config'
 import { MAINNET } from '../../../../../config/names'
 
 const Account = ({ safes, location, transactions, currentSafeAlias }) => {
-  const openEtherScan = async () => {
+  const [newSafe, setNewSafe] = useState(false)
+
+  const handleAddNewSafe = () => {
+    ga([
+      '_trackEvent',
+      SAFES,
+      'click-connect-to-new-safe',
+      'Connect to new Safe'
+    ])
+    setNewSafe(true)
+  }
+
+  const handleOpenEtherScan = async () => {
     await ga([
       '_trackEvent',
       SAFES,
@@ -41,16 +53,16 @@ const Account = ({ safes, location, transactions, currentSafeAlias }) => {
     }
   }
 
-  if (safes.currentSafe === undefined) {
+  if (newSafe || safes.currentSafe === undefined) {
     return <Redirect to={pairingUrl} />
   }
   return (
     <Layout
       currentSafe={safes.currentSafe}
       currentSafeAlias={currentSafeAlias}
-      openEtherScan={openEtherScan}
       location={location}
-      pairingUrl={pairingUrl}
+      handleOpenEtherScan={handleOpenEtherScan}
+      handleAddNewSafe={handleAddNewSafe}
     />
   )
 }
