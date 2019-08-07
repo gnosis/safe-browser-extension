@@ -14,16 +14,16 @@ class Layout extends Component {
     const { minutes, handleOptionChange, location } = this.props
 
     return (
-      <Page location={location}>
-        <div className={styles.overlayPage}>
-          <span className={styles.overlayPageHeader}>
+      <Page background="grey" location={location}>
+        <div className={styles.content}>
+          <span className={styles.contentHeader}>
             <Link
               to={ACCOUNT_URL}
               className={cx(styles.btnBack, styles.active)}
             />
             <h2>{SET_LOCK_TIMEOUT}</h2>
           </span>
-          <span className={styles.overlayPageContent}>
+          <span className={styles.bodyContent}>
             <form className={styles.timeout_items}>
               <TimeBlock
                 handleOptionChange={handleOptionChange}

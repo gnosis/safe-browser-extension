@@ -215,80 +215,7 @@ form{
   cursor:pointer;
   transition:background .3s
 }
-.md-checkbox input[type=checkbox]{
-  outline:0;
-  margin-right:18px;
-  visibility:hidden
-}
-.md-checkbox input[type=checkbox]:checked+label::before{
-  background:$green;
-  border:none
-}
-.md-checkbox input[type=checkbox]:checked+label::after{
-  transform:rotate(-45deg);
-  top:4.7px;
-  left:4px;
-  width:10px;
-  height:5px;
-  border:2px solid #fff;
-  border-top-style:none;
-  border-right-style:none
-}
-.md-checkbox input[type=checkbox]:disabled+label::before{
-  border-color:rgba(0,0,0,.26)
-}
-.md-checkbox input[type=checkbox]:disabled:checked+label::before{
-  background:rgba(0,0,0,.26)
-}
-.radio{
-  margin:16px 0;
-  box-sizing:border-box
-}
-.radio input[type=radio]{
-  display:none
-}
-.radio input[type=radio]:checked+label{
-  font-weight:700
-}
-.radio input[type=radio]:checked+label:before{
-  border-color:$green
-}
-.radio input[type=radio]:checked+label:after{
-  transform:scale(1)
-}
-.radio label{
-  display:inline-block;
-  height:20px;
-  position:relative;
-  padding:0 30px;
-  margin-bottom:0;
-  line-height:20px;
-  cursor:pointer;
-  vertical-align:bottom
-}
-.radio label:after,.radio label:before{
-  position:absolute;
-  content:'';
-  border-radius:50%;
-  transition:all .3s ease;
-  transition-property:transform,border-color;
-  box-sizing:border-box
-}
-.radio label:before{
-  left:0;
-  top:0;
-  width:20px;
-  height:20px;
-  border:2px solid rgba(0,0,0,.54)
-}
-.radio label:after{
-  top:5px;
-  left:5px;
-  width:10px;
-  height:10px;
-  transform:scale(0);
-  background:$green
-}
+
 .progress{
   position:relative;
   height:5px;
@@ -508,9 +435,7 @@ form{
 }
 
 .timeout_items,
-.token_items,
-.timeout_items .radio,
-.token_items .radio{
+.token_items{
   align-content:flex-start;
   width:100%
 }
@@ -569,25 +494,7 @@ form{
   padding:0 0 50px;
   box-sizing:border-box
 }
-.timeout_items .radio,
-.token_items .radio {
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-pack:start;
-  justify-content:flex-start;
-  -ms-flex-align:center;
-  align-items:center;
-  -ms-flex-line-pack:start;
-  background:#fff;
-  border-bottom:1px solid #E4E8F1;
-  padding:15px;
-  margin:0;
-  font-weight:400;
-  font-size:1.3em;
-  color:#21435A;
-  transition:all .3s ease-in-out;
-  position:relative
-}
+
 .token_items label {
   height: 30px;
   line-height: 30px;
