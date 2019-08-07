@@ -10,7 +10,9 @@ const TimeBlock = ({ handleOptionChange, minutes, minTime }) => (
   <RadioInput name="timeout" value={`${minTime}`} checked={minutes === minTime}>
     <Paragraph onClick={handleOptionChange(minTime)}>
       {minTime}
-      {LOCKING_MIN} {minTime === 5 && LOCKING_MIN_DEFAULT}
+      &nbsp;
+      {LOCKING_MIN}
+      {minTime === 5 && LOCKING_MIN_DEFAULT}
     </Paragraph>
   </RadioInput>
 )
