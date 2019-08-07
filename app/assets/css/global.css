@@ -507,200 +507,6 @@ form{
   text-transform: uppercase
 }
 
-.overlayPage,.overlayPageHeader{
-  width:100%;
-  box-sizing:border-box
-}
-
-.overlayPage{
-  background:#F4F5F9;
-  height:calc(100% - 58px);
-  top:58px;
-  display:block;
-}
-
-.overlayPage[data-page=password] form button{
-  margin-top:25px
-}
-
-.overlayPage > .message {
-  --border: 1px solid red;
-  padding:20px;
-  color:inherit;
-  font-size:1.3em;
-  text-align:center
-}
-.overlayPageHeader{
-  height:48px;
-  padding:0 20px;
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-wrap:nowrap;
-  flex-wrap:nowrap;
-  border-bottom:1px solid #E4E8F1;
-  -ms-flex-pack:justify;
-  justify-content:flex-start;
-  -ms-flex-align:center;
-  align-items:center;
-  -ms-flex-line-pack:center;
-  align-content:center
-}
-.overlayPageHeader>h2{
-  margin:0 0 0 16px;
-  text-align:left;
-  line-height:1;
-  font-weight:400;
-  font-size:1.5em;
-  color:#21435A;
-}
-.overlayPageHeader .btn-back{
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-align:center;
-  align-items:center;
-  -ms-flex-wrap:nowrap;
-  flex-wrap:nowrap;
-  height:100%;
-  pointer-events:none;
-  text-decoration:none;
-  background:url(../images/arrow-left-grey.svg) center/contain no-repeat;
-  width:15px;
-  transition:transform .25s ease-in-out
-}
-.overlayPageHeader .btn-back.active{
-  pointer-events:auto;
-  background:url(../images/arrow-left-green.svg) center/contain no-repeat
-}
-.overlayPageHeader .btn-back.active>p{
-  color:$green
-}
-.overlayPageHeader .btn-back>p{
-  color:#A2A8BA;
-  padding:0 0 0 25px;
-  font-weight:500;
-  font-size:14px;
-  letter-spacing:0
-}
-.overlayPageHeader .btn-back.active:hover{
-  transform:translateX(-2px);
-
-}
-.overlayPageHeader .action_DeleteAll{
-  font-weight:400;
-  font-size:1.2em;
-  color:#fb4f62;
-  text-align:right;
-  line-height:1;
-  text-decoration:none;
-  cursor: pointer;
-  justify-self:flex-end;
-  margin-left:auto
-}
-.whitelist_add{
-  display:-ms-flexbox;
-  display:flex;
-  width:100%;
-  height:auto;
-  -ms-flex-wrap:wrap;
-  flex-wrap:wrap;
-  padding:20px 0
-}
-
-.whitelist_add>form{
-  -ms-flex:1;
-  flex:1;
-  -ms-flex-wrap:wrap;
-  flex-wrap:wrap;
-  -ms-flex-pack:center;
-  justify-content:center;
-  -ms-flex-align:center;
-  align-items:center;
-  -ms-flex-line-pack:center;
-  align-content:center
-}
-.whitelist_add>form>input{
-  -ms-flex:1;
-  flex:1
-}
-.whitelist_add>form>p{
-  width:100%;
-  margin:5px auto;
-  margin-left: 25px;
-  text-align:left
-}
-.whitelist_add>form>button{
-  -ms-flex:0 1 auto;
-  flex:0 1 auto;
-  padding:0 1em;
-  margin:0 0 0 10px;
-  font-size:1.3em
-}
-form>.whitelist-form {
-  display:flex;
-  width:100%;
-  padding:0 16px
-}
-form>.whitelist-form input {
-  margin-right:15px
-}
-.whitelist_items{
-  width:100%;
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-wrap:wrap;
-  flex-wrap:wrap;
-  -ms-flex-pack:start;
-  justify-content:flex-start;
-  -ms-flex-align:start;
-  align-items:flex-start;
-  -ms-flex-line-pack:start;
-  align-content:flex-start;
-  padding:0 0 50px;
-  box-sizing:border-box;
-  height:362px;
-  list-style-type:none;
-  overflow-y:auto
-}
-.whitelist_items>li{
-  background:#fff;
-  border-bottom:1px solid #E4E8F1;
-  width:100%;
-  padding:14px 20px;
-  font-weight:400;
-  font-size:1.2em;
-  color:#21435A;
-  transition:all .3s ease-in-out;
-  position:relative
-}
-.whitelist_items>li:hover{
-  background:#E4E8F1
-}
-.whitelist_items>li::before{
-  content:"";
-  background:url(../images/check_ok_green.svg) center/contain no-repeat;
-  width:14px;
-  height:14px;
-  display:inline-block;
-  margin:0 7px 0 0;
-  vertical-align:middle
-}
-.whitelist_items>li>button{
-  position:absolute;
-  right:20px;
-  background:url(../images/trash_grey.svg) center/contain no-repeat;
-  height:14px;
-  width:14px;
-  cursor:pointer;
-  border:0;
-  -webkit-appearance:none;
-  -moz-appearance:none;
-  appearance:none;
-  transition:transform .2s ease-in-out
-}
-.whitelist_items>li>button:hover{
-  transform:scale(1.2)
-}
-.overlayPageContent,
 .timeout_items,
 .token_items,
 .timeout_items .radio,
@@ -721,19 +527,15 @@ form>.whitelist-form input {
   border-radius:6px;
   background:#A2A8BA
 }
-.overlayPageContent{
-  position:relative;
-  height:auto;
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-wrap:wrap;
-  flex-wrap:wrap;
-  -ms-flex-pack:center;
-  justify-content:center;
-  -ms-flex-align:start;
-  align-items:flex-start;
-  -ms-flex-line-pack:start
+
+.message {
+  --border: 1px solid red;
+  padding: 20px;
+  color: inherit;
+  font-size: 1.3em;
+  text-align: center;
 }
+
 .token_items{
   width:100%;
   display:-ms-flexbox;
@@ -801,32 +603,6 @@ form>.whitelist-form input {
   height: 30px;
   width: 30px;
   padding-right: 10px;
-}
-
-
-.overlayPageContent .safeContent{
-  height:100%;
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-pack:center;
-  justify-content:center;
-  -ms-flex-wrap:wrap;
-  flex-wrap:wrap;
-  padding:35px 25px 0;
-  box-sizing:border-box;
-  -ms-flex-line-pack:center;
-  align-content:center;
-  width:100%;
-  -ms-flex-direction:column;
-  flex-direction:column;
-  -ms-flex-align:center;
-  align-items:center
-}
-.overlayPageContent .safeContent > a{
-  font-size:1.3em;
-  font-weight:400;
-  line-height:1;
-  margin: 1.5em auto 0;
 }
 
 .extensionPopup{

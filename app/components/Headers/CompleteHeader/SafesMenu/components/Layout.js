@@ -24,10 +24,7 @@ const Layout = ({
     {!isPopup && (
       <React.Fragment>
         <div
-          className={cx(
-            styles.safeMenuBackground,
-            showSafes && styles.active
-          )}
+          className={cx(styles.safeMenuBackground, showSafes && styles.active)}
           onClick={toggleSafes}
         />
         <span className={cx(styles.safeMenu, showSafes && styles.active)}>

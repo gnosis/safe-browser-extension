@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { ga } from 'utils/analytics'
 import { EXTENSION_SETTINGS } from 'utils/analytics/events'
@@ -10,54 +10,52 @@ import {
   WEBSITE_WHITELISTED
 } from '../../../../../config/messages'
 
-class WhitelistedDapps extends Component {
-  constructor(props) {
-    super(props)
+const WhitelistedDapps = ({
+  whitelistedDapps,
+  location,
+  onAddWhitelistedDapp,
+  onDeleteWhitelistedDapp,
+  ondeleteAllWhitelistedDapps
+}) => {
+  const [newDapp, setNewDapp] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
 
-    this.state = {
-      newDapp: '',
-      errorMessage: ''
-    }
+  const updateNewDapp = (e) => {
+    setNewDapp(e.target.value)
   }
 
-  updateNewDapp = (e) => {
-    this.setState({ newDapp: e.target.value })
-  }
-
-  validateDapp = (dapp) => {
+  const validateDapp = (dapp) => {
     if (!dapp) {
-      this.setState({ errorMessage: INVALID_WEBSITE })
+      setErrorMessage(INVALID_WEBSITE)
       return false
     }
-
-    const { whitelistedDapps } = this.props
 
     if (whitelistedDapps.indexOf(dapp) > -1) {
-      this.setState({ errorMessage: WEBSITE_WHITELISTED })
+      setErrorMessage(WEBSITE_WHITELISTED)
       return false
     }
 
-    this.setState({ errorMessage: '' })
+    setErrorMessage('')
     return true
   }
 
-  handleAddDapp = (dapp) => (e) => {
+  const handleAddDapp = (dapp) => (e) => {
     const newDapp = normalizeUrl(dapp)
 
-    if (this.validateDapp(newDapp)) {
-      this.props.onAddWhitelistedDapp(newDapp)
+    if (validateDapp(newDapp)) {
+      onAddWhitelistedDapp(newDapp)
       ga([
         '_trackEvent',
         EXTENSION_SETTINGS,
         'click-add-to-whitelist-via-settings',
         'Add to whitelist via settings: ' + newDapp
       ])
-      this.setState({ newDapp: '' })
+      setNewDapp('')
     }
   }
 
-  handleDeleteDapp = (dapp) => (e) => {
-    this.props.onDeleteWhitelistedDapp(dapp)
+  const handleDeleteDapp = (dapp) => (e) => {
+    onDeleteWhitelistedDapp(dapp)
     ga([
       '_trackEvent',
       EXTENSION_SETTINGS,
@@ -66,11 +64,11 @@ class WhitelistedDapps extends Component {
     ])
   }
 
-  handleDeleteAllDapps = () => (e) => {
-    const { whitelistedDapps } = this.props
-
-    if (whitelistedDapps.length <= 0) return
-    this.props.ondeleteAllWhitelistedDapps()
+  const handleDeleteAllDapps = () => (e) => {
+    if (whitelistedDapps.length <= 0) {
+      return
+    }
+    ondeleteAllWhitelistedDapps()
     ga([
       '_trackEvent',
       EXTENSION_SETTINGS,
@@ -79,23 +77,18 @@ class WhitelistedDapps extends Component {
     ])
   }
 
-  render() {
-    const { newDapp, errorMessage } = this.state
-    const { whitelistedDapps } = this.props
-
-    return (
-      <Layout
-        newDapp={newDapp}
-        errorMessage={errorMessage}
-        whitelistedDapps={whitelistedDapps}
-        updateNewDapp={this.updateNewDapp}
-        handleAddDapp={this.handleAddDapp}
-        handleDeleteDapp={this.handleDeleteDapp}
-        handleDeleteAllDapps={this.handleDeleteAllDapps}
-        location={this.props.location}
-      />
-    )
-  }
+  return (
+    <Layout
+      newDapp={newDapp}
+      errorMessage={errorMessage}
+      whitelistedDapps={whitelistedDapps}
+      updateNewDapp={updateNewDapp}
+      handleAddDapp={handleAddDapp}
+      handleDeleteDapp={handleDeleteDapp}
+      handleDeleteAllDapps={handleDeleteAllDapps}
+      location={location}
+    />
+  )
 }
 
 const mapStateToProps = ({ whitelistedDapps }, props) => {

@@ -38,7 +38,11 @@
   padding: 7px 14px;
 }
 
-div::after {
+.outerTextInput {
+  flex: 1;
+}
+
+.outerTextInput::after {
   bottom: 0;
   margin: auto;
   position: absolute;
@@ -48,22 +52,22 @@ div::after {
   width: 20px;
 }
 
-div[data-validation=OK]::after {
+.outerTextInput[data-validation=OK]::after {
   content: "";
-  background: url(./assets/check_ok.svg) center/contain no-repeat;
+  background: url(assets/images/check_ok.svg) center/contain no-repeat;
 }
 
-div[data-validation=OK] input {
+.outerTextInput[data-validation=OK] input {
   color: $green;
   border: 1px solid $green;
 }
 
-div[data-validation=ERROR]::after {
+.outerTextInput[data-validation=ERROR]::after {
   content: "";
   background: url(./assets/check_error.svg) center/contain no-repeat;
 }
 
-div[data-validation=ERROR] input {
+.outerTextInput[data-validation=ERROR] input {
   color: $red;
   border: 1px solid $red;
 }
@@ -86,6 +90,6 @@ div[data-validation=ERROR] input {
   }
 }
 
-div[data-validation=ERROR_SHAKE] input {
+.outerTextInput[data-validation=ERROR_SHAKE] input {
   animation: shake 0.5s linear;
 }
