@@ -9,7 +9,7 @@
   background: $green;
   color: $white;
   justify-content: center;
-  font-family: Averta;
+  font-family: Averta, Helvetica, sans-serif;
   font-size: 14px;
   text-transform: uppercase;
   cursor: pointer;

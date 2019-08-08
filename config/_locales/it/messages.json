@@ -279,7 +279,7 @@
     "message": "Oops! Brave non è supportato"
   },
   "brave_not_supported_description": {
-    "message": "Gnosis Safe non funziona con Brave. Si prega di scaricare l'ultima versione di Google Chrome e di installare nuovamente l'Authenticator."
+    "message": "Gnosis Safe Authenticator non funziona con Brave. Si prega di scaricare l'ultima versione di Google Chrome e di installare nuovamente l'Authenticator."
   },
   "slogan": {
     "message": "Il modo più sicuro per gestire i tuoi fondi in crypto."

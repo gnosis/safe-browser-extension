@@ -17,10 +17,7 @@ const Layout = ({ handleResync, message, location }) => (
         <h2>{RESYNC_WITH_MOBILE_APP}</h2>
       </span>
       <div className={styles.contentBody}>
-        <Button
-          className={cx(styles.button, styles.buttonResync)}
-          onClick={handleResync()}
-        >
+        <Button className={styles.button} onClick={handleResync()}>
           {SYNC}
         </Button>
         <div className={styles.message}>{message && <div>{message}</div>}</div>

@@ -8,7 +8,7 @@ html{
 body{
   background:#fff;
   color:#333;
-  font-family:Averta,Helvetica,sans-serif;
+  font-family: Averta, Helvetica, sans-serif;
   font-size:10px;
   line-height:10px;
   margin:0;
@@ -31,13 +31,6 @@ body>div>.start{
 ::selection{
   color:#fff;
   background:$green
-}
-
-.safeLogo::after{
-  line-height:1;
-  text-align:center;
-  display:block;
-  text-transform:uppercase
 }
 
 select{
@@ -90,18 +83,7 @@ form{
 .hide{
   display:none!important
 }
-.visuallyhidden{
-  position:absolute;
-  clip:rect(1px,1px,1px,1px);
-  width:1px;
-  height:1px;
-  padding:0;
-  border:0
-}
-.blur{
-  filter:blur(3px);
-  transition:filter .1s ease-in-out
-}
+
 .text-red{
   color:#fb4f62
 }
@@ -109,7 +91,7 @@ form{
   color:#02ae60
 }
 @font-face{
-  font-family:Averta;
+  font-family: Averta;
   src:url("../fonts/averta-regular.woff2") format("woff2");
   font-weight:100;
   font-style:normal
@@ -132,39 +114,7 @@ form{
   text-align:center;
   box-shadow:0 2px 4px 0 rgba(0,0,0,.25)
 }
-.buttonExit{
-  display:block;
-  position:absolute;
-  top:20px;
-  right:20px;
-  height:30px;
-  width:24px;
-  font-size:28px;
-  font-family:Arial,sans-serif;
-  color:#21435A;
-  background:0;
-  border:0;
-  cursor:pointer;
-  outline:0;
-  will-change:color;
-  transition:color .25s ease;
-  font-weight:700;
-  padding:0;
-  margin:0;
-  z-index:10
-}
-.buttonExit:hover{
-  color:#65707E
-}
-.buttonExit::after{
-  content:"✕";
-  display:block;
-  font-family:inherit;
-  font-size:inherit
-}
-.buttonResync {
-  margin-top: 50px;
-}
+
 .button-group{
   display:-ms-flexbox;
   display:flex;
@@ -184,36 +134,6 @@ form{
 .button-group>button.reject{
   background:#fff;
   color:#fb4f62
-}
-
-.md-checkbox.md-checkbox-inline,.radio.md-radio-inline{
-  display:inline-block
-}
-
-.md-checkbox{
-  position:relative;
-  margin:16px 0;
-  text-align:left
-}
-
-.md-checkbox label{
-  cursor:pointer
-}
-.md-checkbox label::after,.md-checkbox label::before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:0;
-  box-sizing:border-box
-}
-.md-checkbox label::before{
-  width:18px;
-  height:18px;
-  background:#fff;
-  border:2px solid rgba(0,0,0,.54);
-  border-radius:2px;
-  cursor:pointer;
-  transition:background .3s
 }
 
 .progress{
@@ -274,45 +194,6 @@ form{
   }
 }
 
-.blockAccess .overlayPage {
-  background:#f4f5f9;
-  padding: 30px;
-  text-align: center;
-}
-.blockAccess img {
-  margin: 30px auto;
-}
-.blockAccess h1 {
-  line-height: 1em;
-}
-.blockAccess .title {
-  font-family: Averta;
-  font-size: 19px;
-  font-weight: 300;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.37;
-  letter-spacing: normal;
-  text-align: center;
-  color: #21435a;
-  margin-bottom: 20px;
-}
-.blockAccess .description {
-  font-family: Averta;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.25;
-  letter-spacing: normal;
-  text-align: center;
-  color: #21435a;
-}
-.blockAccess .button {
-  width: 100%;
-  margin-top: 30px;
-}
-
 .start .safeLogo{
   margin:0 auto 7em
 }
@@ -331,107 +212,14 @@ form{
   margin:2.5em auto 0
 }
 
-.extension.password2,
 .extension .blockAccess {
   background:fixed,url(../images/mountains_background.svg) bottom/contain no-repeat,linear-gradient(-180deg,#fff 50%,#E4E8F1 100%)
 }
 
-.innerOverlay{
-  height:calc(100% - 58px);
-  top:58px;
-  display:flex;
-  -ms-flex-wrap:wrap;
-  flex-wrap:wrap
-}
-.innerOverlay::before{
-  background:#E4E8F1;
-  opacity:.85;
-  content:"";
-  display:block;
-  width:100%;
-  height:100%
-}
-.innerOverlayContent, .replace-recovery-phrase-content{
-  height:auto;
-  display:flex;
-  -ms-flex-pack:center;
-  justify-content:center;
-  -ms-flex-wrap:wrap;
-  flex-wrap:wrap;
-  padding:8em 5em;
-  box-sizing:border-box;
-  -ms-flex-line-pack:center;
-  align-content:center
-}
-.replace-recovery-phrase-content{
-  padding:2em 5em
-}
-.innerOverlayContent>p, .replace-recovery-phrase-content>p{
-  font-size:1.6em;
-  line-height:1.3;
-  color:#21435A;
-  font-weight:400
-}
-.innerOverlayContent>img{
-  margin-top: 30px
-}
-.QR{
-  box-shadow:0 2px 10px 0 rgba(33,67,90,.15);
-  border-radius:6px;
-  padding: 2.5em 2em;
-  margin:0 auto;
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-direction:column;
-  flex-direction:column;
-  -ms-flex-line-pack:start;
-  align-content:flex-start;
-  background:#fff;
-  width:100%;
-  max-width:230px;
-  -ms-flex:1;
-  flex:1;
-  -ms-flex-pack:center;
-  justify-content:center;
-  -ms-flex-align:center;
-  align-items:center
-}
+
 .identicon{
   pointer-events:none;
   margin-right: 6px;
-}
-.QR>div{
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-wrap:nowrap;
-  flex-wrap:nowrap;
-  -ms-flex-pack:center;
-  justify-content:center;
-  -ms-flex-align:center;
-  align-items:center;
-  -ms-flex-line-pack:center;
-  align-content:center;
-  margin:0 auto 1em;
-}
-.QR>div>p{
-  margin:0;
-  word-break:break-all;
-  text-align:left;
-  font-size:1.3em;
-
-}
-.QR p{
-  display:block;
-  margin: 0 auto .5em;
-  letter-spacing:1px;
-  font-family:"Averta Mono",Courier,monospace;
-  font-size:1.4em;
-  line-height:1.2;
-  text-align:center;
-  padding: 0;
-}
-.QR>p{
-  text-transform: uppercase
 }
 
 .extensionPopup{

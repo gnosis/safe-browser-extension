@@ -91,3 +91,21 @@
 .contentHeader .btn-back.active:hover {
   transform: translateX(-2px);
 }
+
+.QR {
+  margin: 0 auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-line-pack: start;
+  align-content: flex-start;
+  width: 100%;
+  max-width: 230px;
+  -ms-flex: 1;
+  flex: 1;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+}

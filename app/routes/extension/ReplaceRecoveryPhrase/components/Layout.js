@@ -18,9 +18,7 @@ const Layout = ({ location }) => (
         <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)} />
         <h2>{REPLACE_RECOVERY_PRASE}</h2>
       </span>
-      <div
-        className={cx(styles.innerContent, styles.replaceRecoveryPhraseContent)}
-      >
+      <div className={styles.innerContent}>
         <h1>{REPLACE_RECOVERY_PRASE_EXPLANATION}</h1>
         <span className={styles.QR}>
           <div id="qr-replace-recovery-phrase" />

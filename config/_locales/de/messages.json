@@ -252,6 +252,6 @@
     "message": "Ups! Leider ist Brave nicht unterstützt"
   },
   "brave_not_supported_description": {
-    "message": "Die Gnosis Safe Browser Erweiterung funktioniert leider nicht mit Brave. Bitte installiere die neuste Version von Google Chrome und probiere es erneut."
+    "message": "Die Gnosis Safe Authenticator funktioniert leider nicht mit Brave. Bitte installiere die neuste Version von Google Chrome und probiere es erneut."
   }
 }
