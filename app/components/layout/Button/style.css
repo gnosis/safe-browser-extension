@@ -5,7 +5,7 @@
   height: 38px;
   border: 0;
   border-radius: 4px;
-  box-shadow: 0 1px 1.5px 0 rgba(40, 54, 61, 0.18);
+  box-shadow: 0 2px 3px 0 rgba(40, 54, 61, 0.18);
   background: $green;
   color: $white;
   justify-content: center;

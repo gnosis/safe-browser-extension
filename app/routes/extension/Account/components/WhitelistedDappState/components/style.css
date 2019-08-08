@@ -43,7 +43,7 @@
   background: url(assets/images/allow.svg) center/11px 10px no-repeat $green;
   left: 16px;
   transition: all .3s ease-in-out;
-  box-shadow: 0 0.5px 0.5px 0 rgba(212, 212, 211, 0.59);
+  box-shadow: 0 1px 1px 0 rgba(212, 212, 211, 0.59);
 }
 
 .whitelistSwitch input[type=checkbox]:checked~.track {
