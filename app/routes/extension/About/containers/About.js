@@ -1,20 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Layout from '../components/Layout'
 import { getAppVersionNumber } from '../../../../../config'
 
-class About extends Component {
-  componentWillMount = () => {
-    this.versionNumber = getAppVersionNumber()
-  }
+const About = ({ location }) => {
+  const versionNumber = getAppVersionNumber()
 
-  render() {
-    return (
-      <Layout
-        versionNumber={this.versionNumber}
-        location={this.props.location}
-      />
-    )
-  }
+  return <Layout versionNumber={versionNumber} location={location} />
 }
 
 export default About
