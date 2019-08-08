@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { ga } from 'utils/analytics'
 import { getTokensFromRelayService } from 'utils/tokens'
@@ -7,23 +7,21 @@ import Layout from '../components/Layout'
 import actions from './actions'
 import selector from './selector'
 
-class PaymentToken extends Component {
-  constructor(props) {
-    super(props)
+const PaymentToken = ({ transactions, onSetPaymentToken, location }) => {
+  const [tokenList, setTokenList] = useState([])
+  const [selectedPaymentToken, setSelectedPaymentToken] = useState(
+    transactions.paymentToken
+  )
 
-    this.state = {
-      tokenList: [],
-      selectedPaymentToken: props.transactions.paymentToken
+  useEffect(() => {
+    const updateTokenList = async () => {
+      const tokens = await getTokensFromRelayService({ gas: true })
+      setTokenList(tokens)
     }
-  }
+    updateTokenList()
+  })
 
-  componentDidMount = async () => {
-    const tokens = await getTokensFromRelayService({ gas: true })
-    this.setState({ tokenList: tokens })
-  }
-
-  handlePaymentToken = (token) => (e) => {
-    const { onSetPaymentToken } = this.props
+  const handlePaymentToken = (token) => (e) => {
     const paymentToken = !token
       ? null
       : {
@@ -43,22 +41,17 @@ class PaymentToken extends Component {
       'click-set-payment-token',
       'Use ' + symbol + ' for paying transaction fees'
     ])
-    this.setState({ selectedPaymentToken: token })
+    setSelectedPaymentToken(token)
   }
 
-  render() {
-    const { location } = this.props
-    const { tokenList, selectedPaymentToken } = this.state
-
-    return (
-      <Layout
-        location={location}
-        tokenList={tokenList}
-        selectedPaymentToken={selectedPaymentToken}
-        handlePaymentToken={this.handlePaymentToken}
-      />
-    )
-  }
+  return (
+    <Layout
+      location={location}
+      tokenList={tokenList}
+      selectedPaymentToken={selectedPaymentToken}
+      handlePaymentToken={handlePaymentToken}
+    />
+  )
 }
 
 const mapDispatchToProps = (dispatch) => {

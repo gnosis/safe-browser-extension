@@ -162,7 +162,7 @@ form > .whitelist-form {
   align-items: flex-start;
   -ms-flex-line-pack: start;
   align-content: flex-start;
-  padding: 0 0 50px;
+  padding: 0 0 20px;
   box-sizing: border-box;
   height: 362px;
   list-style-type: none;
@@ -212,6 +212,17 @@ form > .whitelist-form {
 
 .whitelistItems > li > button:hover {
   transform: scale(1.2);
+}
+
+.whitelistItems::-webkit-scrollbar{
+  width:8px
+}
+.whitelistItems::-webkit-scrollbar-track{
+  background:#E4E8F1
+}
+.whitelistItems::-webkit-scrollbar-thumb{
+  border-radius:6px;
+  background:#A2A8BA
 }
 
 .message {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames'
 import Page from 'components/layout/Page'
@@ -16,8 +16,8 @@ const Layout = ({ minutes, handleOptionChange, location }) => (
         <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)} />
         <h2>{SET_LOCK_TIMEOUT}</h2>
       </span>
-      <span className={styles.bodyContent}>
-        <form className={styles.timeout_items}>
+      <div className={styles.bodyContent}>
+        <form className={styles.timeoutItems}>
           <TimeBlock
             handleOptionChange={handleOptionChange}
             minutes={minutes}
@@ -39,7 +39,7 @@ const Layout = ({ minutes, handleOptionChange, location }) => (
             minTime={60}
           />
         </form>
-      </span>
+      </div>
     </div>
   </Page>
 )
