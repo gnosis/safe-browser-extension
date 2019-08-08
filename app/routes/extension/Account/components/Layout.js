@@ -23,7 +23,7 @@ const Layout = ({
       <WhitelistedDappState />
       <div className={styles.innerContent}>
         <Blockie address={currentSafe} diameter={44} />
-        <h1 className={styles.safeAddressAlias}>{currentSafeAlias}</h1>
+        <h1>{currentSafeAlias}</h1>
         <Paragraph className={styles.safeAddress}>{currentSafe}</Paragraph>
       </div>
       <Link

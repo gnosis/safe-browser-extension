@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 import EthUtil from 'ethereumjs-util'
@@ -12,48 +12,34 @@ import {
 import Layout from '../components/Layout'
 import selector from './selector'
 
-class ReplaceRecoveryPhrase extends Component {
-  constructor(props) {
-    super(props)
+const ReplaceRecoveryPhrase = ({
+  selectEncryptedMnemonic,
+  selectUnencryptedMnemonic,
+  safes,
+  location
+}) => {
+  const validPassword = location && location.state && location.state.password
+  const password = validPassword ? location.state.password : undefined
+  const qrReplaceRecoveryPhraseRef = React.createRef()
 
-    const { location } = this.props
-    const validPassword = location && location.state && location.state.password
-    this.password = validPassword ? location.state.password : undefined
-    this.qrReplaceRecoveryPhraseRef = React.createRef()
-  }
-
-  componentDidMount = () => {
+  useEffect(() => {
     createQrImage(
       document.getElementById('qr-replace-recovery-phrase'),
-      this.generateQrCodeContent(),
+      generateQrCodeContent(),
       3
     )
-  }
+  })
 
-  componentDidUpdate = (prevProps, prevState) => {
-    createQrImage(
-      document.getElementById('qr-replace-recovery-phrase'),
-      this.generateQrCodeContent(),
-      3
-    )
-  }
-
-  generateQrCodeContent = () => {
-    const {
-      selectEncryptedMnemonic,
-      selectUnencryptedMnemonic,
-      safes
-    } = this.props
-
+  const generateQrCodeContent = () => {
     const safe = safes.safes.filter(
       (safe) => safe.address === safes.currentSafe
     )[0]
 
     const account =
-      !selectUnencryptedMnemonic && this.password
+      !selectUnencryptedMnemonic && password
         ? getDecryptedEthAccount(
             selectEncryptedMnemonic,
-            this.password,
+            password,
             safe.accountIndex || 0
           )
         : createAccountFromMnemonic(
@@ -77,26 +63,23 @@ class ReplaceRecoveryPhrase extends Component {
     return qrCodeContent
   }
 
-  render() {
-    const { safes } = this.props
-    const url = {
-      pathname: PASSWORD_URL,
-      state: {
-        dest: REPLACE_RECOVERY_PHRASE_URL
-      }
+  const url = {
+    pathname: PASSWORD_URL,
+    state: {
+      dest: REPLACE_RECOVERY_PHRASE_URL
     }
-
-    if (safes.currentSafe === undefined) {
-      return <Redirect to={url} />
-    }
-    return (
-      <Layout
-        currentSafe={safes.currentSafe}
-        qrReplaceRecoveryPhraseRef={this.qrReplaceRecoveryPhraseRef}
-        location={this.props.location}
-      />
-    )
   }
+
+  if (safes.currentSafe === undefined) {
+    return <Redirect to={url} />
+  }
+  return (
+    <Layout
+      currentSafe={safes.currentSafe}
+      qrReplaceRecoveryPhraseRef={qrReplaceRecoveryPhraseRef}
+      location={location}
+    />
+  )
 }
 
 export default connect(selector)(ReplaceRecoveryPhrase)
