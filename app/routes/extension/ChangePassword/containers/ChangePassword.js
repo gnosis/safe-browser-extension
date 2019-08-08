@@ -29,12 +29,16 @@ const ChangePassword = ({
   const manageCreatePassword = (newPassword, createPasswordReady) => {
     setNewPassword(newPassword)
     setCreatePasswordReady(createPasswordReady)
-    setConfirmPasswordReady(newPassword !== '' && newPassword === confirmPassword)
+    setConfirmPasswordReady(
+      newPassword !== '' && newPassword === confirmPassword
+    )
   }
 
   const manageConfirmPassword = (confirmPassword) => {
     setConfirmPassword(confirmPassword)
-    setConfirmPasswordReady(newPassword !== '' && newPassword === confirmPassword)
+    setConfirmPasswordReady(
+      newPassword !== '' && newPassword === confirmPassword
+    )
   }
 
   const updateMasterPassword = () => {

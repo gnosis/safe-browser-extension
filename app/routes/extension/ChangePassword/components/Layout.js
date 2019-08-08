@@ -25,8 +25,7 @@ const Layout = ({
   confirmPasswordReady,
   createPasswordReady,
   location
-}
-) => {
+}) => {
   const prevent = (e) => {
     e.preventDefault()
   }

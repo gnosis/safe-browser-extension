@@ -93,7 +93,7 @@
     "message": "Ver en Etherscan.io"
   },
   "manage_sites_whitelist": {
-    "message": "Sitios web de confianza"
+    "message": "Sitios de confianza"
   },
   "delete_all": {
     "message": "Borrar todo"
@@ -114,7 +114,7 @@
     "message": " (por defecto)"
   },
   "locking_min": {
-    "message": "min"
+    "message": "minutos"
   },
   "change_password_description": {
     "message": "O contrasinal utilizarase para desbloquear o Authenticator e confirmar transaccións. <strong>Non comparta este contrasinal con outras persoas!</strong>"

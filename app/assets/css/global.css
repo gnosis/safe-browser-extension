@@ -453,14 +453,6 @@ form{
   background:#A2A8BA
 }
 
-.message {
-  --border: 1px solid red;
-  padding: 20px;
-  color: inherit;
-  font-size: 1.3em;
-  text-align: center;
-}
-
 .token_items{
   width:100%;
   display:-ms-flexbox;

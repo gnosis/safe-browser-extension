@@ -114,7 +114,7 @@
     "message": "(predefinito)"
   },
   "locking_min": {
-    "message": "min"
+    "message": "minuti"
   },
   "change_password_description": {
     "message": "La password viene usata per sbloccare l'Authenticator e confermare transazioni. <strong>Non condividerla con altre persone!</strong>"
