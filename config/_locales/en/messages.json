@@ -289,5 +289,8 @@
   },
   "restricted_site": {
     "message": "Restricted Site"
+  },
+  "payment_token_title": {
+    "message": "Payment token"
   }
 }

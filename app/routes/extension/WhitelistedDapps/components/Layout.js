@@ -1,7 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import classNames from 'classnames/bind'
 import Page from 'components/layout/Page'
+import ContentHeader from 'components/headers/ContentHeader'
 import Paragraph from 'components/layout/Paragraph'
 import TextInput from 'components/forms/TextInput'
 import Button from 'components/layout/Button'
@@ -13,8 +12,6 @@ import {
   ADD_WEBSITE
 } from '../../../../../config/messages'
 import styles from './style.css'
-
-const cx = classNames.bind(styles)
 
 const Layout = ({
   newDapp,
@@ -33,19 +30,13 @@ const Layout = ({
   return (
     <Page background="grey" location={location}>
       <div className={styles.content}>
-        <span className={styles.contentHeader}>
-          <Link
-            to={ACCOUNT_URL}
-            className={cx(styles.btnBack, styles.active)}
-          />
-          <h2>{MANAGE_SITES_WHITELIST}</h2>
-          <Paragraph
-            className={styles.actionDeleteAll}
-            onClick={handleDeleteAllDapps()}
-          >
-            {DELETE_ALL}
-          </Paragraph>
-        </span>
+        <ContentHeader
+          backLink={ACCOUNT_URL}
+          message={MANAGE_SITES_WHITELIST}
+          rightAction={handleDeleteAllDapps()}
+          rightMessage={DELETE_ALL}
+          rightStyle={styles.actionDeleteAll}
+        />
         <span className={styles.contentBody}>
           <span className={styles.whitelistAdd}>
             <form data-validation="ERROR" onSubmit={prevent}>

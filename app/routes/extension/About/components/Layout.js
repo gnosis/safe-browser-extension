@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 import Page from 'components/layout/Page'
+import ContentHeader from 'components/headers/ContentHeader'
 import Paragraph from 'components/layout/Paragraph'
 import { ACCOUNT_URL } from 'routes/routes'
 import {
@@ -17,10 +17,7 @@ const cx = classNames.bind(styles)
 const Layout = ({ versionNumber, location }) => (
   <Page background="grey" location={location}>
     <div className={styles.content}>
-      <span className={styles.contentHeader}>
-        <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)} />
-        <h2>{ABOUT}</h2>
-      </span>
+      <ContentHeader backLink={ACCOUNT_URL} message={ABOUT} />
       <div className={styles.contentBody}>
         <div className={styles.about}>
           <Paragraph>

@@ -166,5 +166,8 @@
   },
   "ios_replace_recovery_phrase": {
     "message": "Herstelzin vervangen"
+  },
+  "payment_token_title": {
+    "message": "Betalingstoken"
   }
 }

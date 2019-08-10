@@ -289,5 +289,8 @@
   },
   "restricted_site": {
     "message": "Web Restringida"
+  },
+  "payment_token_title": {
+    "message": "Pago con tokens"
   }
 }

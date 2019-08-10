@@ -283,5 +283,8 @@
   },
   "slogan": {
     "message": "Il modo più sicuro per gestire i tuoi fondi in crypto."
+  },
+  "payment_token_title": {
+    "message": "Token di pagamento"
   }
 }

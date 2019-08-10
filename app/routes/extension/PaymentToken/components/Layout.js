@@ -1,15 +1,12 @@
 import React from 'react'
-import classNames from 'classnames/bind'
 import Page from 'components/layout/Page'
-import Link from 'components/layout/Link'
+import ContentHeader from 'components/headers/ContentHeader'
 import RadioInput from 'components/forms/RadioInput'
 import Paragraph from 'components/layout/Paragraph'
 import { ACCOUNT_URL } from 'routes/routes'
-import { PAYMENT_TOKEN } from '../../../../../config/messages'
+import { PAYMENT_TOKEN_TITLE } from '../../../../../config/messages'
 import EthLogo from 'assets/images/tokens/ETH.svg'
 import styles from './style.css'
-
-const cx = classNames.bind(styles)
 
 const Layout = ({
   location,
@@ -19,10 +16,7 @@ const Layout = ({
 }) => (
   <Page background="grey" location={location}>
     <div className={styles.content}>
-      <span className={styles.contentHeader}>
-        <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)} />
-        <h2>{PAYMENT_TOKEN}</h2>
-      </span>
+      <ContentHeader backLink={ACCOUNT_URL} message={PAYMENT_TOKEN_TITLE} />
       <div className={styles.bodyContent}>
         <form className={styles.tokenItems}>
           <RadioInput

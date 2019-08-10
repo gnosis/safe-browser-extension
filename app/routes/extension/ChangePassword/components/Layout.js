@@ -1,7 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import classNames from 'classnames/bind'
 import Page from 'components/layout/Page'
+import ContentHeader from 'components/headers/ContentHeader'
 import Button from 'components/layout/Button'
 import CreatePasswordForm from 'routes/extension/CreatePassword/components/CreatePasswordForm/containers/CreatePasswordForm'
 import ConfirmPasswordForm from 'routes/extension/ConfirmPassword/components/ConfirmPasswordForm/containers/ConfirmPasswordForm'
@@ -13,8 +12,6 @@ import {
   SAVE_NEW_PASSWORD
 } from '../../../../../config/messages'
 import styles from './style.css'
-
-const cx = classNames.bind(styles)
 
 const Layout = ({
   newPassword,
@@ -34,13 +31,7 @@ const Layout = ({
     <Page background="grey" location={location}>
       <form onSubmit={prevent}>
         <div className={styles.content}>
-          <span className={styles.contentHeader}>
-            <Link
-              to={ACCOUNT_URL}
-              className={cx(styles.btnBack, styles.active)}
-            />
-            <h2>{CHANGE_PASSWORD}</h2>
-          </span>
+          <ContentHeader backLink={ACCOUNT_URL} message={CHANGE_PASSWORD} />
           <span className={styles.warningPassword}>
             <img src={warningImage} />
             <p>{CHANGE_PASSWORD_DESCRIPTION}</p>

@@ -1,21 +1,15 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import classNames from 'classnames'
 import Page from 'components/layout/Page'
+import ContentHeader from 'components/headers/ContentHeader'
 import TimeBlock from './TimeBlock'
 import { ACCOUNT_URL } from 'routes/routes'
 import { SET_LOCK_TIMEOUT } from '../../../../../config/messages'
 import styles from './style.css'
 
-const cx = classNames.bind(styles)
-
 const Layout = ({ minutes, handleOptionChange, location }) => (
   <Page background="grey" location={location}>
     <div className={styles.content}>
-      <span className={styles.contentHeader}>
-        <Link to={ACCOUNT_URL} className={cx(styles.btnBack, styles.active)} />
-        <h2>{SET_LOCK_TIMEOUT}</h2>
-      </span>
+      <ContentHeader backLink={ACCOUNT_URL} message={SET_LOCK_TIMEOUT} />
       <div className={styles.bodyContent}>
         <form className={styles.timeoutItems}>
           <TimeBlock
