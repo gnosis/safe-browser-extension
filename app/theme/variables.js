@@ -6,8 +6,10 @@ const darkGrey = '#b2b5b2'
 const darkBlue = '#001428'
 const darkBlueTitle = '#001b31'
 const green = '#008c73'
+const darkGreen = '#005546'
 const red = '#f02525'
 const white = '#ffffff'
+const darkWhite = '#f0efee'
 const black = '#000000'
 
 module.exports = Object.assign(
@@ -21,8 +23,10 @@ module.exports = Object.assign(
     darkBlue,
     darkBlueTitle,
     green,
+    darkGreen,
     red,
     white,
+    darkWhite,
     black
   }
 )

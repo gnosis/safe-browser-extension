@@ -8,7 +8,7 @@
 }
 
 .disclaimer > span {
-  background: #fff;
+  background: $white;
   width: 100%;
   position: absolute;
   bottom: 0;

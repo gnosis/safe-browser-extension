@@ -164,7 +164,7 @@
   justify-content: flex-start;
   -ms-flex-align: center;
   align-items: center;
-  color: #fff;
+  color: $white;
   cursor: pointer;
   position: relative;
 }

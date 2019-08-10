@@ -16,14 +16,7 @@ body{
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale
 }
-body>div>.start{
-  background:fixed,url(../images/mountains_background.svg) center/cover no-repeat,linear-gradient(-180deg,#fff 50%,#E4E8F1 100%);
-  position: absolute;
-  top:0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
+
 ::-moz-selection{
   color:#fff;
   background:$green
@@ -45,25 +38,6 @@ img{
   border:0;
   -ms-interpolation-mode:bicubic;
   vertical-align:middle
-}
-section.auction,section.home{
-  height:calc(100vh - 60px);
-  -ms-flex-align:center;
-  align-items:center
-}
-@media (min-width:737px) and (max-width:1024px),(min-device-width:737px) and (max-device-width:1024px) and (orientation:portrait),(min-device-width:737px) and (max-device-width:1024px) and (orientation:landscape){
-  section.auction,section.home{
-      padding:0 35px
-  }
-}
-@media only screen and (max-width:736px){
-  section.auction,section.home{
-      max-width:100%;
-      -ms-flex-wrap:wrap;
-      flex-wrap:wrap;
-      padding:25px 0 0;
-      height:100%
-  }
 }
 form{
   display: flex;
@@ -100,11 +74,6 @@ form{
 .button.button-disabled,.button[disabled],a.button.button-disabled,a.button[disabled]{
   pointer-events:none;
   opacity:.5
-}
-.button.naked,a.button.naked{
-  box-shadow:none;
-  background:0;
-  color:#65707E
 }
 .button.white,a.button.white{
   background:#fff;

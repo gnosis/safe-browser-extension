@@ -17,9 +17,19 @@
   flex: 1;
 }
 
+.button:active {
+  transition-duration: 0.1s;
+  background: $darkGreen;
+}
+
 .naked {
-  background: none;
+  background: $white;
   box-shadow: none;
   color: $grey;
   padding: 10px;
+}
+
+.naked:active {+
+  transition-duration: 0.1s;
+  background: $darkWhite;
 }
