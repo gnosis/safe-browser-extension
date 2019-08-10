@@ -1,22 +1,25 @@
 import React from 'react'
 import Network from 'react-network'
-import styles from 'assets/css/global.css'
+import Paragraph from 'components/layout/Paragraph'
 import {
   INTERNET_CONNECTION_ERROR,
   CHECK_INTERNET_CONNECTION
 } from '../../../../config/messages'
+import styles from './style.css'
 
 const NotificationMessage = () => (
   <div className={styles.networkNotification}>
     <div>
-      <p>{INTERNET_CONNECTION_ERROR}</p>
-      <p>{CHECK_INTERNET_CONNECTION}</p>
+      <Paragraph>{INTERNET_CONNECTION_ERROR}</Paragraph>
+      <Paragraph>{CHECK_INTERNET_CONNECTION}</Paragraph>
     </div>
   </div>
 )
 
 const NetworkNotification = ({ children }) => {
-  if (!children) children = null
+  if (!children) {
+    children = null
+  }
 
   return (
     <Network
