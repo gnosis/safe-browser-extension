@@ -11,6 +11,7 @@
 
 .mountains {
   background: url(assets/images/mountains_background.svg);
+  background-size: cover;
 }
 
 .white {

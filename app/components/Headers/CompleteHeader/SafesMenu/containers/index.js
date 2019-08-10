@@ -65,11 +65,10 @@ const SafesMenu = ({
     )
   }
 
-  const safeAlias = isPopup ? popupTitle : extensionTitle
   return (
     <Layout
       safes={safes}
-      safeAlias={safeAlias}
+      safeAlias={isPopup ? popupTitle : extensionTitle}
       showSafes={showSafes}
       toggleSafes={toggleSafes}
       handleSelectSafe={handleSelectSafe}

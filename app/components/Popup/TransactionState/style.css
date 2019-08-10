@@ -1,0 +1,199 @@
+.transactionState {
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.transactionState .await {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.transactionState .await p {
+  font-weight: 500;
+  font-size: 1.2em;
+  color: #65707E;
+  letter-spacing: 3px;
+  text-align: center;
+  width: 100%;
+  margin: 20px 0 0;
+  text-transform: uppercase;
+}
+
+.message {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  width: 75%;
+  height: 55px;
+  margin: 5px auto 15px;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.messageCentered {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  width: 100%;
+  font-size: 13px;
+  margin: 5px 0 15px;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  line-height: 1.2em;
+}
+
+.transactionState .message p {
+  font-size: 1.3em;
+  color: $darkBlue;
+  letter-spacing: 0;
+  line-height: 1.5;
+  margin: 0;
+  text-align: left;
+}
+
+.transactionState > .message > .img {
+  display: block;
+  margin: 0 15px 0 0;
+  height: 55px;
+  width: 30px;
+}
+
+.transactionState .errorMessage {
+  font-size: 1.3em;
+  color: white;
+  letter-spacing: 0;
+  line-height: 1.5;
+  background: $red;
+  position: fixed;
+  bottom: 54px;
+  left: 0;
+  text-align: center;
+  padding: 1em;
+  width: 100%;
+  right: 0;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.transactionState .errorMessage > p {
+  font-size: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-align: center;
+}
+
+.transactionState .resend {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+}
+
+.transactionState .resend > p {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto 8px;
+  font-size: 1.1em;
+}
+
+.transactionState .resend > .button {
+  color: $green;
+  padding: 0 10px;
+  text-align: center;
+  padding: 0 20px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .25);
+  margin: 10px 0 0;
+}
+
+.button:active {
+  transition-duration: 0.1s;
+  background: $darkWhite;
+}
+
+.button.white,
+a.button.white {
+  background: $white;
+}
+
+.progress {
+  position: relative;
+  height: 5px;
+  display: block;
+  width: 100%;
+  background-color: $green;
+  border-radius: 10px;
+  background-clip: padding-box;
+  margin: 15px 0 20px;
+  overflow: hidden;
+}
+
+.progress .determinate {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: $green;
+  transition: width .3s linear;
+}
+
+.progress .indeterminate {
+  background-color: #E4E8F1;
+}
+
+.progress .indeterminate::after,
+.progress .indeterminate::before {
+  content: '';
+  position: absolute;
+  background-color: inherit;
+  top: 0;
+  left: 0;
+  will-change: left, right;
+  bottom: 0;
+}
+
+.progress .indeterminate::before {
+  animation: indeterminate 2.1s cubic-bezier(.65, .815, .735, .395) infinite;
+}
+
+.progress .indeterminate::after {
+  animation: indeterminate-short 2.1s cubic-bezier(.165, .84, .44, 1) infinite;
+  animation-delay: 1.15s;
+}
+
+@keyframes indeterminate {
+  0% {
+      left: -35%;
+      right: 100%;
+  }
+  100%, 60% {
+      left: 100%;
+      right: -90%;
+  }
+}
+@keyframes indeterminate-short {
+  0%{
+      left: -200%;
+      right: 100%;
+  }
+  100%, 60% {
+      left: 107%;
+      right: -8%;
+  }
+}

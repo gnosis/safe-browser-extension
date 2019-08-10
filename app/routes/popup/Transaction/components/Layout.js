@@ -1,16 +1,19 @@
 import React, { Component } from 'react'
-import { REVIEW_TRANSACTION } from '../../../../../config/messages'
+import {
+  REVIEW_TRANSACTION,
+  CONFIRM_REQUEST
+} from '../../../../../config/messages'
 import { isTokenTransfer, getTokenTransferAddress } from '../containers/tokens'
 import HeaderPopup from 'components/Popup/HeaderPopup'
 import AccountData from 'components/Popup/AccountData'
 import TransactionSummary from 'components/Popup/TransactionSummary'
 import ConfirmTransaction from 'routes/popup/Transaction/components/ConfirmTransaction/containers/ConfirmTransaction'
 import SendTransaction from 'routes/popup/Transaction/components/SendTransaction/containers/SendTransaction'
-import styles from 'assets/css/global.css'
 import {
   REPLACE_RECOVERY_PRASE,
   REPLACE_RECOVERY_PHRASE_DESCRIPTION
 } from '../../../../../config/messages'
+import styles from './style.css'
 
 class Layout extends Component {
   prevent = (e) => {
@@ -41,15 +44,20 @@ class Layout extends Component {
     const decimalValue = transaction.decimals
       ? transaction.displayedValue.div(10 ** transaction.decimals)
       : transaction.displayedValue
-    const displayedValue = decimalValue ? decimalValue.toString(10) : '-'
+    const displayedValue = decimalValue ? '-' + decimalValue.toString(10) : '-'
     const toAddress = isTokenTransfer(transaction.data)
       ? getTokenTransferAddress(transaction.data)
       : transaction.to
 
+    const title =
+      transaction.type === 'confirmTransaction'
+        ? CONFIRM_REQUEST
+        : REVIEW_TRANSACTION
+
     return (
       <React.Fragment>
         <HeaderPopup
-          title={REVIEW_TRANSACTION}
+          title={title}
           reviewedElement={reviewedTx}
           numElements={transactions.txs.length}
           previousElement={previousTransaction}

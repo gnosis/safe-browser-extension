@@ -17,6 +17,10 @@
   flex: 1;
 }
 
+.noUppercase {
+  text-transform: none;
+}
+
 .button:active {
   transition-duration: 0.1s;
   background: $darkGreen;
@@ -32,4 +36,10 @@
 .naked:active {
   transition-duration: 0.1s;
   background: $darkWhite;
+}
+
+.button[disabled],
+a.button[disabled] {
+  pointer-events: none;
+  opacity: .5;
 }

@@ -91,7 +91,6 @@
   background: $grey;
   box-shadow: 0 2px 4px 0 rgba(33,67,90,.25);
   border-radius: 3px;
-  min-height: 100px;
   height: auto;
   top: 54px;
   z-index: 101;

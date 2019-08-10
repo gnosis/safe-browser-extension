@@ -2,15 +2,17 @@ import React, { Component } from 'react'
 import classNames from 'classnames/bind'
 import Network from 'react-network'
 import { Redirect } from 'react-router'
-import mobileImage from 'assets/images/mobile.svg'
 import { PASSWORD_URL } from 'routes/routes'
+import Button from 'components/layout/Button'
+import Paragraph from 'components/layout/Paragraph'
 import {
   AWAITING_CONFIRMATIONS,
   REQUEST_CONFIRMATION,
   REQUEST_CONFIRMATION_WAIT_X_S,
   CONFIRM_WITH_MOBILE
 } from '../../../../config/messages'
-import styles from 'assets/css/global.css'
+import mobileImage from './assets/mobile.svg'
+import styles from './style.css'
 
 const cx = classNames.bind(styles)
 
@@ -57,27 +59,30 @@ class SendTransactionState extends Component {
     return (
       <div className={cx(styles.transactionState)}>
         <span className={styles.await}>
-          <p>{AWAITING_CONFIRMATIONS}</p>
+          <Paragraph>{AWAITING_CONFIRMATIONS}</Paragraph>
           <div className={styles.progress}>
             <div className={styles.indeterminate} />
           </div>
         </span>
         <span className={styles.message}>
-          <img src={mobileImage} height="55" width="30" />
-          <p>{CONFIRM_WITH_MOBILE}</p>
+          <div className={styles.img}>
+            <img src={mobileImage} height="55" width="30" />
+          </div>
+          <Paragraph>{CONFIRM_WITH_MOBILE}</Paragraph>
         </span>
         <Network
           render={({ online }) =>
             online && (
               <span className={styles.resend}>
-                <p>{waitingTime}</p>
-                <button
+                <Paragraph>{waitingTime}</Paragraph>
+                <Button
                   className={cx(styles.button, styles.white)}
                   disabled={seconds > 0}
                   onClick={this.handleConfirmation}
+                  noUppercase
                 >
                   {REQUEST_CONFIRMATION}
-                </button>
+                </Button>
               </span>
             )
           }

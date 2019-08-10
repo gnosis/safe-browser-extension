@@ -21,7 +21,7 @@ export const normalizeUrl = (url) => {
   return domain
 }
 
-export const shortenAddress = (address) => {
+export const shortenAddress = (address, number1, number2) => {
   if (!address) {
     return null
   }
@@ -29,10 +29,10 @@ export const shortenAddress = (address) => {
   const checksumedAddress = EthUtil.toChecksumAddress(address)
   return (
     checksumedAddress &&
-    checksumedAddress.substring(0, 8) +
+    checksumedAddress.substring(0, number1) +
       '...' +
       checksumedAddress.substring(
-        checksumedAddress.length - 6,
+        checksumedAddress.length - number2,
         checksumedAddress.length
       )
   )

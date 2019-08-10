@@ -55,10 +55,7 @@ const FooterButtons = ({
         >
           {rejectionText}
         </Button>
-        <Button
-          onClick={handleConfirmationButton}
-          className={styles.button}
-        >
+        <Button onClick={handleConfirmationButton} className={styles.button}>
           {confirmationText}
         </Button>
       </span>

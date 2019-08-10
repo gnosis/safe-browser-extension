@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { ga } from 'utils/analytics'
 import { TRANSACTIONS } from 'utils/analytics/events'
@@ -9,31 +9,22 @@ import { getNonce } from 'logic/contracts/safeContracts'
 import Layout from '../components/Layout'
 import messages from '../../../../../../../extension/utils/messages'
 
-const SendTransaction = ({
-  transactionNumber,
-  showTransaction,
-  transactions,
-  removeTransaction,
-  handleTransaction,
-  transaction,
-  ethAccount,
-  lockedAccount,
-  loadedData,
-  reviewedTx
-}) => {
-  const maxSeconds = 30
-  let timer = null
-  const [seconds, setSeconds] = useState(maxSeconds)
+class SendTransaction extends Component {
+  constructor(props) {
+    super(props)
+    this.maxSeconds = 30
+    this.state = {
+      seconds: this.maxSeconds
+    }
+  }
 
-  useEffect(() => {
-    return () => clearInterval(timer)
-  }, [])
+  handleConfirmTransaction = (resend) => {
+    const { handleTransaction, transactionNumber } = this.props
 
-  const handleConfirmTransaction = (resend) => {
     if (!handleTransaction()) {
       return
     }
-    handleSendTransaction()
+    this.handleTransaction()
 
     chrome.runtime.sendMessage({
       msg: messages.MSG_PENDING_SENDTRANSACTION,
@@ -58,7 +49,7 @@ const SendTransaction = ({
   }
 
   handleRejectTransaction = () => {
-    handleRemoveSendTransaction()
+    this.handleRemoveTransaction()
     ga([
       '_trackEvent',
       TRANSACTIONS,
@@ -70,15 +61,17 @@ const SendTransaction = ({
   handleMobileAppResponse = () => {
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (request.msg === messages.MSG_RESOLVED_TRANSACTION) {
-        clearInterval(timer)
-        handleRemoveSendTransaction()
+        clearInterval(this.timer)
+        this.handleRemoveTransaction()
       }
     })
   }
 
-  const handleSendTransaction = async () => {
-    setSeconds(maxSeconds)
-    startCountdown()
+  handleTransaction = async () => {
+    const { transaction, ethAccount } = this.props
+
+    this.setState({ seconds: this.maxSeconds })
+    this.startCountdown()
     try {
       transaction.nonce = await getNonce(transaction)
       transaction.hash = await getTxHash(transaction)
@@ -90,14 +83,21 @@ const SendTransaction = ({
         transaction.from
       )
       if (response && response.status === 204) {
-        handleMobileAppResponse()
+        this.handleMobileAppResponse()
       }
     } catch (err) {
       console.error(err)
     }
   }
 
-  const handleRemoveSendTransaction = async () => {
+  handleRemoveTransaction = async () => {
+    const {
+      transactionNumber,
+      showTransaction,
+      transactions,
+      removeTransaction
+    } = this.props
+
     if (transactions.txs.length === 1) {
       await removeTransaction(transactionNumber)
       window.close()
@@ -109,28 +109,40 @@ const SendTransaction = ({
     showTransaction(position)
   }
 
-  const startCountdown = () => {
-    timer = setInterval(this.countDown, 1000)
+  startCountdown = () => {
+    this.timer = setInterval(this.countDown, 1000)
   }
 
   countDown = () => {
+    const { seconds } = this.state
     if (seconds === 0) {
-      clearInterval(timer)
+      clearInterval(this.timer)
       return
     }
-    setSeconds((prevState) => prevState.seconds - 1)
+    this.setState((prevState) => ({
+      seconds: prevState.seconds - 1
+    }))
   }
 
-  return (
-    <Layout
-      lockedAccount={lockedAccount}
-      loadedData={loadedData}
-      reviewedTx={reviewedTx}
-      seconds={seconds}
-      handleConfirmTransaction={handleConfirmSendTransaction}
-      handleRejectTransaction={handleRejectSendTransaction}
-    />
-  )
+  componentWillUnmount = () => {
+    clearInterval(this.timer)
+  }
+
+  render() {
+    const { lockedAccount, loadedData, reviewedTx } = this.props
+    const { seconds } = this.state
+
+    return (
+      <Layout
+        lockedAccount={lockedAccount}
+        loadedData={loadedData}
+        reviewedTx={reviewedTx}
+        seconds={seconds}
+        handleConfirmTransaction={this.handleConfirmTransaction}
+        handleRejectTransaction={this.handleRejectTransaction}
+      />
+    )
+  }
 }
 
 export default connect(selector)(SendTransaction)

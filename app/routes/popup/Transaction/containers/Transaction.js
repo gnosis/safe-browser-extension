@@ -18,7 +18,7 @@ import Layout from '../components/Layout'
 import actions from './actions'
 import selector from './selector'
 import messages from '../../../../../extension/utils/messages'
-import styles from 'assets/css/global.css'
+import styles from './style.css'
 
 class Transaction extends Component {
   constructor(props) {
@@ -200,7 +200,7 @@ class Transaction extends Component {
     return (
       <div className={styles.extensionPopup}>
         <div className={styles.extensionInner}>
-          <Header isPopup location={location} />
+          <Header isPopup location={location} transactionNumber={transactionNumber}/>
           <div className={styles.Page}>
             <Layout
               transaction={transaction}

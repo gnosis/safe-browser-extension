@@ -14,7 +14,8 @@ export const selectCurrentTransactionSafeAlias = () =>
   createSelector(
     transactionsSelector,
     safesSelector,
-    (state, props) => props.transactionNumber,
+    (state, props) => {
+      return props.transactionNumber},
     (transactions, safes, transactionNumber) => {
       if (transactionNumber === undefined) {
         return null

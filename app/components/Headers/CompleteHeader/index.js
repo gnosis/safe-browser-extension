@@ -7,7 +7,7 @@ import styles from './style.css'
 
 const cx = classNames.bind(styles)
 
-const Header = ({ isPopup, location }) => {
+const Header = ({ isPopup, location, transactionNumber }) => {
   const [showMenu, setShowMenu] = useState(false)
   const [showSafes, setShowSafes] = useState(false)
 
@@ -36,6 +36,7 @@ const Header = ({ isPopup, location }) => {
           toggleSafes={toggleSafes}
           showSafes={showSafes}
           isPopup={isPopup}
+          transactionNumber={transactionNumber}
         />
         <LockingState location={location} />
       </header>

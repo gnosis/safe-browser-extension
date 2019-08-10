@@ -25,6 +25,7 @@ export const CHECK_INTERNET_CONNECTION = ReactHtmlParser(chrome.i18n.getMessage(
 export const CONFIRM = ReactHtmlParser(chrome.i18n.getMessage('confirm'))
 export const CONFIRM_CREATE_PASSWORD_TITLE = ReactHtmlParser(chrome.i18n.getMessage('confirm_create_password_title'))
 export const CONFIRM_PASSWORD = ReactHtmlParser(chrome.i18n.getMessage('confirm_password'))
+export const CONFIRM_REQUEST = ReactHtmlParser(chrome.i18n.getMessage('confirm_request'))
 export const CONFIRM_TRANSACTION = ReactHtmlParser(chrome.i18n.getMessage('confirm_transaction'))
 export const CONFIRM_TRANSACTION_STATE = ReactHtmlParser(chrome.i18n.getMessage('confirm_transaction_state'))
 export const CONFIRM_WITH_MOBILE = ReactHtmlParser(chrome.i18n.getMessage('confirm_with_mobile'))

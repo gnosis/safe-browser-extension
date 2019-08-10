@@ -4,9 +4,22 @@ import styles from './style.css'
 
 const cx = classNames.bind(styles)
 
-const AuthenticatorButton = ({ naked, className, ...props }) => (
+const AuthenticatorButton = ({
+  naked,
+  disabled,
+  noUppercase,
+  className,
+  ...props
+}) => (
   <button
-    className={cx(styles.button, naked && styles.naked, className)}
+    className={cx(
+      styles.button,
+      disabled && styles.disabled,
+      naked && styles.naked,
+      noUppercase && styles.noUppercase,
+      className
+    )}
+    disabled={disabled}
     {...props}
   />
 )
