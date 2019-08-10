@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import Page from 'components/layout/Page'
 import TextInput from 'components/forms/TextInput'
 import Button from 'components/layout/Button'
+import { getNetwork } from '../../../../../config'
 import { UNLOCK, ENTER_PASSWORD } from '../../../../../config/messages'
 import styles from './style.css'
 
@@ -22,7 +23,7 @@ const Layout = ({
   return (
     <Page withoutHeader background="mountains" location={location}>
       <div className={styles.content}>
-        <span className={cx(styles.safeLogo)} />
+        <span className={cx(styles.safeLogo)} data-network={getNetwork()} />
         <form onSubmit={prevent}>
           <div className={styles.passwordForm}>
             <TextInput

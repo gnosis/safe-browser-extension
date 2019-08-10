@@ -63,7 +63,7 @@ const envConfig = {
     [FIREBASE_MESSAGING_SENDER_ID]: process.env.FIREBASE_MESSAGING_SENDER_ID,
     [FAVICON]: {
       [MAINNET]: 'favicon_mainnet.png',
-      [RINKEBY]: 'favicon_rinkeby_blue.png'
+      [RINKEBY]: 'favicon_rinkeby.png'
     }
   },
   [PRE_PRODUCTION]: {

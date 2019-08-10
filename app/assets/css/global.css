@@ -194,29 +194,6 @@ form{
   }
 }
 
-.start .safeLogo{
-  margin:0 auto 7em
-}
-
-.start p{
-  margin:1.5em auto 3em;
-  font-size:1.5em;
-  line-height:1.8
-}
-.start img{
-  -ms-flex:1 100%;
-  flex:1 100%
-}
-.start button{
-  max-width:30em;
-  margin:2.5em auto 0
-}
-
-.extension .blockAccess {
-  background:fixed,url(../images/mountains_background.svg) bottom/contain no-repeat,linear-gradient(-180deg,#fff 50%,#E4E8F1 100%)
-}
-
-
 .identicon{
   pointer-events:none;
   margin-right: 6px;

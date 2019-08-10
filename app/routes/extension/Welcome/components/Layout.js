@@ -3,6 +3,7 @@ import classNames from 'classnames/bind'
 import Page from 'components/layout/Page'
 import Button from 'components/layout/Button'
 import Disclaimer from './Disclaimer'
+import { getNetwork } from '../../../../../config'
 import { GET_STARTED, SLOGAN } from '../../../../../config/messages'
 import styles from './style.css'
 
@@ -14,6 +15,7 @@ const Layout = ({ showDisclaimer, toggleDisclaimer }) => (
       <div className={styles.content}>
         <span
           className={cx(styles.safeLogo, styles.animated, styles.fadeInUp)}
+          data-network={getNetwork()}
         />
         <h1>{SLOGAN}</h1>
         <Button onClick={toggleDisclaimer}>{GET_STARTED}</Button>

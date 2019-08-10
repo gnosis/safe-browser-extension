@@ -6,12 +6,19 @@
 }
 
 .safeLogo {
-  background: url(assets/images/safe_logo_text_mainnet.svg) center/contain no-repeat;
   height: 151px;
   width: 115px;
   display: block;
   position: relative;
   margin: 93px auto 25px;
+}
+
+.safeLogo[data-network='mainnet'] {
+  background: url(assets/images/safe_logo_text_mainnet.svg) center/contain no-repeat;
+}
+
+.safeLogo[data-network='rinkeby'] {
+  background: url(assets/images/safe_logo_text_rinkeby.svg) center/contain no-repeat;
 }
 
 .content > form {
