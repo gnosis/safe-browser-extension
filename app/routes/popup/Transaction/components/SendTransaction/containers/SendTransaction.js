@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { ga } from 'utils/analytics'
 import { TRANSACTIONS } from 'utils/analytics/events'
@@ -9,22 +9,31 @@ import { getNonce } from 'logic/contracts/safeContracts'
 import Layout from '../components/Layout'
 import messages from '../../../../../../../extension/utils/messages'
 
-class SendTransaction extends Component {
-  constructor(props) {
-    super(props)
-    this.maxSeconds = 30
-    this.state = {
-      seconds: this.maxSeconds
-    }
-  }
+const SendTransaction = ({
+  transactionNumber,
+  showTransaction,
+  transactions,
+  removeTransaction,
+  handleTransaction,
+  transaction,
+  ethAccount,
+  lockedAccount,
+  loadedData,
+  reviewedTx
+}) => {
+  const maxSeconds = 30
+  let timer = null
+  const [seconds, setSeconds] = useState(maxSeconds)
 
-  handleConfirmTransaction = (resend) => {
-    const { handleTransaction, transactionNumber } = this.props
+  useEffect(() => {
+    return () => clearInterval(timer)
+  }, [])
 
+  const handleConfirmTransaction = (resend) => {
     if (!handleTransaction()) {
       return
     }
-    this.handleTransaction()
+    handleSendTransaction()
 
     chrome.runtime.sendMessage({
       msg: messages.MSG_PENDING_SENDTRANSACTION,
@@ -49,7 +58,7 @@ class SendTransaction extends Component {
   }
 
   handleRejectTransaction = () => {
-    this.handleRemoveTransaction()
+    handleRemoveSendTransaction()
     ga([
       '_trackEvent',
       TRANSACTIONS,
@@ -61,17 +70,15 @@ class SendTransaction extends Component {
   handleMobileAppResponse = () => {
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (request.msg === messages.MSG_RESOLVED_TRANSACTION) {
-        clearInterval(this.timer)
-        this.handleRemoveTransaction()
+        clearInterval(timer)
+        handleRemoveSendTransaction()
       }
     })
   }
 
-  handleTransaction = async () => {
-    const { transaction, ethAccount } = this.props
-
-    this.setState({ seconds: this.maxSeconds })
-    this.startCountdown()
+  const handleSendTransaction = async () => {
+    setSeconds(maxSeconds)
+    startCountdown()
     try {
       transaction.nonce = await getNonce(transaction)
       transaction.hash = await getTxHash(transaction)
@@ -83,21 +90,14 @@ class SendTransaction extends Component {
         transaction.from
       )
       if (response && response.status === 204) {
-        this.handleMobileAppResponse()
+        handleMobileAppResponse()
       }
     } catch (err) {
       console.error(err)
     }
   }
 
-  handleRemoveTransaction = async () => {
-    const {
-      transactionNumber,
-      showTransaction,
-      transactions,
-      removeTransaction
-    } = this.props
-
+  const handleRemoveSendTransaction = async () => {
     if (transactions.txs.length === 1) {
       await removeTransaction(transactionNumber)
       window.close()
@@ -109,40 +109,28 @@ class SendTransaction extends Component {
     showTransaction(position)
   }
 
-  startCountdown = () => {
-    this.timer = setInterval(this.countDown, 1000)
+  const startCountdown = () => {
+    timer = setInterval(this.countDown, 1000)
   }
 
   countDown = () => {
-    const { seconds } = this.state
     if (seconds === 0) {
-      clearInterval(this.timer)
+      clearInterval(timer)
       return
     }
-    this.setState((prevState) => ({
-      seconds: prevState.seconds - 1
-    }))
+    setSeconds((prevState) => prevState.seconds - 1)
   }
 
-  componentWillUnmount = () => {
-    clearInterval(this.timer)
-  }
-
-  render() {
-    const { lockedAccount, loadedData, reviewedTx } = this.props
-    const { seconds } = this.state
-
-    return (
-      <Layout
-        lockedAccount={lockedAccount}
-        loadedData={loadedData}
-        reviewedTx={reviewedTx}
-        seconds={seconds}
-        handleConfirmTransaction={this.handleConfirmTransaction}
-        handleRejectTransaction={this.handleRejectTransaction}
-      />
-    )
-  }
+  return (
+    <Layout
+      lockedAccount={lockedAccount}
+      loadedData={loadedData}
+      reviewedTx={reviewedTx}
+      seconds={seconds}
+      handleConfirmTransaction={handleConfirmSendTransaction}
+      handleRejectTransaction={handleRejectSendTransaction}
+    />
+  )
 }
 
 export default connect(selector)(SendTransaction)

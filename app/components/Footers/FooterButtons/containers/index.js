@@ -1,82 +1,69 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import classNames from 'classnames'
 import { Redirect } from 'react-router'
+import Button from 'components/layout/Button'
 import NetworkNotification from 'components/Notification/NetworkNotification'
-import styles from 'assets/css/global.css'
 import { PASSWORD_URL } from 'routes/routes'
+import styles from './style.css'
 
 const cx = classNames.bind(styles)
 
-class FooterButtons extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      requestResolved: false
-    }
-  }
+const FooterButtons = ({
+  lockedAccount,
+  nextUrl,
+  rejectionText,
+  confirmationText,
+  handleConfirmation,
+  handleRejection,
+  rejectWithExtensionLockedAllowed
+}) => {
+  const [requestResolved, setRequestResolved] = useState(false)
 
-  handleRejection = () => {
-    const {
-      handleRejection,
-      lockedAccount,
-      rejectWithExtensionLockedAllowed
-    } = this.props
-
+  const handleRejectionButton = () => {
     if (lockedAccount && !rejectWithExtensionLockedAllowed) {
-      this.setState({ requestResolved: true })
+      setRequestResolved(true)
     } else {
       handleRejection()
     }
   }
 
-  handleConfirmation = () => {
-    const { handleConfirmation, lockedAccount } = this.props
-
+  const handleConfirmationButton = () => {
     if (lockedAccount) {
-      this.setState({ requestResolved: true })
+      setRequestResolved(true)
     } else {
       handleConfirmation()
     }
   }
 
-  render() {
-    const {
-      lockedAccount,
-      nextUrl,
-      rejectionText,
-      confirmationText
-    } = this.props
-    const { requestResolved } = this.state
-
-    if (requestResolved && lockedAccount) {
-      const passwordUrl = {
-        pathname: PASSWORD_URL,
-        state: {
-          dest: nextUrl
-        }
+  if (requestResolved && lockedAccount) {
+    const passwordUrl = {
+      pathname: PASSWORD_URL,
+      state: {
+        dest: nextUrl
       }
-      return <Redirect to={passwordUrl} />
     }
-
-    return (
-      <NetworkNotification>
-        <span className={styles.buttonGroup}>
-          <button
-            onClick={this.handleRejection}
-            className={cx(styles.button, styles.reject)}
-          >
-            {rejectionText}
-          </button>
-          <button
-            onClick={this.handleConfirmation}
-            className={cx(styles.button, styles.confirm)}
-          >
-            {confirmationText}
-          </button>
-        </span>
-      </NetworkNotification>
-    )
+    return <Redirect to={passwordUrl} />
   }
+
+  return (
+    <NetworkNotification>
+      <span className={styles.buttonGroup}>
+        <Button
+          onClick={handleRejectionButton}
+          className={cx(styles.button, styles.reject)}
+          naked
+        >
+          {rejectionText}
+        </Button>
+        <Button
+          onClick={handleConfirmationButton}
+          className={styles.button}
+        >
+          {confirmationText}
+        </Button>
+      </span>
+    </NetworkNotification>
+  )
 }
 
 export default FooterButtons

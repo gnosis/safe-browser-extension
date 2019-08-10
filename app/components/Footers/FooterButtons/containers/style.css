@@ -1,0 +1,25 @@
+.button-group {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  margin: 0;
+}
+
+.button {
+  flex: 1;
+  height: 54px;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  padding: 0;
+}
+
+.reject {
+  color: $red;
+}
