@@ -8,7 +8,7 @@ import { createQrImage } from 'utils/qrdisplay'
 import {
   getDecryptedEthAccount,
   createAccountFromMnemonic
-} from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'
+} from 'routes/extension/DownloadApps/containers/pairEthAccount'
 import Layout from '../components/Layout'
 import selector from './selector'
 

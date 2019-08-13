@@ -6,7 +6,7 @@ import { configureLocking } from 'routes/extension/LockingConfiguration/store/ac
 import { unlockAccount } from 'components/Headers/CompleteHeader/LockingState/store/actions'
 import { updateMasterPassword } from 'routes/extension/ChangePassword/store/actions'
 import { lockAccount } from 'actions/account'
-import { createEthAccount } from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'
+import { createEthAccount } from 'routes/extension/DownloadApps/containers/pairEthAccount'
 
 const address = '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'
 const mnemonic =

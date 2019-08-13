@@ -12,7 +12,7 @@ import {
   getPushNotificationServiceUrl,
   getAppVersionNumber,
   getAppBuildNumber
-} from '../../../../../../../config'
+} from '../../../../../config'
 
 export const setUpNotifications = () => {
   const messaging = setUpFirebase()

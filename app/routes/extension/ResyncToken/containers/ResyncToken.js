@@ -5,11 +5,11 @@ import { EXTENSION_SETTINGS } from 'utils/analytics/events'
 import {
   setUpNotifications,
   authPushNotificationService
-} from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairingNotifications'
+} from 'routes/extension/DownloadApps/containers/pairingNotifications'
 import {
   getDecryptedEthAccount,
   createAccountFromMnemonic
-} from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'
+} from 'routes/extension/DownloadApps/containers/pairEthAccount'
 import Layout from '../components/Layout'
 import selector from './selector'
 import { ERROR_SYNCING, SYNCED_TOKEN } from '../../../../../config/messages'

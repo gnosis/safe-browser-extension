@@ -5,8 +5,8 @@ import CryptoJs from 'crypto-js'
 import {
   setUpNotifications,
   authPushNotificationService
-} from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairingNotifications'
-import { getDecryptedAllEthAccounts } from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'
+} from 'routes/extension/DownloadApps/containers/pairingNotifications'
+import { getDecryptedAllEthAccounts } from 'routes/extension/DownloadApps/containers/pairEthAccount'
 import actions from './actions'
 import selector from './selector'
 import Layout from '../components/Layout'

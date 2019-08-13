@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js'
 import {
   getDecryptedEthAccount,
   createAccountFromMnemonic
-} from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'
+} from 'routes/extension/DownloadApps/containers/pairEthAccount'
 import { getEthBalance } from 'utils/helpers'
 import Header from 'components/Headers/CompleteHeader'
 import Layout from '../components/Layout'

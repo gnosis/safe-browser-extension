@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js'
 import {
   getDecryptedEthAccount,
   createAccountFromMnemonic
-} from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'
+} from 'routes/extension/DownloadApps/containers/pairEthAccount'
 import {
   getTransactionData,
   setUpTransaction,
