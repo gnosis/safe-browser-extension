@@ -25,7 +25,6 @@
 }
 
 .textInput:focus {
-  border: 1px solid $green;
   background-color: $white;
 }
 
@@ -60,7 +59,6 @@
 
 .outerTextInput[data-validation=OK] input {
   color: $green;
-  border: 1px solid $green;
 }
 
 .outerTextInput[data-validation=ERROR]::after {
@@ -70,24 +68,24 @@
 
 .outerTextInput[data-validation=ERROR] input {
   color: $red;
-  border: 1px solid $red;
+  border: 2px solid $red;
 }
 
-@keyframes shake{
-  41%,8%{
-      transform:translateX(-10px)
+@keyframes shake {
+  41%,8% {
+      transform: translateX(-10px);
   }
-  25%,58%{
-      transform:translateX(10px)
+  25%,58% {
+      transform: translateX(10px);
   }
-  75%{
-      transform:translateX(-5px)
+  75% {
+      transform: translateX(-5px);
   }
-  92%{
-      transform:translateX(5px)
+  92% {
+      transform: translateX(5px);
   }
-  0%,100%{
-      transform:translateX(0)
+  0%, 100% {
+      transform: translateX(0);
   }
 }
 
