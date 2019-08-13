@@ -18,7 +18,6 @@ import Layout from '../components/Layout'
 import actions from './actions'
 import selector from './selector'
 import messages from '../../../../../extension/utils/messages'
-import styles from './style.css'
 
 class Transaction extends Component {
   constructor(props) {
@@ -198,36 +197,26 @@ class Transaction extends Component {
     setUpTransaction(transaction, estimations, displayedValue, decimals)
 
     return (
-      <div className={styles.extensionPopup}>
-        <div className={styles.extensionInner}>
-          <Header
-            isPopup
-            location={location}
-            transactionNumber={transactionNumber}
-          />
-          <div className={styles.Page}>
-            <Layout
-              transaction={transaction}
-              transactions={transactions}
-              balance={balance}
-              symbol={symbol}
-              transactionNumber={transactionNumber}
-              lockedAccount={account.lockedState}
-              loadedData={loadedData}
-              reviewedTx={reviewedTx}
-              transactionSummary={transactionSummary}
-              replaceRecoveryPhrase={replaceRecoveryPhrase}
-              safeAlias={this.getSafeAlias(transaction.safe)}
-              ethAccount={this.ethAccount}
-              previousTransaction={this.previousTransaction}
-              nextTransaction={this.nextTransaction}
-              removeTransaction={this.removeTransaction}
-              showTransaction={this.showTransaction}
-              handleTransaction={this.handleTransaction}
-            />
-          </div>
-        </div>
-      </div>
+      <Layout
+        transaction={transaction}
+        transactions={transactions}
+        balance={balance}
+        symbol={symbol}
+        transactionNumber={transactionNumber}
+        lockedAccount={account.lockedState}
+        loadedData={loadedData}
+        reviewedTx={reviewedTx}
+        transactionSummary={transactionSummary}
+        replaceRecoveryPhrase={replaceRecoveryPhrase}
+        safeAlias={this.getSafeAlias(transaction.safe)}
+        ethAccount={this.ethAccount}
+        previousTransaction={this.previousTransaction}
+        nextTransaction={this.nextTransaction}
+        removeTransaction={this.removeTransaction}
+        showTransaction={this.showTransaction}
+        handleTransaction={this.handleTransaction}
+        location={location}
+      />
     )
   }
 }

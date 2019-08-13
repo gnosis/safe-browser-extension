@@ -11,7 +11,6 @@ import Layout from '../components/Layout'
 import actions from './actions'
 import selector from './selector'
 import messages from '../../../../../extension/utils/messages'
-import styles from 'assets/css/global.css'
 
 class SignMessage extends Component {
   constructor(props) {
@@ -112,26 +111,20 @@ class SignMessage extends Component {
     const safe = signMessages ? signMessages.message[3] : ''
 
     return (
-      <div className={styles.extensionPopup}>
-        <div className={styles.extensionInner}>
-          <Header isPopup location={location} />
-          <div className={styles.Page}>
-            <Layout
-              signMessages={signMessages}
-              balance={balance}
-              lockedAccount={account.lockedState}
-              loadedData={loadedData}
-              reviewedSignature={reviewedSignature}
-              address={safe}
-              safeAlias={this.getSafeAlias(safe)}
-              ethAccount={this.ethAccount}
-              removeSignMessage={this.removeSignMessage}
-              showSignMessage={this.showSignMessage}
-              handleSignMessage={this.handleSignMessage}
-            />
-          </div>
-        </div>
-      </div>
+      <Layout
+        signMessages={signMessages}
+        balance={balance}
+        lockedAccount={account.lockedState}
+        loadedData={loadedData}
+        reviewedSignature={reviewedSignature}
+        address={safe}
+        safeAlias={this.getSafeAlias(safe)}
+        ethAccount={this.ethAccount}
+        removeSignMessage={this.removeSignMessage}
+        showSignMessage={this.showSignMessage}
+        handleSignMessage={this.handleSignMessage}
+        location={location}
+      />
     )
   }
 }

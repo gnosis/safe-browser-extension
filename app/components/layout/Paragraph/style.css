@@ -11,3 +11,8 @@
 .red {
   color: $red;
 }
+
+.bold {
+  color: $darkBlue;
+  font-weight: bold;
+}

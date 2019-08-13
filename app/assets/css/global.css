@@ -45,11 +45,15 @@ form{
   flex-wrap: wrap
 }
 
-@font-face{
+@font-face {
   font-family: Averta;
-  src:url("../fonts/averta-regular.woff2") format("woff2");
-  font-weight:100;
-  font-style:normal
+  src: url("../fonts/Averta-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: Averta;
+  src: url("../fonts/Averta-ExtraBold.otf") format("opentype");
+  font-weight: bold;
 }
 
 .identicon{

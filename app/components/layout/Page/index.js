@@ -7,14 +7,14 @@ import styles from './style.css'
 
 const cx = classNames.bind(styles)
 
-const getHeader = (withoutHeader, simpleHeader, location) => {
+const getHeader = (withoutHeader, simpleHeader, isPopup, location) => {
   if (withoutHeader) {
     return
   }
   if (simpleHeader) {
     return <SimpleHeader />
   }
-  return <Header location={location} />
+  return <Header location={location} isPopup={isPopup} />
 }
 
 const Page = ({
@@ -22,11 +22,12 @@ const Page = ({
   withoutHeader,
   simpleHeader,
   children,
-  location
+  location,
+  isPopup
 }) => (
   <div className={cx(styles.extension, background)}>
     <div className={styles.extensionInner}>
-      {getHeader(withoutHeader, simpleHeader, location)}
+      {getHeader(withoutHeader, simpleHeader, isPopup, location)}
       {children}
       <NetworkNotification />
     </div>

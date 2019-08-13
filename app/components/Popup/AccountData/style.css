@@ -70,7 +70,6 @@
   font-family: Averta, Helvetica, sans-serif;
   color: $darkGrey;
   word-break: inherit;
-  letter-spacing: -1px;
 }
 
 .transactionFrom > span > small,
