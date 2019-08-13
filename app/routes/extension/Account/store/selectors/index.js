@@ -9,8 +9,9 @@ export const transactionsSelector = (state) => state.transactions
 export const selectCurrentSafeAlias = createSelector(
   safesSelector,
   (safes) => {
-    return (safes.currentSafe)
-      ? safes.safes.filter((safe) => safe.address === safes.currentSafe)[0].alias
+    return safes.currentSafe
+      ? safes.safes.filter((safe) => safe.address === safes.currentSafe)[0]
+          .alias
       : ''
   }
 )

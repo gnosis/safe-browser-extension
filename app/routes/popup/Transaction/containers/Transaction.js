@@ -200,7 +200,11 @@ class Transaction extends Component {
     return (
       <div className={styles.extensionPopup}>
         <div className={styles.extensionInner}>
-          <Header isPopup location={location} transactionNumber={transactionNumber}/>
+          <Header
+            isPopup
+            location={location}
+            transactionNumber={transactionNumber}
+          />
           <div className={styles.Page}>
             <Layout
               transaction={transaction}

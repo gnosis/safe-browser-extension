@@ -3,8 +3,10 @@ import classNames from 'classnames'
 import Page from 'components/layout/Page'
 import TextInput from 'components/forms/TextInput'
 import Button from 'components/layout/Button'
+import ContentHeader from 'components/headers/ContentHeader'
 import { getNetwork } from '../../../../../config'
 import { UNLOCK, ENTER_PASSWORD } from '../../../../../config/messages'
+import { ACCOUNT_URL } from 'routes/routes'
 import styles from './style.css'
 
 const cx = classNames.bind(styles)
@@ -23,7 +25,16 @@ const Layout = ({
   return (
     <Page withoutHeader background="mountains" location={location}>
       <div className={styles.content}>
-        <span className={cx(styles.safeLogo)} data-network={getNetwork()} />
+        {location.state.contentHeader && (
+          <ContentHeader backLink={ACCOUNT_URL} passwordBack />
+        )}
+        <span
+          className={cx(
+            styles.safeLogo,
+            location.state.contentHeader && styles.safeLogoSmMargin
+          )}
+          data-network={getNetwork()}
+        />
         <form onSubmit={prevent}>
           <div className={styles.passwordForm}>
             <TextInput

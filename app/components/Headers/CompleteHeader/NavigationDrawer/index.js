@@ -31,7 +31,8 @@ const NavigationDrawer = ({ account, showMenu, toggleMenu, transactions }) => {
       ? {
           pathname: PASSWORD_URL,
           state: {
-            dest: url
+            dest: url,
+            contentHeader: true
           }
         }
       : url

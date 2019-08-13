@@ -71,7 +71,8 @@ class LockingState extends Component {
       const url = {
         pathname: PASSWORD_URL,
         state: {
-          dest: location.pathname
+          dest: location.pathname,
+          contentHeader: true
         }
       }
       return <Redirect to={url} />

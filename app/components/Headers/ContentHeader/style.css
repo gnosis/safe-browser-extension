@@ -53,6 +53,26 @@
   height: 100%;
 }
 
+.passwordBack > p {
+  color: $darkBlue;
+  padding: 0 0 0 20px;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0;
+  margin: 0;
+  font-size: 14px;  
+}
+
+.passwordBack.active {
+  background: url(assets/images/arrow-left-darkgrey.svg) center/contain no-repeat;
+}
+
+.passwordBack.active > p {
+  color: $darkBlue;
+  line-height: 46px;
+  height: 100%;
+}
+
 .right {
   position: absolute;
   padding: 0;
@@ -60,4 +80,8 @@
   top: 0;
   right: 0;
   margin: 0 20px 0 0;
+}
+
+.transparent {
+  border: none;
 }

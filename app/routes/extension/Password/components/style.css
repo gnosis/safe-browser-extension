@@ -13,6 +13,10 @@
   margin: 93px auto 25px;
 }
 
+.safeLogoSmMargin {
+  margin: 47px auto 25px;
+}
+
 .safeLogo[data-network='mainnet'] {
   background: url(assets/images/safe_logo_text_mainnet.svg) center/contain no-repeat;
 }

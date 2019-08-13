@@ -46,15 +46,30 @@ const Account = ({ safes, location, transactions, currentSafeAlias }) => {
 
   setTimeout(() => focusTransactionWindow(), 100)
 
-  const pairingUrl = {
-    pathname: PASSWORD_URL,
-    state: {
-      dest: DOWNLOAD_APPS_URL
-    }
+  if (newSafe) {
+    return (
+      <Redirect
+        to={{
+          pathname: PASSWORD_URL,
+          state: {
+            dest: DOWNLOAD_APPS_URL,
+            contentHeader: true
+          }
+        }}
+      />
+    )
   }
-
-  if (newSafe || safes.currentSafe === undefined) {
-    return <Redirect to={pairingUrl} />
+  if (safes.currentSafe === undefined) {
+    return (
+      <Redirect
+        to={{
+          pathname: PASSWORD_URL,
+          state: {
+            dest: DOWNLOAD_APPS_URL
+          }
+        }}
+      />
+    )
   }
   return (
     <Layout
