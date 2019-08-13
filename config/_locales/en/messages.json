@@ -42,7 +42,7 @@
     "message": "Safe balance"
   },
   "request_confirmation_wait_x_s": {
-    "message": "Please wait %s sec before resending request."
+    "message": "wait %ss before resending request"
   },
   "request_confirmation": {
     "message": "Resend confirmation request"
@@ -249,7 +249,7 @@
     "message": "Payment token (for network fees)"
   },
   "review_sign_message": {
-    "message": "Review signature"
+    "message": "Signature request"
   },
   "view_message": {
     "message": "View message"
@@ -261,10 +261,7 @@
     "message": "Domain"
   },
   "verifying_contract": {
-    "message": "Verifying contract"
-  },
-  "you_are_signing": {
-    "message": "You are signing"
+    "message": "Contract"
   },
   "ios_replace_recovery_phrase": {
     "message": "Replace recovery\\nphrase"

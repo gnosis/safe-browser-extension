@@ -105,4 +105,3 @@ export const WEB3_INJECTION_FAILED = ReactHtmlParser(chrome.i18n.getMessage('web
 export const WEBSITE_NOT_WHITELISTED = ReactHtmlParser(chrome.i18n.getMessage('website_not_whitelisted'))
 export const WEBSITE_WHITELISTED = ReactHtmlParser(chrome.i18n.getMessage('website_whitelisted'))
 export const WHITELISTED_SITE = ReactHtmlParser(chrome.i18n.getMessage('whitelisted_site'))
-export const YOU_ARE_SIGNING = ReactHtmlParser(chrome.i18n.getMessage('you_are_signing'))

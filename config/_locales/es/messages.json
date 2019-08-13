@@ -42,7 +42,7 @@
     "message": "Saldo de la Safe"
   },
   "request_confirmation_wait_x_s": {
-    "message": "Por favor, espera %s segundos antes de reenviar la solicitud."
+    "message": "espera %ss antes de reenviar la solicitud"
   },
   "request_confirmation": {
     "message": "Reenviar solicitud de confirmación"
@@ -249,7 +249,7 @@
     "message": "Pago con tokens (para costes de red)"
   },
   "review_sign_message": {
-    "message": "Revisión de la firma"
+    "message": "Solicitud de firma"
   },
   "view_message": {
     "message": "Ver el mensaje"
@@ -261,10 +261,7 @@
     "message": "Dominio"
   },
   "verifying_contract": {
-    "message": "Contrato de verificación"
-  },
-  "you_are_signing": {
-    "message": "Estás firmando"
+    "message": "Contrato"
   },
   "ios_replace_recovery_phrase": {
     "message": "Reemplazar la clave\\nde recuperación"

@@ -42,7 +42,7 @@
     "message": "Safe-Guthaben"
   },
   "request_confirmation_wait_x_s": {
-    "message": "Bitte warte %s Sekunden, bevor du die Anfrage erneut sendest."
+    "message": "warte %ss bevor du die Anfrage erneut sendest"
   },
   "request_confirmation": {
     "message": "Bestätigungsanfrage erneut senden"
