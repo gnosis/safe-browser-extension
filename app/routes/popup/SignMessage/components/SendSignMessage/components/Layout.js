@@ -30,6 +30,7 @@ const Layout = ({
             confirmationText={CONFIRM}
             handleRejection={handleRejectSignMessage}
             handleConfirmation={handleConfirmSignMessage}
+            rejectWithExtensionLockedAllowed
           />
         )}
       </React.Fragment>
