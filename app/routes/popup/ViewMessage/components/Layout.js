@@ -32,6 +32,7 @@ const Layout = ({ signMessages, location }) => {
             displayObjectSize={false}
             displayDataTypes={false}
             collapsed={false}
+            indentWidth={1}
           />
         </div>
       </div>

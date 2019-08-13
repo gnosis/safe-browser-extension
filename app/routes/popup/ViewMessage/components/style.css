@@ -1,5 +1,4 @@
 .content {
-  max-width: 51em;
   width: 100%;
   margin: 0 auto;
   display: -ms-flexbox;
@@ -7,23 +6,19 @@
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   -ms-flex-pack: center;
-  justify-content: center;
 }
 
 .contentBody {
-  position: relative;
-  height: auto;
   width: 100%;
   padding: 10px 20px 20px;
 }
 
-.contentBody * {
-  color: $darkBlue;
-  font-size: 13px;
-  opacity: 1;
-  font-family: Averta, Helvetica, sans-serif;
-}
-
-.contentBody .object-key {
-  opacity: 1;
+.contentBody span,
+.contentBody div,
+.contentBody svg,
+.contentBody path {
+  color: $darkBlue !important;
+  font-size: 11px !important;
+  opacity: 1 !important;
+  font-family: Averta, Helvetica, sans-serif !important;
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import classNames from 'classnames/bind'
 import Page from 'components/layout/Page'
+import ContentHeader from 'components/headers/ContentHeader'
 import Paragraph from 'components/layout/Paragraph'
 import PairingProcess from './PairingProcess/containers/PairingProcess'
 import googlePlayBadge from '../assets/google_play_badge.svg'
@@ -10,6 +11,7 @@ import {
   DOWNLOAD_MOBILE_APP,
   CONNECT_EXTENSION_EXPLANATION
 } from '../../../../../config/messages'
+import { ACCOUNT_URL } from 'routes/routes'
 import styles from './style.css'
 
 const cx = classNames.bind(styles)
@@ -23,7 +25,11 @@ const Layout = ({
 }) => (
   <Page location={location} simpleHeader background="grey">
     <div className={styles.content}>
-      <h1>{CONNECTED_EXTENSION_SUCCESFULLY}</h1>
+      {location.state.contentHeader ? (
+        <ContentHeader backLink={ACCOUNT_URL} color="green" />
+      ) : (
+        <h1>{CONNECTED_EXTENSION_SUCCESFULLY}</h1>
+      )}
       <div className={styles.innerContent}>
         <Paragraph className={styles.step}>{DOWNLOAD_MOBILE_APP}</Paragraph>
         <div className={styles.appStores}>

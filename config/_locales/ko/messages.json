@@ -219,7 +219,7 @@
     "message": "브라우저 확장프로그램에 비밀번호를 설정하여 보호하세요"
   },
   "confirm_create_password_title": {
-    "message": "거의 다 끝났습니다!<br />비밀번호를 한 번 더 확인해주세요."
+    "message": "거의 다 끝났습니다! 비밀번호를 한 번 더 확인해주세요."
   },
   "internet_connection_error": {
     "message": "인터넷 연결 불가"

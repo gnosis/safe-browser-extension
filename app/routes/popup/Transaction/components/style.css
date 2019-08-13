@@ -1,5 +1,4 @@
 .content {
-  max-width: 51em;
   width: 100%;
   margin: 0 auto;
   display: -ms-flexbox;
@@ -71,7 +70,7 @@
   color: $red;
   text-align: right;
   line-height: 1;
-  font-weight: 700;
+  font-weight: 100;
   width: auto;
   margin: 9px 0 0 auto;
   background: $background;
@@ -88,7 +87,7 @@
   letter-spacing: 0px;
   text-align: right;
   line-height: 1;
-  font-weight: 700;
+  font-weight: 100;
   width: auto;
   margin: 9px 0 0 auto;
   background: #F4F5F9;

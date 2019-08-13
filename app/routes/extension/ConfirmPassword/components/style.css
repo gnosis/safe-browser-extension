@@ -1,5 +1,4 @@
 .content {
-  max-width: 51em;
   width: 100%;
   margin: 0 auto;
   display: -ms-flexbox;
@@ -11,7 +10,7 @@
 }
 
 .content h1 {
-  font-weight: bold;
+  font-weight: 100;
   line-height: 1.5;
   margin: 0 auto;
   width: 80%;

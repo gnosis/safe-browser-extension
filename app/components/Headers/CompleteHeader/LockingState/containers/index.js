@@ -64,7 +64,7 @@ class LockingState extends Component {
   }
 
   render() {
-    const { account, location } = this.props
+    const { account, location, isPopup } = this.props
     const { lockedAccount } = this.state
 
     if (lockedAccount) {
@@ -72,7 +72,7 @@ class LockingState extends Component {
         pathname: PASSWORD_URL,
         state: {
           dest: location.pathname,
-          contentHeader: true
+          contentHeader: !isPopup
         }
       }
       return <Redirect to={url} />

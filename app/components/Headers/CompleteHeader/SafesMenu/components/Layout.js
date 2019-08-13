@@ -1,6 +1,7 @@
 import React from 'react'
 import classNames from 'classnames/bind'
 import SafeItem from './SafeItem'
+import { getNetwork } from '../../../../../../config'
 import styles from './style.css'
 
 const cx = classNames.bind(styles)
@@ -18,6 +19,7 @@ const Layout = ({
     <span
       className={cx(styles.safeIcon, !isPopup && styles.hasMenu)}
       onClick={!isPopup ? toggleSafes : null}
+      data-network={getNetwork()}
     >
       <i>{safeAlias && safeAlias}</i>
     </span>

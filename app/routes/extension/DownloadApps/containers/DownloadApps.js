@@ -19,8 +19,8 @@ class DownloadApps extends Component {
 
     const { safes } = this.props
     this.pairedSafes = safes.safes.length
-    const iosAppUrl = getIosAppUrl()
-    const androidAppUrl = getAndroidAppUrl()
+    this.iosAppUrl = getIosAppUrl()
+    this.androidAppUrl = getAndroidAppUrl()
 
     const { location } = this.props
     const validPassword = location && location.state && location.state.password

@@ -34,27 +34,15 @@
   background: url(assets/images/arrow-left-green.svg) center/contain no-repeat;
 }
 
+.btn-back.active.darkblue {
+  background: url(assets/images/arrow-left-darkgrey.svg) center/contain no-repeat;
+}
+
 .btn-back.active:hover {
   transform: translateX(-2px);
 }
 
 .btn-back > p {
-  color: $green;
-  padding: 0 0 0 20px;
-  font-weight: 500;
-  font-size: 14px;
-  letter-spacing: 0;
-  margin: 0;
-}
-
-.btn-back.active > p {
-  color: $green;
-  line-height: 46px;
-  height: 100%;
-}
-
-.passwordBack > p {
-  color: $darkBlue;
   padding: 0 0 0 20px;
   font-weight: 500;
   font-size: 14px;
@@ -63,12 +51,11 @@
   font-size: 14px;  
 }
 
-.passwordBack.active {
+.active {
   background: url(assets/images/arrow-left-darkgrey.svg) center/contain no-repeat;
 }
 
-.passwordBack.active > p {
-  color: $darkBlue;
+.btn-back.active > p {
   line-height: 46px;
   height: 100%;
 }
@@ -82,6 +69,7 @@
   margin: 0 20px 0 0;
 }
 
-.transparent {
+.darkblue {
   border: none;
+  color: $darkBlue;
 }

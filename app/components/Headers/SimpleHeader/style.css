@@ -12,7 +12,6 @@
 }
 
 .safeIcon {
-  background: url(assets/images/safe_logo_mainnet.svg) 0/contain no-repeat;
   height: 32px;
   width: 32px;
   position: relative;
@@ -25,4 +24,12 @@
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   cursor: pointer;
+}
+
+.safeIcon[data-network='mainnet'] {
+  background: url(assets/images/safe_logo_mainnet.svg) center/contain no-repeat;
+}
+
+.safeIcon[data-network='rinkeby'] {
+  background: url(assets/images/safe_logo_rinkeby.svg) center/contain no-repeat;
 }

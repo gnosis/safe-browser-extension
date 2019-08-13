@@ -26,7 +26,7 @@ const Layout = ({
     <Page withoutHeader background="mountains" location={location}>
       <div className={styles.content}>
         {location.state.contentHeader && (
-          <ContentHeader backLink={ACCOUNT_URL} passwordBack />
+          <ContentHeader backLink={ACCOUNT_URL} color="darkblue" />
         )}
         <span
           className={cx(

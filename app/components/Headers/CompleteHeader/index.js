@@ -38,7 +38,7 @@ const Header = ({ isPopup, location, transactionNumber }) => {
           isPopup={isPopup}
           transactionNumber={transactionNumber}
         />
-        <LockingState location={location} />
+        <LockingState location={location} isPopup={isPopup} />
       </header>
       {!isPopup && (
         <NavigationDrawer showMenu={showMenu} toggleMenu={toggleMenu} />

@@ -219,7 +219,7 @@
     "message": "Sichere und verschlüssele deine Browser-Extension mit einem Passwort"
   },
   "confirm_create_password_title": {
-    "message": "Fast fertig!<br />Bestätige dein Passwort."
+    "message": "Fast fertig! Bestätige dein Passwort."
   },
   "internet_connection_error": {
     "message": "Keine Verbindung zum Internet."

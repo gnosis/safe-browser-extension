@@ -219,7 +219,7 @@
     "message": "Secure and encrypt your Authenticator with a password"
   },
   "confirm_create_password_title": {
-    "message": "Almost done!<br />Confirm your password."
+    "message": "Almost done! Confirm your password."
   },
   "internet_connection_error": {
     "message": "Unable to connect with internet."

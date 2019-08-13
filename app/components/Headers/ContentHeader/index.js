@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import classNames from 'classnames/bind'
 import Link from 'components/layout/Link'
 import { BACK } from '../../../../config/messages'
 import styles from './style.css'
@@ -7,24 +7,15 @@ import styles from './style.css'
 const cx = classNames.bind(styles)
 
 const ContentHeader = ({
+  color = 'green',
   backLink,
   message,
   rightAction,
   rightMessage,
-  rightStyle,
-  passwordBack
+  rightStyle
 }) => (
-  <span
-    className={cx(styles.contentHeader, passwordBack && styles.transparent)}
-  >
-    <Link
-      to={backLink}
-      className={cx(
-        styles.btnBack,
-        passwordBack && styles.passwordBack,
-        styles.active
-      )}
-    >
+  <div className={cx(styles.contentHeader, color)}>
+    <Link to={backLink} className={cx(styles.btnBack, styles.active, color)}>
       <p>{BACK}</p>
     </Link>
     {message && <h2>{message}</h2>}
@@ -33,7 +24,7 @@ const ContentHeader = ({
         {rightMessage}
       </p>
     )}
-  </span>
+  </div>
 )
 
 export default ContentHeader

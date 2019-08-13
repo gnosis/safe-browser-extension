@@ -20,7 +20,6 @@ body.start{
   background:fixed,url(/assets/images/mountains_background.svg) center/cover no-repeat,linear-gradient(-180deg,#fff 50%,#E4E8F1 100%)
 }
 .start .content {
-	max-width: 51em;
 	width: 100%;
 	margin: 5em auto 0;
 	display: -ms-flexbox;

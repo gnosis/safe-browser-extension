@@ -219,7 +219,7 @@
     "message": "Asegura y cifra tu Authenticator con una contraseña"
   },
   "confirm_create_password_title": {
-    "message": "¡Casi hemos terminado!<br />Confirma tu contraseña."
+    "message": "¡Casi has terminado! Confirma tu contraseña."
   },
   "internet_connection_error": {
     "message": "No hay conexión a Internet."

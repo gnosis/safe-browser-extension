@@ -219,7 +219,7 @@
     "message": "Proteggi e crittografa il tuo Authenticator con una password"
   },
   "confirm_create_password_title": {
-    "message": "Ci siamo quasi! <br /> Conferma la tua password."
+    "message": "Ci siamo quasi! Conferma la tua password."
   },
   "internet_connection_error": {
     "message": "Impossibile connettersi a Internet."
