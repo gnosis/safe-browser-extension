@@ -292,5 +292,8 @@
   },
   "payment_token_title": {
     "message": "Pagamento con tokens"
+  },
+  "confirm_request": {
+    "message": "Confirmación da transacción"
   }
 }

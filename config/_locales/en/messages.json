@@ -292,5 +292,8 @@
   },
   "payment_token_title": {
     "message": "Payment token"
+  },
+  "confirm_request": {
+    "message": "Confirmation request"
   }
 }

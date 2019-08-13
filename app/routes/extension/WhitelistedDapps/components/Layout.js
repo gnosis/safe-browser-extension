@@ -33,7 +33,7 @@ const Layout = ({
         <ContentHeader
           backLink={ACCOUNT_URL}
           message={MANAGE_SITES_WHITELIST}
-          rightAction={handleDeleteAllDapps()}
+          rightAction={handleDeleteAllDapps}
           rightMessage={DELETE_ALL}
           rightStyle={styles.actionDeleteAll}
         />

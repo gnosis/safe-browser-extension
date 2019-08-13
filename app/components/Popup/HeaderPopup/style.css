@@ -49,6 +49,7 @@
   color: $darkBlue;
   font-size: 1.5em;
   font-weight: 400;
+  width: 40px;
 }
 
 .btn-back,

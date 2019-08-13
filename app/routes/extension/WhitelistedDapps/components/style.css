@@ -15,7 +15,6 @@
   font-size: 1.2em;
   color: $red;
   text-align: right;
-  line-height: 1;
   text-decoration: none;
   cursor: pointer;
   justify-self: flex-end;
