@@ -114,6 +114,7 @@ class Layout extends Component {
                   lockedAccount={lockedAccount}
                   loadedData={loadedData}
                   reviewedTx={reviewedTx}
+                  location={location}
                 />
               )}
               {transaction && transaction.type === 'sendTransaction' && (
@@ -127,6 +128,7 @@ class Layout extends Component {
                   lockedAccount={lockedAccount}
                   loadedData={loadedData}
                   reviewedTx={reviewedTx}
+                  location={location}
                 />
               )}
             </form>

@@ -17,11 +17,11 @@ const FooterButtons = ({
   handleRejection,
   rejectWithExtensionLockedAllowed
 }) => {
-  const [requestResolved, setRequestResolved] = useState(false)
+  const [requestResolved, setRequestResolved] = useState('')
 
   const handleRejectionButton = () => {
     if (lockedAccount && !rejectWithExtensionLockedAllowed) {
-      setRequestResolved(true)
+      setRequestResolved('rejected')
     } else {
       handleRejection()
     }
@@ -29,7 +29,7 @@ const FooterButtons = ({
 
   const handleConfirmationButton = () => {
     if (lockedAccount) {
-      setRequestResolved(true)
+      setRequestResolved('confirmed')
     } else {
       handleConfirmation()
     }
@@ -39,7 +39,8 @@ const FooterButtons = ({
     const passwordUrl = {
       pathname: PASSWORD_URL,
       state: {
-        dest: nextUrl
+        dest: nextUrl,
+        action: requestResolved
       }
     }
     return <Redirect to={passwordUrl} />
