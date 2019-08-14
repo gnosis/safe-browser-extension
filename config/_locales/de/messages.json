@@ -242,6 +242,9 @@
   "approve": {
     "message": "Zulassen"
   },
+  "copied_to_clipboard": {
+    "message": "In die Zwischenablage kopiert"
+  },
   "ios_replace_recovery_phrase": {
     "message": "Ersetze Sicherungsschlüssel"
   },

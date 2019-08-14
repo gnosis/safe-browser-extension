@@ -11,6 +11,7 @@ import { MAINNET } from '../../../../../config/names'
 
 const Account = ({ safes, location, transactions, currentSafeAlias }) => {
   const [newSafe, setNewSafe] = useState(false)
+  const [showClipboard, setShowClipboard] = useState(false)
 
   const handleAddNewSafe = () => {
     ga([
@@ -42,6 +43,28 @@ const Account = ({ safes, location, transactions, currentSafeAlias }) => {
     if (windowId) {
       chrome.windows.update(windowId, { focused: true })
     }
+  }
+
+  const copyCurrentSafe = (e) => {
+    const node = document.getElementById('safeAddress')
+    
+    if (document.body.createTextRange) {
+        const range = document.body.createTextRange();
+        range.moveToElementText(node);
+        range.select();
+    } else if (window.getSelection) {
+        const selection = window.getSelection();
+        const range = document.createRange();
+        range.selectNodeContents(node);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+
+    document.execCommand('copy')
+    setShowClipboard(true)
+    setTimeout(() => {
+      setShowClipboard(false)
+    }, 1000)
   }
 
   setTimeout(() => focusTransactionWindow(), 100)
@@ -78,6 +101,8 @@ const Account = ({ safes, location, transactions, currentSafeAlias }) => {
       location={location}
       handleOpenEtherScan={handleOpenEtherScan}
       handleAddNewSafe={handleAddNewSafe}
+      copyCurrentSafe={copyCurrentSafe}
+      showClipboard={showClipboard}
     />
   )
 }

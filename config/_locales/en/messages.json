@@ -251,6 +251,9 @@
   "review_sign_message": {
     "message": "Signature request"
   },
+  "copied_to_clipboard": {
+    "message": "Copied to clipboard"
+  },
   "view_message": {
     "message": "View message"
   },

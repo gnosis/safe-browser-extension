@@ -17,6 +17,7 @@
   margin: 16px;
   text-align: center;
   padding: 24px;
+  position: relative;
 }
 
 .innerContent h1 {
@@ -45,7 +46,28 @@
   margin: 3px 16px 0;
 }
 
-.button{
+.button {
   width: 100%;
   margin: 20px;
+}
+
+.clipboardWrapper {
+  display: none;
+  left: 0;
+  right: 0;
+  position: absolute;
+  justify-content: center;
+}
+
+.clipboard {
+  font-size: 12px;
+  border-radius: 1px;
+  box-shadow: 0 0 6px 0 rgba(102, 102, 102, 0.3), 0 0 0 2px rgba(0, 0, 0, 0.1);
+  background: $darkWhite;
+  padding: 4px;
+  margin-top: 9px;
+}
+
+.show {
+  display: flex;
 }

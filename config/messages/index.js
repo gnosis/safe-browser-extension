@@ -33,6 +33,7 @@ export const CONFIRMATION_REQUEST = ReactHtmlParser(chrome.i18n.getMessage('conf
 export const CONNECT_EXTENSION_EXPLANATION = ReactHtmlParser(chrome.i18n.getMessage('connect_extension_explanation'))
 export const CONNECT_NEW_SAFE = ReactHtmlParser(chrome.i18n.getMessage('connect_new_safe'))
 export const CONNECTED_EXTENSION_SUCCESFULLY = ReactHtmlParser(chrome.i18n.getMessage('connected_extension_succesfully'))
+export const COPIED_TO_CLIPBOARD = ReactHtmlParser(chrome.i18n.getMessage('copied_to_clipboard'))
 export const CREATE_PASSWORD_TITLE = ReactHtmlParser(chrome.i18n.getMessage('create_password_title'))
 export const DEFAULT_SAFE_NAME = ReactHtmlParser(chrome.i18n.getMessage('default_safe_name'))
 export const DELETE_ALL = ReactHtmlParser(chrome.i18n.getMessage('delete_all'))

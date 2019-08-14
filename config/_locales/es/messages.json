@@ -251,6 +251,9 @@
   "review_sign_message": {
     "message": "Solicitud de firma"
   },
+  "copied_to_clipboard": {
+    "message": "Copiado en el portapapeles"
+  },
   "view_message": {
     "message": "Ver el mensaje"
   },
