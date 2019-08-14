@@ -5,18 +5,20 @@
   padding: 0 20px;
   border-bottom: 1px solid $lightGrey;
   position: relative;
+  display: flex;
 }
 
 .contentHeader > h2 {
   margin: 0 auto;
-  --border: 1px solid $red;
   text-align: center;
-  line-height: 46px;
+
+  line-height: 17px;
   font-weight: 400;
   font-size: 16px;
   color: $darkBlue;
-  height: 100%;
-  max-width: 205px;
+  max-width: 200px;
+  align-self: center;
+
 }
 
 .btn-back {
