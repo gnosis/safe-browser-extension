@@ -20,16 +20,13 @@ class SendTransaction extends Component {
 
   componentDidUpdate = () => {
     const { location, loadedData, reviewedTx } = this.props
-    console.log(location.state, loadedData)
 
     if (!location.state || !loadedData || reviewedTx) {
       return
     }
     if (location.state.action === 'confirmed') {
-      console.log('confirm')
       this.handleConfirmTransaction()
     } else if (location.state.action === 'rejected') {
-      console.log('reject')
       this.handleRejectTransaction()
     }
   }

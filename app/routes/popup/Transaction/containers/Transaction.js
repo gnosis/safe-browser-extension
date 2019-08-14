@@ -13,7 +13,6 @@ import {
   isReplaceRecoveryPhrase
 } from './transactions'
 import { getEthBalance } from 'utils/helpers'
-import Header from 'components/Headers/CompleteHeader'
 import Layout from '../components/Layout'
 import actions from './actions'
 import selector from './selector'

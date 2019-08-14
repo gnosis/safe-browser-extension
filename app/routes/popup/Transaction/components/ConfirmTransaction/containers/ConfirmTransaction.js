@@ -20,16 +20,12 @@ const ConfirmTransaction = ({
   location
 }) => {
   useEffect(() => {
-    console.log(location.state, loadedData)
-
     if (!location.state || !loadedData || reviewedTx) {
       return
     }
     if (location.state.action === 'confirmed') {
-      console.log('confirm')
       handleConfirmTransaction()
     } else if (location.state.action === 'rejected') {
-      console.log('reject')
       handleRejectTransaction()
     }
   }, [location, loadedData, reviewedTx])

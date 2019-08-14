@@ -43,6 +43,19 @@ class SendSignMessage extends Component {
     })
   }
 
+  componentDidUpdate = () => {
+    const { location, loadedData, reviewedSignature } = this.props
+
+    if (!location.state || !loadedData || reviewedSignature) {
+      return
+    }
+    if (location.state.action === 'confirmed') {
+      this.handleConfirmSignMessage()
+    } else if (location.state.action === 'rejected') {
+      this.handleRejectSignMessage()
+    }
+  }
+
   handleConfirmSignMessage = (resend) => {
     const { handleSignMessage } = this.props
 
