@@ -47,17 +47,17 @@ const Account = ({ safes, location, transactions, currentSafeAlias }) => {
 
   const copyCurrentSafe = (e) => {
     const node = document.getElementById('safeAddress')
-    
+
     if (document.body.createTextRange) {
-        const range = document.body.createTextRange();
-        range.moveToElementText(node);
-        range.select();
+      const range = document.body.createTextRange()
+      range.moveToElementText(node)
+      range.select()
     } else if (window.getSelection) {
-        const selection = window.getSelection();
-        const range = document.createRange();
-        range.selectNodeContents(node);
-        selection.removeAllRanges();
-        selection.addRange(range);
+      const selection = window.getSelection()
+      const range = document.createRange()
+      range.selectNodeContents(node)
+      selection.removeAllRanges()
+      selection.addRange(range)
     }
 
     document.execCommand('copy')

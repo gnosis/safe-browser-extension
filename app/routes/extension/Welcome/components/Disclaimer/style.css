@@ -41,7 +41,7 @@
 .disclaimer p {
   -ms-flex: 1 auto;
   flex: 1 auto;
-  padding: 4px 55px;
+  padding: 4px 35px;
   text-align: center;
   font-size: 13px;
   color: $grey;
