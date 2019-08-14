@@ -1,0 +1,93 @@
+.transactionFrom,
+.transactionRecipient {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 100%;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.transactionFrom span,
+.transactionRecipient span {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  word-break: break-all;
+  box-sizing: border-box;
+}
+
+.transactionFrom .identicon,
+.transactionRecipient .identicon {
+  margin: 0 10px 0 0;
+}
+
+.transactionFrom span p,
+.transactionRecipient span p {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  font-size: 1.3em;
+  line-height: 1.3;
+  word-break: inherit;
+}
+
+.transactionFrom span p,
+.transactionRecipient span p {
+  margin: 0;
+  text-align: left;
+}
+
+.transactionFrom span p i,
+.transactionRecipient span p i {
+  width: 100%;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  font-style: normal;
+  font-size: inherit;
+  font-weight: 500;
+  color: $darkBlue;
+  word-break: inherit;
+}
+
+.transactionFrom > span > p > small,
+.transactionRecipient > span > p > small {
+  width: 100%;
+  font-size: inherit;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  font-family: Averta, Helvetica, sans-serif;
+  color: $darkGrey;
+  word-break: inherit;
+}
+
+.transactionFrom > span > small,
+.transactionRecipient > span > small {
+  font-family: Averta, Helvetica, sans-serif;
+  font-size: 1.3em;
+  color: $darkBlue;
+  word-break: inherit;
+  line-height: 1.1;
+}
+
+.transactionFrom > span:first-of-type {
+  width: 50%;
+}
+
+.transactionFrom > span:last-of-type {
+  width: 50%;
+  text-align: right;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}

@@ -1,11 +1,9 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import classNames from 'classnames/bind'
-
-import Page from 'components/Page'
+import React from 'react'
+import Page from 'components/layout/Page'
+import ContentHeader from 'components/headers/ContentHeader'
+import Button from 'components/layout/Button'
 import CreatePasswordForm from 'routes/extension/CreatePassword/components/CreatePasswordForm/containers/CreatePasswordForm'
 import ConfirmPasswordForm from 'routes/extension/ConfirmPassword/components/ConfirmPasswordForm/containers/ConfirmPasswordForm'
-import styles from 'assets/css/global.css'
 import warningImage from 'assets/images/warning.svg'
 import { ACCOUNT_URL } from 'routes/routes'
 import {
@@ -13,71 +11,61 @@ import {
   CHANGE_PASSWORD_DESCRIPTION,
   SAVE_NEW_PASSWORD
 } from '../../../../../config/messages'
+import styles from './style.css'
 
-const cx = classNames.bind(styles)
-
-class Layout extends Component {
-  prevent = (e) => {
+const Layout = ({
+  newPassword,
+  confirmPassword,
+  manageCreatePassword,
+  manageConfirmPassword,
+  updateMasterPassword,
+  confirmPasswordReady,
+  createPasswordReady,
+  location
+}) => {
+  const prevent = (e) => {
     e.preventDefault()
   }
 
-  render() {
-    const {
-      newPassword,
-      confirmPassword,
-      manageCreatePassword,
-      manageConfirmPassword,
-      updateMasterPassword,
-      confirmPasswordReady,
-      createPasswordReady,
-      location
-    } = this.props
-
-    return (
-      <Page location={location}>
-        <div className={styles.overlayPage} data-page="password">
-          <span className={styles.overlayPageHeader}>
-            <Link
-              to={ACCOUNT_URL}
-              className={cx(styles.btnBack, styles.active)}
-            />
-            <h2>{CHANGE_PASSWORD}</h2>
-          </span>
+  return (
+    <Page background="grey" location={location}>
+      <form onSubmit={prevent}>
+        <div className={styles.content}>
+          <ContentHeader backLink={ACCOUNT_URL} message={CHANGE_PASSWORD} />
           <span className={styles.warningPassword}>
             <img src={warningImage} />
             <p>{CHANGE_PASSWORD_DESCRIPTION}</p>
           </span>
-          <span className={styles.overlayPageContent}>
-            <form onSubmit={this.prevent}>
-              <div className={styles.passwordForm}>
+          <span className={styles.contentBody}>
+            <div className={styles.passwordForm}>
+              <div className={styles.confirmPassword}>
                 <CreatePasswordForm
                   newPassword={newPassword}
                   manageCreatePassword={manageCreatePassword}
-                  ready={this.props.createPasswordReady}
+                  isReady={createPasswordReady}
                 />
-                <ConfirmPasswordForm
-                  confirmPassword={confirmPassword}
-                  manageConfirmPassword={manageConfirmPassword}
-                  passwordsMatch={this.props.confirmPasswordReady}
-                />
-                {createPasswordReady && confirmPasswordReady ? (
-                  <button
-                    type="button"
-                    className={styles.button}
-                    onClick={updateMasterPassword}
-                  >
-                    {SAVE_NEW_PASSWORD}
-                  </button>
-                ) : (
-                  <button className={styles.button}>{SAVE_NEW_PASSWORD}</button>
-                )}
               </div>
-            </form>
+              <ConfirmPasswordForm
+                confirmPassword={confirmPassword}
+                manageConfirmPassword={manageConfirmPassword}
+                passwordsMatch={confirmPasswordReady}
+              />
+              {createPasswordReady && confirmPasswordReady ? (
+                <Button
+                  className={styles.button}
+                  onClick={updateMasterPassword}
+                >
+                  {SAVE_NEW_PASSWORD}
+                </Button>
+              ) : (
+                <Button className={styles.button}>{SAVE_NEW_PASSWORD}</Button>
+              )}
+            </div>
           </span>
         </div>
-      </Page>
-    )
-  }
+      </form>
+    </Page>
+  )
 }
 
 export default Layout

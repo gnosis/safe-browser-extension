@@ -1,0 +1,305 @@
+.safeIcon {
+  height: 32px;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  cursor: pointer;
+}
+
+.safeIcon[data-network='mainnet'] {
+  background: url(assets/images/safe_logo_mainnet.svg) 0/contain no-repeat;
+}
+
+.safeIcon[data-network='rinkeby'] {
+  background: url(assets/images/safe_logo_rinkeby.svg) 0/contain no-repeat;
+}
+
+.safeIcon > i {
+  margin: 0 0 0 37px;
+  -ms-flex: 1;
+  flex: 1;
+  font-size: 18px;
+  color: $darkBlue;
+  letter-spacing: -.5px;
+  font-style: normal;
+  font-weight: 400;
+  outline: 0;
+  line-height: 1;
+  /* CHROME/SAFARI only */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  /* END */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 128px;
+  min-height: 19px;
+  width: auto;
+}
+
+.safeIcon.hasMenu::after {
+  content: "";
+  background: url(assets/images/carret-down.svg) center/contain no-repeat;
+  width: 8px;
+  height: 6px;
+  display: block;
+  position: absolute;
+  right: -12px;
+}
+
+.active .line:nth-child(2) {
+  opacity: 0;
+}
+
+.active .line:nth-child(1) {
+  transform: translateY(5px) rotate(45deg);
+}
+
+.active .line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.safeMenuBackground {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+}
+
+.safeMenuBackground.active {
+  visibility: visible;
+}
+
+.safeMenu,
+.safeMenu.active::before {
+  position: absolute;
+  left: 0;
+  margin: auto;
+  right: 0;
+}
+
+.safeMenu,
+.safeMenuSafeItem {
+  transition: all .2s ease-in-out;
+}
+
+.safeMenu {
+  width: 310px;
+  background: $grey;
+  box-shadow: 0 2px 4px 0 rgba(33,67,90,.25);
+  border-radius: 3px;
+  height: auto;
+  top: 54px;
+  z-index: 101;
+  opacity: 0;
+  transform-origin: center top;
+  transform: scale(0);
+  visibility: hidden;
+  overflow: visible;
+}
+
+.safeMenu.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.safeMenu.active {
+  transform: scale(1);
+}
+
+.safeMenu.active::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid rgba(33,67,90,.95);
+  top: -8px;
+}
+
+.safeMenu > ul {
+  width: 100%;
+  height: 100%;
+  max-height: 475px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  box-sizing: border-box;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -ms-flex-line-pack: start;
+  align-content: flex-start;
+  list-style-type: none;
+  overflow-y: auto;
+}
+
+.safeMenu > ul::-webkit-scrollbar {
+  width: 8px;
+}
+
+.safeMenu > ul::-webkit-scrollbar-track {
+  background: #E4E8F1;
+}
+
+.safeMenu > ul::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background: #A2A8BA;
+}
+
+.safeMenuSafeItem {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  margin: 0 0 2px;
+  padding: 1em 84px 1em 45px;
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -ms-flex-align: center;
+  align-items: center;
+  color: $white;
+  cursor: pointer;
+  position: relative;
+}
+
+.safeMenuSafeItem.active::before,
+.safeMenuSafeItem.safeMenu_newSafe::after,
+.safeMenuSafeItem.safeMenu_newSafe::before {
+  display: block;
+  position: absolute;
+  content: "";
+}
+
+.safeMenuSafeItem:hover {
+  background: rgba(178, 181, 178, 0.5);
+}
+
+.safeMenuSafeItem.active::before {
+  background: url(assets/images/allow.svg) center/15px 12px no-repeat;
+  left: 15px;
+  height: 15px;
+  width: 15px;
+}
+
+.safeMenuSafeItem > span {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.safeMenuSafeItem > img {
+  margin: 0 10px 0 0;
+}
+
+.safeMenuSafeItem > span > p {
+  width: 100%;
+  font-size: 1.4em;
+  text-align: left;
+  line-height: 1.2;
+  color: inherit;
+  margin: 0;
+  position: relative;
+  word-break: break-all;
+}
+
+.safeMenuSafeItem > span > p[contenteditable=true] {
+  border: 1px dashed $white;
+  border-radius: 3px;
+  padding: 4px;
+  outline: 0;
+}
+
+.safeMenuSafeItem > span > small {
+  font-family: Averta, Helvetica, sans-serif;
+  font-size: 1.2em;
+  color: $white;
+  opacity: .7;
+  text-align: left;
+  line-height: 1.5;
+}
+
+.safeMenuSafeItem > p {
+  width: 100%;
+  font-size: 1.4em;
+  text-align: left;
+  line-height: 1.2;
+  color: inherit;
+  margin: 0;
+}
+
+.safeTools {
+  position: absolute;
+  right: 20px;
+  top: 13px;
+  opacity: 0;
+  visibility: hidde;
+  transition: all .2s ease-in-out;
+}
+
+.safeTools > img {
+  opacity: .7;
+  transition: opacity .3s ease-in-out;
+}
+
+.safeTools > img:not(:last-child) {
+  margin:0 20px 0 0
+}
+
+.safeTools > img:hover {
+  opacity:1
+}
+
+.safeTools .safeToolsSave {
+  cursor: pointer;
+  display: none;
+  background: $white;
+  font-weight: 700;
+  font-size: 1em;
+  letter-spacing: 0;
+  border-radius: 3px;
+  margin: auto;
+  height: 21px;
+  line-height: 1;
+  border: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.identicon {
+  pointer-events: none;
+  margin-right: 6px;
+}
+
+.safeMenuSafeItem:hover .safeTools,
+.safeMenuSafeItem > span > p[contenteditable=true]~.safeTools {
+  visibility: visible;
+  opacity: 1;
+}
+
+.safeMenuSafeItem > span > p[contenteditable=true]~.safeTools .safeToolsDelete,
+.safeMenuSafeItem > span > p[contenteditable=true]~.safeTools .safeToolsEdit {
+  display: none;
+}
+
+.safeMenuSafeItem > span > p[contenteditable=true]~.safeTools .safeToolsSave {
+  display: block;
+}

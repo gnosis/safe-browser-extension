@@ -38,14 +38,11 @@
   "agree": {
     "message": "De acordo"
   },
-  "personal_edition": {
-    "message": "Edición Persoal"
-  },
   "safe_balance": {
     "message": "Saldo da Safe"
   },
   "request_confirmation_wait_x_s": {
-    "message": "Por favor, agarde %s segundos antes de reenviar a solicitude."
+    "message": "agarde %ss antes de reenviar a solicitude"
   },
   "request_confirmation": {
     "message": "Reenviar solicitude de confirmación"
@@ -77,12 +74,6 @@
   "privacy_policy": {
     "message": "Política de Privacidade"
   },
-  "terms_first_bullet": {
-    "message": "Non recollemos datos demográficos como a idade e o sexo."
-  },
-  "terms_second_bullet": {
-    "message": "Recopilamos datos anónimos de uso da aplicación e informes de fallos para garantir a calidade da nosa aplicación."
-  },
   "transaction_submitted": {
     "message": "Transacción enviada"
   },
@@ -95,17 +86,14 @@
   "replace_recovery_phrase": {
     "message": "Substituír a clave de recuperación"
   },
-  "layout_replace_recovery_phrase_transaction_info_description": {
-    "message": "A antiga clave de recuperación non será válida e será substituída pola nova."
-  },
   "store_description": {
-    "message": "Gnosis Safe é unha carteira multisinatura de Ethereum que permite aos usuarios, de forma cómoda e segura, a xestión dos seus activos dixitais e a interacción coa web descentralizada.\n\nPodes recibir, gardar e transferir Ether e tokens ERC-20 con Gnosis Safe. A través da extensión de Chrome podes interactuar con aplicacións descentralizadas."
+    "message": "Gnosis Safe é unha carteira multisinatura de Ethereum que permite aos usuarios, de forma cómoda e segura, a xestión dos seus activos dixitais e a interacción coa web descentralizada.\n\nPodes recibir, gardar e transferir Ether e tokens ERC-20 con Gnosis Safe. A través do Authenticator podes interactuar con aplicacións descentralizadas."
   },
   "view_on_etherscan": {
     "message": "Ver en Etherscan.io"
   },
   "manage_sites_whitelist": {
-    "message": "Sitios web de confianza"
+    "message": "Sitios de confianza"
   },
   "delete_all": {
     "message": "Borrar todo"
@@ -126,10 +114,10 @@
     "message": " (por defecto)"
   },
   "locking_min": {
-    "message": "min"
+    "message": "minutos"
   },
   "change_password_description": {
-    "message": "O contrasinal utilizarase para desbloquear a extensión e confirmar transaccións. <strong>Non comparta este contrasinal con outras persoas!</strong>"
+    "message": "O contrasinal utilizarase para desbloquear o Authenticator e confirmar transaccións. <strong>Non comparta este contrasinal con outras persoas!</strong>"
   },
   "new_password_identical_chars": {
     "message": "Non máis de 2 caracteres idénticos consecutivos"
@@ -156,31 +144,16 @@
     "message": "Versión"
   },
   "connect_new_safe": {
-    "message": "Conectar nova Safe"
+    "message": "+ Conectar a unha nova Safe"
   },
   "connected_extension_succesfully": {
-    "message": "Extensión configurada correctamente!<br /><strong>Conéctaa coa aplicación móbil</strong>"
+    "message": "Authenticator configurado correctamente!<br /><strong>Conéctao coa aplicación móbil</strong>"
   },
   "download_mobile_app": {
-    "message": "Descarga e instala a aplicación móbil"
-  },
-  "iphone_and_ipad": {
-    "message": "iPhone e iPad"
-  },
-  "android": {
-    "message": "Android"
+    "message": "1. Descarga e instala a aplicación móbil"
   },
   "connect_extension_explanation": {
-    "message": "Conecta a extensión coa aplicación móbil escaneando o código QR"
-  },
-  "show_qr_code": {
-    "message": "Amosar código QR"
-  },
-  "show_qr_code_description": {
-    "message": "Escanea o código QR cando se solicite na aplicación móbil"
-  },
-  "browser_extension": {
-    "message": "Extensión do navegador"
+    "message": "2. Conecta o Authenticator coa aplicación móbil escaneando o código QR"
   },
   "safe_for_ios": {
     "message": "Gnosis Safe<br />para iOS"
@@ -210,7 +183,7 @@
     "message": "Safe conectada"
   },
   "safe_connected_description": {
-    "message": "Emparellouse a túa Safe coa extensión do navegador"
+    "message": "Emparellouse a túa Safe co Authenticator"
   },
   "website_not_whitelisted": {
     "message": "Este sitio web non está no listado de sitios de confianza"
@@ -225,19 +198,16 @@
     "message": "Gnosis Safe - Grazas pola instalación!"
   },
   "options_page_header": {
-    "message": "Grazas por instalar<br />a extensión Gnosis Safe"
+    "message": "Grazas por instalar<br />Authenticator!"
   },
   "options_page_description": {
-    "message": "Para utilizar a extensión Gnosis Safe, primeiro debes permitir as notificacións. Utilízanse para notificarche as transaccións enviadas dende a aplicación móbil de Gnosis Safe."
+    "message": "Para utilizar Authenticator, primeiro debes permitir as notificacións. Utilízanse para notificarche as transaccións enviadas dende a aplicación móbil de Gnosis Safe."
   },
   "allow_notifications": {
     "message": "Permitir notificacións"
   },
   "notifications_permission_required": {
     "message": "Requírese permiso para recibir notificacións"
-  },
-  "extension_store_description": {
-    "message": "Garda Ether e tokens ERC-20 de forma segura e con autenticación de 2 factores."
   },
   "get_started": {
     "message": "Comezar"
@@ -246,10 +216,10 @@
     "message": "Engadir"
   },
   "create_password_title": {
-    "message": "Asegura e cifra a túa extensión cun contrasinal"
+    "message": "Asegura e cifra o teu Authenticator cun contrasinal"
   },
   "confirm_create_password_title": {
-    "message": "Case rematamos!<br />Confirma o teu contrasinal."
+    "message": "Case rematamos! Confirma o teu contrasinal."
   },
   "internet_connection_error": {
     "message": "Non hai conexión a Internet"
@@ -258,7 +228,7 @@
     "message": "Por favor, comproba a túa conexión!"
   },
   "review_terms": {
-    "message": "Por favor, revisa os nosos <a href='https://safe.gnosis.io/terms' target='_blank'>Termos de Uso</a> e <a href='https://safe.gnosis.io/privacy' target='_blank'>Política de Privacidade</a>."
+    "message": "Se continua, acepta e está de acordo cos <a href='https://safe.gnosis.io/terms' target='_blank'>Termos de Uso</a> e a <a href='https://safe.gnosis.io/privacy' target='_blank'>Política de Privacidade</a>."
   },
   "back": {
     "message": "Volver"
@@ -279,13 +249,7 @@
     "message": "Pagamento con tokens (para costes da rede)"
   },
   "review_sign_message": {
-    "message": "Revisión da sinatura"
-  },
-  "balance_after_transfer": {
-    "message": "Balance despois da transferencia"
-  },
-  "review": {
-    "message": "Revisión"
+    "message": "Solicitude de sinatura"
   },
   "view_message": {
     "message": "Ver a mensaxe"
@@ -297,13 +261,13 @@
     "message": "Dominio"
   },
   "verifying_contract": {
-    "message": "Contrato de verificación"
-  },
-  "you_are_signing": {
-    "message": "Estás a asinar"
+    "message": "Contrato"
   },
   "ios_replace_recovery_phrase": {
-    "message": "Substituír a clave de recuperación"
+    "message": "Substituír a clave\\nde recuperación"
+  },
+  "request_initiated_by_Safe": {
+    "message": "Esta transacción foi iniciada pola aplicación móbil Gnosis Safe. Se confirmas, a aplicación móbil asinará esta mensaxe."
   },
   "get_chrome": {
     "message": "Obter Chrome"
@@ -312,6 +276,21 @@
     "message": "Ups! Brave non é compatible"
   },
   "brave_not_supported_description": {
-    "message": "Gnosis Safe non funciona con Brave. Obteña a última versión de Google Chrome e volva instalar a extensión."
+    "message": "Gnosis Safe Authenticator non funciona con Brave. Por favor, descarga a última versión de Google Chrome e volva instalar o Authenticator."
+  },
+  "slogan": {
+    "message": "A forma máis segura de xestionar as túas criptomonedas"
+  },
+  "whitelisted_site": {
+    "message": "Web permitida"
+  },
+  "restricted_site": {
+    "message": "Web restrinxida"
+  },
+  "payment_token_title": {
+    "message": "Pagamento con tokens"
+  },
+  "confirm_request": {
+    "message": "Confirmación da transacción"
   }
 }

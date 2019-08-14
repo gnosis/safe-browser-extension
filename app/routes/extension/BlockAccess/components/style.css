@@ -1,0 +1,57 @@
+.content {
+  width: 100%;
+  margin: 0 auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.content a {
+  text-decoration: none;
+  width: 100%;
+  margin: 10px 20px 0;
+}
+
+.content > img {
+  margin: 40px auto 30px;
+  display: block;
+}
+
+.content > h1 {
+  line-height: 1em;
+  width: 100%;
+}
+
+.title {
+  font-family: Averta, Helvetica, sans-serif;
+  font-size: 19px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.37;
+  letter-spacing: normal;
+  text-align: center;
+  color: $darkBlue;
+}
+
+.description {
+  font-family: Averta, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: center;
+  color: $darkBlue;
+  width: 100%;
+  padding: 0 34px;
+}
+
+.button {
+  margin: 0;
+  width: 100%;
+}

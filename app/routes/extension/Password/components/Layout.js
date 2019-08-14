@@ -1,62 +1,59 @@
-import React, { Component } from 'react'
-
-import Page from 'components/Page'
-import keyHole from 'assets/images/keyhole.svg'
-import styles from 'assets/css/global.css'
+import React from 'react'
+import classNames from 'classnames'
+import Page from 'components/layout/Page'
+import TextInput from 'components/forms/TextInput'
+import Button from 'components/layout/Button'
+import ContentHeader from 'components/headers/ContentHeader'
 import { getNetwork } from '../../../../../config'
-import {
-  UNLOCK,
-  PERSONAL_EDITION,
-  ENTER_PASSWORD
-} from '../../../../../config/messages'
+import { UNLOCK, ENTER_PASSWORD } from '../../../../../config/messages'
+import { ACCOUNT_URL } from 'routes/routes'
+import styles from './style.css'
 
-class Layout extends Component {
-  prevent = (e) => {
+const cx = classNames.bind(styles)
+
+const Layout = ({
+  password,
+  updatePassword,
+  validatePasswords,
+  dataValidation,
+  location
+}) => {
+  const prevent = (e) => {
     e.preventDefault()
   }
 
-  render() {
-    const {
-      password,
-      updatePassword,
-      validatePasswords,
-      rotation,
-      dataValidation,
-      location
-    } = this.props
-
-    return (
-      <Page page={styles.unlockSafe} location={location} withoutHeader>
-        <form onSubmit={this.prevent} data-validation={dataValidation}>
-          <div className={styles.content}>
-            <span className={styles.safeLogo} data-network={getNetwork()}>
-              <span className={styles.edition}>{PERSONAL_EDITION}</span>
-            </span>
-            <div className={styles.lockshape} data-validation={dataValidation}>
-              <img id={styles.keyhole} src={keyHole} />
-              <span className={styles.lockshape_dots} style={rotation} />
-            </div>
-            <div className={styles.passwordForm}>
-              <div>
-                <input
-                  type="password"
-                  placeholder={ENTER_PASSWORD}
-                  value={password}
-                  name="unlock"
-                  onChange={updatePassword}
-                  className={styles.noborder}
-                  autoFocus
-                />
-                <button onClick={validatePasswords} className={styles.button}>
-                  {UNLOCK}
-                </button>
-              </div>
-            </div>
+  return (
+    <Page withoutHeader background="mountains" location={location}>
+      <div className={styles.content}>
+        {location.state.contentHeader && (
+          <ContentHeader backLink={ACCOUNT_URL} color="darkblue" />
+        )}
+        <span
+          className={cx(
+            styles.safeLogo,
+            location.state.contentHeader && styles.safeLogoSmMargin
+          )}
+          data-network={getNetwork()}
+        />
+        <form onSubmit={prevent}>
+          <div className={styles.passwordForm}>
+            <TextInput
+              type="password"
+              placeholder={ENTER_PASSWORD}
+              value={password}
+              onChange={updatePassword}
+              autoFocus
+              className={styles.passwordInput}
+              dataValidation={dataValidation}
+            />
+            <Button onClick={validatePasswords} className={styles.button}>
+              {UNLOCK}
+            </Button>
           </div>
         </form>
-      </Page>
-    )
-  }
+      </div>
+    </Page>
+  )
 }
 
 export default Layout

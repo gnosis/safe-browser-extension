@@ -1,0 +1,14 @@
+.link {
+  color: $green;
+  text-decoration: underline;
+}
+
+.external-link::after {
+  content: "";
+  background: url(assets/images/external_link.svg) center/contain no-repeat;
+  width: 7px;
+  height: 7px;
+  display: inline-block;
+  margin: 0 0 0 5px;
+  vertical-align: middle;
+}

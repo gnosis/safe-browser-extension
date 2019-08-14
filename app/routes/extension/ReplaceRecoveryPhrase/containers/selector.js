@@ -3,7 +3,7 @@ import { safesSelector } from '../store/selectors'
 import {
   selectEncryptedMnemonicSelector,
   selectUnencryptedMnemonicSelector
-} from 'routes/extension/DownloadApps/components/PairingProcess/store/selectors'
+} from 'routes/extension/DownloadApps/store/selectors'
 
 export default createStructuredSelector({
   safes: safesSelector,

@@ -38,9 +38,6 @@
   "agree": {
     "message": "동의합니다"
   },
-  "personal_edition": {
-    "message": "개인용"
-  },
   "safe_balance": {
     "message": "Safe 잔고"
   },
@@ -77,12 +74,6 @@
   "privacy_policy": {
     "message": "개인정보처리정책"
   },
-  "terms_first_bullet": {
-    "message": "본사는 연령과 성별을 비롯한 인구통계학적 데이터를 수집하지 않습니다."
-  },
-  "terms_second_bullet": {
-    "message": "Gnosis Ltd.는 앱의 품질 보장을 위해 익명의 앱 사용 데이터 및 오류 보고서를 수집합니다."
-  },
   "transaction_submitted": {
     "message": "거래가 제출되었습니다"
   },
@@ -94,9 +85,6 @@
   },
   "replace_recovery_phrase": {
     "message": "복구 문장 대체하기"
-  },
-  "layout_replace_recovery_phrase_transaction_info_description": {
-    "message": "이전 복구 문장은 무효화되고 신규 문장으로 대체됩니다."
   },
   "store_description": {
     "message": "Gnosis Safe는 다중서명 이더리움 지갑으로서 사용자가 자신의 디지털 자산을 쉽고 안전하게 관리할 수 있게 도와주며, 탈중앙화된 웹 상에서 자유로운 활동을 할 수 있도록 도와줍니다.\n\nGnosis Safe 사용자는 이더리움과 ERC-20 토큰을 보유하거나 전송할 수 있고, 크롬 확장프로그램을 통해 타 탈중앙화 어플리케이션과도 상호작용할 수 있습니다."
@@ -156,31 +144,16 @@
     "message": "버전"
   },
   "connect_new_safe": {
-    "message": "신규 Safe에 연결"
+    "message": "+ 신규 Safe에 연결"
   },
   "connected_extension_succesfully": {
     "message": "확장 프로그램이 성공적으로 설치되었습니다!<br /> <strong>모바일 앱과 연결하세요.</strong>"
   },
   "download_mobile_app": {
-    "message": "모바일 앱 다운로드 및 설치"
-  },
-  "iphone_and_ipad": {
-    "message": "아이폰 및 아이패드"
-  },
-  "android": {
-    "message": "안드로이드"
+    "message": "1. 모바일 앱 다운로드 및 설치"
   },
   "connect_extension_explanation": {
-    "message": "QR 코드를 스캔하여 확장 프로그램과 모바일 앱을 연결하세요"
-  },
-  "show_qr_code": {
-    "message": "QR 코드 스캔하기"
-  },
-  "show_qr_code_description": {
-    "message": "모바일 앱에서 요청 시 아래 QR 코드를 스캔하세요"
-  },
-  "browser_extension": {
-    "message": "브라우저 확장 기능"
+    "message": "2. QR 코드를 스캔하여 확장 프로그램과 모바일 앱을 연결하세요"
   },
   "safe_for_ios": {
     "message": "Gnosis Safe<br />(iOS)"
@@ -236,9 +209,6 @@
   "notifications_permission_required": {
     "message": "알림 수신에 대한 권한은 필수입니다"
   },
-  "extension_store_description": {
-    "message": "2단계 인증(2FA)를 통해 이더와 ERC-20 토큰을 안전하게 보호하세요"
-  },
   "get_started": {
     "message": "시작하기"
   },
@@ -249,16 +219,13 @@
     "message": "브라우저 확장프로그램에 비밀번호를 설정하여 보호하세요"
   },
   "confirm_create_password_title": {
-    "message": "거의 다 끝났습니다!<br />비밀번호를 한 번 더 확인해주세요."
+    "message": "거의 다 끝났습니다! 비밀번호를 한 번 더 확인해주세요."
   },
   "internet_connection_error": {
     "message": "인터넷 연결 불가"
   },
   "check_internet_connection": {
     "message": "인터넷 연결 상태 확인해주세요!"
-  },
-  "review_terms": {
-    "message": "<a href='https://safe.gnosis.io/terms' target='_blank'>이용약관</a>과 <a href='https://safe.gnosis.io/privacy' target='_blank'>개인정보처리정책</a>을 검토해주세요."
   },
   "back": {
     "message": "이전"

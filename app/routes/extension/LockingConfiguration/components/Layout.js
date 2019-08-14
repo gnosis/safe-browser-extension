@@ -1,57 +1,41 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import classNames from 'classnames'
-
-import Page from 'components/Page'
+import React from 'react'
+import Page from 'components/layout/Page'
+import ContentHeader from 'components/headers/ContentHeader'
 import TimeBlock from './TimeBlock'
-import styles from 'assets/css/global.css'
 import { ACCOUNT_URL } from 'routes/routes'
 import { SET_LOCK_TIMEOUT } from '../../../../../config/messages'
+import styles from './style.css'
 
-const cx = classNames.bind(styles)
-
-class Layout extends Component {
-  render() {
-    const { minutes, handleOptionChange, location } = this.props
-
-    return (
-      <Page location={location}>
-        <div className={styles.overlayPage}>
-          <span className={styles.overlayPageHeader}>
-            <Link
-              to={ACCOUNT_URL}
-              className={cx(styles.btnBack, styles.active)}
-            />
-            <h2>{SET_LOCK_TIMEOUT}</h2>
-          </span>
-          <span className={styles.overlayPageContent}>
-            <form className={styles.timeout_items}>
-              <TimeBlock
-                handleOptionChange={handleOptionChange}
-                minutes={minutes}
-                minTime={5}
-              />
-              <TimeBlock
-                handleOptionChange={handleOptionChange}
-                minutes={minutes}
-                minTime={10}
-              />
-              <TimeBlock
-                handleOptionChange={handleOptionChange}
-                minutes={minutes}
-                minTime={30}
-              />
-              <TimeBlock
-                handleOptionChange={handleOptionChange}
-                minutes={minutes}
-                minTime={60}
-              />
-            </form>
-          </span>
-        </div>
-      </Page>
-    )
-  }
-}
+const Layout = ({ minutes, handleOptionChange, location }) => (
+  <Page background="grey" location={location}>
+    <div className={styles.content}>
+      <ContentHeader backLink={ACCOUNT_URL} message={SET_LOCK_TIMEOUT} />
+      <div className={styles.bodyContent}>
+        <form className={styles.timeoutItems}>
+          <TimeBlock
+            handleOptionChange={handleOptionChange}
+            minutes={minutes}
+            minTime={5}
+          />
+          <TimeBlock
+            handleOptionChange={handleOptionChange}
+            minutes={minutes}
+            minTime={10}
+          />
+          <TimeBlock
+            handleOptionChange={handleOptionChange}
+            minutes={minutes}
+            minTime={30}
+          />
+          <TimeBlock
+            handleOptionChange={handleOptionChange}
+            minutes={minutes}
+            minTime={60}
+          />
+        </form>
+      </div>
+    </div>
+  </Page>
+)
 
 export default Layout

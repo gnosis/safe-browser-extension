@@ -38,14 +38,11 @@
   "agree": {
     "message": "Accetto"
   },
-  "personal_edition": {
-    "message": "Edizione Personale"
-  },
   "safe_balance": {
     "message": "Saldo del Safe"
   },
   "request_confirmation_wait_x_s": {
-    "message": "Si prega di attendere %s secondi prima di inviare nuovamente la richiesta."
+    "message": "attendere %ss prima di inviare nuovamente la richiesta"
   },
   "request_confirmation": {
     "message": "Invia di nuovo la richiesta di conferma"
@@ -77,12 +74,6 @@
   "privacy_policy": {
     "message": "Informativa sulla privacy"
   },
-  "terms_first_bullet": {
-    "message": "Non raccogliamo dati demografici come età e sesso."
-  },
-  "terms_second_bullet": {
-    "message": "Raccogliamo dati anonimi sull'utilizzo dell'app e rapporti di crash per garantire maggiore qualità della nostra app."
-  },
   "transaction_submitted": {
     "message": "Transazione inviata"
   },
@@ -95,11 +86,8 @@
   "replace_recovery_phrase": {
     "message": "Sostituisci la frase di recupero"
   },
-  "layout_replace_recovery_phrase_transaction_info_description": {
-    "message": "La vecchia frase di recupero non sarà più valida e verrà sostituita da quella nuova."
-  },
   "store_description": {
-    "message": "Gnosis Safe è un portafoglio Ethereum multi-firma che consente agli utenti di gestire i propri beni digitali e l'interazione con il Web decentralizzato in modo comodo e sicuro.\n\nCon Gnosis Safe puoi ricevere, conservare e trasferire Ether e token ERC-20. Attraverso l'estensione per browser Chrome puoi interagire con applicazioni decentralizzate."
+    "message": "Gnosis Safe è un portafoglio Ethereum multi-firma che consente di gestire i propri beni digitali e l'interazione con il Web decentralizzato in maniera comoda e sicura.\n\nCon Gnosis Safe puoi facilmente ricevere, conservare e trasferire Ether e token ERC-20. Attraverso l'Authenticator puoi interagire con applicazioni decentralizzate."
   },
   "view_on_etherscan": {
     "message": "Visualizza su Etherscan.io"
@@ -126,10 +114,10 @@
     "message": "(predefinito)"
   },
   "locking_min": {
-    "message": "min"
+    "message": "minuti"
   },
   "change_password_description": {
-    "message": "La password viene usata per sbloccare l'estensione e confermare transazioni. <strong>Non condividerla con altre persone!</strong>"
+    "message": "La password viene usata per sbloccare l'Authenticator e confermare transazioni. <strong>Non condividerla con altre persone!</strong>"
   },
   "new_password_identical_chars": {
     "message": "Non più di 2 caratteri identici consecutivi"
@@ -138,7 +126,7 @@
     "message": "Password con almeno 1 numero e 1 lettera"
   },
   "new_password_min_chars": {
-    "message": "Usa un minimo di 8 caratteri."
+    "message": "Usa un minimo di 8 caratteri"
   },
   "save_new_password": {
     "message": "Salvare la nuova password"
@@ -147,7 +135,7 @@
     "message": "Sincronizzare con l'applicazione mobile"
   },
   "replace_recovery_phrase_explanation": {
-    "message": "Scansiona il codice QR qui sotto quando richiesto nell'app mobile"
+    "message": "Scansiona il codice QR qui sotto quando richiesto dall'app mobile"
   },
   "about": {
     "message": "Circa il"
@@ -156,31 +144,16 @@
     "message": "Versione"
   },
   "connect_new_safe": {
-    "message": "Collega un nuovo Safe"
+    "message": "+ Collega un nuovo Safe"
   },
   "connected_extension_succesfully": {
-    "message": "Estensione configurata correttamente!<br /><strong>Collegala con l'applicazione mobile.</strong>"
+    "message": "Authenticator configurato correttamente!<br /><strong>Collegalo all'applicazione mobile.</strong>"
   },
   "download_mobile_app": {
-    "message": "Scarica e installa l'applicazione mobile"
-  },
-  "iphone_and_ipad": {
-    "message": "iPhone e iPad"
-  },
-  "android": {
-    "message": "Android"
+    "message": "1. Scarica e installa l'applicazione mobile"
   },
   "connect_extension_explanation": {
-    "message": "Collega l'estensione con l'app mobile eseguendo la scansione del codice QR"
-  },
-  "show_qr_code": {
-    "message": "Mostra il codice QR"
-  },
-  "show_qr_code_description": {
-    "message": "Scansiona il codice QR qui sotto quando richiesto nell'app mobile"
-  },
-  "browser_extension": {
-    "message": "Estensione del browser"
+    "message": "2. Collega l'Authenticator con l'app mobile eseguendo la scansione del codice QR"
   },
   "safe_for_ios": {
     "message": "Gnosis Safe<br />per iOS"
@@ -210,7 +183,7 @@
     "message": "Safe connesso"
   },
   "safe_connected_description": {
-    "message": "Il Safe è adesso connesso con l'estensione del browser"
+    "message": "Il Safe è adesso connesso con l'Authenticator"
   },
   "website_not_whitelisted": {
     "message": "Questo sito Web non è autorizzato"
@@ -225,19 +198,16 @@
     "message": "Gnosis Safe - Grazie per l'installazione!"
   },
   "options_page_header": {
-    "message": "Grazie per aver installato <br />  l'estensione del browser di Gnosis Safe!"
+    "message": "Grazie per aver installato <br />Authenticator!"
   },
   "options_page_description": {
-    "message": "Per utilizzare l'estensione Safe è necessario prima di tutto consentire le notifiche. Con le notifice attive riceverai informazioni sulle transazioni inviate dall'applicazione mobile Gnosis Safe."
+    "message": "Per utilizzare l'Authenticator è necessario prima di tutto consentire l'invio di notifiche. Con esse riceverai informazioni sulle transazioni inviate dall'applicazione mobile Gnosis Safe."
   },
   "allow_notifications": {
     "message": "Consenti notifiche"
   },
   "notifications_permission_required": {
     "message": "Si richiede autorizzazione per la ricezione di notifiche"
-  },
-  "extension_store_description": {
-    "message": "Memorizza in modo sicuro Ether e token ERC-20 con autenticazione a 2 fattori."
   },
   "get_started": {
     "message": "Inizia"
@@ -246,10 +216,10 @@
     "message": "Aggiungere"
   },
   "create_password_title": {
-    "message": "Proteggi e crittografa l'estensione del tuo browser con una password"
+    "message": "Proteggi e crittografa il tuo Authenticator con una password"
   },
   "confirm_create_password_title": {
-    "message": "Ci siamo quasi! <br /> Conferma la tua password."
+    "message": "Ci siamo quasi! Conferma la tua password."
   },
   "internet_connection_error": {
     "message": "Impossibile connettersi a Internet."
@@ -258,7 +228,7 @@
     "message": "Per favore, controlla la tua connessione!"
   },
   "review_terms": {
-    "message": "Per favore, leggi attentamente i <a href='https://safe.gnosis.io/terms' target='_blank'>Termini d'uso</a> e <a href='https://safe.gnosis.io/privacy' target='_blank'>l'informativa sulla Privacy</a>."
+    "message": "Continuando accetti e acconsenti i <a href='https://safe.gnosis.io/terms' target='_blank'>Termini di utilizzo</a> e l'<a href='https://safe.gnosis.io/privacy' target='_blank'>Informativa sulla privacy</a>."
   },
   "back": {
     "message": "Indietro"
@@ -279,247 +249,7 @@
     "message": "Token di pagamento (per commissioni di rete)"
   },
   "review_sign_message": {
-    "message": "Rivedi la firma"
-  },
-  "balance_after_transfer": {
-    "message": "Saldo dopo il trasferimento"
-  },
-  "review": {
-    "message": "Revisione"
-  },
-  "password": {
-    "message": "Password"
-  },
-  "enter_the_decentralized_web": {
-    "message": "Entra nel Web decentralizzato."
-  },
-  "password_confirmed": {
-    "message": "Password confermata"
-  },
-  "please_review_terms_and_privacy_policy": {
-    "message": "Leggere attentamente le condizioni d'uso e l'informativa sulla privacy."
-  },
-  "privacy_policy_link": {
-    "message": "<a href='https://safe.gnosis.io/privacy' target='_blank'>Informativa sulla privacy</a>"
-  },
-  "terms_link": {
-    "message": "<a href='https://safe.gnosis.io/terms' target='_blank'>Termini d'uso</a>"
-  },
-  "transaction_connects_safe_to_2FA": {
-    "message": "Questa transazione collega questo Safe con l'estensione del browser. Le transazioni future richiederanno la conferma da entrambi i dispositivi."
-  },
-  "your_safe_consists_of": {
-    "message": "Il tuo Safe è composto da:"
-  },
-  "safe_consists_list": {
-    "message": "1. Questa app mobile. \\n \n2. La sua estensione per il browser. \\n \n3. Una frase di recupero."
-  },
-  "loose_or_change_phone": {
-    "message": "Se si perde o si cambia il telefono, utilizza l'indirizzo del Safe e la frase di recupero per ripristinare l'accesso alle tue risorse digitali."
-  },
-  "address_already_in_app": {
-    "message": "L'indirizzo è già presente nella tua app"
-  },
-  "enter_safe_address": {
-    "message": "Inserisci l'indirizzo del Safe"
-  },
-  "recover_safe_title": {
-    "message": "Recupero Safe"
-  },
-  "enter_seed": {
-    "message": "Inserisci la tua frase di recupero"
-  },
-  "incorrect_seed": {
-    "message": "Frase di recupero errata"
-  },
-  "enter_recovery": {
-    "message": "Inserisci la frase di recupero"
-  },
-  "transaction_details_here": {
-    "message": "Visualizza i dettagli della transazione qui"
-  },
-  "tx_submitted_replace_be": {
-    "message": "La transazione è stata inviata e dovrebbe completarsi in un paio di minuti. La sostituzione dell'estensione del browser è in corso."
-  },
-  "new_entry": {
-    "message": "Nuova voce"
-  },
-  "enter_name": {
-    "message": "Inserisci il nome"
-  },
-  "what_is_network_fee": {
-    "message": "Cosa sono le commissioni di rete?"
-  },
-  "enter_new_password": {
-    "message": "Inserire una nuova password"
-  },
-  "delete_entry": {
-    "message": "Elimina voce"
-  },
-  "edit_entry": {
-    "message": "Modifica voce"
-  },
-  "tap_view_options": {
-    "message": "Tocca qui per visualizzare le opzioni"
-  },
-  "no_results_found": {
-    "message": "Nessun risultato trovato"
-  },
-  "search": {
-    "message": "Cerca"
-  },
-  "edit": {
-    "message": "Modifica"
-  },
-  "send_again": {
-    "message": "Inviare %s di nuovo"
-  },
-  "give_feedback": {
-    "message": "Dare un Feedback"
-  },
-  "rate_app": {
-    "message": "Valuta l'app"
-  },
-  "licenses": {
-    "message": "Licenze"
-  },
-  "support": {
-    "message": "Supporto"
-  },
-  "enter_current_password": {
-    "message": "Inserisci la password corrente"
-  },
-  "incorrect_password": {
-    "message": "Password errata"
-  },
-  "incoming_tx": {
-    "message": "Trasferimento in entrata"
-  },
-  "current_balance": {
-    "message": "Saldo attuale"
-  },
-  "recovered_safe": {
-    "message": "Safe recuperato"
-  },
-  "existing_safe_recovered": {
-    "message": "Il Safe esistente verrà recuperato e associato a questo dispositivo."
-  },
-  "name_too_long": {
-    "message": "Il nome è troppo lungo. Massimo 120 caratteri."
-  },
-  "transaction_submitted_safe_being_created": {
-    "message": "La tua transazione è stata inviata. Il tuo Safe verrà creato a breve. Questo potrebbe richiedere un paio di minuti."
-  },
-  "follow_progress_on_etherscan": {
-    "message": "<font color=#27a0ff> Segui i progressi su Etherscan.io </font>"
-  },
-  "safe_title": {
-    "message": "Safe"
-  },
-  "bytes_included": {
-    "message": "%d byte inclusi"
-  },
-  "please_have_safe_address_ready": {
-    "message": "Per favore, tieni a portata di mano l'indirizzo e la frase di recupero del Safe."
-  },
-  "recovery_fee_will_be_deducted": {
-    "message": "Una commissione per il recupero verrà automaticamente detratta dal saldo del Safe recuperato."
-  },
-  "new_be": {
-    "message": "Nuova estensione per il browser"
-  },
-  "yesterday": {
-    "message": "IERI"
-  },
-  "pending_captalized": {
-    "message": "IN SOSPESO"
-  },
-  "done": {
-    "message": "Fatto"
-  },
-  "error_or_invalid_qr": {
-    "message": "Errore nell'accoppiamento di dispositivi o codice QR non valido"
-  },
-  "error": {
-    "message": "Errore"
-  },
-  "connecting_in_progress": {
-    "message": "Il collegamento all'estensione del browser è in corso. La transazione è stata inviata e dovrebbe richiedere un paio di minuti."
-  },
-  "safe_creation_fee": {
-    "message": "Costo di creazione del Safe"
-  },
-  "network_fee_required": {
-    "message": "È necessario pagare una commissione di rete per creare il tuo nuovo Safe."
-  },
-  "send_this_amount": {
-    "message": "Invia almeno questo importo al tuo nuovo Safe:"
-  },
-  "please_send_x": {
-    "message": "Si prega di inviare solo [%s]"
-  },
-  "refresh": {
-    "message": "Aggiorna"
-  },
-  "create_safe_title": {
-    "message": "Creazione Safe"
-  },
-  "cancel_safe_creation": {
-    "message": "Annullare la creazione del Safe?"
-  },
-  "cancel_creation_warning": {
-    "message": "Se annulli, tutti i progressi fatti andranno persi e non sarai in grado di utilizzare questo indirizzo."
-  },
-  "open_be_link": {
-    "message": "1. Apri il <a href='https://chrome.google.com/webstore/detail/gnosis-safe-mainnet-beta/iecodoenhaghdlpodmhooppdhjhmibde?hl=en' target='_blank'> link all'estensione del browser Chrome </a> sul tuo computer."
-  },
-  "skip_setup_later": {
-    "message": "Salta e imposta in seguito"
-  },
-  "new_seed": {
-    "message": "Nuova frase di recupero"
-  },
-  "amount_needed": {
-    "message": "Importo richiesto"
-  },
-  "send_remainder": {
-    "message": "Invia almeno l'importo restante al tuo Safe "
-  },
-  "view_entry": {
-    "message": "Visualizza voce"
-  },
-  "enter_safe_address_field": {
-    "message": "Inserisci l'indirizzo del tuo Safe"
-  },
-  "amount_received": {
-    "message": "Importo ricevuto"
-  },
-  "once_process_is_complete": {
-    "message": "Una volta completato questo processo, sarà possibile utilizzare solo la nuova estensione del browser per confermare le transazioni.\\n\\nSi prega di tenere a portata di mano la frase di recupero del Safe per confermare il recupero."
-  },
-  "future_tx_approved_by_both": {
-    "message": "Tutte le transazioni future dovranno essere approvate da entrambi i dispositivi."
-  },
-  "ios_open_be_link_text": {
-    "message": "1. Apri il link all'estensione del browser Chrome sul tuo computer desktop."
-  },
-  "info": {
-    "message": "Info"
-  },
-  "sync_with_extension_sent": {
-    "message": "Notifica di risincronizzazione inviata correttamente"
-  },
-  "change_payment_method": {
-    "message": "Cambia il metodo di pagamento della commissione"
-  },
-  "fee_method": {
-    "message": "Metodo di pagamento della commissione"
-  },
-  "fee": {
-    "message": "Commissioni"
-  },
-  "this_payment_will_be_used": {
-    "message": "Questo metodo di pagamento verrà utilizzato per pagare le commissioni di rete in tutte le transazioni."
+    "message": "Richiesta di firma"
   },
   "view_message": {
     "message": "Visualizza messaggio"
@@ -531,70 +261,13 @@
     "message": "Dominio"
   },
   "verifying_contract": {
-    "message": "Verifica del contratto"
-  },
-  "you_are_signing": {
-    "message": "Stai firmando"
-  },
-  "ios_replace_recovery_phrase": {
-    "message": "Sostituisci la frase di recupero"
-  },
-  "ios_recovered_safe": {
-    "message": "Safe\\nrecuperato"
-  },
-  "amount_millions": {
-    "message": "MLN"
-  },
-  "amount_billions": {
-    "message": "MLD"
-  },
-  "amount_trillions": {
-    "message": "T"
-  },
-  "just_now": {
-    "message": "Un attimo fa"
-  },
-  "pending": {
-    "message": "In attesa"
-  },
-  "choose_recipient": {
-    "message": "Scegli il destinatario"
-  },
-  "address_input_address_book": {
-    "message": "Rubrica"
-  },
-  "address_input_ens": {
-    "message": "Nome ENS"
-  },
-  "address_input_qr_code": {
-    "message": "Scansiona il codice QR"
-  },
-  "address_input_clipboard": {
-    "message": "Incolla dagli appunti"
-  },
-  "transaction_submitted_safe_being_recovered": {
-    "message": "La tua transazione è stata inviata. Il tuo Safe verrà creato a breve. Questo potrebbe richiedere un paio di minuti."
-  },
-  "sign": {
-    "message": "Firma"
-  },
-  "contract": {
     "message": "Contratto"
   },
-  "signature_request": {
-    "message": "Richiesta di firma"
+  "ios_replace_recovery_phrase": {
+    "message": "Sostituisci la frase\\ndi recupero"
   },
   "request_initiated_by_Safe": {
     "message": "Questa transazione è stata inizializzata dall'app mobile Gnosis Safe. Se confermi, l'app firmerà questo messaggio."
-  },
-  "disconnecting_in_progress": {
-    "message": "Il collegamento all'estensione del browser è in corso. La transazione è stata inviata e dovrebbe richiedere un paio di minuti."
-  },
-  "replaceseed_in_progress": {
-    "message": "La transazione è stata inviata e dovrebbe completarsi in un paio di minuti. La sostituzione della frase di recupero è in corso."
-  },
-  "password_changed": {
-    "message": "La password è stata cambiata."
   },
   "get_chrome": {
     "message": "Ottieni Chrome"
@@ -603,6 +276,12 @@
     "message": "Oops! Brave non è supportato"
   },
   "brave_not_supported_description": {
-    "message": "L'estensione del browser di Gnosis Safe non funziona con Brave. Si prega di scaricare l'ultima versione di Google Chrome e di installare di nuovo l'estensione."
+    "message": "Gnosis Safe Authenticator non funziona con Brave. Si prega di scaricare l'ultima versione di Google Chrome e di installare nuovamente l'Authenticator."
+  },
+  "slogan": {
+    "message": "Il modo più sicuro per gestire i tuoi fondi in crypto."
+  },
+  "payment_token_title": {
+    "message": "Token di pagamento"
   }
 }

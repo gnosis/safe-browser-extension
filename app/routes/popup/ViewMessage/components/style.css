@@ -1,0 +1,24 @@
+.content {
+  width: 100%;
+  margin: 0 auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: center;
+}
+
+.contentBody {
+  width: 100%;
+  padding: 10px 20px 20px;
+}
+
+.contentBody span,
+.contentBody div,
+.contentBody svg,
+.contentBody path {
+  color: $darkBlue !important;
+  font-size: 11px !important;
+  opacity: 1 !important;
+  font-family: Averta, Helvetica, sans-serif !important;
+}

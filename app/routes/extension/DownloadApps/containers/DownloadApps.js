@@ -1,128 +1,151 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { useState, useEffect } from 'react'
 import Bip39 from 'bip39'
+import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
-
 import { ga } from 'utils/analytics'
 import { ONBOARDING } from 'utils/analytics/events'
 import {
   createEthAccount,
-  createAccountFromMnemonic
-} from '../components/PairingProcess/containers/pairEthAccount'
+  createAccountFromMnemonic,
+  getDecryptedEthAccount,
+  generatePairingCodeContent
+} from './pairEthAccount'
+import {
+  setUpNotifications,
+  authPushNotificationService
+} from './pairingNotifications'
+import { createQrImage } from 'utils/qrdisplay'
 import Layout from '../components/Layout'
-import actions from './actions'
 import { ACCOUNT_URL } from 'routes/routes'
+import actions from './actions'
+import selector from './selector'
+import { getAndroidAppUrl, getIosAppUrl } from '../../../../../config'
+import { NOTIFICATIONS_PERMISSION_REQUIRED } from '../../../../../config/messages'
 
-class DownloadApps extends Component {
-  constructor(props) {
-    super(props)
-    const { safes } = this.props
+const DownloadApps = ({
+  location,
+  safes,
+  account,
+  onCreateAccount,
+  selectEncryptedMnemonic
+}) => {
+  const iosAppUrl = getIosAppUrl()
+  const androidAppUrl = getAndroidAppUrl()
+  const qrPairingRef = React.createRef()
 
-    this.pairedSafes = safes.safes.length
+  const validPassword = location && location.state && location.state.password
+  const password = validPassword ? location.state.password : undefined
 
-    this.state = {
-      showQrAndroid: false,
-      showQrIos: false,
-      showQrPairing: false
+  const [message, setMessage] = useState('')
+  const [currentSafe, setCurrentSafe] = useState(null)
+  const [pairedSafes, setPairedSafes] = useState(safes.safes.length)
+
+  useEffect(() => {
+    createUniqueAccount()
+  }, [])
+
+  useEffect(() => {
+    if (selectEncryptedMnemonic) {
+      registerToken()
     }
+  }, [selectEncryptedMnemonic])
 
-    const { location } = this.props
-    const validPassword = location && location.state && location.state.password
-    this.password = validPassword ? location.state.password : undefined
-  }
+  useEffect(() => {
+    if (safes !== null && safes.safes.length > pairedSafes) {
+      setPairedSafes(safes.safes.length)
+      setCurrentSafe(safes.currentSafe)
+    }
+  }, [safes])
 
-  componentDidMount = () => {
-    const { account, onCreateAccount } = this.props
-
+  const createUniqueAccount = async () => {
     const hasAccount = account.secondFA && account.secondFA.seed
 
-    if (hasAccount || !this.password) {
+    if (!password || hasAccount) {
       return
     }
+    if (!hasAccount) {
+      const mnemonic = Bip39.generateMnemonic()
+      const currentAccount = createAccountFromMnemonic(mnemonic, 0)
+      const { encryptedMnemonic, hmac } = createEthAccount(mnemonic, password)
 
-    const mnemonic = Bip39.generateMnemonic()
-    const currentAccount = createAccountFromMnemonic(mnemonic, 0)
-    const { encryptedMnemonic, hmac } = createEthAccount(
-      mnemonic,
-      this.password
-    )
-
-    onCreateAccount(
-      currentAccount.getChecksumAddressString(),
-      encryptedMnemonic,
-      hmac
-    )
-  }
-
-  toggleQrAndroid = () => {
-    this.setState((prevState) => {
-      if (!prevState.showQrAndroid) {
-        ga([
-          '_trackEvent',
-          ONBOARDING,
-          'click-download-android-app',
-          'Download Android app'
-        ])
-      }
-      return { showQrAndroid: !prevState.showQrAndroid }
-    })
-  }
-
-  toggleQrIos = () => {
-    this.setState((prevState) => {
-      if (!prevState.showQrIos) {
-        ga([
-          '_trackEvent',
-          ONBOARDING,
-          'click-download-iphone-app',
-          'Download iPhone app'
-        ])
-      }
-      return { showQrIos: !prevState.showQrIos }
-    })
-  }
-
-  toggleQrPairing = () => {
-    this.setState((prevState) => {
-      if (!prevState.showQrPairing) {
-        ga([
-          '_trackEvent',
-          ONBOARDING,
-          'click-show-pairing-qr-code',
-          'Show pairing QR-code'
-        ])
-      }
-      return { showQrPairing: !prevState.showQrPairing }
-    })
-  }
-
-  render() {
-    const { showQrAndroid, showQrIos, showQrPairing } = this.state
-    const { safes, location } = this.props
-
-    if (safes !== null && safes.safes.length > this.pairedSafes) {
-      return <Redirect to={ACCOUNT_URL} />
+      onCreateAccount(
+        currentAccount.getChecksumAddressString(),
+        encryptedMnemonic,
+        hmac
+      )
     }
-    return (
-      <Layout
-        toggleQrAndroid={this.toggleQrAndroid}
-        toggleQrIos={this.toggleQrIos}
-        toggleQrPairing={this.toggleQrPairing}
-        showQrAndroid={showQrAndroid}
-        showQrIos={showQrIos}
-        showQrPairing={showQrPairing}
-        password={this.password}
-        location={location}
-      />
+  }
+
+  const registerToken = async () => {
+    const nextOwnerAccountIndex = account.secondFA.currentAccountIndex
+      ? account.secondFA.currentAccountIndex + 1
+      : 1
+
+    const nextOwnerAccount =
+      password &&
+      getDecryptedEthAccount(
+        selectEncryptedMnemonic,
+        password,
+        nextOwnerAccountIndex
+      )
+
+    try {
+      const token = await setUpNotifications()
+      if (token === null) {
+        setMessage(NOTIFICATIONS_PERMISSION_REQUIRED)
+        return
+      }
+      const auth = await authPushNotificationService(token, [nextOwnerAccount])
+      if (auth) {
+        renderQrImageFrom(nextOwnerAccount.getPrivateKey())
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const openGooglePlay = (e) => {
+    chrome.tabs.create({ url: androidAppUrl })
+    ga([
+      '_trackEvent',
+      ONBOARDING,
+      'click-download-android-app',
+      'Download Android app'
+    ])
+  }
+
+  const openAppStore = (e) => {
+    chrome.tabs.create({ url: iosAppUrl })
+    ga([
+      '_trackEvent',
+      ONBOARDING,
+      'click-download-iphone-app',
+      'Download iPhone app'
+    ])
+  }
+
+  const renderQrImageFrom = (privateKey) => {
+    createQrImage(
+      qrPairingRef.current,
+      generatePairingCodeContent(privateKey),
+      3
     )
   }
-}
 
-const mapStateToProps = ({ account, safes }, props) => {
-  return {
-    account,
-    safes
+  if (currentSafe) {
+    return <Redirect to={ACCOUNT_URL} />
   }
+  return (
+    <Layout
+      password={password}
+      location={location}
+      openGooglePlay={openGooglePlay}
+      openAppStore={openAppStore}
+      iosAppUrl={iosAppUrl}
+      qrPairingRef={qrPairingRef}
+      message={message}
+    />
+  )
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -133,6 +156,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(
-  mapStateToProps,
+  selector,
   mapDispatchToProps
 )(DownloadApps)

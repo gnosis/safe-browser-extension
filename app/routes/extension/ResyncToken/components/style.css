@@ -1,0 +1,38 @@
+.content {
+  width: 100%;
+  margin: 0 auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.contentBody {
+  position: relative;
+  height: auto;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -ms-flex-line-pack: start;
+  align-content: flex-start;
+  width: 100%;
+  padding: 20px;
+}
+
+.message {
+  width: 100%;
+  margin: 15px auto;
+  text-align: center;
+  color: $darkBlue;
+  font-size: 12px;
+}
+
+.button {
+  margin: 0;
+}

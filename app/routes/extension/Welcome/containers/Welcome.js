@@ -1,32 +1,21 @@
-import React, { Component } from 'react'
-
+import React, { useState } from 'react'
 import Layout from '../components/Layout'
 
-class Welcome extends Component {
-  constructor(props) {
-    super(props)
+const Welcome = () => {
+  const [disclaimerVisibility, setDisclaimerVisibility] = useState(false)
 
-    this.state = {
-      showDisclaimer: false
-    }
-  }
-
-  toggleDisclaimer = () => {
-    this.setState((prevState) => ({
-      showDisclaimer: !prevState.showDisclaimer
-    }))
-  }
-
-  render() {
-    const { showDisclaimer } = this.state
-
-    return (
-      <Layout
-        showDisclaimer={showDisclaimer}
-        toggleDisclaimer={this.toggleDisclaimer}
-      />
+  const toggleDisclaimer = () => {
+    setDisclaimerVisibility(
+      (prevDisclaimerVisibility) => !prevDisclaimerVisibility
     )
   }
+
+  return (
+    <Layout
+      showDisclaimer={disclaimerVisibility}
+      toggleDisclaimer={toggleDisclaimer}
+    />
+  )
 }
 
 export default Welcome

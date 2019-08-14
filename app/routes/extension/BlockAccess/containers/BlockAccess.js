@@ -1,13 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Layout from '../components/Layout'
 
-class BlockAccess extends Component {
-  render() {
-    const { location } = this.props
-    return (
-      <Layout location={location} />
-    )
-  }
-}
+const BlockAccess = ({ location }) => <Layout location={location} />
 
 export default BlockAccess

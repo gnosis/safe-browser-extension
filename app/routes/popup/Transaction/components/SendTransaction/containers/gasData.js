@@ -1,7 +1,6 @@
 import Web3 from 'web3'
 import fetch from 'node-fetch'
 import TruffleContract from 'truffle-contract'
-
 import {
   getTransactionRelayServiceUrl,
   getNetworkUrl

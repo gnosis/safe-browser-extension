@@ -1,0 +1,67 @@
+.content {
+  width: 100%;
+  margin: 0 auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.contentBody {
+  position: relative;
+  height: auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -ms-flex-line-pack: start;
+  align-content: flex-start;
+  width: 100%;
+}
+
+.warningPassword {
+  width: 100%;
+  background: $lightGrey;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  margin: 2em auto 0;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.warningPassword > img {
+  padding: 0 10px 15px 15px;
+  color: $grey;
+}
+
+.warningPassword > p {
+  padding: 0 25px 0 0;
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: $grey;
+  font-size: 1.2em;
+  font-weight: 400;
+  text-align: left;
+}
+
+.passwordForm {
+  width: 100%;
+  padding: 20px;
+}
+
+.confirmPassword {
+  margin: 0 0 20px 0;
+}
+
+.button {
+  width: 100%;
+  margin: 25px 0 0;
+}

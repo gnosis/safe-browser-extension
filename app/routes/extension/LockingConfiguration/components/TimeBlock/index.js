@@ -1,25 +1,20 @@
 import React from 'react'
-
-import styles from 'assets/css/global.css'
+import Paragraph from 'components/layout/Paragraph'
+import RadioInput from 'components/forms/RadioInput'
 import {
   LOCKING_MIN,
   LOCKING_MIN_DEFAULT
 } from '../../../../../../config/messages'
 
 const TimeBlock = ({ handleOptionChange, minutes, minTime }) => (
-  <div className={styles.radio}>
-    <input
-      type="radio"
-      name="timeout"
-      value={`${minTime}`}
-      checked={minutes === minTime}
-      readOnly
-    />
-    <label onClick={handleOptionChange(minTime)}>
+  <RadioInput name="timeout" value={`${minTime}`} checked={minutes === minTime}>
+    <Paragraph onClick={handleOptionChange(minTime)}>
       {minTime}
-      {LOCKING_MIN} {minTime === 5 && LOCKING_MIN_DEFAULT}
-    </label>
-  </div>
+      &nbsp;
+      {LOCKING_MIN}
+      {minTime === 5 && LOCKING_MIN_DEFAULT}
+    </Paragraph>
+  </RadioInput>
 )
 
 export default TimeBlock

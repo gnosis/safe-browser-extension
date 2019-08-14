@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js'
 import {
   getDecryptedEthAccount,
   createAccountFromMnemonic
-} from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'
+} from 'routes/extension/DownloadApps/containers/pairEthAccount'
 import {
   getTransactionData,
   setUpTransaction,
@@ -13,12 +13,11 @@ import {
   isReplaceRecoveryPhrase
 } from './transactions'
 import { getEthBalance } from 'utils/helpers'
-import Header from 'components/Header'
+import Header from 'components/Headers/CompleteHeader'
 import Layout from '../components/Layout'
 import actions from './actions'
 import selector from './selector'
 import messages from '../../../../../extension/utils/messages'
-import styles from 'assets/css/global.css'
 
 class Transaction extends Component {
   constructor(props) {
@@ -198,32 +197,26 @@ class Transaction extends Component {
     setUpTransaction(transaction, estimations, displayedValue, decimals)
 
     return (
-      <div className={styles.extensionPopup}>
-        <div className={styles.extensionInner}>
-          <Header noBorder isPopup location={location} />
-          <div className={styles.Page}>
-            <Layout
-              transaction={transaction}
-              transactions={transactions}
-              balance={balance}
-              symbol={symbol}
-              transactionNumber={transactionNumber}
-              lockedAccount={account.lockedState}
-              loadedData={loadedData}
-              reviewedTx={reviewedTx}
-              transactionSummary={transactionSummary}
-              replaceRecoveryPhrase={replaceRecoveryPhrase}
-              safeAlias={this.getSafeAlias(transaction.safe)}
-              ethAccount={this.ethAccount}
-              previousTransaction={this.previousTransaction}
-              nextTransaction={this.nextTransaction}
-              removeTransaction={this.removeTransaction}
-              showTransaction={this.showTransaction}
-              handleTransaction={this.handleTransaction}
-            />
-          </div>
-        </div>
-      </div>
+      <Layout
+        transaction={transaction}
+        transactions={transactions}
+        balance={balance}
+        symbol={symbol}
+        transactionNumber={transactionNumber}
+        lockedAccount={account.lockedState}
+        loadedData={loadedData}
+        reviewedTx={reviewedTx}
+        transactionSummary={transactionSummary}
+        replaceRecoveryPhrase={replaceRecoveryPhrase}
+        safeAlias={this.getSafeAlias(transaction.safe)}
+        ethAccount={this.ethAccount}
+        previousTransaction={this.previousTransaction}
+        nextTransaction={this.nextTransaction}
+        removeTransaction={this.removeTransaction}
+        showTransaction={this.showTransaction}
+        handleTransaction={this.handleTransaction}
+        location={location}
+      />
     )
   }
 }

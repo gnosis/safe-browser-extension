@@ -1,7 +1,6 @@
 import React from 'react'
 import classNames from 'classnames/bind'
-
-import styles from 'assets/css/global.css'
+import styles from './style.css'
 
 const cx = classNames.bind(styles)
 
@@ -14,7 +13,7 @@ const HeaderPopup = ({
   nextElement
 }) => (
   <React.Fragment>
-    <span className={styles.PageHeader}>
+    <span className={styles.popupHeader}>
       <h2>{title}</h2>
       {numElements > 1 && (
         <span className={styles.pagination}>

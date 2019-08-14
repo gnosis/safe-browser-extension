@@ -1,0 +1,109 @@
+footer {
+  height: 46px;
+  background: $white;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 0 1.5em;
+  box-sizing: border-box;
+}
+
+.link {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.link > p {
+  color: $darkGrey;
+  padding: 0 0 0 25px;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0;
+}
+
+.btn-back,
+.btn-next {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  height: 100%;
+  pointer-events: none;
+  text-decoration: none;
+}
+
+.link.active > p {
+  color: $green;
+  pointer-events: auto;
+}
+
+.btn-back {
+  background: url(assets/images/arrow-left-grey.svg) center/contain no-repeat;
+  width: 15px;
+}
+
+.btn-back.active {
+  background: url(assets/images/arrow-left-green.svg) center/contain no-repeat;
+  pointer-events: auto;
+}
+
+.btn-next::after {
+  content: "";
+  display: inline-block;
+  background: url(assets/images/arrow-right-grey.svg) center/contain no-repeat;
+  width: 15px;
+  height: 15px;
+  margin: 0 0 0 1em;
+  pointer-events: none;
+}
+
+.btn-next.active::after {
+  content: "";
+  background: url(assets/images/arrow-right-green.svg) center/contain no-repeat;
+  pointer-events: auto;
+}
+
+.stepper-dots {
+  position: absolute;
+  width: 70px;
+  height: 100%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.stepper-dots > li {
+  background: $lightGrey;
+  height: 8px;
+  width: 8px;
+  border-radius: 8px;
+}
+
+.stepper-dots > li:not(:last-of-type) {
+  margin: 0 .8em 0 0;
+}
+
+.stepper-dots > li.active {
+  background: $green;
+}

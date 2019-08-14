@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Bug report about the Safe browser extension
+about: Bug report about the Authenticator
 
 ---
 
@@ -18,7 +18,7 @@ Please describe concisely the bug you have found, and what you expect instead.
 
 ## Environment
 
-- Safe browser extension version: 
+- Authenticator version: 
 - Browser version: 
 - Operating system:
 

@@ -1,0 +1,86 @@
+.content {
+  width: 100%;
+  margin: 0 auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.contentBody {
+  position: relative;
+  height: auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -ms-flex-line-pack: start;
+  align-content: flex-start;
+  width: 100%;
+  padding: 20px 0 0;
+}
+
+.signMessageSummary {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 10px 20px;
+  margin: 20px 0 0;
+  border-top: 1px solid #e4e8f1;
+  color: #65707e;
+}
+
+.signMessageSummary > span {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -ms-flex-pack: justify;
+  font-size: 1.3em;
+  line-height: 1;
+  margin: 10px 0;
+}
+
+.signMessageSummary > span > span {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  text-align: left;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  word-break: break-all;
+  color: $darkBlue;
+}
+
+.signMessageSummary > span p {
+  margin: 0;
+  text-align: left;
+  width: 110px;
+  min-width: 110px;
+  margin-right: 5px;
+}
+
+.viewMessage {
+  text-align: center;
+  padding-bottom: 25px;
+  width: 100%;
+  font-size: 14px;
+  color: $green;
+  text-decoration: none;
+}

@@ -1,0 +1,114 @@
+.popupHeader {
+  height: 46px;
+  padding: 0 20px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  width: 100%;
+  border-bottom: 1px solid $lightGrey;
+  background: $background;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  box-sizing: border-box;
+}
+
+.popupHeader > h2 {
+  margin: 0;
+  text-align: center;
+  width: auto;
+  line-height: 1;
+  font-weight: bold;
+  font-size: 18px;
+  color: $darkBlue;
+}
+
+.pagination {
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  margin: 0 0 0 auto;
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-line-pack: end;
+  align-content: flex-end;
+  z-index: 2;
+}
+
+.pagination > p {
+  margin: 0 10px;
+  color: $darkBlue;
+  font-size: 1.5em;
+  font-weight: 400;
+  width: 40px;
+}
+
+.btn-back,
+.btn-next {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  height: 100%;
+  transition: all .3s ease-in-out;
+  pointer-events: none;
+  text-decoration: none;
+  width: 15px;
+}
+
+.btn-back.active,
+.btn-next.active {
+  pointer-events: auto;
+}
+
+.btn-back.active > p,
+.btn-next.active > p {
+  color: $green;
+}
+
+.btn-back > p,
+.btn-next > p {
+  color: #A2A8BA;
+  padding: 0 0 0 25px;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+.btn-back {
+  background: url(assets/images/arrow-left-grey.svg) center/contain no-repeat;
+}
+
+.btn-back:hover {
+  transform: translateX(-2px)
+}
+
+.btn-back.active {
+  background: url(assets/images/arrow-left-green.svg) center/contain no-repeat;
+}
+
+.btn-next {
+  background: url(assets/images/arrow-right-grey.svg) center/contain no-repeat;
+}
+
+.btn-next:hover {
+  transform: translateX(2px)
+}
+
+.btn-next.active {
+  background: url(assets/images/arrow-right-green.svg) center/contain no-repeat;
+}
+
+.hide {
+  display: none !important;
+}

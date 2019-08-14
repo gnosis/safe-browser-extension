@@ -5,7 +5,6 @@ import TruffleContract from 'truffle-contract'
 import HumanFriendlyToken from '@gnosis.pm/util-contracts/build/contracts/HumanFriendlyToken.json'
 import StandardToken from '@gnosis.pm/util-contracts/build/contracts/StandardToken.json'
 import BigNumber from 'bignumber.js'
-
 import { promisify } from 'utils/promisify'
 import { getNetworkUrl } from '../../../../../config'
 import { getTokensFromRelayService } from 'utils/tokens'

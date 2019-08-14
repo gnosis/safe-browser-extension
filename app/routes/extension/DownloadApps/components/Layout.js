@@ -1,106 +1,64 @@
-import React, { Component } from 'react'
+import React from 'react'
 import classNames from 'classnames/bind'
-
-import Page from 'components/Page'
-import AppQr from './AppQr/AppQr'
-import PairingProcess from './PairingProcess/containers/PairingProcess'
-import styles from 'assets/css/global.css'
-import playStore from 'assets/images/playstore.svg'
-import appStore from 'assets/images/appstore.svg'
-import { getAndroidAppUrl, getIosAppUrl } from '../../../../../config'
+import Page from 'components/layout/Page'
+import ContentHeader from 'components/headers/ContentHeader'
+import Paragraph from 'components/layout/Paragraph'
+import googlePlayBadge from '../assets/google_play_badge.svg'
+import appStoreBadge from '../assets/app_store_badge.svg'
 import {
   CONNECTED_EXTENSION_SUCCESFULLY,
-  IPHONE_AND_IPAD,
-  ANDROID,
   DOWNLOAD_MOBILE_APP,
-  CONNECT_EXTENSION_EXPLANATION,
-  SHOW_QR_CODE
+  CONNECT_EXTENSION_EXPLANATION
 } from '../../../../../config/messages'
+import { ACCOUNT_URL } from 'routes/routes'
+import styles from './style.css'
 
 const cx = classNames.bind(styles)
 
-class Layout extends Component {
-  constructor(props) {
-    super(props)
-
-    this.androidAppUrl = getAndroidAppUrl()
-    this.iosAppUrl = getIosAppUrl()
-  }
-
-  render() {
-    const {
-      toggleQrAndroid,
-      toggleQrIos,
-      toggleQrPairing,
-      showQrAndroid,
-      showQrIos,
-      showQrPairing,
-      password,
-      location
-    } = this.props
-
-    return (
-      <React.Fragment>
-        <Page
-          page={styles.appConnect}
-          location={location}
-          simpleHeader
-          noBorder
-        >
-          <div
-            className={cx(
-              styles.content,
-              (showQrAndroid || showQrIos || showQrPairing) && styles.blur
-            )}
-          >
-            <h1>{CONNECTED_EXTENSION_SUCCESFULLY}</h1>
-            <ol>
-              <li>
-                <p>{DOWNLOAD_MOBILE_APP}</p>
-                {this.iosAppUrl && (
-                  <button onClick={toggleQrIos} data-os="ios">
-                    {IPHONE_AND_IPAD}
-                  </button>
-                )}
-                <button onClick={toggleQrAndroid} data-os="android">
-                  {ANDROID}
-                </button>
-              </li>
-              <li>
-                <p>{CONNECT_EXTENSION_EXPLANATION}</p>
-                <button
-                  onClick={toggleQrPairing}
-                  className={styles.button}
-                  data-qr="mobilepair"
-                >
-                  {SHOW_QR_CODE}
-                </button>
-              </li>
-            </ol>
-          </div>
-        </Page>
-        {showQrAndroid && (
-          <AppQr
-            toggleQr={toggleQrAndroid}
-            os="ANDROID"
-            link={this.androidAppUrl}
-            storeImage={playStore}
+const Layout = ({
+  location,
+  openGooglePlay,
+  openAppStore,
+  iosAppUrl,
+  qrPairingRef,
+  message
+}) => (
+  <Page location={location} simpleHeader background="grey">
+    <div className={styles.content}>
+      {location.state.contentHeader ? (
+        <ContentHeader backLink={ACCOUNT_URL} color="green" />
+      ) : (
+        <h1>{CONNECTED_EXTENSION_SUCCESFULLY}</h1>
+      )}
+      <div className={styles.innerContent}>
+        <Paragraph className={styles.step}>{DOWNLOAD_MOBILE_APP}</Paragraph>
+        <div className={styles.appStores}>
+          {iosAppUrl && (
+            <img
+              src={appStoreBadge}
+              onClick={openAppStore}
+              height="40"
+              width="135"
+            />
+          )}
+          <img
+            src={googlePlayBadge}
+            onClick={openGooglePlay}
+            height="40"
+            width="135"
           />
+        </div>
+        <Paragraph className={cx(styles.step, styles.step2)}>
+          {CONNECT_EXTENSION_EXPLANATION}
+        </Paragraph>
+        {message ? (
+          <Paragraph className={styles.message}>{message}</Paragraph>
+        ) : (
+          <div className={styles.qrCode} ref={qrPairingRef} />
         )}
-        {showQrIos && (
-          <AppQr
-            toggleQr={toggleQrIos}
-            os="IOS"
-            link={this.iosAppUrl}
-            storeImage={appStore}
-          />
-        )}
-        {showQrPairing && (
-          <PairingProcess toggleQr={toggleQrPairing} password={password} />
-        )}
-      </React.Fragment>
-    )
-  }
-}
+      </div>
+    </div>
+  </Page>
+)
 
 export default Layout

@@ -1,5 +1,4 @@
 import fetch from 'node-fetch'
-
 import { getTransactionRelayServiceUrl } from '../../config'
 
 export const getTokensFromRelayService = async (params) => {

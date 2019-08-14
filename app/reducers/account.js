@@ -1,6 +1,6 @@
 import { CREATE_ACCOUNT } from 'routes/extension/DownloadApps/store/actions'
 import { CONFIGURE_LOCKING } from 'routes/extension/LockingConfiguration/store/actions'
-import { UNLOCK_ACCOUNT } from 'components/Header/LockingState/store/actions'
+import { UNLOCK_ACCOUNT } from 'components/Headers/CompleteHeader/LockingState/store/actions'
 import { LOCK_ACCOUNT, INCREMENT_CURRENT_ACCOUNT_INDEX } from 'actions/account'
 import { UPDATE_MASTER_PASSWORD } from 'routes/extension/ChangePassword/store/actions'
 

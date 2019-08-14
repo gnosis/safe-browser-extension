@@ -1,0 +1,18 @@
+.paragraph {
+  text-overflow: ellipsis;
+  overflow-x: inherit;
+  color: $grey;
+}
+
+.green {
+  color: $green;
+}
+
+.red {
+  color: $red;
+}
+
+.bold {
+  color: $darkBlue;
+  font-weight: bold;
+}

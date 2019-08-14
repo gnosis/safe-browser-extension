@@ -1,48 +1,44 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
+import Page from 'components/layout/Page'
+import Paragraph from 'components/layout/Paragraph'
+import Link from 'components/layout/Link'
+import Button from 'components/layout/Button'
 import Blockie from 'components/Blockie'
-
-import Page from 'components/Page'
 import WhitelistedDappState from './WhitelistedDappState/containers'
-import styles from 'assets/css/global.css'
-import slowTradeBanner from 'assets/images/slow-trade-banner.png'
-import { VIEW_ON_ETHERSCAN } from '../../../../../config/messages'
+import {
+  VIEW_ON_ETHERSCAN,
+  CONNECT_NEW_SAFE
+} from '../../../../../config/messages'
+import styles from './style.css'
 
-class Layout extends Component {
-  render() {
-    const { currentSafe, location, openEtherScan, openSlowTrade } = this.props
-
-    return (
-      <Page page={styles.safeOverview} location={location}>
-        <div className={styles.content}>
-          <WhitelistedDappState />
-          <div className={styles.safeContent}>
-            <span className={styles.QR}>
-              <div>
-                <div className={styles.identicon}>
-                  <Blockie address={currentSafe} diameter={32} />
-                </div>
-                <p>{currentSafe}</p>
-              </div>
-              <div id="qr-safe-address" />
-            </span>
-            <Link
-              to="#"
-              className={styles.externalLink}
-              onClick={openEtherScan}
-            >
-              {VIEW_ON_ETHERSCAN}
-            </Link>
-          </div>
-        </div>
-        <img
-          src={slowTradeBanner}
-          className={styles.slowTradeBanner}
-          onClick={openSlowTrade}
-        />
-      </Page>
-    )
-  }
-}
+const Layout = ({
+  currentSafe,
+  currentSafeAlias,
+  location,
+  handleOpenEtherScan,
+  handleAddNewSafe
+}) => (
+  <Page location={location} background="grey">
+    <div className={styles.content}>
+      <WhitelistedDappState />
+      <div className={styles.innerContent}>
+        <Blockie address={currentSafe} diameter={44} />
+        <h1>{currentSafeAlias}</h1>
+        <Paragraph className={styles.safeAddress}>{currentSafe}</Paragraph>
+      </div>
+      <Link
+        to="#"
+        className={styles.link}
+        onClick={handleOpenEtherScan}
+        externalLink
+      >
+        {VIEW_ON_ETHERSCAN}
+      </Link>
+      <Button onClick={handleAddNewSafe} className={styles.button}>
+        {CONNECT_NEW_SAFE}
+      </Button>
+    </div>
+  </Page>
+)
 
 export default Layout
