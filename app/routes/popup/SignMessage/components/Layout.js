@@ -80,6 +80,7 @@ const Layout = ({
               lockedAccount={lockedAccount}
               loadedData={loadedData}
               reviewedSignature={reviewedSignature}
+              location={location}
             />
           )}
         </form>

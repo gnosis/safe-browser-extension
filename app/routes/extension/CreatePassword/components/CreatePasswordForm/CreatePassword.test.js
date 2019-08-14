@@ -6,7 +6,6 @@ import CreatePasswordForm from './containers/CreatePasswordForm'
 Enzyme.configure({ adapter: new Adapter() })
 
 describe('Create Password Form Validation', () => {
-
   test('skip', () => {})
   /*
   test('validateLength: It should return true if the password has minimum 8 characters', () => {

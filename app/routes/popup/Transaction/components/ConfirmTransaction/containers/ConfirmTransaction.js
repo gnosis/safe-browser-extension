@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { ga } from 'utils/analytics'
 import { TRANSACTIONS } from 'utils/analytics/events'
@@ -16,8 +16,20 @@ const ConfirmTransaction = ({
   transactionNumber,
   showTransaction,
   transactions,
-  removeTransaction
+  removeTransaction,
+  location
 }) => {
+  useEffect(() => {
+    if (!location.state || !loadedData || reviewedTx) {
+      return
+    }
+    if (location.state.action === 'confirmed') {
+      handleConfirmTransaction()
+    } else if (location.state.action === 'rejected') {
+      handleRejectTransaction()
+    }
+  }, [location, loadedData, reviewedTx])
+
   const handleConfirmTransaction = () => {
     if (!handleTransaction()) {
       return

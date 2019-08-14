@@ -1,7 +1,8 @@
 /* eslint-env serviceworker */
 import { getNetwork } from '../config'
 import { MAINNET } from '../config/names'
-import notificationImage from 'assets/images/notification_image.jpg'
+import notificationLogoMainnet from 'assets/images/favicon_mainnet.png'
+import notificationLogoRinkeby from 'assets/images/favicon_rinkeby.png'
 
 self.addEventListener('push', (event) => {
   const payload = event.data.json().data
@@ -65,7 +66,10 @@ self.addEventListener('push', (event) => {
       self.registration
         .showNotification(title, {
           body: message,
-          icon: notificationImage,
+          icon:
+            getNetwork() === MAINNET
+              ? notificationLogoMainnet
+              : notificationLogoRinkeby,
           data: {
             url
           }
