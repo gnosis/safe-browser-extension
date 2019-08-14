@@ -30,10 +30,16 @@ const Layout = ({
       <div className={styles.innerContent}>
         <Blockie address={currentSafe} diameter={44} />
         <h1>{currentSafeAlias}</h1>
-        <Paragraph id="safeAddress" className={styles.safeAddress} onClick={copyCurrentSafe}>
+        <Paragraph
+          id="safeAddress"
+          className={styles.safeAddress}
+          onClick={copyCurrentSafe}
+        >
           {currentSafe}
         </Paragraph>
-        <div className={cx(styles.clipboardWrapper, showClipboard && styles.show)}>
+        <div
+          className={cx(styles.clipboardWrapper, showClipboard && styles.show)}
+        >
           <span className={styles.clipboard}>{COPIED_TO_CLIPBOARD}</span>
         </div>
       </div>
