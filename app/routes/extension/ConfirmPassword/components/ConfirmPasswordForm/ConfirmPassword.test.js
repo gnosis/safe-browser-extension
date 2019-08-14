@@ -19,7 +19,7 @@ describe('Confirm Password Form Validation', () => {
 
     const component = shallow(<ConfirmPasswordForm {...props} />)
 
-    const inputPassword = component.dive().find('input')
+    const inputPassword = component.dive().find('TextInput')
     inputPassword.simulate('change', { target: { value: newPassword } })
 
     expect(manageConfirmPassword).toHaveBeenCalled()
@@ -35,7 +35,7 @@ describe('Confirm Password Form Validation', () => {
 
     const component = shallow(<ConfirmPasswordForm {...props} />)
 
-    const inputPassword = component.dive().find('input')
+    const inputPassword = component.dive().find('TextInput')
     inputPassword.simulate('change', { target: { value: confirmPassword } })
 
     expect(manageConfirmPassword).toHaveBeenCalled()
