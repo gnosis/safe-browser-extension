@@ -50,7 +50,8 @@ class SendTransactionState extends Component {
       const passwordUrl = {
         pathname: PASSWORD_URL,
         state: {
-          dest: nextUrl
+          dest: nextUrl,
+          action: 'confirmed'
         }
       }
       return <Redirect to={passwordUrl} />
