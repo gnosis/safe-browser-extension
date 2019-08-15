@@ -1,51 +1,41 @@
-import React, { Component } from 'react'
-
+import React from 'react'
 import FooterButtons from 'components/Footers/FooterButtons/containers'
 import SendTransactionState from 'components/Popup/TransactionState/SendTransactionState'
-import RetryLoadDataTransactionState from 'components/Popup/TransactionState/RetryLoadDataTransactionState'
 import { TRANSACTION_URL } from 'routes/routes'
 import { REJECT, CONFIRM } from '../../../../../../../config/messages'
 
-class Layout extends Component {
-  render() {
-    const {
-      loadedData,
-      reviewedTx,
-      seconds,
-      handleConfirmTransaction,
-      handleRejectTransaction,
-      retryShowTransaction
-    } = this.props
-
-    return (
+const Layout = ({
+  lockedAccount,
+  loadedData,
+  reviewedTx,
+  seconds,
+  handleConfirmTransaction,
+  handleRejectTransaction
+}) => (
+  <React.Fragment>
+    {loadedData && (
       <React.Fragment>
-        {loadedData === false && (
-          <RetryLoadDataTransactionState
-            retryShowElement={retryShowTransaction}
+        {reviewedTx ? (
+          <SendTransactionState
+            seconds={seconds}
+            lockedAccount={lockedAccount}
+            handleConfirmation={handleConfirmTransaction}
+            nextUrl={TRANSACTION_URL}
+          />
+        ) : (
+          <FooterButtons
+            nextUrl={TRANSACTION_URL}
+            lockedAccount={lockedAccount}
+            rejectionText={REJECT}
+            confirmationText={CONFIRM}
+            handleRejection={handleRejectTransaction}
+            handleConfirmation={handleConfirmTransaction}
+            rejectWithExtensionLockedAllowed
           />
         )}
-        {loadedData && (
-          <React.Fragment>
-            {reviewedTx ? (
-              <SendTransactionState
-                seconds={seconds}
-                retryShowElement={handleConfirmTransaction}
-              />
-            ) : (
-              <FooterButtons
-                nextUrl={TRANSACTION_URL}
-                rejectionText={REJECT}
-                confirmationText={CONFIRM}
-                handleRejection={handleRejectTransaction}
-                handleConfirmation={handleConfirmTransaction}
-                rejectWithExtensionLockedAllowed
-              />
-            )}
-          </React.Fragment>
-        )}
       </React.Fragment>
-    )
-  }
-}
+    )}
+  </React.Fragment>
+)
 
 export default Layout

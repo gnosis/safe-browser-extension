@@ -38,14 +38,11 @@
   "agree": {
     "message": "Ich stimme zu"
   },
-  "personal_edition": {
-    "message": "Personal Edition"
-  },
   "safe_balance": {
     "message": "Safe-Guthaben"
   },
   "request_confirmation_wait_x_s": {
-    "message": "Bitte warte %s Sekunden, bevor du die Anfrage erneut sendest."
+    "message": "warte %ss bevor du die Anfrage erneut sendest"
   },
   "request_confirmation": {
     "message": "Bestätigungsanfrage erneut senden"
@@ -76,12 +73,6 @@
   },
   "privacy_policy": {
     "message": "Datenschutzerklärung"
-  },
-  "terms_first_bullet": {
-    "message": "Wir sammeln keine demographischen Daten wie Alter und Geschlecht."
-  },
-  "terms_second_bullet": {
-    "message": "Wir sammeln anonymisierte App-Nutzungsdaten und Crashberichte, um die Qualität unserer App zu verbessern."
   },
   "transaction_submitted": {
     "message": "Transaktion gesendet"
@@ -126,7 +117,7 @@
     "message": " (Standard)"
   },
   "locking_min": {
-    "message": "mind."
+    "message": "Minuten"
   },
   "change_password_description": {
     "message": "Dein vertrauliches Passwort wird verwendet, um den Safe zu entsperren und Transaktionen zu bestätigen. <strong>Gib es nicht an Dritte weiter!</strong>"
@@ -156,31 +147,16 @@
     "message": "Version"
   },
   "connect_new_safe": {
-    "message": "Mit neuem Safe verbinden"
+    "message": "+ Mit neuem Safe verbinden"
   },
   "connected_extension_succesfully": {
     "message": "Extension erfolgreich aufgesetzt!<br /><strong>Mit der App verbinden.</strong>"
   },
   "download_mobile_app": {
-    "message": "Lade & installiere die App"
-  },
-  "iphone_and_ipad": {
-    "message": "iPhone & iPad"
-  },
-  "android": {
-    "message": "Android"
+    "message": "1. Lade & installiere die App"
   },
   "connect_extension_explanation": {
-    "message": "Verbinde die Browser-Extension mit der App, indem du den QR-Code scannst"
-  },
-  "show_qr_code": {
-    "message": "QR-Code anzeigen"
-  },
-  "show_qr_code_description": {
-    "message": "Scanne den QR-Code unten, sobald die App dich dazu auffordert"
-  },
-  "browser_extension": {
-    "message": "Browser-Extension"
+    "message": "2. Verbinde die Browser-Extension mit der App, indem du den QR-Code scannst"
   },
   "safe_for_ios": {
     "message": "Gnosis Safe<br />für iOS"
@@ -236,9 +212,6 @@
   "notifications_permission_required": {
     "message": "Berechtigung zum Empfangen von Benachrichtigungen erforderlich"
   },
-  "extension_store_description": {
-    "message": "Speichere Ether und ERC-20 Tokens sicher mit 2-Faktor-Authentifizierung."
-  },
   "get_started": {
     "message": "Los geht's"
   },
@@ -249,16 +222,13 @@
     "message": "Sichere und verschlüssele deine Browser-Extension mit einem Passwort"
   },
   "confirm_create_password_title": {
-    "message": "Fast fertig!<br />Bestätige dein Passwort."
+    "message": "Fast fertig! Bestätige dein Passwort."
   },
   "internet_connection_error": {
     "message": "Keine Verbindung zum Internet."
   },
   "check_internet_connection": {
     "message": "Bitte überprüfe deine Internetverbindung"
-  },
-  "review_terms": {
-    "message": "Bitte lies unsere <a href='https://safe.gnosis.io/terms' target='_blank'>AGBs</a> und <a href='https://safe.gnosis.io/privacy' target='_blank'>Datenschutzbestimmungen</a>."
   },
   "back": {
     "message": "Zurück"
@@ -275,26 +245,8 @@
   "approve": {
     "message": "Zulassen"
   },
-  "amount_needed": {
-    "message": "Benötigter Betrag"
-  },
-  "send_remainder": {
-    "message": "Senden Sie mindestens den folgenden Betrag an Ihren neuen Safe:"
-  },
-  "view_entry": {
-    "message": "Eintrag anzeigen"
-  },
-  "enter_safe_address_field": {
-    "message": "Safe Adresse eingeben"
-  },
-  "amount_received": {
-    "message": "Erhaltener Betrag"
-  },
-  "once_process_is_complete": {
-    "message": "Sobald dieser Prozess abgeschlossen ist, können Sie nur noch die neue Browsererweiterung zur Bestätigung von Transaktionen verwenden.\\n\\nBitte halten Sie Ihre Safe Recovery Phrase bereit, um die Wiederherstellung zu bestätigen."
-  },
-  "future_tx_approved_by_both": {
-    "message": "Alle zukünftigen Transaktionen müssen von beiden Geräten genehmigt werden."
+  "copied_to_clipboard": {
+    "message": "In die Zwischenablage kopiert"
   },
   "ios_replace_recovery_phrase": {
     "message": "Ersetze Sicherungsschlüssel"
@@ -306,6 +258,6 @@
     "message": "Ups! Leider ist Brave nicht unterstützt"
   },
   "brave_not_supported_description": {
-    "message": "Die Gnosis Safe Browser Erweiterung funktioniert leider nicht mit Brave. Bitte installiere die neuste Version von Google Chrome und probiere es erneut."
+    "message": "Die Gnosis Safe Authenticator funktioniert leider nicht mit Brave. Bitte installiere die neuste Version von Google Chrome und probiere es erneut."
   }
 }

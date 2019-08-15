@@ -3,7 +3,7 @@ import {
   REMOVE_SAFE,
   SELECT_SAFE,
   UPDATE_SAFE_ALIAS
-} from 'components/Header/SafesMenu/store/actions'
+} from 'components/Headers/CompleteHeader/SafesMenu/store/actions'
 
 const initialState = {
   currentSafe: undefined,

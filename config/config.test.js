@@ -410,7 +410,7 @@ describe('Configuration', () => {
     })
 
     test('getFavicon', () => {
-      testGetFavicon('favicon_rinkeby_blue.png')
+      testGetFavicon('favicon_rinkeby.png')
     })
   })
 

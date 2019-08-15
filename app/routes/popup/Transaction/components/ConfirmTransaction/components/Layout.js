@@ -1,45 +1,33 @@
-import React, { Component } from 'react'
-
+import React from 'react'
 import FooterButtons from 'components/Footers/FooterButtons/containers'
 import ConfirmTransactionState from 'components/Popup/TransactionState/ConfirmTransactionState'
-import RetryLoadDataTransactionState from 'components/Popup/TransactionState/RetryLoadDataTransactionState'
 import { TRANSACTION_URL } from 'routes/routes'
 import { REJECT, CONFIRM } from '../../../../../../../config/messages'
 
-class Layout extends Component {
-  render() {
-    const {
-      loadedData,
-      reviewedTx,
-      handleConfirmTransaction,
-      handleRejectTransaction,
-      retryShowTransaction
-    } = this.props
-
-    return (
+const Layout = ({
+  lockedAccount,
+  loadedData,
+  reviewedTx,
+  handleConfirmTransaction,
+  handleRejectTransaction
+}) => (
+  <React.Fragment>
+    <ConfirmTransactionState />
+    {loadedData && (
       <React.Fragment>
-        {loadedData === false && (
-          <RetryLoadDataTransactionState
-            retryShowTransaction={retryShowTransaction}
+        {!reviewedTx && (
+          <FooterButtons
+            nextUrl={TRANSACTION_URL}
+            lockedAccount={lockedAccount}
+            rejectionText={REJECT}
+            confirmationText={CONFIRM}
+            handleRejection={handleRejectTransaction}
+            handleConfirmation={handleConfirmTransaction}
           />
         )}
-        <ConfirmTransactionState />
-        {loadedData && (
-          <React.Fragment>
-            {!reviewedTx && (
-              <FooterButtons
-                nextUrl={TRANSACTION_URL}
-                rejectionText={REJECT}
-                confirmationText={CONFIRM}
-                handleRejection={handleRejectTransaction}
-                handleConfirmation={handleConfirmTransaction}
-              />
-            )}
-          </React.Fragment>
-        )}
       </React.Fragment>
-    )
-  }
-}
+    )}
+  </React.Fragment>
+)
 
 export default Layout

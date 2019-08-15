@@ -1,12 +1,32 @@
-const blue = '#00a6c4'
-const green = '#09a862'
-const red = '#de2c42'
+const background = '#f7f5f5'
+const border = '#d4d5d3'
+const lightGrey = '#e9e7e6'
+const grey = '#5d6d74'
+const darkGrey = '#b2b5b2'
+const darkBlue = '#001428'
+const darkBlueTitle = '#001b31'
+const green = '#008c73'
+const darkGreen = '#005546'
+const red = '#f02525'
+const white = '#ffffff'
+const darkWhite = '#f0efee'
+const black = '#000000'
 
 module.exports = Object.assign(
   {},
   {
-    blue,
+    background,
+    border,
+    lightGrey,
+    grey,
+    darkGrey,
+    darkBlue,
+    darkBlueTitle,
     green,
-    red
+    darkGreen,
+    red,
+    white,
+    darkWhite,
+    black
   }
 )

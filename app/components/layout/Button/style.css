@@ -1,0 +1,45 @@
+.button {
+  display: flex;
+  padding: 10px 2em;
+  margin: 0 20px;
+  height: 38px;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 2px 3px 0 rgba(40, 54, 61, 0.18);
+  background: $green;
+  color: $white;
+  justify-content: center;
+  font-family: Averta, Helvetica, sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: 0;
+  flex: 1;
+}
+
+.noUppercase {
+  text-transform: none;
+}
+
+.button:active {
+  transition-duration: 0.1s;
+  background: $darkGreen;
+}
+
+.naked {
+  background: $white;
+  box-shadow: none;
+  color: $grey;
+  padding: 10px;
+}
+
+.naked:active {
+  transition-duration: 0.1s;
+  background: $darkWhite;
+}
+
+.button[disabled],
+a.button[disabled] {
+  pointer-events: none;
+  opacity: .5;
+}

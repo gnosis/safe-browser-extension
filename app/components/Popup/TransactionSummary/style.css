@@ -1,0 +1,92 @@
+.transactionSummary {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: $lightGrey;
+  margin: 20px 0 5px;
+}
+
+.transactionSummary > span {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  font-size: 1.3em;
+  line-height: 1;
+  color: #65707E;
+  margin: 4px 0;
+}
+
+.transactionSummary > span > span {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  text-align: right;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.transactionSummary > span p {
+  font-size: 13px;
+  font-weight: inherit;
+  color: $grey;
+  margin: 0;
+  text-align: left;
+}
+
+.transactionSummary > span strong {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: Averta, Helvetica, sans-serif;
+  text-align: right;
+  margin: 0 0 2px;
+  letter-spacing: -0.7px;
+}
+
+.transactionSummary > span small {
+  font-size: inherit;
+  text-align: right;
+}
+
+.transactionSummary > span > span > small {
+  color: #A2A8BA;
+}
+
+.transactionSummary > span strong > small {
+  margin: 0 0 0 4px;
+}
+
+.transactionSummary .subtotal {
+  font-weight: 700;
+  color: $darkBlue;
+}
+
+.transactionSummary .subtotal span > small {
+  color: #A2A8BA;
+  font-weight: 400;
+}
+
+.text-red {
+  color: $red;
+}
+
+.text-green{
+  color: $green;
+}

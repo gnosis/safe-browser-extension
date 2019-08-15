@@ -1,0 +1,75 @@
+.radio {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-line-pack: start;
+  background: $white;
+  border-bottom: 1px solid #E4E8F1;
+  padding: 15px;
+  font-weight: 400;
+  font-size: 1.3em;
+  color: #21435A;
+  transition: all .3s ease-in-out;
+  position: relative;
+  align-content: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.radio input[type=radio] {
+  display: none;
+}
+.radio input[type=radio]:checked+p {
+  font-weight: 700;
+}
+
+.radio input[type=radio]:checked+p:before {
+  border-color: $green;
+}
+
+.radio input[type=radio]:checked+p:after {
+  transform: scale(1);
+}
+
+.radio p {
+  display: inline-block;
+  height: 20px;
+  position: relative;
+  padding: 0 30px;
+  margin: 0;
+  line-height: 20px;
+  cursor: pointer;
+  vertical-align: bottom;
+  color: $darkBlue;
+  font-size: 13px;
+}
+
+.radio p:after,
+.radio p:before {
+  position: absolute;
+  content: '';
+  border-radius: 50%;
+  transition: all .3s ease;
+  transition-property: transform,border-color;
+  box-sizing: border-box;
+}
+
+.radio p:before {
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid $darkGrey;
+}
+
+.radio p:after {
+  top: 5px;
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  transform: scale(0);
+  background: $green;
+}

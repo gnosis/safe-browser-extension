@@ -14,10 +14,10 @@ fi
 
 # PRODUCTION: Build and zip Rinkeby version
 npm run build:prod
-zip -r ./ci/outputs/safe-browser-extension-$TRAVIS_BUILD_NUMBER-rinkeby.zip ./build/*
-
+cd ./build && zip -r ../ci/outputs/safe-browser-extension-$TRAVIS_BUILD_NUMBER-rinkeby.zip * && cd ..
 rm -r ./build
 
 # PRODUCTION: Build and zip Mainnet version
 npm run build:prod-mainnet
-zip -r ./ci/outputs/safe-browser-extension-$TRAVIS_BUILD_NUMBER-mainnet.zip ./build/*
+cd ./build && zip -r ../ci/outputs/safe-browser-extension-$TRAVIS_BUILD_NUMBER-mainnet.zip * && cd ..
+rm -r ./build

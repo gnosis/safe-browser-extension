@@ -1,0 +1,61 @@
+.content {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  display: -ms-flexbox;
+}
+
+.safeLogo {
+  height: 151px;
+  width: 115px;
+  display: block;
+  position: relative;
+  margin: 93px auto 25px;
+}
+
+.safeLogoSmMargin {
+  margin: 47px auto 25px;
+}
+
+.safeLogo[data-network='mainnet'] {
+  background: url(assets/images/safe_logo_text_mainnet.svg) center/contain no-repeat;
+}
+
+.safeLogo[data-network='rinkeby'] {
+  background: url(assets/images/safe_logo_text_rinkeby.svg) center/contain no-repeat;
+}
+
+.content > form {
+  width: 100%;
+  padding: 55px 20px 0;
+}
+
+.passwordForm {
+  width: 100%;
+}
+
+.passwordInput {
+  border-radius: 2px;
+  font-size: 14px;
+  height: 38px;
+  padding: 10px 20px;
+  border: none;
+  text-align: center;
+}
+
+.passwordInput:-ms-input-placeholder {
+  color: $darkGrey;
+}
+
+.passwordInput::placeholder {
+  color: $darkGrey;
+}
+
+.passwordInput:focus {
+  border: none;
+}
+
+.button{
+  width: 100%;
+  margin: 10px 0 0;
+}

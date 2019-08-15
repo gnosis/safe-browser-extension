@@ -1,0 +1,35 @@
+.header {
+  height: 60px;
+  width: 100%;
+  border-bottom: 1px solid $border;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: $white;
+}
+
+.safeIcon {
+  height: 32px;
+  width: 32px;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  cursor: pointer;
+}
+
+.safeIcon[data-network='mainnet'] {
+  background: url(assets/images/safe_logo_mainnet.svg) center/contain no-repeat;
+}
+
+.safeIcon[data-network='rinkeby'] {
+  background: url(assets/images/safe_logo_rinkeby.svg) center/contain no-repeat;
+}

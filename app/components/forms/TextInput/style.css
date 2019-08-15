@@ -1,0 +1,94 @@
+.textInput {
+  border-radius: 6px;
+  background-color: $white;
+  border: 1px solid $border;
+  width: 100%;
+  padding: 17px;
+  height: 56px;
+  font-family: Averta, Helvetica, sans-serif;
+  font-size: 16px;
+  color: $green;
+  letter-spacing: 0;
+  line-height: 100%;
+  font-weight: 400;
+  outline: 0;
+  box-sizing: border-box;
+  margin: 0;
+  will-change: border color;
+  transition: all .3s ease-in-out;
+}
+
+.textInput:-ms-input-placeholder,
+.textInput::placeholder {
+  color: $grey;
+  transition: all .2s ease-in-out;
+}
+
+.textInput:focus {
+  background-color: $white;
+}
+
+.textInput .noborder {
+  border: 0;
+  background: $green;
+  box-shadow: 0 1px 2px 0 rgba(33, 67, 90, .15);
+  border-radius: 2px;
+  font-size: 1.5em;
+  padding: 7px 14px;
+}
+
+.outerTextInput {
+  flex: 1;
+  position: relative;
+}
+
+.outerTextInput::after {
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+  right: 20px;
+  top: 0;
+  height: 20px;
+  width: 20px;
+}
+
+.outerTextInput[data-validation=OK]::after {
+  content: "";
+  background: url(assets/images/check_ok.svg) center/contain no-repeat;
+}
+
+.outerTextInput[data-validation=OK] input {
+  color: $green;
+}
+
+.outerTextInput[data-validation=ERROR]::after {
+  content: "";
+  background: url(./assets/check_error.svg) center/contain no-repeat;
+}
+
+.outerTextInput[data-validation=ERROR] input {
+  color: $red;
+  border: 2px solid $red;
+}
+
+@keyframes shake {
+  41%,8% {
+      transform: translateX(-10px);
+  }
+  25%,58% {
+      transform: translateX(10px);
+  }
+  75% {
+      transform: translateX(-5px);
+  }
+  92% {
+      transform: translateX(5px);
+  }
+  0%, 100% {
+      transform: translateX(0);
+  }
+}
+
+.outerTextInput[data-validation=ERROR_SHAKE] input {
+  animation: shake 0.5s linear;
+}

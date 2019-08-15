@@ -1,7 +1,6 @@
 import React from 'react'
 import Enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-
 import ConfirmPasswordForm from './containers/ConfirmPasswordForm'
 
 Enzyme.configure({ adapter: new Adapter() })
@@ -20,7 +19,7 @@ describe('Confirm Password Form Validation', () => {
 
     const component = shallow(<ConfirmPasswordForm {...props} />)
 
-    const inputPassword = component.dive().find('input')
+    const inputPassword = component.dive().find('TextInput')
     inputPassword.simulate('change', { target: { value: newPassword } })
 
     expect(manageConfirmPassword).toHaveBeenCalled()
@@ -36,7 +35,7 @@ describe('Confirm Password Form Validation', () => {
 
     const component = shallow(<ConfirmPasswordForm {...props} />)
 
-    const inputPassword = component.dive().find('input')
+    const inputPassword = component.dive().find('TextInput')
     inputPassword.simulate('change', { target: { value: confirmPassword } })
 
     expect(manageConfirmPassword).toHaveBeenCalled()

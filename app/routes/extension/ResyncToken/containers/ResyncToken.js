@@ -1,49 +1,40 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
-
 import { ga } from 'utils/analytics'
 import { EXTENSION_SETTINGS } from 'utils/analytics/events'
 import {
   setUpNotifications,
   authPushNotificationService
-} from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairingNotifications'
+} from 'routes/extension/DownloadApps/containers/pairingNotifications'
 import {
   getDecryptedEthAccount,
   createAccountFromMnemonic
-} from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'
+} from 'routes/extension/DownloadApps/containers/pairEthAccount'
 import Layout from '../components/Layout'
 import selector from './selector'
 import { ERROR_SYNCING, SYNCED_TOKEN } from '../../../../../config/messages'
 
-class ResyncToken extends Component {
-  constructor(props) {
-    super(props)
+const ResyncToken = ({
+  location,
+  safes,
+  selectEncryptedMnemonic,
+  selectUnencryptedMnemonic
+}) => {
+  const [message, setMessage] = useState(null)
 
-    const { location } = this.props
-    const validPassword = location && location.state && location.state.password
-    this.password = validPassword ? location.state.password : undefined
+  const validPassword = location && location.state && location.state.password
+  const password = validPassword ? location.state.password : undefined
 
-    this.state = {
-      message: undefined
-    }
-  }
-
-  handleResync = () => async (e) => {
-    const {
-      safes,
-      selectEncryptedMnemonic,
-      selectUnencryptedMnemonic
-    } = this.props
-
+  const handleResync = () => async (e) => {
     const currentSafe = safes.safes.filter(
       (safe) => safe.address === safes.currentSafe
     )[0]
 
     const currentAccount =
-      !selectUnencryptedMnemonic && this.password
+      !selectUnencryptedMnemonic && password
         ? getDecryptedEthAccount(
             selectEncryptedMnemonic,
-            this.password,
+            password,
             currentSafe.accountIndex || 0
           )
         : createAccountFromMnemonic(
@@ -54,13 +45,13 @@ class ResyncToken extends Component {
     try {
       const token = await setUpNotifications()
       if (token === null) {
-        this.setState({ message: ERROR_SYNCING })
+        setMessage(ERROR_SYNCING)
         return
       }
       const auth = await authPushNotificationService(token, [currentAccount])
-      this.setState({ message: auth ? SYNCED_TOKEN : ERROR_SYNCING })
+      setMessage(auth ? SYNCED_TOKEN : ERROR_SYNCING)
     } catch (err) {
-      this.setState({ message: ERROR_SYNCING })
+      setMessage(ERROR_SYNCING)
       console.error(err)
     }
 
@@ -72,21 +63,13 @@ class ResyncToken extends Component {
     ])
 
     setTimeout(() => {
-      this.setState({ message: undefined })
+      setMessage(null)
     }, 1000)
   }
 
-  render() {
-    const { message } = this.state
-
-    return (
-      <Layout
-        handleResync={this.handleResync}
-        message={message}
-        location={this.props.location}
-      />
-    )
-  }
+  return (
+    <Layout handleResync={handleResync} message={message} location={location} />
+  )
 }
 
 export default connect(selector)(ResyncToken)

@@ -1,0 +1,44 @@
+.content {
+  width: 100%;
+  margin: 0 auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.contentBody {
+  position: relative;
+  height: auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -ms-flex-line-pack: start;
+  align-content: flex-start;
+  width: 100%;
+}
+
+.about{
+  padding-top:120px
+}
+
+.about > p {
+  color: $darkBlue;
+  font-size: 13px;
+  padding: 7px;
+  width: 100%;
+  text-align: center;
+}
+
+.about > p > a {
+  color: $green;
+  font-size: 13px;
+  text-decoration: underline;
+}

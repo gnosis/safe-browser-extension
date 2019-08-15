@@ -5,8 +5,8 @@ import CryptoJs from 'crypto-js'
 import {
   setUpNotifications,
   authPushNotificationService
-} from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairingNotifications'
-import { getDecryptedAllEthAccounts } from 'routes/extension/DownloadApps/components/PairingProcess/containers/pairEthAccount'
+} from 'routes/extension/DownloadApps/containers/pairingNotifications'
+import { getDecryptedAllEthAccounts } from 'routes/extension/DownloadApps/containers/pairEthAccount'
 import actions from './actions'
 import selector from './selector'
 import Layout from '../components/Layout'
@@ -19,25 +19,13 @@ class Password extends Component {
       password: '',
       errorMessage: '',
       continue: false,
-      dataValidation: '',
-      rotation: { transform: 'rotate(0deg)' }
+      dataValidation: ''
     }
   }
 
   updatePassword = (e) => {
     const currentPassword = e.target.value
-    const rotateRandom = [15, 30, -45, 120, 230, -10]
-    const rotation = {
-      transform:
-        'rotate(' +
-        rotateRandom[Math.floor(Math.random() * rotateRandom.length)] +
-        'deg)'
-    }
-
-    this.setState({
-      password: currentPassword,
-      rotation
-    })
+    this.setState({ password: currentPassword })
   }
 
   validatePasswords = async () => {
@@ -50,16 +38,13 @@ class Password extends Component {
     ).toString()
 
     if (decryptedHmac === account.secondFA.hmac) {
-      this.setState({ dataValidation: 'OK' })
+      this.setState({ dataValidation: '' })
       await this.notifyVersionUpdate()
-
-      setTimeout(() => {
-        this.setState({ continue: true })
-      }, 500)
+      this.setState({ continue: true })
       return
     }
 
-    this.setState({ dataValidation: 'ERROR' })
+    this.setState({ dataValidation: 'ERROR_SHAKE' })
     setTimeout(() => {
       this.setState({ dataValidation: '' })
     }, 500)
@@ -93,7 +78,7 @@ class Password extends Component {
   }
 
   render() {
-    const { password, rotation, dataValidation } = this.state
+    const { password, dataValidation } = this.state
 
     if (this.state.continue) {
       return (
@@ -115,7 +100,6 @@ class Password extends Component {
         updatePassword={this.updatePassword}
         validatePasswords={this.validatePasswords}
         dataValidation={dataValidation}
-        rotation={rotation}
         location={this.props.location}
       />
     )

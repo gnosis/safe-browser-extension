@@ -1,50 +1,43 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-
 import { ga } from 'utils/analytics'
 import { EXTENSION_SETTINGS } from 'utils/analytics/events'
 import { normalizeUrl } from 'utils/helpers'
 import actions from './actions'
 import Layout from '../components/Layout'
 
-class WhitelistedDappState extends Component {
-  constructor(props) {
-    super(props)
+const WhitelistedDappState = ({
+  whitelistedDapps,
+  onAddWhitelistedDapp,
+  onDeleteWhitelistedDapp
+}) => {
+  const [showWhitelistedDappState, setShowWhitelistedDappState] = useState(null)
+  const [url, setUrl] = useState('')
+  const [whitelisted, setWhitelisted] = useState(null)
 
-    this.state = {
-      showWhitelistedDappState: undefined,
-      url: '',
-      whitelisted: undefined
-    }
-  }
-
-  componentDidMount = () => {
+  useEffect(() => {
     chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
       const url = tabs[0].url
-      this.isWhitelistedDapp(url)
+      isWhitelistedDapp(url)
     })
-  }
+  })
 
-  isWhitelistedDapp = (url) => {
-    const { whitelistedDapps } = this.props
-
+  const isWhitelistedDapp = (url) => {
     const normalizedUrl = normalizeUrl(url)
     const whitelistableDapp =
       normalizedUrl.indexOf('.') > -1 ||
       normalizedUrl.substring(0, 9) === 'localhost'
     const whitelisted = whitelistedDapps.indexOf(normalizedUrl) > -1
 
-    this.setState({
-      showWhitelistedDappState: whitelistableDapp,
-      url: normalizedUrl,
-      whitelisted
-    })
+    setShowWhitelistedDappState(whitelistableDapp)
+    setUrl(normalizedUrl)
+    setWhitelisted(whitelisted)
   }
 
-  handleWhitelistDapp = (dapp) => (e) => {
-    this.setState((prevState) => {
-      if (!prevState.whitelisted) {
-        this.props.onAddWhitelistedDapp(dapp)
+  const handleWhitelistDapp = (dapp) => (e) => {
+    setWhitelisted((prevWhitelisted) => {
+      if (!prevWhitelisted) {
+        onAddWhitelistedDapp(dapp)
         ga([
           '_trackEvent',
           EXTENSION_SETTINGS,
@@ -52,7 +45,7 @@ class WhitelistedDappState extends Component {
           'Add to whitelist via toggle: ' + dapp
         ])
       } else {
-        this.props.onDeleteWhitelistedDapp(dapp)
+        onDeleteWhitelistedDapp(dapp)
         ga([
           '_trackEvent',
           EXTENSION_SETTINGS,
@@ -60,23 +53,19 @@ class WhitelistedDappState extends Component {
           'Remove from whitelist via toggle: ' + dapp
         ])
       }
-      return { whitelisted: !prevState.whitelisted }
+      return !prevWhitelisted
     })
     e.preventDefault()
   }
 
-  render() {
-    const { showWhitelistedDappState, url, whitelisted } = this.state
-
-    return (
-      <Layout
-        showWhitelistedDappState={showWhitelistedDappState}
-        url={url}
-        whitelisted={whitelisted}
-        handleWhitelistDapp={this.handleWhitelistDapp}
-      />
-    )
-  }
+  return (
+    <Layout
+      showWhitelistedDappState={showWhitelistedDappState}
+      url={url}
+      whitelisted={whitelisted}
+      handleWhitelistDapp={handleWhitelistDapp}
+    />
+  )
 }
 
 const mapStateToProps = ({ whitelistedDapps }, props) => {

@@ -1,6 +1,13 @@
 import React from 'react'
+import classNames from 'classnames'
+import Paragraph from 'components/layout/Paragraph'
+import styles from './style.css'
+import {
+  WHITELISTED_SITE,
+  RESTRICTED_SITE
+} from '../../../../../../../config/messages'
 
-import styles from 'assets/css/global.css'
+const cx = classNames.bind(styles)
 
 const Layout = ({
   showWhitelistedDappState,
@@ -9,14 +16,23 @@ const Layout = ({
   handleWhitelistDapp
 }) => (
   <div className={styles.whitelister} data-whitelisted={whitelisted}>
-    {showWhitelistedDappState && whitelisted !== undefined && (
+    {url && showWhitelistedDappState && whitelisted !== undefined && (
       <React.Fragment>
-        <p>{url}</p>
+        <Paragraph
+          className={cx(styles.url, !whitelisted && styles.notWhitelisted)}
+        >
+          {url}
+        </Paragraph>
+        <Paragraph
+          className={cx(styles.status, !whitelisted && styles.notWhitelisted)}
+        >
+          {whitelisted ? WHITELISTED_SITE : RESTRICTED_SITE}
+        </Paragraph>
         <span className={styles.whitelistSwitch}>
           <label onClick={handleWhitelistDapp(url)}>
             <input type="checkbox" checked={whitelisted} readOnly />
-            <span className={styles.switch} />
-            <span className={styles.toggle} />
+            <span className={styles.track} />
+            <span className={styles.knob} />
           </label>
         </span>
       </React.Fragment>

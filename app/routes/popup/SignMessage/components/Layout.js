@@ -1,85 +1,74 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-
-import { VIEW_MESSAGE_URL } from 'routes/routes'
-import {
-  REVIEW_SIGN_MESSAGE,
-  YOU_ARE_SIGNING,
-  NAME,
-  URL,
-  VERIFYING_CONTRACT,
-  VIEW_MESSAGE
-} from '../../../../../config/messages'
+import Page from 'components/layout/Page'
+import Paragraph from 'components/layout/Paragraph'
 import HeaderPopup from 'components/Popup/HeaderPopup'
 import AccountData from 'components/Popup/AccountData'
 import SendSignMessage from 'routes/popup/SignMessage/components/SendSignMessage/containers/SendSignMessage'
-import styles from 'assets/css/global.css'
+import { VIEW_MESSAGE_URL } from 'routes/routes'
+import {
+  REVIEW_SIGN_MESSAGE,
+  NAME,
+  VERIFYING_CONTRACT,
+  VIEW_MESSAGE
+} from '../../../../../config/messages'
+import styles from './style.css'
 
-class Layout extends Component {
-  prevent = (e) => {
+const Layout = ({
+  signMessages,
+  balance,
+  lockedAccount,
+  loadedData,
+  reviewedSignature,
+  address,
+  safeAlias,
+  ethAccount,
+  removeSignMessage,
+  showSignMessage,
+  handleSignMessage,
+  location
+}) => {
+  const prevent = (e) => {
     e.preventDefault()
   }
 
-  render() {
-    const {
-      signMessages,
-      balance,
-      lockedAccount,
-      loadedData,
-      reviewedSignature,
-      address,
-      safeAlias,
-      ethAccount,
-      removeSignMessage,
-      showSignMessage,
-      handleSignMessage
-    } = this.props
+  const signedMessage = JSON.parse(signMessages.message[1])
+  const senderUrl = signMessages.message[4]
 
-    const signedMessage = JSON.parse(signMessages.message[1])
-    const senderUrl = signMessages.message[4]
-
-    return (
-      <React.Fragment>
+  return (
+    <Page background="grey" location={location} isPopup>
+      <div className={styles.content}>
         <HeaderPopup
           title={REVIEW_SIGN_MESSAGE}
           numElements={1}
           elementNumber={0}
         />
-        <form onSubmit={this.prevent} className={styles.PageContent}>
+        <form onSubmit={prevent} className={styles.contentBody}>
           <AccountData
             address={address}
             alias={safeAlias}
             balance={balance}
             symbol={'ETH'}
           />
-          <div className={styles.youAreSigning}>{YOU_ARE_SIGNING}:</div>
           {signedMessage && (
             <React.Fragment>
               <div className={styles.signMessageSummary}>
                 <span>
-                  <p>
-                    <b>{NAME}</b>
-                  </p>
+                  <Paragraph bold>{NAME}</Paragraph>
                   <span>{signedMessage.domain.name}</span>
                 </span>
                 <span>
-                  <p>
-                    <b>Url:</b>
-                  </p>
+                  <Paragraph bold>Url</Paragraph>
                   <span>{senderUrl}</span>
                 </span>
                 <span>
-                  <p>
-                    <b>{VERIFYING_CONTRACT}</b>
-                  </p>
+                  <Paragraph bold>{VERIFYING_CONTRACT}</Paragraph>
                   <span>{signedMessage.domain.verifyingContract}</span>
                 </span>
               </div>
-              <div className={styles.viewMessage}>
-                <Link className={styles.viewMessageLink} to={VIEW_MESSAGE_URL}>
-                  {VIEW_MESSAGE}
-                </Link>
-              </div>
+              <Link className={styles.viewMessage} to={VIEW_MESSAGE_URL}>
+                {VIEW_MESSAGE}
+              </Link>
             </React.Fragment>
           )}
           {signMessages && signMessages.message[2] === 'sendSignMessage' && (
@@ -91,12 +80,13 @@ class Layout extends Component {
               lockedAccount={lockedAccount}
               loadedData={loadedData}
               reviewedSignature={reviewedSignature}
+              location={location}
             />
           )}
         </form>
-      </React.Fragment>
-    )
-  }
+      </div>
+    </Page>
+  )
 }
 
 export default Layout

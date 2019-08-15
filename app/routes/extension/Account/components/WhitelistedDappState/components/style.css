@@ -1,0 +1,90 @@
+.whitelister {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  height: 48px;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 20px;
+  background: $white;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.12);
+  font-size: .9em;
+}
+
+
+.whitelister[data-whitelisted=true] {
+  color: $green;
+}
+
+.whitelister[data-whitelisted=false] {
+  color: $grey;
+}
+
+.whitelistSwitch {
+  position: relative;
+}
+
+.whitelistSwitch label {
+  display: block;
+  width: 34px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.whitelistSwitch input[type=checkbox] {
+  display: none;
+}
+
+.whitelistSwitch input[type=checkbox]:checked~.knob {
+  background: url(assets/images/allow.svg) center/11px 10px no-repeat $green;
+  left: 16px;
+  transition: all .3s ease-in-out;
+  box-shadow: 0 1px 1px 0 rgba(212, 212, 211, 0.59);
+}
+
+.whitelistSwitch input[type=checkbox]:checked~.track {
+  transition: all .3s ease-in-out;
+}
+
+.track {
+  display: block;
+  width: 34px;
+  height: 14px;
+  border-radius: 8px;
+  position: absolute;
+  top: 0;
+  background: $lightGrey;
+}
+
+.knob {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: url(../assets/block.svg) center/12px 12px no-repeat $red;
+  position: absolute;
+  top: -3.2px;
+  left: -3.2px;
+  box-shadow: 0 0.5px 0.5px 0 rgba(234, 63, 82, 0.24);
+  transition: all .3s ease-in-out;
+}
+
+.url {
+  font-size: 11px;
+  color: $darkBlue;
+  flex-grow: 1;
+}
+
+.status {
+  font-size: 11px;
+  color: $green;
+  text-align: right;
+  margin: 0 10px;
+}
+
+.not-whitelisted {
+  color: $red;
+}

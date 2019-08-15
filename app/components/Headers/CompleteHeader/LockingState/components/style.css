@@ -1,0 +1,30 @@
+.lockedState {
+  position: absolute;
+  right: 14px;
+  cursor: pointer;
+  transition: all .15s ease-in-out;
+}
+
+.lockedState[data-locked] {
+  width: 18px;
+  height: 16px
+}
+
+.lockedState[data-locked=true] {
+  background:url(../assets/locked.svg) center/contain no-repeat;
+}
+
+.lockedState[data-locked=false] {
+  background:url(../assets/unlocked.svg) center/contain no-repeat;
+}
+
+.lockedState:not([data-locked=true])[data-timeout]::before {
+  content: attr(data-timeout);
+  position: absolute;
+  left: -45px;
+  top: 7px;
+  font-size: 1em;
+  color: #A2A8BA;
+  text-align: right;
+  font-family: Averta, Helvetica, sans-serif;
+}

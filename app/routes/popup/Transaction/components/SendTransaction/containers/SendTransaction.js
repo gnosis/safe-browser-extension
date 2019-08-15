@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
 import { ga } from 'utils/analytics'
 import { TRANSACTIONS } from 'utils/analytics/events'
 import selector from './selector'
@@ -19,6 +18,19 @@ class SendTransaction extends Component {
     }
   }
 
+  componentDidUpdate = () => {
+    const { location, loadedData, reviewedTx } = this.props
+
+    if (!location.state || !loadedData || reviewedTx) {
+      return
+    }
+    if (location.state.action === 'confirmed') {
+      this.handleConfirmTransaction()
+    } else if (location.state.action === 'rejected') {
+      this.handleRejectTransaction()
+    }
+  }
+
   handleConfirmTransaction = (resend) => {
     const { handleTransaction, transactionNumber } = this.props
 
@@ -32,19 +44,21 @@ class SendTransaction extends Component {
       position: transactionNumber
     })
 
-    !resend
-      ? ga([
-          '_trackEvent',
-          TRANSACTIONS,
-          'click-confirm-transaction-from-dapp',
-          'Confirm transaction from Dapp'
-        ])
-      : ga([
-          '_trackEvent',
-          TRANSACTIONS,
-          'click-re-send-transaction-from-dapp',
-          'Re-send transaction from Dapp'
-        ])
+    if (!resend) {
+      ga([
+        '_trackEvent',
+        TRANSACTIONS,
+        'click-confirm-transaction-from-dapp',
+        'Confirm transaction from Dapp'
+      ])
+      return
+    }
+    ga([
+      '_trackEvent',
+      TRANSACTIONS,
+      'click-re-send-transaction-from-dapp',
+      'Re-send transaction from Dapp'
+    ])
   }
 
   handleRejectTransaction = () => {
@@ -108,12 +122,6 @@ class SendTransaction extends Component {
     showTransaction(position)
   }
 
-  retryShowTransaction = () => {
-    const { transactionNumber, showTransaction } = this.props
-
-    showTransaction(transactionNumber)
-  }
-
   startCountdown = () => {
     this.timer = setInterval(this.countDown, 1000)
   }
@@ -145,7 +153,6 @@ class SendTransaction extends Component {
         seconds={seconds}
         handleConfirmTransaction={this.handleConfirmTransaction}
         handleRejectTransaction={this.handleRejectTransaction}
-        retryShowTransaction={this.retryShowTransaction}
       />
     )
   }

@@ -1,0 +1,76 @@
+.contentHeader {
+  width: 100%;
+  box-sizing: border-box;
+  height: 46px;
+  padding: 0 20px;
+  border-bottom: 1px solid $lightGrey;
+  position: relative;
+  display: flex;
+}
+
+.contentHeader > h2 {
+  margin: 0 auto;
+  text-align: center;
+
+  line-height: 17px;
+  font-weight: 400;
+  font-size: 16px;
+  color: $darkBlue;
+  max-width: 200px;
+  align-self: center;
+}
+
+.btn-back {
+  position: absolute;
+  height: 100%;
+  width: 15px;
+  pointer-events: none;
+  text-decoration: none;
+  background: url(assets/images/arrow-left-grey.svg) center/contain no-repeat;
+  transition: transform .25s ease-in-out;
+}
+
+.btn-back.active {
+  pointer-events: auto;
+  background: url(assets/images/arrow-left-green.svg) center/contain no-repeat;
+}
+
+.btn-back.active.darkblue {
+  background: url(assets/images/arrow-left-darkgrey.svg) center/contain no-repeat;
+}
+
+.btn-back.active:hover {
+  transform: translateX(-2px);
+}
+
+.btn-back > p {
+  padding: 0 0 0 20px;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0;
+  margin: 0;
+  font-size: 14px;  
+}
+
+.active {
+  background: url(assets/images/arrow-left-darkgrey.svg) center/contain no-repeat;
+}
+
+.btn-back.active > p {
+  line-height: 46px;
+  height: 100%;
+}
+
+.right {
+  position: absolute;
+  padding: 0;
+  line-height: 46px;
+  top: 0;
+  right: 0;
+  margin: 0 20px 0 0;
+}
+
+.darkblue {
+  border: none;
+  color: $darkBlue;
+}
