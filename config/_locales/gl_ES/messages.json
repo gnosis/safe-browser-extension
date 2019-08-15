@@ -86,6 +86,9 @@
   "replace_recovery_phrase": {
     "message": "Substituír a clave de recuperación"
   },
+  "layout_replace_recovery_phrase_transaction_info_description": {
+    "message": "A antiga clave de recuperación non será válida e será substituída pola nova."
+  },
   "store_description": {
     "message": "Gnosis Safe é unha carteira multisinatura de Ethereum que permite aos usuarios, de forma cómoda e segura, a xestión dos seus activos dixitais e a interacción coa web descentralizada.\n\nPodes recibir, gardar e transferir Ether e tokens ERC-20 con Gnosis Safe. A través do Authenticator podes interactuar con aplicacións descentralizadas."
   },

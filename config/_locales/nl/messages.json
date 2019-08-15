@@ -5,6 +5,9 @@
   "replace_recovery_phrase": {
     "message": "Herstelzin vervangen"
   },
+  "layout_replace_recovery_phrase_transaction_info_description": {
+    "message": "De oude herstelzin wordt ongeldig en wordt vervangen door de nieuwe."
+  },
   "store_description": {
     "message": "De Gnosis Safe is een multi-signature Ethereum wallet die gebruikers een handige, veilige manier biedt om hun digitale assets te beheren en interactie aan te gaan met het gedecentraliseerde web. \n\nJe kunt Ether- en ERC-20-tokens ontvangen, beheren en overdragen met de Gnosis Safe. Middels de Chrome-extensie kun je gedecentraliseerde applicaties browsen."
   },

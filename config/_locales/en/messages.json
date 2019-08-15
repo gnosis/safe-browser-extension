@@ -86,6 +86,9 @@
   "replace_recovery_phrase": {
     "message": "Replace recovery phrase"
   },
+  "layout_replace_recovery_phrase_transaction_info_description": {
+    "message": "The old recovery phrase will become invalid and will be replaced by the new one."
+  },
   "store_description": {
     "message": "The Gnosis Safe is a multi-signature Ethereum wallet providing users with a convenient, secure way to manage their digital assets and interact with the decentralized web.\n\nYou can receive, hold and transfer Ether and ERC-20 tokens with the Gnosis Safe. Via the Authenticator you can interact with decentralized applications."
   },

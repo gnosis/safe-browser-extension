@@ -86,6 +86,9 @@
   "replace_recovery_phrase": {
     "message": "Sostituisci la frase di recupero"
   },
+  "layout_replace_recovery_phrase_transaction_info_description": {
+    "message": "La vecchia frase di recupero non sarà più valida e verrà sostituita da quella nuova."
+  },
   "store_description": {
     "message": "Gnosis Safe è un portafoglio Ethereum multi-firma che consente di gestire i propri beni digitali e l'interazione con il Web decentralizzato in maniera comoda e sicura.\n\nCon Gnosis Safe puoi facilmente ricevere, conservare e trasferire Ether e token ERC-20. Attraverso l'Authenticator puoi interagire con applicazioni decentralizzate."
   },
