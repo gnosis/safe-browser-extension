@@ -1,6 +1,6 @@
 import React from 'react'
 import Page from 'components/layout/Page'
-import ContentHeader from 'components/headers/ContentHeader'
+import ContentHeader from 'components/Headers/ContentHeader'
 import Button from 'components/layout/Button'
 import CreatePasswordForm from 'routes/extension/CreatePassword/components/CreatePasswordForm/containers/CreatePasswordForm'
 import ConfirmPasswordForm from 'routes/extension/ConfirmPassword/components/ConfirmPasswordForm/containers/ConfirmPasswordForm'

@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames/bind'
 import Page from 'components/layout/Page'
-import ContentHeader from 'components/headers/ContentHeader'
+import ContentHeader from 'components/Headers/ContentHeader'
 import Paragraph from 'components/layout/Paragraph'
 import { ACCOUNT_URL } from 'routes/routes'
 import {

@@ -1,6 +1,6 @@
 import React from 'react'
 import Page from 'components/layout/Page'
-import ContentHeader from 'components/headers/ContentHeader'
+import ContentHeader from 'components/Headers/ContentHeader'
 import TimeBlock from './TimeBlock'
 import { ACCOUNT_URL } from 'routes/routes'
 import { SET_LOCK_TIMEOUT } from '../../../../../config/messages'

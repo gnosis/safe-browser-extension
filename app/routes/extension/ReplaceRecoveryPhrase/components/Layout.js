@@ -1,7 +1,7 @@
 import React from 'react'
 import Page from 'components/layout/Page'
 import { ACCOUNT_URL } from 'routes/routes'
-import ContentHeader from 'components/headers/ContentHeader'
+import ContentHeader from 'components/Headers/ContentHeader'
 import {
   REPLACE_RECOVERY_PRASE,
   REPLACE_RECOVERY_PRASE_EXPLANATION

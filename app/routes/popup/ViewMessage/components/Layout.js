@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactJson from 'react-json-view'
 import Page from 'components/layout/Page'
-import ContentHeader from 'components/headers/ContentHeader'
+import ContentHeader from 'components/Headers/ContentHeader'
 import { SIGN_MESSAGE_URL } from 'routes/routes'
 import { MESSAGE, DOMAIN } from '../../../../../config/messages'
 import styles from './style.css'

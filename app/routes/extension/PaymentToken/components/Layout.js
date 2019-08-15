@@ -1,6 +1,6 @@
 import React from 'react'
 import Page from 'components/layout/Page'
-import ContentHeader from 'components/headers/ContentHeader'
+import ContentHeader from 'components/Headers/ContentHeader'
 import RadioInput from 'components/forms/RadioInput'
 import Paragraph from 'components/layout/Paragraph'
 import { ACCOUNT_URL } from 'routes/routes'

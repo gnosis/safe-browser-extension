@@ -1,6 +1,6 @@
 import React from 'react'
 import Page from 'components/layout/Page'
-import ContentHeader from 'components/headers/ContentHeader'
+import ContentHeader from 'components/Headers/ContentHeader'
 import Paragraph from 'components/layout/Paragraph'
 import TextInput from 'components/forms/TextInput'
 import Button from 'components/layout/Button'
