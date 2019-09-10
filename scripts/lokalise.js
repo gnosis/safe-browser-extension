@@ -6,6 +6,7 @@ const env = dotenv.config().parsed
 const localesRootDirectory = './config/_locales/'
 
 const getLanguages = async () => {
+  /*
   const url = 'https://api.lokalise.co/api2/projects/' + env.LOKALISE_PROJECT_ID + '/languages'
   const headers = {
     'Accept': 'application/json',
@@ -18,6 +19,13 @@ const getLanguages = async () => {
   })
   const languageList = await response.json()
   return languageList.languages
+  */
+  return [{
+    lang_id: 640,
+    lang_iso: 'en',
+    lang_name: 'English',
+    is_rtl: false
+  }]
 }
 
 const getTranslations = async () => {
@@ -93,16 +101,13 @@ const generateI18nFiles = async (languagesIso) => {
         }
       })
 
-      //if (errorsLanguage.length > 0) {
-        errorsLanguage.sort().map(elem => console.error(elem))
-        console.error('LANGUAGE ERRORS:', errorsLanguage.length)
-        errors = errors.concat(errorsLanguage)
-      //} else {
-        fs.writeFileSync(
-          localesRootDirectory + langIso + '/messages.json',
-          JSON.stringify(languageObject, null, '  ')
-        )
-      //}
+      errorsLanguage.sort().map(elem => console.error(elem))
+      console.error('LANGUAGE ERRORS:', errorsLanguage.length)
+      errors = errors.concat(errorsLanguage)
+      fs.writeFileSync(
+        localesRootDirectory + langIso + '/messages.json',
+        JSON.stringify(languageObject, null, '  ')
+      )
     })
 
     if (errors.length > 0) {
