@@ -12,7 +12,7 @@ self.addEventListener('push', (event) => {
   switch (payload.type) {
     case 'safeCreation':
       title = 'Safe connected'
-      message = 'Your Safe is now synced to your browser extension'
+      message = 'Your Safe is now synced to your Authenticator'
       url = null
       break
 

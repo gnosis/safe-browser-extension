@@ -15,7 +15,7 @@ export const isBrowserCompatible = async () => {
     if (response && response.status === 200) {
       const browserData = await response.json()
 
-      // Brave browser does not support Firebase Cloud Messaging and this makes it incompatible with the Safe Browser Extension
+      // Brave browser does not support Firebase Cloud Messaging and this makes it incompatible with the Gnosis Safe Authenticator
       // https://github.com/brave/brave-browser/issues/2143
       const isBraveBrowser = browserData['Answer'].includes('Brave')
       if (isBraveBrowser) {
