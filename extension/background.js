@@ -331,31 +331,6 @@ const safeCreation = async (payload) => {
   const account = storage.account
   const checksumedSafeAddress = EthUtil.toChecksumAddress(payload.safe)
 
-  const validSafeAddress =
-    safes.filter(
-      (safe) => safe.address.toLowerCase() === payload.safe.toLowerCase()
-    ).length === 0
-
-  if (safes.length > 0 && !validSafeAddress) {
-    let newCurrentSafe
-    if (safes.length > 1) {
-      const deletedIndex = safes
-        .map((safe) => safe.address)
-        .indexOf(checksumedSafeAddress)
-
-      newCurrentSafe =
-        currentSafe === checksumedSafeAddress
-          ? deletedIndex === 0
-            ? safes[1].address
-            : safes[deletedIndex - 1].address
-          : currentSafe
-    }
-
-    storageController
-      .getStore()
-      .dispatch(removeSafe(checksumedSafeAddress, newCurrentSafe))
-  }
-
   let accountIndex
   if (account.secondFA.currentAccountIndex === 0) {
     accountIndex = account.secondFA.currentAccountIndex + 1
@@ -365,6 +340,32 @@ const safeCreation = async (payload) => {
       console.error('Unlock your Gnosis Safe Authenticator before syncing a Safe from the Gnosis Safe mobile app')
       return
     }
+
+    const validSafeAddress =
+      safes.filter(
+        (safe) => safe.address.toLowerCase() === payload.safe.toLowerCase()
+      ).length === 0
+
+    if (safes.length > 0 && !validSafeAddress) {
+      let newCurrentSafe
+      if (safes.length > 1) {
+        const deletedIndex = safes
+          .map((safe) => safe.address)
+          .indexOf(checksumedSafeAddress)
+
+        newCurrentSafe =
+          currentSafe === checksumedSafeAddress
+            ? deletedIndex === 0
+              ? safes[1].address
+              : safes[deletedIndex - 1].address
+            : currentSafe
+      }
+
+      storageController
+        .getStore()
+        .dispatch(removeSafe(checksumedSafeAddress, newCurrentSafe))
+    }
+
     const mnemonic = temporaryMnemonic ? temporaryMnemonic : account.secondFA.unlockedMnemonic
 
     // This is temporary. safeCreation notification will include the owners and the Authenticator should use them.
