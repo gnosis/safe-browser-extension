@@ -1,6 +1,5 @@
-import { ADD_SAFE } from 'actions/safes'
+import { ADD_SAFE, REMOVE_SAFE } from 'actions/safes'
 import {
-  REMOVE_SAFE,
   SELECT_SAFE,
   UPDATE_SAFE_ALIAS
 } from 'components/Headers/CompleteHeader/SafesMenu/store/actions'
