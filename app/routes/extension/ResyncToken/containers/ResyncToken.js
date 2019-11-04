@@ -8,7 +8,8 @@ import {
 } from 'routes/extension/DownloadApps/containers/pairingNotifications'
 import {
   getDecryptedEthAccount,
-  createAccountFromMnemonic
+  createAccountFromMnemonic,
+  getAllEthAccounts
 } from 'routes/extension/DownloadApps/containers/pairEthAccount'
 import Layout from '../components/Layout'
 import selector from './selector'
@@ -30,17 +31,10 @@ const ResyncToken = ({
       (safe) => safe.address === safes.currentSafe
     )[0]
 
-    const currentAccount =
+    const accounts = 
       !selectUnencryptedMnemonic && password
-        ? getDecryptedEthAccount(
-            selectEncryptedMnemonic,
-            password,
-            currentSafe.accountIndex || 0
-          )
-        : createAccountFromMnemonic(
-            selectUnencryptedMnemonic,
-            currentSafe.accountIndex || 0
-          )
+        ? getDecryptedAllEthAccounts(selectEncryptedMnemonic, password, safes)
+        : getAllEthAccounts(selectUnencryptedMnemonic, safes)
 
     try {
       const token = await setUpNotifications()
@@ -48,7 +42,7 @@ const ResyncToken = ({
         setMessage(ERROR_SYNCING)
         return
       }
-      const auth = await authPushNotificationService(token, [currentAccount])
+      const auth = await authPushNotificationService(token, accounts)
       setMessage(auth ? SYNCED_TOKEN : ERROR_SYNCING)
     } catch (err) {
       setMessage(ERROR_SYNCING)

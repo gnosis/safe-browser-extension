@@ -28,14 +28,19 @@ export const createEthAccount = (mnemonic, password) => {
   }
 }
 
+export const decryptMnemonic = (encryptedMnemonic, password) => {
+  const mnemonic = CryptoJs.AES.decrypt(encryptedMnemonic, password).toString(
+    CryptoJs.enc.Utf8
+  )
+  return mnemonic
+}
+
 export const getDecryptedEthAccount = (
   encryptedMnemonic,
   password,
   accountIndex
 ) => {
-  const mnemonic = CryptoJs.AES.decrypt(encryptedMnemonic, password).toString(
-    CryptoJs.enc.Utf8
-  )
+  const mnemonic = decryptMnemonic(encryptedMnemonic, password)
 
   return createAccountFromMnemonic(mnemonic, accountIndex)
 }
@@ -45,10 +50,18 @@ export const getDecryptedAllEthAccounts = (
   password,
   safes
 ) => {
-  const mnemonic = CryptoJs.AES.decrypt(encryptedMnemonic, password).toString(
-    CryptoJs.enc.Utf8
-  )
+  const mnemonic = decryptMnemonic(encryptedMnemonic, password)
 
+  const accounts = safes.safes
+    ? safes.safes.map((safe) =>
+        createAccountFromMnemonic(mnemonic, safe.accountIndex || 0)
+      )
+    : [createAccountFromMnemonic(mnemonic, 0)]
+
+  return accounts
+}
+
+export const getAllEthAccounts = (mnemonic, safes) => {
   const accounts = safes.safes
     ? safes.safes.map((safe) =>
         createAccountFromMnemonic(mnemonic, safe.accountIndex || 0)
