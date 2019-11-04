@@ -50,7 +50,7 @@ const updateCurrentSafe = () => {
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
       chrome.tabs.sendMessage(tabs[0].id, {
         msg: messages.MSG_UPDATE_CURRENT_SAFE,
-        newSafeAddress: storeCurrentSafeAddress.toLowerCase()
+        newSafeAddress: storeCurrentSafeAddress ? storeCurrentSafeAddress.toLowerCase() : undefined
       })
     })
   }
