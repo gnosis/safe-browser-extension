@@ -1,4 +1,5 @@
-import { selectSafe, removeSafe } from '../store/actions'
+import { selectSafe } from '../store/actions'
+import { removeSafe } from 'actions/safes'
 
 export default {
   selectSafe,

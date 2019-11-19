@@ -5,13 +5,15 @@ import messages from './utils/messages'
 import StorageController from './utils/storageController'
 import PopupController from './utils/popupController'
 import { lockAccount, incrementCurrentAccountIndex } from 'actions/account'
-import { addSafe } from 'actions/safes'
+import { addSafe, removeSafe } from 'actions/safes'
 import { updateDeviceData } from 'actions/device'
 import { addTransaction, removeAllTransactions } from 'actions/transactions'
 import { getAppVersionNumber, getAppBuildNumber } from '../config'
 import { addSignMessage, removeAllSignMessage } from 'actions/signMessages'
 import { SAFE_ALREADY_EXISTS } from '../config/messages'
 import { ADDRESS_ZERO } from '../app/utils/helpers'
+import { getOwners } from '../app/logic/contracts/safeContracts'
+import { createAccountFromMnemonic } from '../app/routes/extension/DownloadApps/containers/pairEthAccount'
 
 const storageController = new StorageController()
 const popupController = new PopupController({ storageController })
@@ -22,6 +24,7 @@ storageController.store.subscribe(() => {
 })
 
 let storeCurrentSafeAddress
+let temporaryMnemonic
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.getRegistrations().then((registrations) => {
@@ -47,7 +50,7 @@ const updateCurrentSafe = () => {
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
       chrome.tabs.sendMessage(tabs[0].id, {
         msg: messages.MSG_UPDATE_CURRENT_SAFE,
-        newSafeAddress: storeCurrentSafeAddress.toLowerCase()
+        newSafeAddress: storeCurrentSafeAddress ? storeCurrentSafeAddress.toLowerCase() : undefined
       })
     })
   }
@@ -86,6 +89,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
     case messages.MSG_CONFIGURE_ACCOUNT_LOCKING:
       lockAccountTimer()
+      break
+
+    case messages.MSG_TEMPORARY_UNLOCK:
+      temporaryMnemonic = request.message
       break
 
     case messages.MSG_PENDING_SENDTRANSACTION:
@@ -317,28 +324,70 @@ if ('serviceWorker' in navigator) {
   })
 }
 
-const safeCreation = (payload) => {
-  const safes = storageController.getStoreState().safes.safes
-  const account = storageController.getStoreState().account
+const safeCreation = async (payload) => {
+  const storage = storageController.getStoreState()
+  const safes = storage.safes.safes
+  const currentSafe = storage.safes.currentSafe
+  const account = storage.account
+  const checksumedSafeAddress = EthUtil.toChecksumAddress(payload.safe)
 
-  const validSafeAddress =
-    safes.filter(
-      (safe) => safe.address.toLowerCase() === payload.safe.toLowerCase()
-    ).length === 0
+  let accountIndex
+  if (account.secondFA.currentAccountIndex === 0) {
+    accountIndex = account.secondFA.currentAccountIndex + 1
+  } else {
+    if ((!account || !account.secondFA || !account.secondFA.unlockedMnemonic) && !temporaryMnemonic) {
+      // The Safe Authenticator must be unlocked when sync requests are received from the mobile app.
+      console.error('Unlock your Gnosis Safe Authenticator before syncing a Safe from the Gnosis Safe mobile app')
+      return
+    }
 
-  if (safes.length > 0 && !validSafeAddress) {
-    console.error(SAFE_ALREADY_EXISTS, payload.safe)
-    return
+    const validSafeAddress =
+      safes.filter(
+        (safe) => safe.address.toLowerCase() === payload.safe.toLowerCase()
+      ).length === 0
+
+    if (safes.length > 0 && !validSafeAddress) {
+      let newCurrentSafe
+      if (safes.length > 1) {
+        const deletedIndex = safes
+          .map((safe) => safe.address)
+          .indexOf(checksumedSafeAddress)
+
+        newCurrentSafe =
+          currentSafe === checksumedSafeAddress
+            ? deletedIndex === 0
+              ? safes[1].address
+              : safes[deletedIndex - 1].address
+            : currentSafe
+      }
+
+      storageController
+        .getStore()
+        .dispatch(removeSafe(checksumedSafeAddress, newCurrentSafe))
+    }
+
+    const mnemonic = temporaryMnemonic ? temporaryMnemonic : account.secondFA.unlockedMnemonic
+
+    // This is temporary. safeCreation notification will include the owners and the Authenticator should use them.
+    const owners = await getOwners(checksumedSafeAddress)
+    
+    for (let i = 0; i <= account.secondFA.currentAccountIndex; i++) {
+      const possibleOwner = createAccountFromMnemonic(mnemonic, i).getChecksumAddressString()
+      if (owners.includes(possibleOwner)) {
+        accountIndex = i
+        break
+      }
+    }
+    if (!accountIndex) {
+      accountIndex = account.secondFA.currentAccountIndex + 1
+    }
+
+    temporaryMnemonic = null
   }
-  const checksumedAddress = EthUtil.toChecksumAddress(payload.safe)
-
-  const accountIndex = account.secondFA.currentAccountIndex
-    ? account.secondFA.currentAccountIndex + 1
-    : 1
 
   storageController
     .getStore()
-    .dispatch(addSafe(checksumedAddress, accountIndex))
+    .dispatch(addSafe(checksumedSafeAddress, accountIndex))
   storageController.getStore().dispatch(incrementCurrentAccountIndex())
 }
 

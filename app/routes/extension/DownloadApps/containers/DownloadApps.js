@@ -7,7 +7,9 @@ import { ONBOARDING } from 'utils/analytics/events'
 import {
   createEthAccount,
   createAccountFromMnemonic,
+  decryptMnemonic,
   getDecryptedEthAccount,
+  getDecryptedAllEthAccounts,
   generatePairingCodeContent
 } from './pairEthAccount'
 import {
@@ -21,6 +23,7 @@ import actions from './actions'
 import selector from './selector'
 import { getAndroidAppUrl, getIosAppUrl } from '../../../../../config'
 import { NOTIFICATIONS_PERMISSION_REQUIRED } from '../../../../../config/messages'
+import messages from '../../../../../extension/utils/messages'
 
 const DownloadApps = ({
   location,
@@ -89,15 +92,23 @@ const DownloadApps = ({
         nextOwnerAccountIndex
       )
 
+    const accounts = password && getDecryptedAllEthAccounts(selectEncryptedMnemonic, password, safes)
+
     try {
       const token = await setUpNotifications()
       if (token === null) {
         setMessage(NOTIFICATIONS_PERMISSION_REQUIRED)
         return
       }
-      const auth = await authPushNotificationService(token, [nextOwnerAccount])
+      const auth = await authPushNotificationService(token, accounts.concat(nextOwnerAccount))
       if (auth) {
         renderQrImageFrom(nextOwnerAccount.getPrivateKey())
+
+        const mnemonic = decryptMnemonic(selectEncryptedMnemonic, password)
+        chrome.runtime.sendMessage({
+          msg: messages.MSG_TEMPORARY_UNLOCK,
+          message: mnemonic
+        })
       }
     } catch (err) {
       console.error(err)

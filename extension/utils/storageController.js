@@ -6,7 +6,7 @@ class StorageController {
   constructor() {
     const persistedState = this.loadStorage()
     this.store = createStore(rootReducer, persistedState)
-    wrapStore(this.store, { portName: 'SAFE_BROWSER_EXTENSION' })
+    wrapStore(this.store, { portName: 'GNOSIS_SAFE_AUTHENTICATOR' })
   }
 
   getStore = () => {
