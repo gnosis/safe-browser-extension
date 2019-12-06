@@ -341,12 +341,12 @@ const safeCreation = async (payload) => {
       return
     }
 
-    const validSafeAddress =
+    const existingSafeAddress =
       safes.filter(
         (safe) => safe.address.toLowerCase() === payload.safe.toLowerCase()
       ).length === 0
 
-    if (safes.length > 0 && !validSafeAddress) {
+    if (safes.length > 0 && !existingSafeAddress) {
       let newCurrentSafe
       if (safes.length > 1) {
         const deletedIndex = safes
@@ -368,8 +368,16 @@ const safeCreation = async (payload) => {
 
     const mnemonic = temporaryMnemonic ? temporaryMnemonic : account.secondFA.unlockedMnemonic
 
-    // This is temporary. safeCreation notification will include the owners and the Authenticator should use them.
-    const owners = await getOwners(checksumedSafeAddress)
+    let owners
+    if (payload.owners) {
+      owners = payload.owners.split(',')
+    } else {
+      // This code should not be reached, but:
+      // If the safeCreation payload doesn't have the latest owners (Authenticator owner included, after scanning the qr-code)
+      // this process will select a new accountIndex and owner address for the Authenticator.
+      // To solve this situation the mobile app must "sync with Authenticator" after the tx for adding a new owner is confirmed.
+      owners = await getOwners(checksumedSafeAddress)
+    }
     
     for (let i = 0; i <= account.secondFA.currentAccountIndex; i++) {
       const possibleOwner = createAccountFromMnemonic(mnemonic, i).getChecksumAddressString()
