@@ -97,7 +97,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(
-  selector,
-  mapDispatchToProps
-)(ChangePassword)
+export default connect(selector, mapDispatchToProps)(ChangePassword)
