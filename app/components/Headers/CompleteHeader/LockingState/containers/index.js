@@ -97,7 +97,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LockingState)
+export default connect(mapStateToProps, mapDispatchToProps)(LockingState)

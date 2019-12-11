@@ -112,7 +112,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(
-  selector,
-  mapDispatchToProps
-)(Password)
+export default connect(selector, mapDispatchToProps)(Password)

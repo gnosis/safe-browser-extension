@@ -227,7 +227,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(
-  selector,
-  mapDispatchToProps
-)(Transaction)
+export default connect(selector, mapDispatchToProps)(Transaction)

@@ -50,7 +50,9 @@ const updateCurrentSafe = () => {
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
       chrome.tabs.sendMessage(tabs[0].id, {
         msg: messages.MSG_UPDATE_CURRENT_SAFE,
-        newSafeAddress: storeCurrentSafeAddress ? storeCurrentSafeAddress.toLowerCase() : undefined
+        newSafeAddress: storeCurrentSafeAddress
+          ? storeCurrentSafeAddress.toLowerCase()
+          : undefined
       })
     })
   }
@@ -366,7 +368,9 @@ const safeCreation = async (payload) => {
         .dispatch(removeSafe(checksumedSafeAddress, newCurrentSafe))
     }
 
-    const mnemonic = temporaryMnemonic ? temporaryMnemonic : account.secondFA.unlockedMnemonic
+    const mnemonic = temporaryMnemonic
+      ? temporaryMnemonic
+      : account.secondFA.unlockedMnemonic
 
     let owners
     if (payload.owners) {
@@ -378,9 +382,12 @@ const safeCreation = async (payload) => {
       // To solve this situation the mobile app must "sync with Authenticator" after the tx for adding a new owner is confirmed.
       owners = await getOwners(checksumedSafeAddress)
     }
-    
+
     for (let i = 0; i <= account.secondFA.currentAccountIndex; i++) {
-      const possibleOwner = createAccountFromMnemonic(mnemonic, i).getChecksumAddressString()
+      const possibleOwner = createAccountFromMnemonic(
+        mnemonic,
+        i
+      ).getChecksumAddressString()
       if (owners.includes(possibleOwner)) {
         accountIndex = i
         break

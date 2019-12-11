@@ -61,7 +61,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(
-  selector,
-  mapDispatchToProps
-)(PaymentToken)
+export default connect(selector, mapDispatchToProps)(PaymentToken)
