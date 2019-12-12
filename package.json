@@ -36,7 +36,7 @@
     "ethereumjs-abi": "^0.6.8",
     "ethereumjs-util": "^5.1.5",
     "ethereumjs-wallet": "^0.6.3",
-    "firebase": "^5.5.7",
+    "firebase": "^6.6.2",
     "history": "^4.7.2",
     "node-fetch": "^2.6.0",
     "qr-image": "^3.2.0",
@@ -49,7 +49,7 @@
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "react-router-redux": "^5.0.0-alpha.9",
+    "react-router-redux": "^5.0.0-alpha.8",
     "redux": "^3.7.2",
     "redux-thunk": "^2.3.0",
     "safe-web3-provider": "github:gnosis/safe-web3-provider#v1.1.1",
@@ -59,7 +59,7 @@
     "web3-provider-engine": "^14.0.4"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.6",
     "babel-jest": "^22.4.3",
     "babel-loader": "^7.1.2",
