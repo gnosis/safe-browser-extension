@@ -10,7 +10,7 @@ Manual Installation
 -------
 Install dependencies
 ```
-npm install
+yarn install
 ```
 
 Build
@@ -18,7 +18,7 @@ Build
 Build files to `./build` folder.
 ```
 touch .env
-npm run build
+yarn build
 ```
 
 Run the Gnosis Safe Authenticator

@@ -13,11 +13,11 @@ if [ -d "./build" ]; then
 fi
 
 # PRODUCTION: Build and zip Rinkeby version
-npm run build:prod
+yarn build:prod
 cd ./build && zip -r ../ci/outputs/gnosis-safe-authenticator-$TRAVIS_BUILD_NUMBER-rinkeby.zip * && cd ..
 rm -r ./build
 
 # PRODUCTION: Build and zip Mainnet version
-npm run build:prod-mainnet
+yarn build:prod-mainnet
 cd ./build && zip -r ../ci/outputs/gnosis-safe-authenticator-$TRAVIS_BUILD_NUMBER-mainnet.zip * && cd ..
 rm -r ./build
