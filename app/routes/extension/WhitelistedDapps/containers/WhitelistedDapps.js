@@ -107,7 +107,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(WhitelistedDapps)
+export default connect(mapStateToProps, mapDispatchToProps)(WhitelistedDapps)

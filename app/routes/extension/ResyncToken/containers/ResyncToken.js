@@ -31,7 +31,7 @@ const ResyncToken = ({
       (safe) => safe.address === safes.currentSafe
     )[0]
 
-    const accounts = 
+    const accounts =
       !selectUnencryptedMnemonic && password
         ? getDecryptedAllEthAccounts(selectEncryptedMnemonic, password, safes)
         : getAllEthAccounts(selectUnencryptedMnemonic, safes)

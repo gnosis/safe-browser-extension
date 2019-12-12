@@ -135,7 +135,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(
-  selector,
-  mapDispatchToProps
-)(SignMessage)
+export default connect(selector, mapDispatchToProps)(SignMessage)

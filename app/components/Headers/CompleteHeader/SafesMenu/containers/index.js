@@ -86,7 +86,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(
-  selector,
-  mapDispatchToProps
-)(SafesMenu)
+export default connect(selector, mapDispatchToProps)(SafesMenu)

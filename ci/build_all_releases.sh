@@ -13,26 +13,26 @@ if [ -d "./build" ]; then
 fi
 
 # STAGING: Build and zip Rinkeby version
-npm run build:staging
+yarn build:staging
 cd ./build && zip -r ../ci/outputs/gnosis-safe-authenticator-$TRAVIS_BUILD_NUMBER-staging-rinkeby.zip * && cd ..
 rm -r ./build
 
 # PRE-PRODUCTION: Build and zip Rinkeby version
-npm run build:preprod
+yarn build:preprod
 cd ./build && zip -r ../ci/outputs/gnosis-safe-authenticator-$TRAVIS_BUILD_NUMBER-preprod-rinkeby.zip * && cd ..
 rm -r ./build
 
 # PRE-PRODUCTION: Build and zip Mainnet version
-npm run build:preprod-mainnet
+yarn build:preprod-mainnet
 cd ./build && zip -r ../ci/outputs/gnosis-safe-authenticator-$TRAVIS_BUILD_NUMBER-preprod-mainnet.zip * && cd ..
 rm -r ./build
 
 # PRODUCTION: Build and zip Rinkeby version
-npm run build:prod
+yarn build:prod
 cd ./build && zip -r ../ci/outputs/gnosis-safe-authenticator-$TRAVIS_BUILD_NUMBER-rinkeby.zip * && cd ..
 rm -r ./build
 
 # PRODUCTION: Build and zip Mainnet version
-npm run build:prod-mainnet
+yarn build:prod-mainnet
 cd ./build && zip -r ../ci/outputs/gnosis-safe-authenticator-$TRAVIS_BUILD_NUMBER-mainnet.zip * && cd ..
 rm -r ./build

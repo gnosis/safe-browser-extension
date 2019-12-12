@@ -92,7 +92,9 @@ const DownloadApps = ({
         nextOwnerAccountIndex
       )
 
-    const accounts = password && getDecryptedAllEthAccounts(selectEncryptedMnemonic, password, safes)
+    const accounts =
+      password &&
+      getDecryptedAllEthAccounts(selectEncryptedMnemonic, password, safes)
 
     try {
       const token = await setUpNotifications()
@@ -100,7 +102,10 @@ const DownloadApps = ({
         setMessage(NOTIFICATIONS_PERMISSION_REQUIRED)
         return
       }
-      const auth = await authPushNotificationService(token, accounts.concat(nextOwnerAccount))
+      const auth = await authPushNotificationService(
+        token,
+        accounts.concat(nextOwnerAccount)
+      )
       if (auth) {
         renderQrImageFrom(nextOwnerAccount.getPrivateKey())
 
@@ -166,7 +171,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(
-  selector,
-  mapDispatchToProps
-)(DownloadApps)
+export default connect(selector, mapDispatchToProps)(DownloadApps)
