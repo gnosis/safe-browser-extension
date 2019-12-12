@@ -1,6 +1,6 @@
 {
   "name": "safe-browser-extension",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "main": "app/index.js",
   "scripts": {
     "build:dev": "cross-env NODE_ENV=development webpack --progress",
